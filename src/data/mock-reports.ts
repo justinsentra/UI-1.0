@@ -1,0 +1,1126 @@
+import type {
+  ReportCategory,
+  ReportDetail,
+  RadarConfig,
+  ReportPreferenceCard,
+} from "../types";
+
+export const reportCategories: ReportCategory[] = [
+  {
+    id: "rc-1",
+    name: "Company Overview",
+    type: "report",
+    reportCount: 14,
+    reports: [
+      {
+        id: "rpt-co-1",
+        dateRange: "Feb 24 – 28",
+        date: "2026-02-28",
+        isLatest: true,
+      },
+      {
+        id: "rpt-co-2",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-3",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-4",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-5",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-6",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-7",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-8",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-9",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-10",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-11",
+        dateRange: "Dec 15 – 19",
+        date: "2025-12-19",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-12",
+        dateRange: "Dec 8 – 12",
+        date: "2025-12-12",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-13",
+        dateRange: "Dec 1 – 5",
+        date: "2025-12-05",
+        isLatest: false,
+      },
+      {
+        id: "rpt-co-14",
+        dateRange: "Nov 24 – 28",
+        date: "2025-11-28",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "rc-2",
+    name: "GTM Status",
+    type: "report",
+    reportCount: 16,
+    reports: [
+      {
+        id: "rpt-gtm-1",
+        dateRange: "Feb 24 – 28",
+        date: "2026-02-28",
+        isLatest: true,
+      },
+      {
+        id: "rpt-gtm-2",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-3",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-4",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-5",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-6",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-7",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-8",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-9",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-10",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-11",
+        dateRange: "Dec 15 – 19",
+        date: "2025-12-19",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-12",
+        dateRange: "Dec 8 – 12",
+        date: "2025-12-12",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-13",
+        dateRange: "Dec 1 – 5",
+        date: "2025-12-05",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-14",
+        dateRange: "Nov 24 – 28",
+        date: "2025-11-28",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-15",
+        dateRange: "Nov 17 – 21",
+        date: "2025-11-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-gtm-16",
+        dateRange: "Nov 10 – 14",
+        date: "2025-11-14",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "rc-3",
+    name: "Product Strategy",
+    type: "report",
+    reportCount: 13,
+    reports: [
+      {
+        id: "rpt-ps-1",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: true,
+      },
+      {
+        id: "rpt-ps-2",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-3",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-4",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-5",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-6",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-7",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-8",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-9",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-10",
+        dateRange: "Dec 15 – 19",
+        date: "2025-12-19",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-11",
+        dateRange: "Dec 8 – 12",
+        date: "2025-12-12",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-12",
+        dateRange: "Dec 1 – 5",
+        date: "2025-12-05",
+        isLatest: false,
+      },
+      {
+        id: "rpt-ps-13",
+        dateRange: "Nov 24 – 28",
+        date: "2025-11-28",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "rc-4",
+    name: "Engineering Overview",
+    type: "report",
+    reportCount: 14,
+    reports: [
+      {
+        id: "rpt-eng-1",
+        dateRange: "Feb 24 – 28",
+        date: "2026-02-28",
+        isLatest: true,
+      },
+      {
+        id: "rpt-eng-2",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-3",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-4",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-5",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-6",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-7",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-8",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-9",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-10",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-11",
+        dateRange: "Dec 15 – 19",
+        date: "2025-12-19",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-12",
+        dateRange: "Dec 8 – 12",
+        date: "2025-12-12",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-13",
+        dateRange: "Dec 1 – 5",
+        date: "2025-12-05",
+        isLatest: false,
+      },
+      {
+        id: "rpt-eng-14",
+        dateRange: "Nov 24 – 28",
+        date: "2025-11-28",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "rc-5",
+    name: "Hiring Pipeline",
+    type: "report",
+    reportCount: 10,
+    reports: [
+      {
+        id: "rpt-hp-1",
+        dateRange: "Feb 24 – 28",
+        date: "2026-02-28",
+        isLatest: true,
+      },
+      {
+        id: "rpt-hp-2",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-3",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-4",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-5",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-6",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-7",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-8",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-9",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-hp-10",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "rc-6",
+    name: "Customer Success",
+    type: "report",
+    reportCount: 12,
+    reports: [
+      {
+        id: "rpt-cs-1",
+        dateRange: "Feb 24 – 28",
+        date: "2026-02-28",
+        isLatest: true,
+      },
+      {
+        id: "rpt-cs-2",
+        dateRange: "Feb 17 – 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-3",
+        dateRange: "Feb 10 – 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-4",
+        dateRange: "Feb 3 – 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-5",
+        dateRange: "Jan 27 – 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-6",
+        dateRange: "Jan 20 – 24",
+        date: "2026-01-24",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-7",
+        dateRange: "Jan 13 – 17",
+        date: "2026-01-17",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-8",
+        dateRange: "Jan 6 – 10",
+        date: "2026-01-10",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-9",
+        dateRange: "Dec 30 – Jan 3",
+        date: "2026-01-03",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-10",
+        dateRange: "Dec 22 – 26",
+        date: "2025-12-26",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-11",
+        dateRange: "Dec 15 – 19",
+        date: "2025-12-19",
+        isLatest: false,
+      },
+      {
+        id: "rpt-cs-12",
+        dateRange: "Dec 8 – 12",
+        date: "2025-12-12",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-1",
+    name: "SXSW Launch",
+    type: "radar",
+    priority: "High",
+    reportCount: 10,
+    reports: [
+      {
+        id: "radar-sxsw-1",
+        dateRange: "Feb 24",
+        date: "2026-02-24",
+        isLatest: true,
+      },
+      {
+        id: "radar-sxsw-2",
+        dateRange: "Feb 17",
+        date: "2026-02-17",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-3",
+        dateRange: "Feb 16",
+        date: "2026-02-16",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-4",
+        dateRange: "Feb 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-5",
+        dateRange: "Feb 12",
+        date: "2026-02-12",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-6",
+        dateRange: "Feb 10",
+        date: "2026-02-10",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-7",
+        dateRange: "Feb 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-8",
+        dateRange: "Feb 5",
+        date: "2026-02-05",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-9",
+        dateRange: "Feb 3",
+        date: "2026-02-03",
+        isLatest: false,
+      },
+      {
+        id: "radar-sxsw-10",
+        dateRange: "Jan 30",
+        date: "2026-01-30",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-2",
+    name: "Product Development",
+    type: "radar",
+    priority: "Med",
+    reportCount: 9,
+    reports: [
+      {
+        id: "radar-pd-1",
+        dateRange: "Feb 24",
+        date: "2026-02-24",
+        isLatest: true,
+      },
+      {
+        id: "radar-pd-2",
+        dateRange: "Feb 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-3",
+        dateRange: "Feb 18",
+        date: "2026-02-18",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-4",
+        dateRange: "Feb 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-5",
+        dateRange: "Feb 11",
+        date: "2026-02-11",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-6",
+        dateRange: "Feb 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-7",
+        dateRange: "Feb 4",
+        date: "2026-02-04",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-8",
+        dateRange: "Jan 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "radar-pd-9",
+        dateRange: "Jan 28",
+        date: "2026-01-28",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-3",
+    name: "Partnerships",
+    type: "radar",
+    priority: "Med",
+    reportCount: 8,
+    reports: [
+      {
+        id: "radar-part-1",
+        dateRange: "Feb 25",
+        date: "2026-02-25",
+        isLatest: true,
+      },
+      {
+        id: "radar-part-2",
+        dateRange: "Feb 22",
+        date: "2026-02-22",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-3",
+        dateRange: "Feb 19",
+        date: "2026-02-19",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-4",
+        dateRange: "Feb 15",
+        date: "2026-02-15",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-5",
+        dateRange: "Feb 12",
+        date: "2026-02-12",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-6",
+        dateRange: "Feb 8",
+        date: "2026-02-08",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-7",
+        dateRange: "Feb 4",
+        date: "2026-02-04",
+        isLatest: false,
+      },
+      {
+        id: "radar-part-8",
+        dateRange: "Jan 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-4",
+    name: "Customer Churn Concerns",
+    type: "radar",
+    priority: "High",
+    reportCount: 10,
+    reports: [
+      {
+        id: "radar-churn-1",
+        dateRange: "Feb 26",
+        date: "2026-02-26",
+        isLatest: true,
+      },
+      {
+        id: "radar-churn-2",
+        dateRange: "Feb 24",
+        date: "2026-02-24",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-3",
+        dateRange: "Feb 21",
+        date: "2026-02-21",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-4",
+        dateRange: "Feb 18",
+        date: "2026-02-18",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-5",
+        dateRange: "Feb 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-6",
+        dateRange: "Feb 11",
+        date: "2026-02-11",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-7",
+        dateRange: "Feb 7",
+        date: "2026-02-07",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-8",
+        dateRange: "Feb 4",
+        date: "2026-02-04",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-9",
+        dateRange: "Jan 31",
+        date: "2026-01-31",
+        isLatest: false,
+      },
+      {
+        id: "radar-churn-10",
+        dateRange: "Jan 28",
+        date: "2026-01-28",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-5",
+    name: "Expense Management",
+    type: "radar",
+    priority: "Med",
+    reportCount: 8,
+    reports: [
+      {
+        id: "radar-exp-1",
+        dateRange: "Feb 25",
+        date: "2026-02-25",
+        isLatest: true,
+      },
+      {
+        id: "radar-exp-2",
+        dateRange: "Feb 22",
+        date: "2026-02-22",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-3",
+        dateRange: "Feb 18",
+        date: "2026-02-18",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-4",
+        dateRange: "Feb 14",
+        date: "2026-02-14",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-5",
+        dateRange: "Feb 10",
+        date: "2026-02-10",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-6",
+        dateRange: "Feb 6",
+        date: "2026-02-06",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-7",
+        dateRange: "Feb 2",
+        date: "2026-02-02",
+        isLatest: false,
+      },
+      {
+        id: "radar-exp-8",
+        dateRange: "Jan 29",
+        date: "2026-01-29",
+        isLatest: false,
+      },
+    ],
+  },
+  {
+    id: "radar-6",
+    name: "Competitor Activity",
+    type: "radar",
+    priority: "High",
+    reportCount: 9,
+    reports: [
+      {
+        id: "radar-comp-1",
+        dateRange: "Feb 26",
+        date: "2026-02-26",
+        isLatest: true,
+      },
+      {
+        id: "radar-comp-2",
+        dateRange: "Feb 23",
+        date: "2026-02-23",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-3",
+        dateRange: "Feb 20",
+        date: "2026-02-20",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-4",
+        dateRange: "Feb 17",
+        date: "2026-02-17",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-5",
+        dateRange: "Feb 13",
+        date: "2026-02-13",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-6",
+        dateRange: "Feb 10",
+        date: "2026-02-10",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-7",
+        dateRange: "Feb 6",
+        date: "2026-02-06",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-8",
+        dateRange: "Feb 2",
+        date: "2026-02-02",
+        isLatest: false,
+      },
+      {
+        id: "radar-comp-9",
+        dateRange: "Jan 29",
+        date: "2026-01-29",
+        isLatest: false,
+      },
+    ],
+  },
+];
+
+export const gtmStatusReport: ReportDetail = {
+  id: "rpt-gtm-1",
+  title: "Weekly Review",
+  dateRange: "Feb 24 – 28, 2026",
+  sections: [
+    {
+      heading: "Executive Summary",
+      paragraphs: [
+        "This week marked a significant leap forward in platform maturity, with the engineering team resolving critical production stability issues related to CPU, memory, and database performance. This newfound stability supported a high-velocity shipping cadence, delivering key user-facing features including source citations, Pre-Meeting Briefs v3.1, and Outlook Calendar support.",
+        "While we gained new enterprise traction with JPM and Assurant, we also received direct and challenging feedback from design partners, highlighting the urgent need for an API-first strategy and a more trustworthy, less prescriptive user experience.",
+      ],
+    },
+    {
+      heading: "Highlights & Key Developments",
+      paragraphs: [
+        "Major Platform Stability Achieved: The team successfully diagnosed and deployed fixes for several critical production issues, including a 100% CPU bug, a major API memory leak (reducing usage from 8.6GB to ~300MB), and database connection bottlenecks. The core platform is now significantly more reliable, scalable, and prepared for user growth.",
+        "Key Features Shipped to Build User Trust: In response to direct feedback, a source Citations feature has been implemented and is being rolled out across Pre-Meeting Briefs and weekly reports. Pre-Meeting Briefs v3.1 (with citations) and Outlook Calendar support have also been deployed, enhancing core functionality.",
+        "Increased Developer Velocity: The migration to RabbitMQ is complete, improving our background task reliability. The team has also built and adopted new internal developer tools, including a Cursor extension for managing local services and Infrastructure-as-Code for Datadog monitoring, which are accelerating our build, test, and deploy cycles.",
+        "New Enterprise Pipeline Growth: We have initiated conversations with key prospects at JPM (VP of Global Technology) and Assurant (a Fortune 500 insurance company), indicating strong interest in our organizational memory solution from large enterprises.",
+        "Strategic Account Progress: The SoftBank proof-of-concept has been extended, and their team is now testing our mobile app for in-person meeting capture at the Mobile World Congress. While the Accenture project is on hold for six months due to their internal IT backlog, their feedback validated our strategic potential to \u201Creshape the way Accenture and our clients work.\u201D",
+        "Gartner Validates \u201CContext Graph\u201D: Industry analyst firm Gartner has begun discussing the \u201CContext Graph\u201D market space. This external validation is a significant milestone that will aid in conversations with enterprise CIOs and decision-makers.",
+        "Internal Mandate to Use Granola: A company-wide directive has been issued for all team members to use Granola as their primary meeting notetaker for the next 2\u20133 weeks. The goal is to deeply internalize the user experience of a \u201Cbest-in-class\u201D competitor to set a clear bar for our own product quality and differentiation.",
+      ],
+    },
+    {
+      heading: "Challenges, Blockers & Concerns",
+      paragraphs: [
+        "Critical Design Partner Feedback on Product Experience: We received blunt feedback from Softmax that our pre-meeting briefs were \u201Cworse than useless\u201D due to erratic behavior, hallucinated to-dos, and a lack of source tracing. This, combined with feedback from Campfire, highlights a consistent theme: the AI\u2019s tone is too prescriptive (\u201Cyou\u2019re not my boss\u201D), and without verifiable sources, the output cannot be trusted.",
+        "Production Instability & Debugging Overhead: The engineering team spent considerable time diagnosing and fixing a complex production bug in the upcoming_meetings_scheduler, which was silently failing and preventing upcoming meetings from appearing for users. While resolved, this incident consumed significant resources and delayed other initiatives.",
+      ],
+    },
+    {
+      heading: "Key Strategic Question: API-First vs. Integrated Application",
+      paragraphs: [
+        "Feedback this week from Softmax surfaced a critical strategic threat and opportunity. Malcolm Ocean stated that if Sentra does not provide a robust API to access meeting transcripts and other data, his team will be forced to \u201Croll our own stuff\u201D to power their internal AI agent initiatives. This sentiment has been echoed by others.",
+        "We are at a crossroads: doubling down on building a self-contained, integrated application risks losing sophisticated, AI-native customers who want to build their own workflows. Prioritizing an API-first strategy would position Sentra as a foundational \u201Ccontextual infrastructure,\u201D but would require a significant shift in our product roadmap and resources.",
+      ],
+    },
+  ],
+  drillDowns: [
+    {
+      heading: "Engineering Delivers Major Stability and Feature Wins",
+      paragraphs: [
+        "This week was a turning point for our platform\u2019s reliability. The engineering team successfully resolved multiple longstanding and critical performance issues that were hindering our ability to scale.",
+        "100% CPU Bug Fixed: A bug in our Server-Sent Events (SSE) implementation was causing a tight loop that consumed 100% of a CPU core. Serge Semenov identified and fixed the issue (PR #519), dropping CPU usage to 1.5% and dramatically improving API responsiveness.",
+        "API Memory Bloat Eliminated: Andrey Starenky fixed a major memory leak that caused the API to consume over 8GB of RAM. The fix (PR #508) reduced memory usage to ~300MB, unblocking multi-worker deployments and significantly increasing our capacity.",
+        "Infrastructure Hardened: The migration to RabbitMQ (PR #480) is complete and has been merged, resolving core reliability issues with our background task processing. Further improvements to our database connection pooler have reduced concurrent connections by ~60%, giving us significant headroom for growth.",
+        "On the product front, the team shipped several high-impact features. The new Citations feature (PR #524), a direct response to user feedback about trust, is now being integrated into Pre-Meeting Briefs (PR #537) and Weekly Reports. This allows users to see the exact source of the information Sentra provides. Additionally, Outlook Calendar support for meeting booking (PRs #517, #518) is now live, a crucial integration for many enterprise users.",
+      ],
+    },
+    {
+      heading: "Voice of the Customer: A Clear Demand for Trust and an API",
+      paragraphs: [
+        "This week\u2019s design partner check-ins provided invaluable, if sharp, feedback that clarifies our immediate product priorities.",
+        "From Softmax, Malcolm Ocean detailed a \u201Cbad user experience\u201D where a pre-meeting brief assigned incorrect to-dos to his Chief of Staff, Shelly, causing confusion and eroding trust. His core feedback was that the AI\u2019s output feels erratic, overly confident, and lacks source traceability, rendering it \u201Cworse than useless.\u201D He strongly advocated for a change in tone from prescriptive to informational (\u201CFYI\u201D instead of \u201CTo-Do\u201D) and for the ability to trace all information back to its source.",
+        "From Campfire, Andrew Greener echoed the need for source citations, stating he cannot trust AI-consolidated information \u201Cas gospel\u201D without the ability to verify it. He also provided nuanced feedback on pre-meeting briefs, finding them highly valuable for external customer calls but \u201Cunnecessary\u201D for internal syncs, for which he would prefer a single, consolidated morning digest.",
+        "Most critically, Malcolm delivered a clear ultimatum regarding our product strategy. He explained that his team is building its own internal LLM agents and views Sentra as a potential \u201Ccontextual infrastructure.\u201D He stated that if we do not provide a \u201Ckick-ass API with webhooks\u201D in the next couple of months, it will no longer make sense for them to use Sentra, and they will build their own solution. This represents a significant risk and a clear demand from our most advanced users to position Sentra as a platform.",
+      ],
+    },
+    {
+      heading: 'The "Granola Killer" & The Future of Agentic Workflows',
+      paragraphs: [
+        "A key internal theme this week is the focused effort to understand and surpass our direct competitor, Granola. Ashwin has mandated that the entire team use Granola daily to internalize what a \u201Cdelightful\u201D and seamless meeting notetaker experience feels like.",
+        "This initiative is directly fueling a wave of internal innovation around \u201Cworkflow collapsing agents.\u201D Serge Semenov demonstrated a powerful workflow connecting Granola\u2019s output directly into the Cursor IDE, allowing an AI agent to analyze code changes based on a technical discussion without any context switching. The demo was met with universal enthusiasm, with Ashwin stating, \u201CWe should do this.\u201D",
+        "This internal validation proves a core hypothesis: the real value is not just in capturing meeting data, but in seamlessly integrating that context into the tools where work actually happens. The team\u2019s excitement to build these agentic integrations for our own workflows (e.g., adding PostHog and AWS CLI commands to Cursor) is a strong leading indicator of the product direction that will resonate most with users. Our immediate goal is to beat Granola on the core notetaking experience, but the long-term win lies in owning these integrated, agentic workflows.",
+      ],
+    },
+  ],
+  sources: [
+    { type: "slack", label: "#engineering" },
+    { type: "slack", label: "#product-strategy" },
+    { type: "slack", label: "#general" },
+    { type: "google-meet", label: "Leadership Weekly Sync" },
+    { type: "google-meet", label: "Softmax Design Partner Check-in" },
+    { type: "google-meet", label: "Campfire Feedback Session" },
+    { type: "linear", label: "PR #519 \u2014 CPU fix" },
+    { type: "linear", label: "PR #508 \u2014 Memory leak" },
+    { type: "linear", label: "PR #524 \u2014 Citations" },
+  ],
+  suggestedActions: [
+    { icon: "mail", label: "Follow up with Softmax on API roadmap" },
+    {
+      icon: "calendar",
+      label: "Schedule API strategy session with Ashwin and Andrey",
+    },
+    { icon: "mail", label: "Send JPM introduction follow-up" },
+  ],
+};
+
+export const activeRadars: RadarConfig[] = [
+  {
+    id: "ar-1",
+    name: "SXSW Launch Tracker",
+    prompt:
+      "Track all updates related to the SXSW launch including press coverage, demo prep, and event logistics.",
+    isActive: true,
+    createdAt: "2026-01-15",
+  },
+  {
+    id: "ar-2",
+    name: "Product Development Velocity",
+    prompt:
+      "Monitor sprint velocity, feature completions, and any blockers in the engineering pipeline.",
+    isActive: true,
+    createdAt: "2026-01-20",
+  },
+  {
+    id: "ar-3",
+    name: "Partnership Pipeline",
+    prompt:
+      "Track status of all active partnership conversations and deal progression.",
+    isActive: true,
+    createdAt: "2026-01-22",
+  },
+  {
+    id: "ar-4",
+    name: "Customer Churn Risk",
+    prompt:
+      "Flag any signals of customer dissatisfaction, reduced usage, or churn risk across the customer base.",
+    isActive: true,
+    createdAt: "2026-02-01",
+  },
+  {
+    id: "ar-5",
+    name: "Expense Anomalies",
+    prompt:
+      "Monitor for unusual spending patterns, budget overruns, or expense policy violations.",
+    isActive: true,
+    createdAt: "2026-02-05",
+  },
+  {
+    id: "ar-6",
+    name: "Competitor Movements",
+    prompt:
+      "Track competitor product launches, pricing changes, funding rounds, and strategic moves.",
+    isActive: true,
+    createdAt: "2026-02-10",
+  },
+  {
+    id: "ar-7",
+    name: "Hiring Pipeline Health",
+    prompt:
+      "Monitor candidate pipeline, interview completion rates, and time-to-hire metrics.",
+    isActive: true,
+    createdAt: "2026-02-12",
+  },
+  {
+    id: "ar-8",
+    name: "Security & Compliance",
+    prompt:
+      "Track security incidents, compliance deadlines, and audit preparation status.",
+    isActive: true,
+    createdAt: "2026-02-15",
+  },
+  {
+    id: "ar-9",
+    name: "Team Sentiment",
+    prompt: "Monitor team morale signals from standups, retros, and 1:1 notes.",
+    isActive: true,
+    createdAt: "2026-02-18",
+  },
+];
+
+export const reportPreferenceCards: ReportPreferenceCard[] = [
+  {
+    id: "pref-1",
+    label: "Org-Wide Overview",
+    description:
+      "Get a weekly overview of the major decisions across your organization",
+  },
+  {
+    id: "pref-2",
+    label: "Engineering Overview",
+    description:
+      "Sprint velocity, feature completions, technical debt, and engineering team health",
+  },
+  {
+    id: "pref-3",
+    label: "Pipeline Progress",
+    description:
+      "Sales pipeline movement, deal progression, and revenue forecasting updates",
+  },
+];
+
+export const defaultRadarOptions = [
+  {
+    id: "dro-1",
+    label: "Customer Churn Concerns",
+    description: "Monitor signals of customer dissatisfaction and churn risk",
+  },
+  {
+    id: "dro-2",
+    label: "Expense Management Updates",
+    description: "Track spending patterns and budget adherence",
+  },
+  {
+    id: "dro-3",
+    label: "Competitive Intelligence",
+    description: "Stay updated on competitor movements and market changes",
+  },
+];
+
+export const chatSuggestions = {
+  reports: [
+    "Summarize this week's key decisions",
+    "What are the top risks across all reports?",
+    "Compare last two GTM status reports",
+    "What progress was made on hiring?",
+  ],
+  radar: [
+    "What are the most urgent radar items?",
+    "Summarize SXSW launch status",
+    "Any new competitor activity this week?",
+    "What customer churn signals were detected?",
+  ],
+};

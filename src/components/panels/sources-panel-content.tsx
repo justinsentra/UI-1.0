@@ -1,0 +1,149 @@
+import { cn } from "@lib/utils";
+import type { Source } from "@/types";
+import type { SourceType } from "@/data/mock-deep-research";
+import { getSourceIcon } from "@/icons/source-icons";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+
+interface SourcesPanelContentProps {
+  sources: Source[];
+}
+
+const TYPE_LABELS: Record<string, string> = {
+  slack: "Slack",
+  meeting: "Meetings",
+  "google-meet": "Google Meet",
+  "google-calendar": "Google Calendar",
+  "google-drive": "Google Drive",
+  linear: "Linear",
+  email: "Email",
+  outlook: "Outlook",
+  notion: "Notion",
+  asana: "Asana",
+  discord: "Discord",
+  zoom: "Zoom",
+  github: "GitHub",
+  "google-docs": "Google Docs",
+};
+
+const SOURCE_DESCRIPTIONS: Record<string, string> = {
+  slack: "Slack channel or thread",
+  linear: "Linear issue or project",
+  github: "GitHub repository or PR",
+  zoom: "Zoom meeting recording",
+  "google-docs": "Google Docs document",
+  "google-meet": "Google Meet transcript",
+  "google-calendar": "Google Calendar event",
+  "google-drive": "Google Drive file",
+  notion: "Notion page or database",
+  asana: "Asana task or project",
+  discord: "Discord channel",
+  outlook: "Outlook email thread",
+  email: "Email message",
+  meeting: "Meeting transcript",
+};
+
+const ICON_COMPATIBLE_TYPES: Record<string, SourceType> = {
+  slack: "slack",
+  meeting: "google-meet",
+  "google-meet": "google-meet",
+  "google-calendar": "google-calendar",
+  "google-drive": "google-drive",
+  linear: "linear",
+  email: "email",
+  outlook: "outlook",
+  notion: "notion",
+  asana: "asana",
+  discord: "discord",
+  zoom: "zoom",
+  github: "github",
+  "google-docs": "google-docs",
+};
+
+function SourceChip({ source }: { source: Source }) {
+  const iconType = ICON_COMPATIBLE_TYPES[source.type] ?? "email";
+  const Icon = getSourceIcon(iconType);
+  const description = SOURCE_DESCRIPTIONS[source.type] ?? "Source reference";
+
+  return (
+    <HoverCard openDelay={200} closeDelay={0}>
+      <HoverCardTrigger asChild>
+        <span
+          className={cn(
+            "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium",
+            "bg-muted text-muted-foreground hover:bg-secondary-hover transition-colors cursor-pointer",
+          )}
+        >
+          <Icon size={13} />
+          {source.label}
+        </span>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-64 p-0 shadow-xs">
+        <div className="flex flex-col gap-2 p-3">
+          <div className="flex items-center gap-1.5">
+            <Icon size={16} />
+            <span className="text-sm text-muted-foreground">
+              {TYPE_LABELS[source.type] ?? source.type}
+            </span>
+          </div>
+          <div className="text-sm font-medium line-clamp-2">{source.label}</div>
+          <div className="text-sm text-muted-foreground">{description}</div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}
+
+export function SourcesPanelContent({ sources }: SourcesPanelContentProps) {
+  const grouped = sources.reduce<Record<string, Source[]>>(
+    (acc, source) => ({
+      ...acc,
+      [source.type]: [...(acc[source.type] || []), source],
+    }),
+    {},
+  );
+
+  const activeTypes = Object.keys(grouped).filter(
+    (type) => grouped[type].length > 0,
+  );
+
+  return (
+    <div className="p-4 space-y-5">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-semibold text-[var(--fg-base)]">
+          Sources
+        </span>
+        <span className="text-sm text-[var(--fg-muted)]">
+          {sources.length} references
+        </span>
+      </div>
+
+      {activeTypes.map((type) => {
+        const iconType = ICON_COMPATIBLE_TYPES[type] ?? "email";
+        const Icon = getSourceIcon(iconType);
+
+        return (
+          <div key={type}>
+            <div className="flex items-center gap-1.5 mb-2">
+              <Icon size={14} />
+              <p className="text-xs font-medium text-[var(--fg-disabled)] ">
+                {TYPE_LABELS[type] ?? type}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {grouped[type].map((source) => (
+                <SourceChip
+                  key={`${source.type}-${source.label}`}
+                  source={source}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
