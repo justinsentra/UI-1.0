@@ -147,7 +147,7 @@ const AppLayout = () => {
       <div className="flex h-screen bg-shell overflow-hidden relative">
         <div className="drag absolute top-0 left-0 right-0 h-5 z-50" />
         <div
-          className="pt-5 transition-all duration-300 ease-in-out overflow-hidden shrink-0"
+          className="pt-5 transition-all duration-300 ease-in-out overflow-hidden shrink-0 bg-[var(--bg-subtle)]"
           style={{ width: isSidebarCollapsed ? 0 : 220 }}
         >
           <AppSidebar />

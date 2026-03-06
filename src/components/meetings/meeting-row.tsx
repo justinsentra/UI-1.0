@@ -60,13 +60,17 @@ export function MeetingRow({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [moreOpen, privacyDropdownOpen]);
 
-  const handleCopyLink = () => {
+  const handleCopyLink = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     navigator.clipboard.writeText(`https://app.sentra.app/meetings/${id}`);
     addToast("success", "Link copied");
     setMoreOpen(false);
   };
 
-  const handleShare = () => {
+  const handleShare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     onShare?.();
     setMoreOpen(false);
   };
