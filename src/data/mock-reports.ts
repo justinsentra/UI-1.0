@@ -1,6 +1,5 @@
 import type {
   ReportCategory,
-  ReportDetail,
   RadarConfig,
   ReportPreferenceCard,
 } from "../types";
@@ -907,95 +906,6 @@ export const reportCategories: ReportCategory[] = [
     ],
   },
 ];
-
-export const gtmStatusReport: ReportDetail = {
-  id: "rpt-gtm-1",
-  title: "Weekly Review",
-  dateRange: "Feb 24 – 28, 2026",
-  sections: [
-    {
-      heading: "Executive Summary",
-      paragraphs: [
-        "This week marked a significant leap forward in platform maturity, with the engineering team resolving critical production stability issues related to CPU, memory, and database performance. This newfound stability supported a high-velocity shipping cadence, delivering key user-facing features including source citations, Pre-Meeting Briefs v3.1, and Outlook Calendar support.",
-        "While we gained new enterprise traction with JPM and Assurant, we also received direct and challenging feedback from design partners, highlighting the urgent need for an API-first strategy and a more trustworthy, less prescriptive user experience.",
-      ],
-    },
-    {
-      heading: "Highlights & Key Developments",
-      paragraphs: [
-        "Major Platform Stability Achieved: The team successfully diagnosed and deployed fixes for several critical production issues, including a 100% CPU bug, a major API memory leak (reducing usage from 8.6GB to ~300MB), and database connection bottlenecks. The core platform is now significantly more reliable, scalable, and prepared for user growth.",
-        "Key Features Shipped to Build User Trust: In response to direct feedback, a source Citations feature has been implemented and is being rolled out across Pre-Meeting Briefs and weekly reports. Pre-Meeting Briefs v3.1 (with citations) and Outlook Calendar support have also been deployed, enhancing core functionality.",
-        "Increased Developer Velocity: The migration to RabbitMQ is complete, improving our background task reliability. The team has also built and adopted new internal developer tools, including a Cursor extension for managing local services and Infrastructure-as-Code for Datadog monitoring, which are accelerating our build, test, and deploy cycles.",
-        "New Enterprise Pipeline Growth: We have initiated conversations with key prospects at JPM (VP of Global Technology) and Assurant (a Fortune 500 insurance company), indicating strong interest in our organizational memory solution from large enterprises.",
-        "Strategic Account Progress: The SoftBank proof-of-concept has been extended, and their team is now testing our mobile app for in-person meeting capture at the Mobile World Congress. While the Accenture project is on hold for six months due to their internal IT backlog, their feedback validated our strategic potential to \u201Creshape the way Accenture and our clients work.\u201D",
-        "Gartner Validates \u201CContext Graph\u201D: Industry analyst firm Gartner has begun discussing the \u201CContext Graph\u201D market space. This external validation is a significant milestone that will aid in conversations with enterprise CIOs and decision-makers.",
-        "Internal Mandate to Use Granola: A company-wide directive has been issued for all team members to use Granola as their primary meeting notetaker for the next 2\u20133 weeks. The goal is to deeply internalize the user experience of a \u201Cbest-in-class\u201D competitor to set a clear bar for our own product quality and differentiation.",
-      ],
-    },
-    {
-      heading: "Challenges, Blockers & Concerns",
-      paragraphs: [
-        "Critical Design Partner Feedback on Product Experience: We received blunt feedback from Softmax that our pre-meeting briefs were \u201Cworse than useless\u201D due to erratic behavior, hallucinated to-dos, and a lack of source tracing. This, combined with feedback from Campfire, highlights a consistent theme: the AI\u2019s tone is too prescriptive (\u201Cyou\u2019re not my boss\u201D), and without verifiable sources, the output cannot be trusted.",
-        "Production Instability & Debugging Overhead: The engineering team spent considerable time diagnosing and fixing a complex production bug in the upcoming_meetings_scheduler, which was silently failing and preventing upcoming meetings from appearing for users. While resolved, this incident consumed significant resources and delayed other initiatives.",
-      ],
-    },
-    {
-      heading: "Key Strategic Question: API-First vs. Integrated Application",
-      paragraphs: [
-        "Feedback this week from Softmax surfaced a critical strategic threat and opportunity. Malcolm Ocean stated that if Sentra does not provide a robust API to access meeting transcripts and other data, his team will be forced to \u201Croll our own stuff\u201D to power their internal AI agent initiatives. This sentiment has been echoed by others.",
-        "We are at a crossroads: doubling down on building a self-contained, integrated application risks losing sophisticated, AI-native customers who want to build their own workflows. Prioritizing an API-first strategy would position Sentra as a foundational \u201Ccontextual infrastructure,\u201D but would require a significant shift in our product roadmap and resources.",
-      ],
-    },
-  ],
-  drillDowns: [
-    {
-      heading: "Engineering Delivers Major Stability and Feature Wins",
-      paragraphs: [
-        "This week was a turning point for our platform\u2019s reliability. The engineering team successfully resolved multiple longstanding and critical performance issues that were hindering our ability to scale.",
-        "100% CPU Bug Fixed: A bug in our Server-Sent Events (SSE) implementation was causing a tight loop that consumed 100% of a CPU core. Serge Semenov identified and fixed the issue (PR #519), dropping CPU usage to 1.5% and dramatically improving API responsiveness.",
-        "API Memory Bloat Eliminated: Andrey Starenky fixed a major memory leak that caused the API to consume over 8GB of RAM. The fix (PR #508) reduced memory usage to ~300MB, unblocking multi-worker deployments and significantly increasing our capacity.",
-        "Infrastructure Hardened: The migration to RabbitMQ (PR #480) is complete and has been merged, resolving core reliability issues with our background task processing. Further improvements to our database connection pooler have reduced concurrent connections by ~60%, giving us significant headroom for growth.",
-        "On the product front, the team shipped several high-impact features. The new Citations feature (PR #524), a direct response to user feedback about trust, is now being integrated into Pre-Meeting Briefs (PR #537) and Weekly Reports. This allows users to see the exact source of the information Sentra provides. Additionally, Outlook Calendar support for meeting booking (PRs #517, #518) is now live, a crucial integration for many enterprise users.",
-      ],
-    },
-    {
-      heading: "Voice of the Customer: A Clear Demand for Trust and an API",
-      paragraphs: [
-        "This week\u2019s design partner check-ins provided invaluable, if sharp, feedback that clarifies our immediate product priorities.",
-        "From Softmax, Malcolm Ocean detailed a \u201Cbad user experience\u201D where a pre-meeting brief assigned incorrect to-dos to his Chief of Staff, Shelly, causing confusion and eroding trust. His core feedback was that the AI\u2019s output feels erratic, overly confident, and lacks source traceability, rendering it \u201Cworse than useless.\u201D He strongly advocated for a change in tone from prescriptive to informational (\u201CFYI\u201D instead of \u201CTo-Do\u201D) and for the ability to trace all information back to its source.",
-        "From Campfire, Andrew Greener echoed the need for source citations, stating he cannot trust AI-consolidated information \u201Cas gospel\u201D without the ability to verify it. He also provided nuanced feedback on pre-meeting briefs, finding them highly valuable for external customer calls but \u201Cunnecessary\u201D for internal syncs, for which he would prefer a single, consolidated morning digest.",
-        "Most critically, Malcolm delivered a clear ultimatum regarding our product strategy. He explained that his team is building its own internal LLM agents and views Sentra as a potential \u201Ccontextual infrastructure.\u201D He stated that if we do not provide a \u201Ckick-ass API with webhooks\u201D in the next couple of months, it will no longer make sense for them to use Sentra, and they will build their own solution. This represents a significant risk and a clear demand from our most advanced users to position Sentra as a platform.",
-      ],
-    },
-    {
-      heading: 'The "Granola Killer" & The Future of Agentic Workflows',
-      paragraphs: [
-        "A key internal theme this week is the focused effort to understand and surpass our direct competitor, Granola. Ashwin has mandated that the entire team use Granola daily to internalize what a \u201Cdelightful\u201D and seamless meeting notetaker experience feels like.",
-        "This initiative is directly fueling a wave of internal innovation around \u201Cworkflow collapsing agents.\u201D Serge Semenov demonstrated a powerful workflow connecting Granola\u2019s output directly into the Cursor IDE, allowing an AI agent to analyze code changes based on a technical discussion without any context switching. The demo was met with universal enthusiasm, with Ashwin stating, \u201CWe should do this.\u201D",
-        "This internal validation proves a core hypothesis: the real value is not just in capturing meeting data, but in seamlessly integrating that context into the tools where work actually happens. The team\u2019s excitement to build these agentic integrations for our own workflows (e.g., adding PostHog and AWS CLI commands to Cursor) is a strong leading indicator of the product direction that will resonate most with users. Our immediate goal is to beat Granola on the core notetaking experience, but the long-term win lies in owning these integrated, agentic workflows.",
-      ],
-    },
-  ],
-  sources: [
-    { type: "slack", label: "#engineering" },
-    { type: "slack", label: "#product-strategy" },
-    { type: "slack", label: "#general" },
-    { type: "google-meet", label: "Leadership Weekly Sync" },
-    { type: "google-meet", label: "Softmax Design Partner Check-in" },
-    { type: "google-meet", label: "Campfire Feedback Session" },
-    { type: "linear", label: "PR #519 \u2014 CPU fix" },
-    { type: "linear", label: "PR #508 \u2014 Memory leak" },
-    { type: "linear", label: "PR #524 \u2014 Citations" },
-  ],
-  suggestedActions: [
-    { icon: "mail", label: "Follow up with Softmax on API roadmap" },
-    {
-      icon: "calendar",
-      label: "Schedule API strategy session with Ashwin and Andrey",
-    },
-    { icon: "mail", label: "Send JPM introduction follow-up" },
-  ],
-};
 
 export const activeRadars: RadarConfig[] = [
   {

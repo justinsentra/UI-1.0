@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { Link2, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
-import { gtmStatusReport } from "@/data/mock-reports";
+import { getReportDetail } from "@/data/mock-report-details";
+import { useReportsStore } from "@/stores/reports-store";
 import { useUIStore } from "@/stores/ui-store";
 import { usePageLabel } from "../components/app-layout";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
@@ -12,18 +13,22 @@ import { HighlightedContent } from "@/components/report/inline-comments";
 const ReportDetailPage = () => {
   const [showChatSidebar, setShowChatSidebar] = useState(false);
   const addToast = useUIStore((s) => s.addToast);
-  usePageLabel(gtmStatusReport.title);
+  const selectedReportId = useReportsStore((s) => s.selectedReportId);
+
+  const report = getReportDetail(selectedReportId ?? "rpt-gtm-1");
+
+  usePageLabel(report.title);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(
-      `https://app.sentra.app/reports/${gtmStatusReport.id}`,
+      `https://app.sentra.app/reports/${report.id}`,
     );
     addToast("success", "Link copied to clipboard");
   };
 
   return (
     <div className="max-w-[740px] mx-auto px-8 pt-[56px] pb-32 relative min-h-screen">
-      {/* Top-right action buttons — shift left when chat sidebar is open */}
+      {/* Top-right action buttons */}
       <div
         className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
         style={{ right: showChatSidebar ? 396 : 20 }}
@@ -54,18 +59,18 @@ const ReportDetailPage = () => {
       {/* Title */}
       <div className="mb-2">
         <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
-          {gtmStatusReport.title}
+          {report.title}
         </h1>
       </div>
       <p className="text-sm text-[var(--fg-muted)] mb-6">
-        {gtmStatusReport.dateRange}
+        {report.dateRange}
       </p>
 
       <div className="border-t border-[var(--border-base)] mb-8" />
 
       {/* Report Content */}
       <div className="space-y-8">
-        {gtmStatusReport.sections.map((section, sIdx) => (
+        {report.sections.map((section, sIdx) => (
           <ReportSection
             key={section.heading}
             section={section}
@@ -74,14 +79,14 @@ const ReportDetailPage = () => {
         ))}
       </div>
 
-      {/* Drill Downs — rendered as traditional paragraphs */}
-      {gtmStatusReport.drillDowns && gtmStatusReport.drillDowns.length > 0 && (
-        <DrillDownSections drillDowns={gtmStatusReport.drillDowns} />
+      {/* Drill Downs */}
+      {report.drillDowns && report.drillDowns.length > 0 && (
+        <DrillDownSections drillDowns={report.drillDowns} />
       )}
 
       {/* Suggested Actions */}
-      {gtmStatusReport.suggestedActions.length > 0 && (
-        <ActionAccordion actions={gtmStatusReport.suggestedActions} />
+      {report.suggestedActions.length > 0 && (
+        <ActionAccordion actions={report.suggestedActions} />
       )}
 
       {/* Chat Sidebar */}

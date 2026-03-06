@@ -42,6 +42,7 @@ const MeetingNotesPage = () => {
   const [search, setSearch] = useState("");
   const activeTags = useMeetingsStore((s) => s.activeTags);
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
+  const setSelectedMeeting = useMeetingsStore((s) => s.setSelectedMeeting);
   const [importOpen, setImportOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [shareMeetingId, setShareMeetingId] = useState<string | null>(null);
@@ -131,7 +132,7 @@ const MeetingNotesPage = () => {
                 <div
                   key={m.id}
                   className="group/upcoming flex items-center gap-3 px-2 py-2 -mx-2 rounded-lg hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
-                  onClick={() => navigate("/meeting-detail")}
+                  onClick={() => { setSelectedMeeting(m.id); navigate("/meeting-detail"); }}
                 >
                   <div className="w-[3px] self-stretch bg-[#5eb5ef] rounded-full shrink-0" />
                   <div className="flex-1 min-w-0">

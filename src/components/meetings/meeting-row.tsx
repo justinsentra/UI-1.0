@@ -40,6 +40,7 @@ export function MeetingRow({
   const rowRef = useRef<HTMLDivElement>(null);
   const privacyRef = useRef<HTMLDivElement>(null);
   const setVisibility = useMeetingsStore((s) => s.setVisibility);
+  const setSelectedMeeting = useMeetingsStore((s) => s.setSelectedMeeting);
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
   const addToast = useUIStore((s) => s.addToast);
 
@@ -97,6 +98,7 @@ export function MeetingRow({
     >
       <Link
         to={`/meeting-detail`}
+        onClick={() => setSelectedMeeting(id)}
         className="flex items-center gap-4 px-2 py-3 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
       >
         <div

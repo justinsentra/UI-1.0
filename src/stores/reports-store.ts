@@ -8,6 +8,8 @@ interface ReportsStore {
   sidebarTab: "sources" | "ask-sentra";
   comments: ReportComment[];
   chatMessages: ChatMessage[];
+  selectedReportId: string | null;
+  setSelectedReport: (id: string | null) => void;
   setViewMode: (mode: "by-type" | "by-date") => void;
   toggleCategory: (category: string) => void;
   setSidebarOpen: (open: boolean) => void;
@@ -66,6 +68,8 @@ export const useReportsStore = create<ReportsStore>((set) => ({
   sidebarTab: "sources",
   comments: [],
   chatMessages: [],
+  selectedReportId: null,
+  setSelectedReport: (id) => set({ selectedReportId: id }),
   setViewMode: (mode) => set({ viewMode: mode }),
   toggleCategory: (category) =>
     set((s) => {

@@ -24,11 +24,7 @@ import { MeetingTagDropdown } from "@/components/meetings/meeting-tag-dropdown";
 import { CreateTagModal } from "@/components/meetings/create-tag-modal";
 import { ShareModal } from "@/components/meetings/share-modal";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
-import {
-  keyPoints,
-  actionItems,
-  transcriptEntries,
-} from "@/data/mock-meeting-detail";
+import { meetings } from "@/data/mock-meetings";
 
 const tabs = ["Overview", "Transcript", "Video"] as const;
 type Tab = (typeof tabs)[number];
@@ -48,10 +44,12 @@ const MeetingDetailPage = () => {
   const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 });
 
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
+  const selectedMeetingId = useMeetingsStore((s) => s.selectedMeetingId);
   const addToast = useUIStore((s) => s.addToast);
 
-  const meetingId = "mtg-1";
-  const effectivePrivacy = meetingVisibility[meetingId] ?? "public";
+  const meeting = meetings.find((m) => m.id === selectedMeetingId) ?? meetings[0];
+  const meetingId = meeting.id;
+  const effectivePrivacy = meetingVisibility[meetingId] ?? meeting.privacy;
   const isPrivate = effectivePrivacy === "private";
 
   const measureTab = useCallback(() => {
@@ -88,16 +86,15 @@ const MeetingDetailPage = () => {
     addToast("success", "Link copied to clipboard");
   };
 
-  usePageLabel("Weekly Team Standup");
+  usePageLabel(meeting.title);
 
   return (
     <div className="max-w-[740px] mx-auto px-8 pt-[72px] pb-6 relative min-h-screen">
-      {/* Top-right action buttons — fixed at page top-right, aligned with back button */}
+      {/* Top-right action buttons */}
       <div
         className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
         style={{ right: showChatSidebar ? 396 : 20 }}
       >
-        {/* Public/Private Pill */}
         <button
           type="button"
           onClick={() => setShowShareModal(true)}
@@ -108,7 +105,6 @@ const MeetingDetailPage = () => {
             {isPrivate ? "Private" : "Public"}
           </span>
         </button>
-        {/* Copy Link */}
         <button
           type="button"
           onClick={handleCopyLink}
@@ -117,7 +113,6 @@ const MeetingDetailPage = () => {
         >
           <LinkIcon size={15} />
         </button>
-        {/* More Options (horizontal) */}
         <div className="relative">
           <button
             type="button"
@@ -167,7 +162,6 @@ const MeetingDetailPage = () => {
             </>
           )}
         </div>
-        {/* Chat */}
         <button
           type="button"
           onClick={() => setShowChatSidebar((p) => !p)}
@@ -186,7 +180,7 @@ const MeetingDetailPage = () => {
       {/* Title */}
       <div className="mb-4">
         <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
-          Weekly Team Standup
+          {meeting.title}
         </h1>
       </div>
 
@@ -198,7 +192,7 @@ const MeetingDetailPage = () => {
             onClick={() => setShowAttendeeDropdown((p) => !p)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent cursor-pointer hover:bg-[var(--bg-subtle)] transition-colors"
           >
-            <Users size={14} />5 attendees
+            <Users size={14} />{meeting.participants.length + 1} attendees
           </button>
           {showAttendeeDropdown && (
             <AttendeeDropdown onClose={() => setShowAttendeeDropdown(false)} />
@@ -211,7 +205,7 @@ const MeetingDetailPage = () => {
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent cursor-pointer hover:bg-[var(--bg-subtle)] transition-colors"
           >
             <Tag size={14} />
-            Customer Calls
+            {meeting.tags[0] ?? "Untagged"}
           </button>
           {showTagDropdown && (
             <MeetingTagDropdown
@@ -253,86 +247,86 @@ const MeetingDetailPage = () => {
       {activeTab === "Overview" && (
         <div className="animate-fade-in">
           <p className="text-sm text-[var(--fg-muted)] leading-relaxed mb-8">
-            Shaurya and Justin aligned on improving design-partner call
-            structure by anchoring discussions in Sentra's vision and asking
-            more unbiased, specific questions. They also discussed urgent
-            product/landing page design improvements and rejected offering free
-            pilots to design partners.
+            {meeting.summary}
           </p>
 
-          <div className="mb-8">
-            <h3 className="text-2xs font-medium  text-[var(--fg-muted)] mb-4">
-              Key points & decisions
-            </h3>
-            <ul className="space-y-4">
-              {keyPoints.map((kp) => (
-                <li key={kp.title} className="flex gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--fg-base)] mt-2 shrink-0" />
-                  <div>
-                    <span className="text-sm text-[var(--fg-base)]">
-                      {kp.title}
-                    </span>
-                    <p className="text-sm text-[var(--fg-muted)] leading-relaxed mt-0.5">
-                      {kp.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xs font-medium  text-[var(--fg-muted)]">
-                Next steps & action items
+          {meeting.keyPoints.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-2xs font-medium  text-[var(--fg-muted)] mb-4">
+                Key points & decisions
               </h3>
-              <Link
-                to="/commitments"
-                className="text-sm font-medium text-[var(--fg-muted)] hover:underline"
-              >
-                View your to-do's
-              </Link>
+              <ul className="space-y-4">
+                {meeting.keyPoints.map((kp) => (
+                  <li key={kp.title} className="flex gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--fg-base)] mt-2 shrink-0" />
+                    <div>
+                      <span className="text-sm text-[var(--fg-base)]">
+                        {kp.title}
+                      </span>
+                      <p className="text-sm text-[var(--fg-muted)] leading-relaxed mt-0.5">
+                        {kp.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="space-y-3">
-              {actionItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-start gap-3 p-3 rounded-lg hover:bg-[var(--bg-component-hover)]"
+          )}
+
+          {meeting.actionItems.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xs font-medium  text-[var(--fg-muted)]">
+                  Next steps & action items
+                </h3>
+                <Link
+                  to="/commitments"
+                  className="text-sm font-medium text-[var(--fg-muted)] hover:underline"
                 >
-                  <button
-                    type="button"
-                    onClick={() => toggleCheck(item.id)}
-                    className={cn(
-                      "w-5 h-5 rounded border-2 mt-0.5 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
-                      checkedItems.has(item.id)
-                        ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
-                        : "border-[var(--border-subtle)]",
-                    )}
+                  View your to-do's
+                </Link>
+              </div>
+              <div className="space-y-3">
+                {meeting.actionItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-[var(--bg-component-hover)]"
                   >
-                    {checkedItems.has(item.id) && (
-                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path
-                          d="M1 4L3.5 6.5L9 1"
-                          stroke="white"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </button>
-                  <div>
-                    <span className="text-sm text-[var(--fg-base)]">
-                      {item.title}
-                    </span>
-                    <p className="text-sm text-[var(--fg-muted)] mt-0.5">
-                      {item.description}
-                    </p>
+                    <button
+                      type="button"
+                      onClick={() => toggleCheck(item.id)}
+                      className={cn(
+                        "w-5 h-5 rounded border-2 mt-0.5 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
+                        checkedItems.has(item.id)
+                          ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
+                          : "border-[var(--border-subtle)]",
+                      )}
+                    >
+                      {checkedItems.has(item.id) && (
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path
+                            d="M1 4L3.5 6.5L9 1"
+                            stroke="white"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )}
+                    </button>
+                    <div>
+                      <span className="text-sm text-[var(--fg-base)]">
+                        {item.title}
+                      </span>
+                      <p className="text-sm text-[var(--fg-muted)] mt-0.5">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -351,7 +345,7 @@ const MeetingDetailPage = () => {
             />
           </div>
           <div className="space-y-6">
-            {transcriptEntries.map((entry, i) => (
+            {meeting.transcript.map((entry, i) => (
               <div key={i} className="flex gap-3">
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center text-white text-2xs font-medium shrink-0"
@@ -407,7 +401,7 @@ const MeetingDetailPage = () => {
                 <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
                   <div className="h-full w-0 bg-background rounded-full" />
                 </div>
-                <span className="text-sm text-white/80">0:00 / 45:00</span>
+                <span className="text-sm text-white/80">0:00 / {meeting.duration.replace(" min", ":00")}</span>
                 <button
                   type="button"
                   className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"

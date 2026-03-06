@@ -25,7 +25,7 @@ function PriorityDot({ priority }: { priority: "High" | "Med" }) {
 }
 
 function CategoryRow({ category }: { category: ReportCategory }) {
-  const { expandedCategories, toggleCategory } = useReportsStore();
+  const { expandedCategories, toggleCategory, setSelectedReport } = useReportsStore();
   const isExpanded = expandedCategories.has(category.id);
   const visibleReports = isExpanded
     ? category.reports
@@ -74,6 +74,7 @@ function CategoryRow({ category }: { category: ReportCategory }) {
           <Link
             key={report.id}
             to="/report-detail"
+            onClick={() => setSelectedReport(report.id)}
             className="flex items-center justify-between py-3 pl-8 pr-2 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
           >
             <span className="text-sm text-[var(--fg-base)]">
@@ -96,6 +97,7 @@ interface FlatReportRow {
 }
 
 function ByDateView({ categories }: { categories: ReportCategory[] }) {
+  const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
   const allReports = useMemo(() => {
     const flat: FlatReportRow[] = categories.flatMap((cat) =>
       cat.reports.map((report) => ({ report, category: cat })),
@@ -112,6 +114,7 @@ function ByDateView({ categories }: { categories: ReportCategory[] }) {
         <Link
           key={report.id}
           to="/report-detail"
+          onClick={() => setSelectedReport(report.id)}
           className="flex items-center justify-between py-3.5 px-2 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
         >
           <div className="flex items-center gap-3">

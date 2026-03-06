@@ -13,6 +13,7 @@ import {
   PRE_MEETING_BRIEF,
   type PreMeetingBrief,
 } from "@/components/sage/sageData";
+import { useReportsStore } from "@/stores/reports-store";
 
 /* ── Static data ── */
 
@@ -45,6 +46,7 @@ const UPCOMING_MEETING: UpcomingMeeting = {
 
 interface ArtifactCard {
   id: string;
+  reportId: string;
   title: string;
   description: string;
   type: "report" | "radar";
@@ -54,6 +56,7 @@ interface ArtifactCard {
 const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
   {
     id: "art-1",
+    reportId: "rpt-co-1",
     title: "Company Overview",
     description:
       "Weekly report covering product, engineering, and GTM progress",
@@ -62,6 +65,7 @@ const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
   },
   {
     id: "art-2",
+    reportId: "rpt-gtm-1",
     title: "GTM Status Report",
     description: "Pipeline health, outbound metrics, and partnership updates",
     type: "report",
@@ -69,6 +73,7 @@ const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
   },
   {
     id: "art-3",
+    reportId: "radar-sxsw-1",
     title: "SoftBank PoC Timeline",
     description:
       "Risk flagged — design system migration conflicts with March launch",
@@ -191,6 +196,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [showBrief, setShowBrief] = useState(false);
+  const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
 
   const handleSearchSubmit = useCallback(() => {
     const trimmed = searchValue.trim();
@@ -323,7 +329,7 @@ const HomePage = () => {
               <button
                 key={artifact.id}
                 type="button"
-                onClick={() => navigate("/report-detail")}
+                onClick={() => { setSelectedReport(artifact.reportId); navigate("/report-detail"); }}
                 className="group flex flex-col gap-2.5 p-4 bg-[var(--bg-base)] rounded-lg shadow-card border-none cursor-pointer text-left hover:bg-[var(--bg-component-hover)] transition-colors duration-150 ease-out"
               >
                 <div className="flex items-center justify-between w-full">

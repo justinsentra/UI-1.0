@@ -5,6 +5,7 @@ import { ArrowUpRight, Plus, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
 import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
+import { useMeetingsStore } from "@/stores/meetings-store";
 import {
   initialCommitments,
   type CommitmentItem,
@@ -21,6 +22,7 @@ const CommitmentsPage = () => {
   const [newCommitmentText, setNewCommitmentText] = useState("");
   const [showChat, setShowChat] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const setSelectedMeeting = useMeetingsStore((s) => s.setSelectedMeeting);
 
   useEffect(() => {
     if (showModal && textareaRef.current) {
@@ -186,7 +188,7 @@ const CommitmentsPage = () => {
                 {c.meeting && (
                   <button
                     type="button"
-                    onClick={() => navigate("/meeting-detail")}
+                    onClick={() => { setSelectedMeeting(c.meetingId); navigate("/meeting-detail"); }}
                     className={cn(
                       "inline-flex items-center gap-1 mt-0.5 text-xs underline decoration-1 underline-offset-2 border-none bg-transparent cursor-pointer p-0 transition-colors",
                       c.completed
