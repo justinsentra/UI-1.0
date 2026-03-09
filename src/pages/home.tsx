@@ -21,7 +21,7 @@ const SUGGESTIONS = [
   "What happened in today's meetings?",
   "Summarize this week's progress",
   "What are the team's blockers?",
-  "Draft a follow-up to Ashwin",
+  "Draft a PRD",
 ];
 
 interface UpcomingMeeting {
@@ -46,11 +46,12 @@ const UPCOMING_MEETING: UpcomingMeeting = {
 
 interface ArtifactCard {
   id: string;
-  reportId: string;
+  reportId?: string;
   title: string;
   description: string;
-  type: "report" | "radar";
+  type: "report" | "radar" | "action";
   badge?: string;
+  deepResearchPrompt?: string;
 }
 
 const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
@@ -73,12 +74,11 @@ const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
   },
   {
     id: "art-3",
-    reportId: "radar-sxsw-1",
-    title: "SoftBank PoC Timeline",
+    title: "Draft a PRD for the engineering sync I just had",
     description:
-      "Risk flagged — design system migration conflicts with March launch",
-    type: "radar",
-    badge: "High",
+      "Generate a product requirements doc from the eng sync discussion",
+    type: "action",
+    deepResearchPrompt: "Draft a PRD for the engineering sync I just had",
   },
 ];
 
@@ -213,15 +213,15 @@ const HomePage = () => {
     <div className="bg-[var(--bg-page)] pt-[56px] px-8 pb-12 min-h-full">
       <div className="max-w-[740px] mx-auto flex flex-col">
         {/* ── Search Hero ── */}
-        <section className="flex flex-col items-center pt-16 pb-12">
-          <h1 className="text-[var(--fg-base)] text-2xl font-normal leading-[1.2] tracking-tight m-0 mb-1">
+        <section className="flex flex-col items-center pt-24 pb-12">
+          <h1 className="text-[var(--fg-base)] text-3xl font-normal leading-[1.2] tracking-tight m-0 mb-1">
             {getGreeting()}, Justin
           </h1>
           <p className="text-[var(--fg-muted)] text-sm leading-normal m-0 mb-8">
             What would you like to know?
           </p>
 
-          <div className="w-full max-w-[600px]">
+          <div className="w-full">
             <PromptInput
               value={searchValue}
               onValueChange={setSearchValue}
@@ -252,7 +252,7 @@ const HomePage = () => {
             </PromptInput>
           </div>
 
-          <div className="flex flex-wrap gap-2 justify-center max-w-[600px] mt-4">
+          <div className="flex flex-wrap gap-2 justify-center w-full mt-4">
             {SUGGESTIONS.map((suggestion) => (
               <button
                 key={suggestion}
@@ -329,19 +329,32 @@ const HomePage = () => {
               <button
                 key={artifact.id}
                 type="button"
-                onClick={() => { setSelectedReport(artifact.reportId); navigate("/report-detail"); }}
+                onClick={() => {
+                  if (artifact.deepResearchPrompt) {
+                    navigate("/deep-research", {
+                      state: { prefill: artifact.deepResearchPrompt },
+                    });
+                  } else {
+                    setSelectedReport(artifact.reportId ?? "");
+                    navigate("/report-detail");
+                  }
+                }}
                 className="group flex flex-col gap-2.5 p-4 bg-[var(--bg-base)] rounded-lg shadow-card border-none cursor-pointer text-left hover:bg-[var(--bg-component-hover)] transition-colors duration-150 ease-out"
               >
                 <div className="flex items-center justify-between w-full">
                   <span
                     className={cn(
                       "text-2xs font-medium leading-none px-2 py-1 rounded-full",
-                      artifact.type === "radar"
-                        ? "bg-[var(--tag-neutral-bg)] text-[var(--fg-subtle)]"
+                      artifact.type === "action"
+                        ? "bg-[var(--bg-info-subtle)] text-[var(--fg-info)]"
                         : "bg-[var(--tag-neutral-bg)] text-[var(--fg-subtle)]",
                     )}
                   >
-                    {artifact.type === "radar" ? "Radar" : "Report"}
+                    {artifact.type === "radar"
+                      ? "Radar"
+                      : artifact.type === "action"
+                        ? "Action"
+                        : "Report"}
                   </span>
                   {artifact.badge && (
                     <span

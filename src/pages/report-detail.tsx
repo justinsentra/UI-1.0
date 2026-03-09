@@ -62,9 +62,7 @@ const ReportDetailPage = () => {
           {report.title}
         </h1>
       </div>
-      <p className="text-sm text-[var(--fg-muted)] mb-6">
-        {report.dateRange}
-      </p>
+      <p className="text-sm text-[var(--fg-muted)] mb-6">{report.dateRange}</p>
 
       <div className="border-t border-[var(--border-base)] mb-8" />
 

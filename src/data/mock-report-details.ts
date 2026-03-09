@@ -284,7 +284,10 @@ const reportDetailMap: Record<string, ReportDetail> = {
       { type: "notion", label: "Hiring Pipeline Tracker" },
     ],
     suggestedActions: [
-      { icon: "calendar", label: "Confirm phone screen schedule with candidates" },
+      {
+        icon: "calendar",
+        label: "Confirm phone screen schedule with candidates",
+      },
       { icon: "mail", label: "Send interview rubric to hiring panel" },
       { icon: "clock", label: "Review product designer portfolios" },
     ],
@@ -590,7 +593,10 @@ const reportDetailMap: Record<string, ReportDetail> = {
     ],
     suggestedActions: [
       { icon: "clock", label: "Update competitive landscape slide for SXSW" },
-      { icon: "mail", label: "Share Granola team feature analysis with product" },
+      {
+        icon: "mail",
+        label: "Share Granola team feature analysis with product",
+      },
     ],
   },
 };

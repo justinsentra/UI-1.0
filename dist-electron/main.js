@@ -1,4 +1,4 @@
-import { nativeImage, ipcMain, app, BrowserWindow, screen } from "electron";
+import { nativeImage, ipcMain, shell, app, BrowserWindow, screen } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 const __dirname$1 = path.dirname(fileURLToPath(import.meta.url));
@@ -66,6 +66,9 @@ function createSageWindow() {
     sageWin = null;
   });
 }
+ipcMain.on("open-external-url", (_event, url) => {
+  shell.openExternal(url);
+});
 ipcMain.on("open-sage-window", () => {
   createSageWindow();
 });

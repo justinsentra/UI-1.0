@@ -1,4 +1,11 @@
-import { app, BrowserWindow, ipcMain, nativeImage, screen } from "electron";
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  nativeImage,
+  screen,
+  shell,
+} from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -85,6 +92,10 @@ function createSageWindow() {
     sageWin = null;
   });
 }
+
+ipcMain.on("open-external-url", (_event, url: string) => {
+  shell.openExternal(url);
+});
 
 ipcMain.on("open-sage-window", () => {
   createSageWindow();

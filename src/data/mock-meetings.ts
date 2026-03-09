@@ -6,7 +6,10 @@ function daysAgo(n: number): string {
   return d.toISOString().split("T")[0];
 }
 
-function repeatTranscript(entries: TranscriptEntry[], times = 10): TranscriptEntry[] {
+function repeatTranscript(
+  entries: TranscriptEntry[],
+  times = 10,
+): TranscriptEntry[] {
   return Array.from({ length: times }, () => entries).flat();
 }
 
@@ -79,6 +82,14 @@ export const meetings: Meeting[] = expandTranscripts([
         title: "Collect missing recordings",
         description:
           "Push Ashwin to record Brex calls and add transcripts to the shared spreadsheet.",
+        assignee: "Justin Cheng",
+        checked: false,
+      },
+      {
+        id: "ai-1-3",
+        title: "Make a spreadsheet of our spend data this year",
+        description:
+          "Compile all vendor and operational spend from Ramp and Mercury into a single sheet for the team to review.",
         assignee: "Justin Cheng",
         checked: false,
       },

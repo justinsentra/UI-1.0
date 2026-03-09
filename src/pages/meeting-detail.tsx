@@ -15,6 +15,8 @@ import {
   Volume2,
   Maximize2,
   MessageSquare,
+  FileSpreadsheet,
+  ExternalLink,
 } from "lucide-react";
 import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";
@@ -25,9 +27,157 @@ import { CreateTagModal } from "@/components/meetings/create-tag-modal";
 import { ShareModal } from "@/components/meetings/share-modal";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
 import { meetings } from "@/data/mock-meetings";
+import { TextShimmerLoader } from "@/components/ui/loader";
+import {
+  Steps,
+  StepsContent,
+  StepsItem,
+  StepsTrigger,
+} from "@/components/ui/steps";
 
 const tabs = ["Overview", "Transcript", "Video"] as const;
 type Tab = (typeof tabs)[number];
+
+/* ── Spreadsheet Action Flow ── */
+
+const SPREADSHEET_ID = "ai-1-3";
+const SPREADSHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1Q2TlV0Q0ud1eABo8bM1xHPTAB5UG0QopfLhIW-6BcdI/edit?gid=589580262#gid=589580262";
+
+interface SpreadsheetStep {
+  label: string;
+  duration: number;
+}
+
+const SPREADSHEET_SCAN_STEPS: SpreadsheetStep[] = [
+  { label: "Connecting to Ramp API…", duration: 3600 },
+  { label: "Pulling transaction history from Ramp…", duration: 5000 },
+  { label: "Connecting to Mercury API…", duration: 3200 },
+  { label: "Pulling account transfers and payments…", duration: 4800 },
+  { label: "Cross-referencing vendor names…", duration: 3000 },
+  { label: "Aggregating spend by category…", duration: 4000 },
+  { label: "Formatting spreadsheet…", duration: 2800 },
+];
+
+type SpreadsheetPhase = "idle" | "loading" | "done";
+
+function SpreadsheetLoader({
+  steps,
+  onComplete,
+}: {
+  steps: SpreadsheetStep[];
+  onComplete: () => void;
+}) {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    let current = 0;
+
+    const reveal = () => {
+      if (current >= steps.length) {
+        setTimeout(() => onCompleteRef.current(), 600);
+        return;
+      }
+      timeout = setTimeout(() => {
+        current += 1;
+        setVisibleCount(current);
+        reveal();
+      }, steps[current].duration);
+    };
+
+    reveal();
+    return () => clearTimeout(timeout);
+  }, [steps]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="mt-3 ml-8"
+    >
+      <Steps defaultOpen>
+        <StepsTrigger>
+          <TextShimmerLoader text="Building spend spreadsheet" size="sm" />
+        </StepsTrigger>
+        <StepsContent>
+          {steps.slice(0, visibleCount).map((step, index) => (
+            <motion.div
+              key={step.label}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <StepsItem>
+                <span
+                  className={
+                    index === visibleCount - 1
+                      ? "text-muted-foreground"
+                      : "text-[var(--fg-disabled)]"
+                  }
+                >
+                  {step.label}
+                </span>
+              </StepsItem>
+            </motion.div>
+          ))}
+        </StepsContent>
+      </Steps>
+    </motion.div>
+  );
+}
+
+function SpreadsheetDone() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mt-3 ml-8 flex flex-col gap-2"
+    >
+      <div className="flex items-center gap-2">
+        <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="text-[var(--fg-info)]"
+          >
+            <path
+              d="M3 8.5L6.5 12L13 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <span className="text-sm font-medium text-[var(--fg-base)]">
+          Here's the spreadsheet!
+        </span>
+      </div>
+      <button
+        type="button"
+        onClick={() => {
+          if (window.ipcRenderer) {
+            window.ipcRenderer.send("open-external-url", SPREADSHEET_URL);
+          } else {
+            window.location.href = SPREADSHEET_URL;
+          }
+        }}
+        className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-base)] max-w-fit text-sm text-[var(--fg-base)] hover:bg-[var(--bg-component-hover)] transition-colors no-underline cursor-pointer"
+      >
+        <FileSpreadsheet size={14} className="text-green-600 shrink-0" />
+        <span>2025 Spend Data</span>
+        <ExternalLink size={12} className="text-[var(--fg-muted)] shrink-0" />
+      </button>
+    </motion.div>
+  );
+}
 
 const MeetingDetailPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
@@ -39,6 +189,8 @@ const MeetingDetailPage = () => {
   const [showShareModal, setShowShareModal] = useState(false);
   const [showChatSidebar, setShowChatSidebar] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const [spreadsheetPhase, setSpreadsheetPhase] =
+    useState<SpreadsheetPhase>("idle");
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 });
@@ -47,7 +199,8 @@ const MeetingDetailPage = () => {
   const selectedMeetingId = useMeetingsStore((s) => s.selectedMeetingId);
   const addToast = useUIStore((s) => s.addToast);
 
-  const meeting = meetings.find((m) => m.id === selectedMeetingId) ?? meetings[0];
+  const meeting =
+    meetings.find((m) => m.id === selectedMeetingId) ?? meetings[0];
   const meetingId = meeting.id;
   const effectivePrivacy = meetingVisibility[meetingId] ?? meeting.privacy;
   const isPrivate = effectivePrivacy === "private";
@@ -89,7 +242,7 @@ const MeetingDetailPage = () => {
   usePageLabel(meeting.title);
 
   return (
-    <div className="max-w-[740px] mx-auto px-8 pt-[72px] pb-6 relative min-h-screen">
+    <div className="max-w-[740px] mx-auto px-8 pt-[72px] pb-[40vh] relative min-h-screen">
       {/* Top-right action buttons */}
       <div
         className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
@@ -192,7 +345,8 @@ const MeetingDetailPage = () => {
             onClick={() => setShowAttendeeDropdown((p) => !p)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent cursor-pointer hover:bg-[var(--bg-subtle)] transition-colors"
           >
-            <Users size={14} />{meeting.participants.length + 1} attendees
+            <Users size={14} />
+            {meeting.participants.length + 1} attendees
           </button>
           {showAttendeeDropdown && (
             <AttendeeDropdown onClose={() => setShowAttendeeDropdown(false)} />
@@ -287,43 +441,107 @@ const MeetingDetailPage = () => {
                 </Link>
               </div>
               <div className="space-y-3">
-                {meeting.actionItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-[var(--bg-component-hover)]"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => toggleCheck(item.id)}
-                      className={cn(
-                        "w-5 h-5 rounded border-2 mt-0.5 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
-                        checkedItems.has(item.id)
-                          ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
-                          : "border-[var(--border-subtle)]",
-                      )}
-                    >
-                      {checkedItems.has(item.id) && (
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                          <path
-                            d="M1 4L3.5 6.5L9 1"
-                            stroke="white"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                {meeting.actionItems.map((item) => {
+                  const isSpreadsheetItem = item.id === SPREADSHEET_ID;
+                  const isSpreadsheetActive =
+                    isSpreadsheetItem && spreadsheetPhase !== "idle";
+
+                  return (
+                    <div key={item.id}>
+                      <div
+                        className={cn(
+                          "flex items-start gap-3 p-3 rounded-lg",
+                          isSpreadsheetItem &&
+                            spreadsheetPhase === "idle" &&
+                            "hover:bg-[var(--bg-component-hover)] cursor-pointer",
+                          !isSpreadsheetItem &&
+                            "hover:bg-[var(--bg-component-hover)]",
+                          isSpreadsheetActive &&
+                            "bg-[var(--bg-subtle)] rounded-b-none",
+                        )}
+                        onClick={
+                          isSpreadsheetItem && spreadsheetPhase === "idle"
+                            ? () => setSpreadsheetPhase("loading")
+                            : undefined
+                        }
+                      >
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (
+                              isSpreadsheetItem &&
+                              spreadsheetPhase === "idle"
+                            ) {
+                              setSpreadsheetPhase("loading");
+                            } else {
+                              toggleCheck(item.id);
+                            }
+                          }}
+                          className={cn(
+                            "w-5 h-5 rounded border-2 mt-0.5 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
+                            checkedItems.has(item.id) ||
+                              (isSpreadsheetItem && spreadsheetPhase === "done")
+                              ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
+                              : "border-[var(--border-subtle)]",
+                          )}
+                        >
+                          {(checkedItems.has(item.id) ||
+                            (isSpreadsheetItem &&
+                              spreadsheetPhase === "done")) && (
+                            <svg
+                              width="10"
+                              height="8"
+                              viewBox="0 0 10 8"
+                              fill="none"
+                            >
+                              <path
+                                d="M1 4L3.5 6.5L9 1"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          )}
+                        </button>
+                        <div>
+                          <span className="text-sm text-[var(--fg-base)]">
+                            {item.title}
+                          </span>
+                          <p className="text-sm text-[var(--fg-muted)] mt-0.5">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {isSpreadsheetItem && spreadsheetPhase === "loading" && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-4 overflow-hidden"
+                        >
+                          <SpreadsheetLoader
+                            steps={SPREADSHEET_SCAN_STEPS}
+                            onComplete={() => setSpreadsheetPhase("done")}
                           />
-                        </svg>
+                        </motion.div>
                       )}
-                    </button>
-                    <div>
-                      <span className="text-sm text-[var(--fg-base)]">
-                        {item.title}
-                      </span>
-                      <p className="text-sm text-[var(--fg-muted)] mt-0.5">
-                        {item.description}
-                      </p>
+
+                      {isSpreadsheetItem && spreadsheetPhase === "done" && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-4 overflow-hidden"
+                        >
+                          <SpreadsheetDone />
+                        </motion.div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -401,7 +619,9 @@ const MeetingDetailPage = () => {
                 <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
                   <div className="h-full w-0 bg-background rounded-full" />
                 </div>
-                <span className="text-sm text-white/80">0:00 / {meeting.duration.replace(" min", ":00")}</span>
+                <span className="text-sm text-white/80">
+                  0:00 / {meeting.duration.replace(" min", ":00")}
+                </span>
                 <button
                   type="button"
                   className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"

@@ -83,6 +83,16 @@ const ConnectionDetailPage = () => {
         ))}
       </div>
 
+      {/* Relationship Status */}
+      <div className="mb-8">
+        <h3 className="text-sm text-[var(--fg-base)] mb-3">
+          Relationship Status
+        </h3>
+        <p className="text-sm text-[var(--fg-muted)] leading-relaxed">
+          {person.relationshipStatus}
+        </p>
+      </div>
+
       {/* Personal Notes */}
       <div className="mb-8">
         <h3 className="text-sm text-[var(--fg-base)] mb-3">Personal Notes</h3>

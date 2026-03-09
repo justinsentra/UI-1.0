@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-  <rect x="8" y="3" width="14" height="18" rx="1.5" fill="#0078D4" opacity="0.15"/>
-  <rect x="8" y="3" width="14" height="18" rx="1.5" stroke="#0078D4" stroke-width="1"/>
-  <path d="M22 8l-8 5-6-3.5" fill="none" stroke="#0078D4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="2" y="5" width="12" height="14" rx="1.5" fill="#0078D4"/>
-  <ellipse cx="8" cy="12" rx="3.5" ry="4" fill="none" stroke="#fff" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+  <path fill="#1976d2" d="M28 13h14.533C43.343 13 44 13.657 44 14.467v19.066c0 .81-.657 1.467-1.467 1.467H28V13z"/>
+  <path fill="#2196f3" d="M28 6h14.533C43.343 6 44 6.657 44 7.467V14H28V6z"/>
+  <rect fill="#1e88e5" x="28" y="21" width="16" height="14"/>
+  <path fill="#1565c0" d="M42.533 35H28v7h14.533c.81 0 1.467-.657 1.467-1.467V35z"/>
+  <path fill="#1565c0" d="M28 35h8v7h-8z"/>
+  <path fill="#1976d2" d="M36 35h6.533c.81 0 1.467-.657 1.467-1.467V28H36v7z"/>
+  <path fill="#1e88e5" d="M28 14h8v7h-8z"/>
+  <path fill="#1976d2" d="M36 14h8v7h-8z"/>
+  <path fill="#1e88e5" d="M36 21h8v7h-8z"/>
+  <path fill="#1976d2" d="M28 21h8v7h-8z"/>
+  <path fill="#0d47a1" d="M26.2 43H4.8C3.81 43 3 42.19 3 41.2V6.8C3 5.81 3.81 5 4.8 5h21.4c.99 0 1.8.81 1.8 1.8v34.4c0 .99-.81 1.8-1.8 1.8z" opacity=".8"/>
+  <path fill="#fff" d="M15.5 16c-4.14 0-7.5 3.81-7.5 8.5 0 4.69 3.36 8.5 7.5 8.5s7.5-3.81 7.5-8.5c0-4.69-3.36-8.5-7.5-8.5zm0 13.5c-2.49 0-4.5-2.24-4.5-5s2.01-5 4.5-5 4.5 2.24 4.5 5-2.01 5-4.5 5z"/>
 </svg>

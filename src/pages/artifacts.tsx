@@ -25,7 +25,8 @@ function PriorityDot({ priority }: { priority: "High" | "Med" }) {
 }
 
 function CategoryRow({ category }: { category: ReportCategory }) {
-  const { expandedCategories, toggleCategory, setSelectedReport } = useReportsStore();
+  const { expandedCategories, toggleCategory, setSelectedReport } =
+    useReportsStore();
   const isExpanded = expandedCategories.has(category.id);
   const visibleReports = isExpanded
     ? category.reports

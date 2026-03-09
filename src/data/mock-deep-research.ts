@@ -57,7 +57,7 @@ export const SUGGESTIONS = [
   "What happened in today's meetings?",
   "Summarize this week's progress",
   "What are the team's blockers?",
-  "Show me recent updates",
+  "Draft a PRD",
 ];
 
 export const MOCK_RESPONSES: MockResponse[] = [
@@ -211,3 +211,115 @@ export const MOCK_RESPONSES: MockResponse[] = [
 
 export const getMockResponse = (index: number): MockResponse =>
   MOCK_RESPONSES[index % MOCK_RESPONSES.length];
+
+/* ── PRD Flow Data ── */
+
+export interface PrdScanStep {
+  label: string;
+  duration: number;
+}
+
+export const PRD_SCAN_STEPS: PrdScanStep[] = [
+  {
+    label: "Searching 6 recent engineering meeting transcripts...",
+    duration: 3000,
+  },
+  {
+    label: "Reading 12 Linear tickets from Sprint 14 and backlog...",
+    duration: 3500,
+  },
+  {
+    label: "Scanning 8 GitHub PRs and 3 architecture discussions...",
+    duration: 4000,
+  },
+  {
+    label: "Analyzing Notion engineering specs and decision logs...",
+    duration: 3500,
+  },
+];
+
+export const PRD_CONTENT = `# Product Requirements Document: Auth Service Refactor & SSO Support
+
+## Overview
+
+Based on discussions from the Engineering Sprint Retro (Mar 3), Andrey/Justin 1:1 (Mar 1), and 12 related Linear tickets, this PRD outlines the requirements for refactoring the authentication service to support enterprise SSO, team permissions, and audit logging.
+
+## Problem Statement
+
+The current auth service uses a legacy session handling mechanism that cannot support multi-tenant SSO flows. This is blocking 4 enterprise deals worth a combined $380K ARR (Vantage, Relay, Atlas Group, Meridian Corp). The auth refactor (AUTH-142) has been identified as the critical path item, with 3 downstream features dependent on its completion.
+
+## Goals
+
+1. **SSO/SAML Support** — Enable enterprise customers to authenticate via their identity provider (Okta, Azure AD, Google Workspace)
+2. **Team Permissions** — Role-based access control with admin, member, and viewer roles
+3. **Audit Logging** — Immutable log of all auth events for SOC 2 compliance
+4. **Session Migration** — Zero-downtime migration from legacy sessions to new JWT-based flow
+
+## Non-Goals
+
+- Social login (Google, GitHub) — already supported, no changes needed
+- Custom RBAC beyond 3 predefined roles — deferred to Q3
+- Multi-factor authentication — separate workstream (AUTH-156)
+
+## Technical Approach
+
+**Phase 1: Session Migration (Week 1-2)**
+Dual-write strategy proposed by Andrey to avoid downtime. New JWT tokens issued alongside legacy sessions. Gradual rollover with feature flag.
+
+**Phase 2: SSO Integration (Week 2-3)**
+SAML 2.0 integration via WorkOS SDK. Support for Okta, Azure AD, and Google Workspace as initial identity providers. Tenant-level configuration stored in new \`sso_configs\` table.
+
+**Phase 3: Permissions & Audit (Week 3-4)**
+RBAC middleware layer with role inheritance. Audit log writes to append-only \`auth_events\` table with 90-day retention.
+
+## Dependencies
+
+- AUTH-142: Refactor auth service (in progress, Jordan — 4 days remaining)
+- INFRA-88: Database migration for analytics schema (80% complete)
+- PR #387: Push notification fix (merged)
+- SOC 2 audit scheduled March 10
+
+## Success Metrics
+
+- SSO setup time < 15 minutes for IT admin
+- Auth latency p99 < 200ms (current: 180ms)
+- Zero downtime during session migration
+- 4 enterprise deals unblocked within 2 weeks of launch
+
+## Timeline
+
+| Phase | Duration | Owner |
+|-------|----------|-------|
+| Session Migration | 2 weeks | Andrey |
+| SSO Integration | 1.5 weeks | Jordan |
+| Permissions & Audit | 1.5 weeks | Andrey + Jordan |
+| QA & Rollout | 1 week | Full team |
+
+**Target completion: April 11, 2026**
+
+---
+
+*Sources: Engineering Sprint Retro, Andrey/Justin 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering Slack, Notion Engineering Specs*`;
+
+export const PRD_BUILD_STEPS: PrdScanStep[] = [
+  {
+    label: "Initializing project workspace...",
+    duration: 2500,
+  },
+  {
+    label: "Generating document structure from template...",
+    duration: 3000,
+  },
+  {
+    label: "Populating sections with context from 14 sources...",
+    duration: 3500,
+  },
+  {
+    label: "Formatting tables, dependencies, and timeline...",
+    duration: 3000,
+  },
+  {
+    label: "Writing file and verifying output...",
+    duration: 3000,
+  },
+];

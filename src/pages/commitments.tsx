@@ -188,7 +188,10 @@ const CommitmentsPage = () => {
                 {c.meeting && (
                   <button
                     type="button"
-                    onClick={() => { setSelectedMeeting(c.meetingId); navigate("/meeting-detail"); }}
+                    onClick={() => {
+                      setSelectedMeeting(c.meetingId);
+                      navigate("/meeting-detail");
+                    }}
                     className={cn(
                       "inline-flex items-center gap-1 mt-0.5 text-xs underline decoration-1 underline-offset-2 border-none bg-transparent cursor-pointer p-0 transition-colors",
                       c.completed
