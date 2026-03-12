@@ -76,9 +76,16 @@ export const reportsData: PersonaReportsData = {
       id: "mcgi-radar-competitive",
       name: "Competitive CVC Activity",
       type: "radar",
-      reportCount: 0,
-      reports: [],
-      priority: "Med",
+      reportCount: 1,
+      reports: [
+        {
+          id: "mcgi-radar-competitive-1",
+          dateRange: "Mar 12, 2026",
+          date: "Mar 12, 2026",
+          isLatest: true,
+        },
+      ],
+      priority: "High",
     },
     {
       id: "mcgi-radar-emerging",

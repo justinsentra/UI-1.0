@@ -1,10 +1,51 @@
 export const people = [
   {
+    id: "sunna-mo",
+    name: "Sunna Mo",
+    email: "sunna.mo@mcgi.jpmorgan.com",
+    lastInteraction: "2026-03-11",
+    interactions: 6,
+    tags: ["MCGI", "AI Strategy", "Design Partner"],
+  },
+  {
+    id: "ryotaro-tanaka",
+    name: "Ryotaro Tanaka",
+    email: "ryotaro.tanaka@mcgi.jpmorgan.com",
+    lastInteraction: "2026-03-11",
+    interactions: 4,
+    tags: ["MCGI", "Tech Partnerships"],
+  },
+  {
+    id: "sarah-mitchell",
+    name: "Sarah Mitchell",
+    email: "sarah.mitchell@jpmorgan.com",
+    lastInteraction: "2026-03-12",
+    interactions: 18,
+    tags: ["TMT", "Managing Director"],
+  },
+  {
+    id: "david-park",
+    name: "David Park",
+    email: "david.park@jpmorgan.com",
+    lastInteraction: "2026-03-12",
+    interactions: 14,
+    tags: ["TMT", "Vice President"],
+  },
+  {
+    id: "michael-chen",
+    name: "Michael Chen",
+    email: "michael.chen@jpmorgan.com",
+    lastInteraction: "2026-03-11",
+    interactions: 11,
+    tags: ["IB Coverage", "Associate"],
+  },
+  {
     id: "ashwin",
     name: "Ashwin Gopinath",
     email: "ashwin@sentra.app",
     lastInteraction: "2026-02-26",
     interactions: 24,
+    tags: ["Sentra", "Co-founder"],
   },
   {
     id: "andrey",
@@ -12,6 +53,7 @@ export const people = [
     email: "andrey@sentra.app",
     lastInteraction: "2026-02-26",
     interactions: 19,
+    tags: ["Sentra", "Co-founder"],
   },
   {
     id: "kristina",
@@ -19,6 +61,7 @@ export const people = [
     email: "kristina@sentra.app",
     lastInteraction: "2026-02-25",
     interactions: 12,
+    tags: ["Sentra", "Operations"],
   },
   {
     id: "lakshmi",
@@ -26,6 +69,7 @@ export const people = [
     email: "lakshmi@togetherfund.com",
     lastInteraction: "2026-02-20",
     interactions: 7,
+    tags: ["Investor", "Together Fund"],
   },
   {
     id: "sarah",
@@ -33,6 +77,7 @@ export const people = [
     email: "sarah@campfire.io",
     lastInteraction: "2025-02-21",
     interactions: 4,
+    tags: ["Design Partner"],
   },
   {
     id: "kevin",
@@ -40,6 +85,7 @@ export const people = [
     email: "kevin@relay.app",
     lastInteraction: "2026-02-25",
     interactions: 5,
+    tags: ["Prospect"],
   },
   {
     id: "james-park",
@@ -198,6 +244,13 @@ export const people = [
 ];
 
 export const companies = [
+  {
+    id: "mcgi",
+    name: "MCGI (Mitsubishi)",
+    domain: "jpmorgan.com",
+    contacts: 2,
+    lastInteraction: "2026-03-11",
+  },
   {
     id: "sentra",
     name: "Sentra",

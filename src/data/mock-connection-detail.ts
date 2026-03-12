@@ -1,34 +1,178 @@
-export const connectionData: Record<
-  string,
-  {
-    name: string;
-    email: string;
-    domain: string;
-    role: string;
-    company: string;
-    relationshipStatus: string;
-    suggestions: string[];
-    personalNotes: string[];
-    meetings: {
-      week: string;
-      items: {
-        id: string;
-        title: string;
-        date: string;
-        time: string;
-        duration: string;
-        participants: string[];
-        privacy: "public" | "private";
-      }[];
+export interface ConnectionEmail {
+  id: string;
+  subject: string;
+  date: string;
+  snippet: string;
+  from: string;
+  to: string[];
+}
+
+export interface ConnectionNews {
+  id: string;
+  headline: string;
+  date: string;
+}
+
+export interface ConnectionDetailEntry {
+  name: string;
+  email: string;
+  domain: string;
+  role: string;
+  company: string;
+  tags: string[];
+  relationshipStatus: string;
+  suggestions: string[];
+  personalNotes: string[];
+  meetings: {
+    week: string;
+    items: {
+      id: string;
+      title: string;
+      date: string;
+      time: string;
+      duration: string;
+      participants: string[];
+      privacy: "public" | "private";
     }[];
-  }
-> = {
+  }[];
+  emails: ConnectionEmail[];
+  news: ConnectionNews[];
+  otherInteractors: string[];
+}
+
+export const connectionData: Record<string, ConnectionDetailEntry> = {
+  "sunna-mo": {
+    name: "Sunna Mo",
+    email: "sunna.mo@mitsubishicorp.com",
+    domain: "http://www.mitsubishicorp.com/northamerica",
+    role: "Business Development and Strategic Partnerships",
+    company: "Mitsubishi Corporation (Americas)",
+    tags: ["MCGI", "AI Strategy", "Design Partner"],
+    relationshipStatus:
+      "Sunna met me at the a16z Speedrun AI faire — we had a good conversation and we recently had a call with her and Ryotaro to walk through Sentra and talk about potential use cases as well as a brief demo. She and Ryotaro are waiting to receive the product feature deck.",
+    suggestions: [
+      "What did we talk about last time?",
+      "Prep me for the next call with Sunna",
+    ],
+    personalNotes: [
+      "- met at a16z speedrun AI faire, instantly got the vision",
+      "- works closely with Ryotaro on tech evaluations",
+      "- wants to see the product feature deck — need to send ASAP",
+      "- interested in meeting intelligence + organizational memory angle",
+      "- very thoughtful evaluator, asks sharp questions about data governance",
+    ],
+    meetings: [
+      {
+        week: "This week",
+        items: [
+          {
+            id: "cd-sunna-1",
+            title: "Sentra Demo — Sunna & Ryotaro",
+            date: "Tue, Mar 11",
+            time: "2:00 PM",
+            duration: "45 min",
+            participants: [
+              "Sunna Mo",
+              "Ryotaro Tanaka",
+              "Justin Cheng",
+              "Ashwin Gopinath",
+            ],
+            privacy: "private",
+          },
+        ],
+      },
+      {
+        week: "Last week",
+        items: [
+          {
+            id: "cd-sunna-2",
+            title: "MCGI — Initial Discovery Call",
+            date: "Thu, Mar 6",
+            time: "11:00 AM",
+            duration: "30 min",
+            participants: ["Sunna Mo", "Justin Cheng"],
+            privacy: "private",
+          },
+        ],
+      },
+      {
+        week: "2 weeks ago",
+        items: [
+          {
+            id: "cd-sunna-3",
+            title: "a16z Speedrun AI Faire — Intro",
+            date: "Sat, Mar 1",
+            time: "3:30 PM",
+            duration: "15 min",
+            participants: ["Sunna Mo", "Justin Cheng"],
+            privacy: "public",
+          },
+        ],
+      },
+    ],
+    emails: [
+      {
+        id: "em-sunna-1",
+        subject: "Re: Sentra — Product Feature Deck",
+        date: "Mar 11, 2026",
+        snippet:
+          "Thanks Justin — Ryotaro and I are looking forward to reviewing the deck. Can you also include the data governance section we discussed?",
+        from: "Sunna Mo",
+        to: ["Justin Cheng"],
+      },
+      {
+        id: "em-sunna-2",
+        subject: "Follow-up: a16z Speedrun AI Faire",
+        date: "Mar 3, 2026",
+        snippet:
+          "Great meeting you at the faire! I'd love to set up a proper discovery call to explore how Sentra could fit into MCGI's workflow.",
+        from: "Sunna Mo",
+        to: ["Justin Cheng"],
+      },
+      {
+        id: "em-sunna-3",
+        subject: "Re: MCGI AI Strategy — Vendor Landscape",
+        date: "Feb 28, 2026",
+        snippet:
+          "We're currently evaluating 4 vendors in the organizational intelligence space. Would be great to understand Sentra's differentiation.",
+        from: "Sunna Mo",
+        to: ["Justin Cheng", "Ryotaro Tanaka"],
+      },
+    ],
+    news: [
+      {
+        id: "n-1",
+        headline: "MCGI announces $2B AI transformation initiative for FY2026",
+        date: "Mar 10, 2026",
+      },
+      {
+        id: "n-2",
+        headline:
+          "Mitsubishi Chemical Group partners with Microsoft on enterprise AI rollout",
+        date: "Mar 5, 2026",
+      },
+      {
+        id: "n-3",
+        headline:
+          "MCGI appoints new Chief Digital Officer to lead cross-division AI strategy",
+        date: "Feb 27, 2026",
+      },
+      {
+        id: "n-4",
+        headline:
+          "MCGI Q3 earnings beat estimates, cites operational efficiency gains from automation",
+        date: "Feb 20, 2026",
+      },
+    ],
+    otherInteractors: ["Ashwin Gopinath", "Ryotaro Tanaka"],
+  },
   ashwin: {
     name: "Ashwin Gopinath",
     email: "ashwin@sentra.app",
     domain: "sentra.app",
     role: "CEO",
     company: "Sentra",
+    tags: ["Sentra", "Co-founder"],
     relationshipStatus:
       "Your co-founder and former MIT professor. You two meet 3-4x weekly covering product strategy, investor narrative, and launch prep. Ashwin trusts your judgment on GTM and leans on you for customer-facing decisions. The dynamic is direct and high-trust \u2014 you skip pleasantries and get to the point.",
     suggestions: [
@@ -180,6 +324,9 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Andrey Starenky", "Kristina Beaman", "Lakshmi Shankar"],
   },
   andrey: {
     name: "Andrey Starenky",
@@ -187,6 +334,7 @@ export const connectionData: Record<
     domain: "sentra.app",
     role: "CTO",
     company: "Sentra",
+    tags: ["Sentra", "Co-founder"],
     relationshipStatus:
       "Sentra\u2019s CTO and your closest technical counterpart. You collaborate on product-engineering tradeoffs and sprint priorities. Andrey has strong architectural opinions \u2014 he respects when you push back with data. You two bonded over a shared obsession with clean APIs and late-night debugging sessions during the early days.",
     suggestions: [
@@ -306,6 +454,9 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Ashwin Gopinath", "Kevin Liu"],
   },
   kristina: {
     name: "Kristina Beaman",
@@ -313,6 +464,7 @@ export const connectionData: Record<
     domain: "sentra.app",
     role: "Executive Assistant",
     company: "Sentra",
+    tags: ["Sentra", "Operations"],
     relationshipStatus:
       "Your right hand for operations and scheduling. Kristina keeps things moving when you\u2019re heads-down. She\u2019s proactive about flagging calendar conflicts and anticipates what you\u2019ll need before you ask. You two have a shorthand \u2014 a Slack emoji reaction is often enough to greenlight something.",
     suggestions: [
@@ -405,6 +557,9 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Ashwin Gopinath"],
   },
   sarah: {
     name: "Sarah Chen",
@@ -412,6 +567,7 @@ export const connectionData: Record<
     domain: "campfire.io",
     role: "Head of Product",
     company: "Campfire",
+    tags: ["Design Partner"],
     relationshipStatus:
       "Key contact at Campfire, one of your earliest design partners. Sarah was the first external person to see the demo and immediately got it. She\u2019s been generous with product feedback and introduced you to two other ops leads in her network. You occasionally grab coffee when you\u2019re both in the Mission.",
     suggestions: [
@@ -492,6 +648,9 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Andrey Starenky"],
   },
   kevin: {
     name: "Kevin Liu",
@@ -499,6 +658,7 @@ export const connectionData: Record<
     domain: "relay.app",
     role: "VP Engineering",
     company: "Relay",
+    tags: ["Prospect"],
     relationshipStatus:
       "Technical evaluator at Relay who\u2019s been kicking the tires on Sentra\u2019s API. Kevin is methodical \u2014 he won\u2019t commit until he\u2019s stress-tested every edge case. You two nerd out on systems design. He mentioned wanting to grab ramen at Mensho next time you\u2019re both free.",
     suggestions: [
@@ -565,6 +725,9 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Andrey Starenky"],
   },
   lakshmi: {
     name: "Lakshmi Shankar",
@@ -572,6 +735,7 @@ export const connectionData: Record<
     domain: "togetherfund.com",
     role: "Lead Investor",
     company: "Together Fund",
+    tags: ["Investor", "Together Fund"],
     relationshipStatus:
       "Sentra\u2019s lead investor from Together Fund. Lakshmi led the $5M round and has been an active, high-conviction backer. She\u2019s introduced you to enterprise prospects and gives sharp strategic advice. Outside work, you two bond over skiing \u2014 she\u2019s trying to convince you to do a Tahoe trip before the season ends.",
     suggestions: [
@@ -674,5 +838,8 @@ export const connectionData: Record<
         ],
       },
     ],
+    emails: [],
+    news: [],
+    otherInteractors: ["Ashwin Gopinath"],
   },
 };

@@ -11,7 +11,10 @@ export type SourceType =
   | "asana"
   | "discord"
   | "outlook"
-  | "email";
+  | "email"
+  | "affinity"
+  | "teams"
+  | "sharepoint";
 
 export interface SourceRef {
   type: SourceType;

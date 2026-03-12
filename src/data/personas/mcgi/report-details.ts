@@ -1,6 +1,68 @@
 import type { ReportDetail } from "@/types";
 
 export const reportDetails: Record<string, ReportDetail> = {
+  "mcgi-radar-competitive-1": {
+    id: "mcgi-radar-competitive-1",
+    title: "Competitive CVC Activity — Daily Scan",
+    dateRange: "Mar 12, 2026",
+    sections: [
+      {
+        heading: "",
+        paragraphs: [
+          "SoftBank Vision Fund led a $140M Series C into MemoryAI, a direct competitor to Sentra in the organizational memory space. The round closed yesterday and was flagged across two internal channels. This is significant because MCGI is actively evaluating Sentra for investment — SoftBank's move validates the category but introduces competitive pressure on deal terms and timeline.",
+          "Separately, Samsung Next participated in a $45M co-investment round for CarbonGrid's Series A alongside Breakthrough Energy Ventures. MCGI had CarbonGrid in active due diligence for a solo lead position. Samsung's entry changes the cap table dynamics and may compress the window for MCGI to secure favorable terms.",
+        ],
+      },
+    ],
+    evidence: [
+      {
+        speaker: "Sunna Mo",
+        quote:
+          "Just saw the TechCrunch article — SoftBank put $140M into MemoryAI. That's the same category as Sentra. We need to move faster on the investment memo before this changes the competitive landscape.",
+        meetingTitle: "#mcgi-deal-flow — Teams Chat",
+        meetingDate: "Mar 12, 2026 · 9:14 AM",
+        sourceType: "teams",
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        quote:
+          "Samsung Next co-invested in CarbonGrid's Series A. We were planning to lead that round. This is a problem — we need to discuss with Mihiro whether our terms still hold or if we need to renegotiate.",
+        meetingTitle: "MCGI Daily Standup — Zoom",
+        meetingDate: "Mar 12, 2026 · 8:30 AM",
+        sourceType: "zoom",
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        quote:
+          "The CarbonGrid founders said Samsung reached out directly after the M-Lab demo. They're open to MCGI leading but want us to confirm by end of week.",
+        meetingTitle: "#mcgi-deal-flow — Teams Chat",
+        meetingDate: "Mar 12, 2026 · 10:02 AM",
+        sourceType: "teams",
+      },
+    ],
+    sources: [
+      { type: "teams", label: "#mcgi-deal-flow" },
+      { type: "teams", label: "#mcgi-market-intel" },
+      { type: "zoom", label: "MCGI Daily Standup — Mar 12" },
+      { type: "meeting", label: "CarbonGrid — Founder Check-in" },
+      { type: "slack", label: "#mcgi-portfolio-updates" },
+      { type: "email", label: "PitchBook CVC deal alerts" },
+    ],
+    suggestedActions: [
+      {
+        icon: "mail",
+        label: "Send Sentra investment memo to IC for expedited review",
+      },
+      {
+        icon: "calendar",
+        label: "Schedule emergency CarbonGrid terms discussion",
+      },
+      {
+        icon: "clock",
+        label: "Set alert for CarbonGrid founder response deadline",
+      },
+    ],
+  },
   "mcgi-rpt-pipeline-1": {
     id: "mcgi-rpt-pipeline-1",
     title: "Deal Flow Pipeline — Week of Mar 3",

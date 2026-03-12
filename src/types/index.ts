@@ -57,6 +57,7 @@ export interface ReportDetail {
   dateRange: string;
   sections: ReportSection[];
   drillDowns?: ReportSection[];
+  evidence?: EvidenceQuote[];
   sources: Source[];
   suggestedActions: SuggestedAction[];
 }
@@ -81,8 +82,18 @@ export interface Source {
     | "outlook"
     | "zoom"
     | "github"
-    | "google-docs";
+    | "google-docs"
+    | "teams"
+    | "sharepoint";
   label: string;
+}
+
+export interface EvidenceQuote {
+  speaker: string;
+  quote: string;
+  meetingTitle: string;
+  meetingDate: string;
+  sourceType: Source["type"];
 }
 
 export interface SuggestedAction {

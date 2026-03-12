@@ -9,6 +9,15 @@ export const homeData: PersonaHomeData = {
   ],
   artifacts: [
     {
+      id: "mcgi-art-radar",
+      reportId: "mcgi-radar-competitive-1",
+      title: "Competitive CVC Activity",
+      description:
+        "SoftBank invested $140M in a Sentra competitor. Samsung co-invested in CarbonGrid. Action needed.",
+      type: "radar",
+      badge: "High",
+    },
+    {
       id: "mcgi-art-1",
       title: "Investment Memo — Sentra",
       description:
@@ -16,6 +25,16 @@ export const homeData: PersonaHomeData = {
       type: "action",
       badge: "New",
       deepResearchPrompt: "Draft an investment memo for Sentra",
+    },
+    {
+      id: "mcgi-art-5",
+      title: "Consolidate NeuralDB Deal Data",
+      description:
+        "Pull together all NeuralDB diligence data scattered across Notion and Teams into a single unified brief",
+      type: "action",
+      badge: "New",
+      deepResearchPrompt:
+        "Consolidate everything we have on NeuralDB across Notion and Teams into a single brief",
     },
     {
       id: "mcgi-art-2",
@@ -27,12 +46,14 @@ export const homeData: PersonaHomeData = {
       badge: "Updated",
     },
     {
-      id: "mcgi-art-3",
-      title: "AI Agent Framework Landscape",
+      id: "mcgi-art-4",
+      title: "3-Statement Model — CarbonGrid",
       description:
-        "Map the competitive landscape of AI agent orchestration platforms for MCGI thesis development",
+        "Build a financial model for CarbonGrid due diligence with revenue projections, unit economics, and valuation sensitivity",
       type: "action",
-      deepResearchPrompt: "Map the AI agent framework landscape",
+      badge: "New",
+      deepResearchPrompt:
+        "Build a 3-statement financial model for CarbonGrid due diligence",
     },
   ],
   upcomingMeeting: {

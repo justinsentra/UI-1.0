@@ -27,6 +27,8 @@ const TYPE_LABELS: Record<string, string> = {
   zoom: "Zoom",
   github: "GitHub",
   "google-docs": "Google Docs",
+  teams: "Microsoft Teams",
+  sharepoint: "SharePoint",
 };
 
 const SOURCE_DESCRIPTIONS: Record<string, string> = {
@@ -44,6 +46,8 @@ const SOURCE_DESCRIPTIONS: Record<string, string> = {
   outlook: "Outlook email thread",
   email: "Email message",
   meeting: "Meeting transcript",
+  teams: "Microsoft Teams chat or channel",
+  sharepoint: "SharePoint document or site",
 };
 
 const ICON_COMPATIBLE_TYPES: Record<string, SourceType> = {
@@ -61,6 +65,8 @@ const ICON_COMPATIBLE_TYPES: Record<string, SourceType> = {
   zoom: "zoom",
   github: "github",
   "google-docs": "google-docs",
+  teams: "teams",
+  sharepoint: "sharepoint",
 };
 
 function SourceChip({ source }: { source: Source }) {

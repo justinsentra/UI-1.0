@@ -416,6 +416,444 @@ export const EmailIcon = ({ size = 14, className }: SourceIconProps) => (
   </svg>
 );
 
+export const AffinityIcon = ({ size = 14, className }: SourceIconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    className={className}
+  >
+    <path d="M16 2L3 9.5v13L16 30l13-7.5v-13L16 2Z" fill="#4B48EC" />
+    <path d="M16 8l-8 4.5v9L16 26l8-4.5v-9L16 8Z" fill="#7B79FF" />
+    <path d="M16 14l-4 2.25v4.5L16 23l4-2.25v-4.5L16 14Z" fill="#fff" />
+  </svg>
+);
+
+export const TeamsIcon = ({ size = 14, className }: SourceIconProps) => (
+  <svg
+    width={size}
+    height={size}
+    fill="none"
+    viewBox="4 4 36 38"
+    className={className}
+  >
+    <path
+      fill="url(#microsoft_teams__a)"
+      d="M22 20h12a6 6 0 0 1 6 6v10a6 6 0 0 1-12 0V26a6 6 0 0 0-6-6Z"
+    />
+    <path
+      fill="url(#microsoft_teams__b)"
+      d="M8 24a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v12a6 6 0 0 0 6 6H18c-5.523 0-10-4.477-10-10v-8Z"
+    />
+    <path
+      fill="url(#microsoft_teams__c)"
+      fillOpacity=".7"
+      d="M8 24a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v12a6 6 0 0 0 6 6H18c-5.523 0-10-4.477-10-10v-8Z"
+    />
+    <path
+      fill="url(#microsoft_teams__d)"
+      fillOpacity=".7"
+      d="M8 24a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v12a6 6 0 0 0 6 6H18c-5.523 0-10-4.477-10-10v-8Z"
+    />
+    <path
+      fill="url(#microsoft_teams__e)"
+      d="M33 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
+    />
+    <path
+      fill="url(#microsoft_teams__f)"
+      fillOpacity=".46"
+      d="M33 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
+    />
+    <path
+      fill="url(#microsoft_teams__g)"
+      fillOpacity=".4"
+      d="M33 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
+    />
+    <path
+      fill="url(#microsoft_teams__h)"
+      d="M18 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"
+    />
+    <path
+      fill="url(#microsoft_teams__i)"
+      fillOpacity=".6"
+      d="M18 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"
+    />
+    <path
+      fill="url(#microsoft_teams__j)"
+      fillOpacity=".5"
+      d="M18 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"
+    />
+    <rect
+      width="16"
+      height="16"
+      x="4"
+      y="23"
+      fill="url(#microsoft_teams__k)"
+      rx="3.25"
+    />
+    <rect
+      width="16"
+      height="16"
+      x="4"
+      y="23"
+      fill="url(#microsoft_teams__l)"
+      fillOpacity=".7"
+      rx="3.25"
+    />
+    <path
+      fill="#fff"
+      d="M15.48 28.105h-2.448v7.466h-2.065v-7.466H8.52V26.43h6.96v1.676Z"
+    />
+    <defs>
+      <radialGradient
+        id="microsoft_teams__a"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(13.4784 0 0 33.2694 39.797 22.174)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#A98AFF" />
+        <stop offset=".14" stopColor="#8C75FF" />
+        <stop offset=".565" stopColor="#5F50E2" />
+        <stop offset=".9" stopColor="#3C2CB8" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__b"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(12.1875 30.39997 -30.74442 12.3256 8.812 16.4)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#85C2FF" />
+        <stop offset=".69" stopColor="#7588FF" />
+        <stop offset="1" stopColor="#6459FE" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__d"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="rotate(113.326 8.093 17.645) scale(19.2186 15.4273)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#BD96FF" />
+        <stop offset=".687" stopColor="#BD96FF" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__e"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(0 -10 12.6216 0 33 11.571)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".268" stopColor="#6868F7" />
+        <stop offset="1" stopColor="#3923B1" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__f"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(5.47024 4.59847 -6.65117 7.91208 28.867 10.544)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".271" stopColor="#A1D3FF" />
+        <stop offset=".813" stopColor="#A1D3FF" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__g"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="rotate(-41.658 32.118 -43.42) scale(8.51275 20.8824)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#E3ACFD" />
+        <stop offset=".816" stopColor="#9FA2FF" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__h"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(0 -12 15.146 0 18 8.286)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".268" stopColor="#8282FF" />
+        <stop offset="1" stopColor="#3923B1" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__i"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="rotate(40.052 -3.155 21.416) scale(8.57554 12.4035)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".271" stopColor="#A1D3FF" />
+        <stop offset=".813" stopColor="#A1D3FF" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__j"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="rotate(-41.658 20.382 -26.516) scale(10.2153 25.0589)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#E3ACFD" />
+        <stop offset=".816" stopColor="#9FA2FF" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__k"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="rotate(45 -25.763 16.328) scale(22.6274)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".047" stopColor="#688EFF" />
+        <stop offset=".947" stopColor="#230F94" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_teams__l"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientTransform="matrix(0 11.2 -13.0702 0 12 32.6)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".571" stopColor="#6965F6" stopOpacity="0" />
+        <stop offset="1" stopColor="#8F8FFF" />
+      </radialGradient>
+      <linearGradient
+        id="microsoft_teams__c"
+        x1="20.594"
+        x2="20.594"
+        y1="18"
+        y2="42"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".801" stopColor="#6864F6" stopOpacity="0" />
+        <stop offset="1" stopColor="#5149DE" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const SharePointIcon = ({ size = 14, className }: SourceIconProps) => (
+  <svg width={size} height={size} viewBox="0 0 450 500" className={className}>
+    <defs>
+      <radialGradient
+        id="microsoft_sharepoint__b"
+        cx="-777.14"
+        cy="770.84"
+        r=".9"
+        fx="-777.14"
+        fy="770.84"
+        gradientTransform="matrix(-98.02204 -236.87999 -426.55553 175.97802 252868.13 -319393.72)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".29" stopColor="#003b5d" />
+        <stop offset=".61" stopColor="#004a6c" stopOpacity=".69" />
+        <stop offset=".97" stopColor="#006f94" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__c"
+        cx="-785.23"
+        cy="766.9"
+        r=".9"
+        fx="-785.23"
+        fy="766.9"
+        gradientTransform="matrix(-81.36865 -200.4872 -360.58286 145.8959 212855.73 -269057.38)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".26" stopColor="#002a42" />
+        <stop offset=".61" stopColor="#004261" stopOpacity=".69" />
+        <stop offset=".97" stopColor="#006f94" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__d"
+        cx="-739.84"
+        cy="872.71"
+        r=".9"
+        fx="-739.84"
+        fy="872.71"
+        gradientTransform="matrix(-102.53313 149.24243 149.46801 102.38138 -206024.5 21094.22)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stopColor="#78edff" />
+        <stop offset="1" stopColor="#2ccfca" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__f"
+        cx="-746.38"
+        cy="743.75"
+        r=".9"
+        fx="-746.38"
+        fy="743.75"
+        gradientTransform="matrix(56.60729 -162.28035 -292.83982 -101.83188 260296.26 -45019.25)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stopColor="#003b5d" />
+        <stop offset=".49" stopColor="#004c6c" stopOpacity=".72" />
+        <stop offset=".97" stopColor="#007a86" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__g"
+        cx="-741.46"
+        cy="888.91"
+        r=".9"
+        fx="-741.46"
+        fy="888.91"
+        gradientTransform="matrix(-85.44333 124.36732 124.55255 85.31498 -173675.69 16546.9)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stopColor="#78edff" />
+        <stop offset="1" stopColor="#2ccfca" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__j"
+        cx="-686.6"
+        cy="804.18"
+        r=".9"
+        fx="-686.6"
+        fy="804.18"
+        gradientTransform="matrix(222.887 222.57601 222.92613 -222.53738 -26208.17 332025.54)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".06" stopColor="#00b6bd" />
+        <stop offset=".89" stopColor="#00495c" />
+      </radialGradient>
+      <radialGradient
+        id="microsoft_sharepoint__k"
+        cx="-686.07"
+        cy="864.41"
+        r=".9"
+        fx="-686.07"
+        fy="864.41"
+        gradientTransform="matrix(0 155.79 177.62 0 -153439.14 107241.64)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".57" stopColor="#1e8581" stopOpacity="0" />
+        <stop offset=".97" stopColor="#1ecbe6" />
+      </radialGradient>
+      <linearGradient
+        id="microsoft_sharepoint__a"
+        x1="92.18"
+        x2="292.29"
+        y1="477.48"
+        y2="214.84"
+        gradientTransform="matrix(1 0 0 -1 0 502)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stopColor="#00e3df" />
+        <stop offset=".41" stopColor="#0097a8" />
+        <stop offset="1" stopColor="#007791" />
+      </linearGradient>
+      <linearGradient
+        id="microsoft_sharepoint__e"
+        x1="245.14"
+        x2="411.9"
+        y1="331.57"
+        y2="112.7"
+        gradientTransform="matrix(1 0 0 -1 0 502)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stopColor="#00e3df" />
+        <stop offset=".48" stopColor="#00a2b8" />
+        <stop offset=".95" stopColor="#00637c" />
+      </linearGradient>
+      <linearGradient
+        id="microsoft_sharepoint__h"
+        x1="153.42"
+        x2="259.71"
+        y1="214.53"
+        y2="1.97"
+        gradientTransform="matrix(1 0 0 -1 0 502)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".05" stopColor="#75fff6" />
+        <stop offset=".51" stopColor="#00c7d1" />
+        <stop offset=".96" stopColor="#0096ad" />
+      </linearGradient>
+      <linearGradient
+        id="microsoft_sharepoint__i"
+        x1="292.44"
+        x2="235.63"
+        y1="-12.27"
+        y2="67.45"
+        gradientTransform="matrix(1 0 0 -1 0 502)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset=".26" stopColor="#0e5a5d" />
+        <stop offset=".54" stopColor="#126c6b" stopOpacity=".69" />
+        <stop offset=".97" stopColor="#1c948a" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M187.79 300c82.97 0 150.23-67.16 150.23-150S270.75 0 187.79 0 37.56 67.16 37.56 150s67.26 150 150.23 150Z"
+      style={{ fill: "url(#microsoft_sharepoint__a)" }}
+    />
+    <path
+      d="M187.79 300c82.97 0 150.23-67.16 150.23-150S270.75 0 187.79 0 37.56 67.16 37.56 150s67.26 150 150.23 150Z"
+      style={{ fill: "url(#microsoft_sharepoint__b)", fillOpacity: 0.2 }}
+    />
+    <path
+      d="M187.79 300c82.97 0 150.23-67.16 150.23-150S270.75 0 187.79 0 37.56 67.16 37.56 150s67.26 150 150.23 150Z"
+      style={{ fill: "url(#microsoft_sharepoint__c)", fillOpacity: 0.31 }}
+    />
+    <path
+      d="M187.79 300c82.97 0 150.23-67.16 150.23-150S270.75 0 187.79 0 37.56 67.16 37.56 150s67.26 150 150.23 150Z"
+      style={{ fill: "url(#microsoft_sharepoint__d)", fillOpacity: 0.7 }}
+    />
+    <path
+      d="M324.81 400C393.95 400 450 344.04 450 275s-56.05-125-125.19-125-125.19 55.96-125.19 125 56.05 125 125.19 125Z"
+      style={{ fill: "url(#microsoft_sharepoint__e)" }}
+    />
+    <path
+      d="M324.81 400C393.95 400 450 344.04 450 275s-56.05-125-125.19-125-125.19 55.96-125.19 125 56.05 125 125.19 125Z"
+      style={{ fill: "url(#microsoft_sharepoint__f)", fillOpacity: 0.5 }}
+    />
+    <path
+      d="M324.81 400C393.95 400 450 344.04 450 275s-56.05-125-125.19-125-125.19 55.96-125.19 125 56.05 125 125.19 125Z"
+      style={{ fillOpacity: 0.7, fill: "url(#microsoft_sharepoint__g)" }}
+    />
+    <path
+      d="M206.56 500c58.77 0 106.41-47.57 106.41-106.25S265.33 287.5 206.56 287.5s-106.41 47.57-106.41 106.25S147.79 500 206.56 500Z"
+      style={{ fill: "url(#microsoft_sharepoint__h)" }}
+    />
+    <path
+      d="M206.56 500c58.77 0 106.41-47.57 106.41-106.25S265.33 287.5 206.56 287.5s-106.41 47.57-106.41 106.25S147.79 500 206.56 500Z"
+      style={{ fill: "url(#microsoft_sharepoint__i)", fillOpacity: 0.32 }}
+    />
+    <rect
+      width="200.3"
+      height="200"
+      y="237.5"
+      rx="40.66"
+      ry="40.66"
+      style={{ fill: "url(#microsoft_sharepoint__j)" }}
+    />
+    <rect
+      width="200.3"
+      height="200"
+      y="237.5"
+      rx="40.66"
+      ry="40.66"
+      style={{ fill: "url(#microsoft_sharepoint__k)", fillOpacity: 0.6 }}
+    />
+    <path
+      d="m57 372.15 21.72-11.32c2.45 4.94 5.64 8.58 9.58 10.92 3.99 2.34 8.36 3.51 13.09 3.51 5.27 0 9.29-1.06 12.05-3.19 2.77-2.18 4.15-5.45 4.15-9.8 0-3.4-1.33-6.27-3.99-8.61-2.66-2.39-7.37-4.2-14.13-5.42-12.88-2.34-22.25-6.43-28.1-12.28-5.8-5.85-8.7-13.13-8.7-21.84 0-10.84 3.83-19.5 11.5-25.99 7.66-6.48 17.78-9.72 30.34-9.72 8.46 0 15.91 1.73 22.35 5.18 6.44 3.45 11.55 8.4 15.33 14.83l-21.23 10.92c-2.34-3.61-4.87-6.22-7.58-7.81-2.72-1.65-6.12-2.47-10.22-2.47-4.9 0-8.62 1.06-11.18 3.19-2.5 2.13-3.75 4.89-3.75 8.29 0 2.92 1.2 5.5 3.59 7.73 2.45 2.18 7.34 3.96 14.69 5.34 12.35 2.34 21.56 6.59 27.62 12.76 6.12 6.11 9.18 13.84 9.18 23.2 0 11.37-3.65 20.38-10.94 27.02-7.29 6.64-17.7 9.96-31.21 9.96-9.79 0-18.63-2.13-26.5-6.38-7.82-4.3-13.7-10.31-17.64-18.02Z"
+      style={{ fill: "#fff" }}
+    />
+  </svg>
+);
+
 const SOURCE_ICON_MAP: Record<SourceType, ComponentType<SourceIconProps>> = {
   slack: SlackIcon,
   linear: LinearIcon,
@@ -430,6 +868,9 @@ const SOURCE_ICON_MAP: Record<SourceType, ComponentType<SourceIconProps>> = {
   discord: DiscordIcon,
   outlook: OutlookIcon,
   email: EmailIcon,
+  affinity: AffinityIcon,
+  teams: TeamsIcon,
+  sharepoint: SharePointIcon,
 };
 
 export const getSourceIcon = (
