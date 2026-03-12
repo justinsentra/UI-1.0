@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 import { Link2, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
-import { getReportDetail } from "@/data/mock-report-details";
 import { useReportsStore } from "@/stores/reports-store";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaReportDetail } from "@/data/content-resolver";
 import { useUIStore } from "@/stores/ui-store";
 import { usePageLabel } from "../components/app-layout";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
@@ -14,8 +15,12 @@ const ReportDetailPage = () => {
   const [showChatSidebar, setShowChatSidebar] = useState(false);
   const addToast = useUIStore((s) => s.addToast);
   const selectedReportId = useReportsStore((s) => s.selectedReportId);
+  const persona = usePersonaStore((s) => s.persona);
 
-  const report = getReportDetail(selectedReportId ?? "rpt-gtm-1");
+  const report = getPersonaReportDetail(
+    persona,
+    selectedReportId ?? "rpt-gtm-1",
+  );
 
   usePageLabel(report.title);
 

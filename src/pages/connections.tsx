@@ -6,7 +6,8 @@ import { formatInteractionDate } from "@/lib/date-utils";
 import { sortByDate } from "@/lib/sort-utils";
 import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ConnectionsChatSidebar } from "@/components/connections/connections-chat-sidebar";
-import { people, companies } from "@/data/mock-connections";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaConnections } from "@/data/content-resolver";
 
 const tabs = ["People", "Companies"] as const;
 type Tab = (typeof tabs)[number];
@@ -19,6 +20,11 @@ const ConnectionsPage = () => {
   const [peopleSortDir, setPeopleSortDir] = useState<SortDirection>("desc");
   const [companiesSortDir, setCompaniesSortDir] =
     useState<SortDirection>("desc");
+  const persona = usePersonaStore((s) => s.persona);
+  const { people, companies } = useMemo(
+    () => getPersonaConnections(persona),
+    [persona],
+  );
 
   const filteredPeople = useMemo(() => {
     const filtered = people.filter(
@@ -27,14 +33,14 @@ const ConnectionsPage = () => {
         p.email.toLowerCase().includes(search.toLowerCase()),
     );
     return sortByDate(filtered, peopleSortDir);
-  }, [search, peopleSortDir]);
+  }, [search, peopleSortDir, people]);
 
   const filteredCompanies = useMemo(() => {
     const filtered = companies.filter((c) =>
       c.name.toLowerCase().includes(search.toLowerCase()),
     );
     return sortByDate(filtered, companiesSortDir);
-  }, [search, companiesSortDir]);
+  }, [search, companiesSortDir, companies]);
 
   return (
     <div className="max-w-[740px] mx-auto pt-[56px] px-8">

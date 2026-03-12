@@ -1,7 +1,8 @@
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SESSION_HISTORY } from "@/data/mock-deep-research";
 import type { SessionHistoryItem } from "@/data/mock-deep-research";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaDeepResearch } from "@/data/content-resolver";
 
 interface SessionSidebarProps {
   activeSessionId: string | null;
@@ -14,7 +15,10 @@ const SessionSidebar = ({
   onSelectSession,
   onNewSession,
 }: SessionSidebarProps) => {
-  const grouped = SESSION_HISTORY.reduce<Record<string, SessionHistoryItem[]>>(
+  const persona = usePersonaStore((s) => s.persona);
+  const { sessionHistory } = getPersonaDeepResearch(persona);
+
+  const grouped = sessionHistory.reduce<Record<string, SessionHistoryItem[]>>(
     (acc, item) => {
       const group = acc[item.date] ?? [];
       return { ...acc, [item.date]: [...group, item] };
@@ -22,7 +26,7 @@ const SessionSidebar = ({
     {},
   );
 
-  const dateOrder = [...new Set(SESSION_HISTORY.map((s) => s.date))];
+  const dateOrder = [...new Set(sessionHistory.map((s) => s.date))];
 
   return (
     <aside className="flex flex-col w-[220px] min-w-[220px] h-full border-r border-[var(--border-subtle)] bg-[var(--bg-shell)]">

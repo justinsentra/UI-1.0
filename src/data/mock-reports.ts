@@ -7,7 +7,7 @@ import type {
 export const reportCategories: ReportCategory[] = [
   {
     id: "rc-1",
-    name: "Company Overview",
+    name: "Divisional Overview",
     type: "report",
     reportCount: 14,
     reports: [
@@ -99,7 +99,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "rc-2",
-    name: "GTM Status",
+    name: "Deal Pipeline & Partnerships",
     type: "report",
     reportCount: 16,
     reports: [
@@ -203,7 +203,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "rc-3",
-    name: "Product Strategy",
+    name: "AI Strategy & Roadmap",
     type: "report",
     reportCount: 13,
     reports: [
@@ -289,7 +289,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "rc-4",
-    name: "Engineering Overview",
+    name: "Technology Infrastructure",
     type: "report",
     reportCount: 14,
     reports: [
@@ -381,7 +381,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "rc-5",
-    name: "Hiring Pipeline",
+    name: "Talent Acquisition",
     type: "report",
     reportCount: 10,
     reports: [
@@ -449,7 +449,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "rc-6",
-    name: "Customer Success",
+    name: "Client Relationship Management",
     type: "report",
     reportCount: 12,
     reports: [
@@ -529,7 +529,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-1",
-    name: "SXSW Launch",
+    name: "Regulatory & Compliance",
     type: "radar",
     priority: "High",
     reportCount: 10,
@@ -598,7 +598,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-2",
-    name: "Product Development",
+    name: "AI Vendor Landscape",
     type: "radar",
     priority: "Med",
     reportCount: 9,
@@ -661,7 +661,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-3",
-    name: "Partnerships",
+    name: "Strategic Partnerships",
     type: "radar",
     priority: "Med",
     reportCount: 8,
@@ -718,7 +718,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-4",
-    name: "Customer Churn Concerns",
+    name: "Market Risk Signals",
     type: "radar",
     priority: "High",
     reportCount: 10,
@@ -787,7 +787,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-5",
-    name: "Expense Management",
+    name: "Budget & Cost Management",
     type: "radar",
     priority: "Med",
     reportCount: 8,
@@ -844,7 +844,7 @@ export const reportCategories: ReportCategory[] = [
   },
   {
     id: "radar-6",
-    name: "Competitor Activity",
+    name: "Competitive Intelligence",
     type: "radar",
     priority: "High",
     reportCount: 9,
@@ -910,72 +910,73 @@ export const reportCategories: ReportCategory[] = [
 export const activeRadars: RadarConfig[] = [
   {
     id: "ar-1",
-    name: "SXSW Launch Tracker",
+    name: "Regulatory Change Tracker",
     prompt:
-      "Track all updates related to the SXSW launch including press coverage, demo prep, and event logistics.",
+      "Track regulatory updates from OCC, Fed, SEC, and FINRA that affect AI deployment, data governance, and technology partnerships in banking.",
     isActive: true,
     createdAt: "2026-01-15",
   },
   {
     id: "ar-2",
-    name: "Product Development Velocity",
+    name: "AI Vendor Pipeline",
     prompt:
-      "Monitor sprint velocity, feature completions, and any blockers in the engineering pipeline.",
+      "Monitor evaluation progress, technical assessments, and contract negotiations with AI technology vendors across the firm.",
     isActive: true,
     createdAt: "2026-01-20",
   },
   {
     id: "ar-3",
-    name: "Partnership Pipeline",
+    name: "Strategic Partnership Health",
     prompt:
-      "Track status of all active partnership conversations and deal progression.",
+      "Track status of active technology partnerships, integration milestones, and partnership deal progression.",
     isActive: true,
     createdAt: "2026-01-22",
   },
   {
     id: "ar-4",
-    name: "Customer Churn Risk",
+    name: "Market Risk Indicators",
     prompt:
-      "Flag any signals of customer dissatisfaction, reduced usage, or churn risk across the customer base.",
+      "Flag market volatility signals, counterparty risk changes, and macro-economic shifts that affect deal flow and partnership strategy.",
     isActive: true,
     createdAt: "2026-02-01",
   },
   {
     id: "ar-5",
-    name: "Expense Anomalies",
+    name: "Technology Budget Tracking",
     prompt:
-      "Monitor for unusual spending patterns, budget overruns, or expense policy violations.",
+      "Monitor technology spending against budget, vendor contract renewals, and cost optimization opportunities across AI initiatives.",
     isActive: true,
     createdAt: "2026-02-05",
   },
   {
     id: "ar-6",
-    name: "Competitor Movements",
+    name: "Competitive AI Landscape",
     prompt:
-      "Track competitor product launches, pricing changes, funding rounds, and strategic moves.",
+      "Track competitor AI deployments, fintech partnerships, and strategic technology moves across major banks and financial institutions.",
     isActive: true,
     createdAt: "2026-02-10",
   },
   {
     id: "ar-7",
-    name: "Hiring Pipeline Health",
+    name: "Talent Pipeline Health",
     prompt:
-      "Monitor candidate pipeline, interview completion rates, and time-to-hire metrics.",
+      "Monitor candidate pipeline for AI/ML engineers, data scientists, and technology partnership managers.",
     isActive: true,
     createdAt: "2026-02-12",
   },
   {
     id: "ar-8",
-    name: "Security & Compliance",
+    name: "Security & Data Governance",
     prompt:
-      "Track security incidents, compliance deadlines, and audit preparation status.",
+      "Track security incidents, data governance compliance, model risk management reviews, and audit preparation status.",
     isActive: true,
     createdAt: "2026-02-15",
   },
   {
     id: "ar-9",
-    name: "Team Sentiment",
-    prompt: "Monitor team morale signals from standups, retros, and 1:1 notes.",
+    name: "Team Sentiment & Capacity",
+    prompt:
+      "Monitor team morale signals from standups, retros, and 1:1 notes across the AI strategy and tech partnerships teams.",
     isActive: true,
     createdAt: "2026-02-18",
   },
@@ -984,39 +985,41 @@ export const activeRadars: RadarConfig[] = [
 export const reportPreferenceCards: ReportPreferenceCard[] = [
   {
     id: "pref-1",
-    label: "Org-Wide Overview",
+    label: "Divisional Overview",
     description:
-      "Get a weekly overview of the major decisions across your organization",
+      "Get a weekly overview of major decisions across AI Strategy & Tech Partnerships",
   },
   {
     id: "pref-2",
-    label: "Engineering Overview",
+    label: "Technology Infrastructure",
     description:
-      "Sprint velocity, feature completions, technical debt, and engineering team health",
+      "Platform health, deployment velocity, model performance metrics, and infrastructure reliability",
   },
   {
     id: "pref-3",
-    label: "Pipeline Progress",
+    label: "Deal Pipeline Progress",
     description:
-      "Sales pipeline movement, deal progression, and revenue forecasting updates",
+      "Partnership deal progression, vendor evaluations, and revenue impact forecasting",
   },
 ];
 
 export const defaultRadarOptions = [
   {
     id: "dro-1",
-    label: "Customer Churn Concerns",
-    description: "Monitor signals of customer dissatisfaction and churn risk",
+    label: "Market Risk Signals",
+    description:
+      "Monitor market volatility and macro signals affecting deal flow",
   },
   {
     id: "dro-2",
-    label: "Expense Management Updates",
-    description: "Track spending patterns and budget adherence",
+    label: "Technology Budget Updates",
+    description: "Track AI spending patterns and budget adherence",
   },
   {
     id: "dro-3",
-    label: "Competitive Intelligence",
-    description: "Stay updated on competitor movements and market changes",
+    label: "Competitive AI Intelligence",
+    description:
+      "Stay updated on competitor AI deployments and fintech partnerships",
   },
 ];
 
@@ -1024,13 +1027,13 @@ export const chatSuggestions = {
   reports: [
     "Summarize this week's key decisions",
     "What are the top risks across all reports?",
-    "Compare last two GTM status reports",
-    "What progress was made on hiring?",
+    "Compare last two deal pipeline reports",
+    "What progress was made on AI vendor evaluations?",
   ],
   radar: [
     "What are the most urgent radar items?",
-    "Summarize SXSW launch status",
-    "Any new competitor activity this week?",
-    "What customer churn signals were detected?",
+    "Summarize regulatory compliance status",
+    "Any new competitive AI activity this week?",
+    "What market risk signals were detected?",
   ],
 };

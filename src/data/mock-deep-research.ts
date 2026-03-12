@@ -40,24 +40,178 @@ export interface SessionHistoryItem {
   date: string;
 }
 
-export const SESSION_HISTORY: SessionHistoryItem[] = [
-  { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today" },
-  { id: "s-2", title: "Customer call themes this week", date: "Today" },
-  { id: "s-3", title: "Engineering blockers summary", date: "Yesterday" },
-  { id: "s-4", title: "SXSW launch readiness check", date: "Yesterday" },
-  { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3" },
-  { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3" },
-  { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2" },
-  { id: "s-8", title: "Weekly all-hands recap", date: "Mar 1" },
-  { id: "s-9", title: "Competitor pricing research", date: "Feb 28" },
-  { id: "s-10", title: "Design partner NPS review", date: "Feb 27" },
+export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
+  "engineering-manager": [
+    { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today" },
+    { id: "s-2", title: "Customer call themes this week", date: "Today" },
+    { id: "s-3", title: "Engineering blockers summary", date: "Yesterday" },
+    { id: "s-4", title: "SXSW launch readiness check", date: "Yesterday" },
+    { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3" },
+    { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3" },
+    { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2" },
+    { id: "s-8", title: "Weekly all-hands recap", date: "Mar 1" },
+    { id: "s-9", title: "Competitor pricing research", date: "Feb 28" },
+    { id: "s-10", title: "Design partner NPS review", date: "Feb 27" },
+  ],
+  jpm: [
+    { id: "s-1", title: "AI vendor evaluation matrix", date: "Today" },
+    { id: "s-2", title: "Meridian Corp 3-statement model", date: "Today" },
+    { id: "s-3", title: "Sentra weekly adoption update", date: "Today" },
+    {
+      id: "s-4",
+      title: "AI sector comp analysis — Q1 multiples",
+      date: "Yesterday",
+    },
+    {
+      id: "s-5",
+      title: "LBO sensitivity for DataVault acquisition",
+      date: "Yesterday",
+    },
+    { id: "s-6", title: "TMT coverage pipeline review", date: "Mar 3" },
+    { id: "s-7", title: "DCF assumptions — Meridian Corp", date: "Mar 3" },
+    { id: "s-8", title: "Tech IPO readiness scorecard", date: "Mar 2" },
+    { id: "s-9", title: "M&A deal comps — enterprise SaaS", date: "Mar 1" },
+    {
+      id: "s-10",
+      title: "Pitch book draft — Series C advisory",
+      date: "Feb 28",
+    },
+  ],
+};
+
+export const SUGGESTIONS: Record<string, string[]> = {
+  "engineering-manager": [
+    "What happened in today's meetings?",
+    "Summarize this week's progress",
+    "What are the team's blockers?",
+    "Draft a PRD",
+  ],
+  jpm: [
+    "What happened in today's meetings?",
+    "Summarize this week's AI strategy updates",
+    "Build a vendor evaluation matrix",
+    "Build a 3-statement model",
+  ],
+};
+
+/* ── Vendor Evaluation Flow ── */
+
+export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
+  {
+    label: "Pulling Anthropic_Claude_Enterprise_Eval.xlsx from Google Drive...",
+    duration: 3000,
+  },
+  {
+    label:
+      "Reviewing transcript from Anthropic Enterprise Demo (Mar 4) on Zoom...",
+    duration: 3500,
+  },
+  {
+    label: "Reading OpenAI_GPT5_Technical_Assessment.pdf from Google Drive...",
+    duration: 3200,
+  },
+  {
+    label:
+      "Pulling transcript from Google Gemini Pilot Review (Mar 6) on Zoom...",
+    duration: 3000,
+  },
+  {
+    label:
+      "Scanning AI_Vendor_Security_Audit_Results.xlsx from Google Drive...",
+    duration: 2800,
+  },
+  {
+    label: "Reviewing transcript from AI Strategy Committee (Mar 7) on Zoom...",
+    duration: 3200,
+  },
 ];
 
-export const SUGGESTIONS = [
-  "What happened in today's meetings?",
-  "Summarize this week's progress",
-  "What are the team's blockers?",
-  "Draft a PRD",
+export const VENDOR_EVAL_RESPONSE: MockResponse = {
+  scanSteps: VENDOR_EVAL_SCAN_STEPS,
+  paragraphs: [
+    {
+      id: "ve-0",
+      content: `**AI Vendor Evaluation Matrix — Q1 2026**\n\nThree vendors were evaluated across six dimensions: model performance, security & compliance, enterprise support, pricing, integration capabilities, and financial services domain expertise. Evaluation based on 14 technical assessments, 8 vendor demo sessions, and 3 internal pilot programs run across IB Coverage, TMT, and Technology & Innovation teams.`,
+      sources: [
+        {
+          type: "google-drive",
+          label: "AI_Vendor_Evaluation_Framework.xlsx",
+        },
+        { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
+      ],
+    },
+    {
+      id: "ve-1",
+      content: `**Anthropic Claude (Enterprise Tier)**\n\n- **Model Performance:** Highest accuracy on regulatory document comprehension (94.2% vs 89.1% GPT-5, 87.3% Gemini). Superior citation accuracy — critical for compliance use cases. Strongest performance on multi-document synthesis across earnings transcripts and SEC filings.\n- **Security & Compliance:** SOC 2 Type II certified. Supports VPC deployment and data residency requirements. No training on customer data. Passed JPM InfoSec penetration testing.\n- **Enterprise Support:** Dedicated account team, 4-hour SLA for critical issues. Custom fine-tuning available for financial services terminology.\n- **Pricing:** $18/seat/month (Enterprise tier, 500+ seats). Volume discount to $14/seat at 2,000+ seats. Custom model fine-tuning: $150K one-time + $25K/quarter.\n- **Integration:** REST API, Python/TypeScript SDKs. Supports SSO/SAML, audit logging, admin controls. Webhook support for event-driven workflows.\n- **FS Domain Expertise:** Purpose-built financial services safety layers. Strong on regulatory language, deal terminology, and compliance frameworks.`,
+      sources: [
+        {
+          type: "google-drive",
+          label: "Anthropic_Claude_Enterprise_Eval.xlsx",
+        },
+        { type: "zoom", label: "Anthropic Enterprise Demo (Mar 4)" },
+        {
+          type: "google-drive",
+          label: "Anthropic_Security_Audit_Results.pdf",
+        },
+      ],
+    },
+    {
+      id: "ve-2",
+      content: `**OpenAI GPT-5 (Enterprise Tier)**\n\n- **Model Performance:** Strong general reasoning and code generation. Slightly lower accuracy on financial document analysis (89.1%). Best-in-class on creative content generation and translation tasks. Faster inference speed (avg 1.2s vs 1.8s Claude).\n- **Security & Compliance:** SOC 2 Type II certified. Azure-hosted option for data residency. Opt-out of training on customer data available. Passed InfoSec review with 2 minor findings (remediated).\n- **Enterprise Support:** Large customer success team. 8-hour SLA for critical issues. Broad ecosystem of third-party integrations and tools.\n- **Pricing:** $22/seat/month (Enterprise tier, 500+ seats). Volume discount to $18/seat at 2,000+ seats. Fine-tuning: $200K one-time + $35K/quarter.\n- **Integration:** REST API, Python/Node SDKs, Azure OpenAI Service. SSO/SAML, audit logs. Extensive plugin marketplace.\n- **FS Domain Expertise:** Broad but not deep. General-purpose model with financial services fine-tuning available at additional cost. Less precise on regulatory nuance.`,
+      sources: [
+        {
+          type: "google-drive",
+          label: "OpenAI_GPT5_Technical_Assessment.pdf",
+        },
+        { type: "zoom", label: "OpenAI Enterprise Review (Mar 1)" },
+      ],
+    },
+    {
+      id: "ve-3",
+      content: `**Google Gemini Ultra (Enterprise Tier)**\n\n- **Model Performance:** Strongest multimodal capabilities (document + image analysis). Good on structured data extraction from financial statements. Lower accuracy on nuanced regulatory language (87.3%). Best for data-heavy analytical workflows.\n- **Security & Compliance:** SOC 2 Type II certified. Google Cloud deployment with granular data controls. EU data residency available. Passed InfoSec review.\n- **Enterprise Support:** Google Cloud enterprise support integration. 4-hour SLA through Cloud Premier. Vertex AI platform for model management.\n- **Pricing:** $20/seat/month (Enterprise tier, 500+ seats). Significant discount when bundled with existing Google Cloud spend — effective rate ~$12/seat at current GCP commitment. Fine-tuning: $125K one-time + $20K/quarter.\n- **Integration:** Vertex AI APIs, Python/Java/Go SDKs. Deep integration with Google Workspace. SSO via Google Cloud Identity.\n- **FS Domain Expertise:** Moderate. Strong on quantitative analysis and data extraction. Weaker on qualitative regulatory interpretation and deal-specific language.`,
+      sources: [
+        {
+          type: "google-drive",
+          label: "Google_Gemini_Pilot_Results.xlsx",
+        },
+        { type: "zoom", label: "Google Gemini Pilot Review (Mar 6)" },
+      ],
+    },
+    {
+      id: "ve-4",
+      content: `**Recommendation & Next Steps**\n\n**Primary recommendation: Anthropic Claude** for regulated financial services use cases (document analysis, compliance, meeting intelligence, client advisory). Superior accuracy on financial/regulatory content and strongest data governance posture.\n\n**Secondary recommendation: Google Gemini** for data-intensive analytical workflows where existing GCP spend reduces effective cost. Consider dual-vendor strategy.\n\nOpenAI remains strong for general-purpose enterprise use but pricing premium and weaker financial domain performance make it less compelling for our specific use cases.\n\n**Proposed timeline:** Finalize Anthropic enterprise agreement by March 28. Begin Gemini pilot in Asset Management data analytics by April 7. Present dual-vendor strategy to Technology Executive Committee on April 14.`,
+      sources: [
+        { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
+        {
+          type: "google-drive",
+          label: "AI_Vendor_Scoring_Matrix_Final.xlsx",
+        },
+      ],
+    },
+  ],
+};
+
+/* ── Source refs for document flows ── */
+
+export const MODEL_SOURCES: SourceRef[] = [
+  { type: "google-drive", label: "Meridian_Corp_Q4_Financials.xlsx" },
+  { type: "zoom", label: "Deal Review — Meridian Corp (Mar 5)" },
+  { type: "google-drive", label: "Meridian_Investment_Memo_v3.docx" },
+  { type: "zoom", label: "Meridian Corp Mgmt Presentation (Feb 28)" },
+];
+
+export const WEEKLY_SOURCES: SourceRef[] = [
+  { type: "zoom", label: "IT Infrastructure Call — Sentra Onboarding (Mar 7)" },
+  { type: "google-drive", label: "Sentra_x_JPM_Pilot_Kickoff_Notes.docx" },
+  { type: "google-drive", label: "Weekly_Adoption_Metrics_W10.xlsx" },
+  { type: "zoom", label: "Sentra Quarterly Business Review (Mar 3)" },
+];
+
+export const EM_PRD_SOURCES: SourceRef[] = [
+  { type: "google-meet", label: "Engineering Sprint Retro (Mar 3)" },
+  { type: "google-meet", label: "Andrey / Justin 1:1 (Mar 1)" },
+  { type: "slack", label: "#engineering" },
+  { type: "linear", label: "AUTH-142: Refactor auth service" },
 ];
 
 export const MOCK_RESPONSES: MockResponse[] = [
@@ -212,14 +366,16 @@ export const MOCK_RESPONSES: MockResponse[] = [
 export const getMockResponse = (index: number): MockResponse =>
   MOCK_RESPONSES[index % MOCK_RESPONSES.length];
 
-/* ── PRD Flow Data ── */
+/* ── Document Flow Data ── */
 
 export interface PrdScanStep {
   label: string;
   duration: number;
 }
 
-export const PRD_SCAN_STEPS: PrdScanStep[] = [
+/* ── Engineering Manager: PRD Flow ── */
+
+export const EM_SCAN_STEPS: PrdScanStep[] = [
   {
     label: "Searching 6 recent engineering meeting transcripts...",
     duration: 3000,
@@ -238,7 +394,7 @@ export const PRD_SCAN_STEPS: PrdScanStep[] = [
   },
 ];
 
-export const PRD_CONTENT = `# Product Requirements Document: Auth Service Refactor & SSO Support
+export const EM_CONTENT = `# Product Requirements Document: Auth Service Refactor & SSO Support
 
 ## Overview
 
@@ -301,7 +457,7 @@ RBAC middleware layer with role inheritance. Audit log writes to append-only \`a
 
 *Sources: Engineering Sprint Retro, Andrey/Justin 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering Slack, Notion Engineering Specs*`;
 
-export const PRD_BUILD_STEPS: PrdScanStep[] = [
+export const EM_BUILD_STEPS: PrdScanStep[] = [
   {
     label: "Initializing project workspace...",
     duration: 2500,
@@ -321,5 +477,276 @@ export const PRD_BUILD_STEPS: PrdScanStep[] = [
   {
     label: "Writing file and verifying output...",
     duration: 3000,
+  },
+];
+
+/* ── JPM: 3-Statement Model Flow ── */
+
+export const PRD_SCAN_STEPS: PrdScanStep[] = [
+  {
+    label: "Analyzing Meridian_Corp_Q4_Financials.xlsx...",
+    duration: 3200,
+  },
+  {
+    label: "Pulling transcript from Deal Review — Meridian Corp (Mar 5)...",
+    duration: 3500,
+  },
+  {
+    label: "Reading Meridian_Investment_Memo_v3.docx...",
+    duration: 3800,
+  },
+  {
+    label:
+      "Pulling transcript from Meridian Corp Mgmt Presentation (Feb 28)...",
+    duration: 3200,
+  },
+  {
+    label: "Scanning Meridian_Comparable_Companies.xlsx...",
+    duration: 3000,
+  },
+  {
+    label: "Reading Deal_Committee_Notes_Meridian.docx...",
+    duration: 2800,
+  },
+];
+
+export const PRD_CONTENT = `# 3-Statement Financial Model: Meridian Corp
+
+## Company Overview
+
+**Meridian Corp** — Enterprise SaaS platform for supply chain optimization. Series B company with $18M ARR, 340 employees. Evaluating $120K ARR Sentra package with custom SLA requirements. Model built from deal memos, financial disclosures, and comparable company analysis.
+
+## Key Assumptions
+
+- Revenue growth: 45% YoY (FY26E), decelerating to 35% (FY27E), 28% (FY28E)
+- Gross margin: 72% current, expanding to 76% by FY28E (scale efficiencies)
+- S&M as % of revenue: 48% declining to 38% by FY28E
+- R&D as % of revenue: 28% steady
+- G&A as % of revenue: 14% declining to 11% by FY28E
+- Net revenue retention: 125%
+- CAC payback: 18 months
+
+## Income Statement
+
+| Line Item | FY25A | FY26E | FY27E | FY28E |
+|-----------|-------|-------|-------|-------|
+| Revenue | $18.0M | $26.1M | $35.2M | $45.1M |
+| COGS | ($5.0M) | ($7.1M) | ($9.2M) | ($10.8M) |
+| Gross Profit | $13.0M | $19.0M | $26.1M | $34.3M |
+| S&M | ($8.6M) | ($11.7M) | ($14.4M) | ($17.1M) |
+| R&D | ($5.0M) | ($7.3M) | ($9.9M) | ($12.6M) |
+| G&A | ($2.5M) | ($3.4M) | ($4.2M) | ($5.0M) |
+| EBITDA | ($3.1M) | ($3.4M) | ($2.5M) | ($0.4M) |
+| D&A | ($0.8M) | ($1.0M) | ($1.3M) | ($1.5M) |
+| EBIT | ($3.9M) | ($4.4M) | ($3.8M) | ($1.9M) |
+| Net Income | ($4.2M) | ($4.8M) | ($4.1M) | ($2.2M) |
+
+## Balance Sheet
+
+| Line Item | FY25A | FY26E | FY27E | FY28E |
+|-----------|-------|-------|-------|-------|
+| Cash & Equivalents | $32.0M | $27.5M | $24.0M | $22.8M |
+| Accounts Receivable | $3.6M | $5.2M | $7.0M | $9.0M |
+| Total Current Assets | $36.8M | $34.1M | $32.7M | $33.8M |
+| PP&E (net) | $2.1M | $2.8M | $3.4M | $3.9M |
+| Total Assets | $41.2M | $39.6M | $39.2M | $41.2M |
+| Accounts Payable | $1.8M | $2.4M | $3.1M | $3.8M |
+| Deferred Revenue | $4.5M | $6.5M | $8.8M | $11.3M |
+| Total Liabilities | $8.4M | $11.2M | $14.6M | $18.0M |
+| Stockholders' Equity | $32.8M | $28.4M | $24.6M | $23.2M |
+
+## Cash Flow Statement
+
+| Line Item | FY25A | FY26E | FY27E | FY28E |
+|-----------|-------|-------|-------|-------|
+| Net Income | ($4.2M) | ($4.8M) | ($4.1M) | ($2.2M) |
+| D&A | $0.8M | $1.0M | $1.3M | $1.5M |
+| Changes in WC | $0.5M | $0.3M | $0.4M | $0.6M |
+| CFO | ($2.9M) | ($3.5M) | ($2.4M) | ($0.1M) |
+| CapEx | ($0.9M) | ($1.2M) | ($1.4M) | ($1.5M) |
+| FCF | ($3.8M) | ($4.7M) | ($3.8M) | ($1.6M) |
+| Cash Runway | 8.4 yrs | 5.9 yrs | 6.3 yrs | 14.3 yrs |
+
+## Valuation Sensitivity
+
+**EV/Revenue multiples (FY26E):**
+- Bear case (8x): $209M
+- Base case (12x): $313M
+- Bull case (16x): $418M
+
+**Key risks:** Customer concentration (top 10 = 38% of ARR), long enterprise sales cycles, path to profitability dependent on S&M leverage.
+
+---
+
+*Sources: Meridian Corp deal memo, GTM Strategy Sync, Vantage Discovery Call notes, Q1 Deal Tracker (Notion), #enterprise-deals Slack, Google Drive financial disclosures*`;
+
+export const PRD_BUILD_STEPS: PrdScanStep[] = [
+  {
+    label: "Pulling revenue assumptions from investment memo...",
+    duration: 2800,
+  },
+  {
+    label: "Building income statement — mapping COGS, OpEx, D&A schedules...",
+    duration: 3200,
+  },
+  {
+    label: "Constructing balance sheet — linking AR, AP, deferred revenue...",
+    duration: 3500,
+  },
+  {
+    label: "Generating cash flow statement — CFO, CapEx, FCF bridge...",
+    duration: 3000,
+  },
+  {
+    label: "Cross-linking statements — verifying BS balances, circular refs...",
+    duration: 2800,
+  },
+  {
+    label: "Running EV/Revenue sensitivity table and formatting output...",
+    duration: 2500,
+  },
+];
+
+/* ── JPM: Weekly Status Update Flow ── */
+
+export const WEEKLY_SCAN_STEPS: PrdScanStep[] = [
+  {
+    label:
+      "Pulling transcript from IT Infrastructure Call — Sentra Onboarding (Mar 7)...",
+    duration: 3000,
+  },
+  {
+    label: "Reading Sentra_x_JPM_Pilot_Kickoff_Notes.docx...",
+    duration: 3200,
+  },
+  {
+    label: "Scanning #sentra-adoption Slack channel (47 messages this week)...",
+    duration: 3500,
+  },
+  {
+    label: "Analyzing Sentra_Pricing_Structure_2026.xlsx...",
+    duration: 2800,
+  },
+  {
+    label:
+      "Pulling transcript from Sentra Quarterly Business Review (Mar 3)...",
+    duration: 3200,
+  },
+  {
+    label: "Reading Weekly_Adoption_Metrics_W10.xlsx...",
+    duration: 2500,
+  },
+  {
+    label: "Scanning #it-ops and #ai-tools-evaluation Slack channels...",
+    duration: 3000,
+  },
+];
+
+export const WEEKLY_CONTENT = `# Weekly Status Update: Sentra Adoption at JPM
+
+## Week 10 — March 3–7, 2026
+
+---
+
+## Executive Summary
+
+Sentra pilot adoption continues to accelerate across the Technology & Innovation division. Active daily users grew from 34 to 52 (+53% WoW), driven by the IB Coverage team onboarding and expanded use in the TMT group. Meeting capture volume hit 127 meetings this week, up from 89 last week. Key blocker: SSO integration with JPM's internal IdP remains pending IT Security review.
+
+## Adoption Metrics
+
+| Metric | Last Week | This Week | Change |
+|--------|-----------|-----------|--------|
+| Active Daily Users | 34 | 52 | +53% |
+| Meetings Captured | 89 | 127 | +43% |
+| Meeting Notes Viewed | 214 | 341 | +59% |
+| Search Queries | 156 | 289 | +85% |
+| Artifacts Generated | 12 | 23 | +92% |
+| Avg. Session Duration | 8.2 min | 11.4 min | +39% |
+
+## Team-by-Team Breakdown
+
+**IB Coverage (NEW this week)**
+- 14 users onboarded Monday via group session led by Sarah Mitchell
+- Primary use case: client meeting prep and post-meeting action tracking
+- Feedback: "This replaces 30 minutes of manual CRM updates after every call" — VP, Coverage
+
+**TMT Group**
+- 18 active users (steady), meeting capture rate at 94%
+- Top request: integration with internal deal tracking system (Dealogic)
+- Generated 8 client-ready artifacts this week (up from 3)
+
+**Technology & Innovation**
+- 12 active users, primarily using search and meeting intelligence
+- Running evaluation against Glean and Microsoft Copilot
+- Decision expected by March 21
+
+**Compliance & Risk (Pilot pending)**
+- IT Security review of SSO integration in progress
+- Data residency requirements confirmed — US-East region compatible
+- Expected pilot start: March 17
+
+## Key Conversations This Week
+
+**Sentra x JPM Pilot Sync (Mar 5)**
+- Discussed expanding pilot from 60 to 150 seats
+- JPM IT requesting audit log export API for compliance
+- Pricing discussion: enterprise tier with custom SLA under review
+
+**IT Infrastructure Call (Mar 7)**
+- SSO/SAML integration blockers identified: custom claim mapping required
+- JPM InfoSec team needs penetration test report before production approval
+- Target: SSO go-live by March 24
+
+## Pricing & Commercial
+
+- Current pilot: 60 seats at $0 (evaluation period ends March 31)
+- Proposed expansion: 150 seats, Enterprise tier at $42/seat/month
+- Annual contract value if expanded: $75,600/year
+- Competitive context: Glean quoting $65/seat, Copilot bundled at $30/seat
+- Differentiation: meeting intelligence depth, organizational memory, action tracking
+
+## Blockers & Risks
+
+1. **SSO Integration** — IT Security review blocking Compliance team pilot (ETA: Mar 24)
+2. **Data Retention Policy** — JPM requires 7-year retention; current Sentra default is 2 years
+3. **Dealogic Integration** — TMT group requesting CRM sync; not on current roadmap
+4. **Procurement Timeline** — Budget approval needed by April 15 for Q2 contract
+
+## Next Week Priorities
+
+- [ ] Complete SSO claim mapping with JPM IT (Andrey)
+- [ ] Deliver penetration test report to InfoSec (Justin)
+- [ ] Schedule Compliance team pilot kickoff for Mar 17 (Kristina)
+- [ ] Finalize pricing proposal for 150-seat expansion (Justin)
+- [ ] Demo organizational memory features to TMT leadership (Ashwin)
+
+---
+
+*Sources: Sentra x JPM Pilot Sync (Mar 5), IT Infrastructure Call (Mar 7), Sentra QBR (Mar 3), #sentra-adoption Slack, #it-ops Slack, Weekly_Adoption_Metrics_W10.xlsx, Sentra_Pricing_Structure_2026.xlsx*`;
+
+export const WEEKLY_BUILD_STEPS: PrdScanStep[] = [
+  {
+    label: "Pulling JPM and Sentra logos from brand assets...",
+    duration: 2500,
+  },
+  {
+    label: "Formatting adoption metrics into charts and tables...",
+    duration: 3200,
+  },
+  {
+    label: "Building team breakdown slides with usage data...",
+    duration: 3500,
+  },
+  {
+    label: "Generating executive summary and key highlights...",
+    duration: 3000,
+  },
+  {
+    label: "Adding pricing comparison and competitive positioning...",
+    duration: 2800,
+  },
+  {
+    label: "Formatting slide deck and applying JPM template...",
+    duration: 2500,
   },
 ];

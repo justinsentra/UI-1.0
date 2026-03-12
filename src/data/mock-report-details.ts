@@ -3,599 +3,627 @@ import type { ReportDetail } from "../types";
 const reportDetailMap: Record<string, ReportDetail> = {
   // ─── REPORTS ───────────────────────────────────────────────────────
 
-  // Company Overview (latest: rpt-co-1)
+  // Divisional Overview (latest: rpt-co-1)
   "rpt-co-1": {
     id: "rpt-co-1",
-    title: "Company Overview",
+    title: "Divisional Overview",
     dateRange: "Feb 24 – 28, 2026",
     sections: [
       {
         heading: "Executive Summary",
         paragraphs: [
-          "This was a pivotal week for Sentra across engineering, go-to-market, and strategic positioning. The engineering team resolved three critical production stability issues — a 100% CPU bug, an 8.6GB memory leak, and database connection bottlenecks — resulting in the most stable platform release to date.",
-          "On the commercial front, new enterprise conversations with JPM and Assurant signal growing interest from Fortune 500 organizations. The team also received sharp but valuable feedback from design partners Softmax and Campfire, highlighting the urgent need to ship source citations and rethink the AI's tone from prescriptive to informational.",
+          "The AI Strategy & Tech Partnerships division had a high-velocity week across vendor evaluation, competitive positioning, and internal deployment expansion. The team completed Phase 2 evaluations of Anthropic, OpenAI, and Google for firm-wide LLM deployment, with Anthropic's Claude emerging as the frontrunner for regulated financial services use cases.",
+          "On the competitive front, Goldman Sachs accelerated their internal AI platform rollout, prompting an updated response strategy. Internally, the Sentra pilot is expanding from 60 to 200 seats across IB Coverage and TMT groups following strong adoption metrics and positive feedback from Managing Directors on meeting intelligence capabilities.",
         ],
       },
       {
         heading: "Key Developments",
         paragraphs: [
-          "Platform Stability: The API memory footprint dropped from 8.6GB to ~300MB, CPU utilization normalized from 100% to 1.5%, and database connections were reduced by ~60% through improved pooling. The RabbitMQ migration is complete, eliminating silent failures in background task processing.",
-          "Product Shipping Velocity: Source Citations, Pre-Meeting Briefs v3.1, and Outlook Calendar support were all shipped this week. The citations feature is a direct response to partner feedback and is being rolled out across all report types.",
-          "Enterprise Pipeline: Initiated conversations with JP Morgan (VP of Global Technology) and Assurant (Fortune 500 insurance). The SoftBank proof-of-concept was extended, with their team now testing mobile meeting capture at Mobile World Congress.",
-          "Gartner Validation: Industry analyst firm Gartner has started discussing the 'Context Graph' market space, providing external validation that strengthens our positioning with enterprise CIOs.",
+          "AI Vendor Evaluations: Completed head-to-head benchmarking of Anthropic Claude, OpenAI GPT-5, and Google Gemini Ultra across document analysis, trade surveillance, and KYC automation use cases. Claude demonstrated superior performance on regulatory document comprehension and citation accuracy, critical for our compliance requirements.",
+          "Goldman Sachs Competitive Response: Goldman announced expansion of their internal GS AI platform to 10,000 seats across IB and Asset Management. Our competitive analysis identifies three areas where JPM can leapfrog: agentic workflows for deal execution, cross-divisional knowledge graphs, and client-facing AI advisory tools.",
+          "Sentra Pilot Expansion: The organizational memory pilot is scaling from 60 seats (IB Coverage) to 200 seats spanning IB Coverage and TMT groups. Adoption rate is at 78% weekly active usage, with Managing Directors citing pre-meeting briefs and decision tracking as highest-value features.",
+          "Regulatory Landscape: OCC issued updated guidance on AI model risk management in banking. Our framework is aligned, but the new requirements around explainability and audit trails accelerate the need for source-cited AI outputs across all internal tools.",
         ],
       },
       {
         heading: "Risks & Concerns",
         paragraphs: [
-          "Design partner feedback was blunt this week. Softmax called pre-meeting briefs 'worse than useless' due to hallucinated to-dos and lack of source tracing. Campfire echoed the need for source citations as a prerequisite for trust. Both partners flagged the AI's prescriptive tone as a barrier to adoption.",
-          "The Accenture project is on hold for six months due to their internal IT backlog. While their feedback validated our strategic potential, this delays a significant reference customer.",
+          "The Goldman competitive threat is real — their GS AI platform has a 6-month head start on internal deployment at scale. However, their approach is vertically siloed, lacking the cross-divisional context layer that our strategy emphasizes. We need to move faster on the firm-wide knowledge graph initiative to maintain our differentiation.",
+          "Model risk management review for GenAI tools is creating a 4-6 week bottleneck in vendor onboarding. The MRM team is understaffed relative to the volume of AI tools entering evaluation. Escalation to the CTO office is recommended.",
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "Engineering Delivers Major Stability and Feature Wins",
+        heading: "AI Infrastructure Modernization Progress",
         paragraphs: [
-          "This week was a turning point for platform reliability. The 100% CPU bug in the SSE implementation was fixed (PR #519), the 8.6GB memory leak was eliminated (PR #508), and the RabbitMQ migration (PR #480) resolved background task reliability issues.",
-          "On the product front, Source Citations (PR #524) is being integrated into Pre-Meeting Briefs and Weekly Reports. Outlook Calendar support (PRs #517, #518) is now live for enterprise users who don't use Google Calendar.",
+          "The cloud migration from on-prem GPU clusters to a hybrid architecture is 65% complete. Phase 1 (development and testing workloads) migrated to AWS GovCloud with full data residency compliance. Phase 2 (production inference serving) is in security review, with VPC configurations and encryption-at-rest requirements being validated by InfoSec.",
+          "On-prem NVIDIA H100 cluster utilization is at 87%, up from 72% last quarter. The capacity constraint is driving urgency on the hybrid cloud strategy — without additional compute, the model fine-tuning pipeline will bottleneck within 6 weeks.",
         ],
       },
       {
-        heading: "Voice of the Customer: Trust and API Access",
+        heading: "Client-Facing AI Initiatives",
         paragraphs: [
-          "Feedback from Softmax surfaced a critical demand for an API-first strategy. Malcolm Ocean stated that without a robust API to access meeting transcripts and data, his team will build their own solution. This sentiment has been echoed by other advanced users.",
-          "Campfire's Andrew Greener provided nuanced feedback on pre-meeting briefs — highly valuable for external calls but unnecessary for internal syncs. He wants a consolidated morning digest instead of per-meeting briefs, and insists on source citations for any AI-generated content.",
+          "AI-powered client advisory tools are being piloted with three coverage teams in TMT. The tools synthesize earnings transcripts, SEC filings, and internal research notes to generate pre-meeting briefing documents for client calls. Early feedback from coverage bankers: 'This saves me 45 minutes per client meeting.'",
+          "The deal analytics dashboard, powered by internal LLMs, is now surfacing cross-sell opportunities across the coverage universe. Initial results show a 12% increase in identified revenue opportunities within the first two weeks of deployment across the pilot group.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#general" },
-      { type: "slack", label: "#engineering" },
-      { type: "slack", label: "#product-strategy" },
-      { type: "google-meet", label: "All Hands Meeting" },
-      { type: "google-meet", label: "Leadership Weekly Sync" },
-      { type: "linear", label: "Sprint 14 Board" },
+      { type: "slack", label: "#ai-strategy" },
+      { type: "slack", label: "#tech-partnerships" },
+      { type: "google-meet", label: "AI Strategy Weekly" },
+      { type: "google-meet", label: "Tech Partnerships Review" },
+      { type: "google-meet", label: "Vendor Evaluation Sync" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Send JPM introduction follow-up" },
-      { icon: "calendar", label: "Schedule API strategy session" },
-      { icon: "mail", label: "Follow up with Accenture on timeline" },
+      { icon: "mail", label: "Send Anthropic partnership proposal" },
+      { icon: "calendar", label: "Schedule AI vendor evaluation sync" },
+      { icon: "mail", label: "Follow up with Goldman competitive analysis" },
     ],
   },
 
-  // GTM Status (latest: rpt-gtm-1)
+  // Deal Pipeline & Partnerships (latest: rpt-gtm-1)
   "rpt-gtm-1": {
     id: "rpt-gtm-1",
-    title: "GTM Status",
+    title: "Deal Pipeline & Partnerships",
     dateRange: "Feb 24 – 28, 2026",
     sections: [
       {
         heading: "Executive Summary",
         paragraphs: [
-          "Go-to-market efforts this week focused on positioning refinement and enterprise pipeline development. The team landed on three core messaging pillars — 'Never lose context,' 'Decisions you can trace,' and 'Your organization's memory' — which will anchor the website relaunch and all outbound communications.",
-          "Two new enterprise conversations (JPM, Assurant) were initiated through warm introductions, while the a16z Speedrun partnership opened doors to three portfolio companies. The SXSW launch preparations are on track with confirmed press coverage from TechCrunch, The Information, and Protocol's successor.",
+          "Technology partnership deal flow accelerated this week with three active negotiations advancing to term sheet stage and two new opportunities entering the pipeline. The Anthropic enterprise agreement is the highest-priority deal, with potential to position JPM as the first major bank with a dedicated Claude deployment for regulated financial services.",
+          "The Sentra firm-wide deployment proposal moved from pilot validation to procurement review, and Bloomberg's AI integration partnership entered technical due diligence. Combined, the active pipeline represents $47M in estimated annual contract value across five strategic technology partnerships.",
         ],
       },
       {
-        heading: "Pipeline & Outbound",
+        heading: "Active Deal Pipeline",
         paragraphs: [
-          "Enterprise Pipeline Growth: JP Morgan's VP of Global Technology expressed interest in the organizational memory concept. Assurant (Fortune 500 insurance, 14K employees) reached out through a warm intro. Both conversations are in discovery phase with demos scheduled for next week.",
-          "a16z Speedrun Partnership: Ali Kazemi offered introductions to three portfolio companies — a Series B fintech (200 people), Series A dev tools company (40 people), and growth-stage healthcare startup (150 people). A successful pilot could lead to a joint case study distributed to 100K+ subscribers.",
-          "Outbound Strategy: Shifted from 'AI meeting notes' to 'organizational memory for growing teams' positioning. New email sequence targeting Series A founders (20-80 employees in B2B SaaS) is in development. LinkedIn thought leadership campaign launching next week.",
+          "Anthropic Enterprise Agreement ($18M ACV): Term sheet negotiation in progress. Key open items include data residency requirements, model fine-tuning rights for proprietary financial data, and dedicated inference capacity guarantees. Legal review flagged IP ownership clauses that need renegotiation. Target close: end of Q1.",
+          "Sentra Firm-Wide Deployment ($4.2M ACV): Pilot results validated — 78% weekly active usage across 60 seats in IB Coverage. Procurement has the proposal; vendor risk assessment scheduled for next week. Expansion to 200 seats in IB Coverage and TMT groups approved by division heads pending procurement sign-off.",
+          "Bloomberg AI Integration ($12M ACV): Technical due diligence phase. Bloomberg Terminal integration would enable real-time AI-powered research synthesis for 8,000+ JPM analysts. Architecture review meeting with Bloomberg's CTO scheduled for Thursday.",
+          "Databricks Lakehouse Platform ($8M ACV): Discovery phase for unified data platform to support AI/ML workloads across divisions. Competing against Snowflake's proposal. POC environment being provisioned.",
+          "Palantir AIP Evaluation ($5M ACV): Early-stage evaluation for trade surveillance and compliance use cases. Initial demo impressed the compliance team, but concerns around vendor lock-in and data sovereignty need resolution.",
         ],
       },
       {
-        heading: "SXSW Launch Readiness",
+        heading: "Partnership Pipeline Health",
         paragraphs: [
-          "Booth confirmed in main hall, Row C. Three press meetings locked (TechCrunch, The Information, Protocol successor) with two more tentative. Post-event nurture sequence (3-email drip) is drafted and ready for review.",
-          "Demo environment will be isolated from staging with realistic anonymized data. Website relaunch targeting one week before SXSW with the new messaging pillars.",
+          "Pipeline velocity is strong — three deals progressed stages this week. The Anthropic deal is the bellwether; landing it positions us favorably for the firm-wide AI strategy budget allocation in Q2.",
+          "Risk item: Databricks and Palantir deals may create vendor overlap in the data platform layer. Need to align with Enterprise Architecture on the target state before advancing both.",
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "Messaging Pillars and Competitive Positioning",
+        heading: "Anthropic Partnership — Strategic Value Analysis",
         paragraphs: [
-          "The Brand & Messaging Workshop produced three clear pillars. Competitor analysis revealed no one is leading with the 'trust/verification' angle — Granola focuses on 'effortless notes,' Otter on 'transcription.' The trust narrative is ours to own.",
-          "This positioning directly addresses design partner feedback about needing source citations and verifiable AI output. It also resonates with enterprise buyers who can't trust black-box AI summaries.",
+          "Beyond the direct deployment value, the Anthropic partnership carries significant strategic weight. JPM would gain early access to new model capabilities, dedicated safety and alignment research support for financial services, and co-development rights for banking-specific fine-tuning.",
+          "Competitive intelligence suggests Goldman is in parallel discussions with OpenAI. If we close Anthropic first, we establish a differentiated AI foundation that Goldman cannot easily replicate. The exclusivity window in our proposed terms is critical.",
         ],
       },
       {
-        heading: "Pricing Strategy Progress",
+        heading: "Revenue Impact Modeling",
         paragraphs: [
-          "Three-tier model finalized: Free (individual, 5 meetings/month), Team ($15/user/month), Enterprise (custom + platform fee). The free tier is the PLG wedge — individuals try it, see value, and pull teams in.",
-          "Enterprise pricing will be validated through the JPM and Assurant conversations. Usage-based model with a platform fee is the leading approach.",
+          "Conservative estimates for AI tool deployment ROI across the deal pipeline: Anthropic integration saves ~$32M annually in analyst productivity gains, Sentra reduces meeting overhead by ~$8M across covered divisions, Bloomberg AI integration increases research output velocity by an estimated 40%.",
+          "Total first-year ROI across the active pipeline is projected at 3.2x the combined ACV, well above the firm's 2.0x threshold for technology investments.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#gtm" },
-      { type: "slack", label: "#general" },
-      { type: "google-meet", label: "GTM Strategy Sync" },
-      { type: "google-meet", label: "Brand & Messaging Workshop" },
-      { type: "google-meet", label: "Partner Intro — a16z Speedrun" },
-      { type: "google-meet", label: "Pricing Strategy Discussion" },
+      { type: "slack", label: "#tech-partnerships" },
+      { type: "slack", label: "#deal-pipeline" },
+      { type: "google-meet", label: "Anthropic Term Sheet Review" },
+      { type: "google-meet", label: "Bloomberg Technical Due Diligence" },
+      { type: "google-meet", label: "Sentra Pilot Review" },
+      { type: "google-meet", label: "Partnership Pipeline Sync" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Follow up with Ali Kazemi on portfolio intros" },
-      { icon: "calendar", label: "Schedule JPM and Assurant demos" },
-      { icon: "mail", label: "Send founder email sequence for review" },
+      { icon: "mail", label: "Send revised Anthropic term sheet to legal" },
+      { icon: "calendar", label: "Schedule Bloomberg CTO architecture review" },
+      { icon: "mail", label: "Follow up with Sentra on procurement timeline" },
     ],
   },
 
-  // Product Strategy (latest: rpt-ps-1)
+  // AI Strategy & Roadmap (latest: rpt-ps-1)
   "rpt-ps-1": {
     id: "rpt-ps-1",
-    title: "Product Strategy",
+    title: "AI Strategy & Roadmap",
     dateRange: "Feb 17 – 21, 2026",
     sections: [
       {
         heading: "Executive Summary",
         paragraphs: [
-          "Product strategy this week centered on the tension between building a self-contained application versus an API-first platform. Design partner feedback from Softmax made this urgent — they explicitly stated that without API access, they'll build their own solution.",
-          "The team also made progress on the 'Granola killer' initiative, with internal demos showing how meeting context can be seamlessly integrated into developer tools. This validated the thesis that the real value lies not in capturing meetings but in making that context actionable across workflows.",
+          "The firm-wide AI strategy advanced on multiple fronts this week, with key decisions on build vs. buy for LLM infrastructure and the model risk management framework for GenAI entering final review. The internal AI platform roadmap was presented to the Operating Committee, receiving conditional approval pending MRM compliance sign-off.",
+          "Agentic workflow pilots in Investment Banking and Asset Management showed strong early results, validating the thesis that AI-driven automation of repetitive knowledge work can meaningfully improve banker productivity without compromising the quality of client deliverables.",
         ],
       },
       {
-        heading: "API-First vs. Integrated Application",
+        heading: "Build vs. Buy — LLM Infrastructure",
         paragraphs: [
-          "Malcolm Ocean from Softmax delivered a clear ultimatum: provide a robust API with webhooks within two months or lose them as a customer. Their team is building internal LLM agents and views Sentra as potential 'contextual infrastructure.'",
-          "This represents both a threat and an opportunity. Doubling down on the integrated application risks losing sophisticated, AI-native customers. An API-first strategy would position Sentra as foundational infrastructure but requires significant roadmap changes.",
-          "The recommendation is a phased approach: ship a read-only API for transcripts and meeting data within 6 weeks, then iterate toward webhooks and write access based on usage patterns.",
+          "The strategic question of the quarter: should JPM build proprietary LLM infrastructure or partner with foundation model providers? The analysis favors a hybrid approach — leverage external models (Anthropic, OpenAI) for general capabilities while building proprietary fine-tuned models for trade surveillance, credit risk, and regulatory compliance.",
+          "Cost modeling shows the hybrid approach reduces infrastructure spend by 35% compared to full in-house development while maintaining the data sovereignty and model governance requirements mandated by OCC guidance. The CTO office endorsed this direction pending board review.",
+          "Key risk: building proprietary models requires a 12-18 month ramp-up in ML engineering talent. The current team of 45 AI/ML engineers needs to grow to 80+ by year-end to execute the roadmap.",
         ],
       },
       {
-        heading: "Feature Prioritization",
+        heading: "AI Use Case Prioritization",
         paragraphs: [
-          "Source Citations (shipped) — direct response to trust feedback. Being rolled out across all report types and pre-meeting briefs.",
-          "Consolidated Morning Digest (design phase) — Campfire requested a single morning summary instead of per-meeting briefs for internal meetings. High-impact, low-effort feature.",
-          "Pill v2 (blocked on latency fix) — floating context pill with real-time meeting intelligence. Skeleton loader approach approved to address perceived latency.",
-          "Onboarding Simplification — reducing from 7 steps to 4. Progressive disclosure for advanced settings. Targeting completion before SXSW.",
+          "Document Analysis & Due Diligence (live): AI-powered analysis of SEC filings, credit agreements, and M&A documentation. Currently deployed to 300 IB analysts with 4.2x throughput improvement on standard deal documentation review.",
+          "Trade Surveillance Enhancement (pilot): LLM-based pattern detection for anomalous trading activity, complementing existing rule-based systems. Pilot running in Equities with compliance team oversight. False positive rate reduced by 62% vs. legacy system.",
+          "KYC Automation (design phase): Automated extraction and verification of client identity documents, beneficial ownership structures, and sanctions screening. Expected to reduce KYC processing time from 14 days to 3 days for standard onboarding.",
+          "Meeting Intelligence via Sentra (expanding): Organizational memory platform capturing decision history, commitments, and context across meetings. Expanding from 60 to 200 seats based on strong pilot metrics.",
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "The Agentic Workflow Opportunity",
+        heading: "Agentic Workflow Pilots",
         paragraphs: [
-          "Serge Semenov demonstrated a workflow connecting Granola's meeting output directly into the Cursor IDE, allowing an AI agent to analyze code changes based on a technical discussion without context switching. Ashwin's response: 'We should do this.'",
-          "This proves a core hypothesis — the real value is not just capturing meeting data but seamlessly integrating context into the tools where work happens. The team's enthusiasm for building these agentic integrations is a strong signal of the product direction that will resonate with users.",
+          "The IB agentic workflow pilot connected deal team meeting outputs directly into the pitchbook generation pipeline, allowing an AI agent to update client presentations based on strategic discussions without manual intervention. Senior bankers reported saving 2-3 hours per deal on routine deck updates.",
+          "In Asset Management, an agentic workflow for portfolio review preparation is synthesizing market data, internal research, and client correspondence to generate pre-meeting briefing packages. Portfolio managers describe it as 'having a junior analyst who never sleeps and never misses a data point.'",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#product-strategy" },
-      { type: "slack", label: "#engineering" },
-      { type: "google-meet", label: "Product Roadmap Review" },
-      { type: "google-meet", label: "Softmax Design Partner Check-in" },
-      { type: "google-meet", label: "Weekly Design Critique" },
+      { type: "slack", label: "#ai-strategy" },
+      { type: "slack", label: "#ai-platform" },
+      { type: "google-meet", label: "AI Strategy Operating Committee" },
+      { type: "google-meet", label: "MRM Framework Review" },
+      { type: "google-meet", label: "Agentic Workflow Pilot Readout" },
     ],
     suggestedActions: [
-      { icon: "calendar", label: "Schedule API roadmap planning session" },
-      { icon: "mail", label: "Share API timeline with Softmax" },
-      { icon: "clock", label: "Review morning digest mockups" },
+      { icon: "calendar", label: "Schedule MRM compliance sign-off meeting" },
+      { icon: "mail", label: "Share build vs. buy analysis with CTO office" },
+      { icon: "clock", label: "Review agentic workflow pilot metrics" },
     ],
   },
 
-  // Engineering Overview (latest: rpt-eng-1)
+  // Technology Infrastructure (latest: rpt-eng-1)
   "rpt-eng-1": {
     id: "rpt-eng-1",
-    title: "Engineering Overview",
+    title: "Technology Infrastructure",
     dateRange: "Feb 24 – 28, 2026",
     sections: [
       {
         heading: "Executive Summary",
         paragraphs: [
-          "Engineering delivered a landmark week for platform stability while maintaining high feature shipping velocity. Three critical production issues were resolved, the RabbitMQ migration was completed, and key user-facing features including Source Citations and Outlook Calendar support went live.",
-          "Sprint velocity reached 12 PRs merged over the two-week cycle, though 3 were blocked by production stability work. The team identified monitoring gaps that need to be addressed before SXSW and began planning for backend hiring.",
+          "AI platform infrastructure delivered a critical week of reliability improvements and security hardening. GPU cluster utilization optimization reduced idle compute costs by 22%, model serving latency for the document analysis pipeline dropped below the 200ms SLA threshold, and the data pipeline health check surfaced three anomalies that were remediated before impacting production workloads.",
+          "The quarterly security audit completed with two medium-severity findings related to VPC peering configurations. SOC 2 Type II audit preparations are 80% complete, and FedRAMP authorization conversations with the PMO advanced to the documentation phase.",
         ],
       },
       {
-        heading: "Production Stability",
+        heading: "AI Platform Reliability",
         paragraphs: [
-          "100% CPU Bug (PR #519): Serge identified a tight loop in the SSE implementation that consumed an entire CPU core. Fix dropped utilization to 1.5%, dramatically improving API responsiveness for all users.",
-          "Memory Leak (PR #508): Andrey fixed a major leak that caused the API to consume 8.6GB of RAM. Post-fix memory usage sits at ~300MB, unblocking multi-worker deployments and significantly increasing capacity.",
-          "Database Connection Pooling: Improved pooler configuration reduced concurrent connections by ~60%, providing headroom for the anticipated SXSW traffic surge.",
-          "RabbitMQ Migration (PR #480): Complete and merged. Background task processing is now reliable with no more silent failures in the job queue.",
+          "GPU Cluster Utilization: On-prem H100 cluster utilization optimized from 87% to 92% through improved job scheduling and workload balancing. Inference serving now runs on dedicated partitions separate from training workloads, eliminating the latency spikes that impacted production last month.",
+          "Model Serving Latency: P95 latency for the document analysis API dropped from 340ms to 185ms after migrating to batched inference with dynamic batching. This brings all client-facing AI endpoints within the 200ms SLA for the first time.",
+          "Data Pipeline Health: The real-time market data ingestion pipeline processed 2.3B events this week with zero data loss. Three anomalies detected in the KYC document processing pipeline — all traced to malformed PDFs from a single vendor, now filtered at ingestion.",
+          "Model Registry: 47 models in production across 12 use cases. All models now have automated drift detection and performance monitoring. Two models flagged for retraining based on accuracy degradation over the past 30 days.",
         ],
       },
       {
-        heading: "Features Shipped",
+        heading: "Security & Compliance",
         paragraphs: [
-          "Source Citations (PR #524): Users can now see the exact source of information in reports and briefs. Being integrated into Pre-Meeting Briefs (PR #537) and Weekly Reports.",
-          "Outlook Calendar Support (PRs #517, #518): Enterprise users on Microsoft 365 can now sync their calendars for meeting booking and brief generation.",
-          "Pre-Meeting Briefs v3.1: Updated with source citations and improved tone (informational rather than prescriptive) based on design partner feedback.",
+          "Quarterly Security Audit: Two medium-severity findings — (1) overly permissive VPC peering between the AI development and production environments, and (2) incomplete encryption-at-rest coverage for model artifact storage in the staging environment. Remediation PRs submitted; expected closure by Friday.",
+          "SOC 2 Type II: 80% of controls documented and evidence collected. Remaining gaps in access review documentation and incident response testing. Target completion: end of March for auditor engagement.",
+          "FedRAMP Authorization: Initial conversations with the FedRAMP PMO progressed to the documentation phase. The hybrid cloud architecture creates complexity around the authorization boundary — working with InfoSec to define the scope.",
         ],
       },
       {
-        heading: "Technical Debt & Hiring",
+        heading: "Data Residency & Model Risk",
         paragraphs: [
-          "Test coverage is at ~40%, targeting 60% before SXSW. Top priority items: database connection pooling hardening, API rate limiting, and expanded integration tests.",
-          "Two backend candidates in pipeline — one from Stripe, one from Cloudflare. Both have distributed systems experience. Phone screens scheduled for next week.",
-          "Datadog monitoring dashboards are being set up using Infrastructure-as-Code to detect issues like the CPU and memory incidents earlier.",
+          "All production AI workloads now enforce data residency within US-East regions. Cross-region replication for disaster recovery uses encrypted transit with customer-managed keys. Audit logs demonstrate 100% compliance with the firm's data localization policy.",
+          "Model Risk Management (MRM) framework for GenAI models is in final review. Key addition: mandatory human-in-the-loop review for any AI-generated content that reaches clients or regulators. Automated bias testing integrated into the CI/CD pipeline for all model deployments.",
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "Sprint Retro: Lessons Learned",
+        heading: "Infrastructure Incident Review",
         paragraphs: [
-          "The CPU bug and memory leak went undetected for days because we lacked proper monitoring. The upcoming_meetings_scheduler was silently failing without any alerts. These incidents consumed significant engineering time that could have been spent on features.",
-          "Key takeaway: invest in observability before shipping more features. The new Datadog dashboards and production incident playbook will prevent similar blind spots.",
+          "The GPU memory fragmentation issue that caused intermittent OOM errors on the inference cluster was root-caused to a memory allocator bug in the CUDA 12.3 driver. Workaround deployed (explicit memory pool pre-allocation) while waiting for the upstream fix from NVIDIA. No client-facing impact due to automatic failover to the backup cluster.",
+          "Key takeaway: the redundant inference architecture paid for itself this week. Investment in multi-cluster failover means infrastructure incidents no longer translate to SLA breaches. Monitoring coverage expanded to include GPU memory fragmentation as a leading indicator.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#engineering" },
+      { type: "slack", label: "#ai-platform" },
+      { type: "slack", label: "#infosec" },
       { type: "slack", label: "#incidents" },
-      { type: "linear", label: "Sprint 14 Board" },
-      { type: "linear", label: "PR #519 — CPU fix" },
-      { type: "linear", label: "PR #508 — Memory leak" },
-      { type: "linear", label: "PR #524 — Citations" },
-      { type: "google-meet", label: "Engineering Sprint Retro" },
-    ],
-    suggestedActions: [
-      { icon: "calendar", label: "Schedule backend candidate phone screens" },
-      { icon: "clock", label: "Review Datadog dashboard setup" },
-      { icon: "mail", label: "Share production playbook with team" },
-    ],
-  },
-
-  // Hiring Pipeline (latest: rpt-hp-1)
-  "rpt-hp-1": {
-    id: "rpt-hp-1",
-    title: "Hiring Pipeline",
-    dateRange: "Feb 24 – 28, 2026",
-    sections: [
-      {
-        heading: "Executive Summary",
-        paragraphs: [
-          "The hiring pipeline is active with two strong backend engineering candidates and early-stage conversations for a product design role. The urgency for backend hires has increased following the production stability incidents — the team needs more hands to maintain shipping velocity while reducing technical debt.",
-        ],
-      },
-      {
-        heading: "Backend Engineering (2 candidates)",
-        paragraphs: [
-          "Candidate A (ex-Stripe): 6 years of experience in distributed systems and payment infrastructure. Strong systems design skills, familiar with our tech stack (Python, PostgreSQL, Redis). Phone screen scheduled for next Tuesday.",
-          "Candidate B (ex-Cloudflare): 5 years building edge computing and real-time data pipelines. Has open-source contributions to RabbitMQ tooling which is relevant to our recent migration. Phone screen scheduled for next Wednesday.",
-          "Both candidates came through Andrey's professional network. We're targeting a senior engineer who can own infrastructure and production reliability, freeing the current team to focus on feature development.",
-        ],
-      },
-      {
-        heading: "Product Design (early stage)",
-        paragraphs: [
-          "Kevin Liu has been contracting for design work but we need a full-time product designer to own the end-to-end user experience, especially as we approach the SXSW launch and website relaunch.",
-          "Three inbound applications this week through our careers page. Reviewing portfolios over the weekend. Priority skills: B2B SaaS product design, data visualization, and design systems experience.",
-        ],
-      },
-      {
-        heading: "Open Roles",
-        paragraphs: [
-          "Senior Backend Engineer — Active (2 candidates in pipeline). Target: offer by end of March.",
-          "Product Designer — Open (3 applications in review). Target: first interviews by mid-March.",
-          "Developer Relations — Planned for Q2. Will be important once the API launches to build an ecosystem.",
-        ],
-      },
-    ],
-    sources: [
-      { type: "slack", label: "#hiring" },
-      { type: "google-meet", label: "Andrey / Justin 1:1" },
-      { type: "notion", label: "Hiring Pipeline Tracker" },
+      { type: "google-meet", label: "Infrastructure Weekly Review" },
+      { type: "google-meet", label: "Security Audit Readout" },
+      { type: "google-meet", label: "SOC 2 Preparation Sync" },
     ],
     suggestedActions: [
       {
         icon: "calendar",
-        label: "Confirm phone screen schedule with candidates",
+        label: "Schedule VPC remediation review with InfoSec",
       },
-      { icon: "mail", label: "Send interview rubric to hiring panel" },
-      { icon: "clock", label: "Review product designer portfolios" },
+      { icon: "clock", label: "Review SOC 2 evidence collection progress" },
+      { icon: "mail", label: "Share FedRAMP scope document with PMO" },
     ],
   },
 
-  // Customer Success (latest: rpt-cs-1)
-  "rpt-cs-1": {
-    id: "rpt-cs-1",
-    title: "Customer Success",
+  // Talent Acquisition (latest: rpt-hp-1)
+  "rpt-hp-1": {
+    id: "rpt-hp-1",
+    title: "Talent Acquisition",
     dateRange: "Feb 24 – 28, 2026",
     sections: [
       {
         heading: "Executive Summary",
         paragraphs: [
-          "Customer success this week was defined by a mix of sharp feedback from existing design partners and promising signals from new enterprise prospects. The feedback is consistent: Sentra's core value proposition resonates strongly, but trust in AI-generated content is the primary barrier to deeper adoption.",
-          "Three customer discovery calls were conducted (Relay, Campfire, Runway), each revealing a slightly different angle on the same core problem — context loss across meetings and communication tools.",
+          "The AI Strategy & Tech Partnerships talent pipeline is active with six candidates across three critical roles. The urgency for AI/ML engineering hires has intensified as the firm-wide AI platform roadmap requires a 75% headcount increase by year-end. Compensation benchmarking against Big Tech companies remains the primary challenge — total comp packages for senior ML engineers at Google DeepMind and Meta FAIR are running 20-30% above JPM's current bands.",
         ],
       },
       {
-        heading: "Design Partner Health",
+        heading: "AI/ML Engineers (3 candidates)",
         paragraphs: [
-          "Softmax (At Risk): Malcolm Ocean's feedback was the most critical this week. Pre-meeting briefs contained hallucinated to-dos and lacked source tracing. He described the experience as 'worse than useless.' Immediate action: ship citations and API access to retain them.",
-          "Campfire (Healthy): Andrew Greener provided constructive feedback. Finds pre-meeting briefs valuable for external calls, unnecessary for internal. Wants a consolidated morning digest. Source citations are a prerequisite for broader team rollout.",
-          "SoftBank (Expanding): Proof-of-concept extended. Team is actively testing mobile meeting capture at Mobile World Congress. Strong engagement signals — they're using the product in a real conference setting.",
+          "Candidate A (ex-Google DeepMind): 8 years in large-scale model training and inference optimization. Led the deployment of Gemini's financial services fine-tuning pipeline. Strong expertise in distributed training across GPU clusters. On-site scheduled for next Tuesday.",
+          "Candidate B (ex-Meta FAIR): 6 years in NLP research with a focus on document understanding and information extraction — directly relevant to our KYC automation and due diligence use cases. Published at NeurIPS and ICML. Phone screen completed; advancing to technical round.",
+          "Candidate C (ex-Stripe): 5 years building ML infrastructure for fraud detection and risk scoring. Experience with real-time model serving at scale and A/B testing frameworks. Particularly strong on the MLOps and model monitoring side. Initial conversation went well; scheduling technical assessment.",
         ],
       },
       {
-        heading: "New Discovery Calls",
+        heading: "AI Strategy & Partnership Managers (2 candidates)",
         paragraphs: [
-          "Relay (40 people, B2B SaaS): Pain point is context loss in async handoffs. Managers lose ~2 hours/week manually bridging meeting decisions to task tracking. Strong interest in a pilot focused on the meeting-to-action-item pipeline.",
-          "Runway (60 people, Creative tools): Suffering from 'decision archaeology' — managers spend ~5 hours/week searching across Slack, meetings, and docs to find when decisions were made. Need integration with Slack, Google Meet, Notion, and Linear.",
-          "Campfire (35 people, Collaboration): Wants differentiated treatment for external vs. internal meetings. Morning digest concept was well-received. Linear integration for follow-up tracking is a key requirement.",
+          "Candidate D (ex-Palantir): 7 years in enterprise AI strategy and government/financial services deployments. Deep understanding of regulated industries and vendor evaluation frameworks. Would own the AI vendor evaluation process and partnership negotiations.",
+          "Candidate E (ex-McKinsey Digital): 5 years in AI transformation advisory for Fortune 100 financial services clients. Strong analytical skills and executive communication. Would lead the build vs. buy analysis and internal stakeholder alignment across divisions.",
+        ],
+      },
+      {
+        heading: "Data Scientists (1 candidate)",
+        paragraphs: [
+          "Candidate F (ex-Two Sigma): 4 years in quantitative research and alternative data analysis. PhD in computational finance from MIT. Interested in transitioning from pure quant research to applied AI strategy. Would support the model risk management framework and AI use case validation.",
+        ],
+      },
+      {
+        heading: "Compensation & Open Roles",
+        paragraphs: [
+          "Senior AI/ML Engineer — Active (3 candidates). Comp range: $350-450K total. Google DeepMind offers at $480K+ are creating competitive pressure. Recommending a market adjustment for this role to close the gap.",
+          "AI Strategy Manager — Active (2 candidates). Comp range: $280-350K total. Competitive with consulting exit packages but below Big Tech strategy roles.",
+          "Senior Data Scientist — Active (1 candidate). Comp range: $300-380K total. Two Sigma comp is higher but candidate is motivated by the breadth of the AI strategy role.",
+          "Head of AI Platform Engineering — Open (sourcing). This is the most critical hire — need someone to own the end-to-end AI platform architecture. Targeting VP-level from a top-tier tech company.",
+        ],
+      },
+    ],
+    sources: [
+      { type: "slack", label: "#talent-acquisition" },
+      { type: "google-meet", label: "Hiring Pipeline Review" },
+      { type: "google-meet", label: "Compensation Benchmarking Sync" },
+    ],
+    suggestedActions: [
+      {
+        icon: "calendar",
+        label: "Confirm on-site schedule for DeepMind candidate",
+      },
+      { icon: "mail", label: "Send comp adjustment proposal to HR" },
+      {
+        icon: "clock",
+        label: "Review AI Platform Engineering job description",
+      },
+    ],
+  },
+
+  // Client Relationship Management (latest: rpt-cs-1)
+  "rpt-cs-1": {
+    id: "rpt-cs-1",
+    title: "Client Relationship Management",
+    dateRange: "Feb 24 – 28, 2026",
+    sections: [
+      {
+        heading: "Executive Summary",
+        paragraphs: [
+          "Internal client satisfaction with AI tools across divisions showed strong improvement this week, driven by the expanded rollout of document analysis capabilities in IB and the launch of meeting intelligence in Asset Management. Overall adoption rate for AI-powered tools reached 67% across covered divisions, up from 54% last month.",
+          "Training completion rates remain a bottleneck — only 45% of eligible users have completed the mandatory AI tools onboarding module. Support ticket volume increased 18% week-over-week, primarily driven by new users in the TMT coverage group encountering onboarding friction.",
+        ],
+      },
+      {
+        heading: "Divisional Adoption Metrics",
+        paragraphs: [
+          "Investment Banking (Strong): 78% weekly active usage of AI tools across Coverage and M&A advisory teams. Pre-meeting briefs and deal document analysis are the highest-value features. Managing Directors in TMT and Healthcare coverage groups are the most active power users, averaging 12 AI-assisted workflows per week.",
+          "Asset Management (Growing): 52% adoption in the first month of rollout. Portfolio review preparation and client correspondence drafting are the primary use cases. The fixed income team is requesting custom model fine-tuning for credit analysis — escalated to the AI platform team.",
+          "Treasury Services (Early Stage): Pilot launched with 30 users in cash management. Focus on automated client reporting and payment pattern analysis. Too early for meaningful adoption metrics but engagement in training sessions is high.",
+        ],
+      },
+      {
+        heading: "Training & Support",
+        paragraphs: [
+          "Training Completion: 45% of eligible users (1,200 of 2,670) have completed the AI tools onboarding module. The bottleneck is scheduling — senior bankers consistently deprioritize training sessions. Recommending mandatory completion tied to Q2 performance reviews.",
+          "Support Tickets: 340 tickets this week, up from 288 last week. Top issues: (1) document upload formatting errors (35%), (2) meeting transcription accuracy for multi-party calls (25%), (3) access provisioning delays (20%). The document upload issue has a known fix deploying Thursday.",
+          "NPS Score: Internal NPS for AI tools is 42, up from 35 last month. Detractors primarily cite transcription accuracy and the lack of integration with Symphony (internal messaging). Promoters highlight time savings on deal preparation and client meeting prep.",
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "Pattern Analysis: What Customers Actually Want",
+        heading: "Adoption Pattern Analysis",
         paragraphs: [
-          "Across all customer conversations this week, three patterns emerge: 1) Source citations are table stakes — nobody trusts AI summaries without the ability to verify. 2) Internal and external meetings need different treatment. 3) The integration story matters — customers use 4-6 tools and need context to flow between them.",
-          "The strongest signal is that customers view Sentra's potential as 'contextual infrastructure' rather than a standalone meeting tool. This aligns with the API-first feedback from Softmax and supports the platform direction.",
+          "Across all divisions, three patterns define successful AI tool adoption: 1) Teams with a designated 'AI champion' (typically a VP or Director) show 2.3x higher adoption than those without. 2) Integration with existing workflows matters more than feature richness — the Bloomberg Terminal integration request from Equities Research is the top feature ask. 3) Trust builds through transparency — teams using tools with source citations show 40% higher retention than those using tools without.",
+          "The strongest adoption signal comes from IB Coverage teams who use Sentra for meeting intelligence. These teams report that pre-meeting briefs with decision history and relationship context are 'transforming how we prepare for client calls.' This use case should be the centerpiece of the firm-wide expansion strategy.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#customer-success" },
-      { type: "google-meet", label: "Customer Discovery — Relay" },
-      { type: "google-meet", label: "Customer Discovery — Campfire" },
-      { type: "google-meet", label: "Customer Discovery — Runway" },
-      { type: "google-meet", label: "Softmax Design Partner Check-in" },
+      { type: "slack", label: "#ai-adoption" },
+      { type: "slack", label: "#ai-support" },
+      { type: "google-meet", label: "Divisional Adoption Review — IB" },
+      { type: "google-meet", label: "Divisional Adoption Review — AM" },
+      { type: "google-meet", label: "AI Training Program Sync" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Send Relay pilot proposal" },
-      { icon: "calendar", label: "Schedule Runway integration assessment" },
-      { icon: "mail", label: "Share API timeline with Softmax" },
+      {
+        icon: "mail",
+        label: "Send training completion reminder to division heads",
+      },
+      { icon: "calendar", label: "Schedule AM custom model scoping session" },
+      {
+        icon: "mail",
+        label: "Share adoption metrics with Operating Committee",
+      },
     ],
   },
 
   // ─── RADARS ────────────────────────────────────────────────────────
 
-  // SXSW Launch (latest: radar-sxsw-1)
+  // Regulatory & Compliance (latest: radar-sxsw-1)
   "radar-sxsw-1": {
     id: "radar-sxsw-1",
-    title: "SXSW Launch",
+    title: "Regulatory & Compliance",
     dateRange: "Feb 24, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "SXSW launch preparations are on track with three weeks until the event. Booth logistics, press coverage, demo environment, and marketing materials are all progressing according to plan. The primary risk is the website relaunch timeline which has a tight one-week buffer before the event.",
+          "The regulatory landscape for AI in banking is tightening across multiple jurisdictions. Three significant regulatory developments this week require immediate attention: updated OCC guidance on AI model governance, SEC proposed rules on AI-driven trading algorithms, and new Fed supervisory expectations for model risk management in GenAI applications.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "Booth & Logistics: Main hall, Row C confirmed. Kristina has three press meetings locked (TechCrunch, The Information, Protocol's successor) with two more tentative. Working on securing a panel slot if one opens up.",
-          "Demo Environment: Andrey is setting up an isolated instance separate from staging. Will use anonymized data from actual design partner calls. Seed script in development, targeting Monday completion.",
-          "Marketing: Three messaging pillars finalized ('Never lose context,' 'Decisions you can trace,' 'Your organization's memory'). Website relaunch targeting one week before SXSW. Kevin delivering final designs next Friday.",
-          "Post-Event: Three-email nurture sequence drafted (day-of follow-up, day-three product deck, day-seven demo ask). Templates under review.",
+          "OCC Guidance (SR 26-3): The OCC issued supplemental guidance on AI model governance in banking, expanding SR 11-7 requirements to explicitly cover large language models and generative AI. Key requirements include mandatory explainability documentation for all AI-generated outputs used in credit decisions, and quarterly model performance reviews with documented drift analysis.",
+          "SEC Proposed Rules: The SEC's proposed rules on AI-driven trading would require firms to disclose the use of AI in algorithmic trading strategies and maintain audit trails of model decisions. Comment period closes April 15. Our legal team is drafting a response; the proposed disclosure requirements could impact our trade surveillance AI deployment timeline.",
+          "Fed Supervisory Expectations: The Fed issued a supervisory letter outlining expectations for model risk management of GenAI tools. The letter emphasizes that existing MRM frameworks (SR 11-7) apply to GenAI but acknowledges the unique challenges around non-deterministic outputs and prompt sensitivity. Our MRM framework is 85% aligned; gap analysis underway.",
+          "EU AI Act Implications: The EU AI Act's extraterritorial provisions may apply to JPM's European operations' use of US-hosted AI systems. Legal is assessing whether our London and Frankfurt offices' use of US-based AI tools triggers additional compliance requirements under the 'high-risk' AI system classification.",
         ],
       },
       {
         heading: "Risks",
         paragraphs: [
-          "Website relaunch timeline is tight — final designs due next Friday, implementation must be complete one week before SXSW. Any delays cascade into the launch.",
-          "Demo data quality was flagged as a concern — last event had obviously fake placeholder names that undercut credibility. Using real anonymized data this time but seed script needs to be bulletproof.",
+          "The OCC guidance creates a potential 6-8 week delay in deploying new AI models to production if we need to retroactively document explainability for existing deployments. Recommending a prioritized documentation sprint for the top 10 production models.",
+          "The SEC proposed rules, if adopted as written, would require significant changes to our trade surveillance AI architecture to support the audit trail requirements. Early engagement with the SEC through our industry association is critical.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#sxsw-launch" },
-      { type: "google-meet", label: "SXSW Launch Planning" },
-      { type: "google-meet", label: "Brand & Messaging Workshop" },
-      { type: "notion", label: "SXSW Master Timeline" },
+      { type: "slack", label: "#regulatory-affairs" },
+      { type: "slack", label: "#ai-compliance" },
+      { type: "google-meet", label: "Regulatory Impact Assessment" },
+      { type: "google-meet", label: "Legal Review — SEC Proposed Rules" },
     ],
     suggestedActions: [
-      { icon: "calendar", label: "Review demo environment on Monday" },
-      { icon: "mail", label: "Confirm tentative press meetings" },
-      { icon: "clock", label: "Check website relaunch timeline" },
+      { icon: "calendar", label: "Schedule MRM gap analysis review" },
+      { icon: "mail", label: "Circulate OCC guidance summary to AI leads" },
+      { icon: "clock", label: "Review SEC comment letter draft" },
     ],
   },
 
-  // Product Development (latest: radar-pd-1)
+  // AI Vendor Landscape (latest: radar-pd-1)
   "radar-pd-1": {
     id: "radar-pd-1",
-    title: "Product Development",
+    title: "AI Vendor Landscape",
     dateRange: "Feb 24, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "Product development velocity remains high despite production stability work consuming significant engineering time. The team shipped Source Citations, Pre-Meeting Briefs v3.1, and Outlook Calendar support this week while also resolving three critical infrastructure issues.",
+          "AI vendor evaluations are in the final phase with Anthropic Claude emerging as the frontrunner for regulated financial services deployment. Head-to-head benchmarking across six banking-specific use cases is complete, and the evaluation committee is preparing recommendations for the Operating Committee presentation next week.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "Source Citations (Shipped): Now live and being integrated across all report types and pre-meeting briefs. Directly addresses the top customer complaint about AI trust.",
-          "Pill v2 (Blocked): Floating context pill design approved but implementation blocked on audio pipeline latency regression. Skeleton loader approach approved as the UX solution once the latency fix lands.",
-          "Onboarding Simplification (In Progress): Reducing from 7 steps to 4. New mockups being created for next design critique. Targeting completion before SXSW.",
-          "Commitment Extraction Model: Fine-tuned version achieving 92%+ accuracy (up from 85%) with 1.2s inference time. Approved for the SXSW demo; optimization deferred to post-launch.",
+          "Anthropic Claude (Frontrunner): Demonstrated superior performance on regulatory document comprehension (94.2% accuracy vs. 89.1% for GPT-5 and 87.3% for Gemini), citation accuracy (97.8%), and instruction following in compliance-sensitive contexts. Enterprise agreement terms include dedicated capacity, custom fine-tuning, and on-prem deployment options. Data residency and SOC 2 requirements met.",
+          "OpenAI GPT-5 Enterprise (Strong Contender): Best-in-class performance on code generation and quantitative analysis tasks. Enterprise tier pricing is competitive but the data processing agreement has unresolved clauses around training data usage. Legal flagged three provisions requiring renegotiation.",
+          "Google Gemini Ultra (Pilot Phase): Running a limited pilot with 50 users in Equity Research for earnings transcript analysis. Multimodal capabilities (chart and table understanding) are a differentiator. However, latency is 2.3x higher than Claude for equivalent document analysis tasks.",
+          "Cohere for Document Processing (Evaluation): Specialized evaluation for high-volume document classification and extraction in KYC workflows. Strong performance on structured document processing (invoices, identity documents) at 60% lower cost per token than general-purpose models. Recommended as a complementary tool alongside the primary LLM provider.",
         ],
       },
       {
-        heading: "Blockers",
+        heading: "Evaluation Criteria & Benchmarks",
         paragraphs: [
-          "Audio pipeline latency regression is the primary blocker for Pill v2. Andrey is triaging this week with an ETA expected by Friday.",
-          "Connection graph visualization performance degrades at 100+ nodes. Needs virtualization or LOD approach before launch.",
+          "All models were evaluated across six dimensions: accuracy on financial document comprehension, citation fidelity, latency at scale, data security and residency compliance, cost per inference, and vendor risk profile. Anthropic leads on 4 of 6 dimensions; OpenAI leads on code generation; Google leads on multimodal tasks.",
+          "The MRM team has approved the evaluation methodology and will provide independent validation of results before the Operating Committee presentation. Final recommendation due by end of next week.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#engineering" },
-      { type: "linear", label: "Sprint 14 Board" },
-      { type: "google-meet", label: "Product Roadmap Review" },
-      { type: "google-meet", label: "Design Review — Pill v2" },
+      { type: "slack", label: "#ai-vendor-eval" },
+      { type: "slack", label: "#ai-strategy" },
+      { type: "google-meet", label: "Vendor Evaluation Committee" },
+      { type: "google-meet", label: "Anthropic Technical Deep Dive" },
     ],
     suggestedActions: [
-      { icon: "clock", label: "Check Pill v2 latency fix ETA" },
-      { icon: "calendar", label: "Schedule onboarding review" },
+      { icon: "clock", label: "Review final benchmark results" },
+      { icon: "calendar", label: "Schedule Operating Committee presentation" },
     ],
   },
 
-  // Partnerships (latest: radar-part-1)
+  // Strategic Partnerships (latest: radar-part-1)
   "radar-part-1": {
     id: "radar-part-1",
-    title: "Partnerships",
+    title: "Strategic Partnerships",
     dateRange: "Feb 25, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "Partnership activity accelerated this week with the a16z Speedrun introduction opening access to three portfolio companies, and the SoftBank PoC extension providing ongoing enterprise validation. The Accenture partnership is paused but their feedback remains strategically valuable.",
+          "Strategic technology partnerships are advancing across five active engagements. The Anthropic enterprise agreement is the highest-priority deal, with the Sentra pilot expansion and Bloomberg AI integration close behind. Microsoft Copilot rollout continues at scale while Palantir AIP is in early evaluation for compliance use cases.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "a16z Speedrun: Ali Kazemi offered introductions to three portfolio companies (Series B fintech, Series A dev tools, growth-stage healthcare). Potential for a co-marketing case study distributed to 100K+ newsletter subscribers if a pilot succeeds.",
-          "SoftBank (Extended PoC): Team actively testing mobile meeting capture at Mobile World Congress. Engagement is strong — they're using the product in a real, high-stakes conference setting. Key questions remain around SOC2 timeline and 500+ seat pricing.",
-          "Accenture (On Hold): Six-month pause due to their internal IT backlog. Their feedback that Sentra could 'reshape the way Accenture and our clients work' validates the strategic opportunity. Will re-engage in Q3.",
+          "Anthropic Enterprise Agreement: Term sheet under legal review. Dedicated Claude deployment for regulated financial services with custom fine-tuning rights. Key negotiation point: exclusivity window for banking-specific model capabilities. If signed, JPM becomes Anthropic's anchor financial services customer.",
+          "Sentra Pilot Expansion: Organizational memory platform expanding from 60 to 200 seats. Pilot results exceeded benchmarks — 78% weekly active usage, 4.1-hour average weekly time savings per user, and 92% satisfaction among Managing Directors. Procurement vendor risk assessment scheduled for next Tuesday.",
+          "Bloomberg AI Integration: Technical architecture review for integrating AI-powered research synthesis into Bloomberg Terminal workflows. Would serve 8,000+ JPM analysts across Equities Research, Fixed Income, and Economics. Bloomberg's API team is responsive; joint technical spec due in two weeks.",
+          "Palantir AIP Evaluation: Early-stage evaluation for trade surveillance and regulatory compliance use cases. Initial demo showed strong capabilities for pattern detection across structured and unstructured data. Vendor risk team raised concerns around data sovereignty and the proprietary data model — assessment in progress.",
+          "Microsoft Copilot Rollout: Firm-wide deployment at 15,000 seats across corporate functions. Adoption is steady at 61% weekly active usage. Highest adoption in legal (78%) and finance (72%). Lowest in IB (34%) where bankers prefer specialized tools over general-purpose Copilot.",
         ],
       },
       {
-        heading: "Pipeline",
+        heading: "Partnership Pipeline",
         paragraphs: [
-          "Active: SoftBank (PoC), a16z portfolio companies (intro stage), Relay (pilot proposal sent), Runway (discovery complete).",
-          "Paused: Accenture (Q3 re-engagement).",
-          "New: JPM and Assurant conversations initiated through warm intros.",
+          "Active: Anthropic (term sheet), Sentra (procurement review), Bloomberg (technical due diligence), Palantir (evaluation), Microsoft (rollout).",
+          "Emerging: Databricks (data platform POC), Cohere (document processing evaluation).",
+          "The combined book of business across active partnerships represents $47M in annual contract value.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#partnerships" },
-      { type: "google-meet", label: "Partner Intro — a16z Speedrun" },
-      { type: "google-meet", label: "Demo Prep — SoftBank" },
+      { type: "slack", label: "#tech-partnerships" },
+      { type: "google-meet", label: "Anthropic Partnership Review" },
+      { type: "google-meet", label: "Sentra Pilot Expansion Planning" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Follow up with Ali Kazemi on portfolio intros" },
-      { icon: "calendar", label: "Schedule SoftBank check-in post-MWC" },
+      { icon: "mail", label: "Send Anthropic term sheet redline to legal" },
+      { icon: "calendar", label: "Schedule Bloomberg architecture review" },
     ],
   },
 
-  // Customer Churn Concerns (latest: radar-churn-1)
+  // Market Risk Signals (latest: radar-churn-1)
   "radar-churn-1": {
     id: "radar-churn-1",
-    title: "Customer Churn Concerns",
+    title: "Market Risk Signals",
     dateRange: "Feb 26, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "Churn risk signals elevated this week primarily due to sharp feedback from Softmax and the Accenture pause. However, Campfire and SoftBank remain healthy, and new pipeline is strong. The key pattern: churn risk correlates directly with missing source citations and API access.",
+          "Multiple market risk signals converged this week that could impact the AI Strategy & Tech Partnerships division's budget and timeline. The Fed rate decision, rising AI infrastructure costs, intensifying talent competition, and regulatory uncertainty from proposed GenAI rules are creating headwinds that require proactive management.",
         ],
       },
       {
-        heading: "At-Risk Accounts",
+        heading: "Macroeconomic Signals",
         paragraphs: [
-          "Softmax (HIGH RISK): Malcolm Ocean explicitly stated his team will 'roll their own stuff' if we don't provide API access within two months. The pre-meeting brief experience was described as 'worse than useless.' Immediate actions needed: ship citations (done), provide API access timeline, and change the AI tone from prescriptive to informational.",
-          "Accenture (MEDIUM RISK — Paused): On hold for six months due to internal IT backlog. Not a churn signal per se, but the delay increases the risk of them finding alternative solutions during the pause.",
+          "Fed Rate Decision (HIGH IMPACT): The Fed held rates steady but signaled a hawkish stance on inflation, reducing expectations for rate cuts in H2 2026. Impact on our division: technology investment budgets across the firm may face additional scrutiny in Q2 planning. The $47M partnership pipeline could see procurement delays if cost discipline tightens.",
+          "AI Infrastructure Cost Inflation (MEDIUM IMPACT): GPU compute costs increased 15% quarter-over-quarter driven by demand from enterprise AI adoption. NVIDIA H100 pricing is firm with no volume discounts below 1,000-unit orders. Our on-prem cluster expansion budget is now 12% over initial estimates.",
         ],
       },
       {
-        heading: "Healthy Accounts",
+        heading: "Talent Market Pressure",
         paragraphs: [
-          "Campfire: Providing constructive feedback and engaging regularly. Citations will address their primary trust concern. Morning digest feature request shows they're thinking about deeper integration.",
-          "SoftBank: Actively expanding usage. Testing mobile capture at Mobile World Congress. Engagement is increasing, not decreasing.",
+          "Competition for AI/ML talent intensified this week. Google DeepMind announced a 20% comp increase for senior researchers, and Anthropic's Series D valuation is driving aggressive equity packages that JPM's cash-heavy compensation cannot match. Three of our top candidates have competing offers.",
+          "Mitigation: HR approved an accelerated hiring timeline for critical AI roles — reducing the interview-to-offer cycle from 6 weeks to 3 weeks. Also exploring research partnerships with universities (MIT, Stanford, CMU) as an alternative talent pipeline.",
         ],
       },
       {
-        heading: "Mitigation Actions",
+        heading: "Regulatory Uncertainty",
         paragraphs: [
-          "For Softmax: Share API roadmap with concrete timeline (read-only API in 6 weeks, webhooks in 10 weeks). Schedule a dedicated check-in to show the citations feature.",
-          "For Accenture: Maintain quarterly touchpoints during the pause. Send product updates to keep them engaged and aware of new capabilities.",
+          "The proposed GenAI rules from OCC and SEC (detailed in Regulatory & Compliance radar) create uncertainty around deployment timelines for AI tools in production banking workflows. If the SEC's proposed disclosure requirements for AI-driven trading are adopted as written, our trade surveillance AI pilot may need to be restructured.",
+          "Risk appetite for new AI deployments may decrease in the short term as legal and compliance teams assess the regulatory landscape. Recommending proactive engagement with regulators through industry associations to shape the final rules.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#customer-success" },
-      { type: "google-meet", label: "Softmax Design Partner Check-in" },
-      { type: "google-meet", label: "Campfire Feedback Session" },
+      { type: "slack", label: "#market-intelligence" },
+      { type: "slack", label: "#ai-strategy" },
+      { type: "google-meet", label: "Market Risk Assessment" },
+      { type: "google-meet", label: "Talent Market Briefing" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Share API roadmap with Softmax" },
-      { icon: "calendar", label: "Schedule Softmax citations demo" },
-      { icon: "mail", label: "Send Accenture quarterly update" },
+      { icon: "mail", label: "Share budget impact analysis with CFO office" },
+      { icon: "calendar", label: "Schedule accelerated candidate offers" },
+      { icon: "mail", label: "Send regulatory risk summary to division heads" },
     ],
   },
 
-  // Expense Management (latest: radar-exp-1)
+  // Budget & Cost Management (latest: radar-exp-1)
   "radar-exp-1": {
     id: "radar-exp-1",
-    title: "Expense Management",
+    title: "Budget & Cost Management",
     dateRange: "Feb 25, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "Operating expenses remain within budget with a few items to watch. Cloud infrastructure costs increased 18% this month due to the production stability work requiring additional compute resources for debugging. The increase is expected to normalize once the stability fixes are deployed.",
+          "AI Strategy & Tech Partnerships division operating budget is $28.4M for FY2026, with $6.8M spent through February (24% burn rate, on pace). GPU compute costs and vendor licensing are the two largest line items, representing 62% of total spend. ROI tracking across AI initiatives shows a blended 2.8x return on deployed tools, above the firm's 2.0x threshold.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "Infrastructure Costs: AWS spend increased from $4,200/month to $4,950/month driven by additional monitoring instances, RabbitMQ migration infrastructure, and debugging environments. Expected to drop back to ~$4,500/month after cleanup.",
-          "SXSW Budget: $18,500 allocated for booth, travel, materials, and press dinners. Currently $2,100 committed against that budget. Remaining spend will accelerate over the next three weeks.",
-          "Contractor Spend: Kevin Liu's design contract at $8,000/month. Evaluating whether to convert to full-time product designer role which would reduce cost and increase availability.",
-          "Software Subscriptions: Added Datadog ($450/month) for monitoring. All other subscriptions unchanged. Total SaaS spend at $2,800/month.",
+          "GPU Compute Costs: On-prem cluster operating costs at $1.2M/month, up 15% from Q4 due to increased training workloads and the new inference serving partition. Cloud burst capacity (AWS GovCloud) added $340K in February for peak workload overflow. Total compute spend is 8% over budget — the hybrid cloud migration should reduce this by Q3.",
+          "AI Vendor Licensing: Current committed spend across AI vendors is $3.8M annually (Microsoft Copilot $2.1M, various evaluation licenses $1.7M). The Anthropic enterprise agreement, if signed, would add $18M ACV but includes a $4.2M first-year discount. Net new vendor spend for FY2026 would be $13.8M, requiring a budget amendment.",
+          "Cloud Infrastructure: AWS GovCloud spend at $890K/month for AI workloads, up from $720K in January. Primary drivers: expanded model serving fleet, new data pipeline infrastructure for the KYC automation project, and disaster recovery environment provisioning.",
+          "Headcount Budget: 45 FTEs currently, targeting 80 by year-end. Compensation budget for new hires estimated at $14.2M annually (loaded cost). Current run rate is $9.8M. The gap requires Q2 budget approval from the Operating Committee.",
         ],
       },
       {
-        heading: "Items to Watch",
+        heading: "ROI Tracking",
         paragraphs: [
-          "The 18% infrastructure cost increase should be temporary. If it persists beyond March, need to investigate whether the new monitoring and RabbitMQ infrastructure can be optimized.",
-          "SXSW spend will spike in March — budget is approved but tracking closely to avoid overruns on travel and materials.",
+          "Document Analysis AI: $2.1M annual cost, $7.8M estimated productivity savings across 300 IB analysts. ROI: 3.7x.",
+          "Meeting Intelligence (Sentra): $252K annual cost (60 seats), $1.1M estimated time savings based on pilot data. ROI: 4.4x. Expansion to 200 seats would increase cost to $840K with projected savings of $3.6M.",
+          "Microsoft Copilot: $2.1M annual cost, $4.8M estimated productivity savings across 15,000 seats. ROI: 2.3x. Below the average but justified by firm-wide coverage and baseline productivity improvement.",
         ],
       },
     ],
     sources: [
-      { type: "slack", label: "#finance" },
-      { type: "notion", label: "Monthly Budget Tracker" },
-      { type: "google-drive", label: "AWS Cost Report" },
+      { type: "slack", label: "#ai-finance" },
+      { type: "slack", label: "#budget-planning" },
+      { type: "google-meet", label: "Monthly Budget Review" },
+      { type: "google-meet", label: "ROI Analysis Sync" },
     ],
     suggestedActions: [
-      { icon: "clock", label: "Review AWS cost after stability fixes deploy" },
-      { icon: "mail", label: "Confirm SXSW budget allocation with Ashwin" },
+      { icon: "clock", label: "Review GPU compute cost optimization plan" },
+      {
+        icon: "mail",
+        label: "Submit Anthropic budget amendment to CFO office",
+      },
     ],
   },
 
-  // Competitor Activity (latest: radar-comp-1)
+  // Competitive Intelligence (latest: radar-comp-1)
   "radar-comp-1": {
     id: "radar-comp-1",
-    title: "Competitor Activity",
+    title: "Competitive Intelligence",
     dateRange: "Feb 26, 2026",
     sections: [
       {
         heading: "Status Overview",
         paragraphs: [
-          "Competitor landscape is heating up as the meeting intelligence category matures. Granola continues to dominate the individual user segment, while Otter.ai is pushing into enterprise. Our differentiation through source citations and the organizational memory framing gives us a distinct lane.",
+          "Competitive intelligence signals intensified this week as peer institutions accelerated their AI strategy execution. Goldman Sachs, Morgan Stanley, Citi, Bank of America, and Wells Fargo all made notable moves in the AI space. JPM's differentiation lies in the breadth of our partnership approach and the depth of our model risk management framework, but the window for establishing a durable lead is narrowing.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "Granola: Released a team collaboration feature this week, moving from purely individual to team use cases. Their UX remains best-in-class for meeting notes — confirmed through our internal 2-week usage mandate. Key strength: simplicity and speed. Key gap: no context graph, no cross-meeting intelligence, no source citations.",
-          "Otter.ai: Announced enterprise pricing tier with SSO and admin controls. Targeting mid-market companies (100-500 employees). Their transcription accuracy has improved but they still lack the 'organizational memory' story.",
-          "Fireflies.ai: Quietly added CRM integrations (Salesforce, HubSpot). Focusing on sales use case rather than general meeting intelligence. Not a direct threat to our positioning but worth monitoring.",
-          "Microsoft Copilot: Teams integration continues to improve. Biggest threat in the enterprise segment due to existing Microsoft 365 relationships. However, Copilot is a horizontal play — our vertical focus on 'organizational memory' is differentiated.",
+          "Goldman Sachs — GS AI Platform: Goldman expanded their internal AI platform to 10,000 seats across IB and Asset Management. Their approach is vertically integrated — proprietary models trained on Goldman's data, deployed on internal infrastructure. Strength: data moat from decades of deal history. Weakness: siloed by division with no cross-divisional knowledge graph. Their build-first strategy is expensive and slow to iterate.",
+          "Morgan Stanley — Deloitte Partnership: Morgan Stanley deepened their Deloitte partnership for AI transformation, focusing on wealth management and client advisory. The partnership model gives them consulting bench strength but creates dependency. Their AI-powered 'Next Best Action' tool for financial advisors is reportedly seeing strong adoption in the wealth management division.",
+          "Citi — AI-First Strategy: Citi's new CEO doubled down on the 'AI-first' strategy announced last quarter, committing $2B in AI investment over three years. Focus areas: trade operations automation, regulatory reporting, and client onboarding. Their aggressive spending creates pressure on JPM to match investment levels.",
+          "Bank of America — Erica Evolution: BofA's Erica virtual assistant now handles 1.5B client interactions annually and is being extended to commercial banking. Their consumer AI advantage is significant but the technology doesn't translate easily to institutional banking where JPM has its primary book of business.",
+          "Wells Fargo — LLM Deployment: Wells Fargo deployed an internal LLM for employee productivity, focusing on document summarization, email drafting, and meeting notes. Early adoption metrics are modest (38% weekly active usage). Their conservative approach reflects ongoing regulatory scrutiny — a constraint JPM doesn't face to the same degree.",
         ],
       },
       {
         heading: "Strategic Implications",
         paragraphs: [
-          "Granola's move into team features validates the market opportunity but also narrows our differentiation window. We need to ship the context graph and cross-meeting intelligence before they close the gap.",
-          "Our trust/verification messaging (source citations) is a clear differentiator that no competitor is pursuing. This should be the center of our SXSW positioning.",
+          "Goldman's build-first approach creates a genuine competitive threat in IB where proprietary deal data is a moat. JPM's partnership-first strategy (Anthropic, Sentra, Bloomberg) trades data exclusivity for speed-to-market and vendor innovation. The right answer is likely a hybrid — and that's exactly what our build vs. buy analysis recommends.",
+          "The most actionable insight: no peer institution has cracked the cross-divisional knowledge graph problem. This is JPM's biggest opportunity — connecting IB, AM, Treasury, and Commercial Banking intelligence into a unified organizational memory. The Sentra pilot in IB Coverage is the first step toward this vision.",
         ],
       },
     ],
     sources: [
       { type: "slack", label: "#competitive-intel" },
-      { type: "slack", label: "#product-strategy" },
-      { type: "notion", label: "Competitor Tracker" },
+      { type: "slack", label: "#ai-strategy" },
+      { type: "google-meet", label: "Competitive Intelligence Briefing" },
+      { type: "google-meet", label: "Goldman AI Platform Analysis" },
     ],
     suggestedActions: [
-      { icon: "clock", label: "Update competitive landscape slide for SXSW" },
+      { icon: "clock", label: "Update competitive landscape deck for OpCo" },
       {
         icon: "mail",
-        label: "Share Granola team feature analysis with product",
+        label: "Share Goldman competitive analysis with CTO office",
       },
     ],
   },
@@ -609,18 +637,18 @@ const fallbackDetail: ReportDetail = {
     {
       heading: "Executive Summary",
       paragraphs: [
-        "This report covers the standard weekly review period. Key developments include progress across engineering, go-to-market, and customer success functions. The team maintained shipping velocity while addressing ongoing production stability and customer feedback themes.",
+        "This report covers the standard weekly review period for the AI Strategy & Tech Partnerships division. Key developments include progress across vendor evaluations, partnership negotiations, infrastructure modernization, and divisional AI adoption initiatives.",
       ],
     },
     {
       heading: "Highlights",
       paragraphs: [
-        "Engineering continued to improve platform stability and ship incremental features. Customer conversations progressed with multiple design partners providing feedback. GTM efforts focused on pipeline development and outbound strategy refinement.",
+        "Technology infrastructure continued to stabilize with improved GPU cluster utilization and model serving performance. Partnership pipeline advanced with multiple deals progressing through procurement and legal review. Talent acquisition efforts focused on closing senior AI/ML engineering candidates.",
       ],
     },
   ],
   sources: [
-    { type: "slack", label: "#general" },
+    { type: "slack", label: "#ai-strategy" },
     { type: "google-meet", label: "Weekly Sync" },
   ],
   suggestedActions: [

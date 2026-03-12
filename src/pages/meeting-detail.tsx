@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { cn, getInitials, getAvatarColor } from "@lib/utils";
 import { motion } from "motion/react";
 import {
@@ -26,7 +26,8 @@ import { MeetingTagDropdown } from "@/components/meetings/meeting-tag-dropdown";
 import { CreateTagModal } from "@/components/meetings/create-tag-modal";
 import { ShareModal } from "@/components/meetings/share-modal";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
-import { meetings } from "@/data/mock-meetings";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaMeetings } from "@/data/content-resolver";
 import { TextShimmerLoader } from "@/components/ui/loader";
 import {
   Steps,
@@ -43,6 +44,7 @@ type Tab = (typeof tabs)[number];
 const SPREADSHEET_ID = "ai-1-3";
 const SPREADSHEET_URL =
   "https://docs.google.com/spreadsheets/d/1Q2TlV0Q0ud1eABo8bM1xHPTAB5UG0QopfLhIW-6BcdI/edit?gid=589580262#gid=589580262";
+const MERIDIAN_MODEL_ID = "ai-1-1";
 
 interface SpreadsheetStep {
   label: string;
@@ -163,11 +165,7 @@ function SpreadsheetDone() {
       <button
         type="button"
         onClick={() => {
-          if (window.ipcRenderer) {
-            window.ipcRenderer.send("open-external-url", SPREADSHEET_URL);
-          } else {
-            window.location.href = SPREADSHEET_URL;
-          }
+          window.open(SPREADSHEET_URL, "_blank");
         }}
         className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-base)] max-w-fit text-sm text-[var(--fg-base)] hover:bg-[var(--bg-component-hover)] transition-colors no-underline cursor-pointer"
       >
@@ -180,6 +178,7 @@ function SpreadsheetDone() {
 }
 
 const MeetingDetailPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const [showAttendeeDropdown, setShowAttendeeDropdown] = useState(false);
@@ -198,6 +197,8 @@ const MeetingDetailPage = () => {
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
   const selectedMeetingId = useMeetingsStore((s) => s.selectedMeetingId);
   const addToast = useUIStore((s) => s.addToast);
+  const persona = usePersonaStore((s) => s.persona);
+  const meetings = useMemo(() => getPersonaMeetings(persona), [persona]);
 
   const meeting =
     meetings.find((m) => m.id === selectedMeetingId) ?? meetings[0];
@@ -442,6 +443,7 @@ const MeetingDetailPage = () => {
               </div>
               <div className="space-y-3">
                 {meeting.actionItems.map((item) => {
+                  const isMeridianModelItem = item.id === MERIDIAN_MODEL_ID;
                   const isSpreadsheetItem = item.id === SPREADSHEET_ID;
                   const isSpreadsheetActive =
                     isSpreadsheetItem && spreadsheetPhase !== "idle";
@@ -451,25 +453,42 @@ const MeetingDetailPage = () => {
                       <div
                         className={cn(
                           "flex items-start gap-3 p-3 rounded-lg",
-                          isSpreadsheetItem &&
-                            spreadsheetPhase === "idle" &&
+                          (isMeridianModelItem ||
+                            (isSpreadsheetItem &&
+                              spreadsheetPhase === "idle")) &&
                             "hover:bg-[var(--bg-component-hover)] cursor-pointer",
                           !isSpreadsheetItem &&
+                            !isMeridianModelItem &&
                             "hover:bg-[var(--bg-component-hover)]",
                           isSpreadsheetActive &&
                             "bg-[var(--bg-subtle)] rounded-b-none",
                         )}
                         onClick={
-                          isSpreadsheetItem && spreadsheetPhase === "idle"
-                            ? () => setSpreadsheetPhase("loading")
-                            : undefined
+                          isMeridianModelItem
+                            ? () =>
+                                navigate("/deep-research", {
+                                  state: {
+                                    prefill:
+                                      "Build a 3-statement financial model for Meridian Corp",
+                                  },
+                                })
+                            : isSpreadsheetItem && spreadsheetPhase === "idle"
+                              ? () => setSpreadsheetPhase("loading")
+                              : undefined
                         }
                       >
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (
+                            if (isMeridianModelItem) {
+                              navigate("/deep-research", {
+                                state: {
+                                  prefill:
+                                    "Build a 3-statement financial model for Meridian Corp",
+                                },
+                              });
+                            } else if (
                               isSpreadsheetItem &&
                               spreadsheetPhase === "idle"
                             ) {

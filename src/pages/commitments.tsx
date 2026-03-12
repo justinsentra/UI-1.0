@@ -6,10 +6,9 @@ import { cn } from "@lib/utils";
 import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
 import { useMeetingsStore } from "@/stores/meetings-store";
-import {
-  initialCommitments,
-  type CommitmentItem,
-} from "../data/mock-commitments";
+import type { CommitmentItem } from "../data/mock-commitments";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaCommitments } from "@/data/content-resolver";
 
 const filters = ["All", "Open", "Completed"] as const;
 type Filter = (typeof filters)[number];
@@ -17,7 +16,14 @@ type Filter = (typeof filters)[number];
 const CommitmentsPage = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<Filter>("All");
-  const [commitments, setCommitments] = useState(initialCommitments);
+  const persona = usePersonaStore((s) => s.persona);
+  const [commitments, setCommitments] = useState(
+    getPersonaCommitments(persona),
+  );
+
+  useEffect(() => {
+    setCommitments(getPersonaCommitments(persona));
+  }, [persona]);
   const [showModal, setShowModal] = useState(false);
   const [newCommitmentText, setNewCommitmentText] = useState("");
   const [showChat, setShowChat] = useState(false);

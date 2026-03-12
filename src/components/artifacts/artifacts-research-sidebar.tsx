@@ -1,6 +1,10 @@
 import { BaseChatSidebar } from "@/components/chat/base-chat-sidebar";
-import { getMockResponse, SUGGESTIONS } from "@/data/mock-deep-research";
+import {
+  getMockResponse,
+  getPersonaDeepResearch,
+} from "@/data/content-resolver";
 import type { ScanStep } from "@/data/mock-deep-research";
+import { usePersonaStore } from "@/stores/persona-store";
 
 const SCAN_STEPS: ScanStep[] = [
   { label: "Scanning reports and radar items...", duration: 3200 },
@@ -22,11 +26,14 @@ export function ArtifactsResearchSidebar({
   isOpen,
   onClose,
 }: ArtifactsResearchSidebarProps) {
+  const persona = usePersonaStore((s) => s.persona);
+  const { suggestions } = getPersonaDeepResearch(persona);
+
   return (
     <BaseChatSidebar
       isOpen={isOpen}
       onClose={onClose}
-      suggestedQuestions={SUGGESTIONS.slice(0, 4)}
+      suggestedQuestions={suggestions.slice(0, 4)}
       scanSteps={SCAN_STEPS}
       getMockResponse={getMockResponse}
       placeholder="Ask Sentra anything..."

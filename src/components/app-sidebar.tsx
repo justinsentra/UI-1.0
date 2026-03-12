@@ -8,7 +8,6 @@ import {
   FileText,
   Puzzle,
   Settings,
-  Sparkles,
   PanelLeftClose,
 } from "lucide-react";
 import { cn } from "@lib/utils";
@@ -63,7 +62,7 @@ const AppSidebar = () => {
       {/* Logo + Collapse */}
       <div className="flex items-center justify-between px-4 pt-5 pb-4">
         <div className="flex items-center gap-2.5">
-          <img src="/sentra.png" alt="Sentra" className="w-7 h-7 rounded" />
+          <img src="/sentra.png" alt="Sentra" className="w-5 h-5 rounded" />
           <span className="text-md font-semibold text-[var(--fg-base)]">
             Sentra
           </span>
@@ -101,14 +100,6 @@ const AppSidebar = () => {
 
       {/* Footer */}
       <div className="px-2.5 mb-1 space-y-0.5">
-        <button
-          type="button"
-          onClick={() => window.ipcRenderer.send("open-sage-window")}
-          className="flex items-center gap-2.5 h-[34px] px-2.5 rounded-[7px] text-sm transition-colors text-[var(--fg-base)] hover:bg-[var(--bg-component-hover)] w-full border-none bg-transparent cursor-pointer"
-        >
-          <Sparkles size={16} className="text-[var(--fg-muted)] shrink-0" />
-          Sage
-        </button>
         <SidebarLink to="/settings" label="Settings" icon={Settings} />
       </div>
 

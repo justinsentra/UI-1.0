@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AppLayout from "./components/app-layout";
 import HomePage from "./pages/home";
@@ -15,15 +15,13 @@ import ConnectionsPage from "./pages/connections";
 import ConnectionDetailPage from "./pages/connection-detail";
 import SettingsPage from "./pages/settings";
 import MeetingSettingsPage from "./pages/meeting-settings";
-import { SageWindow } from "./components/sage/SageWindow";
 
 const App = () => {
   return (
     <ThemeProvider>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/sage" element={<SageWindow />} />
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/meeting-notes" element={<MeetingNotesPage />} />
@@ -58,7 +56,7 @@ const App = () => {
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

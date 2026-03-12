@@ -8,10 +8,12 @@ import {
   Monitor,
   Sun,
   Moon,
+  Users,
 } from "lucide-react";
 import { cn } from "@lib/utils";
 import { DropdownMenu } from "@components/ui/dropdown-menu";
 import { useTheme } from "@/components/ThemeProvider";
+import { usePersonaStore, getAllPersonas } from "@/stores/persona-store";
 import type { ReactElement } from "react";
 
 interface PreferenceToggleItem {
@@ -62,6 +64,9 @@ export function PreferencesTab() {
     reposition: true,
   });
   const { theme: appearance, setTheme: setAppearance } = useTheme();
+  const persona = usePersonaStore((s) => s.persona);
+  const setPersona = usePersonaStore((s) => s.setPersona);
+  const activePersona = getAllPersonas().find((p) => p.id === persona);
 
   const handleToggle = (id: string) => {
     setToggles((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -69,6 +74,39 @@ export function PreferencesTab() {
 
   return (
     <div>
+      {/* Demo Persona Section */}
+      <h2 className="text-md font-semibold text-[var(--fg-base)] mb-4">
+        Demo Persona
+      </h2>
+      <div className="flex items-center gap-4 py-4 border-b border-[var(--border-base)] mb-8">
+        <div className="w-9 h-9 rounded-lg bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-muted)] shrink-0">
+          <Users size={18} />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-[var(--fg-base)]">
+            ICP Variation
+          </p>
+          <p className="text-sm text-[var(--fg-muted)] mt-0.5">
+            Switch between different demo personas for different ICPs
+          </p>
+        </div>
+        <DropdownMenu
+          trigger={
+            <button
+              type="button"
+              className="flex items-center gap-2 h-9 px-3 rounded-lg border border-[var(--border-base)] bg-background text-sm font-medium text-[var(--fg-base)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
+            >
+              {activePersona?.label ?? "Select"}
+              <ChevronDown size={14} className="text-[var(--fg-muted)]" />
+            </button>
+          }
+          items={getAllPersonas().map((option) => ({
+            label: option.label,
+            onClick: () => setPersona(option.id),
+          }))}
+        />
+      </div>
+
       {/* Meeting Bot Section */}
       <h2 className="text-md font-semibold text-[var(--fg-base)] mb-4">
         Meeting Bot

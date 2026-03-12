@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, Settings, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
-import { reportCategories } from "@/data/mock-reports";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaReports } from "@/data/content-resolver";
 import { useReportsStore } from "@/stores/reports-store";
 import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ArtifactsSearchBar } from "@components/artifacts/search-bar";
@@ -154,6 +155,8 @@ const SIDEBAR_WIDTH = 380;
 
 const ArtifactsPage = () => {
   const navigate = useNavigate();
+  const persona = usePersonaStore((s) => s.persona);
+  const { reportCategories } = getPersonaReports(persona);
   const {
     viewMode,
     activeTab,
@@ -176,7 +179,7 @@ const ArtifactsPage = () => {
         cat.name.toLowerCase().includes(query) ||
         cat.reports.some((r) => r.dateRange.toLowerCase().includes(query)),
     );
-  }, [activeTab, searchQuery]);
+  }, [activeTab, searchQuery, reportCategories]);
 
   const handleSettingsClick = () => {
     if (activeTab === "reports") {

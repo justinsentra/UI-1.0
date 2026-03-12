@@ -2,7 +2,9 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, Upload, Settings, MessageSquare } from "lucide-react";
 import { useMeetingsStore } from "@/stores/meetings-store";
-import { meetings } from "@/data/mock-meetings";
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaMeetings } from "@/data/content-resolver";
+import type { Meeting } from "@/types";
 import { MeetingRow } from "@components/meetings/meeting-row";
 import { TagFilterBar } from "@components/meetings/tag-filter-bar";
 import { ImportModal } from "@components/meetings/import-modal";
@@ -10,8 +12,8 @@ import { ShareModal } from "@components/meetings/share-modal";
 import { ChatSidebar } from "@components/meetings/chat-sidebar";
 import { formatDateLabel, formatTimeRange } from "@/lib/date-utils";
 
-function groupMeetingsByDate(meetingList: typeof meetings) {
-  const groups: Record<string, typeof meetings> = {};
+function groupMeetingsByDate(meetingList: Meeting[]) {
+  const groups: Record<string, Meeting[]> = {};
   for (const m of meetingList) {
     if (!groups[m.date]) groups[m.date] = [];
     groups[m.date].push(m);
@@ -25,7 +27,7 @@ function groupMeetingsByDate(meetingList: typeof meetings) {
     }));
 }
 
-function getUpcomingMeetings(meetingList: typeof meetings) {
+function getUpcomingMeetings(meetingList: Meeting[]) {
   const today = new Date().toISOString().split("T")[0];
   return meetingList.filter((m) => m.date === today);
 }
@@ -40,6 +42,8 @@ function getTodayLabel() {
 const MeetingNotesPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const persona = usePersonaStore((s) => s.persona);
+  const meetings = useMemo(() => getPersonaMeetings(persona), [persona]);
   const activeTags = useMeetingsStore((s) => s.activeTags);
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
   const setSelectedMeeting = useMeetingsStore((s) => s.setSelectedMeeting);
@@ -56,9 +60,12 @@ const MeetingNotesPage = () => {
           : m.tags.some((t) => activeTags.includes(t)),
       );
     return groupMeetingsByDate(filtered);
-  }, [search, activeTags]);
+  }, [search, activeTags, meetings]);
 
-  const upcomingMeetings = useMemo(() => getUpcomingMeetings(meetings), []);
+  const upcomingMeetings = useMemo(
+    () => getUpcomingMeetings(meetings),
+    [meetings],
+  );
   const { day, month } = getTodayLabel();
 
   return (

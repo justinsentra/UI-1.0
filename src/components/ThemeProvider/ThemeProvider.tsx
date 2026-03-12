@@ -149,7 +149,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     const resolved = resolveTheme(theme);
     setResolvedTheme(resolved);
     document.documentElement.setAttribute("data-theme", resolved);
-    // Clear any previously stored sage accent
     document.documentElement.removeAttribute("data-accent");
   }, [theme]);
 

@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+// Register generated personas before app renders
+import "./data/personas/mcgi";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
@@ -8,8 +10,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>,
 );
-
-// Use contextBridge
-window.ipcRenderer.on("main-process-message", (_event, message) => {
-  console.log(message);
-});

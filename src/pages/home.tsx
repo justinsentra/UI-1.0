@@ -9,78 +9,10 @@ import {
   PromptInputActions,
   PromptInputAction,
 } from "@/components/prompt-kit/prompt-input";
-import {
-  PRE_MEETING_BRIEF,
-  type PreMeetingBrief,
-} from "@/components/sage/sageData";
+import type { PreMeetingBrief } from "@/data/mock-pre-meeting-brief";
 import { useReportsStore } from "@/stores/reports-store";
-
-/* ── Static data ── */
-
-const SUGGESTIONS = [
-  "What happened in today's meetings?",
-  "Summarize this week's progress",
-  "What are the team's blockers?",
-  "Draft a PRD",
-];
-
-interface UpcomingMeeting {
-  id: string;
-  title: string;
-  time: string;
-  endTime: string;
-  duration: string;
-  participants: string[];
-  platform: string;
-}
-
-const UPCOMING_MEETING: UpcomingMeeting = {
-  id: "um-1",
-  title: "All Hands",
-  time: "1:00 PM",
-  endTime: "1:30 PM",
-  duration: "30 min",
-  participants: ["Ashwin Gopinath", "Andrey Starenky", "Kristina Beaman"],
-  platform: "Google Meet",
-};
-
-interface ArtifactCard {
-  id: string;
-  reportId?: string;
-  title: string;
-  description: string;
-  type: "report" | "radar" | "action";
-  badge?: string;
-  deepResearchPrompt?: string;
-}
-
-const ARTIFACTS_TO_REVIEW: ArtifactCard[] = [
-  {
-    id: "art-1",
-    reportId: "rpt-co-1",
-    title: "Company Overview",
-    description:
-      "Weekly report covering product, engineering, and GTM progress",
-    type: "report",
-    badge: "New",
-  },
-  {
-    id: "art-2",
-    reportId: "rpt-gtm-1",
-    title: "GTM Status Report",
-    description: "Pipeline health, outbound metrics, and partnership updates",
-    type: "report",
-    badge: "New",
-  },
-  {
-    id: "art-3",
-    title: "Draft a PRD for the engineering sync I just had",
-    description:
-      "Generate a product requirements doc from the eng sync discussion",
-    type: "action",
-    deepResearchPrompt: "Draft a PRD for the engineering sync I just had",
-  },
-];
+import { usePersonaStore } from "@/stores/persona-store";
+import { getPersonaHome } from "@/data/content-resolver";
 
 /* ── Helpers ── */
 
@@ -197,6 +129,12 @@ const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showBrief, setShowBrief] = useState(false);
   const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
+  const persona = usePersonaStore((s) => s.persona);
+  const homeData = getPersonaHome(persona);
+
+  const suggestions = homeData.suggestions;
+  const artifactsToReview = homeData.artifacts;
+  const upcomingMeeting = homeData.upcomingMeeting;
 
   const handleSearchSubmit = useCallback(() => {
     const trimmed = searchValue.trim();
@@ -210,10 +148,10 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-[var(--bg-page)] pt-[56px] px-8 pb-12 min-h-full">
-      <div className="max-w-[740px] mx-auto flex flex-col">
+    <div className="bg-[var(--bg-page)] pt-[56px] px-8 min-h-screen flex flex-col">
+      <div className="max-w-[740px] w-full mx-auto flex flex-col flex-1 justify-center py-10">
         {/* ── Search Hero ── */}
-        <section className="flex flex-col items-center pt-24 pb-12">
+        <section className="flex flex-col items-center pb-6">
           <h1 className="text-[var(--fg-base)] text-3xl font-normal leading-[1.2] tracking-tight m-0 mb-1">
             {getGreeting()}, Justin
           </h1>
@@ -253,7 +191,7 @@ const HomePage = () => {
           </div>
 
           <div className="flex flex-wrap gap-2 justify-center w-full mt-4">
-            {SUGGESTIONS.map((suggestion) => (
+            {suggestions.map((suggestion) => (
               <button
                 key={suggestion}
                 type="button"
@@ -277,20 +215,20 @@ const HomePage = () => {
           <div className="group flex items-center gap-4 py-4 px-5 bg-[var(--bg-base)] rounded-lg shadow-card">
             <div className="flex-1 min-w-0 flex flex-col gap-1">
               <h3 className="text-[var(--fg-base)] text-sm font-normal leading-[1.4] m-0">
-                {UPCOMING_MEETING.title}
+                {upcomingMeeting.title}
               </h3>
               <div className="flex items-center gap-3 text-xs text-[var(--fg-muted)]">
                 <span className="flex items-center gap-1">
                   <Clock size={12} />
-                  {UPCOMING_MEETING.time} – {UPCOMING_MEETING.endTime}
+                  {upcomingMeeting.time} – {upcomingMeeting.endTime}
                 </span>
                 <span className="flex items-center gap-1">
                   <Users size={12} />
-                  {UPCOMING_MEETING.participants.length} participants
+                  {upcomingMeeting.participants.length} participants
                 </span>
               </div>
               <div className="flex items-center gap-1.5 mt-1">
-                {UPCOMING_MEETING.participants.map((name) => (
+                {upcomingMeeting.participants.map((name) => (
                   <div
                     key={name}
                     className="w-5 h-5 rounded-full flex items-center justify-center text-white text-3xs font-medium shadow-border-base"
@@ -314,18 +252,18 @@ const HomePage = () => {
         </section>
 
         {/* ── Artifacts to Review ── */}
-        <section className="flex flex-col mt-10">
+        <section className="flex flex-col mt-5">
           <div className="flex items-center gap-2 pb-3">
             <h2 className="text-[var(--fg-base)] text-sm font-normal leading-none m-0">
               Artifacts to review
             </h2>
             <span className="text-[var(--fg-disabled)] text-xs font-medium leading-none font-mono">
-              {ARTIFACTS_TO_REVIEW.length}
+              {artifactsToReview.length}
             </span>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
-            {ARTIFACTS_TO_REVIEW.map((artifact) => (
+            {artifactsToReview.map((artifact) => (
               <button
                 key={artifact.id}
                 type="button"
@@ -392,7 +330,7 @@ const HomePage = () => {
       {/* Brief Drawer */}
       {showBrief && (
         <BriefDrawer
-          brief={PRE_MEETING_BRIEF}
+          brief={homeData.preMeetingBrief}
           onClose={() => setShowBrief(false)}
         />
       )}
