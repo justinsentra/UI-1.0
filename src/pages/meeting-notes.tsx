@@ -27,14 +27,16 @@ function groupMeetingsByDate(meetingList: Meeting[]) {
     }));
 }
 
-function getUpcomingMeetings(meetingList: Meeting[]) {
+function isToday(dateStr: string): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  return meetingList.filter((m) => {
-    const mDate = new Date(m.date);
-    mDate.setHours(0, 0, 0, 0);
-    return mDate.getTime() === today.getTime();
-  });
+  const mDate = new Date(dateStr + "T00:00:00");
+  mDate.setHours(0, 0, 0, 0);
+  return mDate.getTime() === today.getTime();
+}
+
+function getUpcomingMeetings(meetingList: Meeting[]) {
+  return meetingList.filter((m) => isToday(m.date));
 }
 
 function getTodayLabel() {
@@ -58,6 +60,7 @@ const MeetingNotesPage = () => {
 
   const filteredGroups = useMemo(() => {
     const filtered = meetings
+      .filter((m) => !isToday(m.date))
       .filter((m) => m.title.toLowerCase().includes(search.toLowerCase()))
       .filter((m) =>
         activeTags.length === 0
