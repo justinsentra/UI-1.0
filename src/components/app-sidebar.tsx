@@ -8,10 +8,8 @@ import {
   FileText,
   Puzzle,
   Settings,
-  PanelLeftClose,
 } from "lucide-react";
 import { cn } from "@lib/utils";
-import { useUIStore } from "@/stores/ui-store";
 
 const personalNav = [
   { to: "/home", label: "Home", icon: Home },
@@ -55,26 +53,16 @@ function SidebarLink({
 }
 
 const AppSidebar = () => {
-  const toggleSidebar = useUIStore((s) => s.toggleSidebar);
-
   return (
     <aside className="flex flex-col w-[220px] min-w-[220px] h-full bg-[var(--bg-subtle)] select-none">
-      {/* Logo + Collapse */}
-      <div className="flex items-center justify-between px-4 pt-5 pb-4">
+      {/* Logo */}
+      <div className="flex items-center px-4 pt-5 pb-4">
         <div className="flex items-center gap-2.5">
           <img src="/sentra.png" alt="Sentra" className="w-5 h-5 rounded" />
           <span className="text-md font-semibold text-[var(--fg-base)]">
             Sentra
           </span>
         </div>
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
-          title="Collapse sidebar"
-        >
-          <PanelLeftClose size={16} />
-        </button>
       </div>
 
       {/* Navigation */}

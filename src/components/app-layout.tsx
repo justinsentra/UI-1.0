@@ -9,6 +9,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import {
   PanelLeftOpen,
+  PanelLeftClose,
   CheckCircle2,
   AlertCircle,
   Info,
@@ -79,23 +80,11 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
 const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isSidebarCollapsed = useUIStore((s) => s.isSidebarCollapsed);
-  const toggleSidebar = useUIStore((s) => s.toggleSidebar);
 
   const backNav = BACK_NAV[location.pathname];
 
   return (
     <>
-      {isSidebarCollapsed && (
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="absolute left-3.5 top-[30px] z-10 p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors duration-150 ease-out bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
-          title="Expand sidebar"
-        >
-          <PanelLeftOpen size={16} />
-        </button>
-      )}
       {backNav && (
         <button
           type="button"
@@ -118,6 +107,7 @@ const AppLayout = () => {
     [],
   );
   const isSidebarCollapsed = useUIStore((s) => s.isSidebarCollapsed);
+  const toggleSidebar = useUIStore((s) => s.toggleSidebar);
   const resetPanels = useReportsStore((s) => s.resetPanels);
   const location = useLocation();
   const navigate = useNavigate();
@@ -154,6 +144,20 @@ const AppLayout = () => {
         >
           <AppSidebar />
         </div>
+        {/* Sidebar toggle — always visible, hugs the sidebar's right edge */}
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          className="absolute top-[30px] z-[51] p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-all duration-300 ease-in-out bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
+          style={{ left: isSidebarCollapsed ? 8 : 224 }}
+          title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {isSidebarCollapsed ? (
+            <PanelLeftOpen size={16} />
+          ) : (
+            <PanelLeftClose size={16} />
+          )}
+        </button>
         <div className="flex-1 flex min-w-0 overflow-hidden">
           <main className="flex-1 bg-background min-h-0 min-w-0 overflow-hidden relative">
             <TopBar />
