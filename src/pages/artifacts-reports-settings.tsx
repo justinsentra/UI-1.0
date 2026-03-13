@@ -48,7 +48,7 @@ function SelectField({
 }) {
   return (
     <div className="flex-1 min-w-0">
-      <label className="block text-xs font-medium text-[var(--fg-muted)]  mb-1.5">
+      <label className="block text-sm font-medium text-[var(--fg-muted)] mb-1.5">
         {label}
       </label>
       <div className="relative">
@@ -93,8 +93,8 @@ const ArtifactsReportsSettingsPage = () => {
   };
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8">
-      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-6">
+    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-16">
+      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-5">
         Reports Settings
       </h1>
 
@@ -204,7 +204,9 @@ const ArtifactsReportsSettingsPage = () => {
 
         {/* Custom Reports */}
         <div className="mb-5">
-          <h3 className="text-sm text-[var(--fg-base)] mb-1">Custom Reports</h3>
+          <h3 className="text-sm font-medium text-[var(--fg-base)] mb-1">
+            Custom Reports
+          </h3>
           <p className="text-sm text-[var(--fg-muted)] mb-3">
             Provide specific instructions on how you want your weekly reports
             structured and what to focus on.

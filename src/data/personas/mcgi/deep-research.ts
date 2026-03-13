@@ -718,14 +718,11 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "I just joined the Sentra deal — what's the full history and where do we stand?",
+    "I just joined the Sentra deal — catch me up",
     "Draft an investment memo for Sentra",
     "Map the AI agent framework landscape",
-    "Compare our pipeline companies on MC synergy potential",
-    "What did competing CVCs invest in this quarter?",
+    "Compare pipeline companies on MC synergy",
     "Summarize this week's deal flow activity",
-    "Which portfolio companies need attention this quarter?",
-    "What are the key takeaways from the M-Lab consortium meeting?",
   ],
   sessionHistory: [
     { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today" },

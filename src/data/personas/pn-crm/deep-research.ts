@@ -831,10 +831,7 @@ export const deepResearchData: PersonaDeepResearchData = {
     "Update the pitch deck with our latest metrics",
     "Draft the YC S26 application",
     "Build a competitive analysis of the personal CRM space",
-    "Create a standardized DD template for RedHawk Ventures",
-    "Compile our angel investor target list with intro paths",
     "What happened in this week's meetings?",
-    "Which commitments am I behind on?",
     "Summarize user feedback from the past month",
   ],
   sessionHistory: [

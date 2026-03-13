@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, Clock, Users, ChevronRight, X } from "lucide-react";
+import { ArrowUp, Clock, Users, ChevronRight } from "lucide-react";
 import { cn } from "@lib/utils";
 import { getAvatarColor, getInitials } from "@lib/utils";
 import {
@@ -9,7 +9,6 @@ import {
   PromptInputActions,
   PromptInputAction,
 } from "@/components/prompt-kit/prompt-input";
-import type { PreMeetingBrief } from "@/data/mock-pre-meeting-brief";
 import { useReportsStore } from "@/stores/reports-store";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaHome } from "@/data/content-resolver";
@@ -23,111 +22,11 @@ const getGreeting = (): string => {
   return "Good evening";
 };
 
-/* ── Pre-Meeting Brief Drawer ── */
-
-function BriefDrawer({
-  brief,
-  onClose,
-}: {
-  brief: PreMeetingBrief;
-  onClose: () => void;
-}) {
-  return (
-    <div className="fixed inset-0 z-50 flex justify-end">
-      <div
-        className="absolute inset-0 bg-[var(--overlay-bg)]"
-        onClick={onClose}
-      />
-      <div className="relative w-full max-w-[480px] bg-[var(--bg-raised)] shadow-lg overflow-y-auto animate-[slideInRight_200ms_ease-out]">
-        <div className="sticky top-0 z-10 bg-[var(--bg-raised)] border-b border-[var(--border-subtle)] px-6 py-4 flex items-center justify-between">
-          <div>
-            <h2 className="text-base font-medium text-[var(--fg-base)] m-0">
-              Pre-Meeting Brief
-            </h2>
-            <p className="text-xs text-[var(--fg-muted)] m-0 mt-1">
-              {brief.meetingTitle} · {brief.meetingTime} –{" "}
-              {brief.meetingEndTime}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
-          >
-            <X size={15} />
-          </button>
-        </div>
-
-        <div className="px-6 py-5">
-          {/* Attendees */}
-          <div className="mb-6">
-            <h3 className="text-xs font-medium text-[var(--fg-muted)] uppercase tracking-wider m-0 mb-3">
-              Attendees
-            </h3>
-            <div className="flex flex-col gap-2.5">
-              {brief.attendees.map((attendee) => (
-                <div key={attendee.name} className="flex items-center gap-3">
-                  <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-white text-2xs font-medium shrink-0"
-                    style={{ backgroundColor: getAvatarColor(attendee.name) }}
-                  >
-                    {attendee.initials}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-sm text-[var(--fg-base)]">
-                      {attendee.name}
-                    </span>
-                    <span className="text-xs text-[var(--fg-muted)] ml-2">
-                      {attendee.role}
-                    </span>
-                  </div>
-                  <span className="text-xs text-[var(--fg-disabled)] shrink-0">
-                    Last spoke {attendee.lastSpoke}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Insights */}
-          <div>
-            <h3 className="text-xs font-medium text-[var(--fg-muted)] uppercase tracking-wider m-0 mb-3">
-              Key Context
-            </h3>
-            <div className="flex flex-col gap-4">
-              {brief.insights.map((insight, i) => (
-                <div key={i} className="rounded-lg bg-[var(--bg-subtle)] p-4">
-                  <p className="text-sm text-[var(--fg-base)] leading-relaxed m-0 mb-2">
-                    {insight.heading}
-                  </p>
-                  <div className="rounded-md bg-[var(--bg-base)] p-3 mb-2 border border-[var(--border-subtle)]">
-                    <p className="text-xs text-[var(--fg-subtle)] leading-relaxed m-0 italic">
-                      "{insight.source.quote}"
-                    </p>
-                    <p className="text-2xs text-[var(--fg-disabled)] m-0 mt-1.5">
-                      {insight.source.meetingTitle} ·{" "}
-                      {insight.source.meetingDate}
-                    </p>
-                  </div>
-                  <p className="text-xs text-[var(--fg-muted)] leading-relaxed m-0">
-                    {insight.summary}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── Home Page ── */
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
-  const [showBrief, setShowBrief] = useState(false);
   const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
   const persona = usePersonaStore((s) => s.persona);
   const homeData = getPersonaHome(persona);
@@ -276,7 +175,7 @@ const HomePage = () => {
 
             <button
               type="button"
-              onClick={() => setShowBrief(true)}
+              onClick={() => navigate("/pre-meeting-brief")}
               className="shrink-0 h-8 px-3.5 rounded-md text-xs font-medium text-[var(--fg-base)] bg-[var(--bg-base)] cursor-pointer border-none shadow-button-neutral hover:bg-[var(--bg-component-hover)] transition-colors"
             >
               View Brief
@@ -332,14 +231,6 @@ const HomePage = () => {
           </div>
         </section>
       </div>
-
-      {/* Brief Drawer */}
-      {showBrief && (
-        <BriefDrawer
-          brief={homeData.preMeetingBrief}
-          onClose={() => setShowBrief(false)}
-        />
-      )}
     </div>
   );
 };

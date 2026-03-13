@@ -151,8 +151,6 @@ function ByDateView({ categories }: { categories: ReportCategory[] }) {
   );
 }
 
-const SIDEBAR_WIDTH = 380;
-
 const ArtifactsPage = () => {
   const navigate = useNavigate();
   const persona = usePersonaStore((s) => s.persona);
@@ -193,7 +191,7 @@ const ArtifactsPage = () => {
     <>
       <div
         className="fixed top-[12px] z-30 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: isArtifactsChatOpen ? SIDEBAR_WIDTH + 20 : 20 }}
+        style={{ right: isArtifactsChatOpen ? 396 : 20 }}
       >
         <div className="rounded-[8px] p-[2px]">
           <AnimatedBackground

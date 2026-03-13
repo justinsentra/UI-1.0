@@ -1,7 +1,7 @@
 import { BaseChatSidebar } from "@/components/chat/base-chat-sidebar";
 import type { ScanStep, ResponseParagraph } from "@/data/mock-deep-research";
 
-const SUGGESTED_QUESTIONS = [
+const DEFAULT_SUGGESTED_QUESTIONS = [
   "What happened in today\u2019s meetings?",
   "Summarize action items assigned to me",
   "What topics keep coming up across meetings?",
@@ -85,14 +85,19 @@ function getMockResponse(index: number) {
 interface ChatSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  suggestedQuestions?: string[];
 }
 
-export function ChatSidebar({ isOpen, onClose }: ChatSidebarProps) {
+export function ChatSidebar({
+  isOpen,
+  onClose,
+  suggestedQuestions,
+}: ChatSidebarProps) {
   return (
     <BaseChatSidebar
       isOpen={isOpen}
       onClose={onClose}
-      suggestedQuestions={SUGGESTED_QUESTIONS}
+      suggestedQuestions={suggestedQuestions ?? DEFAULT_SUGGESTED_QUESTIONS}
       scanSteps={SCAN_STEPS}
       getMockResponse={getMockResponse}
       placeholder="Ask about your meetings..."

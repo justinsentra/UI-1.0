@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Search, ChevronDown, MessageSquare } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { cn, getInitials, getAvatarColor } from "@lib/utils";
 import { formatInteractionDate } from "@/lib/date-utils";
 import { sortByDate } from "@/lib/sort-utils";
 import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
-import { ConnectionsChatSidebar } from "@/components/connections/connections-chat-sidebar";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaConnections } from "@/data/content-resolver";
 
@@ -16,7 +15,6 @@ type SortDirection = "desc" | "asc";
 const ConnectionsPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>("People");
   const [search, setSearch] = useState("");
-  const [chatOpen, setChatOpen] = useState(false);
   const [peopleSortDir, setPeopleSortDir] = useState<SortDirection>("desc");
   const [companiesSortDir, setCompaniesSortDir] =
     useState<SortDirection>("desc");
@@ -44,11 +42,8 @@ const ConnectionsPage = () => {
 
   return (
     <div className="max-w-[740px] mx-auto pt-[56px] px-8">
-      {/* Fixed top-right controls — segmented tabs + chat icon */}
-      <div
-        className="fixed top-[12px] z-30 flex items-center gap-1 transition-[right] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
-        style={{ right: chatOpen ? 396 : 20 }}
-      >
+      {/* Fixed top-right controls — segmented tabs */}
+      <div className="fixed top-[12px] right-[20px] z-30 flex items-center gap-1">
         <div className="rounded-[8px] p-[2px]">
           <AnimatedBackground
             defaultValue={activeTab}
@@ -73,19 +68,6 @@ const ConnectionsPage = () => {
             ))}
           </AnimatedBackground>
         </div>
-        <button
-          type="button"
-          onClick={() => setChatOpen((prev) => !prev)}
-          className={cn(
-            "h-7 w-7 flex items-center justify-center rounded-md transition-colors duration-150 ease-out cursor-pointer border-none",
-            chatOpen
-              ? "bg-[var(--bg-selected)] text-[var(--fg-muted)]"
-              : "bg-transparent text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)]",
-          )}
-          title="Deep Research"
-        >
-          <MessageSquare size={15} />
-        </button>
       </div>
 
       <div className="mb-5">
@@ -226,10 +208,6 @@ const ConnectionsPage = () => {
           </div>
         </div>
       )}
-      <ConnectionsChatSidebar
-        isOpen={chatOpen}
-        onClose={() => setChatOpen(false)}
-      />
     </div>
   );
 };

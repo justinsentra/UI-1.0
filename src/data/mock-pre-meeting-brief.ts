@@ -9,6 +9,17 @@ export interface BriefInsightSource {
   quote: string;
   meetingTitle: string;
   meetingDate: string;
+  sourceType?:
+    | "zoom"
+    | "google-meet"
+    | "teams"
+    | "slack"
+    | "email"
+    | "notion"
+    | "google-docs"
+    | "google-calendar"
+    | "affinity"
+    | "sharepoint";
 }
 
 export interface BriefInsight {
@@ -58,6 +69,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
           "Leverage ratio is at 4.5x with the current structure. The sponsor consortium is interested but they're pushing hard on management rollover.",
         meetingTitle: "TMT Group Weekly",
         meetingDate: "Mar 7",
+        sourceType: "zoom",
       },
       summary:
         "David's updated sensitivity analysis should be ready for discussion. This is the key decision point for the deal committee presentation.",
@@ -70,6 +82,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
           "NeuralPath's board wants to move fast on the sell-side process. Three potential acquirers already identified. Target: preliminary term sheet by March 28.",
         meetingTitle: "IB Coverage Team Standup",
         meetingDate: "Mar 9",
+        sourceType: "zoom",
       },
       summary:
         "This mandate is moving faster than expected. The acquirer shortlist and engagement strategy will likely come up in today's pipeline discussion.",
@@ -82,6 +95,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
           "Public comps have re-rated significantly in Q1. We're seeing 15-20% valuation increases across the board. Private markets are lagging by 2-3 turns though.",
         meetingTitle: "TMT Group Weekly",
         meetingDate: "Mar 7",
+        sourceType: "zoom",
       },
       summary:
         "This valuation gap is relevant for several active mandates including CloudSync and Meridian Corp. Worth discussing updated comp tables.",

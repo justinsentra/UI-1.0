@@ -36,6 +36,8 @@ import {
   StepsTrigger,
 } from "@/components/ui/steps";
 
+import type { Meeting } from "@/types";
+
 const tabs = ["Overview", "Transcript", "Video"] as const;
 type Tab = (typeof tabs)[number];
 
@@ -45,6 +47,7 @@ const SPREADSHEET_ID = "ai-1-3";
 const SPREADSHEET_URL =
   "https://docs.google.com/spreadsheets/d/1Q2TlV0Q0ud1eABo8bM1xHPTAB5UG0QopfLhIW-6BcdI/edit?gid=589580262#gid=589580262";
 const MERIDIAN_MODEL_ID = "ai-1-1";
+const MCGI_MEMO_ID = "mcgi-ai-1";
 
 interface SpreadsheetStep {
   label: string;
@@ -177,6 +180,23 @@ function SpreadsheetDone() {
   );
 }
 
+function getMeetingSuggestions(meeting: Meeting): string[] {
+  const title = meeting.title;
+  const firstParticipant = meeting.participants[0] ?? "the team";
+  const hasActionItems = meeting.actionItems.length > 0;
+  const suggestions: string[] = [
+    `What were the key decisions from "${title}"?`,
+    `Summarize the action items from this meeting`,
+  ];
+  if (hasActionItems) {
+    suggestions.push(`What's the status of commitments from this meeting?`);
+  }
+  suggestions.push(
+    `What has ${firstParticipant} said about this topic in past meetings?`,
+  );
+  return suggestions;
+}
+
 const MeetingDetailPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
@@ -203,6 +223,10 @@ const MeetingDetailPage = () => {
   const meeting =
     meetings.find((m) => m.id === selectedMeetingId) ?? meetings[0];
   const meetingId = meeting.id;
+  const meetingSuggestions = useMemo(
+    () => getMeetingSuggestions(meeting),
+    [meeting],
+  );
   const effectivePrivacy = meetingVisibility[meetingId] ?? meeting.privacy;
   const isPrivate = effectivePrivacy === "private";
 
@@ -444,6 +468,9 @@ const MeetingDetailPage = () => {
               <div className="space-y-3">
                 {meeting.actionItems.map((item) => {
                   const isMeridianModelItem = item.id === MERIDIAN_MODEL_ID;
+                  const isMcgiMemoItem = item.id === MCGI_MEMO_ID;
+                  const isDeepResearchItem =
+                    isMeridianModelItem || isMcgiMemoItem;
                   const isSpreadsheetItem = item.id === SPREADSHEET_ID;
                   const isSpreadsheetActive =
                     isSpreadsheetItem && spreadsheetPhase !== "idle";
@@ -453,23 +480,24 @@ const MeetingDetailPage = () => {
                       <div
                         className={cn(
                           "flex items-start gap-3 p-3 rounded-lg",
-                          (isMeridianModelItem ||
+                          (isDeepResearchItem ||
                             (isSpreadsheetItem &&
                               spreadsheetPhase === "idle")) &&
                             "hover:bg-[var(--bg-component-hover)] cursor-pointer",
                           !isSpreadsheetItem &&
-                            !isMeridianModelItem &&
+                            !isDeepResearchItem &&
                             "hover:bg-[var(--bg-component-hover)]",
                           isSpreadsheetActive &&
                             "bg-[var(--bg-subtle)] rounded-b-none",
                         )}
                         onClick={
-                          isMeridianModelItem
+                          isDeepResearchItem
                             ? () =>
                                 navigate("/deep-research", {
                                   state: {
-                                    prefill:
-                                      "Build a 3-statement financial model for Meridian Corp",
+                                    prefill: isMcgiMemoItem
+                                      ? "Draft an investment memo for Sentra"
+                                      : "Build a 3-statement financial model for Meridian Corp",
                                   },
                                 })
                             : isSpreadsheetItem && spreadsheetPhase === "idle"
@@ -481,11 +509,12 @@ const MeetingDetailPage = () => {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (isMeridianModelItem) {
+                            if (isDeepResearchItem) {
                               navigate("/deep-research", {
                                 state: {
-                                  prefill:
-                                    "Build a 3-statement financial model for Meridian Corp",
+                                  prefill: isMcgiMemoItem
+                                    ? "Draft an investment memo for Sentra"
+                                    : "Build a 3-statement financial model for Meridian Corp",
                                 },
                               });
                             } else if (
@@ -671,6 +700,7 @@ const MeetingDetailPage = () => {
       <ChatSidebar
         isOpen={showChatSidebar}
         onClose={() => setShowChatSidebar(false)}
+        suggestedQuestions={meetingSuggestions}
       />
     </div>
   );

@@ -11,6 +11,6 @@ interface PersonaStore {
 }
 
 export const usePersonaStore = create<PersonaStore>((set) => ({
-  persona: "jpm",
+  persona: "mcgi",
   setPersona: (persona) => set({ persona }),
 }));

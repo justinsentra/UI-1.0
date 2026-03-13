@@ -97,6 +97,7 @@ export const homeData: PersonaHomeData = {
             "Just saw Clay's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
           meetingTitle: "#pn-crm-product — Slack",
           meetingDate: "Mar 12, 2026",
+          sourceType: "slack",
         },
         summary:
           "Clay launching a relationship score feature validates the category but introduces competitive messaging risk. Investors may ask how PN CRM differentiates — prepare the interaction-based vs. enrichment-based distinction.",
@@ -108,6 +109,7 @@ export const homeData: PersonaHomeData = {
             "We have 1,200 beta users, 38% weekly active, 4.7 average NPS score. Retention curve flattening at week 8 which is a positive signal for product-market fit.",
           meetingTitle: "PN CRM — Investor Readiness & Pre-Seed Strategy",
           meetingDate: "Mar 10, 2026",
+          sourceType: "zoom",
         },
         summary:
           "Retention metrics are strong enough for the pre-seed raise. Key data points for the pitch: 38% WAU, 62% week-1 retention, and the week-8 flattening curve.",
@@ -119,6 +121,7 @@ export const homeData: PersonaHomeData = {
             "YC Summer 2026 batch application deadline is April 15. Team agreed to submit — Mark thinks the traction metrics are strong enough and offered to review the application.",
           meetingTitle: "PN CRM — Investor Readiness & Pre-Seed Strategy",
           meetingDate: "Mar 10, 2026",
+          sourceType: "zoom",
         },
         summary:
           "YC S26 deadline is April 15. Mark offered to review the application. Parallel-track the angel round and YC path — acceptance would change the fundraising dynamic significantly.",

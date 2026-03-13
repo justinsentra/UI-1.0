@@ -86,7 +86,7 @@ export interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  defaultTheme = "system",
+  defaultTheme = "light",
   storageKey = "sentra-theme",
   grayscaleStorageKey = "sentra-grayscale",
   fontStorageKey = "sentra-font",

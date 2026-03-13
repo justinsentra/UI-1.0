@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Link2, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
 import { useReportsStore } from "@/stores/reports-store";
@@ -18,8 +18,13 @@ import {
   StepsContent,
   StepsBar,
 } from "@/components/ui/steps";
-import type { EvidenceQuote, Source } from "@/types";
+import type {
+  EvidenceQuote,
+  Source,
+  ReportSection as ReportSectionType,
+} from "@/types";
 import type { SourceType, SourceRef } from "@/data/mock-deep-research";
+import type { ReportDetail } from "@/types";
 import { useState } from "react";
 
 const SOURCE_TYPE_TO_ICON: Record<string, SourceType> = {
@@ -42,6 +47,54 @@ const SOURCE_TYPE_TO_ICON: Record<string, SourceType> = {
   affinity: "affinity",
 };
 
+/**
+ * Distributes report-level sources across sections when sections
+ * don't have their own explicit sources.
+ * - For radar: all sources go on the first section only
+ * - For reports: sources are split evenly across sections
+ */
+function getSourcesForSection(
+  sectionIndex: number,
+  section: ReportSectionType,
+  allSources: Source[],
+  sectionCount: number,
+  isRadar: boolean,
+): Source[] {
+  // Explicit section-level sources take priority
+  if (section.sources && section.sources.length > 0) {
+    return section.sources;
+  }
+  if (allSources.length === 0) return [];
+
+  // Radar: all sources on first section only
+  if (isRadar) {
+    return sectionIndex === 0 ? allSources : [];
+  }
+
+  // Reports: distribute evenly across sections
+  const perSection = Math.ceil(allSources.length / sectionCount);
+  const start = sectionIndex * perSection;
+  return allSources.slice(start, start + perSection);
+}
+
+function getReportSuggestions(report: ReportDetail): string[] {
+  const title = report.title;
+  const firstSection = report.sections[0]?.heading;
+  const suggestions: string[] = [
+    `What are the key takeaways from "${title}"?`,
+    `What actions should I take based on this report?`,
+  ];
+  if (firstSection) {
+    suggestions.push(`Tell me more about "${firstSection}"`);
+  }
+  if (report.suggestedActions.length > 0) {
+    suggestions.push(`Which suggested actions are highest priority?`);
+  } else {
+    suggestions.push(`How does this compare to last week's report?`);
+  }
+  return suggestions;
+}
+
 const ReportDetailPage = () => {
   const [showChatSidebar, setShowChatSidebar] = useState(false);
   const addToast = useUIStore((s) => s.addToast);
@@ -51,6 +104,12 @@ const ReportDetailPage = () => {
   const report = getPersonaReportDetail(
     persona,
     selectedReportId ?? "rpt-gtm-1",
+  );
+
+  const isRadar = report.id.includes("radar");
+  const reportSuggestions = useMemo(
+    () => getReportSuggestions(report),
+    [report],
   );
 
   usePageLabel(report.title);
@@ -104,13 +163,23 @@ const ReportDetailPage = () => {
 
       {/* Report Content */}
       <div className="space-y-8">
-        {report.sections.map((section, sIdx) => (
-          <ReportSection
-            key={section.heading || sIdx}
-            section={section}
-            sectionIndex={sIdx}
-          />
-        ))}
+        {report.sections.map((section, sIdx) => {
+          const sectionSources = getSourcesForSection(
+            sIdx,
+            section,
+            report.sources,
+            report.sections.length,
+            isRadar,
+          );
+          return (
+            <ReportSection
+              key={section.heading || sIdx}
+              section={section}
+              sectionIndex={sIdx}
+              sources={sectionSources}
+            />
+          );
+        })}
       </div>
 
       {/* Evidence Quotes */}
@@ -128,13 +197,11 @@ const ReportDetailPage = () => {
         <ActionAccordion actions={report.suggestedActions} />
       )}
 
-      {/* Inline Sources — pill style matching deep research */}
-      {report.sources.length > 0 && <SourcesSection sources={report.sources} />}
-
       {/* Chat Sidebar */}
       <ChatSidebar
         isOpen={showChatSidebar}
         onClose={() => setShowChatSidebar(false)}
+        suggestedQuestions={reportSuggestions}
       />
     </div>
   );
@@ -143,9 +210,11 @@ const ReportDetailPage = () => {
 function ReportSection({
   section,
   sectionIndex,
+  sources,
 }: {
-  section: { heading: string; paragraphs: string[] };
+  section: ReportSectionType;
   sectionIndex: number;
+  sources: Source[];
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -168,6 +237,7 @@ function ReportSection({
             {paragraph}
           </p>
         ))}
+        {sources.length > 0 && <InlineSources sources={sources} />}
       </section>
     </HighlightedContent>
   );
@@ -215,9 +285,9 @@ function sourceToRef(source: Source): SourceRef {
   return { type: mappedType, label: source.label };
 }
 
-function SourcesSection({ sources }: { sources: Source[] }) {
+function InlineSources({ sources }: { sources: Source[] }) {
   return (
-    <div className="mt-10 border-t border-[var(--border-subtle)] pt-4">
+    <div className="mt-4">
       <Steps defaultOpen={false}>
         <StepsTrigger className="text-2xs font-medium text-[var(--fg-muted)]">
           {sources.length} sources

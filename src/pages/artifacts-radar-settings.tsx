@@ -79,7 +79,7 @@ export default function ArtifactsRadarSettings() {
   };
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8">
+    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-16">
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
@@ -96,7 +96,7 @@ export default function ArtifactsRadarSettings() {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-[var(--fg-muted)] mb-8">
+      <p className="text-sm text-[var(--fg-muted)] mb-5">
         Radar monitors specific topics daily and alerts you to important
         changes. Create custom radars to track what matters most.
       </p>

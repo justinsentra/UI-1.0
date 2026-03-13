@@ -65,6 +65,7 @@ export interface ReportDetail {
 export interface ReportSection {
   heading: string;
   paragraphs: string[];
+  sources?: Source[];
 }
 
 export interface Source {

@@ -836,7 +836,7 @@ const DeepResearchPage = () => {
                 if (msg.role === "user") {
                   return (
                     <Message key={msg.id} className="justify-end">
-                      <MessageContent className="text-foreground max-w-[72%] text-sm">
+                      <MessageContent className="bg-[var(--bg-component-hover)] text-[var(--fg-base)] max-w-[72%] text-sm">
                         {msg.content}
                       </MessageContent>
                     </Message>
@@ -845,7 +845,7 @@ const DeepResearchPage = () => {
 
                 return (
                   <Message key={msg.id} className="justify-start">
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 bg-[var(--bg-subtle)] rounded-2xl p-4">
                       <ResponseBlock
                         paragraphs={msg.paragraphs ?? []}
                         timestamp={msg.timestamp ?? ""}

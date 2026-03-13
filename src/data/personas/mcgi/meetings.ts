@@ -3,8 +3,8 @@ import type { Meeting } from "@/types";
 export const meetings: Meeting[] = [
   {
     id: "mcgi-mtg-1",
-    title: "Investment Committee — Q1 Pipeline Review",
-    date: "Mar 10, 2026",
+    title: "Q1 Investment Committee Pipeline Review",
+    date: "Mar 11, 2026",
     time: "10:00 AM",
     endTime: "11:30 AM",
     duration: "1h 30m",
@@ -75,15 +75,23 @@ export const meetings: Meeting[] = [
     transcript: [
       {
         speaker: "Kengo Morimoto",
-        text: "Let's start with the pipeline overview. Ryotaro, where do we stand on active deals?",
+        text: "Good morning everyone. Let's get started. We have a packed agenda today. I want to cover the pipeline overview, discuss the three companies we're considering for DD, touch on pacing, and then address the board's climate tech directive. Ryotaro, can you kick us off with the pipeline overview?",
       },
       {
         speaker: "Ryotaro Nakamura",
-        text: "We have 14 active companies in the pipeline. Six in AI and enterprise software, five in climate tech, and three in advanced materials. The conversion rate from screening to DD is 22%, which is up from last quarter.",
+        text: "Sure. So as of this week, we have 14 active companies in the pipeline. Six in AI and enterprise software, five in climate tech, and three in advanced materials. The conversion rate from screening to DD is 22%, which is up from last quarter's 18%. I think the improvement is partly due to the tighter screening criteria we implemented in January.",
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "That's good to see. Are there any patterns in the inbound flow? Where are most of these companies coming from?",
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "About 40% are coming through the M-Lab consortium network, which is up significantly. Another 30% are direct referrals from our existing portfolio companies, and the remaining 30% are from VC co-investor introductions, mostly from our relationships with Sequoia, a16z, and JAFCO.",
       },
       {
         speaker: "Sunna Mo",
-        text: "I want to highlight Sentra specifically. They're building organizational memory — essentially capturing decision history and context as companies scale. It's directly relevant to what we've been discussing around enterprise AI adoption.",
+        text: "I want to highlight Sentra specifically. They're building organizational memory — essentially capturing decision history and context as companies scale. It's directly relevant to what we've been discussing around enterprise AI adoption. I've been tracking them since the YC W25 batch and had multiple conversations with the founding team over the past four months.",
         isMe: true,
       },
       {
@@ -92,36 +100,87 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "Sunna Mo",
-        text: "Founded by an MIT professor and a strong technical co-founder. Pre-seed, raised $5M from a16z Speedrun. They already have design partners including some major financial institutions. The product is live and getting strong feedback.",
+        text: "Founded by Ashwin Gopinath, who's an MIT professor, and Andrey Starenky as CTO. Pre-seed, raised $5M from a16z Speedrun and Together Fund. They already have design partners including teams at SoftBank, Runway, and Campfire. The product is live and getting strong feedback — one reference call described it as replacing 30 minutes of manual CRM updates after every call.",
         isMe: true,
       },
       {
         speaker: "Ryotaro Nakamura",
-        text: "I've seen the product demo. The meeting intelligence and commitment tracking could be very valuable for our portfolio companies as well. There's a strategic angle beyond just financial return.",
-      },
-      {
-        speaker: "Mihiro Nakamura",
-        text: "On CarbonGrid, I've completed the initial technical assessment. Their carbon capture efficiency is 40% better than the closest competitor, and the unit economics work at scale. MC's industrial materials team is very interested.",
+        text: "I've seen the product demo. The meeting intelligence and commitment tracking could be very valuable for our portfolio companies as well. There's a strategic angle beyond just financial return. I think the MC synergy score here is genuinely high.",
       },
       {
         speaker: "Takeshi Yamada",
-        text: "Quick note on pacing — we've deployed $48M year-to-date. At this rate we'll exceed the $120M annual target. We may need to be more selective in H2 or request an increased allocation from HQ.",
-      },
-      {
-        speaker: "Kengo Morimoto",
-        text: "Good problem to have. Let's approve Sentra, CarbonGrid, and FluxMaterials for full due diligence. Sunna, take point on the Sentra memo.",
+        text: "Can you walk us through the competitive landscape for Sentra? I want to understand how defensible this is. Glean is well-funded, Copilot has distribution.",
       },
       {
         speaker: "Sunna Mo",
-        text: "On it. I'll have the investment memo ready for the next IC session in two weeks.",
+        text: "Great question. Glean takes an aggregation-first approach — they index documents and files. Microsoft Copilot is essentially a chat layer over existing tools. Sentra is fundamentally different. They capture actors and interactions as first-class objects and derive everything else from that — decisions, rationale, commitments, relationships. Nobody else is doing interaction-first. It creates a real data moat because the value compounds as more interactions are captured.",
         isMe: true,
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "What about the Japan market angle? That's always a critical factor for our investment thesis.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Multi-language support isn't built yet, but it's on their Q3 2026 roadmap. The founding team has expressed strong interest in Japan market entry, especially given the cross-cultural knowledge transfer problem across MC's 90 country offices. I've flagged the Japan localization timeline as a key DD item.",
+        isMe: true,
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        text: "On CarbonGrid, I've completed the initial technical assessment. Their carbon capture efficiency is 40% better than the closest competitor, and the unit economics work at scale. MC's industrial materials team is very interested. I had a call with Hiroshi Tanabe last week and he confirmed strong interest from the materials division leadership.",
+      },
+      {
+        speaker: "Takeshi Yamada",
+        text: "What are the unit economics looking like specifically?",
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        text: "At scale — 10,000 tons per year and above — they're projecting $78 per ton all-in. That includes installation, operation, and membrane replacement cycles. For context, MC's cement operations currently spend roughly $115 per ton on carbon capture with existing technology. So the cost savings are significant.",
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "And FluxMaterials? Where are we on that one?",
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        text: "FluxMaterials is earlier stage. Battery recycling technology is promising but the pilot facility isn't operational yet. I'd recommend a smaller initial check with milestone-based follow-on rather than a full commitment at this stage. The market is growing rapidly with EU battery directive tailwinds, but execution risk is higher.",
+      },
+      {
+        speaker: "Takeshi Yamada",
+        text: "Quick note on pacing — we've deployed $48M year-to-date. At this rate we'll exceed the $120M annual target by September. We may need to be more selective in H2 or request an increased allocation from HQ. I'd also note that the board's climate tech directive complicates things because it effectively pre-allocates a larger share of the remaining budget.",
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "Good point. Let's address the climate tech allocation separately. For now — I'm comfortable approving Sentra, CarbonGrid, and FluxMaterials for full due diligence. Sunna, take point on the Sentra investment memo. I want it ready for the IC vote on March 19th.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "On it. I'll have the investment memo ready by end of next week. I'm also scheduling one more reference call with the Campfire design partner this week to round out the customer validation section.",
+        isMe: true,
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "Before we move on — I want to flag that we've had three inbound inquiries from other CVCs about co-investing in Sentra. Global Brain, JAFCO, and SBI Investment. Should we consider bringing in a co-investor?",
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "Let's discuss that offline. I don't want to slow down our process. If we move fast we can set the terms. Sunna, flag that in the memo — potential co-investment opportunity.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Will do. One last thing — the Stanford HAI conference is this Thursday. Mihiro and I are attending. We've identified 8 presenters whose research aligns with our thesis areas. I'll share the scouting debrief with the team by Friday.",
+        isMe: true,
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "Perfect. Let's make sure we coordinate with the Tokyo team on anything Japan-market-relevant. Alright, let's close out. Sunna owns the Sentra memo, Mihiro owns CarbonGrid technical DD coordination, and Takeshi will revise the pacing model. Let's reconvene Thursday after the conference. Good meeting everyone.",
       },
     ],
   },
   {
     id: "mcgi-mtg-2",
-    title: "Sentra — Product Deep Dive & Strategic Fit",
-    date: "Mar 7, 2026",
+    title: "Sentra Product Deep Dive",
+    date: "Mar 11, 2026",
     time: "2:00 PM",
     endTime: "3:00 PM",
     duration: "1h",
@@ -213,8 +272,8 @@ export const meetings: Meeting[] = [
   },
   {
     id: "mcgi-mtg-3",
-    title: "M-Lab Consortium Monthly — AI Landscape Update",
-    date: "Mar 6, 2026",
+    title: "M-Lab Monthly AI Landscape Update",
+    date: "Mar 10, 2026",
     time: "11:00 AM",
     endTime: "12:00 PM",
     duration: "1h",
@@ -299,8 +358,8 @@ export const meetings: Meeting[] = [
   },
   {
     id: "mcgi-mtg-4",
-    title: "CarbonGrid — Technical Due Diligence Review",
-    date: "Mar 5, 2026",
+    title: "CarbonGrid Technical DD",
+    date: "Mar 7, 2026",
     time: "3:00 PM",
     endTime: "4:30 PM",
     duration: "1h 30m",
@@ -383,8 +442,8 @@ export const meetings: Meeting[] = [
   },
   {
     id: "mcgi-mtg-5",
-    title: "Portfolio Company Check-in — NeuralDB",
-    date: "Mar 4, 2026",
+    title: "NeuralDB Quarterly Check-in",
+    date: "Mar 7, 2026",
     time: "9:00 AM",
     endTime: "9:45 AM",
     duration: "45m",
@@ -453,8 +512,8 @@ export const meetings: Meeting[] = [
   },
   {
     id: "mcgi-mtg-6",
-    title: "MCGI Weekly — Deal Flow & Operations",
-    date: "Mar 3, 2026",
+    title: "MCGI Weekly Standup",
+    date: "Mar 10, 2026",
     time: "9:30 AM",
     endTime: "10:15 AM",
     duration: "45m",
@@ -516,5 +575,402 @@ export const meetings: Meeting[] = [
         text: "Good. Let's make sure we're coordinating with the Tokyo team on any Japan-market-relevant companies we encounter. Ryotaro, can you update the screening doc by end of week?",
       },
     ],
+  },
+  {
+    id: "mcgi-mtg-7",
+    title: "FluxMaterials Founder Call",
+    date: "Mar 7, 2026",
+    time: "11:00 AM",
+    endTime: "11:45 AM",
+    duration: "45m",
+    participants: ["Sunna Mo", "Mihiro Nakamura", "Dr. James Park"],
+    tags: ["screening", "advanced-materials"],
+    platform: "Google Meet",
+    privacy: "private",
+    summary:
+      "Initial screening call with FluxMaterials founder Dr. James Park. Company is developing proprietary battery recycling technology. Pilot facility under construction in Nevada, expected operational Q2 2026.",
+    keyPoints: [
+      {
+        title: "Novel hydrometallurgical process for battery recycling",
+        description:
+          "FluxMaterials claims 95% metal recovery rate vs industry standard of 70%. Process works at lower temperatures, reducing energy costs by 60%.",
+        participants: ["Dr. James Park", "Mihiro Nakamura"],
+      },
+      {
+        title: "Pilot facility timeline",
+        description:
+          "Nevada pilot facility under construction, expected to be operational by June 2026. First commercial contracts signed with two EV manufacturers.",
+        participants: ["Dr. James Park", "Sunna Mo"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-13",
+        title: "Request FluxMaterials technical documentation",
+        description:
+          "Get detailed process documentation and independent lab results for technical review",
+        assignee: "Mihiro Nakamura",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Sunna Mo",
+        text: "James, thanks for making time. We've been tracking the battery recycling space closely and your approach caught our attention. Can you walk us through the core technology?",
+        isMe: true,
+      },
+      {
+        speaker: "Dr. James Park",
+        text: "Happy to. We've developed a hydrometallurgical process that achieves 95% metal recovery from spent lithium-ion batteries. The key innovation is our proprietary solvent system that works at room temperature, which eliminates the high-energy smelting step that most competitors rely on.",
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        text: "That's impressive. What's the current state of the pilot facility?",
+      },
+      {
+        speaker: "Dr. James Park",
+        text: "Construction is about 70% complete in Nevada. We're targeting June for first operations. We've already signed LOIs with two EV manufacturers for feedstock supply, so we'll have material to process from day one.",
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-8",
+    title: "Tokyo HQ Strategy Sync",
+    date: "Mar 6, 2026",
+    time: "6:00 PM",
+    endTime: "7:00 PM",
+    duration: "1h",
+    participants: [
+      "Sunna Mo",
+      "Kengo Morimoto",
+      "Haruki Watanabe",
+      "Yoko Tanaka",
+    ],
+    tags: ["internal", "strategy"],
+    platform: "Zoom",
+    privacy: "private",
+    summary:
+      "Monthly strategy sync with Tokyo HQ covering SF team activities, allocation requests, and alignment on MC Corporate Strategy 2027 priorities. Discussed increased climate tech allocation and upcoming IC pipeline.",
+    keyPoints: [
+      {
+        title: "Climate tech allocation increase approved in principle",
+        description:
+          "Tokyo HQ supportive of increasing climate tech allocation from 25% to 35% pending formal board approval. Aligns with MC group sustainability commitments.",
+        participants: ["Haruki Watanabe", "Kengo Morimoto"],
+      },
+      {
+        title: "SF team headcount discussion",
+        description:
+          "Requested approval for one additional associate position to support increased deal flow volume. Tokyo to review by end of March.",
+        participants: ["Kengo Morimoto", "Yoko Tanaka"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-14",
+        title: "Prepare climate tech allocation proposal for board",
+        description:
+          "Formal proposal document for board review of increased climate tech allocation",
+        assignee: "Kengo Morimoto",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-15",
+        title: "Submit associate hiring request to HR",
+        description:
+          "Formal headcount request with justification based on deal flow volume increase",
+        assignee: "Sunna Mo",
+        checked: true,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Haruki Watanabe",
+        text: "Good evening from Tokyo. Let's start with the allocation discussion. We've reviewed the SF team's request to increase climate tech allocation.",
+      },
+      {
+        speaker: "Kengo Morimoto",
+        text: "Thanks Haruki. The rationale is straightforward. We're seeing high-quality deal flow in climate tech, and the board's sustainability directive gives us cover to increase allocation. We're proposing 35% of new deployments, up from 25%.",
+      },
+      {
+        speaker: "Yoko Tanaka",
+        text: "The corporate strategy office is supportive. This aligns with the 2027 Create pillar. We'll need a formal proposal for the April board meeting.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "On the pipeline side, we have three companies moving to DD this month — Sentra in enterprise AI, CarbonGrid in carbon capture, and FluxMaterials in battery recycling. The IC vote for Sentra is scheduled for March 19th.",
+        isMe: true,
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-9",
+    title: "Portfolio Company Board Prep",
+    date: "Mar 6, 2026",
+    time: "10:00 AM",
+    endTime: "10:45 AM",
+    duration: "45m",
+    participants: ["Sunna Mo", "Ryotaro Nakamura"],
+    tags: ["portfolio", "internal"],
+    platform: "Zoom",
+    privacy: "private",
+    summary:
+      "Internal prep session for upcoming NeuralDB and QuantumSense board observer meetings. Reviewed key metrics, discussion points, and strategic recommendations for each company.",
+    keyPoints: [
+      {
+        title: "NeuralDB board observer talking points",
+        description:
+          "Focus on Series B readiness, Japan market entry strategy, and MC customer introduction pipeline. Revenue tracking well but need to address competitive pressure from Pinecone enterprise tier.",
+        participants: ["Sunna Mo", "Ryotaro Nakamura"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-16",
+        title: "Prepare NeuralDB board observer memo",
+        description:
+          "Draft talking points and strategic recommendations for March board meeting",
+        assignee: "Sunna Mo",
+        checked: true,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Sunna Mo",
+        text: "Let's run through the NeuralDB board prep first. Their board meeting is next week. Key topics I want to raise are Series B timing, Japan market strategy, and the Pinecone competitive threat.",
+        isMe: true,
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "On the Japan angle, I've been talking to MC's IT infrastructure division. They're genuinely interested in NeuralDB for their internal AI projects. If we can get a pilot going, that's a strong signal for the Series B story.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Agreed. Let me draft the board observer memo today and we can review it tomorrow. I want to make sure our strategic recommendations are crisp.",
+        isMe: true,
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-13",
+    title: "Ryotaro 1:1 Weekly Sync",
+    date: "Mar 11, 2026",
+    time: "4:00 PM",
+    endTime: "4:30 PM",
+    duration: "30m",
+    participants: ["Ryotaro Nakamura"],
+    tags: ["internal", "1:1"],
+    platform: "Zoom",
+    privacy: "private",
+    summary:
+      "Weekly 1:1 with Ryotaro covering pipeline prioritization, upcoming IC vote logistics for Sentra, and M-Lab consortium coordination. Discussed splitting deal sourcing responsibilities for Q2.",
+    keyPoints: [
+      {
+        title: "Sentra IC vote logistics confirmed",
+        description:
+          "IC vote for Sentra scheduled March 19. Investment memo draft due March 14. Ryotaro to review before Kengo sees it.",
+        participants: ["Ryotaro Nakamura"],
+      },
+      {
+        title: "Q2 deal sourcing split agreed",
+        description:
+          "Sunna to focus on enterprise AI and developer tools. Ryotaro to cover climate tech and advanced materials. Reduces overlap and increases coverage.",
+        participants: ["Ryotaro Nakamura"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-17",
+        title: "Share Sentra memo draft with Ryotaro by Friday",
+        description:
+          "Send investment memo draft for review before IC circulation",
+        assignee: "Sunna Mo",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Sunna Mo",
+        text: "Hey Ryotaro, quick sync. Want to lock down the Sentra IC timeline and talk about Q2 sourcing.",
+        isMe: true,
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "Sure. On Sentra — I think March 19 for the IC vote still works. Can you have the memo draft to me by Friday so I can review over the weekend?",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Yes, I'll have it by end of day Friday. For Q2, I was thinking we split sourcing more cleanly. I'll take enterprise AI and dev tools, you take climate and materials. Less overlap.",
+        isMe: true,
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "Makes sense. I've been building more relationships in the climate space anyway. Let's formalize it with Kengo at the next standup.",
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-14",
+    title: "QuantumSense Portfolio Review",
+    date: "Mar 10, 2026",
+    time: "2:30 PM",
+    endTime: "3:15 PM",
+    duration: "45m",
+    participants: ["Sunna Mo", "David Chen", "Lisa Park"],
+    tags: ["portfolio", "check-in"],
+    platform: "Google Meet",
+    privacy: "public",
+    summary:
+      "Quarterly review with QuantumSense (Series A portfolio). Product-market fit strengthening in semiconductor QA vertical. Discussed international expansion and potential Series B lead investors.",
+    keyPoints: [
+      {
+        title: "Semiconductor QA vertical gaining traction",
+        description:
+          "Three new contracts signed with chip manufacturers in Q1. ARR reached $3.2M, up from $2.1M last quarter.",
+        participants: ["David Chen", "Sunna Mo"],
+      },
+      {
+        title: "Japan expansion opportunity via MC",
+        description:
+          "MC's semiconductor trading arm expressed interest in trialing QuantumSense. Could accelerate Japan market entry significantly.",
+        participants: ["Lisa Park", "Sunna Mo"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-18",
+        title: "Intro QuantumSense to MC semiconductor division",
+        description:
+          "Connect David with MC's semiconductor trading team for potential pilot discussion",
+        assignee: "Sunna Mo",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Sunna Mo",
+        text: "David, Lisa — great to see you both. How's Q1 shaping up?",
+        isMe: true,
+      },
+      {
+        speaker: "David Chen",
+        text: "Really strong. We hit $3.2M ARR this month. The semiconductor QA use case is our beachhead — we signed TSMC's Oregon facility, plus two other chip manufacturers.",
+      },
+      {
+        speaker: "Lisa Park",
+        text: "On the expansion front, we're interested in Japan. The semiconductor market there is huge with the new TSMC and Rapidus fabs going up. Can MCGI help with introductions?",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Absolutely. MC has a semiconductor trading arm that would be a perfect pilot partner. Let me set up an intro call this month.",
+        isMe: true,
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-15",
+    title: "AI Infrastructure Deal Screening",
+    date: "Mar 6, 2026",
+    time: "1:00 PM",
+    endTime: "1:45 PM",
+    duration: "45m",
+    participants: ["Sunna Mo", "Mihiro Nakamura", "Ryotaro Nakamura"],
+    tags: ["screening", "enterprise-ai"],
+    platform: "Zoom",
+    privacy: "private",
+    summary:
+      "Screened four inbound AI infrastructure companies referred through M-Lab consortium. Two passed initial filter for deeper review — an MLOps platform and a data labeling marketplace.",
+    keyPoints: [
+      {
+        title: "Two companies passed initial screening",
+        description:
+          "DataForge (MLOps) and LabelScale (data labeling marketplace) both show strong technical differentiation and clear MC synergy potential. Moving to founder calls.",
+        participants: ["Sunna Mo", "Mihiro Nakamura"],
+      },
+      {
+        title: "Two companies declined at screening",
+        description:
+          "CloudNine and InferenceX passed on — overlapping competitive space with existing portfolio companies. No incremental MC synergy identified.",
+        participants: ["Ryotaro Nakamura", "Sunna Mo"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-19",
+        title: "Schedule founder calls with DataForge and LabelScale",
+        description:
+          "Reach out to founders for 30-min intro calls within the next two weeks",
+        assignee: "Sunna Mo",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Sunna Mo",
+        text: "Let's run through the four M-Lab referrals. I've done preliminary research on each. Starting with DataForge — they're building an MLOps platform specifically for regulated industries.",
+        isMe: true,
+      },
+      {
+        speaker: "Mihiro Nakamura",
+        text: "That's interesting. MC's financial services portfolio companies have been asking about MLOps tooling. The regulated-industry angle gives them a defensible niche.",
+      },
+      {
+        speaker: "Ryotaro Nakamura",
+        text: "Agree on DataForge. For CloudNine and InferenceX, I think we pass. CloudNine overlaps with NeuralDB's roadmap, and InferenceX is competing directly in a space where Anthropic and OpenAI have massive advantages.",
+      },
+      {
+        speaker: "Sunna Mo",
+        text: "Aligned. Let me schedule founder calls with DataForge and LabelScale this week.",
+        isMe: true,
+      },
+    ],
+  },
+  {
+    id: "mcgi-mtg-10",
+    title: "Sentra Due Diligence Sync",
+    date: "Mar 12, 2026",
+    time: "10:00 AM",
+    endTime: "11:00 AM",
+    duration: "1h",
+    participants: ["Ryotaro Nakamura", "Kengo Morimoto", "Takeshi Yamada"],
+    tags: ["due-diligence", "pipeline"],
+    platform: "Zoom",
+    privacy: "private",
+    summary: "",
+    keyPoints: [],
+    actionItems: [],
+    transcript: [],
+  },
+  {
+    id: "mcgi-mtg-11",
+    title: "LP Advisory Committee Prep",
+    date: "Mar 12, 2026",
+    time: "1:00 PM",
+    endTime: "2:00 PM",
+    duration: "1h",
+    participants: ["Ryotaro Nakamura", "Mihiro Nakamura"],
+    tags: ["investor-relations", "fund-operations"],
+    platform: "Zoom",
+    privacy: "private",
+    summary: "",
+    keyPoints: [],
+    actionItems: [],
+    transcript: [],
+  },
+  {
+    id: "mcgi-mtg-12",
+    title: "CarbonGrid Technical DD Follow-up",
+    date: "Mar 12, 2026",
+    time: "3:30 PM",
+    endTime: "4:30 PM",
+    duration: "1h",
+    participants: ["Kengo Morimoto", "Takeshi Yamada"],
+    tags: ["due-diligence", "climate-tech"],
+    platform: "Google Meet",
+    privacy: "private",
+    summary: "",
+    keyPoints: [],
+    actionItems: [],
+    transcript: [],
   },
 ];

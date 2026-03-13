@@ -16,6 +16,7 @@ import {
   Calendar,
   Users,
   FileText,
+  Home,
 } from "lucide-react";
 import AppSidebar from "./app-sidebar";
 import { useReportsStore } from "@/stores/reports-store";
@@ -72,6 +73,7 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
   "/report-detail": { path: "/artifacts", icon: FileText },
   "/artifacts/reports-settings": { path: "/artifacts", icon: FileText },
   "/artifacts/radar-settings": { path: "/artifacts", icon: FileText },
+  "/pre-meeting-brief": { path: "/home", icon: Home },
 };
 
 const TopBar = () => {

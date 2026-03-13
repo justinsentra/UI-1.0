@@ -28,8 +28,13 @@ function groupMeetingsByDate(meetingList: Meeting[]) {
 }
 
 function getUpcomingMeetings(meetingList: Meeting[]) {
-  const today = new Date().toISOString().split("T")[0];
-  return meetingList.filter((m) => m.date === today);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return meetingList.filter((m) => {
+    const mDate = new Date(m.date);
+    mDate.setHours(0, 0, 0, 0);
+    return mDate.getTime() === today.getTime();
+  });
 }
 
 function getTodayLabel() {
@@ -72,7 +77,7 @@ const MeetingNotesPage = () => {
     <div className="max-w-[740px] mx-auto px-8 pt-[56px] relative min-h-screen">
       {/* Top-right toolbar */}
       <div
-        className="fixed top-[12px] z-10 flex items-center gap-1 transition-all duration-300"
+        className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
         style={{ right: chatOpen ? 396 : 20 }}
       >
         <button

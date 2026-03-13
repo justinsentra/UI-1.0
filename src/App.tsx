@@ -15,6 +15,7 @@ import ConnectionsPage from "./pages/connections";
 import ConnectionDetailPage from "./pages/connection-detail";
 import SettingsPage from "./pages/settings";
 import MeetingSettingsPage from "./pages/meeting-settings";
+import PreMeetingBriefPage from "./pages/pre-meeting-brief";
 
 const App = () => {
   return (
@@ -53,6 +54,10 @@ const App = () => {
               element={<ConnectionDetailPage />}
             />
             <Route path="/meeting-settings" element={<MeetingSettingsPage />} />
+            <Route
+              path="/pre-meeting-brief"
+              element={<PreMeetingBriefPage />}
+            />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
         </Routes>

@@ -109,6 +109,7 @@ export const homeData: PersonaHomeData = {
             "We had 23 inbound referrals last week. That's up significantly. The MCGI brand is starting to get recognized in the Valley.",
           meetingTitle: "MCGI Weekly — Deal Flow & Operations",
           meetingDate: "Mar 3, 2026",
+          sourceType: "teams",
         },
         summary:
           "Inbound deal flow up 40% — may need to discuss tightening screening criteria to maintain quality while deploying at the right pace.",
@@ -120,6 +121,7 @@ export const homeData: PersonaHomeData = {
             "The meeting intelligence and commitment tracking could be very valuable for our portfolio companies as well. There's a strategic angle beyond just financial return.",
           meetingTitle: "Sentra — Product Deep Dive & Strategic Fit",
           meetingDate: "Mar 7, 2026",
+          sourceType: "zoom",
         },
         summary:
           "Sentra due diligence progressing positively. Investment memo will be the key deliverable from this IC meeting. Expect committee to discuss entry valuation and check size.",
@@ -131,6 +133,7 @@ export const homeData: PersonaHomeData = {
             "Board requesting increased allocation to climate tech given MC group sustainability commitments. Proposal to increase from 25% to 35% of new deployments.",
           meetingTitle: "Investment Committee — Q1 Pipeline Review",
           meetingDate: "Mar 10, 2026",
+          sourceType: "teams",
         },
         summary:
           "Climate tech allocation shift will affect pipeline prioritization. CarbonGrid and FluxMaterials benefit from this directive.",

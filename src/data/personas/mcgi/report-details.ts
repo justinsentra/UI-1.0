@@ -12,6 +12,14 @@ export const reportDetails: Record<string, ReportDetail> = {
           "SoftBank Vision Fund led a $140M Series C into MemoryAI, a direct competitor to Sentra in the organizational memory space. The round closed yesterday and was flagged across two internal channels. This is significant because MCGI is actively evaluating Sentra for investment — SoftBank's move validates the category but introduces competitive pressure on deal terms and timeline.",
           "Separately, Samsung Next participated in a $45M co-investment round for CarbonGrid's Series A alongside Breakthrough Energy Ventures. MCGI had CarbonGrid in active due diligence for a solo lead position. Samsung's entry changes the cap table dynamics and may compress the window for MCGI to secure favorable terms.",
         ],
+        sources: [
+          { type: "teams", label: "#mcgi-deal-flow" },
+          { type: "teams", label: "#mcgi-market-intel" },
+          { type: "zoom", label: "MCGI Daily Standup — Mar 12" },
+          { type: "meeting", label: "CarbonGrid — Founder Check-in" },
+          { type: "slack", label: "#mcgi-portfolio-updates" },
+          { type: "email", label: "PitchBook CVC deal alerts" },
+        ],
       },
     ],
     evidence: [
@@ -74,6 +82,15 @@ export const reportDetails: Record<string, ReportDetail> = {
           "MCGI's active pipeline grew to 14 companies this week, up from 11 at the end of February. The increase was driven primarily by strong inbound referral volume (23 new referrals, a 40% increase over the monthly average) and three companies advancing from initial screening to active evaluation.",
           "The pipeline is concentrated in three thesis areas: AI infrastructure and enterprise software (6 companies, 43%), climate technology (5 companies, 36%), and advanced materials (3 companies, 21%). This distribution aligns with the board-approved allocation targets, though climate tech may need to increase to 35% per recent guidance.",
         ],
+        sources: [
+          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+          { type: "email", label: "Inbound referral tracker" },
+          { type: "slack", label: "#mcgi-deal-flow" },
+          {
+            type: "meeting",
+            label: "Investment Committee — Q1 Pipeline Review",
+          },
+        ],
       },
       {
         heading: "Key Pipeline Movements",
@@ -82,6 +99,22 @@ export const reportDetails: Record<string, ReportDetail> = {
           "Sentra is particularly notable as a potential strategic investment — their organizational memory product could be deployed across MC's 1,700+ group companies to preserve institutional knowledge during leadership transitions. The founding team (MIT professor + strong technical co-founder) has secured $5M from a16z Speedrun and already has design partners including teams at SoftBank and Runway.",
           "Two companies were passed on this week: DataMesh (insufficient technical differentiation in the vector database space) and GreenFleet (unit economics don't work without regulatory subsidies that are uncertain post-2027).",
         ],
+        sources: [
+          {
+            type: "meeting",
+            label: "Sentra — Product Deep Dive & Strategic Fit",
+          },
+          {
+            type: "meeting",
+            label: "CarbonGrid — Technical Due Diligence Review",
+          },
+          {
+            type: "meeting",
+            label: "Investment Committee — Q1 Pipeline Review",
+          },
+          { type: "notion", label: "IC Screening Notes — Mar 7" },
+          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+        ],
       },
       {
         heading: "Deployment Pacing",
@@ -89,11 +122,25 @@ export const reportDetails: Record<string, ReportDetail> = {
           "Year-to-date capital deployment stands at $48M against the $120M annual target, representing 40% of the annual allocation deployed in the first 10 weeks. If quality deal flow continues at the current pace, the team may need to request an increased allocation for H2 2026 or tighten investment criteria.",
           "Average check size has increased to $6.2M from $4.8M in Q4 2025, reflecting a shift toward slightly later-stage opportunities where MCGI can provide more meaningful strategic value through MC business unit introductions.",
         ],
+        sources: [
+          { type: "google-docs", label: "MCGI Capital Allocation Model" },
+          {
+            type: "meeting",
+            label: "Investment Committee — Q1 Pipeline Review",
+          },
+          { type: "sharepoint", label: "MC CVC Annual Deployment Tracker" },
+        ],
       },
       {
         heading: "Upcoming Pipeline Activities",
         paragraphs: [
           "Key activities for the coming week include: Sentra investment memo preparation (lead: Sunna Mo), CarbonGrid technical DD with MC industrial team (lead: Mihiro Nakamura), Stanford HAI conference networking (team attendance), and NeuralDB Series B co-investor introductions. The YC W26 demo day scouting plan has been finalized with M-Lab consortium members.",
+        ],
+        sources: [
+          { type: "slack", label: "#mcgi-deal-flow" },
+          { type: "google-calendar", label: "MCGI Team Calendar" },
+          { type: "email", label: "Stanford HAI invitation" },
+          { type: "teams", label: "#m-lab-consortium" },
         ],
       },
     ],
@@ -147,12 +194,23 @@ export const reportDetails: Record<string, ReportDetail> = {
           "MCGI's active portfolio comprises 12 companies across AI/enterprise (5), climate tech (4), and advanced materials (3). Combined portfolio revenue grew 34% quarter-over-quarter to $28.4M ARR. Two portfolio companies (NeuralDB and GridScale) are in active fundraising processes for their next rounds.",
           "Portfolio health metrics are strong: 10 of 12 companies are at or above plan on their key milestones, one is tracking slightly behind (EcoSynth — delayed pilot with a key customer), and one is in watch status (QuantumSense — burn rate concerns, runway at 8 months).",
         ],
+        sources: [
+          { type: "google-docs", label: "MCGI Portfolio Dashboard Q1" },
+          { type: "email", label: "Monthly portfolio company reports" },
+          { type: "sharepoint", label: "MC CVC Portfolio Metrics" },
+        ],
       },
       {
         heading: "Top Performers",
         paragraphs: [
           "NeuralDB continues to be the standout, reaching $1.8M ARR with 25% month-over-month growth. Their enterprise motion is working well with three $100K+ ACV deals closed in February. Planning a $30M Series B for Q3 — MCGI is facilitating Japan market introductions and co-investor connections to JAFCO and Global Brain.",
           "GridScale Energy hit a major milestone with their first utility-scale deployment contract ($4.2M) with a California utility. This validates their grid-scale battery storage technology and positions them well for a Series B in H1 2026.",
+        ],
+        sources: [
+          { type: "meeting", label: "Portfolio Company Check-in — NeuralDB" },
+          { type: "meeting", label: "GridScale — Milestone Review" },
+          { type: "slack", label: "#mcgi-portfolio-updates" },
+          { type: "email", label: "NeuralDB — Feb Board Deck" },
         ],
       },
       {
@@ -161,12 +219,22 @@ export const reportDetails: Record<string, ReportDetail> = {
           "Active MC synergy engagements: NeuralDB → MC IT Infrastructure (pilot evaluation), CarbonGrid → MC Industrial Materials (technical DD complete, commercial discussion initiated), GridScale → MC Power Solutions (joint go-to-market in Southeast Asia under discussion).",
           "Three new synergy opportunities identified this quarter through the M-Lab consortium network. Conversion from introduction to active engagement running at 45%, up from 30% in Q4 2025.",
         ],
+        sources: [
+          { type: "teams", label: "#mc-synergy-tracking" },
+          { type: "meeting", label: "M-Lab Consortium Monthly" },
+          { type: "google-docs", label: "MC BU Engagement Tracker" },
+        ],
       },
       {
         heading: "Watch List & Risk Factors",
         paragraphs: [
           "QuantumSense requires close monitoring — their burn rate of $850K/month against $6.8M remaining runway gives approximately 8 months. They need to either close their bridge round or significantly reduce burn by Q2. Recommendation: schedule CEO check-in within 2 weeks to assess plan.",
           "Broader market risk: rising interest rates have slowed later-stage funding. Two portfolio companies (Series B+) may face valuation pressure if they need to raise in H2 2026. MCGI should prepare bridge financing scenarios as contingency.",
+        ],
+        sources: [
+          { type: "email", label: "QuantumSense — Monthly Update" },
+          { type: "google-docs", label: "MCGI Risk Register Q1" },
+          { type: "slack", label: "#mcgi-portfolio-updates" },
         ],
       },
     ],
@@ -196,6 +264,11 @@ export const reportDetails: Record<string, ReportDetail> = {
           "The enterprise AI market continues to evolve rapidly, with three key trends emerging in Q1 2026: the rise of AI agent frameworks, consolidation in the vector database space, and increasing enterprise demand for AI governance tools.",
           "Total venture funding in enterprise AI reached $12.8B globally in Q1 2026, up 28% year-over-year. However, deal count decreased 15%, indicating a shift toward larger rounds for more mature companies. Seed-stage AI funding actually increased 40%, driven by the agent framework wave.",
         ],
+        sources: [
+          { type: "email", label: "PitchBook AI sector alerts" },
+          { type: "google-docs", label: "AI Sector Tracking Sheet" },
+          { type: "slack", label: "#mcgi-market-intel" },
+        ],
       },
       {
         heading: "AI Agent Frameworks — Key Investment Theme",
@@ -204,12 +277,23 @@ export const reportDetails: Record<string, ReportDetail> = {
           "Key players to watch: Anthropic (Claude Code, agent SDK), LangChain (LangGraph), CrewAI, and several YC W26 batch companies. The market is pre-consolidation, creating a window for strategic investment in differentiated approaches.",
           "MCGI thesis: Agent frameworks that focus on enterprise-grade reliability, auditability, and integration with existing business processes will win over general-purpose orchestration tools. This aligns with MC business unit needs for automation that works within Japanese corporate governance structures.",
         ],
+        sources: [
+          { type: "meeting", label: "M-Lab Consortium Monthly" },
+          { type: "notion", label: "Agent Framework Landscape Map" },
+          { type: "email", label: "YC W26 batch scouting notes" },
+          { type: "google-docs", label: "MCGI Investment Thesis — AI Agents" },
+        ],
       },
       {
         heading: "Competitive CVC Landscape",
         paragraphs: [
           "Notable competitor investments this month: SoftBank Vision Fund led a $200M round in AgentOS (AI agent platform), Samsung Next invested in three AI infrastructure companies totaling $45M, and Intel Capital made a strategic investment in a chip-design AI startup.",
           "MCGI maintains differentiated positioning through the MC business unit synergy model — no other CVC can offer immediate access to 1,700+ group companies across 90 countries for customer validation and commercial deployment.",
+        ],
+        sources: [
+          { type: "email", label: "PitchBook CVC deal alerts" },
+          { type: "slack", label: "#mcgi-market-intel" },
+          { type: "teams", label: "#mcgi-competitive-intel" },
         ],
       },
     ],

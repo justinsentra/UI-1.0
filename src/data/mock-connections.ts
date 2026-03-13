@@ -75,7 +75,7 @@ export const people = [
     id: "sarah",
     name: "Sarah Chen",
     email: "sarah@campfire.io",
-    lastInteraction: "2025-02-21",
+    lastInteraction: "2026-02-21",
     interactions: 4,
     tags: ["Design Partner"],
   },
@@ -270,7 +270,7 @@ export const companies = [
     name: "Campfire",
     domain: "campfire.vc",
     contacts: 1,
-    lastInteraction: "2025-02-14",
+    lastInteraction: "2026-02-14",
   },
   {
     id: "together",
