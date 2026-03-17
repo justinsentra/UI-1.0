@@ -76,16 +76,16 @@ export function ProfileTab() {
                       onChange={(e) => setEditValue(e.target.value)}
                       onBlur={saveField}
                       onKeyDown={handleKeyDown}
-                      className="w-full h-8 px-2 -ml-2 rounded-md border border-[var(--border-base)] bg-[var(--bg-base)] text-sm text-[var(--fg-base)] focus:border-[var(--fg-disabled)] outline-none transition-colors"
+                      className="w-full h-8 px-2 -ml-2 rounded-md border border-transparent bg-[var(--bg-component-hover)] text-sm text-[var(--fg-base)] outline-none transition-colors"
                     />
                   ) : isEmail ? (
-                    <span className="text-sm text-[var(--fg-disabled)]">
+                    <span className="block w-full h-8 px-2 -ml-2 leading-8 text-sm text-[var(--fg-disabled)] rounded-md border border-transparent">
                       {profile[key]}
                     </span>
                   ) : (
                     <span
                       onClick={() => startEditing(key as EditableField)}
-                      className="text-sm text-[var(--fg-base)] cursor-text px-2 -ml-2 py-1 rounded-md hover:bg-[var(--bg-component-hover)] transition-colors inline-block"
+                      className="block w-full h-8 px-2 -ml-2 leading-8 text-sm text-[var(--fg-base)] cursor-text rounded-md border border-transparent hover:bg-[var(--bg-component-hover)] transition-colors"
                     >
                       {profile[key]}
                     </span>
