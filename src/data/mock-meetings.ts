@@ -183,6 +183,142 @@ export const meetings: Meeting[] = [
         text: "Yes, good idea. Include a short section on 3-4 logical strategic acquirers. Keep it high-level for now — we can go deeper if the committee asks for it. Alright, I think we're aligned. Let's reconvene Wednesday afternoon to review everything before Thursday.",
         isMe: false,
       },
+      // Expanded entries below
+      {
+        speaker: "Rachel Torres",
+        text: "Before we wrap up, I want to raise one more thing on the model. Should we be modeling a separate revenue line for Meridian's professional services? Right now they're bundling it into total revenue but it's about 12% of the mix, and it has very different margin characteristics.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Yes, absolutely break that out. Professional services revenue at 12% of mix with presumably lower margins will drag the blended gross margin number. If we can show the software-only margin trajectory separately, that tells a much cleaner story for the deal committee.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Good instinct. The committee will ask about that. Most of our comp set companies have less than 5% professional services revenue, so Meridian's 12% is an outlier. We need to show whether that's declining over time or if it's structural.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "From what I've seen in the data room, professional services as a percentage of total revenue has been declining — it was 18% two years ago and is now 12%. The trend line supports the thesis that customers are increasingly self-implementing, which is a positive signal.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "That's a useful data point. I'll ask the CFO to confirm whether there's a formal plan to reduce the professional services component. If management has an explicit strategy to bring it below 8% by FY27, we should highlight that in the memo.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Rachel, on the balance sheet side — what's the cash position? And do we know if they've been burning cash or are they approaching breakeven?",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "They have about $14M in cash on the balance sheet as of Q4. Burn rate is roughly $1.2M per month, so they have about 12 months of runway. They're projecting cash flow breakeven by Q3 of next year, but that assumes they hit their mid-market expansion targets.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Twelve months of runway with breakeven projected in Q3 — that creates an interesting dynamic for the raise. They're not desperate for capital, which gives them negotiating leverage, but they also can't afford to let the process drag out. What's the implied use of proceeds?",
+        isMe: true,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "Management has indicated the raise would primarily fund sales team expansion — they want to go from 15 to 40 AEs over 18 months — and product development for their enterprise-tier features. They're also planning to build out an international presence, starting with UK and Germany.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "International expansion is ambitious at this stage. I'd want to see that modeled conservatively in our projections. European go-to-market for a supply chain SaaS company has a very different cost structure and sales cycle than the US market.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Agreed. I've seen a few comps attempt European expansion at a similar stage and the results were mixed. The ones that succeeded typically went through channel partners rather than direct sales. We should ask Meridian's CEO about their planned go-to-market approach.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "I'll add that as a question for the management meeting. Let's also make sure we understand the competitive landscape in Europe. If there's a local player with strong market share, the customer acquisition costs could be significantly higher than what Meridian is modeling.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Good thinking. Sarah, can you pull a quick landscape of European supply chain SaaS competitors? Even just a one-pager with the top 3-4 players and their market positioning would be helpful context for the committee.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I can have that ready by Monday. I know there are at least two significant players — one based in Berlin and one in London. I'll include their funding history, estimated ARR if available, and customer profiles so we can assess the competitive threat.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "One more thing on the model — should I include a downside scenario where the raise doesn't happen and Meridian has to extend their runway through cost cuts? It would show the deal committee that we've thought about the full range of outcomes.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "That's a smart inclusion. Build a scenario where they reduce burn by 30% through headcount freezes and show what that does to the growth trajectory. It won't be a pretty picture, but it demonstrates analytical rigor and gives the committee confidence in our work.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "On the deal committee memo — Kevin, do you want me to include a section on the management team's background and track record? The committee usually wants to know whether the founders have done this before and whether they have the operating chops to execute the plan.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Absolutely. The CEO has two prior exits — one was a $180M acquisition by Oracle and the other was a smaller deal in the logistics space. That track record is a significant positive. The CTO came from AWS, which adds credibility on the technical side. Make sure you highlight both of those.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "The VP of Sales is relatively new though — he joined about six months ago from Salesforce. The sales team expansion plan is largely his vision, so we should assess whether he has the credibility to execute it. Maybe we should reference check him separately.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "Good point. I'll add a note in the diligence tracker about a reference check on the VP of Sales. His hiring was part of the management upgrades they made post-Series B, and the committee will want to know if the go-to-market leadership is strong enough to support the growth plan.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Alright, I think we've covered the key areas. To summarize — Rachel owns the 3-statement model with the concentration stress test, the downside scenario, and the professional services breakout. Draft by Tuesday EOD. Justin is drafting the deal committee memo with management backgrounds and the market timing narrative. Sarah is getting the cap table, cohort data, and European competitive landscape. Let's execute and regroup Wednesday at 2 PM.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Sounds good. I'll also loop in the acquirer landscape section so we have a complete picture. If anyone runs into blockers before Wednesday, let's flag it in the group chat rather than waiting for the meeting.",
+        isMe: true,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "Will do. I'll share my model assumptions doc in the shared drive tonight so everyone can review the key inputs before I start building. If anything looks off, I'd rather catch it early.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Perfect. I'll send the cap table and cohort data requests to Meridian's CFO this afternoon. Hopefully we get a response by end of day tomorrow so Rachel has everything she needs.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Great work, team. This deal has strong potential and I want us to put our best foot forward for the committee. Let's make sure every number is airtight and every assumption is defensible. See you Wednesday.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "One last thought — should we prepare a one-page executive summary as a leave-behind for the committee? Sometimes the full memo is more detail than they want upfront, and having a concise version ensures the key points land even if they don't read the whole thing.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "That's a great idea. One page, front and back — investment thesis, key metrics, valuation range, and top three risks. Include it as the first page of the memo packet. Let's close it out there.",
+        isMe: false,
+      },
     ],
   },
   {
@@ -355,6 +491,157 @@ export const meetings: Meeting[] = [
         text: "One quick thing — can we make sure the comp table includes the three recent S-1 filers? Those forward projections will be useful for both the CloudSync and NeuralPath conversations. Otherwise I think we're in good shape.",
         isMe: true,
       },
+      // Expanded entries below
+      {
+        speaker: "David Park",
+        text: "Absolutely, I'll include all three S-1 filers. One of them — the AI data infrastructure company — has forward revenue projections that are particularly relevant to both CloudSync's Series C positioning and our DataVault valuation work.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "On the Vantage Systems front — even though it's exploratory, I've had two preliminary conversations with their CFO. They're growing at about 30% year-over-year and looking to raise $50-75M in growth equity to fund their expansion into the healthcare vertical.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Healthcare vertical expansion is interesting. That's a sector with long sales cycles but very high retention once you're in. Do we know who else is advising them? If they're talking to multiple banks, we need to differentiate our pitch.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "They've had conversations with Evercore and Qatalyst, but nothing formal yet. I think our edge is our TMT healthcare crossover expertise — we've done three deals in the last year that sit at that intersection. I'll lead with those case studies in our pitch.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "On the DataVault management rollover — I think we should prepare a memo outlining standard rollover terms in recent tech LBOs. The sponsor consortium is asking for 20%, but I've seen the range vary significantly. Having that context will help us advise DataVault's management team on whether the ask is reasonable.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Good idea. I can pull data from the last ten tech LBOs we've tracked. The median rollover I've seen is around 15-25%, so 20% is squarely in the middle. But the terms around vesting and liquidity events matter more than the headline percentage.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "David, make sure the rollover analysis includes the equity incentive structure as well. If the sponsors are offering a management equity pool on top of the rollover, the total economics to the management team could be quite attractive even at 20% rollover.",
+        isMe: true,
+      },
+      {
+        speaker: "David Park",
+        text: "The lead sponsor mentioned a 10% management equity pool with time-based and performance-based vesting. I'll model the combined economics — rollover plus new equity — across the base, bull, and bear cases so management can see the full picture.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "Switching back to CloudSync — I've been doing some preliminary research on their competitive positioning. They're in the multi-cloud management space, which is getting crowded. But their differentiation is around automated cost optimization, which is where the budget dollars are flowing right now.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "That's exactly the angle we should lead with in the engagement pitch. Cloud cost optimization is a top-three priority for every CTO I've spoken to this year. If CloudSync can demonstrate strong net dollar retention driven by expanding usage, the Series C should attract significant investor interest.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Do we have any view on CloudSync's current investor base? If their Series B investors are participating in the Series C, that's a strong signal. If they're not, we need to understand why before we go to market.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Their Series B was led by Insight Partners with participation from Bessemer. I don't have confirmation yet on whether they're following on, but the CEO's tone suggested they are. I'll get clarity on that during the intro call next week.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "One more item for the comp table — I want to add a dedicated section on recent M&A transactions in the cloud infrastructure space. There have been four acquisitions in the last two quarters with deal values over $500M, and those transaction multiples will be important reference points.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I can contribute to that. I've been tracking the Wiz acquisition and two other cloud security deals. The premiums being paid are significant — 40-60% above the pre-announcement trading price for the public targets. That sets a high bar for private market valuations.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Those premiums are notable and worth highlighting in client conversations. Both CloudSync and NeuralPath should understand that the M&A market is paying up for quality assets in cloud and AI. It strengthens the timing argument across our entire pipeline.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Agreed. Let me also flag that we have a potential conflict check to run on Vantage Systems. I believe our healthcare team has an existing relationship with one of their competitors. I'll check with compliance before we proceed with a formal pitch.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Good catch. We don't want to get into that conversation only to discover we can't take the mandate. Better to resolve it now.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "On my end, I'll have the cloud cost sensitivity model for DataVault done by Wednesday morning. I'll share it in the team drive so David can pull it directly into the sponsor deck. I'll also include the benchmarking data from comparable cloud optimization programs.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Perfect. So to recap the week's deliverables: David has the comp table refresh and DataVault sponsor deck by Thursday, Michael has the cloud cost analysis by Wednesday, I'm scheduling the CloudSync intro call and running the Vantage conflict check. Justin, anything else from your end?",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "I'll prepare talking points for the CloudSync intro call based on the comp table once David has it ready. I also want to draft a preliminary engagement letter framework we can customize for each of these three mandates. Let's stay tight on the timelines this week — we have a lot of moving pieces.",
+        isMe: true,
+      },
+      {
+        speaker: "David Park",
+        text: "Sounds good. One last thing — should we set up a mid-week check-in on Wednesday afternoon to make sure everything's on track? Given the volume of deliverables, it would be good to have a quick touchpoint before Thursday.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'll send a calendar invite for Wednesday at 3 PM. Thirty minutes should be enough for a status check. Alright everyone, let's execute. Good meeting.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "Actually, one more thing before we go. I've been looking at the NeuralPath revenue breakdown and their enterprise segment grew 80% last quarter while mid-market was flat. If their sell-side positioning leans heavily on enterprise growth, we should make sure that narrative is reflected in our comp selection.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "That's a useful insight. Enterprise-heavy AI companies tend to trade at a premium because of the stickiness and larger contract values. I'll segment the comp table by revenue mix so we can show that distinction clearly.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good thinking, Michael. That enterprise growth rate also has implications for the CloudSync positioning. If enterprise AI adoption is accelerating at that rate across the board, it supports a higher valuation for CloudSync's Series C as well. David, make sure the comp table captures that trend.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "On the Vantage Systems front — I should mention that their CFO mentioned they might want to fast-track the exploration if one of their board members moves forward with a competing investment. So the exploratory timeline could compress quickly.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "That's good to know. If Vantage accelerates, we'll need to allocate bandwidth quickly. I'd suggest we at least have a preliminary pitch deck ready — even a template version — so we're not starting from scratch if they move fast.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I can pull together a first draft of the Vantage pitch using the healthcare vertical SaaS framework we used for the Apex Health engagement last quarter. The sector dynamics are similar enough that we can adapt it with minimal rework.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's efficient. Michael, go ahead and get that started as a low-priority background task. If Vantage stays exploratory, we haven't lost much time. If they accelerate, we'll be glad we have it. Alright, I think we've covered everything now. Let's execute.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Sounds good. I'll also flag in the Wednesday check-in if there are any changes to the Vantage timeline. Otherwise, let's focus on the CloudSync and DataVault deliverables as top priority. See everyone Wednesday.",
+        isMe: false,
+      },
     ],
   },
   {
@@ -515,6 +802,167 @@ export const meetings: Meeting[] = [
       {
         speaker: "Justin Cheng",
         text: "Yes, definitely loop Priya in. If she can speak to the Compliance team's intent to adopt, it shows demand beyond just the IB Coverage group. That cross-functional pull is exactly what budget holders want to see.",
+        isMe: true,
+      },
+      // Expanded entries below
+      {
+        speaker: "Sarah Mitchell",
+        text: "Speaking of cross-functional interest, I've also gotten informal inquiries from the Equity Research team. They saw what Coverage was doing with Sentra and want to know if it could help with their earnings call analysis workflow.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's encouraging, but let's not get ahead of ourselves. We want the 150-seat expansion to succeed before we start talking about a third wave. But we should definitely note that demand in the proposal — it shows organic pull beyond the teams we're targeting.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Agreed. I'll include it as a footnote in the demand section of the proposal. On the ROI analysis, I've been thinking about how to quantify the value more concretely. The 30 minutes per call is one metric, but we should also look at meeting preparation time.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "What are you seeing on the prep time side? I know anecdotally that the organizational memory feature is helping people get context on prior conversations, but do we have data on that?",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I surveyed ten pilot users last week. Seven of them said they spend 15-20 minutes before each external call reviewing prior meeting notes. With Sentra, they can pull up the conversation history in about 2 minutes. That's a 15-minute savings per meeting on top of the 30 minutes saved on follow-up.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's compelling. So we're looking at 45 minutes saved per external meeting. If the average Coverage banker has 3-4 external calls per day, that's over two hours of productivity recovered daily. At their billing rates, the dollar value is substantial.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Exactly. I'll run the full math for the proposal. Even using conservative assumptions — 3 calls per day, $200 per hour effective cost — the annual productivity gain per user is over $130,000. The $42 per month per seat is basically a rounding error compared to that.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That ROI number is going to be the centerpiece of our pitch. Let's make sure we present it clearly with the underlying assumptions spelled out. Budget holders will push back on the inputs, so we need each number to be defensible.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'll use the survey data as the evidence base and include the raw responses as an appendix. That way if anyone challenges the 30-minute figure, we can point to specific user testimonials backing it up.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good. Let's also talk about the rollout plan for the expanded seats. If we get approval, are we doing a big-bang launch or a phased approach?",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'd recommend phased. We learned from the initial 60-seat rollout that having team-specific training sessions dramatically improves adoption. I'd suggest three waves — Compliance first since Priya's team is already waiting, then Equity Research, and then the remaining Coverage expansion.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Phased makes sense. It also gives us a chance to address any issues that come up in wave one before they affect a larger user base. Include the phased rollout timeline in the proposal — it shows we've thought about the operational side, not just the budget ask.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Will do. I was also thinking about the training format. The in-person sessions we did for the first wave worked well, but they're hard to schedule across teams. Should we also create a recorded onboarding module that people can watch asynchronously?",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Yes, a recorded module would scale much better. Keep it under 15 minutes — nobody's going to watch a 45-minute training video. Cover the three most-used features and point people to the team champion for everything else.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Got it. I'll draft the script for the recorded module this week. We can record it once we have the final feature set confirmed. On the Dealogic integration request — should I escalate that directly to Sentra's product team, or do you want to handle it through the account relationship?",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Let me handle it through the account relationship. If we're about to commit to 150 seats, that gives us leverage to push for product roadmap commitments. I'll position the Dealogic integration as a condition of the expanded contract — or at least a strong expectation.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Smart approach. The Coverage team keeps asking about it, so having a timeline from Sentra — even a tentative one — would go a long way in maintaining enthusiasm during the expansion.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Exactly. I'll bring it up in my next call with their account executive. Let's also make sure the contract includes SLA commitments on uptime and support response times. At 150 seats, we're a significant client and should be getting premium support.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'll add SLA requirements to the contract negotiation checklist. Their standard enterprise SLA is 99.9% uptime and 4-hour response time for critical issues, which should be acceptable. I'll push for 2-hour response given our seat count.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good. Alright, I think we have a clear plan for the week. You're working on testimonials, survey data for the ROI analysis, and the phased rollout plan. I'll handle the SSO escalation, the Dealogic conversation with Sentra, and the pricing proposal draft. Let's sync again Thursday to review progress.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Sounds great. I'll also keep an eye on the daily adoption metrics in case there's anything unusual. The numbers have been trending up consistently, but I want to make sure we don't see a dip as the novelty wears off. That's usually the risk in week two and three of a pilot.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good point. If we do see a dip, let's proactively address it — maybe a tips-and-tricks email or a short lunch-and-learn session to re-engage users. We need the adoption curve to hold through the March 21 evaluation checkpoint. Alright, let's execute. Talk Thursday.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Before we go — one more thing I wanted to raise. A few users have asked about whether Sentra can integrate with Notion. The TMT team uses Notion heavily for internal deal wikis, and they'd love to have meeting summaries automatically pushed there.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Notion integration is an interesting one. It's not as high-priority as Dealogic for the Coverage team, but it's a quality-of-life feature that would drive stickiness. I'll add it to the feature request list when I talk to Sentra's account team. Any sense of how many users have asked for it?",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Four users from TMT and two from Technology & Innovation. It's not a dealbreaker for anyone, but it came up independently from multiple people, which tells me there's genuine demand. I documented each request with the user's specific use case.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's helpful. Having specific use cases attached to the request makes it much easier for Sentra's product team to evaluate and prioritize. Include that in the feature request document and I'll reference it in my next call with them.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Will do. Also, on the compliance front — Priya mentioned to me yesterday that her team has been looking at how Sentra handles meeting recordings for regulated conversations. She's comfortable with the pilot constraints, but she wants a detailed walkthrough of the data lifecycle before the production deployment.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's reasonable. Let's make sure the data lifecycle walkthrough happens before the March 21 checkpoint. Can you coordinate with Priya and Sentra's compliance team to schedule a 45-minute deep dive? I'd like to attend that as well so I understand the details for the budget presentation.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'll set that up for next week. Priya prefers Tuesday or Wednesday mornings, so I'll aim for one of those slots. I'll invite you and Michael Chen as well since he'll need to validate the technical details of the data lifecycle.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Perfect. That covers the compliance angle. One last thought — we should also think about what success looks like beyond the quantitative metrics. Are there any qualitative signals you're watching for? Things like whether people are using it without being prompted, or sharing summaries proactively with colleagues?",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Great question. I've actually noticed something encouraging — three of the Coverage VPs have started forwarding Sentra meeting summaries to their analysts as a way to bring them up to speed on client conversations they weren't on. That's organic behavior, nobody told them to do that. It suggests the product is becoming part of their natural workflow.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's exactly the kind of signal we want to see. It means people aren't just using it because they were told to — they're finding genuine value. Make sure we capture those anecdotes for the expansion proposal. Organic adoption stories are more persuasive to budget holders than any dashboard metric. Alright, great chat. Talk Thursday.",
         isMe: true,
       },
     ],
@@ -695,6 +1143,162 @@ export const meetings: Meeting[] = [
         text: "I'll send the requests today. I have a good contact on Sentra's security team from the initial review, so I'm optimistic we can get both resolved quickly. If there are any delays, I'll escalate immediately so we're not scrambling at the deadline.",
         isMe: false,
       },
+      // Expanded entries below
+      {
+        speaker: "David Park",
+        text: "One area we haven't discussed yet is the onboarding and change management piece. Even if Sentra wins on features, the success of a 150-seat deployment depends on adoption. What did we learn from the pilot about user onboarding friction?",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "The pilot onboarding was fairly smooth. The desktop app install took about 10 minutes per user, and most people were capturing their first meeting within an hour of setup. The main friction point was calendar permissions — some users were hesitant to grant access to their full calendar.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "The calendar permission issue is something we need to address proactively in the expanded rollout. Can we work with Sentra to configure a more granular permission model? Ideally users should be able to select which calendar events Sentra has access to, rather than granting blanket access.",
+        isMe: true,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "That's actually one of the items on my compliance checklist. I spoke with Sentra's product team about it and they said selective calendar permissions are on their Q2 roadmap. For now, the workaround is to use meeting categories to flag which ones should be captured.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Switching topics — I want to talk about the competitive landscape for a moment. Glean just announced a new meeting summarization feature in their latest product update. It's not as deep as Sentra's, but it narrows the gap. We should factor that into our evaluation.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I saw that announcement. I tested it during the trial period and it's fairly basic — it generates a summary and bullet points but doesn't do the cross-meeting intelligence or organizational memory that Sentra does. It's more like a GPT wrapper on top of the transcript.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's a common pattern we're seeing — incumbent tools bolting on AI features to check a box. The question is whether Glean will invest deeply enough in meeting intelligence to close the gap, or if it will always be a secondary feature for them. Given that their core business is document search, I'd bet on the latter.",
+        isMe: true,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "From a risk management perspective, there's also the vendor viability question. Sentra is a smaller company compared to Glean and obviously Microsoft. What's their funding situation? We need assurance they'll be around for the duration of a multi-year contract.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Sentra raised a $60M Series B about eight months ago, led by Sequoia. They have roughly 24 months of runway at current burn rate and their revenue growth is strong. I'd put the vendor viability risk as low, especially given the strength of their investor base.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I'd add that the meeting intelligence market is growing rapidly. If anything, Sentra is more likely to be acquired by a larger platform than to go under. And an acquisition would probably mean continued investment in the product, not deprecation.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good points. We should include the vendor viability assessment in the scorecard as a sub-factor under security and compliance. It's a legitimate concern that the evaluation committee will raise, and we should have a clear answer ready.",
+        isMe: true,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "Agreed. I'll also request Sentra's financial statements as part of the vendor due diligence. We typically require that for any vendor contract above $100K annually, and this will clear that threshold with the 150-seat expansion.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Let me also bring up the API and data export capabilities. For the evaluation committee, they'll want to know that we're not locked into any vendor. Can we easily export our data if we decide to switch platforms in the future?",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I reviewed the API documentation for all three vendors. Sentra has a comprehensive REST API that allows full data export — transcripts, summaries, action items, and organizational memory graphs. Glean has a similar export capability. Copilot is more restrictive — the data lives within the Microsoft ecosystem and extraction requires admin-level access.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Data portability should be a requirement in the contract regardless of which vendor we choose. Michael, can you draft a data portability clause that we can include in the negotiation? We should have full export rights with no more than 30 days notice.",
+        isMe: true,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I'll draft that clause and circulate it with the group. I'll also include requirements around data format — we want structured exports in JSON or CSV, not proprietary formats that require additional processing to use.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Great. Let me summarize where we are. The scorecard is in progress with adjusted weights — 30% security, 25% meeting intelligence, 20% pricing, 15% integrations, 10% deployment. Michael is running the pilot user survey. Priya is following up on the pen test report and retention documentation. And we need the vendor viability assessment and data portability clause added.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "I'll also prepare a one-page compliance risk summary for each vendor. It'll cover data residency, encryption standards, audit logging, retention policies, and any outstanding gaps. That'll be a useful reference document for the evaluation committee.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "This is shaping up well. Let's plan to do a dry run of the evaluation committee presentation on March 19 — two days before the deadline. That gives us time to incorporate any final feedback and make sure the recommendation is bulletproof. Everyone comfortable with that timeline?",
+        isMe: true,
+      },
+      {
+        speaker: "David Park",
+        text: "Works for me. I'll have the scorecard and presentation draft ready by March 18 for the dry run. Let's block 90 minutes on the 19th to go through it end to end.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I'll have the survey results compiled by March 17 so David has time to incorporate them. I'll also have the data portability clause ready by then. Priya, do you think you'll have the Sentra responses by that date?",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "I'll push for it. If the pen test report takes longer, I'll at least have a confirmed timeline from Sentra that we can present to the committee. The retention documentation should be straightforward — I expect that within 48 hours of my request.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good. Let's stay in close contact this week. If any blockers emerge, flag them immediately in the group chat. The March 21 deadline is firm and I don't want any surprises. Alright, I think we're aligned. Good meeting everyone.",
+        isMe: true,
+      },
+      {
+        speaker: "David Park",
+        text: "One more thought — should we include a migration risk assessment in the scorecard? If we go with Sentra and later decide to switch, what does that transition look like? The evaluation committee will want to know we've thought about lock-in risk.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "That's a valid point. Based on my review of the APIs, Sentra has the lowest migration risk because their data export is the most comprehensive. Copilot has the highest lock-in because the data is deeply embedded in the Microsoft Graph. I'll include a migration complexity rating for each vendor.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "From a regulatory perspective, the ability to migrate data is also a compliance requirement. We need to ensure that if we switch vendors, all historical meeting data and audit trails can be transferred intact. That's a non-negotiable for any vendor we select.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Agreed. Let's add migration risk and data portability as a formal criterion in the scorecard — maybe as a sub-category under security and compliance. David, weight it at about 5% of the total score so it's visible but doesn't dominate the evaluation.",
+        isMe: true,
+      },
+      {
+        speaker: "David Park",
+        text: "I'll add it in. That brings our total evaluation framework to six categories: security, meeting intelligence, pricing, integrations, ease of deployment, and data portability. I think that's comprehensive enough to give the committee a complete picture.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "Last item from me — I want to mention that Sentra's customer success team has been very responsive during the pilot. They've turned around support tickets within 2 hours on average and proactively reached out to check on our adoption metrics. That level of engagement is notable compared to the generic support we get from Microsoft on Copilot issues.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "Vendor responsiveness matters, especially during the first year of deployment when configuration issues are most common. I'd suggest we include customer support quality as a qualitative factor in the recommendation, even if it's not formally scored in the matrix.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Good call. Include it as a qualitative section in the recommendation narrative alongside the quantitative scorecard. The committee appreciates when we go beyond the numbers. Alright, with that addition I think we have a thorough evaluation framework. Let's finalize everything for the March 19 dry run.",
+        isMe: true,
+      },
     ],
   },
   {
@@ -844,6 +1448,177 @@ export const meetings: Meeting[] = [
       {
         speaker: "Kevin Walsh",
         text: "Absolutely. I'll coordinate with their CEO to get that scheduled for early next week. Good call — alignment upfront saves us from painful negotiations later. Alright, let's execute. Rachel on Meridian model and NeuralPath shortlist, Sarah on the pipeline tracker. Let's reconvene Thursday morning.",
+        isMe: false,
+      },
+      // Expanded entries below
+      {
+        speaker: "Rachel Torres",
+        text: "Before we break, one question on the NeuralPath CIM. Do we have access to their audited financials, or will we need to work from management-prepared numbers? That affects how we frame the financial summary section.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "They have audited financials through FY24. The FY25 numbers are management-prepared but their controller told me they're in the process of getting the audit completed. We should be able to get a draft audit by mid-April, but for the CIM outline we can use the management numbers with appropriate disclaimers.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "We should flag that in the CIM — potential acquirers will want audited numbers before signing a definitive agreement. Having the audit in progress is fine for the teaser phase, but we need to push NeuralPath to expedite the completion.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "On the two other late-stage deals — Pinnacle Networks and Horizon Data — both are progressing well. Pinnacle is in final due diligence with their lead investor and should close by end of month. Horizon is in pricing discussions and the sponsor is expected to submit a formal offer this week.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Good. Pinnacle and Horizon are both on track and don't need the same level of attention as Meridian and NeuralPath right now. But keep me posted if anything changes on either front — I don't want late-stage deals falling through the cracks while we focus on the newer mandates.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "On the five early outreach engagements — are any of those likely to move to evaluation stage this month? I'm trying to plan my bandwidth between the Meridian model, NeuralPath CIM, and any new work that might come in.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Two of the five are heating up. Cascade Analytics wants to explore a growth equity raise and their CEO is responsive. The other is Vertex AI, which is looking at strategic options but hasn't committed to a formal process yet. I'd say there's a 40% chance at least one moves to evaluation this month.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "If Cascade moves forward, that would be another data infrastructure deal, which plays to our strengths. Rachel, is there any overlap between the Cascade opportunity and the Meridian work that would let you leverage the same comp set and market analysis?",
+        isMe: true,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "Definitely. Cascade is in a slightly different subsector — more focused on analytics rather than supply chain — but the comp set overlaps by about 60%. I can reuse most of the market sizing work and adjust the peer group. It would save me a significant amount of time if they do convert.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "That's good leverage. Sarah, keep nurturing the Cascade relationship. If we can get them to sign an engagement letter, the incremental work is manageable given what Rachel already has in hand. What about the Vertex AI situation?",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Vertex is more complicated. Their founder is exploring a sale but the board is split on timing. Some directors want to wait another 12-18 months to grow into a higher valuation. I'm positioning us as the advisor who can help them evaluate both options — sell now at a strong multiple, or continue building with a clear path to an even larger exit later.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's the right approach. Showing them we're not just pushing for a quick transaction builds trust. If they decide to wait, we're still the natural choice when they're ready to move. Let's make sure we stay in regular contact with the Vertex founder — quarterly touchpoints at minimum.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Agreed. Relationship capital in these situations pays dividends later. Alright, I think we've covered everything. Quick recap — Rachel has the Meridian model by Wednesday and NeuralPath acquirer shortlist plus CIM outline by Thursday and Friday respectively. Sarah is updating the pipeline tracker and staying close to Cascade and Vertex. I'm scheduling the NeuralPath board call. Let's execute and regroup Thursday at 9:30.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "One last thing — should I coordinate with David Park on the NeuralPath acquirer research? He's been tracking the AI infrastructure space closely for the comp table refresh and might have some useful insights on which companies are most likely to be active acquirers right now.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Great idea. Loop David in on the acquirer shortlist. His sector knowledge will help us identify targets we might otherwise miss, and it ensures consistency between our comp analysis and our acquirer thesis.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "I'll also connect with David separately about the NeuralPath positioning. If we can tie the sell-side narrative to the broader AI infrastructure re-rating he's been tracking, it strengthens the urgency argument for potential acquirers. The market timing story works for both buyers and sellers in this case.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Makes sense. I'll send a summary of today's standup to the broader team so everyone is aligned on priorities. Kevin, should I include David and Michael in the distribution, or keep it to the core coverage group?",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Include David given the NeuralPath overlap. Keep the distribution tight otherwise — we don't want deal information spreading beyond the people who need to know. Alright, good standup. Let's go.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Quick thought before everyone drops — for the Thursday reconvene, can we also review the fee structure for NeuralPath? Given the accelerated timeline and the complexity of a sell-side mandate with multiple potential acquirers, we should make sure our engagement terms reflect the scope of work.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Good point. I'll pull up the standard sell-side fee schedule and we can discuss adjustments on Thursday. For a deal of this size, we're looking at a success fee in the range of 2-3% of transaction value, plus a monthly retainer. Let's finalize the terms before the board alignment call.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "I'll also prepare a preliminary valuation range for NeuralPath by Thursday so we can sanity-check the fee structure against the expected deal size. Based on what I've seen so far, we could be looking at a $200-350M transaction, but I need to dig deeper into their financials to narrow that down.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Perfect. That gives us all the pieces we need for a productive Thursday session. I'll make sure the calendar invite includes the full agenda. See everyone then.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Actually, one more thing before everyone drops. I got a call from the Pinnacle Networks lead investor last night. They're asking if we can accelerate the closing timeline by a week. Apparently they have another deal competing for the same allocation.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "Pinnacle is essentially ready to close from our side. The outstanding item is the final working capital adjustment, which I can have done by Friday. If their legal team can turn the definitive agreement around over the weekend, we could close by early next week.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That would be a great outcome. A quick close on Pinnacle frees up bandwidth for the NeuralPath mandate and gives us a completed deal to reference in our pipeline conversations. Kevin, do you want me to coordinate with Pinnacle's legal counsel to push the timeline?",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Yes, please take point on that. Their outside counsel is Davis Polk — ask for Maria Santos, she's been running the deal documentation. I'll send you her contact info right after this call. Let's see if we can close this out by Tuesday.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "If Pinnacle closes next week, that would bring our Q1 closed fee total to $6.8M. That's well ahead of our quarterly target of $5.5M. It would give us a strong position going into the mid-year review.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's a solid number. And with Meridian, DataVault, and NeuralPath all in various stages of active diligence, Q2 could be even stronger. The pipeline is the healthiest I've seen it in the last 18 months.",
+        isMe: true,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Agreed, but let's not get complacent. The market window for AI infrastructure deals could narrow if there's a correction in public multiples. We need to move fast on the active mandates while the tailwinds are still blowing. Every week of delay is valuation risk.",
+        isMe: false,
+      },
+      {
+        speaker: "Rachel Torres",
+        text: "On that note — I've been tracking the public AI index and it's up another 3% this week. But there's a Fed meeting next Wednesday that could shift sentiment. Should we factor potential rate decision impacts into the NeuralPath timeline discussion?",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Good awareness. The market expects a hold, but any hawkish commentary could trigger a risk-off move in high-growth tech. Let's have that scenario ready for the NeuralPath board call — if the macro environment shifts, we may need to argue for moving even faster.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "I'll prepare a brief macro scenario analysis for the NeuralPath board discussion — two slides covering the base case where rates hold steady and the risk case where hawkish guidance triggers a 10-15% pullback in AI multiples. That gives the board context for why timing matters.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Great idea. That kind of macro framing always resonates with board members. It shows we're not just thinking about the deal in isolation but positioning it within the broader market context. Let's make sure we include that in the board prep materials.",
+        isMe: false,
+      },
+      {
+        speaker: "Kevin Walsh",
+        text: "Alright, now we're definitely done. Good standup — lots of momentum across the board. Let's keep the energy up this week and close strong. See everyone Thursday.",
         isMe: false,
       },
     ],
@@ -1022,6 +1797,142 @@ export const meetings: Meeting[] = [
       {
         speaker: "Sarah Mitchell",
         text: "Perfect. So the plan is — onboarding guides go out this week, training sessions next week, pilot officially live through March 31, and decision checkpoint on March 21. I'll send a summary email to everyone after this call. Let's make this a success.",
+        isMe: false,
+      },
+      // Expanded entries below
+      {
+        speaker: "David Park",
+        text: "One thing we should discuss is how we handle feedback collection during the pilot. Do we want a formal weekly survey, or should we rely on the team champions to gather qualitative feedback?",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "I'd suggest a lightweight approach — a three-question pulse survey at the end of each week, plus an open feedback channel like a dedicated Slack channel where people can share thoughts in real time. We don't want to over-survey people and create friction.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I can set up the Slack channel today. I'll call it something straightforward like sentra-pilot-feedback. The team champions can help moderate it and surface the most common themes for our Monday dashboard reviews.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "On the technical setup — I want to make sure everyone understands the authentication flow. Users will authenticate through our existing Okta SSO, which means no additional passwords to manage. The initial setup requires a one-time calendar permission grant, and then Sentra will automatically detect and offer to capture eligible meetings.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "Michael, can you confirm that the Okta integration supports our multi-factor authentication requirements? Every application that touches sensitive data needs to go through our MFA flow, not just primary authentication.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "Yes, confirmed. Sentra supports SAML-based SSO with MFA enforcement. When users authenticate through Okta, they go through the same MFA challenge they use for every other internal application. There's no way to bypass it.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "What about mobile access? Some of our bankers take calls from their phones, especially when they're traveling. Does the Sentra mobile app have the same security controls as the desktop version?",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "The mobile app is available on iOS and Android, and it uses the same Okta SSO and MFA flow. However, I'd recommend we restrict the pilot to desktop only for the first two weeks. The mobile app has some known limitations around meeting capture quality when using cellular connections, and I don't want poor mobile experiences to skew our pilot data.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That's a pragmatic approach. Let's get the desktop experience dialed in first and then evaluate mobile in the second half of the pilot. Sarah, make sure the onboarding guide specifies desktop-only for the initial phase.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Will do. I'll also include a FAQ section addressing the most common questions I've gotten during the early adopter phase — things like how to exclude certain meetings, how to edit transcripts, and how to share meeting summaries with people who weren't on the call.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "On the sharing point — I want to be very specific about the sharing permissions during the pilot. Meeting summaries should only be shareable within the pilot group, not to external recipients or even internal users who aren't part of the pilot. We need a clear boundary until the full compliance review is done.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Priya, is that something we can enforce at the platform level, or does it need to be a policy-based control? If Sentra can restrict sharing to specific user groups, that's much more reliable than relying on people reading the policy.",
+        isMe: true,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "Sentra has workspace-level sharing controls. I can configure it so that meeting content can only be shared within the pilot workspace. External sharing and sharing with non-pilot users will be disabled at the platform level. It's a toggle in the admin console.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "That's exactly what I need. Michael, please make sure that's configured before any users get access. And document the configuration for our compliance audit trail. I'll want to verify it independently as part of my governance review.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Let's also talk about what happens after the pilot. If the March 21 checkpoint goes well and we recommend expansion, what's the timeline for getting from 60 to 150 seats? Is it a flip-the-switch situation or does it require a new procurement cycle?",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "It's somewhere in between. Sentra can provision the additional seats within 24 hours on their side. But on our end, we need budget approval, a contract amendment, and IT Security sign-off. Realistically, I'd estimate 3-4 weeks from the go decision to full deployment.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "That timeline means we should start the budget approval process in parallel with the pilot evaluation, not sequentially. Sarah, can you prepare a preliminary budget request that we can have ready to submit as soon as we make the go decision? That would save us at least a week.",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Smart thinking. I'll prepare the budget paperwork this week so it's ready to go. I'll leave the recommendation section blank until we have the March 21 data, but everything else — the pricing breakdown, vendor comparison, and business justification — can be drafted in advance.",
+        isMe: false,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "I should also mention that Sentra's enterprise team offered to do a custom demo for any stakeholders who want to see the product before the evaluation committee meeting. If there are decision-makers who haven't seen it in action, that could be a useful touchpoint.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "That's a good idea. The TMT group head — who's the budget holder — hasn't seen a live demo yet. He's been reviewing the pilot data reports but hasn't used the product himself. A tailored demo showing how his team uses it could make the budget conversation much easier.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Let's schedule that demo for the week of March 17, right before the evaluation checkpoint. We want it fresh in his mind when we present the recommendation. Sarah, can you coordinate with Sentra's account team to set that up?",
+        isMe: true,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "I'll reach out to their account executive today. I'll ask them to tailor the demo around the TMT use case specifically — deal review meetings, client follow-ups, and the organizational memory feature that shows how knowledge compounds across conversations.",
+        isMe: false,
+      },
+      {
+        speaker: "Priya Gupta",
+        text: "I'd like to attend that demo as well. I want to see firsthand how they handle data access controls and the audit logging interface. It'll help me complete my governance review more efficiently than working from documentation alone.",
+        isMe: false,
+      },
+      {
+        speaker: "David Park",
+        text: "Good. So we have a solid plan — pilot launch this week, training next week, weekly dashboard reviews starting the Monday after, feedback channel active from day one, and the executive demo and evaluation checkpoint both targeting the week of March 17. This is well organized.",
+        isMe: false,
+      },
+      {
+        speaker: "Justin Cheng",
+        text: "Agreed. Everyone knows their responsibilities. The key thing is to keep the communication tight — any issues that come up during the pilot should be flagged immediately, not saved for the Monday review. If something goes wrong with the first batch of users, we want to fix it before the rest of the teams onboard. Alright, great kickoff. Let's go make this happen.",
+        isMe: true,
+      },
+      {
+        speaker: "Michael Chen",
+        text: "One final item — I'll send the Sentra admin credentials to Sarah and David after this call so you both have visibility into the usage analytics dashboard directly. That way you don't have to wait for me to pull reports. I'll also set up automated weekly summary emails from the dashboard to this group.",
+        isMe: false,
+      },
+      {
+        speaker: "Sarah Mitchell",
+        text: "Perfect. I'll have the onboarding guides, Slack channel, and training session invites all set up by end of day tomorrow. Let's touch base briefly on Wednesday to make sure everything is on track before the first training session on Thursday. Thanks everyone.",
         isMe: false,
       },
     ],

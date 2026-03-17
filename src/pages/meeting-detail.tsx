@@ -476,7 +476,7 @@ const MeetingDetailPage = () => {
                   View your to-do's
                 </Link>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-[3px]">
                 {meeting.actionItems.map((item) => {
                   const isMeridianModelItem = item.id === MERIDIAN_MODEL_ID;
                   const isMcgiMemoItem = item.id === MCGI_MEMO_ID;
@@ -485,21 +485,21 @@ const MeetingDetailPage = () => {
                   const isSpreadsheetItem = item.id === SPREADSHEET_ID;
                   const isSpreadsheetActive =
                     isSpreadsheetItem && spreadsheetPhase !== "idle";
+                  const isChecked =
+                    checkedItems.has(item.id) ||
+                    (isSpreadsheetItem && spreadsheetPhase === "done");
 
                   return (
                     <div key={item.id}>
                       <div
                         className={cn(
-                          "flex items-start gap-3 p-3 rounded-lg",
+                          "flex items-center gap-4 py-2",
                           (isDeepResearchItem ||
                             (isSpreadsheetItem &&
                               spreadsheetPhase === "idle")) &&
-                            "hover:bg-[var(--bg-component-hover)] cursor-pointer",
-                          !isSpreadsheetItem &&
-                            !isDeepResearchItem &&
-                            "hover:bg-[var(--bg-component-hover)]",
+                            "cursor-pointer",
                           isSpreadsheetActive &&
-                            "bg-[var(--bg-subtle)] rounded-b-none",
+                            "bg-[var(--bg-subtle)] rounded-t-lg px-3",
                         )}
                         onClick={
                           isDeepResearchItem
@@ -538,16 +538,13 @@ const MeetingDetailPage = () => {
                             }
                           }}
                           className={cn(
-                            "w-5 h-5 rounded border-2 mt-0.5 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
-                            checkedItems.has(item.id) ||
-                              (isSpreadsheetItem && spreadsheetPhase === "done")
+                            "w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
+                            isChecked
                               ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
-                              : "border-[var(--border-subtle)]",
+                              : "border-[var(--border-subtle)] hover:border-[var(--fg-muted)]",
                           )}
                         >
-                          {(checkedItems.has(item.id) ||
-                            (isSpreadsheetItem &&
-                              spreadsheetPhase === "done")) && (
+                          {isChecked && (
                             <svg
                               width="10"
                               height="8"
@@ -564,11 +561,25 @@ const MeetingDetailPage = () => {
                             </svg>
                           )}
                         </button>
-                        <div>
-                          <span className="text-sm text-[var(--fg-base)]">
+                        <div className="flex-1 min-w-0">
+                          <p
+                            className={cn(
+                              "text-sm",
+                              isChecked
+                                ? "line-through text-[var(--fg-disabled)]"
+                                : "text-[var(--fg-base)]",
+                            )}
+                          >
                             {item.title}
-                          </span>
-                          <p className="text-sm text-[var(--fg-muted)] mt-0.5">
+                          </p>
+                          <p
+                            className={cn(
+                              "text-sm mt-0.5",
+                              isChecked
+                                ? "text-[var(--fg-disabled)]"
+                                : "text-[var(--fg-muted)]",
+                            )}
+                          >
                             {item.description}
                           </p>
                         </div>
@@ -579,7 +590,7 @@ const MeetingDetailPage = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-4 overflow-hidden"
+                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-3 overflow-hidden"
                         >
                           <SpreadsheetLoader
                             steps={SPREADSHEET_SCAN_STEPS}
@@ -593,7 +604,7 @@ const MeetingDetailPage = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-4 overflow-hidden"
+                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-3 overflow-hidden"
                         >
                           <SpreadsheetDone />
                         </motion.div>
@@ -613,12 +624,12 @@ const MeetingDetailPage = () => {
           <div className="relative mb-6">
             <Search
               size={16}
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
             />
             <input
               type="text"
               placeholder="Search transcript..."
-              className="w-full h-10 pl-10 pr-4 rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)]"
+              className="w-full pl-9 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
             />
           </div>
           <div className="space-y-6">

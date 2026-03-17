@@ -159,4 +159,214 @@ export const transcriptEntries = [
     text: "Perfect. Alright, I think we're aligned. Let's reconvene Thursday for a quick check-in on all the SXSW deliverables. Good session everyone.",
     isMe: true,
   },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Actually, before we break -- one more thing I want to cover. The demo data seeding. Andrey, when you sanitize the names, can we also make sure we have a realistic org chart populated? The relationship graph is one of our strongest differentiators and it needs to look rich.",
+    isMe: false,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "Yeah, I was thinking about that. I'll create a fictional company -- maybe a Series B fintech with about 80 employees -- and seed in cross-functional meetings, Slack threads, and a few email chains. That way the graph has enough nodes to look impressive without being overwhelming.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Love that. Can we make sure the demo company has a few obvious organizational silos? That way we can show how Sentra surfaces misalignment between teams. That's the story that resonates most with ops leaders.",
+    isMe: true,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "Totally. I'll set up a product team and a sales team that are clearly talking past each other on roadmap priorities. Classic scenario.",
+    isMe: false,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "That's actually a great angle for the press conversations too. The silo-breaking narrative is more concrete than just saying organizational intelligence. I can build the press talking points around that.",
+    isMe: false,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Good. Let's make that our primary narrative thread. Kristina, can you draft a one-pager with the core messaging by Tuesday? I want to make sure everyone at the booth is telling the same story.",
+    isMe: false,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "On it. I'll also put together a quick FAQ sheet for the booth team -- common objections, competitor comparisons, pricing questions. The usual stuff people ask at these events.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Speaking of competitors -- do we know if Fireflies or Otter are going to have a presence at SXSW? We should be ready to differentiate clearly.",
+    isMe: true,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Fireflies won't be there from what I've heard. Otter might have a small presence but they're focused on the accessibility angle, not org intelligence. Our real concern is Avoma and potentially Gong if they decide to show up in the startup track.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Got it. The key differentiator is that we're not just a meeting tool. We connect meetings, Slack, docs -- the full communication surface. Nobody else is doing the cross-platform relationship graph.",
+    isMe: true,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "One thing that could help with differentiation -- I've been working on the multi-source correlation feature. If I can get it stable by SXSW, we could show a Slack thread and a meeting discussing the same topic, and Sentra automatically linking them. That would be a wow moment.",
+    isMe: false,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "I'd say 70% confident on the timeline. The matching algorithm works, but the UI for displaying the connections needs polish. I'd rather show it working cleanly on two sources than have it half-baked across four.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Agree with that approach. A polished demo of two sources beats a buggy demo of four every time. Let's scope it to meetings plus Slack for SXSW and tease the broader vision verbally.",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "On the booth design -- I got the mockups back from the designer. It's clean, mostly white with the teal accent. We have a 42-inch monitor for the live demo and a smaller screen for the looping product video. Total booth cost is coming in around $8,200, which is under budget.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Did we also set up the lead capture system? I don't want to be collecting business cards and manually entering them into HubSpot again.",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "Yes, I set up a QR code that drops people into a short Typeform. Name, email, company, role, and one question about their biggest communication pain point. It auto-syncs to HubSpot with a SXSW source tag.",
+    isMe: false,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Nice. Let's also talk about who we want to actively seek out at the event. I've been looking at the attendee list and there are a few people I think we should try to get face time with.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Who are you thinking?",
+    isMe: true,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Sarah Chen from a]16z is attending -- she's been looking at the productivity space. Also, there's a VP of Ops from Stripe named Marcus Williams who I think would be a perfect design partner. And I heard the Notion team is sending a few product people.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "The Stripe connection is interesting. Enterprise ops teams are exactly our ICP. I can reach out to Marcus on LinkedIn before the event to set up a coffee meeting. Kristina, can you see if we can get an intro to Sarah through our existing investor network?",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "I'll check with our angels. I think David might know someone at a16z who can make that intro. I'll send the email today.",
+    isMe: false,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "While we're talking about the demo environment -- what's our fallback if the wifi at the venue is bad? Last conference I went to, the internet was completely unusable during peak hours.",
+    isMe: false,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "I can set up an offline mode that runs against a local cache. The live data won't update, but the demo flow will still work. It'll take about two days of engineering time. I can also bring a mobile hotspot as a backup for connectivity.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Definitely do the offline mode. And yes to the hotspot. Let's not leave anything to chance. We only get one shot at first impressions with these press contacts.",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "On that note -- I want to do a full dry run of the booth setup and demo flow the day before. Can everyone be available on March 7th for that? We fly in the morning of the 7th, set up in the afternoon, and do a complete rehearsal.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Works for me. I'll have the demo script fully memorized by then. Two versions -- a 90-second elevator pitch and a five-minute deep dive.",
+    isMe: true,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Let's talk budget quickly. Kristina, can you give us the full breakdown of what we're spending on SXSW?",
+    isMe: false,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "Sure. Booth space was $4,500. Booth design and fabrication is $8,200. Swag is $1,400. Travel and hotels for four people is about $6,800. Press dinner we're hosting on night one is budgeted at $2,000. Miscellaneous -- Uber, printing, last-minute stuff -- I've set aside $1,500. Total is around $24,400.",
+    isMe: false,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "That's within the $25K we allocated. Let's try to keep the miscellaneous spending tight. If we need to go over, I'd rather put extra dollars toward a second press dinner or a targeted happy hour with the people we want to meet.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Actually, the happy hour idea is good. We could host a small invite-only event -- maybe 15 to 20 people -- ops leaders and a few investors. More intimate than the booth. Kristina, is that feasible to pull together in two weeks?",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "It's tight but doable. I know a bar near the convention center that does private events. I can get a quote today and put together an invite list by tomorrow. We'd probably need another $1,500 to $2,000 for the venue and drinks.",
+    isMe: false,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "Let's do it. I'll approve the extra spend. The ROI on a targeted event like that is way higher than handing out more stickers. Justin, can you draft the invite copy?",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Will do. I'll frame it as an exclusive preview of what we're building, not a sales pitch. Something like 'The Future of Organizational Intelligence -- an intimate conversation hosted by Sentra.' Keep it classy.",
+    isMe: true,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Andrey, can you also prepare a shorter, more visual demo for the happy hour? Something laptop-friendly, maybe three minutes. Less formal, more show-and-tell.",
+    isMe: true,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "One last thing on product positioning. I've been refining how we talk about Sentra and I want to pressure-test it with this group. The line I keep coming back to is: Sentra is the organizational memory layer. Every conversation, decision, and commitment across your company -- captured, connected, and made actionable.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "I like 'organizational memory layer.' It's more tangible than 'organizational intelligence.' My only concern is that 'memory' might make people think we're just a recording tool. We need to emphasize the 'connected and actionable' part.",
+    isMe: true,
+  },
+  {
+    speaker: "Kristina Beaman",
+    text: "What if we lead with the pain point instead? Something like: 'Your team makes hundreds of decisions a week. Sentra makes sure none of them fall through the cracks.' Then we explain the memory layer as the how.",
+    isMe: false,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "That's strong. Let's use Kristina's framing as the opening hook and the memory layer as the product explanation. Andrey, one more thing -- let's include the Slack integration in the demo. It's too important to the cross-platform story. If it's a resource issue, pull someone off the reporting dashboard. SXSW is the priority.",
+    isMe: false,
+  },
+  {
+    speaker: "Andrey Starenky",
+    text: "Understood. I'll restructure the sprint tomorrow to make that work.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Alright. So to recap -- Andrey is on the dedicated demo environment, seed data with the fictional fintech company, offline fallback mode, and scoping Slack integration into the demo. Kristina is handling booth logistics, press outreach, messaging one-pager, happy hour venue, and the target attendee intros. I've got the demo script, nurture sequence, invite copy for the happy hour, and the GTM slides for the board deck. Ashwin reviews the technical walkthrough and handles board deck product sections.",
+    isMe: true,
+  },
+  {
+    speaker: "Ashwin Gopinath",
+    text: "That's a clean breakdown. Thursday check-in at 10 AM. Kristina, send a shared doc after this with all the action items and deadlines. Let's make this launch count.",
+    isMe: false,
+  },
+  {
+    speaker: "Justin Cheng",
+    text: "Thanks everyone. Let's crush it.",
+    isMe: true,
+  },
 ];
