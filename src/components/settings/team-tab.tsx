@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
-import { cn } from "@lib/utils";
+import { cn, getAvatarColor } from "@lib/utils";
 import { workspaceMembers, type WorkspaceMember } from "@/data/mock-settings";
 import { DropdownMenu } from "@components/ui/dropdown-menu";
 
@@ -42,7 +42,7 @@ export function TeamTab() {
           <div key={member.id} className="flex items-center py-3.5 gap-3">
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center text-2xs font-medium text-white shrink-0"
-              style={{ backgroundColor: member.avatarColor }}
+              style={{ backgroundColor: getAvatarColor(member.name) }}
             >
               {member.initials}
             </div>

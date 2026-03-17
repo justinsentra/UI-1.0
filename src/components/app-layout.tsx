@@ -103,7 +103,7 @@ const TopBar = () => {
           : 12,
       }}
     >
-      <SidebarTrigger className="shrink-0 text-disabled-foreground hover:text-muted-foreground" />
+      <SidebarTrigger className="shrink-0 text-disabled-foreground hover:text-muted-foreground cursor-pointer" />
       {backNav && (
         <button
           type="button"
