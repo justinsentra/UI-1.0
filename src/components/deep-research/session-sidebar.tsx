@@ -29,7 +29,7 @@ const SessionSidebar = ({
   const dateOrder = [...new Set(sessionHistory.map((s) => s.date))];
 
   return (
-    <aside className="flex flex-col w-[220px] min-w-[220px] h-full border-r border-[var(--border-subtle)] bg-[var(--bg-shell)]">
+    <aside className="flex flex-col h-full bg-[var(--bg-shell)]">
       <div className="flex items-center justify-between px-4 pt-6 pb-3">
         <span className="text-sm font-medium text-[var(--fg-base)]">
           History

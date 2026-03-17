@@ -4,9 +4,9 @@ import { Search, ChevronDown } from "lucide-react";
 import { cn, getInitials, getAvatarColor } from "@lib/utils";
 import { formatInteractionDate } from "@/lib/date-utils";
 import { sortByDate } from "@/lib/sort-utils";
-import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaConnections } from "@/data/content-resolver";
+import PageShell from "@/components/ui/page-shell";
 
 const tabs = ["People", "Companies"] as const;
 type Tab = (typeof tabs)[number];
@@ -41,32 +41,25 @@ const ConnectionsPage = () => {
   }, [search, companiesSortDir, companies]);
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8">
+    <PageShell>
       {/* Fixed top-right controls — segmented tabs */}
       <div className="fixed top-[12px] right-[20px] z-30 flex items-center gap-1">
         <div className="rounded-[8px] p-[2px]">
-          <AnimatedBackground
-            defaultValue={activeTab}
-            onValueChange={(id) => {
-              if (id) setActiveTab(id as Tab);
-            }}
-            className="rounded-md bg-[var(--bg-selected)]"
-            transition={{
-              ease: "easeInOut",
-              duration: 0.2,
-            }}
-          >
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                data-id={tab}
-                type="button"
-                className="inline-flex items-center justify-center px-3 py-1 text-2xs font-medium text-[var(--fg-muted)] transition-transform active:scale-[0.98] border-none cursor-pointer bg-transparent data-[checked=true]:text-[var(--fg-base)]"
-              >
-                {tab}
-              </button>
-            ))}
-          </AnimatedBackground>
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              onClick={() => setActiveTab(tab)}
+              className={cn(
+                "inline-flex items-center justify-center px-3 py-1 text-2xs font-medium border-none cursor-pointer rounded-md",
+                activeTab === tab
+                  ? "bg-[var(--bg-selected)] text-[var(--fg-base)]"
+                  : "bg-transparent text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
+              )}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -87,7 +80,7 @@ const ConnectionsPage = () => {
           placeholder="Search connections"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="h-9 pl-9 pr-4 w-full rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)]"
+          className="w-full pl-9 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
         />
       </div>
 
@@ -118,7 +111,7 @@ const ConnectionsPage = () => {
               <Link
                 key={p.id}
                 to={`/connection-detail?id=${p.id}`}
-                className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-3.5 items-center hover:bg-[var(--bg-component-hover)] rounded-lg transition-colors no-underline"
+                className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-3.5 items-center hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -174,7 +167,7 @@ const ConnectionsPage = () => {
             {filteredCompanies.map((c) => (
               <div
                 key={c.id}
-                className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-3.5 items-center hover:bg-[var(--bg-component-hover)] rounded-lg transition-colors"
+                className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-3.5 items-center hover:bg-[var(--bg-component-hover)] transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <img
@@ -208,7 +201,7 @@ const ConnectionsPage = () => {
           </div>
         </div>
       )}
-    </div>
+    </PageShell>
   );
 };
 

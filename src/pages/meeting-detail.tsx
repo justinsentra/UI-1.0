@@ -21,11 +21,14 @@ import {
 import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";
 import { usePageLabel } from "../components/app-layout";
+import PageShell from "@/components/ui/page-shell";
 import { AttendeeDropdown } from "@/components/meetings/attendee-dropdown";
 import { MeetingTagDropdown } from "@/components/meetings/meeting-tag-dropdown";
 import { CreateTagModal } from "@/components/meetings/create-tag-modal";
 import { ShareModal } from "@/components/meetings/share-modal";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaMeetings } from "@/data/content-resolver";
 import { TextShimmerLoader } from "@/components/ui/loader";
@@ -210,6 +213,13 @@ const MeetingDetailPage = () => {
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [spreadsheetPhase, setSpreadsheetPhase] =
     useState<SpreadsheetPhase>("idle");
+  const [chatWidth, setChatWidth] = useState(380);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: showChatSidebar,
+    width: chatWidth,
+  });
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 });
@@ -267,11 +277,12 @@ const MeetingDetailPage = () => {
   usePageLabel(meeting.title);
 
   return (
-    <div className="max-w-[740px] mx-auto px-8 pt-[72px] pb-[40vh] relative min-h-screen">
+    <div className="flex overflow-hidden h-full">
+    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+    <PageShell className="relative pb-[40vh]">
       {/* Top-right action buttons */}
       <div
-        className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: showChatSidebar ? 396 : 20 }}
+        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
         <button
           type="button"
@@ -697,11 +708,15 @@ const MeetingDetailPage = () => {
         onClose={() => setShowShareModal(false)}
         meetingId={meetingId}
       />
+    </PageShell>
+    </div>
+    <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar
         isOpen={showChatSidebar}
         onClose={() => setShowChatSidebar(false)}
         suggestedQuestions={meetingSuggestions}
       />
+    </RightSidebarProvider>
     </div>
   );
 };

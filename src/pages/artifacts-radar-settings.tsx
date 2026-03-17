@@ -6,6 +6,7 @@ import { useReportsStore } from "@/stores/reports-store";
 import { DeliverabilitySection } from "@components/artifacts/deliverability-section";
 import { RightPanel } from "@components/panels/right-panel";
 import { activeRadars, defaultRadarOptions } from "@/data/mock-reports";
+import PageShell from "@/components/ui/page-shell";
 
 export default function ArtifactsRadarSettings() {
   usePageLabel("Radar Settings");
@@ -79,7 +80,7 @@ export default function ArtifactsRadarSettings() {
   };
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-16">
+    <PageShell>
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
@@ -88,7 +89,7 @@ export default function ArtifactsRadarSettings() {
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="bg-[var(--fg-base)] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 border-none cursor-pointer hover:bg-[var(--color-gray-700)] transition-colors"
+          className="bg-[var(--fg-base)] text-[var(--bg-base)] px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 border-none cursor-pointer hover:opacity-90 transition-opacity"
         >
           <Plus size={14} />
           Create Radar
@@ -212,7 +213,7 @@ export default function ArtifactsRadarSettings() {
             <button
               type="button"
               onClick={handleSaveCreate}
-              className="w-full bg-[var(--fg-base)] text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-[var(--color-gray-700)] transition-colors"
+              className="w-full bg-[var(--fg-base)] text-[var(--bg-base)] py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-[var(--color-gray-700)] transition-colors"
             >
               Save Changes
             </button>
@@ -254,13 +255,13 @@ export default function ArtifactsRadarSettings() {
             <button
               type="button"
               onClick={handleSaveDetail}
-              className="w-full bg-[var(--fg-base)] text-white py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-[var(--color-gray-700)] transition-colors"
+              className="w-full bg-[var(--fg-base)] text-[var(--bg-base)] py-2.5 rounded-lg text-sm font-medium border-none cursor-pointer hover:bg-[var(--color-gray-700)] transition-colors"
             >
               Save Changes
             </button>
           </div>
         </RightPanel>
       )}
-    </div>
+    </PageShell>
   );
 }

@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@lib/utils";
 import { useUIStore } from "@/stores/ui-store";
 import { Switch } from "@components/ui/switch";
+import PageShell from "@/components/ui/page-shell";
 
 const leadTimeOptions = [
   "30 min",
@@ -302,7 +303,7 @@ const MeetingSettingsPage = () => {
   ]);
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-16">
+    <PageShell>
       <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-8">
         Meeting Settings
       </h1>
@@ -402,7 +403,7 @@ const MeetingSettingsPage = () => {
         <button
           type="button"
           onClick={() => addToast("success", "Preferences saved")}
-          className="h-9 px-4 rounded-lg bg-[var(--fg-base)] text-white text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
+          className="h-9 px-4 rounded-lg bg-[var(--fg-base)] text-[var(--bg-base)] text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
         >
           Save Preferences
         </button>
@@ -413,12 +414,12 @@ const MeetingSettingsPage = () => {
         <button
           type="button"
           onClick={handleContinue}
-          className="h-10 px-6 rounded-lg bg-[var(--fg-base)] text-white text-base font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
+          className="h-10 px-6 rounded-lg bg-[var(--fg-base)] text-[var(--bg-base)] text-base font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
         >
           Continue
         </button>
       </div>
-    </div>
+    </PageShell>
   );
 };
 

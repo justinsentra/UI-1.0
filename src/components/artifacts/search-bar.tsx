@@ -15,11 +15,11 @@ export function ArtifactsSearchBar() {
   };
 
   return (
-    <div className="flex items-center justify-between gap-2 mb-4">
-      <div className="relative max-w-[360px] flex-1">
+    <div className="flex items-center justify-between gap-2 mb-6">
+      <div className="relative flex-1">
         <Search
-          size={15}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
+          size={16}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-disabled-foreground"
         />
         <input
           type="text"
@@ -28,17 +28,14 @@ export function ArtifactsSearchBar() {
           placeholder={
             activeTab === "reports" ? "Search reports..." : "Search radars..."
           }
-          className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--bg-subtle)] rounded-lg border border-transparent focus:border-[var(--border-base)] outline-none placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] transition-colors"
+          className="w-full h-9 pl-9 pr-4 rounded-lg border border-transparent focus:border-border bg-secondary-hover text-sm placeholder:text-disabled-foreground text-foreground outline-none transition-colors"
         />
       </div>
       <div className="flex items-center gap-1.5">
-        <span className="text-xs text-[var(--fg-disabled)] whitespace-nowrap">
-          Sort by:
-        </span>
         <button
           type="button"
           onClick={toggleViewMode}
-          className="px-3 py-1.5 rounded-full text-xs font-medium text-[var(--fg-muted)] bg-[var(--bg-subtle)] hover:bg-[var(--bg-component-hover)] hover:text-[var(--fg-base)] transition-colors border-none cursor-pointer whitespace-nowrap"
+          className="h-9 px-3 rounded-lg text-xs font-medium text-muted-foreground bg-secondary-hover border border-border hover:text-foreground transition-colors cursor-pointer whitespace-nowrap"
         >
           {VIEW_MODE_LABELS[viewMode]}
         </button>

@@ -186,7 +186,7 @@ export function EmailComposer({ label, onCancel, onSend }: EmailComposerProps) {
         <button
           type="button"
           onClick={onSend}
-          className="px-4 py-1.5 rounded-full bg-[var(--fg-base)] text-white text-xs font-medium border-none cursor-pointer hover:opacity-90 transition-opacity"
+          className="px-4 py-1.5 rounded-full bg-[var(--fg-base)] text-[var(--bg-base)] text-xs font-medium border-none cursor-pointer hover:opacity-90 transition-opacity"
         >
           Send
         </button>

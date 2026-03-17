@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, Plus, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
-import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { useMeetingsStore } from "@/stores/meetings-store";
 import type { CommitmentItem } from "../data/mock-commitments";
+import PageShell from "@/components/ui/page-shell";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaCommitments } from "@/data/content-resolver";
 
@@ -27,7 +29,14 @@ const CommitmentsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [newCommitmentText, setNewCommitmentText] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [chatWidth, setChatWidth] = useState(380);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: showChat,
+    width: chatWidth,
+  });
   const setSelectedMeeting = useMeetingsStore((s) => s.setSelectedMeeting);
 
   useEffect(() => {
@@ -68,11 +77,12 @@ const CommitmentsPage = () => {
   };
 
   return (
-    <>
+    <div className="flex overflow-hidden h-full">
+    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+    <div className="relative">
       {/* Fixed top-right action bar */}
       <div
-        className="fixed top-[12px] z-30 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: showChat ? 396 : 20 }}
+        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
         <button
           type="button"
@@ -93,32 +103,25 @@ const CommitmentsPage = () => {
         </button>
 
         <div className="rounded-[8px] p-[2px]">
-          <AnimatedBackground
-            defaultValue={filter}
-            onValueChange={(id) => {
-              if (id) setFilter(id as Filter);
-            }}
-            className="rounded-md bg-[var(--bg-selected)]"
-            transition={{
-              ease: "easeInOut",
-              duration: 0.2,
-            }}
-          >
-            {filters.map((f) => (
-              <button
-                key={f}
-                data-id={f}
-                type="button"
-                className="inline-flex items-center justify-center px-3 font-medium text-[var(--fg-muted)] transition-transform active:scale-[0.98] border-none cursor-pointer bg-transparent data-[checked=true]:text-[var(--fg-base)]"
-                style={{
-                  height: "var(--toolbar-btn-size)",
-                  fontSize: "var(--toolbar-font-size)",
-                }}
-              >
-                {f}
-              </button>
-            ))}
-          </AnimatedBackground>
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              className={cn(
+                "inline-flex items-center justify-center px-3 font-medium border-none cursor-pointer rounded-md",
+                filter === f
+                  ? "bg-[var(--bg-selected)] text-[var(--fg-base)]"
+                  : "bg-transparent text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
+              )}
+              style={{
+                height: "var(--toolbar-btn-size)",
+                fontSize: "var(--toolbar-font-size)",
+              }}
+            >
+              {f}
+            </button>
+          ))}
         </div>
 
         <button
@@ -144,7 +147,7 @@ const CommitmentsPage = () => {
         </button>
       </div>
 
-      <div className="max-w-[740px] mx-auto pt-[56px] px-8">
+      <PageShell>
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-normal tracking-tight text-[var(--fg-base)]">
@@ -157,7 +160,7 @@ const CommitmentsPage = () => {
           {filtered.map((c) => (
             <div
               key={c.id}
-              className="flex items-center gap-4 px-5 py-4 bg-background border border-[var(--border-base)] rounded-xl"
+              className="flex items-center gap-4 py-2"
             >
               <button
                 onClick={() => toggleItem(c.id)}
@@ -229,7 +232,6 @@ const CommitmentsPage = () => {
             </div>
           ))}
         </div>
-      </div>
 
       {/* Add Commitment Modal */}
       <AnimatePresence>
@@ -274,7 +276,7 @@ const CommitmentsPage = () => {
                   className={cn(
                     "px-4 py-2 rounded-lg text-sm font-medium border-none transition-colors cursor-pointer",
                     newCommitmentText.trim()
-                      ? "bg-[var(--fg-base)] text-white hover:bg-[var(--fg-base)]"
+                      ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:bg-[var(--fg-base)]"
                       : "bg-[var(--border-base)] text-[var(--fg-disabled)] cursor-not-allowed",
                   )}
                 >
@@ -286,9 +288,13 @@ const CommitmentsPage = () => {
         )}
       </AnimatePresence>
 
-      {/* Deep Research Chat Sidebar */}
+    </PageShell>
+    </div>
+    </div>
+    <RightSidebarProvider open={showChat} onOpenChange={setShowChat} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar isOpen={showChat} onClose={() => setShowChat(false)} />
-    </>
+    </RightSidebarProvider>
+    </div>
   );
 };
 

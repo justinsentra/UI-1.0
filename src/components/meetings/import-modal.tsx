@@ -225,7 +225,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
             className={cn(
               "h-9 px-4 rounded-lg flex items-center gap-1.5 text-sm font-medium transition-all active:scale-[0.98]",
               format
-                ? "bg-[var(--fg-base)] text-white hover:opacity-90"
+                ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:opacity-90"
                 : "bg-[var(--border-base)] text-[var(--fg-disabled)] cursor-not-allowed",
             )}
           >

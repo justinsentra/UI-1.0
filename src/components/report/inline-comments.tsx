@@ -95,7 +95,7 @@ export function InlineCommentPopup({
           className={cn(
             "px-3 py-1 rounded-full text-2xs font-medium border-none cursor-pointer transition-opacity",
             text.trim()
-              ? "bg-[var(--fg-base)] text-white hover:opacity-90"
+              ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:opacity-90"
               : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
           )}
         >

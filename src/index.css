@@ -80,6 +80,14 @@ body {
   --animate-blink: blink 1s step-end infinite;
   --animate-text-blink: text-blink 2s ease-in-out infinite;
   --animate-loading-dots: loading-dots 1.4s infinite;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
 }
 
 @keyframes slideInRight {
@@ -235,4 +243,26 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+:root {
+  --sidebar: var(--bg-subtle);
+  --sidebar-foreground: var(--fg-base);
+  --sidebar-primary: var(--fg-base);
+  --sidebar-primary-foreground: var(--fg-on-color);
+  --sidebar-accent: var(--bg-component-hover);
+  --sidebar-accent-foreground: var(--fg-base);
+  --sidebar-border: var(--border-subtle);
+  --sidebar-ring: var(--border-base);
+}
+
+.dark {
+  --sidebar: var(--bg-subtle);
+  --sidebar-foreground: var(--fg-base);
+  --sidebar-primary: var(--fg-base);
+  --sidebar-primary-foreground: var(--fg-on-color);
+  --sidebar-accent: var(--bg-component-hover);
+  --sidebar-accent-foreground: var(--fg-base);
+  --sidebar-border: var(--border-subtle);
+  --sidebar-ring: var(--border-base);
 }

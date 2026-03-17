@@ -3,7 +3,10 @@ import { cn } from "@lib/utils";
 import { motion } from "motion/react";
 import { Users, Clock, MessageSquare, ArrowUpRight } from "lucide-react";
 import { usePageLabel } from "../components/app-layout";
+import PageShell from "@/components/ui/page-shell";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaHome } from "@/data/content-resolver";
 import { getSourceIcon } from "@/icons/source-icons";
@@ -83,6 +86,13 @@ function getBriefSuggestions(meetingTitle: string): string[] {
 const PreMeetingBriefPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>("Context");
   const [showChatSidebar, setShowChatSidebar] = useState(false);
+  const [chatWidth, setChatWidth] = useState(380);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: showChatSidebar,
+    width: chatWidth,
+  });
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 });
@@ -114,11 +124,12 @@ const PreMeetingBriefPage = () => {
   usePageLabel(brief.meetingTitle);
 
   return (
-    <div className="max-w-[740px] mx-auto px-8 pt-[72px] pb-[40vh] relative min-h-screen">
+    <div className="flex overflow-hidden h-full">
+    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+    <PageShell className="relative pb-[40vh]">
       {/* Top-right action buttons — identical to meeting-detail */}
       <div
-        className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: showChatSidebar ? 396 : 20 }}
+        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
         <button
           type="button"
@@ -198,11 +209,15 @@ const PreMeetingBriefPage = () => {
         </div>
       )}
 
+    </PageShell>
+    </div>
+    <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar
         isOpen={showChatSidebar}
         onClose={() => setShowChatSidebar(false)}
         suggestedQuestions={chatSuggestions}
       />
+    </RightSidebarProvider>
     </div>
   );
 };

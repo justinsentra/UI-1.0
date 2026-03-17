@@ -49,7 +49,7 @@ const HomePage = () => {
   const visibleArtifacts = artifactsToReview.slice(0, 3);
 
   return (
-    <div className="bg-[var(--bg-page)] pt-[56px] px-8 min-h-screen flex flex-col">
+    <div className="bg-[var(--bg-base)] pt-[56px] px-8 min-h-screen flex flex-col">
       <div className="max-w-[740px] w-full mx-auto flex flex-col flex-1 justify-center py-10">
         {/* ── Greeting ── */}
         <section className="flex flex-col items-center pb-6">

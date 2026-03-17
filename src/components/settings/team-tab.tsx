@@ -5,9 +5,9 @@ import { workspaceMembers, type WorkspaceMember } from "@/data/mock-settings";
 import { DropdownMenu } from "@components/ui/dropdown-menu";
 
 const roleBadgeStyles: Record<WorkspaceMember["role"], string> = {
-  Admin: "bg-[var(--fg-base)] text-white",
-  Member: "bg-[var(--border-base)] text-[var(--fg-base)]",
-  Viewer: "bg-[var(--bg-component-hover)] text-[var(--fg-muted)]",
+  Admin: "bg-[var(--fg-base)] text-[var(--bg-base)]",
+  Member: "bg-[var(--bg-component-hover)] text-[var(--fg-base)]",
+  Viewer: "bg-[var(--bg-subtle)] text-[var(--fg-muted)]",
 };
 
 export function TeamTab() {
@@ -21,28 +21,23 @@ export function TeamTab() {
 
   return (
     <div>
-      {/* Header with search */}
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="text-md font-semibold text-[var(--fg-base)]">
-          Team members
-        </h2>
-        <div className="relative">
-          <Search
-            size={16}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
-          />
-          <input
-            type="text"
-            placeholder="Search members"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-9 pl-9 pr-4 w-[200px] rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)] focus:border-[var(--fg-base)] focus:outline-none"
-          />
-        </div>
+      {/* Search */}
+      <div className="relative mb-6">
+        <Search
+          size={16}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
+        />
+        <input
+          type="text"
+          placeholder="Search members"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full pl-9 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
+        />
       </div>
 
       {/* Member list */}
-      <div className="divide-y divide-[var(--border-base)] border-t border-[var(--border-base)]">
+      <div className="divide-y divide-[var(--border-base)]">
         {filteredMembers.map((member) => (
           <div key={member.id} className="flex items-center py-3.5 gap-3">
             <div
@@ -55,7 +50,7 @@ export function TeamTab() {
               <p className="text-sm font-medium text-[var(--fg-base)] truncate">
                 {member.name}
               </p>
-              <p className="text-sm text-[var(--fg-muted)] truncate">
+              <p className="text-xs text-[var(--fg-disabled)] truncate">
                 {member.email}
               </p>
             </div>

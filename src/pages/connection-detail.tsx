@@ -15,6 +15,7 @@ import { getInitials, getAvatarColor, cn } from "@lib/utils";
 import { usePageLabel } from "../components/app-layout";
 import { MeetingRow } from "@components/meetings/meeting-row";
 import { connectionData } from "@/data/mock-connection-detail";
+import PageShell from "@/components/ui/page-shell";
 
 type BottomTab = "meetings" | "emails";
 
@@ -46,7 +47,7 @@ const ConnectionDetailPage = () => {
   const companyShort = person.company.split(" ")[0];
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-6">
+    <PageShell>
       {/* Title */}
       <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-6">
         {person.name}
@@ -136,7 +137,7 @@ const ConnectionDetailPage = () => {
           className={cn(
             "absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full flex items-center justify-center transition-colors border-none cursor-pointer shrink-0",
             askInput.trim()
-              ? "bg-[var(--fg-base)] text-white hover:bg-[var(--fg-base)]"
+              ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:bg-[var(--fg-base)]"
               : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
           )}
           disabled={!askInput.trim()}
@@ -329,7 +330,7 @@ const ConnectionDetailPage = () => {
           )}
         </div>
       )}
-    </div>
+    </PageShell>
   );
 };
 

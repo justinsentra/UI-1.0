@@ -15,6 +15,11 @@ import ScanningLoader from "@/components/deep-research/scanning-loader";
 import ResponseBlock from "@/components/deep-research/response-block";
 import Chatbox from "@/components/deep-research/chatbox";
 import SessionSidebar from "@/components/deep-research/session-sidebar";
+import { LeftSecondarySidebar } from "@/components/ui/left-sidebar";
+import {
+  useRegisterSidebar,
+  SidebarPosition,
+} from "@/contexts/layout-context";
 import { Message, MessageContent } from "@/components/prompt-kit/message";
 import {
   ChatContainerRoot,
@@ -515,6 +520,14 @@ function DoneMessage({
 /* ── Deep Research Page ── */
 
 const DeepResearchPage = () => {
+  const [historyWidth, setHistoryWidth] = useState(220);
+
+  useRegisterSidebar({
+    position: SidebarPosition.LEFT_SECONDARY,
+    open: true,
+    width: historyWidth,
+  });
+
   const location = useLocation();
   const prefill = (location.state as { prefill?: string } | null)?.prefill;
   const hasPrefilled = useRef(false);
@@ -754,14 +767,21 @@ const DeepResearchPage = () => {
 
   return (
     <div
-      className="flex overflow-hidden -mt-5"
-      style={{ height: "calc(100% + 1.25rem)" }}
+      className="flex overflow-hidden h-full"
     >
-      <SessionSidebar
-        activeSessionId={activeSessionId}
-        onSelectSession={handleSelectSession}
-        onNewSession={handleNewSession}
-      />
+      <LeftSecondarySidebar
+        defaultWidth={220}
+        minWidth={180}
+        maxWidth={360}
+        cssVar="--left-secondary-width"
+        onWidthChange={setHistoryWidth}
+      >
+        <SessionSidebar
+          activeSessionId={activeSessionId}
+          onSelectSession={handleSelectSession}
+          onNewSession={handleNewSession}
+        />
+      </LeftSecondarySidebar>
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {!hasMessages && phase === "idle" ? (
           <div className="flex-1 min-h-0 overflow-y-auto">

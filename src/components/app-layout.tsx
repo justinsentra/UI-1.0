@@ -8,8 +8,6 @@ import {
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import {
-  PanelLeftOpen,
-  PanelLeftClose,
   CheckCircle2,
   AlertCircle,
   Info,
@@ -20,6 +18,16 @@ import {
   Home,
 } from "lucide-react";
 import AppSidebar from "./app-sidebar";
+import {
+  SidebarProvider,
+  SidebarInset,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import {
+  LayoutProvider,
+  SidebarPosition,
+  useLayout,
+} from "@/contexts/layout-context";
 import { useReportsStore } from "@/stores/reports-store";
 import { useUIStore } from "@/stores/ui-store";
 
@@ -35,11 +43,11 @@ const ToastContainer = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-[100] flex flex-col gap-2">
+    <div className="fixed bottom-5 right-5 z-100 flex flex-col gap-2">
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="flex items-center gap-2 px-4 py-2.5 bg-background rounded-xl shadow-lg border border-[var(--border-base)] text-sm text-[var(--fg-base)] animate-[slideUp_0.2s_ease-out]"
+          className="flex items-center gap-2 px-4 py-2.5 bg-background rounded-xl shadow-lg border border-(--border-base) text-sm text-(--fg-base)slideUp_0.2s_ease-out]"
         >
           {iconMap[toast.type]}
           {toast.message}
@@ -80,23 +88,34 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
 const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { getOpenSidebar } = useLayout();
   const backNav = BACK_NAV[location.pathname];
 
+  const leftSecondary = getOpenSidebar(SidebarPosition.LEFT_SECONDARY);
+  const hasLeftSecondary = !!leftSecondary;
+
   return (
-    <>
+    <div
+      className="absolute top-3 z-10 flex items-center gap-2"
+      style={{
+        left: hasLeftSecondary
+          ? "calc(var(--left-secondary-width, 220px) + 12px)"
+          : 12,
+      }}
+    >
+      <SidebarTrigger className="shrink-0 text-disabled-foreground hover:text-muted-foreground" />
       {backNav && (
         <button
           type="button"
           onClick={() => navigate(backNav.path)}
-          className="absolute left-3 top-[12px] z-10 inline-flex items-center gap-1 h-7 pl-1.5 pr-2.5 rounded-full border border-[var(--border-base)] bg-[var(--bg-component)] hover:bg-[var(--bg-component-hover)] text-[var(--fg-muted)] transition-colors duration-150 ease-out cursor-pointer"
+          className="inline-flex items-center gap-1 h-7 pl-1.5 pr-2.5 rounded-full border border-(--border-base) bg-(--bg-component) hover:bg-secondary-hover text-muted-foreground transition-colors duration-150 ease-out cursor-pointer"
           title="Go back"
         >
           <ChevronLeft size={15} strokeWidth={2} />
           <backNav.icon size={15} />
         </button>
       )}
-    </>
+    </div>
   );
 };
 
@@ -106,8 +125,6 @@ const AppLayout = () => {
     (label: string | null) => setPageLabel(label),
     [],
   );
-  const isSidebarCollapsed = useUIStore((s) => s.isSidebarCollapsed);
-  const toggleSidebar = useUIStore((s) => s.toggleSidebar);
   const resetPanels = useReportsStore((s) => s.resetPanels);
   const location = useLocation();
   const navigate = useNavigate();
@@ -136,38 +153,21 @@ const AppLayout = () => {
     <BreadcrumbContext.Provider
       value={{ pageLabel, setPageLabel: stableSetPageLabel }}
     >
-      <div className="flex h-screen bg-shell overflow-hidden relative">
-        <div className="drag absolute top-0 left-0 right-0 h-5 z-50" />
-        <div
-          className="pt-5 transition-all duration-300 ease-in-out overflow-hidden shrink-0 bg-[var(--bg-subtle)]"
-          style={{ width: isSidebarCollapsed ? 0 : 220 }}
-        >
-          <AppSidebar />
-        </div>
-        {/* Sidebar toggle — always visible, hugs the sidebar's right edge */}
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="absolute top-[30px] z-[51] p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-all duration-300 ease-in-out bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
-          style={{ left: isSidebarCollapsed ? 8 : 224 }}
-          title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {isSidebarCollapsed ? (
-            <PanelLeftOpen size={16} />
-          ) : (
-            <PanelLeftClose size={16} />
-          )}
-        </button>
-        <div className="flex-1 flex min-w-0 overflow-hidden">
-          <main className="flex-1 bg-background min-h-0 min-w-0 overflow-hidden relative">
-            <TopBar />
-            <div className="h-full overflow-x-hidden overflow-y-auto pt-5">
-              <Outlet />
-            </div>
-          </main>
-        </div>
-        <ToastContainer />
-      </div>
+      <LayoutProvider>
+        <SidebarProvider>
+          <div className="flex h-screen w-full overflow-hidden relative">
+            <div className="drag absolute top-0 left-0 right-0 h-5 z-50" />
+            <AppSidebar />
+            <SidebarInset className="relative overflow-hidden">
+              <TopBar />
+              <div className="h-full overflow-x-hidden overflow-y-auto">
+                <Outlet />
+              </div>
+            </SidebarInset>
+          </div>
+          <ToastContainer />
+        </SidebarProvider>
+      </LayoutProvider>
     </BreadcrumbContext.Provider>
   );
 };

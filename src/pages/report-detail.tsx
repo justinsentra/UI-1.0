@@ -6,24 +6,25 @@ import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaReportDetail } from "@/data/content-resolver";
 import { useUIStore } from "@/stores/ui-store";
 import { usePageLabel } from "../components/app-layout";
+import PageShell from "@/components/ui/page-shell";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { DrillDownSections } from "@/components/report/drill-down-sections";
 import { ActionAccordion } from "@/components/report/action-accordion";
 import { HighlightedContent } from "@/components/report/inline-comments";
 import { getSourceIcon } from "@/icons/source-icons";
-import SourcePill from "@/components/deep-research/source-pill";
 import {
-  Steps,
-  StepsTrigger,
-  StepsContent,
-  StepsBar,
-} from "@/components/ui/steps";
+  Source as SourceHover,
+  SourceTrigger,
+  SourceContent,
+} from "@/components/ui/source";
 import type {
   EvidenceQuote,
   Source,
   ReportSection as ReportSectionType,
 } from "@/types";
-import type { SourceType, SourceRef } from "@/data/mock-deep-research";
+import type { SourceType } from "@/data/mock-deep-research";
 import type { ReportDetail } from "@/types";
 import { useState } from "react";
 
@@ -45,6 +46,46 @@ const SOURCE_TYPE_TO_ICON: Record<string, SourceType> = {
   teams: "teams",
   sharepoint: "sharepoint",
   affinity: "affinity",
+};
+
+const SOURCE_TYPE_TO_HREF: Record<string, string> = {
+  slack: "https://slack.com",
+  meeting: "https://meet.google.com",
+  "google-meet": "https://meet.google.com",
+  "google-calendar": "https://calendar.google.com",
+  "google-drive": "https://drive.google.com",
+  linear: "https://linear.app",
+  email: "https://mail.google.com",
+  outlook: "https://outlook.live.com",
+  notion: "https://notion.so",
+  asana: "https://app.asana.com",
+  discord: "https://discord.com",
+  zoom: "https://zoom.us",
+  github: "https://github.com",
+  "google-docs": "https://docs.google.com",
+  teams: "https://teams.microsoft.com",
+  sharepoint: "https://sharepoint.com",
+  affinity: "https://affinity.co",
+};
+
+const SOURCE_TYPE_LABEL: Record<string, string> = {
+  slack: "Slack",
+  meeting: "Meeting",
+  "google-meet": "Google Meet",
+  "google-calendar": "Google Calendar",
+  "google-drive": "Google Drive",
+  linear: "Linear",
+  email: "Email",
+  outlook: "Outlook",
+  notion: "Notion",
+  asana: "Asana",
+  discord: "Discord",
+  zoom: "Zoom",
+  github: "GitHub",
+  "google-docs": "Google Docs",
+  teams: "Microsoft Teams",
+  sharepoint: "SharePoint",
+  affinity: "Affinity",
 };
 
 /**
@@ -97,9 +138,16 @@ function getReportSuggestions(report: ReportDetail): string[] {
 
 const ReportDetailPage = () => {
   const [showChatSidebar, setShowChatSidebar] = useState(false);
+  const [chatWidth, setChatWidth] = useState(380);
   const addToast = useUIStore((s) => s.addToast);
   const selectedReportId = useReportsStore((s) => s.selectedReportId);
   const persona = usePersonaStore((s) => s.persona);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: showChatSidebar,
+    width: chatWidth,
+  });
 
   const report = getPersonaReportDetail(
     persona,
@@ -122,90 +170,121 @@ const ReportDetailPage = () => {
   };
 
   return (
-    <div className="max-w-[740px] mx-auto px-8 pt-[56px] pb-32 relative min-h-screen">
-      {/* Top-right action buttons */}
-      <div
-        className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: showChatSidebar ? 396 : 20 }}
-      >
-        <button
-          type="button"
-          onClick={handleCopyLink}
-          className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
-          title="Copy link"
-        >
-          <Link2 size={15} />
-        </button>
-        <button
-          type="button"
-          onClick={() => setShowChatSidebar((p) => !p)}
-          className={cn(
-            "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
-            showChatSidebar
-              ? "bg-[var(--bg-component-hover)] text-[var(--fg-muted)]"
-              : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
+    <div
+      className="flex overflow-hidden h-full"
+    >
+      <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+        <PageShell className="relative pb-32">
+          {/* Top-right action buttons */}
+          <div className="absolute top-[12px] right-0 z-10 flex items-center gap-1">
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
+              title="Copy link"
+            >
+              <Link2 size={15} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowChatSidebar((p) => !p)}
+              className={cn(
+                "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
+                showChatSidebar
+                  ? "bg-[var(--bg-component-hover)] text-[var(--fg-muted)]"
+                  : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
+              )}
+              title="Deep Research"
+            >
+              <MessageSquare size={15} />
+            </button>
+          </div>
+
+          {/* Title */}
+          <div className="mb-2">
+            <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
+              {report.title}
+            </h1>
+          </div>
+          <p className="text-sm text-[var(--fg-muted)] mb-6">
+            {report.dateRange}
+          </p>
+
+          <div className="border-t border-[var(--border-base)] mb-8" />
+
+          {/* Report Content */}
+          <div className="space-y-8">
+            {report.sections.map((section, sIdx) => {
+              const sectionSources = getSourcesForSection(
+                sIdx,
+                section,
+                report.sources,
+                report.sections.length,
+                isRadar,
+              );
+              return (
+                <ReportSection
+                  key={section.heading || sIdx}
+                  section={section}
+                  sectionIndex={sIdx}
+                  sources={sectionSources}
+                />
+              );
+            })}
+          </div>
+
+          {/* Evidence Quotes */}
+          {report.evidence && report.evidence.length > 0 && (
+            <EvidenceSection evidence={report.evidence} />
           )}
-          title="Deep Research"
-        >
-          <MessageSquare size={15} />
-        </button>
+
+          {/* Drill Downs */}
+          {report.drillDowns && report.drillDowns.length > 0 && (
+            <DrillDownSections drillDowns={report.drillDowns} />
+          )}
+
+          {/* Suggested Actions */}
+          {report.suggestedActions.length > 0 && (
+            <ActionAccordion actions={report.suggestedActions} />
+          )}
+        </PageShell>
       </div>
-
-      {/* Title */}
-      <div className="mb-2">
-        <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
-          {report.title}
-        </h1>
-      </div>
-      <p className="text-sm text-[var(--fg-muted)] mb-6">{report.dateRange}</p>
-
-      <div className="border-t border-[var(--border-base)] mb-8" />
-
-      {/* Report Content */}
-      <div className="space-y-8">
-        {report.sections.map((section, sIdx) => {
-          const sectionSources = getSourcesForSection(
-            sIdx,
-            section,
-            report.sources,
-            report.sections.length,
-            isRadar,
-          );
-          return (
-            <ReportSection
-              key={section.heading || sIdx}
-              section={section}
-              sectionIndex={sIdx}
-              sources={sectionSources}
-            />
-          );
-        })}
-      </div>
-
-      {/* Evidence Quotes */}
-      {report.evidence && report.evidence.length > 0 && (
-        <EvidenceSection evidence={report.evidence} />
-      )}
-
-      {/* Drill Downs */}
-      {report.drillDowns && report.drillDowns.length > 0 && (
-        <DrillDownSections drillDowns={report.drillDowns} />
-      )}
-
-      {/* Suggested Actions */}
-      {report.suggestedActions.length > 0 && (
-        <ActionAccordion actions={report.suggestedActions} />
-      )}
 
       {/* Chat Sidebar */}
-      <ChatSidebar
-        isOpen={showChatSidebar}
-        onClose={() => setShowChatSidebar(false)}
-        suggestedQuestions={reportSuggestions}
-      />
+      <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
+        <ChatSidebar
+          isOpen={showChatSidebar}
+          onClose={() => setShowChatSidebar(false)}
+          suggestedQuestions={reportSuggestions}
+        />
+      </RightSidebarProvider>
     </div>
   );
 };
+
+/**
+ * Distributes sources across paragraphs for inline citations.
+ * Returns an array (one per paragraph) of { source, globalIndex } tuples.
+ */
+function distributeSourcesToParagraphs(
+  sources: Source[],
+  paragraphCount: number,
+): { source: Source; globalIndex: number }[][] {
+  const result: { source: Source; globalIndex: number }[][] = Array.from(
+    { length: paragraphCount },
+    () => [],
+  );
+  if (paragraphCount === 0 || sources.length === 0) return result;
+
+  for (let i = 0; i < sources.length; i++) {
+    const pIdx = Math.min(
+      Math.floor((i / sources.length) * paragraphCount),
+      paragraphCount - 1,
+    );
+    result[pIdx].push({ source: sources[i], globalIndex: i + 1 });
+  }
+  return result;
+}
 
 function ReportSection({
   section,
@@ -217,6 +296,10 @@ function ReportSection({
   sources: Source[];
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const paragraphSources = useMemo(
+    () => distributeSourcesToParagraphs(sources, section.paragraphs.length),
+    [sources, section.paragraphs.length],
+  );
 
   return (
     <HighlightedContent sectionIndex={sectionIndex} containerRef={containerRef}>
@@ -235,9 +318,15 @@ function ReportSection({
             )}
           >
             {paragraph}
+            {paragraphSources[pIdx]?.map(({ source, globalIndex }) => (
+              <InlineCitation
+                key={`${source.type}-${source.label}`}
+                source={source}
+                index={globalIndex}
+              />
+            ))}
           </p>
         ))}
-        {sources.length > 0 && <InlineSources sources={sources} />}
       </section>
     </HighlightedContent>
   );
@@ -280,30 +369,24 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
   );
 }
 
-function sourceToRef(source: Source): SourceRef {
-  const mappedType = SOURCE_TYPE_TO_ICON[source.type] ?? "email";
-  return { type: mappedType, label: source.label };
-}
+function InlineCitation({
+  source,
+  index,
+}: {
+  source: Source;
+  index: number;
+}) {
+  const href = SOURCE_TYPE_TO_HREF[source.type] ?? "#";
+  const platformLabel = SOURCE_TYPE_LABEL[source.type] ?? source.type;
 
-function InlineSources({ sources }: { sources: Source[] }) {
   return (
-    <div className="mt-4">
-      <Steps defaultOpen={false}>
-        <StepsTrigger className="text-2xs font-medium text-[var(--fg-muted)]">
-          {sources.length} sources
-        </StepsTrigger>
-        <StepsContent bar={<StepsBar className="bg-transparent" />}>
-          <div className="flex flex-wrap gap-1.5 py-1">
-            {sources.map((source) => (
-              <SourcePill
-                key={`${source.type}-${source.label}`}
-                source={sourceToRef(source)}
-              />
-            ))}
-          </div>
-        </StepsContent>
-      </Steps>
-    </div>
+    <SourceHover href={href}>
+      <SourceTrigger
+        label={index}
+        className="ml-0.5 align-baseline h-[14px] min-w-[14px] max-w-none px-1 text-[9px] leading-none"
+      />
+      <SourceContent title={source.label} description={platformLabel} />
+    </SourceHover>
   );
 }
 

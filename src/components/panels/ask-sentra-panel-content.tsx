@@ -90,7 +90,7 @@ export function AskSentraPanelContent({ context }: AskSentraPanelContentProps) {
                 className={cn(
                   "max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed",
                   msg.role === "user"
-                    ? "bg-[var(--fg-base)] text-white"
+                    ? "bg-[var(--fg-base)] text-[var(--bg-base)]"
                     : "bg-[var(--bg-subtle)] text-[var(--fg-base)]",
                 )}
               >
@@ -130,7 +130,7 @@ export function AskSentraPanelContent({ context }: AskSentraPanelContentProps) {
             className={cn(
               "h-8 w-8 rounded-full flex items-center justify-center transition-colors border-none cursor-pointer",
               input.trim()
-                ? "bg-[var(--fg-base)] text-white hover:bg-[var(--fg-base)]"
+                ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:bg-[var(--fg-base)]"
                 : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
             )}
           >

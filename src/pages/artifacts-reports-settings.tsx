@@ -4,6 +4,7 @@ import { useReportsStore } from "@/stores/reports-store";
 import { DeliverabilitySection } from "@components/artifacts/deliverability-section";
 import { InfoTooltip } from "@components/ui/info-tooltip";
 import { reportPreferenceCards } from "@/data/mock-reports";
+import PageShell from "@/components/ui/page-shell";
 
 const frequencies = ["Weekly", "Biweekly", "Monthly"] as const;
 
@@ -93,7 +94,7 @@ const ArtifactsReportsSettingsPage = () => {
   };
 
   return (
-    <div className="max-w-[740px] mx-auto pt-[56px] px-8 pb-16">
+    <PageShell>
       <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-5">
         Reports Settings
       </h1>
@@ -224,12 +225,12 @@ const ArtifactsReportsSettingsPage = () => {
 
         <button
           type="button"
-          className="bg-[var(--fg-base)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[var(--fg-base)] transition-colors"
+          className="bg-[var(--fg-base)] text-[var(--bg-base)] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[var(--fg-base)] transition-colors"
         >
           Save Changes
         </button>
       </section>
-    </div>
+    </PageShell>
   );
 };
 

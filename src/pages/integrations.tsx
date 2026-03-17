@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ComponentType } from "react";
 import { cn } from "@lib/utils";
+import PageShell from "@/components/ui/page-shell";
 
 import slackLogo from "../assets/logos/slack.svg";
 import asanaLogo from "../assets/logos/asana.svg";
@@ -248,10 +249,10 @@ const IntegrationsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-[740px] mx-auto pt-[56px] px-8">
+      <PageShell>
         <div className="mb-6">
           <h1 className="text-3xl font-normal tracking-tight text-[var(--fg-base)]">
-            Integrations
+            {activeTab === "personal" ? "Personal" : "Workspace"}
           </h1>
         </div>
 
@@ -260,7 +261,7 @@ const IntegrationsPage = () => {
             renderIntegrationCard(integration),
           )}
         </div>
-      </div>
+      </PageShell>
     </>
   );
 };

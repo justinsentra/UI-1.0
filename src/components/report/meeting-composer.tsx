@@ -150,7 +150,7 @@ export function MeetingComposer({
           className={cn(
             "px-4 py-1.5 rounded-full text-xs font-medium border-none transition-opacity",
             selectedTime
-              ? "bg-[var(--fg-base)] text-white cursor-pointer hover:opacity-90"
+              ? "bg-[var(--fg-base)] text-[var(--bg-base)] cursor-pointer hover:opacity-90"
               : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
           )}
         >

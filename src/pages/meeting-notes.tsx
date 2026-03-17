@@ -10,7 +10,10 @@ import { TagFilterBar } from "@components/meetings/tag-filter-bar";
 import { ImportModal } from "@components/meetings/import-modal";
 import { ShareModal } from "@components/meetings/share-modal";
 import { ChatSidebar } from "@components/meetings/chat-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { formatDateLabel, formatTimeRange } from "@/lib/date-utils";
+import PageShell from "@/components/ui/page-shell";
 
 function groupMeetingsByDate(meetingList: Meeting[]) {
   const groups: Record<string, Meeting[]> = {};
@@ -57,6 +60,13 @@ const MeetingNotesPage = () => {
   const [importOpen, setImportOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [shareMeetingId, setShareMeetingId] = useState<string | null>(null);
+  const [chatWidth, setChatWidth] = useState(380);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: chatOpen,
+    width: chatWidth,
+  });
 
   const filteredGroups = useMemo(() => {
     const filtered = meetings
@@ -77,11 +87,12 @@ const MeetingNotesPage = () => {
   const { day, month } = getTodayLabel();
 
   return (
-    <div className="max-w-[740px] mx-auto px-8 pt-[56px] relative min-h-screen">
+    <div className="flex overflow-hidden h-full">
+    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+    <PageShell className="relative">
       {/* Top-right toolbar */}
       <div
-        className="fixed top-[12px] z-10 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: chatOpen ? 396 : 20 }}
+        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
         <button
           onClick={() => setImportOpen(true)}
@@ -122,7 +133,7 @@ const MeetingNotesPage = () => {
             placeholder="Search meetings..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full h-9 pl-10 pr-4 rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)]"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
           />
         </div>
       </div>
@@ -198,7 +209,11 @@ const MeetingNotesPage = () => {
         onClose={() => setShareMeetingId(null)}
         meetingId={shareMeetingId}
       />
+    </PageShell>
+    </div>
+    <RightSidebarProvider open={chatOpen} onOpenChange={setChatOpen} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+    </RightSidebarProvider>
     </div>
   );
 };

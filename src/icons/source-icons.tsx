@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { SourceType } from "@/data/mock-deep-research";
+import affinityLogo from "@/assets/logos/affinity.png";
 
 interface SourceIconProps {
   size?: number;
@@ -417,17 +418,13 @@ export const EmailIcon = ({ size = 14, className }: SourceIconProps) => (
 );
 
 export const AffinityIcon = ({ size = 14, className }: SourceIconProps) => (
-  <svg
+  <img
+    src={affinityLogo}
     width={size}
     height={size}
-    viewBox="0 0 32 32"
-    fill="none"
     className={className}
-  >
-    <path d="M16 2L3 9.5v13L16 30l13-7.5v-13L16 2Z" fill="#4B48EC" />
-    <path d="M16 8l-8 4.5v9L16 26l8-4.5v-9L16 8Z" fill="#7B79FF" />
-    <path d="M16 14l-4 2.25v4.5L16 23l4-2.25v-4.5L16 14Z" fill="#fff" />
-  </svg>
+    alt="Affinity"
+  />
 );
 
 export const TeamsIcon = ({ size = 14, className }: SourceIconProps) => (

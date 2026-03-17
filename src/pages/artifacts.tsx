@@ -1,14 +1,16 @@
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, Settings, MessageSquare } from "lucide-react";
 import { cn } from "@lib/utils";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaReports } from "@/data/content-resolver";
 import { useReportsStore } from "@/stores/reports-store";
-import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 import { ArtifactsSearchBar } from "@components/artifacts/search-bar";
 import { ArtifactsResearchSidebar } from "@components/artifacts/artifacts-research-sidebar";
+import { RightSidebarProvider } from "@/components/ui/right-sidebar";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import type { ReportCategory, ReportSummary } from "@/types";
+import PageShell from "@/components/ui/page-shell";
 
 const TAB_LABELS = ["Reports", "Radar"] as const;
 
@@ -117,13 +119,13 @@ function ByDateView({ categories }: { categories: ReportCategory[] }) {
           key={report.id}
           to="/report-detail"
           onClick={() => setSelectedReport(report.id)}
-          className="flex items-center justify-between py-3.5 px-2 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
+          className="flex items-center justify-between py-3.5 px-4 hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
         >
           <div className="flex items-center gap-3">
             {category.type === "radar" && category.priority ? (
               <span
                 className={cn(
-                  "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-2xs font-semibold",
+                  "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-2xs font-semibold",
                   category.priority === "High"
                     ? "bg-red-50 text-[var(--color-gray-600)]"
                     : "bg-amber-50 text-[var(--color-gray-400)]",
@@ -133,7 +135,7 @@ function ByDateView({ categories }: { categories: ReportCategory[] }) {
                 Radar
               </span>
             ) : (
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-semibold bg-[var(--bg-subtle)] text-[var(--fg-muted)]">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md text-2xs font-semibold bg-[var(--bg-subtle)] text-[var(--fg-muted)]">
                 Report
               </span>
             )}
@@ -163,6 +165,13 @@ const ArtifactsPage = () => {
     isArtifactsChatOpen,
     setArtifactsChatOpen,
   } = useReportsStore();
+  const [chatWidth, setChatWidth] = useState(380);
+
+  useRegisterSidebar({
+    position: SidebarPosition.RIGHT,
+    open: isArtifactsChatOpen,
+    width: chatWidth,
+  });
 
   const filteredCategories = useMemo(() => {
     const byType = reportCategories.filter((cat) =>
@@ -188,35 +197,32 @@ const ArtifactsPage = () => {
   };
 
   return (
-    <>
+    <div className="flex overflow-hidden h-full">
+    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+    <div className="relative">
       <div
-        className="fixed top-[12px] z-30 flex items-center gap-1 transition-[right] duration-300 ease-in-out"
-        style={{ right: isArtifactsChatOpen ? 396 : 20 }}
+        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
         <div className="rounded-[8px] p-[2px]">
-          <AnimatedBackground
-            defaultValue={activeTab === "reports" ? "Reports" : "Radar"}
-            onValueChange={(id) => {
-              if (id) setActiveTab(id.toLowerCase() as "reports" | "radar");
-            }}
-            className="rounded-md bg-[var(--bg-selected)]"
-            transition={{ ease: "easeInOut", duration: 0.2 }}
-          >
-            {TAB_LABELS.map((label) => (
-              <button
-                key={label}
-                data-id={label}
-                type="button"
-                className="inline-flex items-center justify-center px-3 font-medium text-[var(--fg-muted)] transition-transform active:scale-[0.98] border-none cursor-pointer bg-transparent data-[checked=true]:text-[var(--fg-base)]"
-                style={{
-                  height: "var(--toolbar-btn-size)",
-                  fontSize: "var(--toolbar-font-size)",
-                }}
-              >
-                {label}
-              </button>
-            ))}
-          </AnimatedBackground>
+          {TAB_LABELS.map((label) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => setActiveTab(label.toLowerCase() as "reports" | "radar")}
+              className={cn(
+                "inline-flex items-center justify-center px-3 font-medium border-none cursor-pointer rounded-md",
+                activeTab === label.toLowerCase()
+                  ? "bg-[var(--bg-selected)] text-[var(--fg-base)]"
+                  : "bg-transparent text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
+              )}
+              style={{
+                height: "var(--toolbar-btn-size)",
+                fontSize: "var(--toolbar-font-size)",
+              }}
+            >
+              {label}
+            </button>
+          ))}
         </div>
         <button
           type="button"
@@ -239,7 +245,7 @@ const ArtifactsPage = () => {
         </button>
       </div>
 
-      <div className="max-w-[740px] mx-auto px-8 pt-[56px]">
+      <PageShell>
         <div className="mb-6">
           <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
             Artifacts
@@ -265,13 +271,17 @@ const ArtifactsPage = () => {
             </p>
           </div>
         )}
-      </div>
 
+    </PageShell>
+    </div>
+    </div>
+    <RightSidebarProvider open={isArtifactsChatOpen} onOpenChange={setArtifactsChatOpen} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ArtifactsResearchSidebar
         isOpen={isArtifactsChatOpen}
         onClose={() => setArtifactsChatOpen(false)}
       />
-    </>
+    </RightSidebarProvider>
+    </div>
   );
 };
 
