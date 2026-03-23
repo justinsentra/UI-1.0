@@ -42,21 +42,21 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
   meetingEndTime: "3:00 PM",
   attendees: [
     {
-      name: "Sarah Mitchell",
+      name: "Diana Calloway",
       role: "MD, TMT Coverage",
-      initials: "SM",
+      initials: "DC",
       lastSpoke: "Today",
     },
     {
-      name: "David Park",
+      name: "Nathan Lim",
       role: "VP, Tech Partnerships",
-      initials: "DP",
+      initials: "NL",
       lastSpoke: "Yesterday",
     },
     {
-      name: "Michael Chen",
+      name: "Victor Kane",
       role: "ED, Infrastructure",
-      initials: "MC",
+      initials: "VS",
       lastSpoke: "2 days ago",
     },
   ],
@@ -72,7 +72,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
         sourceType: "zoom",
       },
       summary:
-        "David's updated sensitivity analysis should be ready for discussion. This is the key decision point for the deal committee presentation.",
+        "Nathan's updated sensitivity analysis should be ready for discussion. This is the key decision point for the deal committee presentation.",
     },
     {
       heading:

@@ -12,8 +12,8 @@ interface ShareModalProps {
 }
 
 const DEFAULT_PEOPLE = [
-  { name: "Justin Cheng", email: "justin@sentra.app" },
-  { name: "Ashwin Gopinath", email: "ashwin@sentra.app" },
+  { name: "Leo Hartwell", email: "leo@sentra.app" },
+  { name: "Raj Sundaram", email: "raj@sentra.app" },
 ];
 
 export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {

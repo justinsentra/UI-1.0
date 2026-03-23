@@ -4,7 +4,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c1",
     title: "Finalize pitch deck with updated metrics",
-    meeting: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+    meeting: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
     meetingId: "pn-crm-mtg-1",
     meetingDate: "Mar 10, 2026",
     dueDate: "Mar 17",
@@ -12,8 +12,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "pn-crm-c2",
-    title: "Draft YC S26 application",
-    meeting: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+    title: "Draft LP Summer 26 application",
+    meeting: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
     meetingId: "pn-crm-mtg-1",
     meetingDate: "Mar 10, 2026",
     dueDate: "Mar 21",
@@ -21,8 +21,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "pn-crm-c3",
-    title: "Send angel investor target list to Mark for review",
-    meeting: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+    title: "Send angel investor target list to Nolan for review",
+    meeting: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
     meetingId: "pn-crm-mtg-1",
     meetingDate: "Mar 10, 2026",
     dueDate: "Mar 14",
@@ -49,7 +49,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c6",
     title: "Create standardized DD template for student startups",
-    meeting: "RedHawk Ventures — Weekly Deal Review",
+    meeting: "IronHawk Ventures — Weekly Deal Review",
     meetingId: "pn-crm-mtg-3",
     meetingDate: "Mar 6, 2026",
     dueDate: "Mar 13",
@@ -58,7 +58,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c7",
     title: "Assign DD leads for the three pipeline companies",
-    meeting: "RedHawk Ventures — Weekly Deal Review",
+    meeting: "IronHawk Ventures — Weekly Deal Review",
     meetingId: "pn-crm-mtg-3",
     meetingDate: "Mar 6, 2026",
     dueDate: "Mar 7",
@@ -67,7 +67,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c8",
     title: "Redesign contact import flow to reduce drop-off",
-    meeting: "PN CRM — Technical Architecture & Roadmap Planning",
+    meeting: "Circle CRM — Technical Architecture & Roadmap Planning",
     meetingId: "pn-crm-mtg-4",
     meetingDate: "Mar 5, 2026",
     dueDate: "Mar 12",
@@ -76,7 +76,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c9",
     title: "Implement tiered relationship decay weights",
-    meeting: "PN CRM — Technical Architecture & Roadmap Planning",
+    meeting: "Circle CRM — Technical Architecture & Roadmap Planning",
     meetingId: "pn-crm-mtg-4",
     meetingDate: "Mar 5, 2026",
     dueDate: "Mar 19",
@@ -85,7 +85,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c10",
     title: "Complete MeetingMind technical DD summary",
-    meeting: "1809 Capital — Portfolio Founders Check-in",
+    meeting: "Pinnacle Capital — Portfolio Founders Check-in",
     meetingId: "pn-crm-mtg-5",
     meetingDate: "Mar 4, 2026",
     dueDate: "Mar 11",
@@ -94,7 +94,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "pn-crm-c11",
     title: "Schedule FounderOS partner meeting",
-    meeting: "1809 Capital — Portfolio Founders Check-in",
+    meeting: "Pinnacle Capital — Portfolio Founders Check-in",
     meetingId: "pn-crm-mtg-5",
     meetingDate: "Mar 4, 2026",
     dueDate: "Mar 10",

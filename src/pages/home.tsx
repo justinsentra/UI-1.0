@@ -54,7 +54,7 @@ const HomePage = () => {
         {/* ── Greeting ── */}
         <section className="flex flex-col items-center pb-6">
           <h1 className="text-[var(--fg-base)] text-3xl font-normal leading-[1.2] tracking-tight m-0 mb-1">
-            {getGreeting()}, Justin
+            {getGreeting()}, Leo
           </h1>
           <p className="text-[var(--fg-muted)] text-sm leading-normal m-0">
             What would you like to know?

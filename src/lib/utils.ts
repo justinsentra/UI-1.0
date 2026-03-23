@@ -15,16 +15,16 @@ export function getInitials(name: string): string {
 }
 
 const AVATAR_COLORS: Record<string, string> = {
-  "Ashwin Gopinath": "#3A4D54",
-  "Justin Cheng": "#3A4D54",
-  "Andrey Starenky": "#6B7555",
-  "Kristina Beaman": "#8B6B5B",
-  "Lakshmi Shankar": "#6B7585",
+  "Raj Sundaram": "#3A4D54",
+  "Leo Hartwell": "#3A4D54",
+  "Pavel Volkov": "#6B7555",
+  "Ingrid Solberg": "#8B6B5B",
+  "Meera Kapoor": "#6B7585",
   "James Richardson": "#5B6B55",
-  "Kevin Liu": "#4A6670",
+  "Derek Huang": "#4A6670",
   "Ali Kazemi": "#7B5B8B",
-  "Sarah Chen": "#5B7B8B",
-  "Shaurya Patel": "#6B6555",
+  "Fiona Webb": "#5B7B8B",
+  "Arjun Reddy": "#6B6555",
 };
 
 export function formatParticipants(names: string[]): string {

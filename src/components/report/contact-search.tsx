@@ -1,9 +1,9 @@
 export const MOCK_CONTACTS = [
   { name: "Malcolm Ocean", email: "malcolm@softmax.ai" },
   { name: "Andrew Greener", email: "andrew@campfire.co" },
-  { name: "Ashwin Gopinath", email: "ashwin@sentra.app" },
-  { name: "Andrey Starenky", email: "andrey@sentra.app" },
-  { name: "Kristina Beaman", email: "kristina@sentra.app" },
+  { name: "Raj Sundaram", email: "raj@sentra.app" },
+  { name: "Pavel Volkov", email: "pavel@sentra.app" },
+  { name: "Ingrid Solberg", email: "ingrid@sentra.app" },
   { name: "David Kim", email: "david.kim@jpm.com" },
 ];
 

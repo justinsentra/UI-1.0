@@ -4,7 +4,7 @@ export const homeData: PersonaHomeData = {
   suggestions: [
     "What happened in today's meetings?",
     "Summarize this week's user growth and retention metrics",
-    "Draft the YC S26 application",
+    "Draft the LP Summer 26 application",
     "Which investor intros are still pending?",
   ],
   artifacts: [
@@ -13,7 +13,7 @@ export const homeData: PersonaHomeData = {
       reportId: "pn-crm-radar-competitors-1",
       title: "Personal CRM Competitor Activity",
       description:
-        "Clay launched a relationship score feature. Folk raised $6M from Accel. Positioning impact assessment needed.",
+        "Molder launched a relationship score feature. Tribe raised $6M from Apex Ventures. Positioning impact assessment needed.",
       type: "radar",
       badge: "High",
     },
@@ -29,12 +29,12 @@ export const homeData: PersonaHomeData = {
     },
     {
       id: "pn-crm-art-2",
-      title: "YC S26 Application Draft",
+      title: "LP Summer 26 Application Draft",
       description:
-        "Draft the YC Summer 2026 application focusing on relationship intelligence and traction metrics",
+        "Draft the LP Summer 2026 application focusing on relationship intelligence and traction metrics",
       type: "action",
       badge: "New",
-      deepResearchPrompt: "Draft the YC Summer 2026 application for PN CRM",
+      deepResearchPrompt: "Draft the LP Summer 2026 application for Circle CRM",
     },
     {
       id: "pn-crm-art-3",
@@ -47,67 +47,67 @@ export const homeData: PersonaHomeData = {
     },
     {
       id: "pn-crm-art-4",
-      title: "Competitive Analysis — Clay vs PN CRM",
+      title: "Competitive Analysis — Molder vs Circle CRM",
       description:
-        "Build a detailed feature comparison after Clay's relationship score launch to sharpen positioning for investors",
+        "Build a detailed feature comparison after Molder's relationship score launch to sharpen positioning for investors",
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Build a competitive analysis comparing PN CRM vs Clay vs Folk vs Dex",
+        "Build a competitive analysis comparing Circle CRM vs Molder vs Tribe vs Rolodex",
     },
   ],
   upcomingMeeting: {
     id: "pn-crm-mtg-1",
-    title: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+    title: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
     time: "2:00 PM",
     endTime: "3:30 PM",
     duration: "1h 30m",
-    participants: ["Tyler Williams", "Katherine McIntosh", "Mark Richey"],
+    participants: ["Blake Carrington", "Simone Hartley", "Nolan Prescott"],
     platform: "Zoom",
   },
   preMeetingBrief: {
-    meetingTitle: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+    meetingTitle: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
     meetingTime: "2:00 PM",
     meetingEndTime: "3:30 PM",
     attendees: [
       {
-        name: "Mark Richey",
-        role: "Partner, 1809 Capital",
-        initials: "MR",
+        name: "Nolan Prescott",
+        role: "Partner, Pinnacle Capital",
+        initials: "NP",
         lastSpoke: "3 days ago",
       },
       {
-        name: "Tyler Williams",
-        role: "CTO, Personal Network CRM",
-        initials: "TW",
+        name: "Blake Carrington",
+        role: "CTO, Circle CRM",
+        initials: "BC",
         lastSpoke: "Yesterday",
       },
       {
-        name: "Katherine McIntosh",
-        role: "Advisor, Personal Network CRM",
-        initials: "KM",
+        name: "Simone Hartley",
+        role: "Advisor, Circle CRM",
+        initials: "RC",
         lastSpoke: "5 days ago",
       },
     ],
     insights: [
       {
-        heading: "Clay's new feature validates the category",
+        heading: "Molder's new feature validates the category",
         source: {
           quote:
-            "Just saw Clay's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
-          meetingTitle: "#pn-crm-product — Slack",
+            "Just saw Molder's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
+          meetingTitle: "#pn-crm-product — ChatWorks",
           meetingDate: "Mar 12, 2026",
           sourceType: "slack",
         },
         summary:
-          "Clay launching a relationship score feature validates the category but introduces competitive messaging risk. Investors may ask how PN CRM differentiates — prepare the interaction-based vs. enrichment-based distinction.",
+          "Molder launching a relationship score feature validates the category but introduces competitive messaging risk. Investors may ask how Circle CRM differentiates — prepare the interaction-based vs. enrichment-based distinction.",
       },
       {
         heading: "User retention signals product-market fit",
         source: {
           quote:
             "We have 1,200 beta users, 38% weekly active, 4.7 average NPS score. Retention curve flattening at week 8 which is a positive signal for product-market fit.",
-          meetingTitle: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+          meetingTitle: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
           meetingDate: "Mar 10, 2026",
           sourceType: "zoom",
         },
@@ -115,16 +115,16 @@ export const homeData: PersonaHomeData = {
           "Retention metrics are strong enough for the pre-seed raise. Key data points for the pitch: 38% WAU, 62% week-1 retention, and the week-8 flattening curve.",
       },
       {
-        heading: "YC S26 is a realistic parallel path",
+        heading: "LP Summer 26 is a realistic parallel path",
         source: {
           quote:
-            "YC Summer 2026 batch application deadline is April 15. Team agreed to submit — Mark thinks the traction metrics are strong enough and offered to review the application.",
-          meetingTitle: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+            "LP Summer 2026 batch application deadline is April 15. Team agreed to submit — Nolan thinks the traction metrics are strong enough and offered to review the application.",
+          meetingTitle: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
           meetingDate: "Mar 10, 2026",
           sourceType: "zoom",
         },
         summary:
-          "YC S26 deadline is April 15. Mark offered to review the application. Parallel-track the angel round and YC path — acceptance would change the fundraising dynamic significantly.",
+          "LP Summer 26 deadline is April 15. Nolan offered to review the application. Parallel-track the angel round and LP path — acceptance would change the fundraising dynamic significantly.",
       },
     ],
   },

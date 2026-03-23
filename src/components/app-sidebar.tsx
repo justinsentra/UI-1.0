@@ -98,10 +98,10 @@ const AppSidebar = () => {
             className="flex items-center gap-2.5 px-1 py-1 rounded-[7px] transition-colors hover:bg-[var(--bg-component-hover)] no-underline"
           >
             <div className="w-7 h-7 rounded-full bg-[var(--fg-subtle)] flex items-center justify-center text-2xs font-medium text-white">
-              JC
+              LH
             </div>
             <span className="text-sm font-medium text-[var(--fg-base)]">
-              Justin Cheng
+              Leo Hartwell
             </span>
           </NavLink>
         </div>

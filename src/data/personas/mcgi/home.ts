@@ -13,7 +13,7 @@ export const homeData: PersonaHomeData = {
       reportId: "mcgi-radar-competitive-1",
       title: "Competitive CVC Activity",
       description:
-        "SoftBank invested $140M in a Sentra competitor. Samsung co-invested in CarbonGrid. Action needed.",
+        "BlueBridge invested $140M in a Sentra competitor. Hanwa Electronics co-invested in GreenCore. Action needed.",
       type: "radar",
       badge: "High",
     },
@@ -28,13 +28,13 @@ export const homeData: PersonaHomeData = {
     },
     {
       id: "mcgi-art-5",
-      title: "Consolidate NeuralDB Deal Data",
+      title: "Consolidate SyntheticDB Deal Data",
       description:
-        "Pull together all NeuralDB diligence data scattered across Notion and Teams into a single unified brief",
+        "Pull together all SyntheticDB diligence data scattered across Dokra and Teams into a single unified brief",
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Consolidate everything we have on NeuralDB across Notion and Teams into a single brief",
+        "Consolidate everything we have on SyntheticDB across Dokra and Teams into a single brief",
     },
     {
       id: "mcgi-art-2",
@@ -47,13 +47,13 @@ export const homeData: PersonaHomeData = {
     },
     {
       id: "mcgi-art-4",
-      title: "3-Statement Model — CarbonGrid",
+      title: "3-Statement Model — GreenCore",
       description:
-        "Build a financial model for CarbonGrid due diligence with revenue projections, unit economics, and valuation sensitivity",
+        "Build a financial model for GreenCore due diligence with revenue projections, unit economics, and valuation sensitivity",
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Build a 3-statement financial model for CarbonGrid due diligence",
+        "Build a 3-statement financial model for GreenCore due diligence",
     },
   ],
   upcomingMeeting: {
@@ -63,11 +63,11 @@ export const homeData: PersonaHomeData = {
     endTime: "11:30 AM",
     duration: "1h 30m",
     participants: [
-      "Ryotaro Nakamura",
-      "Sunna Mo",
-      "Mihiro Nakamura",
-      "Kengo Morimoto",
-      "Takeshi Yamada",
+      "Tom Brennan",
+      "Claire Lawson",
+      "Jake Brennan",
+      "Richard Caldwell",
+      "Sean Mercer",
     ],
     platform: "Zoom",
   },
@@ -77,27 +77,27 @@ export const homeData: PersonaHomeData = {
     meetingEndTime: "11:30 AM",
     attendees: [
       {
-        name: "Kengo Morimoto",
-        role: "CEO, MC Global Innovation",
-        initials: "KM",
+        name: "Richard Caldwell",
+        role: "CEO, AG Global Innovation",
+        initials: "RC",
         lastSpoke: "3 days ago",
       },
       {
-        name: "Ryotaro Nakamura",
-        role: "Director, MC Global Innovation",
-        initials: "RN",
+        name: "Tom Brennan",
+        role: "Director, AG Global Innovation",
+        initials: "TB",
         lastSpoke: "Yesterday",
       },
       {
-        name: "Mihiro Nakamura",
-        role: "Associate, MC Global Innovation",
-        initials: "MN",
+        name: "Jake Brennan",
+        role: "Associate, AG Global Innovation",
+        initials: "JB",
         lastSpoke: "Yesterday",
       },
       {
-        name: "Takeshi Yamada",
-        role: "VP Finance, MC Global Innovation",
-        initials: "TY",
+        name: "Sean Mercer",
+        role: "VP Finance, AG Global Innovation",
+        initials: "SM",
         lastSpoke: "1 week ago",
       },
     ],
@@ -106,8 +106,8 @@ export const homeData: PersonaHomeData = {
         heading: "Pipeline growing faster than expected",
         source: {
           quote:
-            "We had 23 inbound referrals last week. That's up significantly. The MCGI brand is starting to get recognized in the Valley.",
-          meetingTitle: "MCGI Weekly — Deal Flow & Operations",
+            "We had 23 inbound referrals last week. That's up significantly. The AGV brand is starting to get recognized in the Valley.",
+          meetingTitle: "AGV Weekly — Deal Flow & Operations",
           meetingDate: "Mar 3, 2026",
           sourceType: "teams",
         },
@@ -130,13 +130,13 @@ export const homeData: PersonaHomeData = {
         heading: "Board pushing for increased climate tech allocation",
         source: {
           quote:
-            "Board requesting increased allocation to climate tech given MC group sustainability commitments. Proposal to increase from 25% to 35% of new deployments.",
+            "Board requesting increased allocation to climate tech given AG group sustainability commitments. Proposal to increase from 25% to 35% of new deployments.",
           meetingTitle: "Investment Committee — Q1 Pipeline Review",
           meetingDate: "Mar 10, 2026",
           sourceType: "teams",
         },
         summary:
-          "Climate tech allocation shift will affect pipeline prioritization. CarbonGrid and FluxMaterials benefit from this directive.",
+          "Climate tech allocation shift will affect pipeline prioritization. GreenCore and NovaMaterials benefit from this directive.",
       },
     ],
   },

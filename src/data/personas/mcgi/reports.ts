@@ -96,7 +96,7 @@ export const reportsData: PersonaReportsData = {
     },
     {
       id: "mcgi-radar-japan",
-      name: "Japan Market Entry Opportunities",
+      name: "Europe Market Entry Opportunities",
       type: "radar",
       reportCount: 0,
       reports: [],
@@ -107,7 +107,7 @@ export const reportsData: PersonaReportsData = {
       id: "mcgi-radar-1",
       name: "Competitive CVC Activity",
       prompt:
-        "Track investments made by SoftBank Vision Fund, Samsung Next, Intel Capital, and other corporate VCs in AI and climate tech startups",
+        "Track investments made by BlueBridge Vision Fund, Hanwa Electronics Next, Intel Capital, and other corporate VCs in AI and climate tech startups",
       isActive: true,
       createdAt: "2026-01-15",
     },
@@ -121,9 +121,9 @@ export const reportsData: PersonaReportsData = {
     },
     {
       id: "mcgi-radar-3",
-      name: "Japan Market Entry Opportunities",
+      name: "Europe Market Entry Opportunities",
       prompt:
-        "Identify portfolio companies and pipeline startups that are ready for Japan market expansion and map them to MC business units",
+        "Identify portfolio companies and pipeline startups that are ready for Europe market expansion and map them to AG business units",
       isActive: true,
       createdAt: "2026-01-20",
     },
@@ -131,7 +131,7 @@ export const reportsData: PersonaReportsData = {
       id: "mcgi-radar-4",
       name: "Portfolio Company Milestones",
       prompt:
-        "Track key milestones, funding rounds, customer wins, and hiring signals across all MCGI portfolio companies",
+        "Track key milestones, funding rounds, customer wins, and hiring signals across all AGV portfolio companies",
       isActive: true,
       createdAt: "2026-02-10",
     },
@@ -157,9 +157,9 @@ export const reportsData: PersonaReportsData = {
     },
     {
       id: "mcgi-pref-4",
-      label: "MC Synergy Tracker",
+      label: "AG Synergy Tracker",
       description:
-        "Track startup-to-MC-business-unit engagement and potential commercial partnerships",
+        "Track startup-to-AG-business-unit engagement and potential commercial partnerships",
     },
   ],
   defaultRadarOptions: [
@@ -189,13 +189,13 @@ export const reportsData: PersonaReportsData = {
   ],
   chatSuggestions: {
     reports: [
-      "Which pipeline deals have the strongest MC synergy potential?",
+      "Which pipeline deals have the strongest AG synergy potential?",
       "How does our Q1 deployment pace compare to plan?",
       "What are the key risks in our climate tech portfolio?",
-      "Summarize NeuralDB's performance trends",
+      "Summarize SyntheticDB's performance trends",
     ],
     radar: [
-      "What did SoftBank invest in this month?",
+      "What did BlueBridge invest in this month?",
       "Any breakthroughs in carbon capture technology?",
       "Which portfolio companies are hiring aggressively?",
       "New AI regulations that could impact our thesis?",

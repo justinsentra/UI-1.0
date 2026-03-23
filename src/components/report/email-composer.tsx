@@ -16,7 +16,7 @@ export function EmailComposer({ label, onCancel, onSend }: EmailComposerProps) {
   const [cc, setCc] = useState<string[]>([]);
   const [subject, setSubject] = useState(`Re: ${label}`);
   const [body, setBody] = useState(
-    `Hi,\n\nFollowing up on this week's review — wanted to connect on this topic and align on next steps.\n\nBest,\nJustin`,
+    `Hi,\n\nFollowing up on this week's review — wanted to connect on this topic and align on next steps.\n\nBest,\nLeo`,
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);

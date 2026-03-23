@@ -14,12 +14,12 @@ const attendees: Attendee[] = [
   { name: "Cole", domain: "campfire.ai", email: "cole@campfire.ai" },
   { name: "Josh", domain: "campfire.ai", email: "josh@campfire.ai" },
   {
-    name: "Justin",
+    name: "Leo",
     domain: "sentra.app",
-    email: "justin@sentra.app",
+    email: "leo@sentra.app",
     isMe: true,
   },
-  { name: "Andrey", domain: "sentra.app", email: "andrey@sentra.app" },
+  { name: "Pavel", domain: "sentra.app", email: "pavel@sentra.app" },
 ];
 
 const grouped = attendees.reduce<Record<string, Attendee[]>>((acc, a) => {

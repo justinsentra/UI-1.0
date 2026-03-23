@@ -62,7 +62,7 @@ interface PersonaUpcomingMeeting {
   endTime: string;                 // e.g. "3:00 PM"
   duration: string;                // e.g. "1h"
   participants: string[];
-  platform: string;                // "Google Meet" or "Zoom"
+  platform: string;                // "Alphabase Meet" or "Zoom"
 }
 
 interface PreMeetingBrief {
@@ -112,7 +112,7 @@ interface Meeting {
   duration: string;
   participants: string[];
   tags: string[];
-  platform: "Google Meet" | "Zoom";
+  platform: "Alphabase Meet" | "Zoom";
   privacy: "public" | "private";
   summary: string;                 // 2-3 sentence AI-generated summary
   keyPoints: KeyPoint[];           // 3-5 key points
@@ -131,7 +131,7 @@ interface TranscriptEntry { speaker: string; text: string; isMe?: boolean }
 - Tags should be industry-appropriate (e.g. "deal-review" for finance, "sprint" for tech)
 - Transcripts should feel natural — use the persona's jargon
 - At least one meeting should be the upcomingMeeting referenced in home.ts
-- Mix of "Google Meet" and "Zoom" platforms
+- Mix of "Alphabase Meet" and "Zoom" platforms
 - Action items should connect to commitments.ts entries
 
 ---
@@ -364,7 +364,7 @@ registerPersonaData("{{personaId}}", {
 3. **Commitments ↔ Meetings:** Every commitment's meetingId must match a meeting in meetings.ts
 4. **Report IDs:** Artifact cards linking to reports must use IDs that exist in reports.ts
 5. **Deep Research ↔ Reports:** Artifact cards with deepResearchPrompt should trigger a document flow
-6. **Source types:** Use tools the persona's industry actually uses (e.g. finance uses Bloomberg, Salesforce — map to closest available SourceType)
+6. **Source types:** Use tools the persona's industry actually uses (e.g. finance uses Bloomberg, CloudForce — map to closest available SourceType)
 8. **Dates:** Keep dates in early March 2026, use relative dates ("Today", "Yesterday", "2 days ago") where possible
 9. **Names:** Use realistic names for the industry/region. Include the prospect's actual name as a participant in at least 2 meetings.
 

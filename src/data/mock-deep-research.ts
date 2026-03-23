@@ -48,7 +48,7 @@ export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
     { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today" },
     { id: "s-2", title: "Customer call themes this week", date: "Today" },
     { id: "s-3", title: "Engineering blockers summary", date: "Yesterday" },
-    { id: "s-4", title: "SXSW launch readiness check", date: "Yesterday" },
+    { id: "s-4", title: "TechConnect launch readiness check", date: "Yesterday" },
     { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3" },
     { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3" },
     { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2" },
@@ -101,26 +101,26 @@ export const SUGGESTIONS: Record<string, string[]> = {
 
 export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
   {
-    label: "Pulling Anthropic_Claude_Enterprise_Eval.xlsx from Google Drive...",
+    label: "Pulling Anthropic_Claude_Enterprise_Eval.xlsx from Alphabase Drive...",
     duration: 3000,
   },
   {
     label:
-      "Reviewing transcript from Anthropic Enterprise Demo (Mar 4) on Zoom...",
+      "Reviewing transcript from Cortex Labs Enterprise Demo (Mar 4) on Zoom...",
     duration: 3500,
   },
   {
-    label: "Reading OpenAI_GPT5_Technical_Assessment.pdf from Google Drive...",
+    label: "Reading OpenAI_GPT5_Technical_Assessment.pdf from Alphabase Drive...",
     duration: 3200,
   },
   {
     label:
-      "Pulling transcript from Google Gemini Pilot Review (Mar 6) on Zoom...",
+      "Pulling transcript from Alphabase Gemini Pilot Review (Mar 6) on Zoom...",
     duration: 3000,
   },
   {
     label:
-      "Scanning AI_Vendor_Security_Audit_Results.xlsx from Google Drive...",
+      "Scanning AI_Vendor_Security_Audit_Results.xlsx from Alphabase Drive...",
     duration: 2800,
   },
   {
@@ -145,13 +145,13 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
     },
     {
       id: "ve-1",
-      content: `**Anthropic Claude (Enterprise Tier)**\n\n- **Model Performance:** Highest accuracy on regulatory document comprehension (94.2% vs 89.1% GPT-5, 87.3% Gemini). Superior citation accuracy — critical for compliance use cases. Strongest performance on multi-document synthesis across earnings transcripts and SEC filings.\n- **Security & Compliance:** SOC 2 Type II certified. Supports VPC deployment and data residency requirements. No training on customer data. Passed JPM InfoSec penetration testing.\n- **Enterprise Support:** Dedicated account team, 4-hour SLA for critical issues. Custom fine-tuning available for financial services terminology.\n- **Pricing:** $18/seat/month (Enterprise tier, 500+ seats). Volume discount to $14/seat at 2,000+ seats. Custom model fine-tuning: $150K one-time + $25K/quarter.\n- **Integration:** REST API, Python/TypeScript SDKs. Supports SSO/SAML, audit logging, admin controls. Webhook support for event-driven workflows.\n- **FS Domain Expertise:** Purpose-built financial services safety layers. Strong on regulatory language, deal terminology, and compliance frameworks.`,
+      content: `**Cortex Labs Claude (Enterprise Tier)**\n\n- **Model Performance:** Highest accuracy on regulatory document comprehension (94.2% vs 89.1% GPT-5, 87.3% Gemini). Superior citation accuracy — critical for compliance use cases. Strongest performance on multi-document synthesis across earnings transcripts and SEC filings.\n- **Security & Compliance:** SOC 2 Type II certified. Supports VPC deployment and data residency requirements. No training on customer data. Passed JPM InfoSec penetration testing.\n- **Enterprise Support:** Dedicated account team, 4-hour SLA for critical issues. Custom fine-tuning available for financial services terminology.\n- **Pricing:** $18/seat/month (Enterprise tier, 500+ seats). Volume discount to $14/seat at 2,000+ seats. Custom model fine-tuning: $150K one-time + $25K/quarter.\n- **Integration:** REST API, Python/TypeScript SDKs. Supports SSO/SAML, audit logging, admin controls. Webhook support for event-driven workflows.\n- **FS Domain Expertise:** Purpose-built financial services safety layers. Strong on regulatory language, deal terminology, and compliance frameworks.`,
       sources: [
         {
           type: "google-drive",
           label: "Anthropic_Claude_Enterprise_Eval.xlsx",
         },
-        { type: "zoom", label: "Anthropic Enterprise Demo (Mar 4)" },
+        { type: "zoom", label: "Cortex Labs Enterprise Demo (Mar 4)" },
         {
           type: "google-drive",
           label: "Anthropic_Security_Audit_Results.pdf",
@@ -160,29 +160,29 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
     },
     {
       id: "ve-2",
-      content: `**OpenAI GPT-5 (Enterprise Tier)**\n\n- **Model Performance:** Strong general reasoning and code generation. Slightly lower accuracy on financial document analysis (89.1%). Best-in-class on creative content generation and translation tasks. Faster inference speed (avg 1.2s vs 1.8s Claude).\n- **Security & Compliance:** SOC 2 Type II certified. Azure-hosted option for data residency. Opt-out of training on customer data available. Passed InfoSec review with 2 minor findings (remediated).\n- **Enterprise Support:** Large customer success team. 8-hour SLA for critical issues. Broad ecosystem of third-party integrations and tools.\n- **Pricing:** $22/seat/month (Enterprise tier, 500+ seats). Volume discount to $18/seat at 2,000+ seats. Fine-tuning: $200K one-time + $35K/quarter.\n- **Integration:** REST API, Python/Node SDKs, Azure OpenAI Service. SSO/SAML, audit logs. Extensive plugin marketplace.\n- **FS Domain Expertise:** Broad but not deep. General-purpose model with financial services fine-tuning available at additional cost. Less precise on regulatory nuance.`,
+      content: `**Helios AI GPT-5 (Enterprise Tier)**\n\n- **Model Performance:** Strong general reasoning and code generation. Slightly lower accuracy on financial document analysis (89.1%). Best-in-class on creative content generation and translation tasks. Faster inference speed (avg 1.2s vs 1.8s Claude).\n- **Security & Compliance:** SOC 2 Type II certified. Azure-hosted option for data residency. Opt-out of training on customer data available. Passed InfoSec review with 2 minor findings (remediated).\n- **Enterprise Support:** Large customer success team. 8-hour SLA for critical issues. Broad ecosystem of third-party integrations and tools.\n- **Pricing:** $22/seat/month (Enterprise tier, 500+ seats). Volume discount to $18/seat at 2,000+ seats. Fine-tuning: $200K one-time + $35K/quarter.\n- **Integration:** REST API, Python/Node SDKs, Azure Helios AI Service. SSO/SAML, audit logs. Extensive plugin marketplace.\n- **FS Domain Expertise:** Broad but not deep. General-purpose model with financial services fine-tuning available at additional cost. Less precise on regulatory nuance.`,
       sources: [
         {
           type: "google-drive",
           label: "OpenAI_GPT5_Technical_Assessment.pdf",
         },
-        { type: "zoom", label: "OpenAI Enterprise Review (Mar 1)" },
+        { type: "zoom", label: "Helios AI Enterprise Review (Mar 1)" },
       ],
     },
     {
       id: "ve-3",
-      content: `**Google Gemini Ultra (Enterprise Tier)**\n\n- **Model Performance:** Strongest multimodal capabilities (document + image analysis). Good on structured data extraction from financial statements. Lower accuracy on nuanced regulatory language (87.3%). Best for data-heavy analytical workflows.\n- **Security & Compliance:** SOC 2 Type II certified. Google Cloud deployment with granular data controls. EU data residency available. Passed InfoSec review.\n- **Enterprise Support:** Google Cloud enterprise support integration. 4-hour SLA through Cloud Premier. Vertex AI platform for model management.\n- **Pricing:** $20/seat/month (Enterprise tier, 500+ seats). Significant discount when bundled with existing Google Cloud spend — effective rate ~$12/seat at current GCP commitment. Fine-tuning: $125K one-time + $20K/quarter.\n- **Integration:** Vertex AI APIs, Python/Java/Go SDKs. Deep integration with Google Workspace. SSO via Google Cloud Identity.\n- **FS Domain Expertise:** Moderate. Strong on quantitative analysis and data extraction. Weaker on qualitative regulatory interpretation and deal-specific language.`,
+      content: `**Alphabase Gemini Ultra (Enterprise Tier)**\n\n- **Model Performance:** Strongest multimodal capabilities (document + image analysis). Good on structured data extraction from financial statements. Lower accuracy on nuanced regulatory language (87.3%). Best for data-heavy analytical workflows.\n- **Security & Compliance:** SOC 2 Type II certified. Alphabase Cloud deployment with granular data controls. EU data residency available. Passed InfoSec review.\n- **Enterprise Support:** Alphabase Cloud enterprise support integration. 4-hour SLA through Cloud Premier. Vertex AI platform for model management.\n- **Pricing:** $20/seat/month (Enterprise tier, 500+ seats). Significant discount when bundled with existing Alphabase Cloud spend — effective rate ~$12/seat at current GCP commitment. Fine-tuning: $125K one-time + $20K/quarter.\n- **Integration:** Vertex AI APIs, Python/Java/Go SDKs. Deep integration with Alphabase Workspace. SSO via Alphabase Cloud Identity.\n- **FS Domain Expertise:** Moderate. Strong on quantitative analysis and data extraction. Weaker on qualitative regulatory interpretation and deal-specific language.`,
       sources: [
         {
           type: "google-drive",
           label: "Google_Gemini_Pilot_Results.xlsx",
         },
-        { type: "zoom", label: "Google Gemini Pilot Review (Mar 6)" },
+        { type: "zoom", label: "Alphabase Gemini Pilot Review (Mar 6)" },
       ],
     },
     {
       id: "ve-4",
-      content: `**Recommendation & Next Steps**\n\n**Primary recommendation: Anthropic Claude** for regulated financial services use cases (document analysis, compliance, meeting intelligence, client advisory). Superior accuracy on financial/regulatory content and strongest data governance posture.\n\n**Secondary recommendation: Google Gemini** for data-intensive analytical workflows where existing GCP spend reduces effective cost. Consider dual-vendor strategy.\n\nOpenAI remains strong for general-purpose enterprise use but pricing premium and weaker financial domain performance make it less compelling for our specific use cases.\n\n**Proposed timeline:** Finalize Anthropic enterprise agreement by March 28. Begin Gemini pilot in Asset Management data analytics by April 7. Present dual-vendor strategy to Technology Executive Committee on April 14.`,
+      content: `**Recommendation & Next Steps**\n\n**Primary recommendation: Cortex Labs Claude** for regulated financial services use cases (document analysis, compliance, meeting intelligence, client advisory). Superior accuracy on financial/regulatory content and strongest data governance posture.\n\n**Secondary recommendation: Alphabase Gemini** for data-intensive analytical workflows where existing GCP spend reduces effective cost. Consider dual-vendor strategy.\n\nOpenAI remains strong for general-purpose enterprise use but pricing premium and weaker financial domain performance make it less compelling for our specific use cases.\n\n**Proposed timeline:** Finalize Cortex Labs enterprise agreement by March 28. Begin Gemini pilot in Asset Management data analytics by April 7. Present dual-vendor strategy to Technology Executive Committee on April 14.`,
       sources: [
         { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
         {
@@ -212,7 +212,7 @@ export const WEEKLY_SOURCES: SourceRef[] = [
 
 export const EM_PRD_SOURCES: SourceRef[] = [
   { type: "google-meet", label: "Engineering Sprint Retro (Mar 3)" },
-  { type: "google-meet", label: "Andrey / Justin 1:1 (Mar 1)" },
+  { type: "google-meet", label: "Pavel / Leo 1:1 (Mar 1)" },
   { type: "slack", label: "#engineering" },
   { type: "linear", label: "AUTH-142: Refactor auth service" },
 ];
@@ -221,15 +221,15 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Parsing 8 meeting transcripts from Google Meet...",
+        label: "Parsing 8 meeting transcripts from Alphabase Meet...",
         duration: 3200,
       },
       {
-        label: "Reading 5 Slack threads and 3 Notion pages...",
+        label: "Reading 5 ChatWorks threads and 3 Dokra pages...",
         duration: 3400,
       },
       {
-        label: "Scanning CRM pipeline and Google Calendar events...",
+        label: "Scanning CRM pipeline and Alphabase Calendar events...",
         duration: 3400,
       },
     ],
@@ -248,7 +248,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
         id: "p0-1",
         content: `**Top Insights**\n\nEnterprise segment grew 23% — driven by 3 new logos from the Q2 launch campaign. The largest new logo, Meridian Corp, was sourced through the Campfire partner referral and is evaluating a $120K ARR package with custom SLA requirements.\n\nSMB conversion rate dropped 4pts, likely tied to pricing feedback surfaced in 3 separate discovery calls this week. Customers are comparing against competitors offering usage-based pricing. Highest win rate remains in the Financial Services vertical at 64%, with Healthcare close behind at 58%.\n\nNotably, deals sourced from content marketing (blog + webinar) have a 40% higher close rate than cold outbound, though volume is 3x lower. Recommend increasing content investment for Q2 to capitalize on this signal.`,
         sources: [
-          { type: "google-meet", label: "Al <> Justin 1:1" },
+          { type: "google-meet", label: "Al <> Leo 1:1" },
           { type: "slack", label: "#enterprise-deals" },
           { type: "outlook", label: "Q4 Pipeline Report" },
           { type: "google-drive", label: "Q1 Revenue Analysis" },
@@ -259,11 +259,11 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Reviewing 7 call transcripts from Zoom and Google Meet...",
+        label: "Reviewing 7 call transcripts from Zoom and Alphabase Meet...",
         duration: 3500,
       },
       {
-        label: "Reading 3 Slack channels and 2 Notion docs...",
+        label: "Reading 3 ChatWorks channels and 2 Dokra docs...",
         duration: 3500,
       },
       { label: "Checking 2 follow-up emails in Outlook...", duration: 3000 },
@@ -281,7 +281,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
       },
       {
         id: "p1-1",
-        content: `**Notable Calls**\n\n**Vantage (Casey Morgan)** — Strong interest in the API tier; asked for custom SLA with 99.95% uptime guarantee. Their team of 45 needs admin controls and audit logging. Casey wants a follow-up demo with their CTO next Tuesday.\n\n**Nexus** — Evaluating against Gong and Fireflies; price-sensitive but impressed by the depth of meeting intelligence. They're running a 2-week trial with 8 team members. Decision expected by March 15.\n\n**Flux Labs** — Ready to expand from 12 to 50 seats if mobile app ships by Q2. Their distributed team relies heavily on async communication and needs mobile access for meeting summaries on the go. Budget already approved internally.`,
+        content: `**Notable Calls**\n\n**Vantage (Casey Morgan)** — Strong interest in the API tier; asked for custom SLA with 99.95% uptime guarantee. Their team of 45 needs admin controls and audit logging. Casey wants a follow-up demo with their CTO next Tuesday.\n\n**Nexus** — Evaluating against Voiceflow and Buzzbot; price-sensitive but impressed by the depth of meeting intelligence. They're running a 2-week trial with 8 team members. Decision expected by March 15.\n\n**Flux Labs** — Ready to expand from 12 to 50 seats if mobile app ships by Q2. Their distributed team relies heavily on async communication and needs mobile access for meeting summaries on the go. Budget already approved internally.`,
         sources: [
           { type: "zoom", label: "Vantage Follow-up" },
           { type: "google-meet", label: "Flux Labs Check-in" },
@@ -294,19 +294,19 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Parsing 5 standup transcripts from Google Meet...",
+        label: "Parsing 5 standup transcripts from Alphabase Meet...",
         duration: 3200,
       },
       {
-        label: "Scanning 8 Linear tickets and 4 GitHub PRs...",
+        label: "Scanning 8 Trackline tickets and 4 GitHub PRs...",
         duration: 3400,
       },
-      { label: "Reading 4 Slack threads and Asana board...", duration: 3400 },
+      { label: "Reading 4 ChatWorks threads and Asana board...", duration: 3400 },
     ],
     paragraphs: [
       {
         id: "p2-0",
-        content: `**Engineering Blockers**\n\nAuth service refactor (AUTH-142) is blocking 3 downstream features: SSO support, team permissions, and audit logging. Jordan estimates 4 more days of work, but the scope expanded after discovering legacy session handling that needs migration. Mobile push notification reliability was reported in 2 customer calls this week — the root cause is a race condition in the notification queue.\n\nThe database migration for the new analytics schema is 80% complete but hit an issue with backward compatibility on the reporting API. Andrey proposed a dual-write strategy to avoid downtime, adding approximately 2 days to the timeline.\n\nOn the positive side, the CI/CD pipeline improvements shipped this week, reducing build times from 12 minutes to 4 minutes. This is already improving developer velocity across the team.`,
+        content: `**Engineering Blockers**\n\nAuth service refactor (AUTH-142) is blocking 3 downstream features: SSO support, team permissions, and audit logging. Jordan estimates 4 more days of work, but the scope expanded after discovering legacy session handling that needs migration. Mobile push notification reliability was reported in 2 customer calls this week — the root cause is a race condition in the notification queue.\n\nThe database migration for the new analytics schema is 80% complete but hit an issue with backward compatibility on the reporting API. Pavel proposed a dual-write strategy to avoid downtime, adding approximately 2 days to the timeline.\n\nOn the positive side, the CI/CD pipeline improvements shipped this week, reducing build times from 12 minutes to 4 minutes. This is already improving developer velocity across the team.`,
         sources: [
           { type: "linear", label: "AUTH-142: Refactor auth service" },
           { type: "slack", label: "#engineering" },
@@ -316,7 +316,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
       },
       {
         id: "p2-1",
-        content: `**Sales & Product Blockers**\n\nLack of SOC 2 Type II certification is blocking 4 enterprise deals worth a combined $380K ARR. The audit is scheduled to begin March 10 with completion targeted for end of April. In the meantime, Ashwin is drafting a security whitepaper that may help unblock 2 of the 4 deals.\n\nNo self-serve onboarding flow is slowing SMB pipeline velocity — current median time-to-first-value is 6 days, and the target is under 24 hours. The new onboarding wizard designs are in Notion and need engineering sign-off by Friday.\n\nFigma designs for the v2 dashboard are still in review (due: this Friday). The design team flagged that the data visualization components need accessibility improvements before handoff to engineering.`,
+        content: `**Sales & Product Blockers**\n\nLack of SOC 2 Type II certification is blocking 4 enterprise deals worth a combined $380K ARR. The audit is scheduled to begin March 10 with completion targeted for end of April. In the meantime, Raj is drafting a security whitepaper that may help unblock 2 of the 4 deals.\n\nNo self-serve onboarding flow is slowing SMB pipeline velocity — current median time-to-first-value is 6 days, and the target is under 24 hours. The new onboarding wizard designs are in Dokra and need engineering sign-off by Friday.\n\nFigma designs for the v2 dashboard are still in review (due: this Friday). The design team flagged that the data visualization components need accessibility improvements before handoff to engineering.`,
         sources: [
           { type: "google-meet", label: "GTM Strategy Call" },
           { type: "slack", label: "#product" },
@@ -329,27 +329,27 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Searching 12 meeting notes across Google Meet and Zoom...",
+        label: "Searching 12 meeting notes across Alphabase Meet and Zoom...",
         duration: 3500,
       },
       {
-        label: "Reading 6 Slack channels and Google Drive docs...",
+        label: "Reading 6 ChatWorks channels and Alphabase Drive docs...",
         duration: 3300,
       },
       {
-        label: "Scanning recent commits and Linear updates...",
+        label: "Scanning recent commits and Trackline updates...",
         duration: 3200,
       },
     ],
     paragraphs: [
       {
         id: "p3-0",
-        content: `**Recent Updates**\n\nThe new analytics dashboard shipped on Monday and is seeing strong adoption — 78% of active users accessed it in the first 48 hours. Early feedback highlights the real-time data refresh as the standout feature, with 3 customers already asking about API access to the analytics data.\n\nMobile app beta went out to 25 testers on Wednesday. Initial feedback is overwhelmingly positive — testers rated the meeting summary experience 4.6/5 and the push notification reliability 4.2/5. The main request is offline access for meeting transcripts, which is already on the Q2 roadmap.\n\nThe SXSW launch prep is 85% complete. Press kit is finalized, demo booth is confirmed at SXSW Create, and the pre-launch teaser campaign is scheduled for March 10. 12 publications and 4 podcast contacts have been briefed.`,
+        content: `**Recent Updates**\n\nThe new analytics dashboard shipped on Monday and is seeing strong adoption — 78% of active users accessed it in the first 48 hours. Early feedback highlights the real-time data refresh as the standout feature, with 3 customers already asking about API access to the analytics data.\n\nMobile app beta went out to 25 testers on Wednesday. Initial feedback is overwhelmingly positive — testers rated the meeting summary experience 4.6/5 and the push notification reliability 4.2/5. The main request is offline access for meeting transcripts, which is already on the Q2 roadmap.\n\nThe TechConnect launch prep is 85% complete. Press kit is finalized, demo booth is confirmed at TechConnect Create, and the pre-launch teaser campaign is scheduled for March 10. 12 publications and 4 podcast contacts have been briefed.`,
         sources: [
           { type: "slack", label: "#launches" },
           { type: "github", label: "v2.4.0 Release" },
           { type: "google-meet", label: "Weekly All-Hands" },
-          { type: "google-drive", label: "SXSW Press Kit" },
+          { type: "google-drive", label: "TechConnect Press Kit" },
         ],
       },
       {
@@ -384,7 +384,7 @@ export const EM_SCAN_STEPS: PrdScanStep[] = [
     duration: 3000,
   },
   {
-    label: "Reading 12 Linear tickets from Sprint 14 and backlog...",
+    label: "Reading 12 Trackline tickets from Sprint 14 and backlog...",
     duration: 3500,
   },
   {
@@ -392,7 +392,7 @@ export const EM_SCAN_STEPS: PrdScanStep[] = [
     duration: 4000,
   },
   {
-    label: "Analyzing Notion engineering specs and decision logs...",
+    label: "Analyzing Dokra engineering specs and decision logs...",
     duration: 3500,
   },
 ];
@@ -401,7 +401,7 @@ export const EM_CONTENT = `# Product Requirements Document: Auth Service Refacto
 
 ## Overview
 
-Based on discussions from the Engineering Sprint Retro (Mar 3), Andrey/Justin 1:1 (Mar 1), and 12 related Linear tickets, this PRD outlines the requirements for refactoring the authentication service to support enterprise SSO, team permissions, and audit logging.
+Based on discussions from the Engineering Sprint Retro (Mar 3), Pavel/Leo 1:1 (Mar 1), and 12 related Trackline tickets, this PRD outlines the requirements for refactoring the authentication service to support enterprise SSO, team permissions, and audit logging.
 
 ## Problem Statement
 
@@ -409,24 +409,24 @@ The current auth service uses a legacy session handling mechanism that cannot su
 
 ## Goals
 
-1. **SSO/SAML Support** — Enable enterprise customers to authenticate via their identity provider (Okta, Azure AD, Google Workspace)
+1. **SSO/SAML Support** — Enable enterprise customers to authenticate via their identity provider (Okta, Azure AD, Alphabase Workspace)
 2. **Team Permissions** — Role-based access control with admin, member, and viewer roles
 3. **Audit Logging** — Immutable log of all auth events for SOC 2 compliance
 4. **Session Migration** — Zero-downtime migration from legacy sessions to new JWT-based flow
 
 ## Non-Goals
 
-- Social login (Google, GitHub) — already supported, no changes needed
+- Social login (Alphabase, GitHub) — already supported, no changes needed
 - Custom RBAC beyond 3 predefined roles — deferred to Q3
 - Multi-factor authentication — separate workstream (AUTH-156)
 
 ## Technical Approach
 
 **Phase 1: Session Migration (Week 1-2)**
-Dual-write strategy proposed by Andrey to avoid downtime. New JWT tokens issued alongside legacy sessions. Gradual rollover with feature flag.
+Dual-write strategy proposed by Pavel to avoid downtime. New JWT tokens issued alongside legacy sessions. Gradual rollover with feature flag.
 
 **Phase 2: SSO Integration (Week 2-3)**
-SAML 2.0 integration via WorkOS SDK. Support for Okta, Azure AD, and Google Workspace as initial identity providers. Tenant-level configuration stored in new \`sso_configs\` table.
+SAML 2.0 integration via WorkOS SDK. Support for Okta, Azure AD, and Alphabase Workspace as initial identity providers. Tenant-level configuration stored in new \`sso_configs\` table.
 
 **Phase 3: Permissions & Audit (Week 3-4)**
 RBAC middleware layer with role inheritance. Audit log writes to append-only \`auth_events\` table with 90-day retention.
@@ -449,16 +449,16 @@ RBAC middleware layer with role inheritance. Audit log writes to append-only \`a
 
 | Phase | Duration | Owner |
 |-------|----------|-------|
-| Session Migration | 2 weeks | Andrey |
+| Session Migration | 2 weeks | Pavel |
 | SSO Integration | 1.5 weeks | Jordan |
-| Permissions & Audit | 1.5 weeks | Andrey + Jordan |
+| Permissions & Audit | 1.5 weeks | Pavel + Jordan |
 | QA & Rollout | 1 week | Full team |
 
 **Target completion: April 11, 2026**
 
 ---
 
-*Sources: Engineering Sprint Retro, Andrey/Justin 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering Slack, Notion Engineering Specs*`;
+*Sources: Engineering Sprint Retro, Pavel/Leo 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering ChatWorks, Dokra Engineering Specs*`;
 
 export const EM_BUILD_STEPS: PrdScanStep[] = [
   {
@@ -568,7 +568,7 @@ export const PRD_CONTENT = `# 3-Statement Financial Model: Meridian Corp
 | CFO | ($2.9M) | ($3.5M) | ($2.4M) | ($0.1M) |
 | CapEx | ($0.9M) | ($1.2M) | ($1.4M) | ($1.5M) |
 | FCF | ($3.8M) | ($4.7M) | ($3.8M) | ($1.6M) |
-| Cash Runway | 8.4 yrs | 5.9 yrs | 6.3 yrs | 14.3 yrs |
+| Cash RenderLab | 8.4 yrs | 5.9 yrs | 6.3 yrs | 14.3 yrs |
 
 ## Valuation Sensitivity
 
@@ -581,7 +581,7 @@ export const PRD_CONTENT = `# 3-Statement Financial Model: Meridian Corp
 
 ---
 
-*Sources: Meridian Corp deal memo, GTM Strategy Sync, Vantage Discovery Call notes, Q1 Deal Tracker (Notion), #enterprise-deals Slack, Google Drive financial disclosures*`;
+*Sources: Meridian Corp deal memo, GTM Strategy Sync, Vantage Discovery Call notes, Q1 Deal Tracker (Dokra), #enterprise-deals ChatWorks, Alphabase Drive financial disclosures*`;
 
 export const PRD_BUILD_STEPS: PrdScanStep[] = [
   {
@@ -623,7 +623,7 @@ export const WEEKLY_SCAN_STEPS: PrdScanStep[] = [
     duration: 3200,
   },
   {
-    label: "Scanning #sentra-adoption Slack channel (47 messages this week)...",
+    label: "Scanning #sentra-adoption ChatWorks channel (47 messages this week)...",
     duration: 3500,
   },
   {
@@ -640,7 +640,7 @@ export const WEEKLY_SCAN_STEPS: PrdScanStep[] = [
     duration: 2500,
   },
   {
-    label: "Scanning #it-ops and #ai-tools-evaluation Slack channels...",
+    label: "Scanning #it-ops and #ai-tools-evaluation ChatWorks channels...",
     duration: 3000,
   },
 ];
@@ -669,18 +669,18 @@ Sentra pilot adoption continues to accelerate across the Technology & Innovation
 ## Team-by-Team Breakdown
 
 **IB Coverage (NEW this week)**
-- 14 users onboarded Monday via group session led by Sarah Mitchell
+- 14 users onboarded Monday via group session led by Diana Calloway
 - Primary use case: client meeting prep and post-meeting action tracking
 - Feedback: "This replaces 30 minutes of manual CRM updates after every call" — VP, Coverage
 
 **TMT Group**
 - 18 active users (steady), meeting capture rate at 94%
-- Top request: integration with internal deal tracking system (Dealogic)
+- Top request: integration with internal deal tracking system (DealStream)
 - Generated 8 client-ready artifacts this week (up from 3)
 
 **Technology & Innovation**
 - 12 active users, primarily using search and meeting intelligence
-- Running evaluation against Glean and Microsoft Copilot
+- Running evaluation against Prism and Microsoft AssistAI
 - Decision expected by March 21
 
 **Compliance & Risk (Pilot pending)**
@@ -705,27 +705,27 @@ Sentra pilot adoption continues to accelerate across the Technology & Innovation
 - Current pilot: 60 seats at $0 (evaluation period ends March 31)
 - Proposed expansion: 150 seats, Enterprise tier at $42/seat/month
 - Annual contract value if expanded: $75,600/year
-- Competitive context: Glean quoting $65/seat, Copilot bundled at $30/seat
+- Competitive context: Prism quoting $65/seat, AssistAI bundled at $30/seat
 - Differentiation: meeting intelligence depth, organizational memory, action tracking
 
 ## Blockers & Risks
 
 1. **SSO Integration** — IT Security review blocking Compliance team pilot (ETA: Mar 24)
 2. **Data Retention Policy** — JPM requires 7-year retention; current Sentra default is 2 years
-3. **Dealogic Integration** — TMT group requesting CRM sync; not on current roadmap
+3. **DealStream Integration** — TMT group requesting CRM sync; not on current roadmap
 4. **Procurement Timeline** — Budget approval needed by April 15 for Q2 contract
 
 ## Next Week Priorities
 
-- [ ] Complete SSO claim mapping with JPM IT (Andrey)
-- [ ] Deliver penetration test report to InfoSec (Justin)
-- [ ] Schedule Compliance team pilot kickoff for Mar 17 (Kristina)
-- [ ] Finalize pricing proposal for 150-seat expansion (Justin)
-- [ ] Demo organizational memory features to TMT leadership (Ashwin)
+- [ ] Complete SSO claim mapping with JPM IT (Pavel)
+- [ ] Deliver penetration test report to InfoSec (Leo)
+- [ ] Schedule Compliance team pilot kickoff for Mar 17 (Ingrid)
+- [ ] Finalize pricing proposal for 150-seat expansion (Leo)
+- [ ] Demo organizational memory features to TMT leadership (Raj)
 
 ---
 
-*Sources: Sentra x JPM Pilot Sync (Mar 5), IT Infrastructure Call (Mar 7), Sentra QBR (Mar 3), #sentra-adoption Slack, #it-ops Slack, Weekly_Adoption_Metrics_W10.xlsx, Sentra_Pricing_Structure_2026.xlsx*`;
+*Sources: Sentra x JPM Pilot Sync (Mar 5), IT Infrastructure Call (Mar 7), Sentra QBR (Mar 3), #sentra-adoption ChatWorks, #it-ops ChatWorks, Weekly_Adoption_Metrics_W10.xlsx, Sentra_Pricing_Structure_2026.xlsx*`;
 
 export const WEEKLY_BUILD_STEPS: PrdScanStep[] = [
   {

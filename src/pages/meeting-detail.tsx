@@ -58,9 +58,9 @@ interface SpreadsheetStep {
 }
 
 const SPREADSHEET_SCAN_STEPS: SpreadsheetStep[] = [
-  { label: "Connecting to Ramp API…", duration: 3600 },
-  { label: "Pulling transaction history from Ramp…", duration: 5000 },
-  { label: "Connecting to Mercury API…", duration: 3200 },
+  { label: "Connecting to SpendWise API…", duration: 3600 },
+  { label: "Pulling transaction history from SpendWise…", duration: 5000 },
+  { label: "Connecting to StellarBank API…", duration: 3200 },
   { label: "Pulling account transfers and payments…", duration: 4800 },
   { label: "Cross-referencing vendor names…", duration: 3000 },
   { label: "Aggregating spend by category…", duration: 4000 },

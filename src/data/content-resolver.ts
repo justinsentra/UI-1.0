@@ -70,7 +70,7 @@ const BUILTIN_UPCOMING_MEETING: PersonaUpcomingMeeting = {
   time: "2:00 PM",
   endTime: "3:00 PM",
   duration: "60 min",
-  participants: ["Sarah Mitchell", "David Park", "Michael Chen"],
+  participants: ["Diana Calloway", "Nathan Lim", "Victor Kane"],
   platform: "Zoom",
 };
 
@@ -111,7 +111,7 @@ const BUILTIN_ARTIFACTS: Record<string, PersonaArtifactCard[]> = {
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Build an AI vendor evaluation matrix comparing Anthropic, OpenAI, and Google",
+        "Build an AI vendor evaluation matrix comparing Cortex Labs, Helios AI, and Alphabase",
     },
     {
       id: "art-2",
@@ -268,7 +268,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "7",
     title: "Draft 150-seat pricing proposal for Sentra expansion",
-    meeting: "Sarah / Justin 1:1",
+    meeting: "Sarah / Leo 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 18",
@@ -277,7 +277,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "8",
     title: "Schedule Compliance team pilot kickoff for March 17",
-    meeting: "Sarah / Justin 1:1",
+    meeting: "Sarah / Leo 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 15",
@@ -348,7 +348,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   },
   {
     id: "16",
-    title: "Send Anthropic enterprise partnership proposal to legal",
+    title: "Send Cortex Labs enterprise partnership proposal to legal",
     meeting: "AI Vendor Evaluation — Round 2",
     meetingId: "mtg-4",
     meetingDate: "Yesterday",
@@ -366,8 +366,8 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   },
   {
     id: "18",
-    title: "Review Dealogic integration requirements for TMT team",
-    meeting: "Sarah / Justin 1:1",
+    title: "Review DealStream integration requirements for TMT team",
+    meeting: "Sarah / Leo 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 21",
@@ -385,7 +385,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "20",
     title:
-      "Compile Sentra vs Glean vs Copilot feature comparison for decision memo",
+      "Compile Sentra vs Prism vs AssistAI feature comparison for decision memo",
     meeting: "AI Vendor Evaluation — Round 2",
     meetingId: "mtg-4",
     meetingDate: "Yesterday",
@@ -419,9 +419,9 @@ const BUILTIN_EM_FLOWS: DocumentFlowConfig[] = [
       { label: "View in Docs", action: "external" },
     ],
     doneMessage: {
-      title: "PRD pushed to Google Docs",
+      title: "PRD pushed to Alphabase Docs",
       description: "Your PRD has been created and is ready for review.",
-      link: { label: "Open in Google Docs", url: "#" },
+      link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
     },
     buildingLabel: "Pushing to",
   },
@@ -447,9 +447,9 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Cancel", action: "cancel" },
     ],
     doneMessage: {
-      title: "Model pushed to Google Sheets",
+      title: "Model pushed to Alphabase Sheets",
       description: "Your 3-statement financial model is ready.",
-      link: { label: "Open in Google Sheets", url: "#" },
+      link: { label: "Open in Alphabase Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
     },
     buildingLabel: "Building model",
   },
@@ -472,9 +472,9 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Build Weekly Update Deck", action: "build" },
     ],
     doneMessage: {
-      title: "Deck pushed to Google Slides",
+      title: "Deck pushed to Alphabase Slides",
       description: "Your weekly status deck is ready for review.",
-      link: { label: "Open in Google Slides", url: "#" },
+      link: { label: "Open in Alphabase Slides", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
     },
     buildingLabel: "Building deck",
   },

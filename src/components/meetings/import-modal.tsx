@@ -107,7 +107,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--bg-base)] rounded-xl shadow-lg border border-[var(--border-base)] overflow-hidden"
                   >
-                    {["Otter", "Rev", "Descript", "Plain Text"].map((opt) => (
+                    {["Echobird", "Rev", "Descript", "Plain Text"].map((opt) => (
                       <button
                         key={opt}
                         type="button"

@@ -10,12 +10,12 @@ const DEFAULT_SUGGESTED_QUESTIONS = [
 
 const SCAN_STEPS: ScanStep[] = [
   {
-    label: "Parsing 8 meeting transcripts from Google Meet...",
+    label: "Parsing 8 meeting transcripts from Alphabase Meet...",
     duration: 3200,
   },
-  { label: "Reading 5 Slack threads and 3 Notion pages...", duration: 3400 },
+  { label: "Reading 5 ChatWorks threads and 3 Dokra pages...", duration: 3400 },
   {
-    label: "Scanning CRM pipeline and Google Calendar events...",
+    label: "Scanning CRM pipeline and Alphabase Calendar events...",
     duration: 3400,
   },
   {
@@ -30,7 +30,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
     {
       id: "side-p0",
       content:
-        "**Key Decisions This Week**\n\nBased on 8 meetings reviewed, there were 4 key decisions: 1) Standardize on the new demo flow for enterprise prospects \u2014 Ashwin rated confidence at '100% or more.' 2) Prioritize SSO/SAML support since 3 enterprise prospects flagged it as a hard requirement. 3) Reframe risk radar as 'commitment tracking' to better match user mental models. 4) Increase content marketing investment for Q2 based on 40% higher close rates from content-sourced deals.",
+        "**Key Decisions This Week**\n\nBased on 8 meetings reviewed, there were 4 key decisions: 1) Standardize on the new demo flow for enterprise prospects \u2014 Raj rated confidence at '100% or more.' 2) Prioritize SSO/SAML support since 3 enterprise prospects flagged it as a hard requirement. 3) Reframe risk radar as 'commitment tracking' to better match user mental models. 4) Increase content marketing investment for Q2 based on 40% higher close rates from content-sourced deals.",
       sources: [
         { type: "google-meet", label: "GTM Strategy Sync" },
         { type: "slack", label: "#sales-pipeline" },
@@ -42,7 +42,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
     {
       id: "side-p1",
       content:
-        "**Outstanding Action Items**\n\nYou have 5 outstanding action items: 1) Schedule design review with broader team \u2014 due Friday. 2) Prepare enterprise demo script for Vantage follow-up \u2014 due next Tuesday. 3) Follow up with Meridian Corp on custom SLA requirements. 4) Review onboarding wizard designs in Notion before engineering handoff. 5) Coordinate with Kristina on SXSW press kit completion.",
+        "**Outstanding Action Items**\n\nYou have 5 outstanding action items: 1) Schedule design review with broader team \u2014 due Friday. 2) Prepare enterprise demo script for Vantage follow-up \u2014 due next Tuesday. 3) Follow up with Meridian Corp on custom SLA requirements. 4) Review onboarding wizard designs in Dokra before engineering handoff. 5) Coordinate with Ingrid on TechConnect press kit completion.",
       sources: [
         { type: "google-meet", label: "Weekly Team Standup" },
         { type: "slack", label: "#action-items" },
@@ -66,10 +66,10 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
     {
       id: "side-p3",
       content:
-        "**Meeting Frequency**\n\nIn the past 30 days, your most frequent meetings were with: **Ashwin** (8 meetings \u2014 mostly strategy and design reviews), **Andrey** (5 meetings \u2014 product and engineering sync), **Kristina** (3 meetings \u2014 operations and event prep). You also had 6 external meetings with prospects.",
+        "**Meeting Frequency**\n\nIn the past 30 days, your most frequent meetings were with: **Raj** (8 meetings \u2014 mostly strategy and design reviews), **Pavel** (5 meetings \u2014 product and engineering sync), **Ingrid** (3 meetings \u2014 operations and event prep). You also had 6 external meetings with prospects.",
       sources: [
         { type: "google-calendar", label: "Calendar Analysis" },
-        { type: "google-meet", label: "Ashwin / Justin 1:1" },
+        { type: "google-meet", label: "Raj / Leo 1:1" },
       ],
     },
   ],

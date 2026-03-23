@@ -11,8 +11,8 @@ export interface CommitmentItem {
 export const initialCommitments: CommitmentItem[] = [
   {
     id: "1",
-    title: "Ship Pill v2 for pre-launch testing",
-    meeting: "SXSW Launch Planning",
+    title: "Ship Widget v2 for pre-launch testing",
+    meeting: "TechConnect Launch Planning",
     meetingId: "mtg-1",
     meetingDate: "Feb 24",
     dueDate: "Due Mar 10",
@@ -21,7 +21,7 @@ export const initialCommitments: CommitmentItem[] = [
   {
     id: "2",
     title: "Coordinate press kit and media outreach",
-    meeting: "SXSW Launch Planning",
+    meeting: "TechConnect Launch Planning",
     meetingId: "mtg-1",
     meetingDate: "Feb 24",
     dueDate: "Due Mar 5",
@@ -47,8 +47,8 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "5",
-    title: "Review Andrey\u2019s Pill v2 design mockups",
-    meeting: "Design Review — Pill v2",
+    title: "Review Pavel\u2019s Widget v2 design mockups",
+    meeting: "Design Review — Widget v2",
     meetingId: "mtg-2",
     meetingDate: "Feb 24",
     dueDate: "Done",
@@ -75,7 +75,7 @@ export const initialCommitments: CommitmentItem[] = [
   {
     id: "8",
     title: "Set up analytics dashboard for launch metrics",
-    meeting: "SXSW Launch Planning",
+    meeting: "TechConnect Launch Planning",
     meetingId: "mtg-1",
     meetingDate: "Feb 24",
     dueDate: "Due Mar 12",
@@ -119,7 +119,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "13",
-    title: "Share Figma prototypes with Flux Labs team",
+    title: "Share Sketchdrop prototypes with Flux Labs team",
     meeting: "Customer Discovery — Flux Labs",
     meetingId: "mtg-7",
     meetingDate: "Feb 27",
@@ -137,7 +137,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "15",
-    title: "Draft partnership proposal for Notion integration",
+    title: "Draft partnership proposal for Dokra integration",
     meeting: "Integrations Planning",
     meetingId: "mtg-5",
     meetingDate: "Feb 26",
@@ -147,7 +147,7 @@ export const initialCommitments: CommitmentItem[] = [
   {
     id: "16",
     title: "Update pricing page copy for launch",
-    meeting: "SXSW Launch Planning",
+    meeting: "TechConnect Launch Planning",
     meetingId: "mtg-1",
     meetingDate: "Feb 24",
     dueDate: "Due Mar 8",
@@ -164,7 +164,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "18",
-    title: "Set up Slack integration test environment",
+    title: "Set up ChatWorks integration test environment",
     meeting: "Engineering Sync",
     meetingId: "mtg-8",
     meetingDate: "Feb 27",
@@ -200,8 +200,8 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "22",
-    title: "Submit SXSW booth design to printer",
-    meeting: "SXSW Launch Planning",
+    title: "Submit TechConnect booth design to printer",
+    meeting: "TechConnect Launch Planning",
     meetingId: "mtg-1",
     meetingDate: "Feb 24",
     dueDate: "Due Mar 1",
@@ -227,7 +227,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "25",
-    title: "Send thank-you notes to Together Fund team",
+    title: "Send thank-you notes to Horizon Fund team",
     meeting: "Board Prep Meeting",
     meetingId: "mtg-6",
     meetingDate: "Feb 26",

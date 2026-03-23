@@ -7,7 +7,7 @@ export interface Meeting {
   duration: string;
   participants: string[];
   tags: string[];
-  platform: "Google Meet" | "Zoom";
+  platform: "Alphabase Meet" | "Zoom";
   privacy: "public" | "private";
   summary: string;
   keyPoints: KeyPoint[];
