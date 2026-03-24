@@ -883,10 +883,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: CONSOLIDATION_TOOL_CHOICES,
       doneMessage: {
-        title: "Consolidated brief exported to Microsoft Word",
+        title: "Consolidated brief exported to Google Docs",
         description:
           "All SyntheticDB diligence data from Dokra, Teams, Affinity, and SharePoint has been consolidated into a single document.",
-        link: { label: "Open in Microsoft Word", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Consolidating deal data",
     },
