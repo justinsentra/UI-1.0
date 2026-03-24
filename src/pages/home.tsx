@@ -1,8 +1,10 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, Plus, Check, X, Mic, FileUp, AtSign } from "lucide-react";
+import { ArrowUp, ArrowRight, Plus, Check, X, Mic, FileUp, AtSign, Clock, Users, ChevronRight } from "lucide-react";
 import { cn } from "@lib/utils";
+import { getAvatarColor, getInitials } from "@lib/utils";
 import { usePersonaStore } from "@/stores/persona-store";
+import { useReportsStore } from "@/stores/reports-store";
 import { getPersonaHome } from "@/data/content-resolver";
 import {
   DropdownMenu,
@@ -70,9 +72,12 @@ const INITIAL_TODOS: TodoItem[] = [
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
   const persona = usePersonaStore((s) => s.persona);
   const homeData = getPersonaHome(persona);
   const suggestions = homeData.suggestions;
+  const artifactsToReview = homeData.artifacts;
+  const upcomingMeeting = homeData.upcomingMeeting;
 
   const [todos, setTodos] = useState<TodoItem[]>(INITIAL_TODOS);
   const [newTodo, setNewTodo] = useState("");
@@ -221,6 +226,128 @@ const HomePage = () => {
                 </div>
               </button>
             </div>
+
+            {/* ── Artifacts to Review ── */}
+            <section className="flex flex-col mb-8">
+              <div className="flex items-center gap-2 pb-3">
+                <h2 className="text-foreground text-sm font-medium leading-none m-0">
+                  Briefs to review
+                </h2>
+                <span className="text-muted-foreground text-xs font-medium leading-none font-mono">
+                  {artifactsToReview.slice(0, 3).length}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                {artifactsToReview.slice(0, 3).map((artifact) => (
+                  <button
+                    key={artifact.id}
+                    type="button"
+                    onClick={() => {
+                      if (artifact.deepResearchPrompt) {
+                        navigate("/deep-research", {
+                          state: { prefill: artifact.deepResearchPrompt },
+                        });
+                      } else {
+                        setSelectedReport(artifact.reportId ?? "");
+                        navigate("/report-detail");
+                      }
+                    }}
+                    className="group flex flex-col gap-2.5 p-4 bg-card rounded-xl border border-border cursor-pointer text-left hover:bg-accent/50 transition-colors duration-150 ease-out"
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <span
+                        className={cn(
+                          "text-[10px] font-medium leading-none px-2 py-1 rounded-full",
+                          artifact.type === "action"
+                            ? "bg-primary/10 text-primary"
+                            : "bg-muted text-muted-foreground",
+                        )}
+                      >
+                        {artifact.type === "radar"
+                          ? "Radar"
+                          : artifact.type === "action"
+                            ? "Action"
+                            : "Report"}
+                      </span>
+                      {artifact.badge && (
+                        <span
+                          className={cn(
+                            "text-[10px] font-semibold leading-none px-2 py-1 rounded-full",
+                            artifact.badge === "High"
+                              ? "bg-muted text-muted-foreground"
+                              : "bg-primary/10 text-primary",
+                          )}
+                        >
+                          {artifact.badge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <h3 className="text-sm font-normal text-foreground leading-[1.4] m-0">
+                        {artifact.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground leading-normal m-0 line-clamp-2">
+                        {artifact.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-end mt-auto">
+                      <ChevronRight
+                        size={14}
+                        className="text-muted-foreground/40 transition duration-200 group-hover:text-muted-foreground group-hover:translate-x-0.5"
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* ── Upcoming Meeting ── */}
+            <section className="flex flex-col mb-16">
+              <div className="flex items-center gap-2 pb-3">
+                <h2 className="text-foreground text-sm font-medium leading-none m-0">
+                  Upcoming meeting
+                </h2>
+              </div>
+
+              <div className="group flex items-center gap-4 py-4 px-5 bg-card rounded-xl border border-border">
+                <div className="flex-1 min-w-0 flex flex-col gap-1">
+                  <h3 className="text-foreground text-sm font-normal leading-[1.4] m-0">
+                    {upcomingMeeting.title}
+                  </h3>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <Clock size={12} />
+                      {upcomingMeeting.time} – {upcomingMeeting.endTime}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users size={12} />
+                      {upcomingMeeting.participants.length} participants
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    {upcomingMeeting.participants.map((name) => (
+                      <div
+                        key={name}
+                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-medium"
+                        style={{ backgroundColor: getAvatarColor(name) }}
+                        title={name}
+                      >
+                        {getInitials(name)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => navigate("/pre-meeting-brief")}
+                  className="shrink-0 h-8 px-3.5 rounded-md text-xs font-medium text-foreground bg-background cursor-pointer border border-border hover:bg-accent transition-colors"
+                >
+                  View Brief
+                </button>
+              </div>
+            </section>
 
           </div>
         </div>
