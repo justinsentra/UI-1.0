@@ -180,7 +180,7 @@ const ReportDetailPage = () => {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
+              className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors cursor-pointer border-none"
               title="Copy link"
             >
               <Link2 size={15} />
@@ -191,8 +191,8 @@ const ReportDetailPage = () => {
               className={cn(
                 "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
                 showChatSidebar
-                  ? "bg-[var(--bg-component-hover)] text-[var(--fg-muted)]"
-                  : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
+                  ? "bg-[var(--accent)] text-[var(--muted-foreground)]"
+                  : "bg-transparent hover:bg-[var(--accent)] text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)]",
               )}
               title="Deep Research"
             >
@@ -202,15 +202,15 @@ const ReportDetailPage = () => {
 
           {/* Title */}
           <div className="mb-2">
-            <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
+            <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
               {report.title}
             </h1>
           </div>
-          <p className="text-sm text-[var(--fg-muted)] mb-6">
+          <p className="text-sm text-[var(--muted-foreground)] mb-6">
             {report.dateRange}
           </p>
 
-          <div className="border-t border-[var(--border-base)] mb-8" />
+          <div className="border-t border-[var(--border)] mb-8" />
 
           {/* Report Content */}
           <div className="space-y-8">
@@ -305,7 +305,7 @@ function ReportSection({
     <HighlightedContent sectionIndex={sectionIndex} containerRef={containerRef}>
       <section>
         {section.heading && (
-          <h2 className="text-md font-normal text-[var(--fg-base)] mb-4">
+          <h2 className="text-md font-normal text-[var(--foreground)] mb-4">
             {section.heading}
           </h2>
         )}
@@ -313,7 +313,7 @@ function ReportSection({
           <p
             key={pIdx}
             className={cn(
-              "text-sm text-[var(--fg-muted)] leading-relaxed",
+              "text-sm text-[var(--muted-foreground)] leading-relaxed",
               pIdx < section.paragraphs.length - 1 && "mb-4",
             )}
           >
@@ -335,7 +335,7 @@ function ReportSection({
 function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
   return (
     <div className="mt-10">
-      <h2 className="text-md font-normal text-[var(--fg-base)] mb-6">
+      <h2 className="text-md font-normal text-[var(--foreground)] mb-6">
         Evidence
       </h2>
       <div className="space-y-6">
@@ -344,12 +344,12 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
           const Icon = getSourceIcon(iconType);
           return (
             <div key={`${item.speaker}-${item.meetingDate}-${idx}`}>
-              <p className="text-xs font-medium text-[var(--fg-base)] mb-2">
+              <p className="text-xs font-medium text-[var(--foreground)] mb-2">
                 From {item.meetingTitle}
               </p>
-              <div className="border-l-2 border-[var(--border-base)] pl-4">
-                <p className="text-sm text-[var(--fg-muted)] leading-relaxed italic">
-                  <span className="font-semibold not-italic text-[var(--fg-base)]">
+              <div className="border-l-2 border-[var(--border)] pl-4">
+                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed italic">
+                  <span className="font-semibold not-italic text-[var(--foreground)]">
                     {item.speaker}
                   </span>
                   : {item.quote}
@@ -357,7 +357,7 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
                     <Icon size={12} className="opacity-40" />
                   </span>
                 </p>
-                <p className="text-2xs text-[var(--fg-disabled)] mt-1.5">
+                <p className="text-2xs text-[var(--muted-foreground)] mt-1.5">
                   {item.meetingDate}
                 </p>
               </div>

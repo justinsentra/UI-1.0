@@ -14,6 +14,13 @@ import { RightSidebarProvider } from "@/components/ui/right-sidebar";
 import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { formatDateLabel, formatTimeRange } from "@/lib/date-utils";
 import PageShell from "@/components/ui/page-shell";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 function groupMeetingsByDate(meetingList: Meeting[]) {
   const groups: Record<string, Meeting[]> = {};
@@ -94,48 +101,48 @@ const MeetingNotesPage = () => {
       <div
         className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
-        <button
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={() => setImportOpen(true)}
-          className="h-7 w-7 rounded-md flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors bg-transparent border-none cursor-pointer"
           title="Import"
         >
           <Upload size={15} />
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={() => navigate("/meeting-settings")}
-          className="h-7 w-7 rounded-md flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors bg-transparent border-none cursor-pointer"
           title="Settings"
         >
           <Settings size={15} />
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={() => setChatOpen(true)}
-          className="h-7 w-7 rounded-md flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors bg-transparent border-none cursor-pointer"
           title="Chat"
         >
           <MessageSquare size={15} />
-        </button>
+        </Button>
       </div>
 
-      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-5">
+      <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-5">
         Coming up
       </h1>
 
       {/* Search */}
       <div className="mb-5">
-        <div className="relative">
-          <Search
-            size={16}
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
-          />
-          <input
-            type="text"
+        <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
+          <InputGroupAddon align="inline-start">
+            <Search size={16} />
+          </InputGroupAddon>
+          <InputGroupInput
             placeholder="Search meetings..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
           />
-        </div>
+        </InputGroup>
       </div>
 
       {/* Tag Filter Bar */}
@@ -143,13 +150,13 @@ const MeetingNotesPage = () => {
 
       {/* Upcoming Card */}
       {upcomingMeetings.length > 0 && (
-        <div className="bg-background rounded-xl border border-[var(--border-base)] p-5 mb-6">
-          <div className="flex gap-5">
+        <Card className="mb-6 py-0">
+          <CardContent className="flex gap-5 py-5">
             <div className="text-center shrink-0 w-[60px]">
-              <p className="text-3xl font-light text-[var(--fg-base)] leading-none">
+              <p className="text-3xl font-light text-foreground leading-none">
                 {day}
               </p>
-              <p className="text-xs font-medium text-[var(--fg-muted)] mt-0.5">
+              <p className="text-xs font-medium text-muted-foreground mt-0.5">
                 {month}
               </p>
             </div>
@@ -157,7 +164,7 @@ const MeetingNotesPage = () => {
               {upcomingMeetings.map((m) => (
                 <div
                   key={m.id}
-                  className="group/upcoming flex items-center gap-3 px-2 py-2 -mx-2 rounded-lg hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
+                  className="group/upcoming flex items-center gap-3 px-2 py-2 -mx-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
                   onClick={() => {
                     setSelectedMeeting(m.id);
                     navigate("/meeting-detail");
@@ -165,27 +172,32 @@ const MeetingNotesPage = () => {
                 >
                   <div className="w-[3px] self-stretch bg-[#5eb5ef] rounded-full shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-[var(--fg-base)] leading-snug">
+                    <p className="text-sm text-foreground leading-snug">
                       {m.title}
                     </p>
-                    <p className="text-xs text-[var(--fg-muted)]">
+                    <p className="text-xs text-muted-foreground">
                       {formatTimeRange(m.time, m.endTime)}
                     </p>
                   </div>
-                  <span className="opacity-0 group-hover/upcoming:opacity-100 transition-all text-xs font-medium text-[var(--fg-muted)] bg-[var(--bg-base)] border border-[var(--border-base)] px-3 py-1 rounded-full shrink-0 hover:text-[var(--fg-base)] hover:border-[var(--fg-disabled)] hover:shadow-sm cursor-pointer">
+                  <Button
+                    variant="outline"
+                    size="xs"
+                    rounded="full"
+                    className="opacity-0 group-hover/upcoming:opacity-100 transition-all shrink-0"
+                  >
                     Join
-                  </span>
+                  </Button>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Meeting Groups */}
       {filteredGroups.map((group) => (
         <div key={group.date} className="mb-6">
-          <p className="text-sm text-[var(--fg-muted)] mb-3">{group.label}</p>
+          <p className="text-sm text-[var(--muted-foreground)] mb-3">{group.label}</p>
           <div className="space-y-1">
             {group.meetings.map((m) => (
               <MeetingRow

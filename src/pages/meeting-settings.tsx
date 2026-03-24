@@ -59,15 +59,15 @@ function DeliveryDropdown({
         className={cn(
           "w-full h-9 px-3 rounded-lg border flex items-center justify-between text-sm transition-colors",
           disabled
-            ? "bg-[var(--bg-subtle)] text-[var(--border-subtle)] border-[var(--border-base)] cursor-not-allowed"
+            ? "bg-[var(--muted)] text-[var(--border)] border-[var(--border)] cursor-not-allowed"
             : error
-              ? "bg-[var(--bg-base)] text-[var(--fg-base)] border-red-400"
-              : "bg-[var(--bg-base)] text-[var(--fg-base)] border-[var(--border-base)] hover:border-[var(--fg-disabled)]",
+              ? "bg-[var(--background)] text-[var(--foreground)] border-red-400"
+              : "bg-[var(--background)] text-[var(--foreground)] border-[var(--border)] hover:border-[var(--muted-foreground)]",
         )}
       >
         <span
           className={cn(
-            !slack && !email && !disabled && "text-[var(--fg-disabled)]",
+            !slack && !email && !disabled && "text-[var(--muted-foreground)]",
           )}
         >
           {label}
@@ -75,7 +75,7 @@ function DeliveryDropdown({
         <ChevronDown
           size={14}
           className={cn(
-            "text-[var(--fg-disabled)] transition-transform",
+            "text-[var(--muted-foreground)] transition-transform",
             open && "rotate-180",
           )}
         />
@@ -87,25 +87,25 @@ function DeliveryDropdown({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--bg-base)] rounded-xl shadow-lg border border-[var(--border-base)] overflow-hidden"
+            className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--background)] rounded-xl shadow-lg border border-[var(--border)] overflow-hidden"
           >
-            <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--bg-subtle)] cursor-pointer transition-colors">
+            <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--muted)] cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={slack}
                 onChange={(e) => onSlackChange(e.target.checked)}
-                className="w-4 h-4 rounded border-[var(--border-subtle)] accent-[var(--fg-base)]"
+                className="w-4 h-4 rounded border-[var(--border)] accent-[var(--foreground)]"
               />
-              <span className="text-sm text-[var(--fg-base)]">ChatWorks</span>
+              <span className="text-sm text-[var(--foreground)]">ChatWorks</span>
             </label>
-            <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--bg-subtle)] cursor-pointer transition-colors">
+            <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--muted)] cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={email}
                 onChange={(e) => onEmailChange(e.target.checked)}
-                className="w-4 h-4 rounded border-[var(--border-subtle)] accent-[var(--fg-base)]"
+                className="w-4 h-4 rounded border-[var(--border)] accent-[var(--foreground)]"
               />
-              <span className="text-sm text-[var(--fg-base)]">Email</span>
+              <span className="text-sm text-[var(--foreground)]">Email</span>
             </label>
           </motion.div>
         )}
@@ -144,15 +144,15 @@ function LeadTimeDropdown({
         className={cn(
           "w-full h-9 px-3 rounded-lg border flex items-center justify-between text-sm transition-colors",
           disabled
-            ? "bg-[var(--bg-subtle)] text-[var(--border-subtle)] border-[var(--border-base)] cursor-not-allowed"
-            : "bg-[var(--bg-base)] text-[var(--fg-base)] border-[var(--border-base)] hover:border-[var(--fg-disabled)]",
+            ? "bg-[var(--muted)] text-[var(--border)] border-[var(--border)] cursor-not-allowed"
+            : "bg-[var(--background)] text-[var(--foreground)] border-[var(--border)] hover:border-[var(--muted-foreground)]",
         )}
       >
         {value}
         <ChevronDown
           size={14}
           className={cn(
-            "text-[var(--fg-disabled)] transition-transform",
+            "text-[var(--muted-foreground)] transition-transform",
             open && "rotate-180",
           )}
         />
@@ -164,7 +164,7 @@ function LeadTimeDropdown({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--bg-base)] rounded-xl shadow-lg border border-[var(--border-base)] max-h-[240px] overflow-y-auto"
+            className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--background)] rounded-xl shadow-lg border border-[var(--border)] max-h-[240px] overflow-y-auto"
           >
             {leadTimeOptions.map((opt) => (
               <button
@@ -177,8 +177,8 @@ function LeadTimeDropdown({
                 className={cn(
                   "w-full px-3 py-2 text-left text-sm transition-colors",
                   value === opt
-                    ? "text-[var(--fg-base)] bg-[var(--bg-subtle)]"
-                    : "text-[var(--fg-muted)] hover:bg-[var(--bg-subtle)]",
+                    ? "text-[var(--foreground)] bg-[var(--muted)]"
+                    : "text-[var(--muted-foreground)] hover:bg-[var(--muted)]",
                 )}
               >
                 {opt}
@@ -210,10 +210,10 @@ function SettingSection({
     <section className="mb-10">
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-md font-semibold text-[var(--fg-base)] mb-0.5">
+          <h2 className="text-md font-semibold text-[var(--foreground)] mb-0.5">
             {title}
           </h2>
-          <p className="text-sm text-[var(--fg-muted)] max-w-[420px]">
+          <p className="text-sm text-[var(--muted-foreground)] max-w-[420px]">
             {description}
           </p>
         </div>
@@ -248,10 +248,10 @@ function SettingField({
 }) {
   return (
     <div>
-      <p className="text-sm font-medium text-[var(--fg-base)] mb-0.5">
+      <p className="text-sm font-medium text-[var(--foreground)] mb-0.5">
         {label}
       </p>
-      <p className="text-xs text-[var(--fg-disabled)] mb-2">{description}</p>
+      <p className="text-xs text-[var(--muted-foreground)] mb-2">{description}</p>
       <div className="max-w-[280px]">{children}</div>
     </div>
   );
@@ -304,7 +304,7 @@ const MeetingSettingsPage = () => {
 
   return (
     <PageShell>
-      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-8">
+      <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-8">
         Meeting Settings
       </h1>
 
@@ -349,7 +349,7 @@ const MeetingSettingsPage = () => {
         </SettingField>
       </SettingSection>
 
-      <div className="border-t border-[var(--border-base)] mb-10" />
+      <div className="border-t border-[var(--border)] mb-10" />
 
       {/* Meeting Notes */}
       <SettingSection
@@ -382,14 +382,14 @@ const MeetingSettingsPage = () => {
         </SettingField>
       </SettingSection>
 
-      <div className="border-t border-[var(--border-base)] mb-10" />
+      <div className="border-t border-[var(--border)] mb-10" />
 
       {/* Notes Preferences */}
       <section>
-        <h2 className="text-md font-semibold text-[var(--fg-base)] mb-0.5">
+        <h2 className="text-md font-semibold text-[var(--foreground)] mb-0.5">
           Notes Preferences
         </h2>
-        <p className="text-sm text-[var(--fg-muted)] mb-4 max-w-[420px]">
+        <p className="text-sm text-[var(--muted-foreground)] mb-4 max-w-[420px]">
           Tell Sentra how to analyze and summarize your meetings. Be specific
           about what's most important to you.
         </p>
@@ -398,23 +398,23 @@ const MeetingSettingsPage = () => {
           onChange={(e) => setPreferences(e.target.value)}
           placeholder="E.g., Focus on action items and decisions. Highlight any commitments made by attendees..."
           rows={4}
-          className="w-full px-3 py-2.5 rounded-lg border border-[var(--border-base)] bg-[var(--bg-base)] text-sm placeholder:text-[var(--fg-disabled)] resize-y mb-3 transition-colors focus:border-[var(--fg-disabled)]"
+          className="w-full px-3 py-2.5 rounded-lg border border-[var(--border)] bg-[var(--background)] text-sm placeholder:text-[var(--muted-foreground)] resize-y mb-3 transition-colors focus:border-[var(--muted-foreground)]"
         />
         <button
           type="button"
           onClick={() => addToast("success", "Preferences saved")}
-          className="h-9 px-4 rounded-lg bg-[var(--fg-base)] text-[var(--bg-base)] text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
+          className="h-9 px-4 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
         >
           Save Preferences
         </button>
       </section>
 
       {/* Continue */}
-      <div className="border-t border-[var(--border-base)] pt-8 mt-10 flex justify-end">
+      <div className="border-t border-[var(--border)] pt-8 mt-10 flex justify-end">
         <button
           type="button"
           onClick={handleContinue}
-          className="h-10 px-6 rounded-lg bg-[var(--fg-base)] text-[var(--bg-base)] text-base font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
+          className="h-10 px-6 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-base font-medium hover:opacity-90 transition-opacity active:scale-[0.98]"
         >
           Continue
         </button>

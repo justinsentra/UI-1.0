@@ -112,15 +112,15 @@ function PrdDocument({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="rounded-lg border border-[var(--border-base)] bg-[var(--bg-base)] shadow-card overflow-hidden"
+      className="rounded-lg border border-[var(--border)] bg-[var(--background)] shadow-card overflow-hidden"
     >
-      <div className="px-5 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-subtle)] flex items-center gap-2">
+      <div className="px-5 py-3 border-b border-[var(--border)] bg-[var(--muted)] flex items-center gap-2">
         <svg
           width="14"
           height="14"
           viewBox="0 0 16 16"
           fill="none"
-          className="text-[var(--fg-muted)]"
+          className="text-[var(--muted-foreground)]"
         >
           <path
             d="M4 1h5.5L13 4.5V14a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z"
@@ -134,13 +134,13 @@ function PrdDocument({
             strokeLinecap="round"
           />
         </svg>
-        <span className="text-xs font-medium text-[var(--fg-muted)] flex-1">
+        <span className="text-xs font-medium text-[var(--muted-foreground)] flex-1">
           {filename}
         </span>
         <button
           type="button"
           onClick={handleToggleEdit}
-          className="p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
+          className="p-1 text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--accent)]"
           title={isEditing ? "Save changes" : "Edit document"}
         >
           <Pencil size={13} />
@@ -151,7 +151,7 @@ function PrdDocument({
           <textarea
             value={editContent}
             onChange={(e) => setEditContent(e.target.value)}
-            className="w-full min-h-[360px] bg-transparent border-none outline-none resize-none text-xs text-[var(--fg-subtle)] leading-relaxed font-mono"
+            className="w-full min-h-[360px] bg-transparent border-none outline-none resize-none text-xs text-[var(--muted-foreground)] leading-relaxed font-mono"
           />
         ) : (
           <div className="prose-sm">
@@ -160,7 +160,7 @@ function PrdDocument({
                 return (
                   <h1
                     key={i}
-                    className="text-base font-semibold text-[var(--fg-base)] m-0 mb-3 leading-snug"
+                    className="text-base font-semibold text-[var(--foreground)] m-0 mb-3 leading-snug"
                   >
                     {line.slice(2)}
                   </h1>
@@ -170,7 +170,7 @@ function PrdDocument({
                 return (
                   <h2
                     key={i}
-                    className="text-sm font-semibold text-[var(--fg-base)] m-0 mt-4 mb-2 leading-snug"
+                    className="text-sm font-semibold text-[var(--foreground)] m-0 mt-4 mb-2 leading-snug"
                   >
                     {line.slice(3)}
                   </h2>
@@ -180,7 +180,7 @@ function PrdDocument({
                 return (
                   <p
                     key={i}
-                    className="text-sm font-medium text-[var(--fg-base)] m-0 mt-3 mb-1"
+                    className="text-sm font-medium text-[var(--foreground)] m-0 mt-3 mb-1"
                   >
                     {line.slice(2, -2)}
                   </p>
@@ -195,7 +195,7 @@ function PrdDocument({
                 return (
                   <div
                     key={i}
-                    className="grid grid-cols-4 gap-2 py-1 text-xs text-[var(--fg-subtle)] border-b border-[var(--border-subtle)]"
+                    className="grid grid-cols-4 gap-2 py-1 text-xs text-[var(--muted-foreground)] border-b border-[var(--border)]"
                   >
                     {cells.map((cell, j) => (
                       <span key={j}>{cell}</span>
@@ -207,9 +207,9 @@ function PrdDocument({
                 return (
                   <div
                     key={i}
-                    className="flex gap-2 text-xs text-[var(--fg-subtle)] leading-relaxed ml-2 mb-0.5"
+                    className="flex gap-2 text-xs text-[var(--muted-foreground)] leading-relaxed ml-2 mb-0.5"
                   >
-                    <span className="text-[var(--fg-disabled)] shrink-0">
+                    <span className="text-[var(--muted-foreground)] shrink-0">
                       -
                     </span>
                     <span>{line.slice(2)}</span>
@@ -220,7 +220,7 @@ function PrdDocument({
                 return (
                   <hr
                     key={i}
-                    className="border-t border-[var(--border-subtle)] my-3"
+                    className="border-t border-[var(--border)] my-3"
                   />
                 );
               }
@@ -228,7 +228,7 @@ function PrdDocument({
                 return (
                   <p
                     key={i}
-                    className="text-2xs text-[var(--fg-disabled)] m-0 mt-2 italic"
+                    className="text-2xs text-[var(--muted-foreground)] m-0 mt-2 italic"
                   >
                     {line.slice(1, -1)}
                   </p>
@@ -238,16 +238,16 @@ function PrdDocument({
               const formatted = line
                 .replace(
                   /\*\*(.+?)\*\*/g,
-                  '<strong class="font-medium text-[var(--fg-base)]">$1</strong>',
+                  '<strong class="font-medium text-[var(--foreground)]">$1</strong>',
                 )
                 .replace(
                   /`(.+?)`/g,
-                  '<code class="text-2xs bg-[var(--bg-subtle)] px-1 py-0.5 rounded">$1</code>',
+                  '<code class="text-2xs bg-[var(--muted)] px-1 py-0.5 rounded">$1</code>',
                 );
               return (
                 <p
                   key={i}
-                  className="text-xs text-[var(--fg-subtle)] leading-relaxed m-0 mb-1"
+                  className="text-xs text-[var(--muted-foreground)] leading-relaxed m-0 mb-1"
                   dangerouslySetInnerHTML={{ __html: formatted }}
                 />
               );
@@ -271,7 +271,7 @@ function ToolChoicePills({
   onCancel: () => void;
 }) {
   const pillClass =
-    "inline-flex items-center gap-2 px-4 py-2 rounded-full border border-solid border-[var(--border-base)] bg-transparent text-sm text-[var(--fg-subtle)] cursor-pointer transition-colors hover:bg-[var(--bg-component-hover)] hover:text-[var(--fg-base)]";
+    "inline-flex items-center gap-2 px-4 py-2 rounded-full border border-solid border-[var(--border)] bg-transparent text-sm text-[var(--muted-foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)] hover:text-[var(--foreground)]";
 
   return (
     <motion.div
@@ -280,7 +280,7 @@ function ToolChoicePills({
       transition={{ duration: 0.3, delay: 0.3 }}
       className="flex flex-col gap-3"
     >
-      <p className="text-sm text-[var(--fg-base)] m-0">
+      <p className="text-sm text-[var(--foreground)] m-0">
         What would you like to do next?
       </p>
       <div className="flex gap-2 flex-wrap">
@@ -387,7 +387,7 @@ function BuildingLoader({
                   className={
                     index === visibleCount - 1
                       ? "text-muted-foreground"
-                      : "text-[var(--fg-disabled)]"
+                      : "text-[var(--muted-foreground)]"
                   }
                 >
                   {step.label}
@@ -421,13 +421,13 @@ function DoneMessage({
         className="flex flex-col gap-2"
       >
         <div className="flex items-center gap-2">
-          <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
+          <div className="size-5 rounded-full bg-[var(--info)] flex items-center justify-center">
             <svg
               width="12"
               height="12"
               viewBox="0 0 16 16"
               fill="none"
-              className="text-[var(--fg-info)]"
+              className="text-[var(--info-foreground)]"
             >
               <path
                 d="M3 8.5L6.5 12L13 4"
@@ -438,11 +438,11 @@ function DoneMessage({
               />
             </svg>
           </div>
-          <span className="text-sm font-medium text-[var(--fg-base)]">
+          <span className="text-sm font-medium text-[var(--foreground)]">
             {doneMessage.title}
           </span>
         </div>
-        <p className="text-sm text-[var(--fg-subtle)] m-0 ml-7">
+        <p className="text-sm text-[var(--muted-foreground)] m-0 ml-7">
           {doneMessage.description}
         </p>
         <div className="ml-7 mt-1">
@@ -450,7 +450,7 @@ function DoneMessage({
             href={doneMessage.link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-subtle)] max-w-fit text-sm text-[var(--fg-base)] no-underline cursor-pointer transition-colors hover:bg-[var(--bg-component-hover)]"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--muted)] border border-[var(--border)] max-w-fit text-sm text-[var(--foreground)] no-underline cursor-pointer transition-colors hover:bg-[var(--accent)]"
           >
             {doneMessage.link.label}
           </a>
@@ -473,13 +473,13 @@ function DoneMessage({
       className="flex flex-col gap-2"
     >
       <div className="flex items-center gap-2">
-        <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
+        <div className="size-5 rounded-full bg-[var(--info)] flex items-center justify-center">
           <svg
             width="12"
             height="12"
             viewBox="0 0 16 16"
             fill="none"
-            className="text-[var(--fg-info)]"
+            className="text-[var(--info-foreground)]"
           >
             <path
               d="M3 8.5L6.5 12L13 4"
@@ -490,18 +490,18 @@ function DoneMessage({
             />
           </svg>
         </div>
-        <span className="text-sm font-medium text-[var(--fg-base)]">Done!</span>
+        <span className="text-sm font-medium text-[var(--foreground)]">Done!</span>
       </div>
-      <p className="text-sm text-[var(--fg-subtle)] m-0 ml-7">
+      <p className="text-sm text-[var(--muted-foreground)] m-0 ml-7">
         The file has been pushed to {tool}. You can find it at:
       </p>
-      <div className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-subtle)] max-w-fit">
+      <div className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--muted)] border border-[var(--border)] max-w-fit">
         <svg
           width="13"
           height="13"
           viewBox="0 0 16 16"
           fill="none"
-          className="text-[var(--fg-muted)] shrink-0"
+          className="text-[var(--muted-foreground)] shrink-0"
         >
           <path
             d="M4 1h5.5L13 4.5V14a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z"
@@ -509,7 +509,7 @@ function DoneMessage({
             strokeWidth="1.2"
           />
         </svg>
-        <code className="text-xs text-[var(--fg-base)] font-mono">
+        <code className="text-xs text-[var(--foreground)] font-mono">
           {filePath}
         </code>
       </div>
@@ -714,9 +714,40 @@ const DeepResearchPage = () => {
     messageCountRef.current = 0;
   }, []);
 
-  const handleSelectSession = useCallback((id: string) => {
-    setActiveSessionId(id);
-  }, []);
+  const handleSelectSession = useCallback(
+    (id: string) => {
+      const session = deepResearchData.sessionHistory.find((s) => s.id === id);
+      if (!session) return;
+
+      setActiveSessionId(id);
+      setActiveFlow(null);
+      setChosenTool(null);
+      setPendingResponse(null);
+
+      // Use a deterministic index based on session id for varied responses
+      const idNum = parseInt(id.replace(/\D/g, ""), 10) || 0;
+      const mockResponse = getMockResponse(idNum);
+
+      const userMsg: ChatMessage = {
+        id: `user-hist-${id}`,
+        role: "user",
+        content: session.query,
+      };
+
+      const assistantMsg: ChatMessage = {
+        id: `assistant-hist-${id}`,
+        role: "assistant",
+        paragraphs: mockResponse.paragraphs,
+        timestamp: "Earlier",
+      };
+
+      setMessages([userMsg, assistantMsg]);
+      setPhase("complete");
+      setInput("");
+      messageCountRef.current = 1;
+    },
+    [deepResearchData],
+  );
 
   // Auto-submit prefilled prompt from navigation state
   useEffect(() => {
@@ -806,7 +837,7 @@ const DeepResearchPage = () => {
                           transition={{ delay: 0.5, duration: 0.3 }}
                         >
                           <Steps defaultOpen={false}>
-                            <StepsTrigger className="text-2xs font-medium text-[var(--fg-muted)]">
+                            <StepsTrigger className="text-2xs font-medium text-[var(--muted-foreground)]">
                               {activeFlow.sources.length} sources
                             </StepsTrigger>
                             <StepsContent>
@@ -856,7 +887,7 @@ const DeepResearchPage = () => {
                 if (msg.role === "user") {
                   return (
                     <Message key={msg.id} className="justify-end">
-                      <MessageContent className="bg-[var(--bg-component-hover)] text-[var(--fg-base)] max-w-[72%] text-sm">
+                      <MessageContent className="bg-[var(--accent)] text-[var(--foreground)] max-w-[72%] text-sm">
                         {msg.content}
                       </MessageContent>
                     </Message>
@@ -865,7 +896,7 @@ const DeepResearchPage = () => {
 
                 return (
                   <Message key={msg.id} className="justify-start">
-                    <div className="flex-1 min-w-0 bg-[var(--bg-subtle)] rounded-2xl p-4">
+                    <div className="flex-1 min-w-0">
                       <ResponseBlock
                         paragraphs={msg.paragraphs ?? []}
                         timestamp={msg.timestamp ?? ""}

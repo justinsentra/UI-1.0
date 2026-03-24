@@ -20,7 +20,7 @@ const ResponseParagraph = ({
 
   return (
     <div>
-      <div className="prose prose-sm max-w-none text-[var(--fg-subtle)] [&_p]:my-1 [&_p:first-child]:mt-0 [&_p:last-child]:mb-0 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_ol]:my-1 [&_ol]:pl-4 [&_strong]:font-medium [&_strong]:text-[var(--fg-base)] [&_h2]:text-base [&_h2]:font-medium [&_h2]:text-[var(--fg-base)] [&_h2]:mt-0 [&_h2]:mb-1 [&_h3]:text-base [&_h3]:font-medium [&_h3]:text-[var(--fg-base)] [&_h3]:mt-0 [&_h3]:mb-1 text-sm leading-[1.7] [&_p]:text-sm [&_p]:leading-[1.7] [&_li]:text-sm [&_li]:leading-[1.7]">
+      <div className="prose prose-sm max-w-none text-[var(--muted-foreground)] [&_p]:my-1 [&_p:first-child]:mt-0 [&_p:last-child]:mb-0 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_ol]:my-1 [&_ol]:pl-4 [&_strong]:font-medium [&_strong]:text-[var(--foreground)] [&_h2]:text-base [&_h2]:font-medium [&_h2]:text-[var(--foreground)] [&_h2]:mt-0 [&_h2]:mb-1 [&_h3]:text-base [&_h3]:font-medium [&_h3]:text-[var(--foreground)] [&_h3]:mt-0 [&_h3]:mb-1 text-sm leading-[1.7] [&_p]:text-sm [&_p]:leading-[1.7] [&_li]:text-sm [&_li]:leading-[1.7]">
         {chunks.map((chunk, i) => (
           <motion.div
             key={i}
@@ -48,7 +48,7 @@ const ResponseParagraph = ({
           }}
         >
           <Steps defaultOpen={false}>
-            <StepsTrigger className="text-2xs font-medium text-[var(--fg-muted)]">
+            <StepsTrigger className="text-2xs font-medium text-[var(--muted-foreground)]">
               {paragraph.sources.length} sources
             </StepsTrigger>
             <StepsContent>

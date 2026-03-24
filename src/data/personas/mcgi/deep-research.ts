@@ -725,51 +725,60 @@ export const deepResearchData: PersonaDeepResearchData = {
     "Summarize this week's deal flow activity",
   ],
   sessionHistory: [
-    { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today" },
+    { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today", query: "Draft an investment memo for Sentra" },
     {
       id: "mcgi-s2",
       title: "AI agent framework landscape",
       date: "Today",
+      query: "Map the AI agent framework landscape",
     },
     {
       id: "mcgi-s3",
       title: "Q1 pipeline company comparison",
       date: "Yesterday",
+      query: "Compare pipeline companies on AG synergy for Q1",
     },
     {
       id: "mcgi-s4",
       title: "GreenCore technical DD summary",
       date: "Yesterday",
+      query: "Summarize the technical due diligence for GreenCore",
     },
     {
       id: "mcgi-s5",
       title: "Competitive CVC activity tracker",
       date: "Last week",
+      query: "Track competitive CVC activity in our focus areas",
     },
     {
       id: "mcgi-s6",
       title: "SyntheticDB Series B readiness",
       date: "Last week",
+      query: "Assess SyntheticDB's readiness for a Series B round",
     },
     {
       id: "mcgi-s7",
       title: "Climate tech allocation analysis",
       date: "Last week",
+      query: "Analyze our climate tech allocation and performance",
     },
     {
       id: "mcgi-s8",
       title: "Catalyst Alliance consortium insights summary",
       date: "Last week",
+      query: "Summarize insights from the Catalyst Alliance consortium",
     },
     {
       id: "mcgi-s9",
       title: "QuantumSense runway analysis",
       date: "2 weeks ago",
+      query: "Analyze QuantumSense's runway and burn rate",
     },
     {
       id: "mcgi-s10",
       title: "Europe market entry playbook",
       date: "2 weeks ago",
+      query: "Build a Europe market entry playbook for our portfolio",
     },
   ],
   documentFlows: [

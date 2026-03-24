@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { cn, getInitials, getAvatarColor } from "@lib/utils";
+import { cn } from "@lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
 import { motion } from "motion/react";
 import {
   Link as LinkIcon,
@@ -22,6 +23,13 @@ import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";
 import { usePageLabel } from "../components/app-layout";
 import PageShell from "@/components/ui/page-shell";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { AttendeeDropdown } from "@/components/meetings/attendee-dropdown";
 import { MeetingTagDropdown } from "@/components/meetings/meeting-tag-dropdown";
 import { CreateTagModal } from "@/components/meetings/create-tag-modal";
@@ -32,17 +40,21 @@ import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaMeetings } from "@/data/content-resolver";
 import { TextShimmerLoader } from "@/components/ui/loader";
+import { Badge } from "@/components/ui/badge";
 import {
   Steps,
   StepsContent,
   StepsItem,
   StepsTrigger,
 } from "@/components/ui/steps";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 import type { Meeting } from "@/types";
-
-const tabs = ["Overview", "Transcript", "Video"] as const;
-type Tab = (typeof tabs)[number];
 
 /* ── Spreadsheet Action Flow ── */
 
@@ -124,7 +136,7 @@ function SpreadsheetLoader({
                   className={
                     index === visibleCount - 1
                       ? "text-muted-foreground"
-                      : "text-[var(--fg-disabled)]"
+                      : "text-[var(--muted-foreground)]"
                   }
                 >
                   {step.label}
@@ -147,13 +159,13 @@ function SpreadsheetDone() {
       className="mt-3 ml-8 flex flex-col gap-2"
     >
       <div className="flex items-center gap-2">
-        <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
+        <div className="size-5 rounded-full bg-[var(--info)] flex items-center justify-center">
           <svg
             width="12"
             height="12"
             viewBox="0 0 16 16"
             fill="none"
-            className="text-[var(--fg-info)]"
+            className="text-[var(--info-foreground)]"
           >
             <path
               d="M3 8.5L6.5 12L13 4"
@@ -164,7 +176,7 @@ function SpreadsheetDone() {
             />
           </svg>
         </div>
-        <span className="text-sm font-medium text-[var(--fg-base)]">
+        <span className="text-sm font-medium text-[var(--foreground)]">
           Here's the spreadsheet!
         </span>
       </div>
@@ -173,11 +185,11 @@ function SpreadsheetDone() {
         onClick={() => {
           window.open(SPREADSHEET_URL, "_blank");
         }}
-        className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-base)] max-w-fit text-sm text-[var(--fg-base)] hover:bg-[var(--bg-component-hover)] transition-colors no-underline cursor-pointer"
+        className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[var(--muted)] border border-[var(--border)] max-w-fit text-sm text-[var(--foreground)] hover:bg-[var(--accent)] transition-colors no-underline cursor-pointer"
       >
         <FileSpreadsheet size={14} className="text-green-600 shrink-0" />
         <span>2025 Spend Data</span>
-        <ExternalLink size={12} className="text-[var(--fg-muted)] shrink-0" />
+        <ExternalLink size={12} className="text-[var(--muted-foreground)] shrink-0" />
       </button>
     </motion.div>
   );
@@ -202,7 +214,6 @@ function getMeetingSuggestions(meeting: Meeting): string[] {
 
 const MeetingDetailPage = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<Tab>("Overview");
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const [showAttendeeDropdown, setShowAttendeeDropdown] = useState(false);
   const [showTagDropdown, setShowTagDropdown] = useState(false);
@@ -210,7 +221,6 @@ const MeetingDetailPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [showChatSidebar, setShowChatSidebar] = useState(false);
-  const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [spreadsheetPhase, setSpreadsheetPhase] =
     useState<SpreadsheetPhase>("idle");
   const [chatWidth, setChatWidth] = useState(380);
@@ -221,8 +231,6 @@ const MeetingDetailPage = () => {
     width: chatWidth,
   });
 
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 });
 
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
   const selectedMeetingId = useMeetingsStore((s) => s.selectedMeetingId);
@@ -239,24 +247,6 @@ const MeetingDetailPage = () => {
   );
   const effectivePrivacy = meetingVisibility[meetingId] ?? meeting.privacy;
   const isPrivate = effectivePrivacy === "private";
-
-  const measureTab = useCallback(() => {
-    const idx = tabs.indexOf(activeTab);
-    const el = tabRefs.current[idx];
-    if (el) {
-      const padding = 12;
-      setTabIndicator({
-        left: el.offsetLeft - padding / 2,
-        width: el.offsetWidth + padding,
-      });
-    }
-  }, [activeTab]);
-
-  useEffect(() => {
-    measureTab();
-    window.addEventListener("resize", measureTab);
-    return () => window.removeEventListener("resize", measureTab);
-  }, [measureTab]);
 
   const toggleCheck = (itemId: string) => {
     setCheckedItems((prev) => {
@@ -284,91 +274,68 @@ const MeetingDetailPage = () => {
       <div
         className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
-        <button
-          type="button"
-          onClick={() => setShowShareModal(true)}
-          className="h-7 px-2.5 rounded-full border border-[var(--border-base)] bg-[var(--bg-component)] hover:bg-[var(--bg-component-hover)] flex items-center gap-1.5 text-[var(--fg-muted)] transition-colors cursor-pointer"
-        >
-          {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
-          <span className="text-2xs font-medium">
-            {isPrivate ? "Private" : "Public"}
-          </span>
-        </button>
-        <button
-          type="button"
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className="h-7 px-2.5 rounded-full border border-border bg-secondary hover:bg-accent flex items-center gap-1.5 text-muted-foreground transition-colors cursor-pointer"
+          >
+            {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
+            <span className="text-2xs font-medium">
+              {isPrivate ? "Private" : "Public"}
+            </span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setShowShareModal(true)}>
+              <Globe size={14} />
+              Share settings
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={handleCopyLink}
-          className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
           title="Copy link"
         >
           <LinkIcon size={15} />
-        </button>
-        <div className="relative">
-          <button
-            type="button"
-            onClick={() => setShowMoreMenu((p) => !p)}
-            className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
-          >
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger render={<Button variant="ghost" size="icon-xs" />}>
             <MoreHorizontal size={15} />
-          </button>
-          {showMoreMenu && (
-            <>
-              <div
-                className="fixed inset-0 z-20"
-                onClick={() => setShowMoreMenu(false)}
-              />
-              <div className="absolute right-0 top-full mt-1 z-30 w-[200px] bg-background rounded-lg border border-[var(--border-base)] shadow-lg overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => {
-                    addToast("success", "Notes copied to clipboard");
-                    setShowMoreMenu(false);
-                  }}
-                  className="w-full px-3 py-2 text-left text-sm text-[var(--fg-base)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer bg-transparent border-none"
-                >
-                  Copy notes
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    addToast("success", "Transcript copied to clipboard");
-                    setShowMoreMenu(false);
-                  }}
-                  className="w-full px-3 py-2 text-left text-sm text-[var(--fg-base)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer bg-transparent border-none"
-                >
-                  Copy transcript
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    addToast("success", "Transcript downloaded");
-                    setShowMoreMenu(false);
-                  }}
-                  className="w-full px-3 py-2 text-left text-sm text-[var(--fg-base)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer bg-transparent border-none"
-                >
-                  Download transcript
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-        <button
-          type="button"
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+              onClick={() => addToast("success", "Notes copied to clipboard")}
+            >
+              Copy notes
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => addToast("success", "Transcript copied to clipboard")}
+            >
+              Copy transcript
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => addToast("success", "Transcript downloaded")}
+            >
+              Download transcript
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={() => setShowChatSidebar((p) => !p)}
           className={cn(
-            "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
-            showChatSidebar
-              ? "bg-[var(--bg-selected)] text-[var(--fg-muted)]"
-              : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
+            showChatSidebar && "bg-accent text-muted-foreground",
           )}
           title="Deep Research"
         >
           <MessageSquare size={15} />
-        </button>
+        </Button>
       </div>
 
       {/* Title */}
       <div className="mb-4">
-        <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
+        <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
           {meeting.title}
         </h1>
       </div>
@@ -376,27 +343,27 @@ const MeetingDetailPage = () => {
       {/* Meta Badges */}
       <div className="flex items-center gap-2 mb-5">
         <div className="relative">
-          <button
-            type="button"
-            onClick={() => setShowAttendeeDropdown((p) => !p)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent cursor-pointer hover:bg-[var(--bg-subtle)] transition-colors"
+          <Badge
+            variant="outline"
+            render={<button type="button" onClick={() => setShowAttendeeDropdown((p) => !p)} />}
+            className="h-7 px-3 text-xs text-muted-foreground cursor-pointer hover:bg-muted"
           >
             <Users size={14} />
             {meeting.participants.length + 1} attendees
-          </button>
+          </Badge>
           {showAttendeeDropdown && (
             <AttendeeDropdown onClose={() => setShowAttendeeDropdown(false)} />
           )}
         </div>
         <div className="relative">
-          <button
-            type="button"
-            onClick={() => setShowTagDropdown((p) => !p)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent cursor-pointer hover:bg-[var(--bg-subtle)] transition-colors"
+          <Badge
+            variant="outline"
+            render={<button type="button" onClick={() => setShowTagDropdown((p) => !p)} />}
+            className="h-7 px-3 text-xs text-muted-foreground cursor-pointer hover:bg-muted"
           >
             <Tag size={14} />
             {meeting.tags[0] ?? "Untagged"}
-          </button>
+          </Badge>
           {showTagDropdown && (
             <MeetingTagDropdown
               onClose={() => setShowTagDropdown(false)}
@@ -407,53 +374,33 @@ const MeetingDetailPage = () => {
       </div>
 
       {/* Tabs */}
-      <div className="relative flex gap-8 border-b border-[var(--border-base)] mb-6">
-        {tabs.map((tab, i) => (
-          <button
-            key={tab}
-            ref={(el) => {
-              tabRefs.current[i] = el;
-            }}
-            type="button"
-            onClick={() => setActiveTab(tab)}
-            className={cn(
-              "pb-3 px-1 text-sm font-medium transition-colors bg-transparent cursor-pointer border-none",
-              activeTab === tab
-                ? "text-[var(--fg-base)]"
-                : "text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
-            )}
-          >
-            {tab}
-          </button>
-        ))}
-        <motion.div
-          className="absolute bottom-0 h-[2px] bg-[var(--fg-base)] rounded-full"
-          animate={{ left: tabIndicator.left, width: tabIndicator.width }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        />
-      </div>
+      <Tabs defaultValue="overview">
+        <TabsList variant="underline" className="mb-6">
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="transcript">Transcript</TabsTrigger>
+          <TabsTrigger value="video">Video</TabsTrigger>
+        </TabsList>
 
-      {/* Overview Tab */}
-      {activeTab === "Overview" && (
-        <div className="animate-fade-in">
-          <p className="text-sm text-[var(--fg-muted)] leading-relaxed mb-8">
+        {/* Overview Tab */}
+        <TabsContent value="overview">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
             {meeting.summary}
           </p>
 
           {meeting.keyPoints.length > 0 && (
             <div className="mb-8">
-              <h3 className="text-2xs font-medium  text-[var(--fg-muted)] mb-4">
+              <h3 className="text-2xs font-medium text-muted-foreground mb-4">
                 Key points & decisions
               </h3>
               <ul className="space-y-4">
                 {meeting.keyPoints.map((kp) => (
                   <li key={kp.title} className="flex gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--fg-base)] mt-2 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 shrink-0" />
                     <div>
-                      <span className="text-sm text-[var(--fg-base)]">
+                      <span className="text-sm text-foreground">
                         {kp.title}
                       </span>
-                      <p className="text-sm text-[var(--fg-muted)] leading-relaxed mt-0.5">
+                      <p className="text-sm text-muted-foreground leading-relaxed mt-0.5">
                         {kp.description}
                       </p>
                     </div>
@@ -466,12 +413,12 @@ const MeetingDetailPage = () => {
           {meeting.actionItems.length > 0 && (
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xs font-medium  text-[var(--fg-muted)]">
+                <h3 className="text-2xs font-medium text-muted-foreground">
                   Next steps & action items
                 </h3>
                 <Link
                   to="/commitments"
-                  className="text-sm font-medium text-[var(--fg-muted)] hover:underline"
+                  className="text-sm font-medium text-muted-foreground hover:underline"
                 >
                   View your to-do's
                 </Link>
@@ -499,7 +446,7 @@ const MeetingDetailPage = () => {
                               spreadsheetPhase === "idle")) &&
                             "cursor-pointer",
                           isSpreadsheetActive &&
-                            "bg-[var(--bg-subtle)] rounded-t-lg px-3",
+                            "bg-muted rounded-t-lg px-3",
                         )}
                         onClick={
                           isDeepResearchItem
@@ -540,8 +487,8 @@ const MeetingDetailPage = () => {
                           className={cn(
                             "w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
                             isChecked
-                              ? "bg-[var(--fg-disabled)] border-[var(--fg-disabled)]"
-                              : "border-[var(--border-subtle)] hover:border-[var(--fg-muted)]",
+                              ? "bg-muted-foreground border-muted-foreground"
+                              : "border-border hover:border-muted-foreground",
                           )}
                         >
                           {isChecked && (
@@ -566,20 +513,13 @@ const MeetingDetailPage = () => {
                             className={cn(
                               "text-sm",
                               isChecked
-                                ? "line-through text-[var(--fg-disabled)]"
-                                : "text-[var(--fg-base)]",
+                                ? "line-through text-muted-foreground"
+                                : "text-foreground",
                             )}
                           >
                             {item.title}
                           </p>
-                          <p
-                            className={cn(
-                              "text-sm mt-0.5",
-                              isChecked
-                                ? "text-[var(--fg-disabled)]"
-                                : "text-[var(--fg-muted)]",
-                            )}
-                          >
+                          <p className="text-sm mt-0.5 text-muted-foreground">
                             {item.description}
                           </p>
                         </div>
@@ -590,7 +530,7 @@ const MeetingDetailPage = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-3 overflow-hidden"
+                          className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
                         >
                           <SpreadsheetLoader
                             steps={SPREADSHEET_SCAN_STEPS}
@@ -604,7 +544,7 @@ const MeetingDetailPage = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-[var(--bg-subtle)] rounded-b-lg px-3 pb-3 overflow-hidden"
+                          className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
                         >
                           <SpreadsheetDone />
                         </motion.div>
@@ -615,56 +555,44 @@ const MeetingDetailPage = () => {
               </div>
             </div>
           )}
-        </div>
-      )}
+        </TabsContent>
 
-      {/* Transcript Tab */}
-      {activeTab === "Transcript" && (
-        <div className="animate-fade-in">
-          <div className="relative mb-6">
-            <Search
-              size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
-            />
-            <input
-              type="text"
-              placeholder="Search transcript..."
-              className="w-full pl-9 pr-4 py-2 rounded-lg border border-transparent focus:border-[var(--border-base)] bg-[var(--bg-component-hover)] text-sm placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] outline-none transition-colors"
-            />
+        {/* Transcript Tab */}
+        <TabsContent value="transcript">
+          <div className="mb-6">
+            <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
+              <InputGroupAddon align="inline-start">
+                <Search size={16} />
+              </InputGroupAddon>
+              <InputGroupInput placeholder="Search transcript..." />
+            </InputGroup>
           </div>
           <div className="space-y-6">
             {meeting.transcript.map((entry, i) => (
               <div key={i} className="flex gap-3">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-white text-2xs font-medium shrink-0"
-                  style={{ backgroundColor: getAvatarColor(entry.speaker) }}
-                >
-                  {getInitials(entry.speaker)}
-                </div>
+                <UserAvatar name={entry.speaker} size="md" />
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm text-[var(--fg-base)]">
+                    <span className="text-sm text-foreground">
                       {entry.speaker}
                     </span>
                     {entry.isMe && (
-                      <span className="text-xs text-[var(--fg-disabled)]">
+                      <span className="text-xs text-muted-foreground">
                         (Me)
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-[var(--fg-muted)] leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {entry.text}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+        </TabsContent>
 
-      {/* Video Tab */}
-      {activeTab === "Video" && (
-        <div className="animate-fade-in">
+        {/* Video Tab */}
+        <TabsContent value="video">
           <div className="bg-black rounded-xl overflow-hidden aspect-video relative">
             {!isPlaying && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -707,8 +635,8 @@ const MeetingDetailPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </TabsContent>
+      </Tabs>
 
       {showCreateTagModal && (
         <CreateTagModal onClose={() => setShowCreateTagModal(false)} />

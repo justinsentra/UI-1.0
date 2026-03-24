@@ -34,7 +34,7 @@ function generateTimeOptions(): string[] {
 const timeOptions = generateTimeOptions();
 
 const selectClassName =
-  "bg-[var(--bg-subtle)] border border-[var(--border-base)] rounded-lg px-3 py-2 text-sm text-[var(--fg-base)] outline-none cursor-pointer appearance-none w-full pr-8";
+  "bg-[var(--muted)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm text-[var(--foreground)] outline-none cursor-pointer appearance-none w-full pr-8";
 
 function SelectField({
   label,
@@ -49,7 +49,7 @@ function SelectField({
 }) {
   return (
     <div className="flex-1 min-w-0">
-      <label className="block text-sm font-medium text-[var(--fg-muted)] mb-1.5">
+      <label className="block text-sm font-medium text-[var(--muted-foreground)] mb-1.5">
         {label}
       </label>
       <div className="relative">
@@ -66,7 +66,7 @@ function SelectField({
         </select>
         <ChevronDown
           size={14}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--fg-muted)] pointer-events-none"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] pointer-events-none"
         />
       </div>
     </div>
@@ -95,16 +95,16 @@ const ArtifactsReportsSettingsPage = () => {
 
   return (
     <PageShell>
-      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-5">
+      <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-5">
         Reports Settings
       </h1>
 
       {/* Schedule Section */}
       <section>
-        <h2 className="text-md font-semibold text-[var(--fg-base)] mb-1">
+        <h2 className="text-md font-semibold text-[var(--foreground)] mb-1">
           Schedule
         </h2>
-        <p className="text-sm text-[var(--fg-muted)] mb-5">
+        <p className="text-sm text-[var(--muted-foreground)] mb-5">
           When do you want to receive your reports?
         </p>
 
@@ -134,7 +134,7 @@ const ArtifactsReportsSettingsPage = () => {
         </div>
       </section>
 
-      <div className="border-t border-[var(--border-base)] my-8" />
+      <div className="border-t border-[var(--border)] my-8" />
 
       {/* Deliverability Section */}
       <section>
@@ -147,19 +147,19 @@ const ArtifactsReportsSettingsPage = () => {
         />
       </section>
 
-      <div className="border-t border-[var(--border-base)] my-8" />
+      <div className="border-t border-[var(--border)] my-8" />
 
       {/* Preferences Section */}
       <section>
-        <h2 className="text-md font-semibold text-[var(--fg-base)] mb-1">
+        <h2 className="text-md font-semibold text-[var(--foreground)] mb-1">
           Preferences
         </h2>
-        <p className="text-sm text-[var(--fg-muted)] mb-2">
+        <p className="text-sm text-[var(--muted-foreground)] mb-2">
           By default, Sentra creates a report highlighting major changes over
           the past week — what progressed, any blockers or issues, followed by
           drill-downs into projects and initiatives.
         </p>
-        <p className="text-sm text-[var(--fg-muted)] mb-5">
+        <p className="text-sm text-[var(--muted-foreground)] mb-5">
           Customize what Sentra should focus on when writing your report, as
           well as the format.
         </p>
@@ -181,13 +181,13 @@ const ArtifactsReportsSettingsPage = () => {
                     handleToggleReport(card.id);
                   }
                 }}
-                className="flex items-center justify-between border border-[var(--border-base)] rounded-lg px-4 py-3 cursor-pointer hover:border-[var(--border-subtle)] transition-colors"
+                className="flex items-center justify-between border border-[var(--border)] rounded-lg px-4 py-3 cursor-pointer hover:border-[var(--border)] transition-colors"
               >
                 <div>
-                  <div className="text-sm text-[var(--fg-base)]">
+                  <div className="text-sm text-[var(--foreground)]">
                     {card.label}
                   </div>
-                  <div className="text-sm text-[var(--fg-muted)]">
+                  <div className="text-sm text-[var(--muted-foreground)]">
                     {card.description}
                   </div>
                 </div>
@@ -196,7 +196,7 @@ const ArtifactsReportsSettingsPage = () => {
                   checked={isChecked}
                   onChange={() => handleToggleReport(card.id)}
                   onClick={(e) => e.stopPropagation()}
-                  className="w-4 h-4 rounded border-[var(--border-subtle)] accent-[var(--fg-base)] shrink-0 ml-4 cursor-pointer"
+                  className="w-4 h-4 rounded border-[var(--border)] accent-[var(--foreground)] shrink-0 ml-4 cursor-pointer"
                 />
               </div>
             );
@@ -205,10 +205,10 @@ const ArtifactsReportsSettingsPage = () => {
 
         {/* Custom Reports */}
         <div className="mb-5">
-          <h3 className="text-sm font-medium text-[var(--fg-base)] mb-1">
+          <h3 className="text-sm font-medium text-[var(--foreground)] mb-1">
             Custom Reports
           </h3>
-          <p className="text-sm text-[var(--fg-muted)] mb-3">
+          <p className="text-sm text-[var(--muted-foreground)] mb-3">
             Provide specific instructions on how you want your weekly reports
             structured and what to focus on.
           </p>
@@ -219,13 +219,13 @@ const ArtifactsReportsSettingsPage = () => {
             }
             placeholder="E.g., Focus on sprint velocity metrics, highlight any blockers that have persisted for more than 2 days, and include a summary of customer feedback themes..."
             rows={6}
-            className="w-full px-3 py-2.5 rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)] resize-y"
+            className="w-full px-3 py-2.5 rounded-lg border border-[var(--border)] bg-background text-sm placeholder:text-[var(--muted-foreground)] resize-y"
           />
         </div>
 
         <button
           type="button"
-          className="bg-[var(--fg-base)] text-[var(--bg-base)] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[var(--fg-base)] transition-colors"
+          className="bg-[var(--foreground)] text-[var(--background)] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[var(--foreground)] transition-colors"
         >
           Save Changes
         </button>

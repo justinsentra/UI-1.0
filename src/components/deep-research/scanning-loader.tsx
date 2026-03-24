@@ -63,7 +63,7 @@ const ScanningLoader = ({ steps, onComplete }: ScanningLoaderProps) => {
                   className={
                     index === visibleCount - 1
                       ? "text-muted-foreground"
-                      : "text-[var(--fg-disabled)]"
+                      : "text-[var(--muted-foreground)]"
                   }
                 >
                   {step.label}

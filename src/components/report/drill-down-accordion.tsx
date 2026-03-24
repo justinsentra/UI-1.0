@@ -17,10 +17,10 @@ export function DrillDownAccordion({ drillDowns }: DrillDownAccordionProps) {
 
   return (
     <div className="mt-10">
-      <h3 className="text-2xs font-medium text-[var(--fg-muted)] mb-4">
+      <h3 className="text-2xs font-medium text-[var(--muted-foreground)] mb-4">
         Drill Downs
       </h3>
-      <div className="flex flex-col divide-y divide-[var(--border-base)]">
+      <div className="flex flex-col divide-y divide-[var(--border)]">
         {drillDowns.map((dd, idx) => {
           const isExpanded = expandedId === idx;
           return (
@@ -30,13 +30,13 @@ export function DrillDownAccordion({ drillDowns }: DrillDownAccordionProps) {
                 onClick={() => toggle(idx)}
                 className="w-full text-left group flex items-center justify-between gap-4 py-1 bg-transparent border-none cursor-pointer"
               >
-                <span className="text-sm font-medium text-[var(--fg-base)] group-hover:text-[var(--accent)] transition-colors">
+                <span className="text-sm font-medium text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">
                   {dd.heading}
                 </span>
                 <motion.span
                   animate={{ rotate: isExpanded ? 180 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="shrink-0 text-[var(--fg-muted)]"
+                  className="shrink-0 text-[var(--muted-foreground)]"
                 >
                   <ChevronDown size={14} />
                 </motion.span>
@@ -55,7 +55,7 @@ export function DrillDownAccordion({ drillDowns }: DrillDownAccordionProps) {
                         <p
                           key={pIdx}
                           className={cn(
-                            "text-sm text-[var(--fg-muted)] leading-relaxed",
+                            "text-sm text-[var(--muted-foreground)] leading-relaxed",
                           )}
                         >
                           {formatBold(paragraph)}
@@ -78,7 +78,7 @@ function formatBold(text: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold text-[var(--fg-base)]">
+        <strong key={i} className="font-semibold text-[var(--foreground)]">
           {part.slice(2, -2)}
         </strong>
       );

@@ -119,10 +119,10 @@ export function SourcesPanelContent({ sources }: SourcesPanelContentProps) {
   return (
     <div className="p-4 space-y-5">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-semibold text-[var(--fg-base)]">
+        <span className="text-sm font-semibold text-[var(--foreground)]">
           Sources
         </span>
-        <span className="text-sm text-[var(--fg-muted)]">
+        <span className="text-sm text-[var(--muted-foreground)]">
           {sources.length} references
         </span>
       </div>
@@ -135,7 +135,7 @@ export function SourcesPanelContent({ sources }: SourcesPanelContentProps) {
           <div key={type}>
             <div className="flex items-center gap-1.5 mb-2">
               <Icon size={14} />
-              <p className="text-xs font-medium text-[var(--fg-disabled)] ">
+              <p className="text-xs font-medium text-[var(--muted-foreground)] ">
                 {TYPE_LABELS[type] ?? type}
               </p>
             </div>

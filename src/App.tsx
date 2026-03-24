@@ -11,11 +11,14 @@ import ReportDetailPage from "./pages/report-detail";
 import ArtifactsReportsSettingsPage from "./pages/artifacts-reports-settings";
 import ArtifactsRadarSettingsPage from "./pages/artifacts-radar-settings";
 import IntegrationsPage from "./pages/integrations";
+import IntegrationDetailPage from "./pages/integration-detail";
 import ConnectionsPage from "./pages/connections";
 import ConnectionDetailPage from "./pages/connection-detail";
 import SettingsPage from "./pages/settings";
 import MeetingSettingsPage from "./pages/meeting-settings";
 import PreMeetingBriefPage from "./pages/pre-meeting-brief";
+import ActionsPage from "./pages/actions";
+import ActionDetailPage from "./pages/action-detail";
 
 const App = () => {
   return (
@@ -48,6 +51,10 @@ const App = () => {
               element={<Navigate to="/artifacts" replace />}
             />
             <Route path="/integrations" element={<IntegrationsPage />} />
+            <Route
+              path="/integrations/:integrationId"
+              element={<IntegrationDetailPage />}
+            />
             <Route path="/connections" element={<ConnectionsPage />} />
             <Route
               path="/connection-detail"
@@ -58,6 +65,8 @@ const App = () => {
               path="/pre-meeting-brief"
               element={<PreMeetingBriefPage />}
             />
+            <Route path="/actions" element={<ActionsPage />} />
+            <Route path="/actions/:actionId" element={<ActionDetailPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
         </Routes>

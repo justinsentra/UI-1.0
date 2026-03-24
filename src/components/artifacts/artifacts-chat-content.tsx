@@ -81,7 +81,7 @@ export function ArtifactsChatContent() {
         <ChatContainerContent className="p-4 space-y-3">
           {artifactsChatMessages.length === 0 && (
             <div className="py-6">
-              <p className="text-sm text-[var(--fg-disabled)] mb-4">
+              <p className="text-sm text-[var(--muted-foreground)] mb-4">
                 Ask anything about your{" "}
                 {activeTab === "reports" ? "reports" : "radars"}
               </p>
@@ -91,7 +91,7 @@ export function ArtifactsChatContent() {
                     key={suggestion}
                     type="button"
                     onClick={() => sendMessage(suggestion)}
-                    className="w-full text-left px-3 py-2.5 text-sm text-[var(--fg-base)] bg-[var(--bg-subtle)] rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors border border-[var(--border-base)] cursor-pointer"
+                    className="w-full text-left px-3 py-2.5 text-sm text-[var(--foreground)] bg-[var(--muted)] rounded-lg hover:bg-[var(--accent)] transition-colors border border-[var(--border)] cursor-pointer"
                   >
                     {suggestion}
                   </button>
@@ -111,8 +111,8 @@ export function ArtifactsChatContent() {
                 className={cn(
                   "max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed",
                   msg.role === "user"
-                    ? "bg-[var(--fg-base)] text-[var(--bg-base)]"
-                    : "bg-[var(--bg-subtle)] text-[var(--fg-base)]",
+                    ? "bg-[var(--foreground)] text-[var(--background)]"
+                    : "bg-[var(--muted)] text-[var(--foreground)]",
                 )}
               >
                 {msg.content}
@@ -121,11 +121,11 @@ export function ArtifactsChatContent() {
           ))}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-[var(--bg-subtle)] rounded-xl px-3.5 py-2.5">
+              <div className="bg-[var(--muted)] rounded-xl px-3.5 py-2.5">
                 <TextDotsLoader
                   text="Thinking"
                   size="sm"
-                  className="text-[var(--fg-muted)]"
+                  className="text-[var(--muted-foreground)]"
                 />
               </div>
             </div>
@@ -134,7 +134,7 @@ export function ArtifactsChatContent() {
         </ChatContainerContent>
       </ChatContainerRoot>
 
-      <div className="border-t border-[var(--border-base)] p-3">
+      <div className="border-t border-[var(--border)] p-3">
         <div className="flex items-center gap-2">
           <input
             type="text"
@@ -142,7 +142,7 @@ export function ArtifactsChatContent() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask Sentra..."
-            className="flex-1 text-sm bg-[var(--bg-subtle)] rounded-lg px-3 py-2 outline-none placeholder:text-[var(--fg-disabled)] text-[var(--fg-base)] border border-transparent focus:border-[var(--border-base)]"
+            className="flex-1 text-sm bg-[var(--muted)] rounded-lg px-3 py-2 outline-none placeholder:text-[var(--muted-foreground)] text-[var(--foreground)] border border-transparent focus:border-[var(--border)]"
           />
           <button
             type="button"
@@ -151,8 +151,8 @@ export function ArtifactsChatContent() {
             className={cn(
               "h-8 w-8 rounded-full flex items-center justify-center transition-colors border-none cursor-pointer",
               input.trim()
-                ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:bg-[var(--fg-base)]"
-                : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
+                ? "bg-[var(--foreground)] text-[var(--background)] hover:bg-[var(--foreground)]"
+                : "bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed",
             )}
           >
             <ArrowUp size={14} />

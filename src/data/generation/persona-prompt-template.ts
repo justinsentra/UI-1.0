@@ -254,7 +254,7 @@ interface PersonaDeepResearchData {
   vendorEvalTriggerKeywords?: string[];
 }
 
-interface SessionHistoryItem { id: string; title: string; date: string }
+interface SessionHistoryItem { id: string; title: string; date: string; query: string }
 
 interface DocumentFlowConfig {
   id: string;

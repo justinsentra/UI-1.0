@@ -55,12 +55,12 @@ export function BaseChatSidebar({
   if (!isOpen) return null;
 
   return (
-    <div className="flex flex-col h-full bg-[var(--bg-base)] border-l border-[var(--border-base)]">
+    <div className="flex flex-col h-full bg-[var(--background)] border-l border-[var(--border)]">
       <div className="flex items-center justify-end px-3 pt-3 pb-2">
         <button
           type="button"
           onClick={onClose}
-          className="h-7 w-7 rounded-md flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-subtle)] transition-colors bg-transparent border-none cursor-pointer"
+          className="h-7 w-7 rounded-md flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-colors bg-transparent border-none cursor-pointer"
         >
           <X size={16} />
         </button>
@@ -78,7 +78,7 @@ export function BaseChatSidebar({
                   key={q}
                   type="button"
                   onClick={() => handleSuggestion(q)}
-                  className="items-center bg-transparent border border-solid border-[var(--border-base)] rounded-full text-[var(--fg-subtle)] cursor-pointer inline-flex text-xs leading-4 py-1.5 px-3.5 transition-colors hover:bg-[var(--bg-component-hover)] hover:text-[var(--fg-base)]"
+                  className="items-center bg-transparent border border-solid border-[var(--border)] rounded-full text-[var(--muted-foreground)] cursor-pointer inline-flex text-xs leading-4 py-1.5 px-3.5 transition-colors hover:bg-[var(--accent)] hover:text-[var(--foreground)]"
                 >
                   {q}
                 </button>
@@ -133,7 +133,7 @@ export function BaseChatSidebar({
                   className={cn(
                     "items-center border-none rounded-full text-white flex shrink-0 size-7 justify-center p-0",
                     canSubmit
-                      ? "bg-[var(--fg-base)] cursor-pointer"
+                      ? "bg-[var(--foreground)] cursor-pointer"
                       : "bg-disabled-foreground shadow-none cursor-not-allowed",
                   )}
                 >

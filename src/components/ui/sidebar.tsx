@@ -39,6 +39,10 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void
   isMobile: boolean
   toggleSidebar: () => void
+  sidebarWidth: number
+  setSidebarWidth: (width: number) => void
+  minWidth: number
+  maxWidth: number
 }
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null)
@@ -56,6 +60,10 @@ function SidebarProvider({
   defaultOpen = true,
   open: openProp,
   onOpenChange: setOpenProp,
+  defaultWidth = 256,
+  minWidth = 200,
+  maxWidth = 480,
+  keyboardShortcut = SIDEBAR_KEYBOARD_SHORTCUT,
   className,
   style,
   children,
@@ -64,9 +72,14 @@ function SidebarProvider({
   defaultOpen?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  defaultWidth?: number
+  minWidth?: number
+  maxWidth?: number
+  keyboardShortcut?: string | null
 }) {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
+  const [sidebarWidth, setSidebarWidth] = React.useState(defaultWidth)
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
@@ -94,9 +107,11 @@ function SidebarProvider({
 
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
+    if (!keyboardShortcut) return
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
-        event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
+        event.key === keyboardShortcut &&
         (event.metaKey || event.ctrlKey)
       ) {
         event.preventDefault()
@@ -106,7 +121,7 @@ function SidebarProvider({
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [toggleSidebar])
+  }, [toggleSidebar, keyboardShortcut])
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
@@ -121,8 +136,12 @@ function SidebarProvider({
       openMobile,
       setOpenMobile,
       toggleSidebar,
+      sidebarWidth,
+      setSidebarWidth,
+      minWidth,
+      maxWidth,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar, sidebarWidth, minWidth, maxWidth]
   )
 
   return (
@@ -233,7 +252,7 @@ function Sidebar({
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l",
           className
         )}
         {...props}
@@ -262,7 +281,7 @@ function SidebarTrigger({
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
-      size="icon-sm"
+      size="icon"
       className={cn(className)}
       onClick={(event) => {
         onClick?.(event)
@@ -270,7 +289,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <HugeiconsIcon icon={SidebarLeftIcon} strokeWidth={2} />
+      <HugeiconsIcon icon={SidebarLeftIcon} className="size-5" strokeWidth={2} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
@@ -700,6 +719,70 @@ function SidebarMenuSubButton({
   })
 }
 
+function SidebarResizeHandle({
+  side = "left",
+  fullHeight = false,
+  onWidthChange,
+  cssVar,
+}: {
+  side?: "left" | "right"
+  fullHeight?: boolean
+  onWidthChange?: (width: number) => void
+  cssVar?: string
+}) {
+  const { sidebarWidth, setSidebarWidth, minWidth, maxWidth } = useSidebar()
+  const isDragging = React.useRef(false)
+  const startX = React.useRef(0)
+  const startWidth = React.useRef(0)
+
+  const handleMouseDown = React.useCallback(
+    (e: React.MouseEvent) => {
+      isDragging.current = true
+      startX.current = e.clientX
+      startWidth.current = sidebarWidth
+      document.body.style.cursor = "col-resize"
+      document.body.style.userSelect = "none"
+
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!isDragging.current) return
+        const delta = side === "right"
+          ? startX.current - e.clientX
+          : e.clientX - startX.current
+        const newWidth = Math.min(maxWidth, Math.max(minWidth, startWidth.current + delta))
+        setSidebarWidth(newWidth)
+        onWidthChange?.(newWidth)
+        if (cssVar) {
+          document.documentElement.style.setProperty(cssVar, `${newWidth}px`)
+        }
+      }
+
+      const handleMouseUp = () => {
+        isDragging.current = false
+        document.body.style.cursor = ""
+        document.body.style.userSelect = ""
+        document.removeEventListener("mousemove", handleMouseMove)
+        document.removeEventListener("mouseup", handleMouseUp)
+      }
+
+      document.addEventListener("mousemove", handleMouseMove)
+      document.addEventListener("mouseup", handleMouseUp)
+    },
+    [sidebarWidth, side, minWidth, maxWidth, setSidebarWidth, onWidthChange, cssVar]
+  )
+
+  return (
+    <div
+      data-slot="sidebar-resize-handle"
+      onMouseDown={handleMouseDown}
+      className={cn(
+        "absolute top-0 z-20 w-1 cursor-col-resize hover:bg-sidebar-border transition-colors",
+        fullHeight ? "h-full" : "h-8",
+        side === "right" ? "left-0" : "right-0"
+      )}
+    />
+  )
+}
+
 export {
   Sidebar,
   SidebarContent,
@@ -722,6 +805,7 @@ export {
   SidebarMenuSubItem,
   SidebarProvider,
   SidebarRail,
+  SidebarResizeHandle,
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,

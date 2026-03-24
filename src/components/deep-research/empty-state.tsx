@@ -20,7 +20,7 @@ const EmptyState = ({ onSuggestionClick }: EmptyStateProps) => {
             key={suggestion}
             type="button"
             onClick={() => onSuggestionClick(suggestion)}
-            className="items-center bg-transparent border border-solid border-[var(--border-base)] rounded-full text-[var(--fg-subtle)] cursor-pointer inline-flex text-sm leading-4 py-2 px-4 transition-colors hover:bg-[var(--bg-component-hover)] hover:text-[var(--fg-base)]"
+            className="items-center bg-transparent border border-solid border-border rounded-full text-muted-foreground cursor-pointer inline-flex text-sm leading-4 py-2 px-4 transition-colors hover:bg-accent hover:text-foreground"
           >
             {suggestion}
           </button>

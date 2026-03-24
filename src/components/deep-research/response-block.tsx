@@ -36,7 +36,7 @@ const ResponseBlock = ({ paragraphs, timestamp }: ResponseBlockProps) => {
         }}
         className="flex justify-end"
       >
-        <span className="text-2xs text-[var(--fg-disabled)]">{timestamp}</span>
+        <span className="text-2xs text-[var(--muted-foreground)]">{timestamp}</span>
       </motion.div>
     </div>
   );

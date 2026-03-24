@@ -1,10 +1,16 @@
-import { ArrowUp, Square } from "lucide-react";
+import { ArrowUp, Plus, Square, FileUp, AtSign } from "lucide-react";
 import {
   PromptInput,
   PromptInputTextarea,
   PromptInputActions,
   PromptInputAction,
 } from "../prompt-kit/prompt-input";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "../ui/dropdown-menu";
 
 interface ChatboxProps {
   value: string;
@@ -26,13 +32,30 @@ const Chatbox = ({ value, onChange, onSubmit, isLoading }: ChatboxProps) => {
         className="rounded-3xl"
       >
         <PromptInputTextarea placeholder="Ask Sentra anything..." />
-        <PromptInputActions className="justify-end px-2 pb-2">
+        <PromptInputActions className="justify-between px-3 pb-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="items-center border-none rounded-full flex shrink-0 size-7 justify-center p-0 bg-transparent text-muted-foreground cursor-pointer transition-colors hover:text-foreground hover:bg-accent"
+            >
+              <Plus size={16} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="top" align="start" sideOffset={8} className="min-w-36">
+              <DropdownMenuItem>
+                <FileUp />
+                Upload file
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <AtSign />
+                Mention
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <PromptInputAction tooltip={isLoading ? "Stop" : "Send"}>
             <button
               type="button"
               onClick={onSubmit}
               disabled={!canSubmit}
-              className={`items-center border-none rounded-full text-white flex shrink-0 size-7 justify-center p-0 ${canSubmit ? "bg-[var(--fg-base)] cursor-pointer" : "bg-disabled-foreground shadow-none cursor-not-allowed"}`}
+              className={`items-center border-none rounded-full text-white flex shrink-0 size-7 justify-center p-0 ${canSubmit ? "bg-foreground cursor-pointer" : "bg-muted-foreground/40 shadow-none cursor-not-allowed"}`}
             >
               {isLoading ? (
                 <Square size={12} fill="currentColor" />

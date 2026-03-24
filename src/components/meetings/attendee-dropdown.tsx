@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Share2 } from "lucide-react";
-import { getInitials, getAvatarColor } from "@lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
 
 interface Attendee {
   name: string;
@@ -66,10 +66,10 @@ export function AttendeeDropdown({ onClose }: AttendeeDropdownProps) {
 
   return (
     <div ref={ref} className="absolute top-full left-0 mt-1 z-50 flex">
-      <div className="w-[260px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border-base)] py-3 shadow-xl">
+      <div className="w-[260px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border)] py-3 shadow-xl">
         {Object.entries(grouped).map(([domain, members]) => (
           <div key={domain}>
-            <div className="px-4 py-1.5 text-xs text-[var(--fg-muted)]">
+            <div className="px-4 py-1.5 text-xs text-[var(--muted-foreground)]">
               {domain}
             </div>
             {members.map((attendee) => (
@@ -77,18 +77,13 @@ export function AttendeeDropdown({ onClose }: AttendeeDropdownProps) {
                 key={attendee.email}
                 onMouseEnter={() => handleMouseEnter(attendee)}
                 onMouseLeave={handleMouseLeave}
-                className="flex items-center gap-3 px-4 py-2 hover:bg-[var(--bg-component-hover)] transition-colors cursor-pointer"
+                className="flex items-center gap-3 px-4 py-2 hover:bg-[var(--accent)] transition-colors cursor-pointer"
               >
-                <div
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-white text-2xs font-medium shrink-0"
-                  style={{ backgroundColor: getAvatarColor(attendee.name) }}
-                >
-                  {getInitials(attendee.name)}
-                </div>
-                <span className="text-sm text-[var(--border-base)]">
+                <UserAvatar name={attendee.name} size="sm" />
+                <span className="text-sm text-[var(--border)]">
                   {attendee.name}
                   {attendee.isMe && (
-                    <span className="text-[var(--fg-muted)] ml-1">(me)</span>
+                    <span className="text-[var(--muted-foreground)] ml-1">(me)</span>
                   )}
                 </span>
               </div>
@@ -99,24 +94,19 @@ export function AttendeeDropdown({ onClose }: AttendeeDropdownProps) {
 
       {hoveredAttendee && (
         <div
-          className="w-[240px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border-base)] p-4 shadow-xl ml-1"
+          className="w-[240px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border)] p-4 shadow-xl ml-1"
           onMouseEnter={() => {
             if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
           }}
           onMouseLeave={handleMouseLeave}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-medium shrink-0"
-              style={{ backgroundColor: getAvatarColor(hoveredAttendee.name) }}
-            >
-              {getInitials(hoveredAttendee.name)}
-            </div>
+            <UserAvatar name={hoveredAttendee.name} size="lg" />
             <div>
-              <div className="text-sm font-medium text-[var(--border-base)]">
+              <div className="text-sm font-medium text-[var(--border)]">
                 {hoveredAttendee.name}
               </div>
-              <div className="text-sm text-[var(--fg-muted)]">
+              <div className="text-sm text-[var(--muted-foreground)]">
                 {hoveredAttendee.email}
               </div>
             </div>
@@ -124,14 +114,14 @@ export function AttendeeDropdown({ onClose }: AttendeeDropdownProps) {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--border-base)] hover:bg-[var(--bg-component-hover)] transition-colors cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--border)] hover:bg-[var(--accent)] transition-colors cursor-pointer"
             >
               <Share2 size={14} />
               Share notes
             </button>
             <button
               type="button"
-              className="h-9 w-9 rounded-lg border border-[var(--border-base)] bg-transparent flex items-center justify-center text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors cursor-pointer"
+              className="h-9 w-9 rounded-lg border border-[var(--border)] bg-transparent flex items-center justify-center text-[var(--muted-foreground)] hover:bg-[var(--accent)] transition-colors cursor-pointer"
               title="LinkedIn"
             >
               <svg

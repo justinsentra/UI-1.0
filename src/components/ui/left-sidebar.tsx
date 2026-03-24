@@ -51,7 +51,7 @@ function LeftSidebarInner({
 
   return (
     <div
-      className="relative shrink-0 h-full overflow-hidden"
+      className="relative shrink-0 h-full overflow-hidden border-r"
       style={{ width: sidebarWidth }}
     >
       <SidebarResizeHandle side="left" fullHeight onWidthChange={onWidthChange} cssVar={cssVar} />

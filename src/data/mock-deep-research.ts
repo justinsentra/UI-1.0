@@ -41,43 +41,47 @@ export interface SessionHistoryItem {
   id: string;
   title: string;
   date: string;
+  query: string;
 }
 
 export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
   "engineering-manager": [
-    { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today" },
-    { id: "s-2", title: "Customer call themes this week", date: "Today" },
-    { id: "s-3", title: "Engineering blockers summary", date: "Yesterday" },
-    { id: "s-4", title: "TechConnect launch readiness check", date: "Yesterday" },
-    { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3" },
-    { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3" },
-    { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2" },
-    { id: "s-8", title: "Weekly all-hands recap", date: "Mar 1" },
-    { id: "s-9", title: "Competitor pricing research", date: "Feb 28" },
-    { id: "s-10", title: "Design partner NPS review", date: "Feb 27" },
+    { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today", query: "Give me an overview of the pipeline for Q1 2026" },
+    { id: "s-2", title: "Customer call themes this week", date: "Today", query: "What are the key themes from customer calls this week?" },
+    { id: "s-3", title: "Engineering blockers summary", date: "Yesterday", query: "Summarize the current engineering blockers" },
+    { id: "s-4", title: "TechConnect launch readiness check", date: "Yesterday", query: "How ready are we for the TechConnect launch?" },
+    { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3", query: "What's the impact of SOC 2 compliance on our deals?" },
+    { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3", query: "Audit the onboarding flow conversion rates" },
+    { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2", query: "Summarize the mobile app beta feedback" },
+    { id: "s-8", title: "Weekly all-hands recap", date: "Mar 1", query: "What happened in the weekly all-hands?" },
+    { id: "s-9", title: "Competitor pricing research", date: "Feb 28", query: "Research competitor pricing strategies" },
+    { id: "s-10", title: "Design partner NPS review", date: "Feb 27", query: "Review the NPS scores from design partners" },
   ],
   jpm: [
-    { id: "s-1", title: "AI vendor evaluation matrix", date: "Today" },
-    { id: "s-2", title: "Meridian Corp 3-statement model", date: "Today" },
-    { id: "s-3", title: "Sentra weekly adoption update", date: "Today" },
+    { id: "s-1", title: "AI vendor evaluation matrix", date: "Today", query: "Build an AI vendor evaluation matrix comparing Cortex Labs, Helios AI, and Alphabase" },
+    { id: "s-2", title: "Meridian Corp 3-statement model", date: "Today", query: "Build a 3-statement financial model for Meridian Corp" },
+    { id: "s-3", title: "Sentra weekly adoption update", date: "Today", query: "Scope out weekly status update for Sentra adoption" },
     {
       id: "s-4",
       title: "AI sector comp analysis — Q1 multiples",
       date: "Yesterday",
+      query: "Analyze AI sector comparable companies with Q1 trading multiples",
     },
     {
       id: "s-5",
       title: "LBO sensitivity for DataVault acquisition",
       date: "Yesterday",
+      query: "Run an LBO sensitivity analysis for the DataVault acquisition",
     },
-    { id: "s-6", title: "TMT coverage pipeline review", date: "Mar 3" },
-    { id: "s-7", title: "DCF assumptions — Meridian Corp", date: "Mar 3" },
-    { id: "s-8", title: "Tech IPO readiness scorecard", date: "Mar 2" },
-    { id: "s-9", title: "M&A deal comps — enterprise SaaS", date: "Mar 1" },
+    { id: "s-6", title: "TMT coverage pipeline review", date: "Mar 3", query: "Review the TMT coverage pipeline status" },
+    { id: "s-7", title: "DCF assumptions — Meridian Corp", date: "Mar 3", query: "What are the DCF assumptions for Meridian Corp?" },
+    { id: "s-8", title: "Tech IPO readiness scorecard", date: "Mar 2", query: "Build a tech IPO readiness scorecard" },
+    { id: "s-9", title: "M&A deal comps — enterprise SaaS", date: "Mar 1", query: "Pull M&A deal comps for enterprise SaaS" },
     {
       id: "s-10",
       title: "Pitch book draft — Series C advisory",
       date: "Feb 28",
+      query: "Draft a pitch book for the Series C advisory engagement",
     },
   ],
 };
