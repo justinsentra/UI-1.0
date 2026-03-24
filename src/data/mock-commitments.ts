@@ -137,7 +137,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "15",
-    title: "Draft partnership proposal for Dokra integration",
+    title: "Draft partnership proposal for Notion integration",
     meeting: "Integrations Planning",
     meetingId: "mtg-5",
     meetingDate: "Feb 26",
@@ -164,7 +164,7 @@ export const initialCommitments: CommitmentItem[] = [
   },
   {
     id: "18",
-    title: "Set up ChatWorks integration test environment",
+    title: "Set up Slack integration test environment",
     meeting: "Engineering Sync",
     meetingId: "mtg-8",
     meetingDate: "Feb 27",

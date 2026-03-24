@@ -51,7 +51,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Leo Hartwell",
-    text: "From the GTM side, meeting intelligence is what our design partners keep asking for. That's the unlock for the TechConnect launch. If we can show a compelling demo of Sentra pulling context across meetings and ChatWorks, it'll resonate.",
+    text: "From the GTM side, meeting intelligence is what our design partners keep asking for. That's the unlock for the TechConnect launch. If we can show a compelling demo of Sentra pulling context across meetings and Slack, it'll resonate.",
     isMe: true,
   },
   {
@@ -166,7 +166,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Pavel Volkov",
-    text: "Yeah, I was thinking about that. I'll create a fictional company -- maybe a Series B fintech with about 80 employees -- and seed in cross-functional meetings, ChatWorks threads, and a few email chains. That way the graph has enough nodes to look impressive without being overwhelming.",
+    text: "Yeah, I was thinking about that. I'll create a fictional company -- maybe a Series B fintech with about 80 employees -- and seed in cross-functional meetings, Slack threads, and a few email chains. That way the graph has enough nodes to look impressive without being overwhelming.",
     isMe: false,
   },
   {
@@ -206,12 +206,12 @@ export const transcriptEntries = [
   },
   {
     speaker: "Leo Hartwell",
-    text: "Got it. The key differentiator is that we're not just a meeting tool. We connect meetings, ChatWorks, docs -- the full communication surface. Nobody else is doing the cross-platform relationship graph.",
+    text: "Got it. The key differentiator is that we're not just a meeting tool. We connect meetings, Slack, docs -- the full communication surface. Nobody else is doing the cross-platform relationship graph.",
     isMe: true,
   },
   {
     speaker: "Pavel Volkov",
-    text: "One thing that could help with differentiation -- I've been working on the multi-source correlation feature. If I can get it stable by TechConnect, we could show a ChatWorks thread and a meeting discussing the same topic, and Sentra automatically linking them. That would be a wow moment.",
+    text: "One thing that could help with differentiation -- I've been working on the multi-source correlation feature. If I can get it stable by TechConnect, we could show a Slack thread and a meeting discussing the same topic, and Sentra automatically linking them. That would be a wow moment.",
     isMe: false,
   },
   {
@@ -221,7 +221,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Leo Hartwell",
-    text: "Agree with that approach. A polished demo of two sources beats a buggy demo of four every time. Let's scope it to meetings plus ChatWorks for TechConnect and tease the broader vision verbally.",
+    text: "Agree with that approach. A polished demo of two sources beats a buggy demo of four every time. Let's scope it to meetings plus Slack for TechConnect and tease the broader vision verbally.",
     isMe: true,
   },
   {
@@ -251,7 +251,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Raj Sundaram",
-    text: "Helen Greyson from Summit Ventures is attending -- she's been looking at the productivity space. Also, there's a VP of Ops from Payvine named Marcus Williams who I think would be a perfect design partner. And I heard the Dokra team is sending a few product people.",
+    text: "Helen Greyson from Summit Ventures is attending -- she's been looking at the productivity space. Also, there's a VP of Ops from Payvine named Marcus Williams who I think would be a perfect design partner. And I heard the Notion team is sending a few product people.",
     isMe: false,
   },
   {
@@ -346,7 +346,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Raj Sundaram",
-    text: "That's strong. Let's use Ingrid's framing as the opening hook and the memory layer as the product explanation. Pavel, one more thing -- let's include the ChatWorks integration in the demo. It's too important to the cross-platform story. If it's a resource issue, pull someone off the reporting dashboard. TechConnect is the priority.",
+    text: "That's strong. Let's use Ingrid's framing as the opening hook and the memory layer as the product explanation. Pavel, one more thing -- let's include the Slack integration in the demo. It's too important to the cross-platform story. If it's a resource issue, pull someone off the reporting dashboard. TechConnect is the priority.",
     isMe: false,
   },
   {
@@ -356,7 +356,7 @@ export const transcriptEntries = [
   },
   {
     speaker: "Leo Hartwell",
-    text: "Alright. So to recap -- Pavel is on the dedicated demo environment, seed data with the fictional fintech company, offline fallback mode, and scoping ChatWorks integration into the demo. Ingrid is handling booth logistics, press outreach, messaging one-pager, happy hour venue, and the target attendee intros. I've got the demo script, nurture sequence, invite copy for the happy hour, and the GTM slides for the board deck. Raj reviews the technical walkthrough and handles board deck product sections.",
+    text: "Alright. So to recap -- Pavel is on the dedicated demo environment, seed data with the fictional fintech company, offline fallback mode, and scoping Slack integration into the demo. Ingrid is handling booth logistics, press outreach, messaging one-pager, happy hour venue, and the target attendee intros. I've got the demo script, nurture sequence, invite copy for the happy hour, and the GTM slides for the board deck. Raj reviews the technical walkthrough and handles board deck product sections.",
     isMe: true,
   },
   {

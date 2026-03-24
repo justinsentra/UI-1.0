@@ -10,12 +10,12 @@ const DEFAULT_SUGGESTED_QUESTIONS = [
 
 const SCAN_STEPS: ScanStep[] = [
   {
-    label: "Parsing 8 meeting transcripts from Alphabase Meet...",
+    label: "Parsing 8 meeting transcripts from Google Meet...",
     duration: 3200,
   },
-  { label: "Reading 5 ChatWorks threads and 3 Dokra pages...", duration: 3400 },
+  { label: "Reading 5 Slack threads and 3 Notion pages...", duration: 3400 },
   {
-    label: "Scanning CRM pipeline and Alphabase Calendar events...",
+    label: "Scanning CRM pipeline and Google Calendar events...",
     duration: 3400,
   },
   {
@@ -42,7 +42,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
     {
       id: "side-p1",
       content:
-        "**Outstanding Action Items**\n\nYou have 5 outstanding action items: 1) Schedule design review with broader team \u2014 due Friday. 2) Prepare enterprise demo script for Vantage follow-up \u2014 due next Tuesday. 3) Follow up with Meridian Corp on custom SLA requirements. 4) Review onboarding wizard designs in Dokra before engineering handoff. 5) Coordinate with Ingrid on TechConnect press kit completion.",
+        "**Outstanding Action Items**\n\nYou have 5 outstanding action items: 1) Schedule design review with broader team \u2014 due Friday. 2) Prepare enterprise demo script for Vantage follow-up \u2014 due next Tuesday. 3) Follow up with Meridian Corp on custom SLA requirements. 4) Review onboarding wizard designs in Notion before engineering handoff. 5) Coordinate with Ingrid on TechConnect press kit completion.",
       sources: [
         { type: "google-meet", label: "Weekly Team Standup" },
         { type: "slack", label: "#action-items" },

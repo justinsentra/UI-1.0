@@ -95,7 +95,7 @@ export const homeData: PersonaHomeData = {
         source: {
           quote:
             "Just saw Molder's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
-          meetingTitle: "#pn-crm-product — ChatWorks",
+          meetingTitle: "#pn-crm-product — Slack",
           meetingDate: "Mar 12, 2026",
           sourceType: "slack",
         },

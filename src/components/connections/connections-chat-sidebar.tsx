@@ -13,7 +13,7 @@ const SCAN_STEPS: ScanStep[] = [
     label: "Scanning meeting transcripts and calendar events...",
     duration: 3200,
   },
-  { label: "Analyzing email and ChatWorks conversations...", duration: 3400 },
+  { label: "Analyzing email and Slack conversations...", duration: 3400 },
   {
     label: "Cross-referencing CRM data and contact history...",
     duration: 3400,

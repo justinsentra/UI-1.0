@@ -6,125 +6,129 @@ import type {
 } from "@/data/mock-deep-research";
 import type { ToolChoice } from "@/data/personas";
 
-const INVESTMENT_MEMO_SCAN_STEPS: PrdScanStep[] = [
+const DD_REPORT_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling deal records and relationship history from Affinity...",
+    label: "Pulling SyntheticDB deal record and contact history from Affinity...",
     duration: 3000,
   },
   {
-    label: "Reading Sentra due diligence notes from Dokra...",
+    label: "Reading technical due diligence notes from Notion...",
     duration: 2800,
   },
   {
-    label: "Scanning deal discussion threads on Microsoft Teams...",
+    label: "Scanning founder reference calls on Microsoft Teams...",
     duration: 3200,
   },
   {
-    label: "Retrieving screening memos and IC docs from SharePoint...",
+    label: "Retrieving financials and data room docs from SharePoint...",
     duration: 2600,
   },
   {
-    label: "Cross-referencing pipeline data and synergy assessments...",
+    label: "Cross-referencing market data and competitive intelligence...",
     duration: 2800,
   },
-  { label: "Synthesizing investment thesis...", duration: 2400 },
+  { label: "Compiling due diligence findings...", duration: 2400 },
 ];
 
-const INVESTMENT_MEMO_CONTENT = `# Investment Memo: Sentra
+const DD_REPORT_CONTENT = `# Due Diligence Report: SyntheticDB
 
 ## Company Overview
 
-**Sentra** is building organizational memory — a living system that captures decision history and context as teams scale. Founded by Raj Sundaram (CEO, university professor) and Pavel Volkov (CTO), the company takes an interaction-first approach to enterprise knowledge management.
+**SyntheticDB** is building a next-generation synthetic data platform that enables enterprises to generate production-quality test datasets without exposing real customer data. Founded by Joon Park (CEO) and Kavita Nair (CTO), the company has developed a proprietary generative engine that preserves statistical properties while guaranteeing zero data leakage.
 
-## Investment Thesis
+## Technical Assessment
 
-Sentra addresses a fundamental problem in scaling organizations: the loss of institutional knowledge. Unlike Prism (aggregation-first, indexing documents) or Microsoft AssistAI (chat layer over existing tools), Sentra captures the *why* behind decisions by treating actors and interactions as first-class objects.
+### Core Technology
 
-### Market Opportunity
+SyntheticDB's approach combines differential privacy guarantees with a fine-tuned generative model trained on schema metadata — not raw data. This is a meaningful architectural distinction from competitors who require access to production databases.
 
-- Enterprise knowledge management: $42B TAM, growing 18% CAGR
-- Meeting intelligence subset: $8.2B by 2028
-- Organizational memory (new category): estimated $15B+ as companies recognize the cost of lost context
+**Key capabilities:**
+- Schema-aware generation: learns column relationships, distributions, and constraints
+- Privacy certified: formal differential privacy proofs (ε = 0.1 default)
+- Format fidelity: generated data passes existing validation rules and CI pipelines
+- Database support: PostgreSQL, MySQL, Snowflake, BigQuery, Redshift
 
-### Competitive Positioning
+### Architecture Review
 
-| Feature | Sentra | Prism | AssistAI |
-|---------|--------|-------|---------|
-| Interaction capture | Native | None | Basic |
-| Decision tracking | Yes | No | No |
-| Commitment extraction | Yes | No | No |
-| Cross-meeting context | Deep | Shallow | None |
-| Multi-language | Planned | Yes | Yes |
+| Component | Assessment | Notes |
+|-----------|-----------|-------|
+| Generative engine | Strong | Novel approach, well-architected |
+| Privacy layer | Excellent | Formal DP guarantees, auditable |
+| API surface | Good | Clean REST + SDK, needs GraphQL |
+| Scalability | Adequate | Handles 10M rows, needs optimization for 100M+ |
+| Observability | Needs work | Basic logging, no distributed tracing |
 
-### Traction
+### Code Quality
 
-- Design partners: BlueBridge, RenderLab, Campfire
-- ICP: Series A/B startups (30-1000 employees), enterprise teams as DPs
-- Stage: Pre-seed, $5M raised from Apex AI Conference + Horizon Fund
-- Team: 11 employees, NY-based
+Repository review (conducted Mar 5, 2026) shows well-structured Rust core with Python SDK. Test coverage at 78% — strong for stage. CI/CD pipeline is mature with automated benchmarking on every PR.
 
-## AG Synergy Analysis
+## Market Analysis
 
-**Direct deployment opportunities:**
-- AG group companies (1,700+) for cross-cultural knowledge transfer
-- AGV portfolio companies for operational efficiency
-- AG's 90-country operations for cross-timezone context preservation
+- Synthetic data market: $1.1B in 2025, projected $3.8B by 2028 (28% CAGR)
+- Data privacy compliance driving adoption: GDPR, CCPA, and emerging AI training regulations
+- Key segments: financial services (35%), healthcare (25%), enterprise SaaS (20%)
 
-**Strategic value:**
-- Validates enterprise AI investment thesis
-- Potential platform for AGV portfolio value-add services
-- Aligns with AG Corporate Strategy 2027 "Create" digital transformation pillar
+### Competitive Landscape
 
-## Financial Analysis
+| Feature | SyntheticDB | Tonic.ai | Gretel.ai | Mostly AI |
+|---------|------------|----------|-----------|-----------|
+| No data access required | Yes | No | No | No |
+| Formal DP guarantees | Yes | No | Partial | Partial |
+| Schema-first approach | Yes | No | No | No |
+| Enterprise compliance | SOC 2 | SOC 2 | SOC 2 | SOC 2 Type I |
+| Pricing | Usage-based | Seat-based | Usage-based | Seat-based |
 
-- Current burn: ~$250K/month (estimated)
-- RenderLab: 20+ months at current pace
-- Next round: Likely seed/Series A in 6-9 months
-- AGV entry: $3-5M at pre-seed valuation, targeting 8-12% ownership
+## Traction & Financials
+
+- ARR: $620K (up from $180K, 12 months ago)
+- Customers: 14 paid, 38 in free tier
+- Key accounts: Two Fortune 500 banks, one major healthcare system
+- Net revenue retention: 145%
+- Burn rate: ~$310K/month
+- Runway: 16 months at current pace
+
+## AG Synergy Opportunities
+
+- AG Financial Services: regulatory-compliant test data for banking platforms across 12 markets
+- AG Insurance: claims data synthesis for ML model training without PII exposure
+- Portfolio companies: horizontal value-add — every SaaS company needs test data
 
 ## Risk Assessment
 
-1. **Market risk (Medium):** Category creation required — "organizational memory" is not yet established
-2. **Competition risk (Low-Medium):** Defensible through interaction-first architecture and data moat
-3. **Execution risk (Low):** Strong technical founding team, Westbrook pedigree, Summit Ventures backing
-4. **Europe market risk (Medium):** Multi-language support not yet built; critical for AG synergy thesis
+1. **Technical risk (Low):** Core technology is sound, team has deep ML and systems expertise
+2. **Market risk (Low-Medium):** Category is validated, but enterprise sales cycles are long (4-6 months)
+3. **Competition risk (Medium):** Tonic.ai is well-funded ($45M Series B), but different architectural approach
+4. **Scaling risk (Medium):** Current infrastructure untested beyond 10M row datasets — critical for enterprise
 
 ## Recommendation
 
-**INVEST.** Recommend $4M check at current round. Strong product-market fit signals, differentiated technology, and clear AG synergy path. Assign Claire Lawson as board observer to maximize strategic value.
-
-## Next Steps
-
-1. Complete technical DD with AGV engineering advisors
-2. Reference calls with existing design partners
-3. Map 3-5 AG business units for pilot deployment
-4. Finalize term sheet for IC approval
+**PROCEED TO TERM SHEET.** SyntheticDB has a differentiated technical approach, strong early traction, and clear AG synergy. Recommend $3.5M investment at seed valuation with board observer seat. Priority next steps: technical deep dive with AG Financial Services CTO and reference calls with existing bank customers.
 `;
 
-const INVESTMENT_MEMO_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Formatting investment memo structure...", duration: 2000 },
-  { label: "Generating financial projections table...", duration: 2500 },
-  { label: "Adding competitive analysis matrix...", duration: 2000 },
-  { label: "Finalizing AG synergy scoring...", duration: 1800 },
+const DD_REPORT_BUILD_STEPS: PrdScanStep[] = [
+  { label: "Formatting due diligence report structure...", duration: 2000 },
+  { label: "Generating competitive analysis matrix...", duration: 2500 },
+  { label: "Adding financial traction tables...", duration: 2000 },
+  { label: "Finalizing risk assessment and recommendation...", duration: 1800 },
 ];
 
-const MEMO_SOURCES: SourceRef[] = [
-  { type: "affinity", label: "Sentra — Deal Record & Contacts" },
-  { type: "notion", label: "Sentra DD Notes & Market Sizing" },
-  { type: "teams", label: "AGV Deal Flow — Sentra thread" },
-  { type: "sharepoint", label: "IC Screening Memo — Sentra" },
-  { type: "affinity", label: "Investment Committee — Q1 Pipeline" },
-  { type: "notion", label: "Market sizing model — Enterprise AI" },
+const DD_REPORT_SOURCES: SourceRef[] = [
+  { type: "affinity", label: "SyntheticDB — Deal Record & Contacts" },
+  { type: "notion", label: "SyntheticDB Technical DD Notes" },
+  { type: "teams", label: "AGV Deal Flow — SyntheticDB thread" },
+  { type: "sharepoint", label: "SyntheticDB Data Room — Financials" },
+  { type: "affinity", label: "Reference Calls — SyntheticDB Customers" },
+  { type: "notion", label: "Synthetic Data Market Sizing" },
 ];
 
-const MEMO_TOOL_CHOICES: ToolChoice[] = [
+const DD_REPORT_TOOL_CHOICES: ToolChoice[] = [
   { label: "Push to Docs", action: "build" },
   { label: "Cancel", action: "cancel" },
 ];
 
 const LANDSCAPE_SCAN_STEPS: PrdScanStep[] = [
   { label: "Pulling sector deal records from Affinity...", duration: 3200 },
-  { label: "Reading market intelligence pages from Dokra...", duration: 2800 },
+  { label: "Reading market intelligence pages from Notion...", duration: 2800 },
   {
     label: "Scanning Catalyst Alliance consortium channel on Microsoft Teams...",
     duration: 3000,
@@ -151,7 +155,7 @@ AI agent orchestration platforms represent the fastest-growing category in enter
 ### Tier 1: Platform Players
 - **Cortex Labs** — Claude Code, Agent SDK. Most advanced reasoning. $18B valuation.
 - **Helios AI** — Assistants API, GPTs. Largest distribution. $150B+ valuation.
-- **Alphabase** — Vertex AI agents. Enterprise integration via Alphabase Cloud.
+- **Google** — Vertex AI agents. Enterprise integration via Google Cloud.
 
 ### Tier 2: Orchestration Frameworks
 - **LangChain** — LangGraph for multi-agent workflows. Open-source community. Series B, $200M valuation.
@@ -224,7 +228,7 @@ const ONBOARDING_SCAN_STEPS: PrdScanStep[] = [
     duration: 3200,
   },
   {
-    label: "Reading due diligence notes and meeting logs from Dokra...",
+    label: "Reading due diligence notes and meeting logs from Notion...",
     duration: 2800,
   },
   {
@@ -309,7 +313,7 @@ const ONBOARDING_CONTENT = `# Deal Timeline: Sentra
 
 ---
 
-*Reconstructed from 23 interactions across Affinity, Dokra, Microsoft Teams, and SharePoint*`;
+*Reconstructed from 23 interactions across Affinity, Notion, Microsoft Teams, and SharePoint*`;
 
 const ONBOARDING_SOURCES: SourceRef[] = [
   { type: "affinity", label: "Sentra — Deal Record (47 interactions)" },
@@ -340,7 +344,7 @@ const FINANCIAL_MODEL_SCAN_STEPS: PrdScanStep[] = [
     duration: 3000,
   },
   {
-    label: "Reading GreenCore technical DD and unit economics from Dokra...",
+    label: "Reading GreenCore technical DD and unit economics from Notion...",
     duration: 2800,
   },
   {
@@ -442,7 +446,7 @@ const FINANCIAL_MODEL_CONTENT = `# 3-Statement Financial Model: GreenCore
 
 ---
 
-*Sources: GreenCore data room (SharePoint), Technical DD notes (Dokra), Deal team discussions (Teams), Comparable deals (Affinity)*`;
+*Sources: GreenCore data room (SharePoint), Technical DD notes (Notion), Deal team discussions (Teams), Comparable deals (Affinity)*`;
 
 const FINANCIAL_MODEL_SOURCES: SourceRef[] = [
   { type: "affinity", label: "GreenCore — Deal Record & Financials" },
@@ -488,7 +492,7 @@ const CONSOLIDATION_SCAN_STEPS: PrdScanStep[] = [
     duration: 2800,
   },
   {
-    label: "Reading 12 SyntheticDB pages from Dokra workspace...",
+    label: "Reading 12 SyntheticDB pages from Notion workspace...",
     duration: 3200,
   },
   {
@@ -513,7 +517,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 
 ## Overview
 
-**SyntheticDB** — Vector database infrastructure for enterprise AI applications. Series B candidate, currently in active due diligence. This brief consolidates all information scattered across Dokra, Microsoft Teams, and Affinity into a single source of truth.
+**SyntheticDB** — Vector database infrastructure for enterprise AI applications. Series B candidate, currently in active due diligence. This brief consolidates all information scattered across Notion, Microsoft Teams, and Affinity into a single source of truth.
 
 *Last updated: March 12, 2026 — 43 sources consolidated*
 
@@ -535,7 +539,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 
 | Contact | Role | Last Interaction | Notes |
 |---------|------|-----------------|-------|
-| Fiona Webb | CEO / Co-founder | Mar 8 (Teams call) | Ashmore CS PhD, ex-Alphabase Brain |
+| Fiona Webb | CEO / Co-founder | Mar 8 (Teams call) | Ashmore CS PhD, ex-Google Brain |
 | Conrad Finley | CTO / Co-founder | Mar 3 (Product deep dive) | Ex-Pinecone founding engineer |
 | Diana Choi | VP Sales | Feb 26 (Email) | Driving enterprise motion, ex-Snowflake |
 | Raj Patel | Board (Redwood) | Feb 19 (IC reference) | Supportive of AG strategic investment |
@@ -547,7 +551,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 ## Diligence Findings (Consolidated)
 
 ### Product & Technical Assessment
-*Source: Dokra — "SyntheticDB Technical DD Notes" + Teams — "SyntheticDB Product Deep Dive (Mar 3)"*
+*Source: Notion — "SyntheticDB Technical DD Notes" + Teams — "SyntheticDB Product Deep Dive (Mar 3)"*
 
 - Custom indexing engine built on Rust — 3x throughput vs Pinecone on standard benchmarks
 - Multi-tenancy architecture supports enterprise isolation requirements
@@ -556,7 +560,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 - **Gap identified:** No native support for European language tokenization — critical for AG Europe deployment. Team estimates 6-8 weeks to implement.
 
 ### Market Position
-*Source: Dokra — "Vector DB Competitive Landscape" + SharePoint — "AI Infrastructure Market Report Q1 2026"*
+*Source: Notion — "Vector DB Competitive Landscape" + SharePoint — "AI Infrastructure Market Report Q1 2026"*
 
 - Vector database market estimated at $4.8B by 2028 (62% CAGR)
 - Key competitors: Pinecone ($100M ARR), Weaviate ($28M ARR), Qdrant ($8M ARR)
@@ -567,11 +571,11 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 *Source: Teams — "SyntheticDB Reference Calls" thread + Affinity — Contact notes*
 
 - **Payvine** — Using for fraud detection model serving. "SyntheticDB is the only vendor that met our latency SLA at scale." — Staff Eng, ML Platform
-- **Dokra** (ironic) — Powers their AI search feature. Migrated from Pinecone in Q4 2025 citing reliability issues.
+- **Notion** (ironic) — Powers their AI search feature. Migrated from Pinecone in Q4 2025 citing reliability issues.
 - **DoorDash** — Deploying for real-time recommendation engine. POC to production in 3 weeks.
 
 ### Financial Analysis
-*Source: SharePoint — "SyntheticDB Financial Model v2" + Dokra — "Series B Pricing Analysis"*
+*Source: SharePoint — "SyntheticDB Financial Model v2" + Notion — "Series B Pricing Analysis"*
 
 - Current ARR: $9.4M, projecting $22M by Dec 2026
 - Gross margin: 72% (infrastructure-heavy but improving)
@@ -581,7 +585,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 - AGV proposed entry: $8-10M check
 
 ### AG Synergy Assessment
-*Source: Dokra — "AG Synergy Scoring — SyntheticDB" + Teams — "AGV Strategy Sync (Feb 28)"*
+*Source: Notion — "AG Synergy Scoring — SyntheticDB" + Teams — "AGV Strategy Sync (Feb 28)"*
 
 - **Synergy Score: 7/10**
 - AG group AI initiatives could deploy SyntheticDB across 5+ business units
@@ -605,14 +609,14 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 
 | Platform | Documents | Key Items |
 |----------|-----------|-----------|
-| Dokra | 12 pages | DD notes, competitive analysis, synergy scoring, financial model |
+| Notion | 12 pages | DD notes, competitive analysis, synergy scoring, financial model |
 | Teams | 8 threads | Product deep dive, reference calls, strategy sync, deal team updates |
 | Affinity | 31 interactions | Contact history, meeting notes, email threads, deal record |
 | SharePoint | 4 documents | Data room, market report, financial model, IC template |
 
 ---
 
-*Consolidated from 43 sources across Dokra (12), Microsoft Teams (8), Affinity (31), and SharePoint (4)*`;
+*Consolidated from 43 sources across Notion (12), Microsoft Teams (8), Affinity (31), and SharePoint (4)*`;
 
 const CONSOLIDATION_SOURCES: SourceRef[] = [
   { type: "notion", label: "SyntheticDB Technical DD Notes" },
@@ -625,7 +629,7 @@ const CONSOLIDATION_SOURCES: SourceRef[] = [
 
 const CONSOLIDATION_BUILD_STEPS: PrdScanStep[] = [
   {
-    label: "Deduplicating overlapping notes from Dokra and Teams...",
+    label: "Deduplicating overlapping notes from Notion and Teams...",
     duration: 2400,
   },
   {
@@ -651,7 +655,7 @@ const VENDOR_EVAL_SCAN: PrdScanStep[] = [
     duration: 2400,
   },
   {
-    label: "Reading startup metrics and traction data from Dokra...",
+    label: "Reading startup metrics and traction data from Notion...",
     duration: 2800,
   },
   {
@@ -718,11 +722,9 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "I just joined the Sentra deal — catch me up",
-    "Draft an investment memo for Sentra",
+    "Run due diligence on SyntheticDB",
     "Map the AI agent framework landscape",
-    "Compare pipeline companies on AG synergy",
-    "Summarize this week's deal flow activity",
+    "Build a 3-statement model for GreenCore",
   ],
   sessionHistory: [
     { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today" },
@@ -774,66 +776,31 @@ export const deepResearchData: PersonaDeepResearchData = {
   ],
   documentFlows: [
     {
-      id: "mcgi-flow-onboarding",
-      label: "Deal Timeline",
-      filename: "sentra-deal-timeline.md",
-      scanSteps: ONBOARDING_SCAN_STEPS,
-      content: ONBOARDING_CONTENT,
-      buildSteps: ONBOARDING_BUILD_STEPS,
-      sources: ONBOARDING_SOURCES,
+      id: "mcgi-flow-dd-report",
+      label: "Due Diligence Report",
+      filename: "syntheticdb-dd-report.md",
+      scanSteps: DD_REPORT_SCAN_STEPS,
+      content: DD_REPORT_CONTENT,
+      buildSteps: DD_REPORT_BUILD_STEPS,
+      sources: DD_REPORT_SOURCES,
       triggerKeywords: [
-        "just joined",
-        "just got",
-        "brought onto",
-        "new to",
-        "catch up",
-        "catch me up",
-        "onboarded",
-        "full history",
-        "deal history",
-        "what happened",
-        "where do we stand",
-        "get up to speed",
-        "bring me up to speed",
-        "what do i need to know",
-        "what should i know",
-        "timeline",
-        "deal timeline",
-        "need to know",
-        "background on",
+        "due diligence",
+        "dd report",
+        "diligence report",
+        "run dd",
+        "run due diligence",
+        "syntheticdb",
+        "synthetic db",
+        "diligence on",
       ],
-      toolChoices: ONBOARDING_TOOL_CHOICES,
+      toolChoices: DD_REPORT_TOOL_CHOICES,
       doneMessage: {
-        title: "Deal timeline pushed to Alphabase Docs",
+        title: "Due diligence report pushed to Google Docs",
         description:
-          "Your deal onboarding brief is ready. Covers the complete Sentra deal history from first contact through current status.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+          "Your DD report for SyntheticDB is ready for IC review.",
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?tab=t.0" },
       },
-      buildingLabel: "Building deal timeline",
-    },
-    {
-      id: "mcgi-flow-memo",
-      label: "Investment Memo",
-      filename: "sentra-investment-memo.md",
-      scanSteps: INVESTMENT_MEMO_SCAN_STEPS,
-      content: INVESTMENT_MEMO_CONTENT,
-      buildSteps: INVESTMENT_MEMO_BUILD_STEPS,
-      sources: MEMO_SOURCES,
-      triggerKeywords: [
-        "investment memo",
-        "invest memo",
-        "memo for",
-        "write memo",
-        "draft memo",
-      ],
-      toolChoices: MEMO_TOOL_CHOICES,
-      doneMessage: {
-        title: "Investment memo pushed to Alphabase Docs",
-        description:
-          "Your investment memo has been created and is ready for IC review.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
-      },
-      buildingLabel: "Building memo",
+      buildingLabel: "Building DD report",
     },
     {
       id: "mcgi-flow-landscape",
@@ -852,10 +819,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: LANDSCAPE_TOOL_CHOICES,
       doneMessage: {
-        title: "Landscape deck pushed to Alphabase Slides",
+        title: "Landscape deck pushed to Google Slides",
         description:
           "Your market landscape analysis is ready for consortium review.",
-        link: { label: "Open in Alphabase Slides", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
       },
       buildingLabel: "Building deck",
     },
@@ -881,10 +848,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: FINANCIAL_MODEL_TOOL_CHOICES,
       doneMessage: {
-        title: "Financial model ready in Alphabase Sheets",
+        title: "Financial model ready in Google Sheets",
         description:
           "Your 3-statement model for GreenCore has been generated with full income statement, balance sheet, and cash flow projections.",
-        link: { label: "Open in Alphabase Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+        link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
       },
       buildingLabel: "Building financial model",
     },
@@ -913,10 +880,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: CONSOLIDATION_TOOL_CHOICES,
       doneMessage: {
-        title: "Consolidated brief exported to Microsoft Word",
+        title: "Consolidated brief exported to Google Docs",
         description:
-          "All SyntheticDB diligence data from Dokra, Teams, Affinity, and SharePoint has been consolidated into a single document.",
-        link: { label: "Open in Microsoft Word", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+          "All SyntheticDB diligence data from Notion, Teams, Affinity, and SharePoint has been consolidated into a single document.",
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Consolidating deal data",
     },

@@ -917,12 +917,12 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "Diana Calloway",
-        text: "Before we go — one more thing I wanted to raise. A few users have asked about whether Sentra can integrate with Dokra. The TMT team uses Dokra heavily for internal deal wikis, and they'd love to have meeting summaries automatically pushed there.",
+        text: "Before we go — one more thing I wanted to raise. A few users have asked about whether Sentra can integrate with Notion. The TMT team uses Notion heavily for internal deal wikis, and they'd love to have meeting summaries automatically pushed there.",
         isMe: false,
       },
       {
         speaker: "Leo Hartwell",
-        text: "Dokra integration is an interesting one. It's not as high-priority as DealStream for the Coverage team, but it's a quality-of-life feature that would drive stickiness. I'll add it to the feature request list when I talk to Sentra's account team. Any sense of how many users have asked for it?",
+        text: "Notion integration is an interesting one. It's not as high-priority as DealStream for the Coverage team, but it's a quality-of-life feature that would drive stickiness. I'll add it to the feature request list when I talk to Sentra's account team. Any sense of how many users have asked for it?",
         isMe: true,
       },
       {
@@ -1807,12 +1807,12 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "Leo Hartwell",
-        text: "I'd suggest a lightweight approach — a three-question pulse survey at the end of each week, plus an open feedback channel like a dedicated ChatWorks channel where people can share thoughts in real time. We don't want to over-survey people and create friction.",
+        text: "I'd suggest a lightweight approach — a three-question pulse survey at the end of each week, plus an open feedback channel like a dedicated Slack channel where people can share thoughts in real time. We don't want to over-survey people and create friction.",
         isMe: true,
       },
       {
         speaker: "Diana Calloway",
-        text: "I can set up the ChatWorks channel today. I'll call it something straightforward like sentra-pilot-feedback. The team champions can help moderate it and surface the most common themes for our Monday dashboard reviews.",
+        text: "I can set up the Slack channel today. I'll call it something straightforward like sentra-pilot-feedback. The team champions can help moderate it and surface the most common themes for our Monday dashboard reviews.",
         isMe: false,
       },
       {
@@ -1932,7 +1932,7 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "Diana Calloway",
-        text: "Perfect. I'll have the onboarding guides, ChatWorks channel, and training session invites all set up by end of day tomorrow. Let's touch base briefly on Wednesday to make sure everything is on track before the first training session on Thursday. Thanks everyone.",
+        text: "Perfect. I'll have the onboarding guides, Slack channel, and training session invites all set up by end of day tomorrow. Let's touch base briefly on Wednesday to make sure everything is on track before the first training session on Thursday. Thanks everyone.",
         isMe: false,
       },
     ],

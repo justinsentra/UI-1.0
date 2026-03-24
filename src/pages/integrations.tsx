@@ -41,7 +41,7 @@ const PERSONAL_INTEGRATIONS: Integration[] = [
   },
   {
     id: "calendar",
-    name: "Alphabase Calendar",
+    name: "Google Calendar",
     description: "Sync your calendar for scheduling and reminders.",
     logo: calendarLogo,
     connected: true,
@@ -55,14 +55,14 @@ const PERSONAL_INTEGRATIONS: Integration[] = [
   },
   {
     id: "notion",
-    name: "Dokra",
-    description: "Sync pages, databases, and notes from Dokra.",
+    name: "Notion",
+    description: "Sync pages, databases, and notes from Notion.",
     logo: notionLogo,
     connected: false,
   },
   {
     id: "google-drive",
-    name: "Alphabase Drive",
+    name: "Google Drive",
     description: "Access and search your Drive files and folders.",
     logo: googleDriveLogo,
     connected: true,
@@ -76,8 +76,8 @@ const PERSONAL_INTEGRATIONS: Integration[] = [
   },
   {
     id: "google-meet",
-    name: "Alphabase Meet",
-    description: "Record and transcribe Alphabase Meet conversations.",
+    name: "Google Meet",
+    description: "Record and transcribe Google Meet conversations.",
     LogoIcon: GoogleMeetIcon,
     connected: true,
   },
@@ -93,14 +93,14 @@ const PERSONAL_INTEGRATIONS: Integration[] = [
 const WORKSPACE_INTEGRATIONS: Integration[] = [
   {
     id: "slack",
-    name: "ChatWorks",
-    description: "Get notifications and create tasks from ChatWorks messages.",
+    name: "Slack",
+    description: "Get notifications and create tasks from Slack messages.",
     logo: slackLogo,
     connected: true,
   },
   {
     id: "linear",
-    name: "Trackline",
+    name: "Linear",
     description: "Sync issues, projects, and cycles automatically.",
     logo: linearLogo,
     connected: false,

@@ -344,14 +344,14 @@ export const companies = [
   },
   {
     id: "notion",
-    name: "Dokra",
+    name: "Notion",
     domain: "dokra.so",
     contacts: 1,
     lastInteraction: "2026-02-24",
   },
   {
     id: "linear",
-    name: "Trackline",
+    name: "Linear",
     domain: "trackline.app",
     contacts: 1,
     lastInteraction: "2026-02-22",

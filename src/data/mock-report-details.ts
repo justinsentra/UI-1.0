@@ -12,14 +12,14 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Executive Summary",
         paragraphs: [
-          "The AI Strategy & Tech Partnerships division had a high-velocity week across vendor evaluation, competitive positioning, and internal deployment expansion. The team completed Phase 2 evaluations of Cortex Labs, Helios AI, and Alphabase for firm-wide LLM deployment, with Cortex Labs's Claude emerging as the frontrunner for regulated financial services use cases.",
+          "The AI Strategy & Tech Partnerships division had a high-velocity week across vendor evaluation, competitive positioning, and internal deployment expansion. The team completed Phase 2 evaluations of Cortex Labs, Helios AI, and Google for firm-wide LLM deployment, with Cortex Labs's Claude emerging as the frontrunner for regulated financial services use cases.",
           "On the competitive front, Morgan Vale accelerated their internal AI platform rollout, prompting an updated response strategy. Internally, the Sentra pilot is expanding from 60 to 200 seats across IB Coverage and TMT groups following strong adoption metrics and positive feedback from Managing Directors on meeting intelligence capabilities.",
         ],
       },
       {
         heading: "Key Developments",
         paragraphs: [
-          "AI Vendor Evaluations: Completed head-to-head benchmarking of Cortex Labs Claude, Helios AI GPT-5, and Alphabase Gemini Ultra across document analysis, trade surveillance, and KYC automation use cases. Claude demonstrated superior performance on regulatory document comprehension and citation accuracy, critical for our compliance requirements.",
+          "AI Vendor Evaluations: Completed head-to-head benchmarking of Cortex Labs Claude, Helios AI GPT-5, and Google Gemini Ultra across document analysis, trade surveillance, and KYC automation use cases. Claude demonstrated superior performance on regulatory document comprehension and citation accuracy, critical for our compliance requirements.",
           "Morgan Vale Competitive Response: Goldman announced expansion of their internal GS AI platform to 10,000 seats across IB and Asset Management. Our competitive analysis identifies three areas where JPM can leapfrog: agentic workflows for deal execution, cross-divisional knowledge graphs, and client-facing AI advisory tools.",
           "Sentra Pilot Expansion: The organizational memory pilot is scaling from 60 seats (IB Coverage) to 200 seats spanning IB Coverage and TMT groups. Adoption rate is at 78% weekly active usage, with Managing Directors citing pre-meeting briefs and decision tracking as highest-value features.",
           "Regulatory Landscape: OCC issued updated guidance on AI model risk management in banking. Our framework is aligned, but the new requirements around explainability and audit trails accelerate the need for source-cited AI outputs across all internal tools.",
@@ -253,13 +253,13 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Executive Summary",
         paragraphs: [
-          "The AI Strategy & Tech Partnerships talent pipeline is active with six candidates across three critical roles. The urgency for AI/ML engineering hires has intensified as the firm-wide AI platform roadmap requires a 75% headcount increase by year-end. Compensation benchmarking against Big Tech companies remains the primary challenge — total comp packages for senior ML engineers at Alphabase NeuralForge and Meta FAIR are running 20-30% above JPM's current bands.",
+          "The AI Strategy & Tech Partnerships talent pipeline is active with six candidates across three critical roles. The urgency for AI/ML engineering hires has intensified as the firm-wide AI platform roadmap requires a 75% headcount increase by year-end. Compensation benchmarking against Big Tech companies remains the primary challenge — total comp packages for senior ML engineers at Google NeuralForge and Meta FAIR are running 20-30% above JPM's current bands.",
         ],
       },
       {
         heading: "AI/ML Engineers (3 candidates)",
         paragraphs: [
-          "Candidate A (ex-Alphabase NeuralForge): 8 years in large-scale model training and inference optimization. Led the deployment of Gemini's financial services fine-tuning pipeline. Strong expertise in distributed training across GPU clusters. On-site scheduled for next Tuesday.",
+          "Candidate A (ex-Google NeuralForge): 8 years in large-scale model training and inference optimization. Led the deployment of Gemini's financial services fine-tuning pipeline. Strong expertise in distributed training across GPU clusters. On-site scheduled for next Tuesday.",
           "Candidate B (ex-Meta FAIR): 6 years in NLP research with a focus on document understanding and information extraction — directly relevant to our KYC automation and due diligence use cases. Published at NeurIPS and ICML. Phone screen completed; advancing to technical round.",
           "Candidate C (ex-Payvine): 5 years building ML infrastructure for fraud detection and risk scoring. Experience with real-time model serving at scale and A/B testing frameworks. Particularly strong on the MLOps and model monitoring side. Initial conversation went well; scheduling technical assessment.",
         ],
@@ -280,7 +280,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Compensation & Open Roles",
         paragraphs: [
-          "Senior AI/ML Engineer — Active (3 candidates). Comp range: $350-450K total. Alphabase NeuralForge offers at $480K+ are creating competitive pressure. Recommending a market adjustment for this role to close the gap.",
+          "Senior AI/ML Engineer — Active (3 candidates). Comp range: $350-450K total. Google NeuralForge offers at $480K+ are creating competitive pressure. Recommending a market adjustment for this role to close the gap.",
           "AI Strategy Manager — Active (2 candidates). Comp range: $280-350K total. Competitive with consulting exit packages but below Big Tech strategy roles.",
           "Senior Data Scientist — Active (1 candidate). Comp range: $300-380K total. Two Sigma comp is higher but candidate is motivated by the breadth of the AI strategy role.",
           "Head of AI Platform Engineering — Open (sourcing). This is the most critical hire — need someone to own the end-to-end AI platform architecture. Targeting VP-level from a top-tier tech company.",
@@ -425,14 +425,14 @@ const reportDetailMap: Record<string, ReportDetail> = {
         paragraphs: [
           "Cortex Labs Claude (Frontrunner): Demonstrated superior performance on regulatory document comprehension (94.2% accuracy vs. 89.1% for GPT-5 and 87.3% for Gemini), citation accuracy (97.8%), and instruction following in compliance-sensitive contexts. Enterprise agreement terms include dedicated capacity, custom fine-tuning, and on-prem deployment options. Data residency and SOC 2 requirements met.",
           "Helios AI GPT-5 Enterprise (Strong Contender): Best-in-class performance on code generation and quantitative analysis tasks. Enterprise tier pricing is competitive but the data processing agreement has unresolved clauses around training data usage. Legal flagged three provisions requiring renegotiation.",
-          "Alphabase Gemini Ultra (Pilot Phase): Running a limited pilot with 50 users in Equity Research for earnings transcript analysis. Multimodal capabilities (chart and table understanding) are a differentiator. However, latency is 2.3x higher than Claude for equivalent document analysis tasks.",
+          "Google Gemini Ultra (Pilot Phase): Running a limited pilot with 50 users in Equity Research for earnings transcript analysis. Multimodal capabilities (chart and table understanding) are a differentiator. However, latency is 2.3x higher than Claude for equivalent document analysis tasks.",
           "Cohere for Document Processing (Evaluation): Specialized evaluation for high-volume document classification and extraction in KYC workflows. Strong performance on structured document processing (invoices, identity documents) at 60% lower cost per token than general-purpose models. Recommended as a complementary tool alongside the primary LLM provider.",
         ],
       },
       {
         heading: "Evaluation Criteria & Benchmarks",
         paragraphs: [
-          "All models were evaluated across six dimensions: accuracy on financial document comprehension, citation fidelity, latency at scale, data security and residency compliance, cost per inference, and vendor risk profile. Cortex Labs leads on 4 of 6 dimensions; Helios AI leads on code generation; Alphabase leads on multimodal tasks.",
+          "All models were evaluated across six dimensions: accuracy on financial document comprehension, citation fidelity, latency at scale, data security and residency compliance, cost per inference, and vendor risk profile. Cortex Labs leads on 4 of 6 dimensions; Helios AI leads on code generation; Google leads on multimodal tasks.",
           "The MRM team has approved the evaluation methodology and will provide independent validation of results before the Operating Committee presentation. Final recommendation due by end of next week.",
         ],
       },
@@ -513,7 +513,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Talent Market Pressure",
         paragraphs: [
-          "Competition for AI/ML talent intensified this week. Alphabase NeuralForge announced a 20% comp increase for senior researchers, and Cortex Labs's Series D valuation is driving aggressive equity packages that JPM's cash-heavy compensation cannot match. Three of our top candidates have competing offers.",
+          "Competition for AI/ML talent intensified this week. Google NeuralForge announced a 20% comp increase for senior researchers, and Cortex Labs's Series D valuation is driving aggressive equity packages that JPM's cash-heavy compensation cannot match. Three of our top candidates have competing offers.",
           "Mitigation: HR approved an accelerated hiring timeline for critical AI roles — reducing the interview-to-offer cycle from 6 weeks to 3 weeks. Also exploring research partnerships with universities (Westbrook, Ashmore, CMU) as an alternative talent pipeline.",
         ],
       },

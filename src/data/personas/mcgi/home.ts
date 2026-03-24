@@ -30,11 +30,11 @@ export const homeData: PersonaHomeData = {
       id: "mcgi-art-5",
       title: "Consolidate SyntheticDB Deal Data",
       description:
-        "Pull together all SyntheticDB diligence data scattered across Dokra and Teams into a single unified brief",
+        "Pull together all SyntheticDB diligence data scattered across Notion and Teams into a single unified brief",
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Consolidate everything we have on SyntheticDB across Dokra and Teams into a single brief",
+        "Consolidate everything we have on SyntheticDB across Notion and Teams into a single brief",
     },
     {
       id: "mcgi-art-2",

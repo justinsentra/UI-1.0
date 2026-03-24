@@ -48,7 +48,7 @@ function DeliveryDropdown({
   }, [open]);
 
   const label =
-    [slack && "ChatWorks", email && "Email"].filter(Boolean).join(", ") ||
+    [slack && "Slack", email && "Email"].filter(Boolean).join(", ") ||
     "Select channels...";
 
   return (
@@ -96,7 +96,7 @@ function DeliveryDropdown({
                 onChange={(e) => onSlackChange(e.target.checked)}
                 className="w-4 h-4 rounded border-[var(--border-subtle)] accent-[var(--fg-base)]"
               />
-              <span className="text-sm text-[var(--fg-base)]">ChatWorks</span>
+              <span className="text-sm text-[var(--fg-base)]">Slack</span>
             </label>
             <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--bg-subtle)] cursor-pointer transition-colors">
               <input

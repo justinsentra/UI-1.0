@@ -203,7 +203,7 @@ export const meetings: Meeting[] = [
       "Leo Hartwell",
     ],
     tags: ["due-diligence", "enterprise-ai"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "public",
     summary:
       "Deep dive into Sentra's product architecture and go-to-market strategy with the founding team. Reviewed the organizational memory concept, current traction with design partners, and potential synergies with AG portfolio companies and business units. The interaction-first approach is technically differentiated from Prism and AssistAI, and the team demonstrated strong product-market fit signals from early design partners.",
@@ -472,7 +472,7 @@ export const meetings: Meeting[] = [
       "Greg Lawton",
     ],
     tags: ["due-diligence", "climate-tech"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "private",
     summary:
       "Technical due diligence session for GreenCore with AG's industrial materials division. Reviewed carbon capture efficiency claims, unit economics at scale, and potential integration with AG's existing industrial portfolio. Independent lab results validated the 40% efficiency improvement, and unit economics below $80 per ton at scale are competitive with regulatory carbon credit pricing. Greg confirmed strong interest from the materials division for a 12-15 facility rollout if the pilot validates.",
@@ -833,7 +833,7 @@ export const meetings: Meeting[] = [
     duration: "45m",
     participants: ["Claire Lawson", "Jake Brennan", "Dr. Nathan Cho"],
     tags: ["screening", "advanced-materials"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "private",
     summary:
       "Initial screening call with NovaMaterials founder Dr. Nathan Cho. Company is developing proprietary battery recycling technology with a novel hydrometallurgical process achieving 95% metal recovery rates. Pilot facility under construction in Nevada, expected operational Q2 2026. Two EV manufacturer LOIs already signed for feedstock supply. Team recommended a smaller initial check with milestone-based follow-on given the earlier stage and execution risk.",
@@ -1272,7 +1272,7 @@ export const meetings: Meeting[] = [
     duration: "45m",
     participants: ["Claire Lawson", "David Chen", "Lisa Park"],
     tags: ["portfolio", "check-in"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "public",
     summary:
       "Quarterly review with QuantumSense (Series A portfolio). Product-market fit strengthening in semiconductor QA vertical with $3.2M ARR, up from $2.1M last quarter. Three new chip manufacturer contracts signed in Q1 including Apex Semi Oregon. Discussed international expansion through AG's semiconductor trading arm and potential Series B lead investors. The Europe market opportunity is significant given the new Apex Semi and Rapidus fabs.",
@@ -1436,7 +1436,7 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "Claire Lawson",
-        text: "Strong. Two ex-Alphabase ML engineers who previously built internal MLOps tooling for Alphabase's healthcare AI team. They understand compliance deeply because they lived it. Revenue is early — about $500K ARR — but growing 30% month over month.",
+        text: "Strong. Two ex-Google ML engineers who previously built internal MLOps tooling for Google's healthcare AI team. They understand compliance deeply because they lived it. Revenue is early — about $500K ARR — but growing 30% month over month.",
         isMe: true,
       },
       {
@@ -1535,7 +1535,7 @@ export const meetings: Meeting[] = [
     duration: "1h",
     participants: ["Richard Caldwell", "Sean Mercer"],
     tags: ["due-diligence", "climate-tech"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "private",
     summary: "",
     keyPoints: [],

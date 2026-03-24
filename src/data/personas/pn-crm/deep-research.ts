@@ -14,15 +14,15 @@ const PITCH_DECK_SCAN_STEPS: PrdScanStep[] = [
     duration: 2800,
   },
   {
-    label: "Reading retention cohort data from Dokra...",
+    label: "Reading retention cohort data from Notion...",
     duration: 3000,
   },
   {
-    label: "Scanning product discussion threads on ChatWorks...",
+    label: "Scanning product discussion threads on Slack...",
     duration: 2600,
   },
   {
-    label: "Retrieving competitive analysis from Alphabase Docs...",
+    label: "Retrieving competitive analysis from Google Docs...",
     duration: 2400,
   },
   {
@@ -215,11 +215,11 @@ const YC_APP_SCAN_STEPS: PrdScanStep[] = [
     duration: 2600,
   },
   {
-    label: "Reading product vision and roadmap from Dokra...",
+    label: "Reading product vision and roadmap from Notion...",
     duration: 2800,
   },
   {
-    label: "Scanning advisor feedback threads on ChatWorks...",
+    label: "Scanning advisor feedback threads on Slack...",
     duration: 2400,
   },
   {
@@ -264,7 +264,7 @@ Our core innovation is the **relationship intelligence engine**: an interaction-
 
 I (Emmett) have been obsessed with networking since founding the Side Hustle Club at Buckeye State University. As the club grew to 50+ members and I started doing VC work at Pinnacle Capital and IronHawk Ventures, my network exploded. I went from knowing 50 people well to having 500+ contacts across founders, investors, mentors, and peers.
 
-I started losing track. Missed follow-ups. Forgot promises. Let relationships go cold with people I genuinely wanted to stay connected to. I tried every tool — spreadsheets, Dokra databases, contact apps, even wrote automations. Nothing worked because they all treated contacts as static records, not living relationships.
+I started losing track. Missed follow-ups. Forgot promises. Let relationships go cold with people I genuinely wanted to stay connected to. I tried every tool — spreadsheets, Notion databases, contact apps, even wrote automations. Nothing worked because they all treated contacts as static records, not living relationships.
 
 That's when I realized: **the problem isn't organizing contacts — it's understanding relationship health in real time and being told when to act.**
 
@@ -335,7 +335,7 @@ const YC_APP_TOOL_CHOICES: ToolChoice[] = [
 
 const COMPETITIVE_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling competitor feature data from Dokra tracker...",
+    label: "Pulling competitor feature data from Notion tracker...",
     duration: 3000,
   },
   {
@@ -440,15 +440,15 @@ const COMPETITIVE_TOOL_CHOICES: ToolChoice[] = [
 
 const DD_TEMPLATE_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling past DD reports from Alphabase Drive...",
+    label: "Pulling past DD reports from Google Drive...",
     duration: 2800,
   },
   {
-    label: "Reading IronHawk Ventures process docs from Dokra...",
+    label: "Reading IronHawk Ventures process docs from Notion...",
     duration: 2600,
   },
   {
-    label: "Scanning deal review discussion threads on ChatWorks...",
+    label: "Scanning deal review discussion threads on Slack...",
     duration: 3000,
   },
   {
@@ -661,7 +661,7 @@ const INVESTOR_LIST_SCAN_STEPS: PrdScanStep[] = [
     duration: 3000,
   },
   {
-    label: "Reading angel investor profiles from Dokra...",
+    label: "Reading angel investor profiles from Notion...",
     duration: 2800,
   },
   {
@@ -772,14 +772,14 @@ const VENDOR_EVAL_SCAN: PrdScanStep[] = [
     duration: 2400,
   },
   {
-    label: "Reading feature comparison notes from Dokra...",
+    label: "Reading feature comparison notes from Notion...",
     duration: 2800,
   },
   {
     label: "Scanning user feedback for competitor mentions...",
     duration: 2600,
   },
-  { label: "Retrieving market research from Alphabase Docs...", duration: 2200 },
+  { label: "Retrieving market research from Google Docs...", duration: 2200 },
   { label: "Compiling comparison...", duration: 2000 },
 ];
 
@@ -906,10 +906,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: PITCH_DECK_TOOL_CHOICES,
       doneMessage: {
-        title: "Pitch deck pushed to Alphabase Slides",
+        title: "Pitch deck pushed to Google Slides",
         description:
           "Your pre-seed pitch deck has been updated with the latest metrics, competitive positioning, and use of funds.",
-        link: { label: "Open in Alphabase Slides", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
       },
       buildingLabel: "Building pitch deck",
     },
@@ -932,10 +932,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: YC_APP_TOOL_CHOICES,
       doneMessage: {
-        title: "LP application draft pushed to Alphabase Docs",
+        title: "LP application draft pushed to Google Docs",
         description:
           "Your LP Summer 2026 application draft is ready for review.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Drafting LP application",
     },
@@ -960,10 +960,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: COMPETITIVE_TOOL_CHOICES,
       doneMessage: {
-        title: "Competitive analysis pushed to Alphabase Docs",
+        title: "Competitive analysis pushed to Google Docs",
         description:
           "Your competitive landscape analysis is ready with feature matrices and positioning recommendations.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Building competitive analysis",
     },
@@ -986,10 +986,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: DD_TEMPLATE_TOOL_CHOICES,
       doneMessage: {
-        title: "DD template pushed to Alphabase Docs",
+        title: "DD template pushed to Google Docs",
         description:
           "Your standardized 2-week due diligence template is ready for the IronHawk Ventures team.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Building DD template",
     },
@@ -1013,10 +1013,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: INVESTOR_LIST_TOOL_CHOICES,
       doneMessage: {
-        title: "Investor target list pushed to Alphabase Sheets",
+        title: "Investor target list pushed to Google Sheets",
         description:
           "Your scored and tiered angel investor target list is ready with intro paths and outreach strategy.",
-        link: { label: "Open in Alphabase Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+        link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
       },
       buildingLabel: "Compiling investor list",
     },

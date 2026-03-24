@@ -111,7 +111,7 @@ const BUILTIN_ARTIFACTS: Record<string, PersonaArtifactCard[]> = {
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Build an AI vendor evaluation matrix comparing Cortex Labs, Helios AI, and Alphabase",
+        "Build an AI vendor evaluation matrix comparing Cortex Labs, Helios AI, and Google",
     },
     {
       id: "art-2",
@@ -419,9 +419,9 @@ const BUILTIN_EM_FLOWS: DocumentFlowConfig[] = [
       { label: "View in Docs", action: "external" },
     ],
     doneMessage: {
-      title: "PRD pushed to Alphabase Docs",
+      title: "PRD pushed to Google Docs",
       description: "Your PRD has been created and is ready for review.",
-      link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+      link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
     },
     buildingLabel: "Pushing to",
   },
@@ -447,9 +447,9 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Cancel", action: "cancel" },
     ],
     doneMessage: {
-      title: "Model pushed to Alphabase Sheets",
+      title: "Model pushed to Google Sheets",
       description: "Your 3-statement financial model is ready.",
-      link: { label: "Open in Alphabase Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+      link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
     },
     buildingLabel: "Building model",
   },
@@ -472,9 +472,9 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Build Weekly Update Deck", action: "build" },
     ],
     doneMessage: {
-      title: "Deck pushed to Alphabase Slides",
+      title: "Deck pushed to Google Slides",
       description: "Your weekly status deck is ready for review.",
-      link: { label: "Open in Alphabase Slides", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+      link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
     },
     buildingLabel: "Building deck",
   },

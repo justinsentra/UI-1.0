@@ -172,7 +172,7 @@ export const meetings: Meeting[] = [
       "Leo Hartwell",
     ],
     tags: ["partnership", "product-demo"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "public",
     summary:
       "Product demo and strategic discussion with Sentra's founding team. Explored deep parallels between organizational memory and personal network intelligence — both treat relationships and interactions as first-class objects. Discussed a potential integration where Sentra's meeting context feeds into Circle CRM's relationship graph, automatically updating interaction history and surfacing commitment-based follow-ups. Agreed to connect the technical teams for an API feasibility deep dive.",
@@ -454,7 +454,7 @@ export const meetings: Meeting[] = [
       "Dustin Keller",
     ],
     tags: ["product", "engineering"],
-    platform: "Alphabase Meet",
+    platform: "Google Meet",
     privacy: "public",
     summary:
       "Technical deep dive into Circle CRM's relationship intelligence engine. Reviewed the relationship decay algorithm and identified the need for tier-based weighting so high-value contacts decay slower but trigger alerts earlier. Discussed the contact import pipeline — CSV import has a 60% completion rate with users dropping off at the column mapping step, so the team is building auto-detection with an AI fallback. Planned the v2 notification system that surfaces commitment-based follow-ups alongside time-based decay alerts.",

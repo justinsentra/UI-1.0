@@ -67,10 +67,10 @@ export function DeliverabilitySection({
         <div className="flex items-center justify-between">
           <div>
             <div className="text-sm font-medium text-[var(--fg-base)]">
-              ChatWorks
+              Slack
             </div>
             <div className="text-sm text-[var(--fg-muted)]">
-              Receive a notification via ChatWorks DM
+              Receive a notification via Slack DM
             </div>
           </div>
           <Toggle
