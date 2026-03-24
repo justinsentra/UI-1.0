@@ -274,7 +274,7 @@ export const reportDetails: Record<string, ReportDetail> = {
         heading: "AI Agent Frameworks — Key Investment Theme",
         paragraphs: [
           "AI agent orchestration platforms have emerged as the fastest-growing category in enterprise AI. The Catalyst Alliance consortium independently identified this as a priority scouting area, with three member companies flagging urgent enterprise demand.",
-          "Key players to watch: Cortex Labs (Claude Code, agent SDK), LangChain (LangGraph), CrewAI, and several LP Winter 26 batch companies. The market is pre-consolidation, creating a window for strategic investment in differentiated approaches.",
+          "Key players to watch: Anthropic (Claude Code, agent SDK), LangChain (LangGraph), CrewAI, and several LP Winter 26 batch companies. The market is pre-consolidation, creating a window for strategic investment in differentiated approaches.",
           "AGV thesis: Agent frameworks that focus on enterprise-grade reliability, auditability, and integration with existing business processes will win over general-purpose orchestration tools. This aligns with AG business unit needs for automation that works within European corporate governance structures.",
         ],
         sources: [

@@ -44,7 +44,7 @@ const ActionCard = ({
         logoMap[id] ? (
           <div
             key={id}
-            className="size-7 shrink-0 rounded-lg border border-border bg-card flex items-center justify-center"
+            className="size-7 shrink-0 rounded-lg border border-border bg-white flex items-center justify-center"
           >
             <img
               src={logoMap[id]}
@@ -80,7 +80,7 @@ const ActionsPage = () => {
   return (
     <div className="px-8 pt-14 pb-16 min-h-screen @container/main">
       <div className="mx-auto max-w-[100rem]">
-        <div className="mx-auto max-w-xl text-center">
+        <div className="max-w-xl">
           <div className="text-3xl font-medium tracking-tight text-foreground">
             Actions
           </div>

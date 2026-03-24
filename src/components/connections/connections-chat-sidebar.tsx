@@ -51,7 +51,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
     {
       id: "conn-p2",
       content:
-        "**Cold Contacts Alert**\n\nContacts with declining engagement: **Yara Osman** (2 interactions total, last 8 days ago), **Vivian Xu** (2 interactions, last 23 days ago), **Matteo Cortez** (2 interactions, last 46 days). Lisa and Sam may need re-engagement if they're still relevant to your pipeline. Nina's last conversation was about an Helios AI partnership exploration.",
+        "**Cold Contacts Alert**\n\nContacts with declining engagement: **Yara Osman** (2 interactions total, last 8 days ago), **Vivian Xu** (2 interactions, last 23 days ago), **Matteo Cortez** (2 interactions, last 46 days). Lisa and Sam may need re-engagement if they're still relevant to your pipeline. Nina's last conversation was about an OpenAI partnership exploration.",
       sources: [
         { type: "google-calendar", label: "Contact Frequency" },
         { type: "email", label: "Outreach Threads" },

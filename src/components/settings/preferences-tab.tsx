@@ -6,7 +6,12 @@ import {
   Paintbrush,
   ChevronDown,
 } from "lucide-react";
-import { DropdownMenu } from "@components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@components/ui/dropdown-menu";
 import { Switch } from "@components/ui/switch";
 import { useTheme } from "@/components/ThemeProvider";
 import { usePersonaStore, getAllPersonas } from "@/stores/persona-store";
@@ -78,21 +83,29 @@ export function PreferencesTab() {
               Switch between different demo personas for different ICPs
             </p>
           </div>
-          <DropdownMenu
-            trigger={
-              <button
-                type="button"
-                className="flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-background text-sm font-medium text-foreground hover:border-muted-foreground/50 transition-colors cursor-pointer"
-              >
-                {activePersona?.label ?? "Select"}
-                <ChevronDown size={14} className="text-muted-foreground" />
-              </button>
-            }
-            items={getAllPersonas().map((option) => ({
-              label: option.label,
-              onClick: () => setPersona(option.id),
-            }))}
-          />
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <button
+                  type="button"
+                  className="flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-background text-sm font-medium text-foreground hover:border-muted-foreground/50 transition-colors cursor-pointer"
+                >
+                  {activePersona?.label ?? "Select"}
+                  <ChevronDown size={14} className="text-muted-foreground" />
+                </button>
+              }
+            />
+            <DropdownMenuContent>
+              {getAllPersonas().map((option) => (
+                <DropdownMenuItem
+                  key={option.id}
+                  onClick={() => setPersona(option.id)}
+                >
+                  {option.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </section>
 
@@ -146,31 +159,30 @@ export function PreferencesTab() {
               </p>
             </div>
           </div>
-          <DropdownMenu
-            trigger={
-              <button
-                type="button"
-                className="flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-background text-sm font-medium text-foreground hover:border-muted-foreground/50 transition-colors cursor-pointer"
-              >
-                {appearanceLabels[appearance]}
-                <ChevronDown size={14} className="text-muted-foreground" />
-              </button>
-            }
-            items={[
-              {
-                label: "Light",
-                onClick: () => setAppearance("light"),
-              },
-              {
-                label: "Dark",
-                onClick: () => setAppearance("dark"),
-              },
-              {
-                label: "System",
-                onClick: () => setAppearance("system"),
-              },
-            ]}
-          />
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <button
+                  type="button"
+                  className="flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-background text-sm font-medium text-foreground hover:border-muted-foreground/50 transition-colors cursor-pointer"
+                >
+                  {appearanceLabels[appearance]}
+                  <ChevronDown size={14} className="text-muted-foreground" />
+                </button>
+              }
+            />
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => setAppearance("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setAppearance("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setAppearance("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </section>
     </div>

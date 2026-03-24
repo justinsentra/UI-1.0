@@ -9,25 +9,25 @@ import type { ToolChoice } from "@/data/personas";
 const INVESTMENT_MEMO_SCAN_STEPS: PrdScanStep[] = [
   {
     label: "Pulling deal records and relationship history from Affinity...",
-    duration: 3000,
+    duration: 5000,
   },
   {
     label: "Reading Sentra due diligence notes from Dokra...",
-    duration: 2800,
+    duration: 4500,
   },
   {
     label: "Scanning deal discussion threads on Microsoft Teams...",
-    duration: 3200,
+    duration: 5500,
   },
   {
     label: "Retrieving screening memos and IC docs from SharePoint...",
-    duration: 2600,
+    duration: 4000,
   },
   {
     label: "Cross-referencing pipeline data and synergy assessments...",
-    duration: 2800,
+    duration: 4500,
   },
-  { label: "Synthesizing investment thesis...", duration: 2400 },
+  { label: "Synthesizing investment thesis...", duration: 4000 },
 ];
 
 const INVESTMENT_MEMO_CONTENT = `# Investment Memo: Sentra
@@ -102,10 +102,10 @@ Sentra addresses a fundamental problem in scaling organizations: the loss of ins
 `;
 
 const INVESTMENT_MEMO_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Formatting investment memo structure...", duration: 2000 },
-  { label: "Generating financial projections table...", duration: 2500 },
-  { label: "Adding competitive analysis matrix...", duration: 2000 },
-  { label: "Finalizing AG synergy scoring...", duration: 1800 },
+  { label: "Formatting investment memo structure...", duration: 4000 },
+  { label: "Generating financial projections table...", duration: 5000 },
+  { label: "Adding competitive analysis matrix...", duration: 4500 },
+  { label: "Writing to Google Docs...", duration: 3500 },
 ];
 
 const MEMO_SOURCES: SourceRef[] = [
@@ -123,14 +123,14 @@ const MEMO_TOOL_CHOICES: ToolChoice[] = [
 ];
 
 const LANDSCAPE_SCAN_STEPS: PrdScanStep[] = [
-  { label: "Pulling sector deal records from Affinity...", duration: 3200 },
-  { label: "Reading market intelligence pages from Dokra...", duration: 2800 },
+  { label: "Pulling sector deal records from Affinity...", duration: 5000 },
+  { label: "Reading market intelligence pages from Dokra...", duration: 4500 },
   {
     label: "Scanning Catalyst Alliance consortium channel on Microsoft Teams...",
-    duration: 3000,
+    duration: 5000,
   },
-  { label: "Retrieving sector reports from SharePoint...", duration: 2600 },
-  { label: "Synthesizing landscape analysis...", duration: 2200 },
+  { label: "Retrieving sector reports from SharePoint...", duration: 4000 },
+  { label: "Synthesizing landscape analysis...", duration: 4500 },
 ];
 
 const LANDSCAPE_CONTENT = `# AI Agent Framework — Market Landscape Analysis
@@ -149,9 +149,9 @@ AI agent orchestration platforms represent the fastest-growing category in enter
 ## Competitive Landscape
 
 ### Tier 1: Platform Players
-- **Cortex Labs** — Claude Code, Agent SDK. Most advanced reasoning. $18B valuation.
-- **Helios AI** — Assistants API, GPTs. Largest distribution. $150B+ valuation.
-- **Alphabase** — Vertex AI agents. Enterprise integration via Alphabase Cloud.
+- **Anthropic** — Claude Code, Agent SDK. Most advanced reasoning. $18B valuation.
+- **OpenAI** — Assistants API, GPTs. Largest distribution. $150B+ valuation.
+- **Google** — Vertex AI agents. Enterprise integration via Google Cloud.
 
 ### Tier 2: Orchestration Frameworks
 - **LangChain** — LangGraph for multi-agent workflows. Open-source community. Series B, $200M valuation.
@@ -197,9 +197,10 @@ AI agent orchestration platforms represent the fastest-growing category in enter
 `;
 
 const LANDSCAPE_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Building competitive matrix...", duration: 2200 },
-  { label: "Generating market sizing charts...", duration: 2600 },
-  { label: "Formatting scouting recommendations...", duration: 2000 },
+  { label: "Building competitive matrix...", duration: 4500 },
+  { label: "Generating market sizing charts...", duration: 5000 },
+  { label: "Formatting scouting recommendations...", duration: 4000 },
+  { label: "Writing to Google Slides...", duration: 3500 },
 ];
 
 const LANDSCAPE_SOURCES: SourceRef[] = [
@@ -221,27 +222,27 @@ const ONBOARDING_SCAN_STEPS: PrdScanStep[] = [
   {
     label:
       "Pulling Sentra deal record and interaction history from Affinity...",
-    duration: 3200,
+    duration: 5000,
   },
   {
     label: "Reading due diligence notes and meeting logs from Dokra...",
-    duration: 2800,
+    duration: 4500,
   },
   {
     label: "Scanning 14 deal discussion threads on Microsoft Teams...",
-    duration: 3400,
+    duration: 5500,
   },
   {
     label: "Retrieving IC memos and screening docs from SharePoint...",
-    duration: 2600,
+    duration: 4000,
   },
   {
     label: "Pulling contact history and email threads from Affinity...",
-    duration: 2400,
+    duration: 4500,
   },
   {
     label: "Reconstructing deal timeline...",
-    duration: 2200,
+    duration: 4000,
   },
 ];
 
@@ -321,10 +322,10 @@ const ONBOARDING_SOURCES: SourceRef[] = [
 ];
 
 const ONBOARDING_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Organizing events into chronological timeline...", duration: 2200 },
-  { label: "Linking sources to each timeline entry...", duration: 2400 },
-  { label: "Generating key people and open items summary...", duration: 2000 },
-  { label: "Formatting deal brief document...", duration: 1800 },
+  { label: "Organizing events into chronological timeline...", duration: 4500 },
+  { label: "Linking sources to each timeline entry...", duration: 5000 },
+  { label: "Generating key people and open items summary...", duration: 4000 },
+  { label: "Writing to Google Docs...", duration: 3500 },
 ];
 
 const ONBOARDING_TOOL_CHOICES: ToolChoice[] = [
@@ -337,27 +338,27 @@ const ONBOARDING_TOOL_CHOICES: ToolChoice[] = [
 const FINANCIAL_MODEL_SCAN_STEPS: PrdScanStep[] = [
   {
     label: "Pulling GreenCore deal record and financials from Affinity...",
-    duration: 3000,
+    duration: 5000,
   },
   {
     label: "Reading GreenCore technical DD and unit economics from Dokra...",
-    duration: 2800,
+    duration: 4500,
   },
   {
     label: "Scanning GreenCore diligence threads on Microsoft Teams...",
-    duration: 3200,
+    duration: 5500,
   },
   {
     label: "Retrieving GreenCore pitch deck and data room from SharePoint...",
-    duration: 2600,
+    duration: 4000,
   },
   {
     label: "Pulling comparable company data from Affinity deal records...",
-    duration: 2400,
+    duration: 4500,
   },
   {
     label: "Building financial projections...",
-    duration: 2200,
+    duration: 4000,
   },
 ];
 
@@ -456,22 +457,22 @@ const FINANCIAL_MODEL_SOURCES: SourceRef[] = [
 ];
 
 const FINANCIAL_MODEL_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Pulling revenue assumptions from data room...", duration: 2600 },
+  { label: "Pulling revenue assumptions from data room...", duration: 4500 },
   {
     label: "Building income statement — mapping COGS, OpEx, D&A...",
-    duration: 3000,
+    duration: 5000,
   },
   {
     label: "Constructing balance sheet — linking PP&E, AR, deferred revenue...",
-    duration: 3200,
+    duration: 5500,
   },
   {
     label: "Generating cash flow statement — CFO, CapEx, FCF bridge...",
-    duration: 2800,
+    duration: 5000,
   },
   {
-    label: "Running unit economics and valuation sensitivity...",
-    duration: 2400,
+    label: "Writing to Google Sheets...",
+    duration: 3500,
   },
 ];
 
@@ -535,7 +536,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 
 | Contact | Role | Last Interaction | Notes |
 |---------|------|-----------------|-------|
-| Fiona Webb | CEO / Co-founder | Mar 8 (Teams call) | Ashmore CS PhD, ex-Alphabase Brain |
+| Fiona Webb | CEO / Co-founder | Mar 8 (Teams call) | Ashmore CS PhD, ex-Google Brain |
 | Conrad Finley | CTO / Co-founder | Mar 3 (Product deep dive) | Ex-Pinecone founding engineer |
 | Diana Choi | VP Sales | Feb 26 (Email) | Driving enterprise motion, ex-Snowflake |
 | Raj Patel | Board (Redwood) | Feb 19 (IC reference) | Supportive of AG strategic investment |
@@ -718,11 +719,9 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "I just joined the Sentra deal — catch me up",
     "Draft an investment memo for Sentra",
     "Map the AI agent framework landscape",
-    "Compare pipeline companies on AG synergy",
-    "Summarize this week's deal flow activity",
+    "Build a 3-statement model for GreenCore",
   ],
   sessionHistory: [
     { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today", query: "Draft an investment memo for Sentra" },
@@ -783,44 +782,6 @@ export const deepResearchData: PersonaDeepResearchData = {
   ],
   documentFlows: [
     {
-      id: "mcgi-flow-onboarding",
-      label: "Deal Timeline",
-      filename: "sentra-deal-timeline.md",
-      scanSteps: ONBOARDING_SCAN_STEPS,
-      content: ONBOARDING_CONTENT,
-      buildSteps: ONBOARDING_BUILD_STEPS,
-      sources: ONBOARDING_SOURCES,
-      triggerKeywords: [
-        "just joined",
-        "just got",
-        "brought onto",
-        "new to",
-        "catch up",
-        "catch me up",
-        "onboarded",
-        "full history",
-        "deal history",
-        "what happened",
-        "where do we stand",
-        "get up to speed",
-        "bring me up to speed",
-        "what do i need to know",
-        "what should i know",
-        "timeline",
-        "deal timeline",
-        "need to know",
-        "background on",
-      ],
-      toolChoices: ONBOARDING_TOOL_CHOICES,
-      doneMessage: {
-        title: "Deal timeline pushed to Alphabase Docs",
-        description:
-          "Your deal onboarding brief is ready. Covers the complete Sentra deal history from first contact through current status.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
-      },
-      buildingLabel: "Building deal timeline",
-    },
-    {
       id: "mcgi-flow-memo",
       label: "Investment Memo",
       filename: "sentra-investment-memo.md",
@@ -837,10 +798,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: MEMO_TOOL_CHOICES,
       doneMessage: {
-        title: "Investment memo pushed to Alphabase Docs",
+        title: "Investment memo pushed to Google Docs",
         description:
           "Your investment memo has been created and is ready for IC review.",
-        link: { label: "Open in Alphabase Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
       },
       buildingLabel: "Building memo",
     },
@@ -861,10 +822,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: LANDSCAPE_TOOL_CHOICES,
       doneMessage: {
-        title: "Landscape deck pushed to Alphabase Slides",
+        title: "Landscape deck pushed to Google Slides",
         description:
           "Your market landscape analysis is ready for consortium review.",
-        link: { label: "Open in Alphabase Slides", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
       },
       buildingLabel: "Building deck",
     },
@@ -890,10 +851,10 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: FINANCIAL_MODEL_TOOL_CHOICES,
       doneMessage: {
-        title: "Financial model ready in Alphabase Sheets",
+        title: "Financial model ready in Google Sheets",
         description:
           "Your 3-statement model for GreenCore has been generated with full income statement, balance sheet, and cash flow projections.",
-        link: { label: "Open in Alphabase Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+        link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
       },
       buildingLabel: "Building financial model",
     },

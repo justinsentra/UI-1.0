@@ -4,7 +4,6 @@ import {
   Search,
   Calendar,
   Users,
-  CheckCircle2,
   Zap,
   FileText,
   Puzzle,
@@ -29,7 +28,6 @@ const personalNav = [
   { to: "/deep-research", label: "Deep Research", icon: Search },
   { to: "/meeting-notes", label: "Meetings", icon: Calendar },
   { to: "/connections", label: "Connections", icon: Users },
-  { to: "/commitments", label: "Commitments", icon: CheckCircle2 },
 ];
 
 const orgNav = [
@@ -54,12 +52,12 @@ function SidebarLink({
         cn(
           "flex items-center gap-2.5 h-[34px] px-2.5 rounded-[7px] text-xs no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-2",
           isActive
-            ? "bg-accent text-foreground"
-            : "text-foreground hover:bg-accent",
+            ? "bg-sidebar-accent text-sidebar-accent-foreground"
+            : "text-sidebar-foreground hover:bg-sidebar-accent",
         )
       }
     >
-      <Icon size={16} className="text-muted-foreground shrink-0" />
+      <Icon size={16} className="text-sidebar-foreground/60 shrink-0" />
       <span className="whitespace-nowrap">{label}</span>
     </NavLink>
   );
@@ -89,13 +87,13 @@ const SidebarLogoHeader = () => {
           <HugeiconsIcon
             icon={SidebarLeftIcon}
             className={cn(
-              "absolute inset-0 m-auto size-6 text-muted-foreground transition-opacity duration-150 opacity-0",
+              "absolute inset-0 m-auto size-6 text-sidebar-foreground/60 transition-opacity duration-150 opacity-0",
               isCollapsed && "group-hover/logo:opacity-100",
             )}
             strokeWidth={2}
           />
         </button>
-        <SidebarTrigger className="ml-auto shrink-0 size-8 text-muted-foreground hover:text-foreground cursor-pointer [&_svg]:size-4 transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none" />
+        <SidebarTrigger className="ml-auto shrink-0 size-8 text-sidebar-foreground/60 hover:text-sidebar-foreground cursor-pointer [&_svg]:size-4 transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none" />
       </div>
     </SidebarHeader>
   );
@@ -108,7 +106,7 @@ const AppSidebar = () => {
 
       <SidebarContent className="px-2.5 gap-0 overflow-x-hidden transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-2">
         <div className="mb-1 max-h-6 overflow-hidden transition-all duration-200 ease-linear group-data-[collapsible=icon]:max-h-0 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:mb-0">
-          <span className="px-2.5 text-xs font-normal text-muted-foreground/70 whitespace-nowrap">
+          <span className="px-2.5 text-xs font-normal text-sidebar-foreground/40 whitespace-nowrap">
             Personal
           </span>
         </div>
@@ -117,7 +115,7 @@ const AppSidebar = () => {
         ))}
 
         <div className="mt-5 mb-1 max-h-6 overflow-hidden transition-all duration-200 ease-linear group-data-[collapsible=icon]:max-h-0 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:mb-0 group-data-[collapsible=icon]:mt-0">
-          <span className="px-2.5 text-xs font-normal text-muted-foreground/70 whitespace-nowrap">
+          <span className="px-2.5 text-xs font-normal text-sidebar-foreground/40 whitespace-nowrap">
             Organization
           </span>
         </div>
@@ -128,13 +126,13 @@ const AppSidebar = () => {
 
       <SidebarFooter className="px-2.5 mb-1 space-y-0.5 transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-2">
         <SidebarLink to="/settings" label="Settings" icon={Settings} />
-        <div className="px-1 py-3 border-t border-border transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-[2px]">
+        <div className="px-1 py-3 border-t border-sidebar-border transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-[2px]">
           <NavLink
             to="/settings"
             className="flex items-center gap-2.5 px-2.5 py-1 no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-0"
           >
             <UserAvatar name="Leo Hartwell" size="sm" />
-            <span className="text-xs text-foreground whitespace-nowrap">
+            <span className="text-xs text-sidebar-foreground whitespace-nowrap">
               Leo Hartwell
             </span>
           </NavLink>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
@@ -18,6 +18,9 @@ import {
   MessageSquare,
   FileSpreadsheet,
   ExternalLink,
+  Plus,
+  Check,
+  Folder,
 } from "lucide-react";
 import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";
@@ -29,9 +32,10 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { AttendeeDropdown } from "@/components/meetings/attendee-dropdown";
-import { MeetingTagDropdown } from "@/components/meetings/meeting-tag-dropdown";
+import { attendees } from "@/components/meetings/attendee-dropdown";
 import { CreateTagModal } from "@/components/meetings/create-tag-modal";
 import { ShareModal } from "@/components/meetings/share-modal";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
@@ -40,7 +44,6 @@ import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaMeetings } from "@/data/content-resolver";
 import { TextShimmerLoader } from "@/components/ui/loader";
-import { Badge } from "@/components/ui/badge";
 import {
   Steps,
   StepsContent,
@@ -212,11 +215,99 @@ function getMeetingSuggestions(meeting: Meeting): string[] {
   return suggestions;
 }
 
+/* ── Attendee Dropdown Content ── */
+
+const attendeesByDomain = attendees.reduce<
+  Record<string, typeof attendees>
+>((acc, a) => {
+  if (!acc[a.domain]) acc[a.domain] = [];
+  acc[a.domain].push(a);
+  return acc;
+}, {});
+
+function AttendeeDropdownContent() {
+  return (
+    <div className="py-1">
+      {Object.entries(attendeesByDomain).map(([domain, members]) => (
+        <div key={domain}>
+          <DropdownMenuLabel>{domain}</DropdownMenuLabel>
+          {members.map((attendee) => (
+            <DropdownMenuItem key={attendee.email}>
+              <UserAvatar name={attendee.name} size="sm" />
+              <span>
+                {attendee.name}
+                {attendee.isMe && (
+                  <span className="text-muted-foreground ml-1">(me)</span>
+                )}
+              </span>
+            </DropdownMenuItem>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Tag Dropdown Content ── */
+
+const tagOptions = [
+  { name: "Customer Calls", icon: "users" as const, isActive: true },
+  { name: "Standup", icon: "folder" as const },
+  { name: "1:1", icon: "folder" as const },
+];
+
+function TagDropdownContent({ onNewTag }: { onNewTag: () => void }) {
+  const [search, setSearch] = useState("");
+  const filtered = tagOptions.filter((t) =>
+    t.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  return (
+    <div className="py-1">
+      <div className="px-2 pb-1">
+        <div className="relative">
+          <Search
+            size={14}
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+          />
+          <input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full h-8 pl-8 pr-3 rounded-lg border border-border bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+          />
+        </div>
+      </div>
+      <DropdownMenuItem>
+        <Lock size={14} />
+        My notes
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      {filtered.map((tag) => (
+        <DropdownMenuItem key={tag.name}>
+          {tag.icon === "users" ? <Users size={14} /> : <Folder size={14} />}
+          <span className="flex-1">{tag.name}</span>
+          {tag.isActive && <Check size={14} className="text-muted-foreground" />}
+        </DropdownMenuItem>
+      ))}
+      {filtered.length === 0 && (
+        <p className="px-2 py-1.5 text-xs text-muted-foreground">No tags found</p>
+      )}
+      <DropdownMenuSeparator />
+      <DropdownMenuItem onClick={onNewTag}>
+        <Plus size={14} />
+        New Tag
+      </DropdownMenuItem>
+    </div>
+  );
+}
+
 const MeetingDetailPage = () => {
   const navigate = useNavigate();
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
-  const [showAttendeeDropdown, setShowAttendeeDropdown] = useState(false);
-  const [showTagDropdown, setShowTagDropdown] = useState(false);
   const [showCreateTagModal, setShowCreateTagModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -274,22 +365,6 @@ const MeetingDetailPage = () => {
       <div
         className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
       >
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            className="h-7 px-2.5 rounded-full border border-border bg-secondary hover:bg-accent flex items-center gap-1.5 text-muted-foreground transition-colors cursor-pointer"
-          >
-            {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
-            <span className="text-2xs font-medium">
-              {isPrivate ? "Private" : "Public"}
-            </span>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setShowShareModal(true)}>
-              <Globe size={14} />
-              Share settings
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
         <Button
           variant="ghost"
           size="icon-xs"
@@ -342,35 +417,42 @@ const MeetingDetailPage = () => {
 
       {/* Meta Badges */}
       <div className="flex items-center gap-2 mb-5">
-        <div className="relative">
-          <Badge
-            variant="outline"
-            render={<button type="button" onClick={() => setShowAttendeeDropdown((p) => !p)} />}
-            className="h-7 px-3 text-xs text-muted-foreground cursor-pointer hover:bg-muted"
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
+          >
+            {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
+            {isPrivate ? "Private" : "Public"}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={() => setShowShareModal(true)}>
+              <Globe size={14} />
+              Share settings
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
           >
             <Users size={14} />
             {meeting.participants.length + 1} attendees
-          </Badge>
-          {showAttendeeDropdown && (
-            <AttendeeDropdown onClose={() => setShowAttendeeDropdown(false)} />
-          )}
-        </div>
-        <div className="relative">
-          <Badge
-            variant="outline"
-            render={<button type="button" onClick={() => setShowTagDropdown((p) => !p)} />}
-            className="h-7 px-3 text-xs text-muted-foreground cursor-pointer hover:bg-muted"
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[260px] p-0">
+            <AttendeeDropdownContent />
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
           >
             <Tag size={14} />
             {meeting.tags[0] ?? "Untagged"}
-          </Badge>
-          {showTagDropdown && (
-            <MeetingTagDropdown
-              onClose={() => setShowTagDropdown(false)}
-              onNewTag={() => setShowCreateTagModal(true)}
-            />
-          )}
-        </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[260px] p-0">
+            <TagDropdownContent onNewTag={() => setShowCreateTagModal(true)} />
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Tabs */}

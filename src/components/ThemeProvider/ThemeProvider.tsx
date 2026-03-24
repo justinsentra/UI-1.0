@@ -149,6 +149,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     const resolved = resolveTheme(theme);
     setResolvedTheme(resolved);
     document.documentElement.setAttribute("data-theme", resolved);
+    document.documentElement.classList.toggle("dark", resolved === "dark");
     document.documentElement.removeAttribute("data-accent");
   }, [theme]);
 
@@ -176,6 +177,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       const resolved = getSystemTheme();
       setResolvedTheme(resolved);
       document.documentElement.setAttribute("data-theme", resolved);
+      document.documentElement.classList.toggle("dark", resolved === "dark");
     };
 
     media.addEventListener("change", handler);

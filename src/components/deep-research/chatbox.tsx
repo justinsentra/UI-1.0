@@ -55,12 +55,12 @@ const Chatbox = ({ value, onChange, onSubmit, isLoading }: ChatboxProps) => {
               type="button"
               onClick={onSubmit}
               disabled={!canSubmit}
-              className={`items-center border-none rounded-full text-white flex shrink-0 size-7 justify-center p-0 ${canSubmit ? "bg-foreground cursor-pointer" : "bg-muted-foreground/40 shadow-none cursor-not-allowed"}`}
+              className={`items-center border-none rounded-full flex shrink-0 size-7 justify-center p-0 ${canSubmit ? "bg-primary text-primary-foreground cursor-pointer" : "bg-muted-foreground/40 text-background shadow-none cursor-not-allowed"}`}
             >
               {isLoading ? (
                 <Square size={12} fill="currentColor" />
               ) : (
-                <ArrowUp size={14} />
+                <ArrowUp size={14} strokeWidth={2.5} />
               )}
             </button>
           </PromptInputAction>

@@ -48,7 +48,7 @@ const ConnectionsPage = () => {
     <PageShell>
       <Tabs defaultValue="people">
         {/* Fixed top-right controls */}
-        <div className="fixed top-[12px] right-[20px] z-30 flex items-center gap-1">
+        <div className="absolute top-3 right-5 z-10 flex items-center gap-1">
           <TabsList>
             <TabsTrigger value="people">People</TabsTrigger>
             <TabsTrigger value="companies">Companies</TabsTrigger>

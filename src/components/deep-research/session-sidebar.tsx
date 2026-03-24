@@ -49,7 +49,7 @@ const SessionSidebar = ({
         {dateOrder.map((date) => (
           <div key={date} className="mb-3">
             <div className="px-2 mb-1">
-              <span className="text-2xs font-medium text-[var(--muted-foreground)]">
+              <span className="text-[10px] font-medium text-[var(--muted-foreground)]">
                 {date}
               </span>
             </div>

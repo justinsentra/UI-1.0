@@ -62,7 +62,7 @@ interface PersonaUpcomingMeeting {
   endTime: string;                 // e.g. "3:00 PM"
   duration: string;                // e.g. "1h"
   participants: string[];
-  platform: string;                // "Alphabase Meet" or "Zoom"
+  platform: string;                // "Google Meet" or "Zoom"
 }
 
 interface PreMeetingBrief {
@@ -112,7 +112,7 @@ interface Meeting {
   duration: string;
   participants: string[];
   tags: string[];
-  platform: "Alphabase Meet" | "Zoom";
+  platform: "Google Meet" | "Zoom";
   privacy: "public" | "private";
   summary: string;                 // 2-3 sentence AI-generated summary
   keyPoints: KeyPoint[];           // 3-5 key points
@@ -131,7 +131,7 @@ interface TranscriptEntry { speaker: string; text: string; isMe?: boolean }
 - Tags should be industry-appropriate (e.g. "deal-review" for finance, "sprint" for tech)
 - Transcripts should feel natural — use the persona's jargon
 - At least one meeting should be the upcomingMeeting referenced in home.ts
-- Mix of "Alphabase Meet" and "Zoom" platforms
+- Mix of "Google Meet" and "Zoom" platforms
 - Action items should connect to commitments.ts entries
 
 ---

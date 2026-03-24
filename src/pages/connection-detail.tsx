@@ -122,6 +122,7 @@ const ConnectionDetailPage = () => {
             key={s}
             variant="outline"
             rounded="full"
+            className="font-normal"
             onClick={() => setAskInput(s)}
           >
             {s}

@@ -10,12 +10,12 @@ const DEFAULT_SUGGESTED_QUESTIONS = [
 
 const SCAN_STEPS: ScanStep[] = [
   {
-    label: "Parsing 8 meeting transcripts from Alphabase Meet...",
+    label: "Parsing 8 meeting transcripts from Google Meet...",
     duration: 3200,
   },
   { label: "Reading 5 ChatWorks threads and 3 Dokra pages...", duration: 3400 },
   {
-    label: "Scanning CRM pipeline and Alphabase Calendar events...",
+    label: "Scanning CRM pipeline and Google Calendar events...",
     duration: 3400,
   },
   {

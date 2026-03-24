@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, Plus, Check, X, Mic, FileUp, AtSign, Clock, Users, ChevronRight } from "lucide-react";
+import { ArrowUp, ArrowRight, Plus, Check, X, Mic, FileUp, AtSign, Clock, Users, ChevronRight, CalendarDays, ListTodo } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@lib/utils";
 import { getAvatarColor, getInitials } from "@lib/utils";
 import { usePersonaStore } from "@/stores/persona-store";
@@ -81,6 +82,7 @@ const HomePage = () => {
 
   const [todos, setTodos] = useState<TodoItem[]>(INITIAL_TODOS);
   const [newTodo, setNewTodo] = useState("");
+  const [sidebarTab, setSidebarTab] = useState<string>("todo");
 
   const handleSearchSubmit = useCallback(() => {
     const trimmed = searchValue.trim();
@@ -129,106 +131,8 @@ const HomePage = () => {
               </h1>
             </div>
 
-            {/* Chat Input */}
-            <div className="mt-6 mb-16">
-              <div className="rounded-3xl border border-border bg-card shadow-sm overflow-hidden">
-                {/* Textarea */}
-                <div className="p-3 pb-0">
-                  <textarea
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSearchSubmit();
-                      }
-                    }}
-                    placeholder="Type and press enter to start chatting..."
-                    rows={2}
-                    className="w-full min-h-[50px] max-h-[320px] px-2 py-2 text-sm text-foreground placeholder:text-muted-foreground bg-transparent border-none outline-none resize-none overflow-auto"
-                  />
-                </div>
-
-                {/* Bottom toolbar */}
-                <div className="flex items-center justify-between px-3 pb-3 pt-1">
-                  {/* Left actions */}
-                  <div className="flex items-center gap-2">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger
-                        className="inline-flex items-center justify-center size-8 rounded-full hover:bg-accent text-foreground transition-colors cursor-pointer border-none bg-transparent"
-                      >
-                        <Plus size={14} strokeWidth={2} />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent side="top" align="start" sideOffset={8} className="min-w-36">
-                        <DropdownMenuItem>
-                          <FileUp />
-                          Upload file
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <AtSign />
-                          Mention
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-
-                  {/* Right actions */}
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      className="inline-flex items-center justify-center size-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors cursor-pointer border-none bg-transparent"
-                    >
-                      <Mic size={14} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleSearchSubmit}
-                      disabled={!searchValue.trim()}
-                      className={cn(
-                        "inline-flex items-center justify-center size-8 rounded-full border-none transition-all",
-                        searchValue.trim()
-                          ? "bg-foreground text-background cursor-pointer hover:opacity-90"
-                          : "bg-muted text-muted-foreground cursor-not-allowed opacity-50",
-                      )}
-                    >
-                      <ArrowUp size={14} strokeWidth={2} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Connect Your Tools bar */}
-              <button
-                type="button"
-                onClick={() => navigate("/integrations")}
-                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/20 border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
-              >
-                <p className="text-sm text-muted-foreground shrink-0">
-                  Connect Your Tools
-                </p>
-                <div className="ml-auto flex items-center gap-1.5">
-                  {TOOL_LOGOS.map((tool) => (
-                    <img
-                      key={tool.id}
-                      src={tool.src}
-                      alt={tool.id}
-                      className="block size-4 rounded"
-                    />
-                  ))}
-                  <div className="grid transition-[grid-template-columns] duration-200 grid-cols-[0fr] group-hover:grid-cols-[1fr]">
-                    <div className="overflow-hidden flex items-center min-w-0">
-                      <ArrowRight
-                        size={14}
-                        className="text-muted-foreground shrink-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </button>
-            </div>
-
-            {/* ── Artifacts to Review ── */}
-            <section className="flex flex-col mb-8">
+            {/* ── Briefs to Review ── */}
+            <section className="flex flex-col mb-8 mt-6">
               <div className="flex items-center gap-2 pb-3">
                 <h2 className="text-foreground text-sm font-medium leading-none m-0">
                   Briefs to review
@@ -302,52 +206,103 @@ const HomePage = () => {
               </div>
             </section>
 
-            {/* ── Upcoming Meeting ── */}
-            <section className="flex flex-col mb-16">
-              <div className="flex items-center gap-2 pb-3">
-                <h2 className="text-foreground text-sm font-medium leading-none m-0">
-                  Upcoming meeting
-                </h2>
-              </div>
-
-              <div className="group flex items-center gap-4 py-4 px-5 bg-card rounded-xl border border-border">
-                <div className="flex-1 min-w-0 flex flex-col gap-1">
-                  <h3 className="text-foreground text-sm font-normal leading-[1.4] m-0">
-                    {upcomingMeeting.title}
-                  </h3>
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {upcomingMeeting.time} – {upcomingMeeting.endTime}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Users size={12} />
-                      {upcomingMeeting.participants.length} participants
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    {upcomingMeeting.participants.map((name) => (
-                      <div
-                        key={name}
-                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-medium"
-                        style={{ backgroundColor: getAvatarColor(name) }}
-                        title={name}
-                      >
-                        {getInitials(name)}
-                      </div>
-                    ))}
-                  </div>
+            {/* Chat Input */}
+            <div className="mb-16">
+              <div className="rounded-3xl border border-border shadow-sm overflow-hidden" style={{ backgroundColor: "#090909" }}>
+                {/* Textarea */}
+                <div className="p-3 pb-0">
+                  <textarea
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSearchSubmit();
+                      }
+                    }}
+                    placeholder="Type and press enter to start chatting..."
+                    rows={2}
+                    className="w-full min-h-[50px] max-h-[320px] px-2 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 bg-transparent border-none outline-none resize-none overflow-auto"
+                  />
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => navigate("/pre-meeting-brief")}
-                  className="shrink-0 h-8 px-3.5 rounded-md text-xs font-medium text-foreground bg-background cursor-pointer border border-border hover:bg-accent transition-colors"
-                >
-                  View Brief
-                </button>
+                {/* Bottom toolbar */}
+                <div className="flex items-center justify-between px-3 pb-3 pt-1">
+                  {/* Left actions */}
+                  <div className="flex items-center gap-2">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger
+                        className="inline-flex items-center justify-center size-8 rounded-full hover:bg-white/10 text-neutral-300 transition-colors cursor-pointer border-none bg-transparent"
+                      >
+                        <Plus size={14} strokeWidth={2} />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent side="top" align="start" sideOffset={8} className="min-w-36">
+                        <DropdownMenuItem>
+                          <FileUp />
+                          Upload file
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <AtSign />
+                          Mention
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  {/* Right actions */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center size-8 rounded-full text-neutral-500 hover:text-neutral-200 hover:bg-white/10 transition-colors cursor-pointer border-none bg-transparent"
+                    >
+                      <Mic size={14} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSearchSubmit}
+                      disabled={!searchValue.trim()}
+                      className={cn(
+                        "inline-flex items-center justify-center size-8 rounded-full border-none transition-all",
+                        searchValue.trim()
+                          ? "bg-white text-neutral-900 cursor-pointer hover:opacity-90"
+                          : "bg-neutral-800 text-neutral-500 cursor-not-allowed opacity-50",
+                      )}
+                    >
+                      <ArrowUp size={14} strokeWidth={2} />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </section>
+
+              {/* Connect Your Tools bar */}
+              <button
+                type="button"
+                onClick={() => navigate("/integrations")}
+                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/20 border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
+              >
+                <p className="text-sm text-muted-foreground shrink-0">
+                  Connect Your Tools
+                </p>
+                <div className="ml-auto flex items-center gap-1.5">
+                  {TOOL_LOGOS.map((tool) => (
+                    <img
+                      key={tool.id}
+                      src={tool.src}
+                      alt={tool.id}
+                      className="block size-4 rounded"
+                    />
+                  ))}
+                  <div className="grid transition-[grid-template-columns] duration-200 grid-cols-[0fr] group-hover:grid-cols-[1fr]">
+                    <div className="overflow-hidden flex items-center min-w-0">
+                      <ArrowRight
+                        size={14}
+                        className="text-muted-foreground shrink-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
 
           </div>
         </div>
@@ -356,7 +311,7 @@ const HomePage = () => {
 
       {/* ── Right: Quick Access Panel ── */}
       <div className="hidden lg:flex shrink-0 w-[350px] h-full flex-col overflow-hidden border-l border-border">
-        {/* Header with weather-like aesthetic */}
+        {/* Header */}
         <div className="relative overflow-hidden bg-gradient-to-b from-primary/8 to-transparent">
           <div className="px-5 pt-6 pb-4">
             <div className="flex items-center justify-between">
@@ -365,100 +320,153 @@ const HomePage = () => {
                   Quick Access
                 </p>
                 <p className="mt-1 text-lg font-medium text-foreground">
-                  To Do
+                  {sidebarTab === "todo" ? "To Do" : "Meetings"}
                 </p>
               </div>
+              <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)}>
+                <TabsList>
+                  <TabsTrigger value="todo">
+                    <ListTodo size={14} />
+                  </TabsTrigger>
+                  <TabsTrigger value="meetings">
+                    <CalendarDays size={14} />
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
             </div>
           </div>
           <div className="h-px w-full bg-border" />
         </div>
 
-        {/* Todo list */}
+        {/* Content */}
         <div className="flex-1 overflow-y-auto px-5 py-3">
-          {/* New todo input */}
-          <div className="flex items-start gap-2.5 rounded-lg p-2 mb-2">
-            <button
-              type="button"
-              className="mt-0.5 shrink-0 size-4 rounded border border-muted-foreground/30 bg-transparent opacity-30"
-              disabled
-            />
-            <input
-              type="text"
-              value={newTodo}
-              onChange={(e) => setNewTodo(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addTodo()}
-              placeholder="Add new to do"
-              className="flex-1 bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground/50 p-0"
-            />
-          </div>
+          {sidebarTab === "todo" && (
+            <>
+              {/* New todo input */}
+              <div className="flex items-start gap-2.5 rounded-lg p-2 mb-2">
+                <button
+                  type="button"
+                  className="mt-0.5 shrink-0 size-4 rounded border border-muted-foreground/30 bg-transparent opacity-30"
+                  disabled
+                />
+                <input
+                  type="text"
+                  value={newTodo}
+                  onChange={(e) => setNewTodo(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && addTodo()}
+                  placeholder="Add new to do"
+                  className="flex-1 bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground/50 p-0"
+                />
+              </div>
 
-          {/* Todo items */}
-          <div className="flex flex-col">
-            {todos.map((todo) => (
-              <div
-                key={todo.id}
-                className="group flex items-start gap-2.5 rounded-lg p-2 hover:bg-accent/50 transition-colors"
-              >
+              {/* Todo items */}
+              <div className="flex flex-col">
+                {todos.map((todo) => (
+                  <div
+                    key={todo.id}
+                    className="group flex items-start gap-2.5 rounded-lg p-2 hover:bg-accent/50 transition-colors"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleTodo(todo.id)}
+                      className={cn(
+                        "mt-0.5 shrink-0 size-4 rounded border flex items-center justify-center transition-colors cursor-pointer",
+                        todo.checked
+                          ? "bg-primary border-primary text-primary-foreground"
+                          : "border-muted-foreground/40 bg-transparent hover:border-muted-foreground/60",
+                      )}
+                    >
+                      {todo.checked && <Check size={10} strokeWidth={3} />}
+                    </button>
+                    <p
+                      className={cn(
+                        "flex-1 text-sm leading-relaxed",
+                        todo.checked
+                          ? "text-muted-foreground line-through"
+                          : "text-foreground",
+                      )}
+                    >
+                      {todo.text}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => removeTodo(todo.id)}
+                      className="shrink-0 size-5 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive-foreground transition-all cursor-pointer bg-transparent border-none"
+                    >
+                      <X size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Suggestions section */}
+              <div className="mt-6">
+                <div className="flex items-center gap-1.5 mb-3">
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Suggestions
+                  </p>
+                </div>
+                <div className="h-px w-full bg-border mb-3" />
+                <div className="flex flex-col">
+                  {suggestions.slice(0, 3).map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      onClick={() => handleSuggestionClick(suggestion)}
+                      className="group flex items-start gap-2.5 rounded-lg p-3 hover:bg-accent/50 transition-colors w-full text-left cursor-pointer bg-transparent border-none"
+                    >
+                      <Plus
+                        size={12}
+                        className="mt-1 shrink-0 text-muted-foreground opacity-60 group-hover:opacity-100 transition-opacity"
+                      />
+                      <p className="text-sm text-foreground line-clamp-2">
+                        {suggestion}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
+          {sidebarTab === "meetings" && (
+            <div className="flex flex-col gap-3 pt-1">
+              <div className="flex flex-col gap-2 p-4 bg-card rounded-xl border border-border">
+                <h3 className="text-foreground text-sm font-normal leading-[1.4] m-0">
+                  {upcomingMeeting.title}
+                </h3>
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} />
+                    {upcomingMeeting.time} – {upcomingMeeting.endTime}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Users size={12} />
+                    {upcomingMeeting.participants.length} participants
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 mt-1">
+                  {upcomingMeeting.participants.map((name) => (
+                    <div
+                      key={name}
+                      className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-medium"
+                      style={{ backgroundColor: getAvatarColor(name) }}
+                      title={name}
+                    >
+                      {getInitials(name)}
+                    </div>
+                  ))}
+                </div>
                 <button
                   type="button"
-                  onClick={() => toggleTodo(todo.id)}
-                  className={cn(
-                    "mt-0.5 shrink-0 size-4 rounded border flex items-center justify-center transition-colors cursor-pointer",
-                    todo.checked
-                      ? "bg-primary border-primary text-primary-foreground"
-                      : "border-muted-foreground/40 bg-transparent hover:border-muted-foreground/60",
-                  )}
+                  onClick={() => navigate("/pre-meeting-brief")}
+                  className="mt-2 w-full h-8 rounded-md text-xs font-medium text-foreground bg-background cursor-pointer border border-border hover:bg-accent transition-colors"
                 >
-                  {todo.checked && <Check size={10} strokeWidth={3} />}
-                </button>
-                <p
-                  className={cn(
-                    "flex-1 text-sm leading-relaxed",
-                    todo.checked
-                      ? "text-muted-foreground line-through"
-                      : "text-foreground",
-                  )}
-                >
-                  {todo.text}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => removeTodo(todo.id)}
-                  className="shrink-0 size-5 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive-foreground transition-all cursor-pointer bg-transparent border-none"
-                >
-                  <X size={12} />
+                  View Brief
                 </button>
               </div>
-            ))}
-          </div>
-
-          {/* Suggestions section */}
-          <div className="mt-6">
-            <div className="flex items-center gap-1.5 mb-3">
-              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Suggestions
-              </p>
             </div>
-            <div className="h-px w-full bg-border mb-3" />
-            <div className="flex flex-col">
-              {suggestions.slice(0, 3).map((suggestion) => (
-                <button
-                  key={suggestion}
-                  type="button"
-                  onClick={() => handleSuggestionClick(suggestion)}
-                  className="group flex items-start gap-2.5 rounded-lg p-3 hover:bg-accent/50 transition-colors w-full text-left cursor-pointer bg-transparent border-none"
-                >
-                  <Plus
-                    size={12}
-                    className="mt-1 shrink-0 text-muted-foreground opacity-60 group-hover:opacity-100 transition-opacity"
-                  />
-                  <p className="text-sm text-foreground line-clamp-2">
-                    {suggestion}
-                  </p>
-                </button>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
