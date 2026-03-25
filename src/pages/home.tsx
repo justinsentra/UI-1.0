@@ -339,7 +339,7 @@ const HomePage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/integrations")}
-                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/20 border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
+                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
               >
                 <p className="text-sm text-muted-foreground shrink-0">
                   Connect Your Tools

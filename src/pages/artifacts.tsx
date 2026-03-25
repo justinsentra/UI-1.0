@@ -191,13 +191,13 @@ const ArtifactsPage = () => {
           </div>
 
           {/* Filters & Search */}
-          <div className="mx-auto mt-12 w-full max-w-4xl">
-            <div className="flex flex-wrap items-center gap-3">
+          <div className="mx-auto mt-12 w-full max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger
-                  className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-secondary px-3 py-2 text-sm text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
+                  className="flex h-7 shrink-0 items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 text-xs text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
                 >
-                  <ListFilter className="size-4 text-muted-foreground/60" />
+                  <ListFilter className="size-3.5 text-muted-foreground/60" />
                   <span>{activeTab === "reports" ? "Reports" : "Radar"}</span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" sideOffset={6}>
@@ -221,12 +221,12 @@ const ArtifactsPage = () => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger
-                  className="flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-2 text-sm text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
+                  className="flex h-7 items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 text-xs text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
                 >
                   {viewMode === "by-type" ? (
-                    <LayoutGrid className="size-4 text-muted-foreground/60" />
+                    <LayoutGrid className="size-3.5 text-muted-foreground/60" />
                   ) : (
-                    <Clock className="size-4 text-muted-foreground/60" />
+                    <Clock className="size-3.5 text-muted-foreground/60" />
                   )}
                   {viewMode === "by-type" ? "By Type" : "By Date"}
                 </DropdownMenuTrigger>
@@ -252,28 +252,28 @@ const ArtifactsPage = () => {
               <button
                 type="button"
                 onClick={handleSettingsClick}
-                className="flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-2 text-sm text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
+                className="flex h-7 items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 text-xs text-muted-foreground transition hover:border-muted-foreground cursor-pointer"
               >
-                <Settings className="size-4 text-muted-foreground/60" />
+                <Settings className="size-3.5 text-muted-foreground/60" />
                 Settings
               </button>
 
-              <div className="relative w-full sm:ml-auto sm:max-w-80">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
-                  <Search className="size-4 text-muted-foreground/60" />
+              <div className="relative w-full sm:ml-auto sm:max-w-64">
+                <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+                  <Search className="size-3.5 text-muted-foreground/60" />
                 </div>
                 <Input
                   placeholder={activeTab === "reports" ? "Search reports..." : "Search radars..."}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   rounded="full"
-                  size="lg"
-                  className="pl-10"
+                  size="default"
+                  className="pl-8 text-xs"
                 />
               </div>
             </div>
 
-            {/* Content */}
+          {/* Content */}
             {filteredCategories.length > 0 ? (
               viewMode === "by-type" ? (
                 <div className="mt-6 divide-y divide-border">
