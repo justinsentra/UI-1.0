@@ -515,7 +515,7 @@ const HomePage = () => {
           )}
 
           {sidebarTab === "meetings" && (
-            <div className="flex flex-col pt-1">
+            <div className="flex flex-col gap-2 pt-1">
               {HOME_MEETINGS.map((meeting) => {
                 const isExpanded = expandedMeeting === meeting.id;
                 const maxVisibleAvatars = 2;
