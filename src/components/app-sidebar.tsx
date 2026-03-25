@@ -47,7 +47,7 @@ const SidebarLink = ({ to, label, icon: Icon }: SidebarLinkProps) => {
       end={to === "/home"}
       className={({ isActive }) =>
         cn(
-          "group flex items-center gap-2.5 h-[38px] px-2.5 rounded-[7px] text-[13px] no-underline overflow-hidden transition-[padding,background-color,color] duration-200 ease-linear group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2",
+          "group/sidebar-link flex items-center gap-2.5 h-[38px] px-2.5 rounded-[7px] text-[13px] no-underline overflow-hidden transition-[padding,background-color,color] duration-200 ease-linear group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2",
           isActive
             ? "bg-sidebar-accent text-foreground"
             : "text-foreground hover:bg-sidebar-accent hover:text-foreground",
@@ -56,7 +56,7 @@ const SidebarLink = ({ to, label, icon: Icon }: SidebarLinkProps) => {
     >
       <Icon
         size={18}
-        className="shrink-0 text-current opacity-70 transition-opacity group-hover:opacity-100"
+        className="shrink-0 text-current opacity-70 transition-opacity group-hover/sidebar-link:opacity-100"
       />
       <span className="whitespace-nowrap group-data-[collapsible=icon]:hidden">
         {label}

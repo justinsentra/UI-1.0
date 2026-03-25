@@ -255,7 +255,7 @@ const IntegrationsPage = () => {
           : "cursor-pointer hover:bg-accent"
       }`}
     >
-      <div className="size-10 shrink-0 rounded-lg border border-border bg-card flex items-center justify-center overflow-hidden">
+      <div className="size-10 shrink-0 rounded-lg border border-border bg-foreground flex items-center justify-center overflow-hidden">
         {integration.logo ? (
           <img
             src={integration.logo}

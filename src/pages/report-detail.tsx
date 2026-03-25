@@ -171,35 +171,35 @@ const ReportDetailPage = () => {
 
   return (
     <div
-      className="flex overflow-hidden h-full"
+      className="relative flex overflow-hidden h-full"
     >
+      {/* Top-right action buttons */}
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
+        <button
+          type="button"
+          onClick={handleCopyLink}
+          className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors cursor-pointer border-none"
+          title="Copy link"
+        >
+          <Link2 size={15} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowChatSidebar((p) => !p)}
+          className={cn(
+            "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
+            showChatSidebar
+              ? "bg-[var(--accent)] text-[var(--muted-foreground)]"
+              : "bg-transparent hover:bg-[var(--accent)] text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)]",
+          )}
+          title="Deep Research"
+        >
+          <MessageSquare size={15} />
+        </button>
+      </div>
+
       <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
         <PageShell className="relative pb-32">
-          {/* Top-right action buttons */}
-          <div className="absolute top-[12px] right-0 z-10 flex items-center gap-1">
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors cursor-pointer border-none"
-              title="Copy link"
-            >
-              <Link2 size={15} />
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowChatSidebar((p) => !p)}
-              className={cn(
-                "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
-                showChatSidebar
-                  ? "bg-[var(--accent)] text-[var(--muted-foreground)]"
-                  : "bg-transparent hover:bg-[var(--accent)] text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)]",
-              )}
-              title="Deep Research"
-            >
-              <MessageSquare size={15} />
-            </button>
-          </div>
-
           {/* Title */}
           <div className="mb-2">
             <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
