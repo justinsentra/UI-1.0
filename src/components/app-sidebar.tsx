@@ -50,14 +50,14 @@ function SidebarLink({
       end={to === "/home"}
       className={({ isActive }) =>
         cn(
-          "flex items-center gap-2.5 h-[34px] px-2.5 rounded-[7px] text-xs no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-2",
+          "flex items-center gap-2.5 h-[38px] px-2.5 rounded-[7px] text-[13px] no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-2",
           isActive
             ? "bg-sidebar-accent text-sidebar-accent-foreground"
             : "text-sidebar-foreground hover:bg-sidebar-accent",
         )
       }
     >
-      <Icon size={16} className="text-sidebar-foreground/60 shrink-0" />
+      <Icon size={18} className="text-sidebar-foreground/60 shrink-0" />
       <span className="whitespace-nowrap">{label}</span>
     </NavLink>
   );
@@ -80,7 +80,7 @@ const SidebarLogoHeader = () => {
             src="/sentra.png"
             alt="Sentra"
             className={cn(
-              "w-6 h-6 rounded p-0.5 transition-opacity duration-150",
+              "w-7 h-7 rounded p-0.5 transition-opacity duration-150",
               isCollapsed && "group-hover/logo:opacity-0",
             )}
           />

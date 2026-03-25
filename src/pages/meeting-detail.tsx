@@ -360,7 +360,7 @@ const MeetingDetailPage = () => {
   return (
     <div className="flex overflow-hidden h-full">
     <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <PageShell className="relative pb-[40vh]">
+    <div className="relative">
       {/* Top-right action buttons */}
       <div
         className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
@@ -408,6 +408,7 @@ const MeetingDetailPage = () => {
         </Button>
       </div>
 
+    <PageShell className="pb-[40vh]">
       {/* Title */}
       <div className="mb-4">
         <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
@@ -730,6 +731,7 @@ const MeetingDetailPage = () => {
         meetingId={meetingId}
       />
     </PageShell>
+    </div>
     </div>
     <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar

@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, Plus, Check, X, Mic, FileUp, AtSign, Clock, Users, ChevronRight, CalendarDays, ListTodo } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { ArrowUp, ArrowRight, ArrowUpRight, Plus, Check, X, Mic, FileUp, AtSign, ChevronRight, CalendarDays, ListTodo, Mail, MessageSquare, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 import { cn } from "@lib/utils";
 import { getAvatarColor, getInitials } from "@lib/utils";
 import { usePersonaStore } from "@/stores/persona-store";
@@ -60,12 +62,71 @@ interface TodoItem {
   id: string;
   text: string;
   checked: boolean;
+  source?: { label: string; href: string };
 }
 
 const INITIAL_TODOS: TodoItem[] = [
-  { id: "1", text: "Review Q1 pipeline metrics before standup", checked: false },
-  { id: "2", text: "Prep talking points for investor update", checked: false },
-  { id: "3", text: "Follow up with Diana on partnership timeline", checked: false },
+  { id: "1", text: "Review Q1 pipeline metrics before standup", checked: false, source: { label: "TMT Group Weekly", href: "/meeting-notes" } },
+  { id: "2", text: "Prep talking points for investor update", checked: false, source: { label: "Email from Marcus Chen", href: "/home" } },
+  { id: "3", text: "Follow up with Diana on partnership timeline", checked: false, source: { label: "1:1 with Diana", href: "/meeting-notes" } },
+];
+
+/* ── Meeting Types ── */
+interface MeetingParticipant {
+  name: string;
+  status: "accepted" | "declined" | "pending";
+}
+
+interface HomeMeeting {
+  id: string;
+  title: string;
+  time: string;
+  endTime: string;
+  participants: MeetingParticipant[];
+  summary: string;
+  platform: "Google Meet" | "Zoom";
+}
+
+const HOME_MEETINGS: HomeMeeting[] = [
+  {
+    id: "hm-1",
+    title: "TMT Group Weekly",
+    time: "2:00 PM",
+    endTime: "3:00 PM",
+    participants: [
+      { name: "Diana Calloway", status: "accepted" },
+      { name: "Nathan Lim", status: "accepted" },
+      { name: "Victor Kane", status: "pending" },
+    ],
+    summary: "Weekly sync on TMT group portfolio updates, pipeline status, and upcoming deal timelines.",
+    platform: "Google Meet",
+  },
+  {
+    id: "hm-2",
+    title: "Investment Committee — Q1 Pipeline",
+    time: "4:00 PM",
+    endTime: "5:00 PM",
+    participants: [
+      { name: "Tom Brennan", status: "accepted" },
+      { name: "Claire Lawson", status: "accepted" },
+      { name: "Jake Brennan", status: "declined" },
+      { name: "Richard Caldwell", status: "pending" },
+      { name: "Sean Mercer", status: "accepted" },
+    ],
+    summary: "Review Q1 pipeline performance metrics, discuss high-priority deal statuses, and align on investment committee priorities.",
+    platform: "Google Meet",
+  },
+  {
+    id: "hm-3",
+    title: "1:1 with Diana — Partnership Update",
+    time: "5:30 PM",
+    endTime: "6:00 PM",
+    participants: [
+      { name: "Diana Calloway", status: "accepted" },
+    ],
+    summary: "Catch up on partnership timeline progress and next steps for the Meridian engagement.",
+    platform: "Zoom",
+  },
 ];
 
 /* ── Home Page ── */
@@ -78,11 +139,11 @@ const HomePage = () => {
   const homeData = getPersonaHome(persona);
   const suggestions = homeData.suggestions;
   const artifactsToReview = homeData.artifacts;
-  const upcomingMeeting = homeData.upcomingMeeting;
 
   const [todos, setTodos] = useState<TodoItem[]>(INITIAL_TODOS);
   const [newTodo, setNewTodo] = useState("");
   const [sidebarTab, setSidebarTab] = useState<string>("todo");
+  const [expandedMeeting, setExpandedMeeting] = useState<string | null>(null);
 
   const handleSearchSubmit = useCallback(() => {
     const trimmed = searchValue.trim();
@@ -208,7 +269,7 @@ const HomePage = () => {
 
             {/* Chat Input */}
             <div className="mb-16">
-              <div className="rounded-3xl border border-border shadow-sm overflow-hidden" style={{ backgroundColor: "#090909" }}>
+              <div className="rounded-3xl border border-border bg-background shadow-sm overflow-hidden">
                 {/* Textarea */}
                 <div className="p-3 pb-0">
                   <textarea
@@ -222,7 +283,7 @@ const HomePage = () => {
                     }}
                     placeholder="Type and press enter to start chatting..."
                     rows={2}
-                    className="w-full min-h-[50px] max-h-[320px] px-2 py-2 text-sm text-neutral-100 placeholder:text-neutral-500 bg-transparent border-none outline-none resize-none overflow-auto"
+                    className="w-full min-h-[50px] max-h-[320px] px-2 py-2 text-sm text-foreground placeholder:text-muted-foreground bg-transparent border-none outline-none resize-none overflow-auto"
                   />
                 </div>
 
@@ -232,7 +293,7 @@ const HomePage = () => {
                   <div className="flex items-center gap-2">
                     <DropdownMenu>
                       <DropdownMenuTrigger
-                        className="inline-flex items-center justify-center size-8 rounded-full hover:bg-white/10 text-neutral-300 transition-colors cursor-pointer border-none bg-transparent"
+                        className="inline-flex items-center justify-center size-8 rounded-full hover:bg-accent text-muted-foreground transition-colors cursor-pointer border-none bg-transparent"
                       >
                         <Plus size={14} strokeWidth={2} />
                       </DropdownMenuTrigger>
@@ -253,7 +314,7 @@ const HomePage = () => {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      className="inline-flex items-center justify-center size-8 rounded-full text-neutral-500 hover:text-neutral-200 hover:bg-white/10 transition-colors cursor-pointer border-none bg-transparent"
+                      className="inline-flex items-center justify-center size-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors cursor-pointer border-none bg-transparent"
                     >
                       <Mic size={14} />
                     </button>
@@ -264,8 +325,8 @@ const HomePage = () => {
                       className={cn(
                         "inline-flex items-center justify-center size-8 rounded-full border-none transition-all",
                         searchValue.trim()
-                          ? "bg-white text-neutral-900 cursor-pointer hover:opacity-90"
-                          : "bg-neutral-800 text-neutral-500 cursor-not-allowed opacity-50",
+                          ? "bg-foreground text-background cursor-pointer hover:opacity-90"
+                          : "bg-muted text-muted-foreground cursor-not-allowed opacity-50",
                       )}
                     >
                       <ArrowUp size={14} strokeWidth={2} />
@@ -312,7 +373,7 @@ const HomePage = () => {
       {/* ── Right: Quick Access Panel ── */}
       <div className="hidden lg:flex shrink-0 w-[350px] h-full flex-col overflow-hidden border-l border-border">
         {/* Header */}
-        <div className="relative overflow-hidden bg-gradient-to-b from-primary/8 to-transparent">
+        <div className="relative overflow-hidden bg-linear-to-b from-blue-500/15 to-transparent">
           <div className="px-5 pt-6 pb-4">
             <div className="flex items-center justify-between">
               <div>
@@ -320,16 +381,22 @@ const HomePage = () => {
                   Quick Access
                 </p>
                 <p className="mt-1 text-lg font-medium text-foreground">
-                  {sidebarTab === "todo" ? "To Do" : "Meetings"}
+                  {sidebarTab === "todo" ? "To Do" : sidebarTab === "meetings" ? "Meetings" : sidebarTab === "email" ? "Email" : "Slack"}
                 </p>
               </div>
               <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)}>
-                <TabsList>
-                  <TabsTrigger value="todo">
-                    <ListTodo size={14} />
+                <TabsList className="h-9 p-1 gap-0.5">
+                  <TabsTrigger value="todo" className="px-2.5 py-1.5">
+                    <ListTodo size={16} />
                   </TabsTrigger>
-                  <TabsTrigger value="meetings">
-                    <CalendarDays size={14} />
+                  <TabsTrigger value="meetings" className="px-2.5 py-1.5">
+                    <CalendarDays size={16} />
+                  </TabsTrigger>
+                  <TabsTrigger value="email" className="px-2.5 py-1.5">
+                    <Mail size={16} />
+                  </TabsTrigger>
+                  <TabsTrigger value="slack" className="px-2.5 py-1.5">
+                    <MessageSquare size={16} />
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -378,16 +445,28 @@ const HomePage = () => {
                     >
                       {todo.checked && <Check size={10} strokeWidth={3} />}
                     </button>
-                    <p
-                      className={cn(
-                        "flex-1 text-sm leading-relaxed",
-                        todo.checked
-                          ? "text-muted-foreground line-through"
-                          : "text-foreground",
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className={cn(
+                          "text-sm leading-relaxed m-0",
+                          todo.checked
+                            ? "text-muted-foreground line-through"
+                            : "text-foreground",
+                        )}
+                      >
+                        {todo.text}
+                      </p>
+                      {todo.source && (
+                        <button
+                          type="button"
+                          onClick={() => navigate(todo.source!.href)}
+                          className="inline-flex items-center gap-1 mt-0.5 text-[11px] underline decoration-1 underline-offset-2 text-muted-foreground/60 hover:text-muted-foreground border-none bg-transparent cursor-pointer p-0 transition-colors"
+                        >
+                          {todo.source.label}
+                          <ArrowUpRight size={10} className="shrink-0" strokeWidth={2} />
+                        </button>
                       )}
-                    >
-                      {todo.text}
-                    </p>
+                    </div>
                     <button
                       type="button"
                       onClick={() => removeTodo(todo.id)}
@@ -430,41 +509,200 @@ const HomePage = () => {
           )}
 
           {sidebarTab === "meetings" && (
-            <div className="flex flex-col gap-3 pt-1">
-              <div className="flex flex-col gap-2 p-4 bg-card rounded-xl border border-border">
-                <h3 className="text-foreground text-sm font-normal leading-[1.4] m-0">
-                  {upcomingMeeting.title}
-                </h3>
-                <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Clock size={12} />
-                    {upcomingMeeting.time} – {upcomingMeeting.endTime}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Users size={12} />
-                    {upcomingMeeting.participants.length} participants
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 mt-1">
-                  {upcomingMeeting.participants.map((name) => (
-                    <div
-                      key={name}
-                      className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-medium"
-                      style={{ backgroundColor: getAvatarColor(name) }}
-                      title={name}
+            <div className="flex flex-col pt-1">
+              {HOME_MEETINGS.map((meeting) => {
+                const isExpanded = expandedMeeting === meeting.id;
+                const maxVisibleAvatars = 2;
+                const visibleParticipants = meeting.participants.slice(0, maxVisibleAvatars);
+                const overflowCount = meeting.participants.length - maxVisibleAvatars;
+
+                return (
+                  <div
+                    key={meeting.id}
+                    className={cn(
+                      "flex flex-col rounded-lg transition-colors",
+                      isExpanded && "bg-accent/70",
+                    )}
+                  >
+                    {/* Meeting row — ghost button style */}
+                    <button
+                      type="button"
+                      onClick={() => setExpandedMeeting(isExpanded ? null : meeting.id)}
+                      className={cn(
+                        "group/mtg flex items-center gap-3 w-full px-3 py-2.5 bg-transparent border-none cursor-pointer text-left transition-colors",
+                        isExpanded ? "rounded-t-lg" : "rounded-lg hover:bg-accent/50",
+                      )}
                     >
-                      {getInitials(name)}
+                      {/* Video icon */}
+                      <div className="shrink-0 flex items-center justify-center">
+                        <Video size={18} className="text-primary/70" />
+                      </div>
+
+                      {/* Title + time stacked */}
+                      <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                        <span className="text-sm font-medium text-foreground truncate">
+                          {meeting.title}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {meeting.time} – {meeting.endTime}
+                        </span>
+                      </div>
+
+                      {/* Avatars (default) / Join button (hover) */}
+                      <div className="shrink-0 relative flex items-center">
+                        {/* Avatars — hide on hover */}
+                        <div className="flex items-center gap-0 group-hover/mtg:opacity-0 group-hover/mtg:pointer-events-none transition-opacity">
+                          {visibleParticipants.map((p, i) => (
+                            <div
+                              key={p.name}
+                              className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[9px] font-medium border-2 border-background"
+                              style={{
+                                backgroundColor: getAvatarColor(p.name),
+                                marginLeft: i > 0 ? "-6px" : "0",
+                              }}
+                              title={p.name}
+                            >
+                              {getInitials(p.name)}
+                            </div>
+                          ))}
+                          {overflowCount > 0 && (
+                            <div
+                              className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-medium bg-muted text-muted-foreground border-2 border-background"
+                              style={{ marginLeft: "-6px" }}
+                            >
+                              +{overflowCount}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Join button — show on hover */}
+                        <div
+                          className="absolute inset-0 flex items-center justify-end opacity-0 pointer-events-none group-hover/mtg:opacity-100 group-hover/mtg:pointer-events-auto transition-opacity"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button variant="ghost" size="sm" rounded="full">
+                            <Video size={14} />
+                            Join
+                          </Button>
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Accordion content */}
+                    <div
+                      className={cn(
+                        "overflow-hidden transition-all duration-200 ease-in-out",
+                        isExpanded ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0",
+                      )}
+                    >
+                      <div className="px-3 pb-3 pt-2.5 flex flex-col gap-3">
+                        {/* Summary */}
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Summary</span>
+                          <p className="text-xs text-foreground/80 leading-relaxed m-0">
+                            {meeting.summary}
+                          </p>
+                        </div>
+
+                        {/* Meeting Prep */}
+                        <button
+                          type="button"
+                          onClick={() => navigate("/pre-meeting-brief")}
+                          className="flex items-center gap-2 w-full px-3 py-2 rounded-md bg-transparent border-none cursor-pointer text-left hover:bg-accent/50 transition-colors"
+                        >
+                          <FileText size={14} className="text-primary/70 shrink-0" />
+                          <span className="text-xs font-medium text-foreground">Meeting Prep (Brief)</span>
+                          <ChevronRight size={12} className="text-muted-foreground ml-auto" />
+                        </button>
+
+                        {/* Participants */}
+                        <div className="flex flex-col gap-1.5">
+                          <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                            Participants ({meeting.participants.length})
+                          </span>
+                          <div className="flex flex-col gap-1 max-h-[120px] overflow-y-auto">
+                            {meeting.participants.map((p) => (
+                              <div key={p.name} className="flex items-center gap-2 py-1 px-1">
+                                <div
+                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[8px] font-medium shrink-0"
+                                  style={{ backgroundColor: getAvatarColor(p.name) }}
+                                >
+                                  {getInitials(p.name)}
+                                </div>
+                                <span className="text-xs text-foreground flex-1 truncate">{p.name}</span>
+                                <Tooltip>
+                                  <TooltipTrigger className="shrink-0 bg-transparent border-none p-0 flex items-center">
+                                    {p.status === "accepted" && (
+                                      <CheckCircle2 size={13} className="text-foreground/50" />
+                                    )}
+                                    {p.status === "declined" && (
+                                      <XCircle size={13} className="text-red-400" />
+                                    )}
+                                    {p.status === "pending" && (
+                                      <HelpCircle size={13} className="text-muted-foreground/40" />
+                                    )}
+                                  </TooltipTrigger>
+                                  <TooltipContent side="left" className="text-xs">
+                                    {p.status === "accepted" && "Accepted"}
+                                    {p.status === "declined" && "Declined"}
+                                    {p.status === "pending" && "Awaiting RSVP"}
+                                  </TooltipContent>
+                                </Tooltip>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => navigate("/pre-meeting-brief")}
-                  className="mt-2 w-full h-8 rounded-md text-xs font-medium text-foreground bg-background cursor-pointer border border-border hover:bg-accent transition-colors"
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {sidebarTab === "email" && (
+            <div className="flex flex-col gap-2 pt-1">
+              {[
+                { from: "Diana Reeves", subject: "Partnership timeline update", time: "10:32 AM", preview: "Hi Jaden, wanted to follow up on the revised timeline we discussed last week..." },
+                { from: "Marcus Chen", subject: "Re: Q1 Pipeline Review", time: "9:15 AM", preview: "The updated metrics look solid. I've flagged two accounts that need attention before..." },
+                { from: "Sarah Kim", subject: "Investor deck — final comments", time: "Yesterday", preview: "Looks great overall. A few minor suggestions on slides 8-12 regarding the market..." },
+              ].map((email) => (
+                <div
+                  key={email.subject}
+                  className="flex flex-col gap-1 p-3 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
                 >
-                  View Brief
-                </button>
-              </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-foreground">{email.from}</span>
+                    <span className="text-[11px] text-muted-foreground">{email.time}</span>
+                  </div>
+                  <p className="text-xs font-medium text-foreground/80 m-0">{email.subject}</p>
+                  <p className="text-xs text-muted-foreground m-0 line-clamp-2">{email.preview}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {sidebarTab === "slack" && (
+            <div className="flex flex-col gap-2 pt-1">
+              {[
+                { channel: "#deal-room", sender: "Alex Torres", time: "11:02 AM", message: "Just got off the call with Acme — they're ready to move forward with the pilot. Sending over the SOW today." },
+                { channel: "#team-updates", sender: "Priya Patel", time: "10:45 AM", message: "FYI the new CRM dashboard is live in staging. Would love feedback before we push to prod." },
+                { channel: "#general", sender: "Jordan Lee", time: "9:30 AM", message: "Reminder: all-hands at 2pm today. Agenda includes Q2 planning and the new product roadmap." },
+              ].map((msg) => (
+                <div
+                  key={msg.channel + msg.time}
+                  className="flex flex-col gap-1 p-3 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-primary/80">{msg.channel}</span>
+                    <span className="text-[11px] text-muted-foreground">{msg.time}</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="text-xs font-medium text-foreground shrink-0">{msg.sender}:</span>
+                    <p className="text-xs text-muted-foreground m-0 line-clamp-2">{msg.message}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>

@@ -36,7 +36,7 @@ const ActionCard = ({
   onClick: () => void;
 }) => (
   <Card
-    className="cursor-pointer transition-colors duration-200 hover:bg-gradient-to-br hover:from-card hover:to-muted/60 rounded-3xl p-6 gap-0"
+    className="cursor-pointer transition-colors duration-150 ease-out hover:bg-accent/50 rounded-xl p-6 gap-0"
     onClick={onClick}
   >
     <div className="flex flex-wrap items-center gap-2">
