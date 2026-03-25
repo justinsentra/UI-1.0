@@ -96,7 +96,7 @@ const MeetingNotesPage = () => {
   return (
     <div className="flex overflow-hidden h-full">
     <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <PageShell className="relative">
+    <div className="relative">
       {/* Top-right toolbar */}
       <div
         className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
@@ -126,6 +126,8 @@ const MeetingNotesPage = () => {
           <MessageSquare size={15} />
         </Button>
       </div>
+
+    <PageShell>
 
       <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-5">
         Coming up
@@ -222,6 +224,7 @@ const MeetingNotesPage = () => {
         meetingId={shareMeetingId}
       />
     </PageShell>
+    </div>
     </div>
     <RightSidebarProvider open={chatOpen} onOpenChange={setChatOpen} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
       <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />

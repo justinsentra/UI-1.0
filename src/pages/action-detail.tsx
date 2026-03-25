@@ -129,7 +129,7 @@ const ActionDetailPage = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Untitled action"
             rows={1}
-            className="w-full border-0 bg-transparent p-0 !text-2xl font-medium text-foreground placeholder:text-muted-foreground ring-0 focus-visible:ring-0 focus-visible:border-0 !min-h-0 resize-none field-sizing-content"
+            className="w-full border-0 bg-background p-0 !text-2xl font-medium text-foreground placeholder:text-muted-foreground ring-0 focus-visible:ring-0 focus-visible:border-0 !min-h-0 resize-none field-sizing-content dark:bg-background"
           />
         </div>
 

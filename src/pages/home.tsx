@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, ArrowUpRight, Plus, Check, X, Mic, FileUp, AtSign, ChevronRight, CalendarDays, ListTodo, Mail, MessageSquare, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
+import { ArrowUp, ArrowRight, ArrowUpRight, Plus, Check, X, Mic, FileUp, AtSign, ChevronRight, ListTodo, Mail, MessageSquare, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -269,7 +269,7 @@ const HomePage = () => {
 
             {/* Chat Input */}
             <div className="mb-16">
-              <div className="rounded-3xl border border-border bg-background shadow-sm overflow-hidden">
+              <div className="rounded-3xl border border-border bg-background shadow-sm overflow-hidden dark:bg-sidebar">
                 {/* Textarea */}
                 <div className="p-3 pb-0">
                   <textarea
@@ -371,12 +371,18 @@ const HomePage = () => {
       </div>
 
       {/* ── Right: Quick Access Panel ── */}
-      <div className="hidden lg:flex shrink-0 w-[350px] h-full flex-col overflow-hidden border-l border-border">
+      <div className="relative hidden lg:flex shrink-0 w-[350px] h-full flex-col overflow-hidden border-l border-border">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-blue-500/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-blue-500/5 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-6 bg-linear-to-r from-blue-500/8 to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-6 bg-linear-to-l from-blue-500/8 to-transparent" />
+        </div>
         {/* Header */}
-        <div className="relative overflow-hidden bg-linear-to-b from-blue-500/15 to-transparent">
+        <div className="relative overflow-hidden">
           <div className="px-5 pt-6 pb-4">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0 pt-0.5">
                 <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Quick Access
                 </p>
@@ -384,19 +390,19 @@ const HomePage = () => {
                   {sidebarTab === "todo" ? "To Do" : sidebarTab === "meetings" ? "Meetings" : sidebarTab === "email" ? "Email" : "Slack"}
                 </p>
               </div>
-              <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)}>
-                <TabsList className="h-9 p-1 gap-0.5">
-                  <TabsTrigger value="todo" className="px-2.5 py-1.5">
-                    <ListTodo size={16} />
+              <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)} className="shrink-0">
+                <TabsList className="h-10 p-1 gap-1 self-start">
+                  <TabsTrigger value="todo" className="px-3 py-2">
+                    <ListTodo size={17} />
                   </TabsTrigger>
-                  <TabsTrigger value="meetings" className="px-2.5 py-1.5">
-                    <CalendarDays size={16} />
+                  <TabsTrigger value="meetings" className="px-3 py-2">
+                    <Video size={17} />
                   </TabsTrigger>
-                  <TabsTrigger value="email" className="px-2.5 py-1.5">
-                    <Mail size={16} />
+                  <TabsTrigger value="email" className="px-3 py-2">
+                    <Mail size={17} />
                   </TabsTrigger>
-                  <TabsTrigger value="slack" className="px-2.5 py-1.5">
-                    <MessageSquare size={16} />
+                  <TabsTrigger value="slack" className="px-3 py-2">
+                    <MessageSquare size={17} />
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -529,7 +535,7 @@ const HomePage = () => {
                       type="button"
                       onClick={() => setExpandedMeeting(isExpanded ? null : meeting.id)}
                       className={cn(
-                        "group/mtg flex items-center gap-3 w-full px-3 py-2.5 bg-transparent border-none cursor-pointer text-left transition-colors",
+                        "group/mtg relative flex items-center gap-3 w-full px-3 py-2.5 bg-transparent border-none cursor-pointer text-left transition-colors",
                         isExpanded ? "rounded-t-lg" : "rounded-lg hover:bg-accent/50",
                       )}
                     >
@@ -539,7 +545,7 @@ const HomePage = () => {
                       </div>
 
                       {/* Title + time stacked */}
-                      <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                      <div className="flex-1 min-w-0 flex flex-col gap-0.5 pr-16 transition-all group-hover/mtg:pr-0">
                         <span className="text-sm font-medium text-foreground truncate">
                           {meeting.title}
                         </span>
@@ -549,9 +555,9 @@ const HomePage = () => {
                       </div>
 
                       {/* Avatars (default) / Join button (hover) */}
-                      <div className="shrink-0 relative flex items-center">
+                      <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center justify-end">
                         {/* Avatars — hide on hover */}
-                        <div className="flex items-center gap-0 group-hover/mtg:opacity-0 group-hover/mtg:pointer-events-none transition-opacity">
+                        <div className="flex items-center gap-0 transition-opacity group-hover/mtg:opacity-0">
                           {visibleParticipants.map((p, i) => (
                             <div
                               key={p.name}
@@ -577,10 +583,15 @@ const HomePage = () => {
 
                         {/* Join button — show on hover */}
                         <div
-                          className="absolute inset-0 flex items-center justify-end opacity-0 pointer-events-none group-hover/mtg:opacity-100 group-hover/mtg:pointer-events-auto transition-opacity"
-                          onClick={(e) => e.stopPropagation()}
+                          className="absolute inset-y-0 right-0 flex items-center justify-end opacity-0 transition-opacity group-hover/mtg:opacity-100"
                         >
-                          <Button variant="ghost" size="sm" rounded="full">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            rounded="full"
+                            className="pointer-events-auto"
+                            onClick={(event) => event.stopPropagation()}
+                          >
                             <Video size={14} />
                             Join
                           </Button>

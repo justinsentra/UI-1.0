@@ -19,8 +19,13 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarTrigger,
-  useSidebar,
 } from "@/components/ui/sidebar";
+
+interface SidebarLinkProps {
+  to: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+}
 
 const personalNav = [
   { to: "/home", label: "Home", icon: Home },
@@ -35,65 +40,52 @@ const orgNav = [
   { to: "/integrations", label: "Integrations", icon: Puzzle },
 ];
 
-function SidebarLink({
-  to,
-  label,
-  icon: Icon,
-}: {
-  to: string;
-  label: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
-}) {
+const SidebarLink = ({ to, label, icon: Icon }: SidebarLinkProps) => {
   return (
     <NavLink
       to={to}
       end={to === "/home"}
       className={({ isActive }) =>
         cn(
-          "flex items-center gap-2.5 h-[38px] px-2.5 rounded-[7px] text-[13px] no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-2",
+          "group flex items-center gap-2.5 h-[38px] px-2.5 rounded-[7px] text-[13px] no-underline overflow-hidden transition-[padding,background-color,color] duration-200 ease-linear group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2",
           isActive
-            ? "bg-sidebar-accent text-sidebar-accent-foreground"
-            : "text-sidebar-foreground hover:bg-sidebar-accent",
+            ? "bg-sidebar-accent text-foreground"
+            : "text-foreground hover:bg-sidebar-accent hover:text-foreground",
         )
       }
     >
-      <Icon size={18} className="text-sidebar-foreground/60 shrink-0" />
-      <span className="whitespace-nowrap">{label}</span>
+      <Icon
+        size={18}
+        className="shrink-0 text-current opacity-70 transition-opacity group-hover:opacity-100"
+      />
+      <span className="whitespace-nowrap group-data-[collapsible=icon]:hidden">
+        {label}
+      </span>
     </NavLink>
   );
-}
+};
 
 const SidebarLogoHeader = () => {
-  const { toggleSidebar, state } = useSidebar();
-  const isCollapsed = state === "collapsed";
-
   return (
     <SidebarHeader className="px-4 pt-5 pb-6 transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:pt-5 group-data-[collapsible=icon]:pb-4">
       <div className="flex items-center overflow-hidden">
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="group/logo relative shrink-0 bg-transparent border-none p-0 cursor-pointer flex items-center justify-center group-data-[collapsible=icon]:w-full"
-          title="Toggle Sidebar"
-        >
+        <div className="group/logo relative shrink-0 flex items-center justify-center group-data-[collapsible=icon]:w-full">
           <img
             src="/sentra.png"
             alt="Sentra"
-            className={cn(
-              "w-7 h-7 rounded p-0.5 transition-opacity duration-150",
-              isCollapsed && "group-hover/logo:opacity-0",
-            )}
+            className="w-7 h-7 rounded p-0.5 transition-opacity duration-150 group-data-[collapsible=icon]:group-hover/logo:opacity-0"
           />
           <HugeiconsIcon
             icon={SidebarLeftIcon}
-            className={cn(
-              "absolute inset-0 m-auto size-6 text-sidebar-foreground/60 transition-opacity duration-150 opacity-0",
-              isCollapsed && "group-hover/logo:opacity-100",
-            )}
+            className="pointer-events-none absolute inset-0 m-auto size-6 text-foreground/70 transition-opacity duration-150 opacity-0 group-data-[collapsible=icon]:group-hover/logo:opacity-100"
             strokeWidth={2}
           />
-        </button>
-        <SidebarTrigger className="ml-auto shrink-0 size-8 text-sidebar-foreground/60 hover:text-sidebar-foreground cursor-pointer [&_svg]:size-4 transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none" />
+          <SidebarTrigger
+            title="Toggle Sidebar"
+            className="absolute inset-0 cursor-pointer bg-transparent text-transparent hover:bg-transparent hover:text-transparent [&_svg]:hidden"
+          />
+        </div>
+        <SidebarTrigger className="ml-auto shrink-0 size-8 text-foreground/70 hover:text-foreground cursor-pointer [&_svg]:size-4 transition-opacity duration-200 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none" />
       </div>
     </SidebarHeader>
   );
@@ -106,7 +98,7 @@ const AppSidebar = () => {
 
       <SidebarContent className="px-2.5 gap-0 overflow-x-hidden transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-2">
         <div className="mb-1 max-h-6 overflow-hidden transition-all duration-200 ease-linear group-data-[collapsible=icon]:max-h-0 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:mb-0">
-          <span className="px-2.5 text-xs font-normal text-sidebar-foreground/40 whitespace-nowrap">
+          <span className="px-2.5 text-xs font-normal text-foreground/70 whitespace-nowrap">
             Personal
           </span>
         </div>
@@ -115,7 +107,7 @@ const AppSidebar = () => {
         ))}
 
         <div className="mt-5 mb-1 max-h-6 overflow-hidden transition-all duration-200 ease-linear group-data-[collapsible=icon]:max-h-0 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:mb-0 group-data-[collapsible=icon]:mt-0">
-          <span className="px-2.5 text-xs font-normal text-sidebar-foreground/40 whitespace-nowrap">
+          <span className="px-2.5 text-xs font-normal text-foreground/70 whitespace-nowrap">
             Organization
           </span>
         </div>
@@ -129,10 +121,10 @@ const AppSidebar = () => {
         <div className="px-1 py-3 border-t border-sidebar-border transition-[padding] duration-200 ease-linear group-data-[collapsible=icon]:px-[2px]">
           <NavLink
             to="/settings"
-            className="flex items-center gap-2.5 px-2.5 py-1 no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:px-0"
+            className="flex items-center gap-2.5 px-2.5 py-1 no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0"
           >
             <UserAvatar name="Leo Hartwell" size="sm" />
-            <span className="text-xs text-sidebar-foreground whitespace-nowrap">
+            <span className="text-xs text-foreground whitespace-nowrap group-data-[collapsible=icon]:hidden">
               Leo Hartwell
             </span>
           </NavLink>
