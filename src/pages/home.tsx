@@ -373,10 +373,10 @@ const HomePage = () => {
       {/* ── Right: Quick Access Panel ── */}
       <div className="relative hidden lg:flex shrink-0 w-[350px] h-full flex-col overflow-hidden border-l border-border">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-blue-500/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-blue-500/5 to-transparent" />
-          <div className="absolute inset-y-0 left-0 w-6 bg-linear-to-r from-blue-500/8 to-transparent" />
-          <div className="absolute inset-y-0 right-0 w-6 bg-linear-to-l from-blue-500/8 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-blue-500/6 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-blue-500/3 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-6 bg-linear-to-r from-blue-500/5 to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-6 bg-linear-to-l from-blue-500/5 to-transparent" />
         </div>
         {/* Header */}
         <div className="relative overflow-hidden">
@@ -391,18 +391,18 @@ const HomePage = () => {
                 </p>
               </div>
               <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)} className="shrink-0">
-                <TabsList className="h-10 p-1 gap-1 self-start">
-                  <TabsTrigger value="todo" className="px-3 py-2">
-                    <ListTodo size={17} />
+                <TabsList className="h-11 p-1 gap-1 self-start">
+                  <TabsTrigger value="todo" className="px-3.5 py-2">
+                    <ListTodo size={18} />
                   </TabsTrigger>
-                  <TabsTrigger value="meetings" className="px-3 py-2">
-                    <Video size={17} />
+                  <TabsTrigger value="meetings" className="px-3.5 py-2">
+                    <Video size={18} />
                   </TabsTrigger>
-                  <TabsTrigger value="email" className="px-3 py-2">
-                    <Mail size={17} />
+                  <TabsTrigger value="email" className="px-3.5 py-2">
+                    <Mail size={18} />
                   </TabsTrigger>
-                  <TabsTrigger value="slack" className="px-3 py-2">
-                    <MessageSquare size={17} />
+                  <TabsTrigger value="slack" className="px-3.5 py-2">
+                    <MessageSquare size={18} />
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
