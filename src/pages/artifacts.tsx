@@ -179,7 +179,7 @@ const ArtifactsPage = () => {
   return (
     <div className="h-full overflow-x-hidden overflow-y-auto">
       <div className="relative min-h-full px-4 py-6 pt-14 sm:p-12 sm:pt-24 md:pt-24">
-        <div className="mx-auto max-w-[100rem]">
+        <div className="max-w-screen-4xl mx-auto w-full">
           {/* Header */}
           <div className="mx-auto max-w-xl text-center">
             <h1 className="text-center font-medium text-[40px] leading-[48px] text-foreground tracking-tight">
@@ -191,7 +191,7 @@ const ArtifactsPage = () => {
           </div>
 
           {/* Filters & Search */}
-          <div className="mt-12">
+          <div className="mx-auto mt-12 w-full max-w-4xl">
             <div className="flex flex-wrap items-center gap-3">
               <DropdownMenu>
                 <DropdownMenuTrigger
@@ -258,7 +258,7 @@ const ArtifactsPage = () => {
                 Settings
               </button>
 
-              <div className="relative ml-auto w-full min-w-40 sm:max-w-80">
+              <div className="relative w-full sm:ml-auto sm:max-w-80">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
                   <Search className="size-4 text-muted-foreground/60" />
                 </div>
