@@ -339,19 +339,23 @@ const HomePage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/integrations")}
-                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
+                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/50 dark:bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
               >
                 <p className="text-sm text-muted-foreground shrink-0">
                   Connect Your Tools
                 </p>
                 <div className="ml-auto flex items-center gap-1.5">
                   {TOOL_LOGOS.map((tool) => (
-                    <img
+                    <div
                       key={tool.id}
-                      src={tool.src}
-                      alt={tool.id}
-                      className="block size-4 rounded"
-                    />
+                      className="flex items-center justify-center size-6 rounded-md bg-white"
+                    >
+                      <img
+                        src={tool.src}
+                        alt={tool.id}
+                        className="block size-4"
+                      />
+                    </div>
                   ))}
                   <div className="grid transition-[grid-template-columns] duration-200 grid-cols-[0fr] group-hover:grid-cols-[1fr]">
                     <div className="overflow-hidden flex items-center min-w-0">
