@@ -1505,10 +1505,130 @@ export const meetings: Meeting[] = [
     tags: ["due-diligence", "pipeline"],
     platform: "Zoom",
     privacy: "private",
-    summary: "",
-    keyPoints: [],
-    actionItems: [],
-    transcript: [],
+    summary:
+      "Internal sync on the Sentra due diligence progress ahead of the IC vote on March 19th. Reviewed technical architecture findings, competitive positioning against Prism and AssistAI, and the co-investment interest from Sakura Capital. Tom flagged a potential concern around Sentra's data retention policies for European regulatory compliance. Team agreed to request a supplementary data governance review before the IC presentation.",
+    keyPoints: [
+      {
+        title: "Technical architecture review complete",
+        description:
+          "Engineering advisors confirmed Sentra's interaction-first architecture is technically sound. Scalability tested to 50K concurrent users with acceptable latency. Data pipeline handles 2M+ interactions per day.",
+        participants: ["Tom Brennan", "Richard Caldwell"],
+      },
+      {
+        title: "Competitive moat validated",
+        description:
+          "Prism's aggregation approach and AssistAI's chat layer are fundamentally different products. Sentra's interaction graph creates compounding network effects that are difficult to replicate once embedded in a customer's workflow.",
+        participants: ["Sean Mercer", "Tom Brennan"],
+      },
+      {
+        title: "Co-investment terms need structuring",
+        description:
+          "Sakura Capital and Pacific Mind both want allocation in the round. Recommended AGV lead at $8M with $4M co-invest pool. Need to finalize term sheet language before IC vote.",
+        participants: ["Richard Caldwell", "Sean Mercer"],
+      },
+      {
+        title: "European data governance flag",
+        description:
+          "Sentra's current data retention policy doesn't explicitly address GDPR right-to-deletion for interaction data. Need supplementary review before recommending to companies with European operations.",
+        participants: ["Tom Brennan", "Richard Caldwell"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-22",
+        title: "Request GDPR compliance assessment from Sentra",
+        description:
+          "Send formal request to Raj for Sentra's data governance documentation, specifically around GDPR right-to-deletion and cross-border data transfer policies",
+        assignee: "Tom Brennan",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-23",
+        title: "Draft co-investment term sheet for Sakura and Pacific Mind",
+        description:
+          "Prepare term sheet framework with AGV leading at $8M and $4M co-invest allocation split between Sakura Capital and Pacific Mind",
+        assignee: "Sean Mercer",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-24",
+        title: "Finalize Sentra investment memo for IC vote",
+        description:
+          "Incorporate technical DD findings, competitive analysis, and GDPR review into the final investment memo due March 17th",
+        assignee: "Tom Brennan",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Richard Caldwell",
+        text: "Let's get an update on where we stand with the Sentra DD. The IC vote is March 19th, so we need to make sure everything is buttoned up. Tom, where are we on the technical review?",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "The engineering advisors completed their review last Friday. Overall, very positive. The interaction-first architecture is well-designed. They tested scalability to 50,000 concurrent users and latency stayed under 200 milliseconds. The data pipeline handles over 2 million interactions per day, which is more than enough headroom for enterprise deployment.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "What about the infrastructure costs? One concern I had was whether the real-time processing of all those interactions would make the unit economics unsustainable at scale.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Good question. They're running on a hybrid architecture — real-time processing for active interactions and batch processing for the knowledge graph updates. Infrastructure cost per seat is about $12 per month at current scale, and it drops to $7 at 10,000 seats. That's well within the range for enterprise SaaS.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Let's talk about the competitive positioning. Sean, you had some follow-up from the competitive analysis Claire put together.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "I did a deeper dive on Prism and AssistAI. Prism raised a $40M Series B last quarter and they're aggressively going after enterprise. But their approach is fundamentally different — they're indexing static documents, not capturing live interactions. AssistAI is a Microsoft play, which means distribution but not depth. Neither of them is building the interaction graph that Sentra has.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "The moat is real. Once Sentra is embedded in a company's communication stack — meetings, Slack, email — the switching cost is enormous because you'd lose the entire interaction history and knowledge graph. That's a strong retention argument.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Good. Now, on the co-investment side — where are we with Sakura and Pacific Mind?",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Both confirmed interest. Sakura wants $2.5M and Pacific Mind is looking at $1.5M. I'd recommend we structure this as AGV leading at $8M with a $4M co-invest pool. That gives us control of the round while bringing in strategic partners who can help with Asia-Pacific distribution.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "That structure works. Make sure the term sheet gives us pro-rata rights on subsequent rounds. I don't want to get diluted if this takes off.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "One flag I want to raise before we finalize the memo. I was reviewing Sentra's data retention policies and there's a gap around GDPR compliance. Their current approach stores all interaction data indefinitely. For any AG portfolio company with European operations, or AG's own business units, we'd need clarity on right-to-deletion and cross-border data transfers.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "That's an important catch. Is it a deal-breaker or a remediation item?",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Remediation, not a deal-breaker. The architecture supports data deletion — it's more of a policy and product feature gap. But I want it documented in the memo and flagged as a condition. We should request their full data governance documentation before the IC vote.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Agreed. I'd also recommend we include a milestone around GDPR compliance in the investment terms. Something like — full European data compliance certification within 12 months of close.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Good thinking. Tom, send the formal request to Raj today. Sean, get the co-investment term sheet drafted by end of week. And Tom, make sure the investment memo incorporates everything we discussed — I want it on my desk by the 17th so I have two days to review before the IC vote. Anything else?",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Just one more thing — Claire mentioned that the Campfire design partner reference call went extremely well. They described Sentra as a must-have, not a nice-to-have. That's the strongest signal we've gotten from any reference call this quarter.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "That's encouraging. Let's make sure that reference is prominently featured in the memo. Alright, we're aligned. Let's move.",
+      },
+    ],
   },
   {
     id: "mcgi-mtg-11",
@@ -1521,10 +1641,122 @@ export const meetings: Meeting[] = [
     tags: ["investor-relations", "fund-operations"],
     platform: "Zoom",
     privacy: "private",
-    summary: "",
-    keyPoints: [],
-    actionItems: [],
-    transcript: [],
+    summary:
+      "Preparation session for the upcoming LP Advisory Committee meeting scheduled for March 21st. Reviewed fund performance metrics, portfolio company updates, and the climate tech allocation proposal that the board is pushing. Tom and Jake aligned on the narrative for presenting the increased deployment pace and the rationale for rebalancing toward climate tech. Discussed how to frame the Sentra and GreenCore investments as examples of the fund's dual mandate — financial returns and strategic synergies with AG business units.",
+    keyPoints: [
+      {
+        title: "Fund performance ahead of benchmarks",
+        description:
+          "Fund I returning 2.4x MOIC with top-quartile IRR of 28%. Portfolio companies collectively grew revenue 67% YoY. LPs will want to understand how the team plans to maintain performance at increased deployment pace.",
+        participants: ["Tom Brennan", "Jake Brennan"],
+      },
+      {
+        title: "Climate tech allocation narrative",
+        description:
+          "Board directive to increase climate tech from 25% to 35% of new deployments. Need to present this as opportunity-driven rather than mandate-driven to maintain LP confidence in return-focused discipline.",
+        participants: ["Jake Brennan", "Tom Brennan"],
+      },
+      {
+        title: "Deployment pace discussion",
+        description:
+          "YTD deployed $48M against $120M annual target. At current pace, will exceed target by September. Proposing to LPs that strong deal flow quality justifies accelerated deployment rather than artificial pacing constraints.",
+        participants: ["Tom Brennan", "Jake Brennan"],
+      },
+      {
+        title: "Sentra and GreenCore as flagship case studies",
+        description:
+          "Both deals illustrate the AGV thesis — financial upside combined with clear AG business unit synergies. Sentra for enterprise productivity across portfolio companies, GreenCore for industrial decarbonization across AG's materials operations.",
+        participants: ["Tom Brennan", "Jake Brennan"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-25",
+        title: "Prepare LP Advisory Committee deck",
+        description:
+          "Build presentation covering fund performance, portfolio highlights, deployment pacing rationale, and climate tech allocation proposal for March 21st meeting",
+        assignee: "Tom Brennan",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-26",
+        title: "Compile portfolio company KPI dashboard",
+        description:
+          "Aggregate revenue growth, headcount, and milestone data across all 12 active portfolio companies for the LP performance summary",
+        assignee: "Jake Brennan",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-27",
+        title: "Draft talking points for climate tech rebalancing",
+        description:
+          "Prepare Q&A responses for LP questions about climate tech allocation increase, emphasizing deal quality and AG strategic alignment rather than top-down mandate",
+        assignee: "Jake Brennan",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Tom Brennan",
+        text: "Jake, we need to lock down the LP Advisory Committee deck by Thursday. The meeting is March 21st, and Richard wants a dry run on the 19th. Let's walk through the key sections.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "I've been pulling the numbers together. Fund performance is strong — 2.4x MOIC, 28% IRR. That puts us comfortably in the top quartile. Portfolio companies collectively grew revenue 67% year over year. The story is good.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "The story is good until we get to the deployment pace conversation. We've deployed $48M in less than three months against a $120M annual target. Some LPs are going to ask if we're being disciplined or if we're rushing to deploy capital.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "I think we frame it as quality-driven acceleration, not pace pressure. The deal flow this quarter has been unusually strong. Sentra, GreenCore, and the Catalyst Alliance consortium pipeline are all generating high-quality opportunities. We shouldn't artificially slow down when the market is giving us good companies.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Agreed. Let's show the pipeline quality metrics alongside the deployment pace. If LPs can see that our screening-to-DD conversion rate went up while we deployed faster, that tells the right story.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "Now the harder conversation — the climate tech allocation. The board wants us to go from 25% to 35% of new deployments. How do we present that without making LPs feel like we're being steered by AG corporate strategy instead of return maximization?",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "We need to lead with the opportunity, not the mandate. The regulatory tailwinds in climate tech are real — EU carbon border adjustment, Europe's GX strategy, the IRA in the US. GreenCore is a perfect example. The unit economics work independently of any AG synergy. The AG deployment opportunity is upside, not the thesis.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "That framing works. And we should emphasize that our climate tech investments have AG as a built-in customer. GreenCore's technology could save AG's cement operations $37 per ton on carbon capture. That's a concrete value creation lever that pure financial VCs can't offer.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Let's also prepare for the question about Sentra. The LPs who track enterprise AI will want to understand our competitive analysis and why we think Sentra wins against well-funded players like Prism.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "I can put together a one-page competitive landscape slide. The key differentiator is the interaction-first approach versus document-first. And the co-investment interest from Sakura and Pacific Mind is strong social proof. When other sophisticated CVCs want in, that validates the thesis.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Good point. Include the co-investment details. LPs love seeing that kind of market validation. What about the portfolio company updates — any concerns we need to get ahead of?",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "SyntheticDB is the standout — $1.8M ARR and planning a Series B. NeuraVault is on track. The only one I'd flag is OmniSense — they missed their Q1 revenue target by about 15%. The team says it's a timing issue with enterprise procurement cycles, not a demand problem.",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Let's be transparent about OmniSense but frame it constructively. Enterprise procurement delays are normal. As long as the pipeline is healthy, the revenue will follow. Include their pipeline numbers alongside the miss.",
+      },
+      {
+        speaker: "Jake Brennan",
+        text: "Will do. I'll have the portfolio KPI dashboard and the climate tech talking points ready by Wednesday. You want to do a quick review before the dry run with Richard?",
+      },
+      {
+        speaker: "Tom Brennan",
+        text: "Yes, let's sync Wednesday afternoon. And Jake — make sure the deck tells a cohesive story. Fund I is performing, the team is scaling, the thesis is working, and the climate tech expansion is a natural evolution of our strategy, not a pivot. That's the message.",
+      },
+    ],
   },
   {
     id: "mcgi-mtg-12",
@@ -1537,9 +1769,129 @@ export const meetings: Meeting[] = [
     tags: ["due-diligence", "climate-tech"],
     platform: "Google Meet",
     privacy: "private",
-    summary: "",
-    keyPoints: [],
-    actionItems: [],
-    transcript: [],
+    summary:
+      "Follow-up on GreenCore's technical due diligence after the Austin pilot site visit. Richard and Sean reviewed the Ridgefield lab report findings, discussed membrane degradation data from the extended testing cycle, and evaluated the commercial deployment timeline for AG's Latin American cement operations. The site visit confirmed the manufacturing process is further along than expected, but flagged a supply chain dependency on a single membrane polymer supplier that needs risk mitigation.",
+    keyPoints: [
+      {
+        title: "Ridgefield lab report confirms efficiency claims",
+        description:
+          "Independent validation shows 41.3% efficiency improvement over solid sorbent competitors, slightly above GreenCore's stated 40%. CO2 selectivity measured at 93.1% at ambient temperature, exceeding the 92% claim in the original deck.",
+        participants: ["Richard Caldwell", "Sean Mercer"],
+      },
+      {
+        title: "Membrane degradation better than projected",
+        description:
+          "Extended testing through four full cycles showed 1.6% selectivity loss per month after month 12, better than the 2% estimate. Effective lifespan closer to 20 months under normal operating conditions.",
+        participants: ["Sean Mercer", "Richard Caldwell"],
+      },
+      {
+        title: "Single-supplier risk on polymer membranes",
+        description:
+          "GreenCore sources their proprietary polymer from a single supplier in Germany. No qualified second source exists today. This represents a supply chain risk that could delay scale-up if the supplier faces disruptions.",
+        participants: ["Richard Caldwell", "Sean Mercer"],
+      },
+      {
+        title: "AG Latin America deployment timeline scoped",
+        description:
+          "Greg Lawton's team identified three cement facilities in Brazil and Mexico as initial deployment candidates. Pilot at the Monterrey facility could begin within 90 days of investment close. Full deployment across three sites estimated at 18 months.",
+        participants: ["Sean Mercer", "Richard Caldwell"],
+      },
+    ],
+    actionItems: [
+      {
+        id: "mcgi-ai-28",
+        title: "Request GreenCore second-source strategy for polymer membranes",
+        description:
+          "Ask Nora Blackwell for their plan to qualify a second polymer supplier and timeline to reduce single-supplier dependency",
+        assignee: "Richard Caldwell",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-29",
+        title: "Model GreenCore deployment economics for AG Latin America",
+        description:
+          "Build financial model for three-facility deployment in Brazil and Mexico, including installation costs, carbon credit offsets, and operational savings versus current AG capture technology",
+        assignee: "Sean Mercer",
+        checked: false,
+      },
+      {
+        id: "mcgi-ai-30",
+        title: "Add supply chain risk section to GreenCore DD summary",
+        description:
+          "Update Jake's technical DD summary with the single-supplier finding and recommended mitigation terms for the investment agreement",
+        assignee: "Richard Caldwell",
+        checked: false,
+      },
+    ],
+    transcript: [
+      {
+        speaker: "Richard Caldwell",
+        text: "Sean, I just finished going through the full Ridgefield lab report from the site visit. I want to walk through the key findings and discuss how this changes our DD summary.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "I reviewed it this morning. The headline numbers are actually better than what GreenCore presented. The efficiency improvement came in at 41.3%, and CO2 selectivity was 93.1% at ambient temperature. Both slightly above their claims. That's unusual — most companies overstate in the pitch.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Agreed. That builds confidence in the team's integrity. What about the membrane degradation data? That was my biggest concern going into the site visit.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Better than expected. The extended testing — four full degradation cycles — showed 1.6% selectivity loss per month after month 12, compared to the 2% they estimated. That effectively extends the useful lifespan from 18 months to closer to 20. At scale, that's a meaningful reduction in replacement costs.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Good. Now here's the issue I want to flag. During the site visit, I asked Nora about their membrane manufacturing process. Turns out they're sourcing the proprietary polymer from a single supplier in Düsseldorf. No qualified second source.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "That's a real risk. If that supplier has a disruption — fire, regulatory issue, capacity constraints — GreenCore's entire production line stops. Have they talked about qualifying a second source?",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Nora said they've identified two potential alternative suppliers in Japan and South Korea, but neither has been qualified yet. The qualification process takes about six months. I think we need to include this as a condition in our investment terms — a requirement to have a qualified second source within 12 months of close.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Absolutely. We should also hold back a portion of the tranche tied to that milestone. Something like 15% of the total investment released upon second-source qualification. That gives them the right incentive.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "I like that structure. Let's move to the deployment discussion. I spoke with Greg Lawton after the site visit and his team has already identified three AG cement facilities for the initial rollout.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Where are the facilities? And what's the timeline looking like?",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Two in Brazil — one in São Paulo state and one in Minas Gerais — and one in Monterrey, Mexico. Greg wants to start the pilot at Monterrey because it's closest to GreenCore's Austin facility, which simplifies logistics and on-site support during the initial deployment.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "Makes sense. What are the economics looking like for a three-facility rollout?",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Back-of-the-envelope — each facility captures roughly 15,000 tons of CO2 annually. At $78 per ton versus AG's current $115 per ton, that's $37 in savings per ton. Across three facilities, that's about $1.7M in annual savings, plus the carbon credit value which is trending above $90 per ton in the EU market.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "The carbon credit upside alone could justify the deployment cost. I'll build a proper financial model for the three-site deployment this week. I want to include sensitivity analysis on carbon credit pricing since that market has been volatile.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Good. Also factor in the installation timeline — Greg estimated 90 days from investment close to pilot start at Monterrey, then 18 months for full deployment across all three sites. I want the model to show cumulative savings and payback period.",
+      },
+      {
+        speaker: "Sean Mercer",
+        text: "One more thing — should we flag the supply chain risk to Jake for the DD summary? He's presenting to the IC next week and it should be in there.",
+      },
+      {
+        speaker: "Richard Caldwell",
+        text: "Yes, I'll update Jake's summary with the single-supplier finding and our recommended mitigation terms. Let's make sure the IC has the full picture. The investment thesis is strong, but we need to go in with eyes open on the execution risks.",
+      },
+    ],
   },
 ];
