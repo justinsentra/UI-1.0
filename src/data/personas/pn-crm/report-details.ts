@@ -19,7 +19,7 @@ export const reportDetails: Record<string, ReportDetail> = {
         speaker: "Blake Carrington",
         quote:
           "Just saw Molder's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
-        meetingTitle: "#pn-crm-product — ChatWorks",
+        meetingTitle: "#pn-crm-product — Teams",
         meetingDate: "Mar 12, 2026 · 8:45 AM",
         sourceType: "slack",
       },
@@ -27,7 +27,7 @@ export const reportDetails: Record<string, ReportDetail> = {
         speaker: "Simone Hartley",
         quote:
           "Tribe just closed their seed extension. $6M from Apex Ventures. Good signal for the category — makes our fundraising story stronger if investors are deploying into personal CRM tools.",
-        meetingTitle: "#pn-crm-general — ChatWorks",
+        meetingTitle: "#pn-crm-general — Teams",
         meetingDate: "Mar 12, 2026 · 10:22 AM",
         sourceType: "slack",
       },

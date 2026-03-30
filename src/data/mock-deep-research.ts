@@ -131,7 +131,7 @@ export const SUGGESTIONS: Record<string, SuggestionItem[]> = {
 
 export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
   {
-    label: "Pulling Anthropic_Claude_Enterprise_Eval.xlsx from Google Drive...",
+    label: "Pulling Anthropic_Claude_Enterprise_Eval.xlsx from SharePoint...",
     duration: 3000,
   },
   {
@@ -140,7 +140,7 @@ export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
     duration: 3500,
   },
   {
-    label: "Reading OpenAI_GPT5_Technical_Assessment.pdf from Google Drive...",
+    label: "Reading OpenAI_GPT5_Technical_Assessment.pdf from SharePoint...",
     duration: 3200,
   },
   {
@@ -150,7 +150,7 @@ export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
   },
   {
     label:
-      "Scanning AI_Vendor_Security_Audit_Results.xlsx from Google Drive...",
+      "Scanning AI_Vendor_Security_Audit_Results.xlsx from SharePoint...",
     duration: 2800,
   },
   {
@@ -167,7 +167,7 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
       content: `**AI Vendor Evaluation Matrix — Q1 2026**\n\nThree vendors were evaluated across six dimensions: model performance, security & compliance, enterprise support, pricing, integration capabilities, and financial services domain expertise. Evaluation based on 14 technical assessments, 8 vendor demo sessions, and 3 internal pilot programs run across IB Coverage, TMT, and Technology & Innovation teams.`,
       sources: [
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "AI_Vendor_Evaluation_Framework.xlsx",
         },
         { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
@@ -195,12 +195,12 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
       content: `**Anthropic Claude (Enterprise Tier)**\n\n- **Model Performance:** Highest accuracy on regulatory document comprehension (94.2% vs 89.1% GPT-5, 87.3% Gemini). Superior citation accuracy — critical for compliance use cases. Strongest performance on multi-document synthesis across earnings transcripts and SEC filings.\n- **Security & Compliance:** SOC 2 Type II certified. Supports VPC deployment and data residency requirements. No training on customer data. Passed JPM InfoSec penetration testing.\n- **Enterprise Support:** Dedicated account team, 4-hour SLA for critical issues. Custom fine-tuning available for financial services terminology.\n- **Pricing:** $18/seat/month (Enterprise tier, 500+ seats). Volume discount to $14/seat at 2,000+ seats. Custom model fine-tuning: $150K one-time + $25K/quarter.\n- **Integration:** REST API, Python/TypeScript SDKs. Supports SSO/SAML, audit logging, admin controls. Webhook support for event-driven workflows.\n- **FS Domain Expertise:** Purpose-built financial services safety layers. Strong on regulatory language, deal terminology, and compliance frameworks.`,
       sources: [
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "Anthropic_Claude_Enterprise_Eval.xlsx",
         },
         { type: "zoom", label: "Anthropic Enterprise Demo (Mar 4)" },
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "Anthropic_Security_Audit_Results.pdf",
         },
       ],
@@ -210,7 +210,7 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
       content: `**OpenAI GPT-5 (Enterprise Tier)**\n\n- **Model Performance:** Strong general reasoning and code generation. Slightly lower accuracy on financial document analysis (89.1%). Best-in-class on creative content generation and translation tasks. Faster inference speed (avg 1.2s vs 1.8s Claude).\n- **Security & Compliance:** SOC 2 Type II certified. Azure-hosted option for data residency. Opt-out of training on customer data available. Passed InfoSec review with 2 minor findings (remediated).\n- **Enterprise Support:** Large customer success team. 8-hour SLA for critical issues. Broad ecosystem of third-party integrations and tools.\n- **Pricing:** $22/seat/month (Enterprise tier, 500+ seats). Volume discount to $18/seat at 2,000+ seats. Fine-tuning: $200K one-time + $35K/quarter.\n- **Integration:** REST API, Python/Node SDKs, Azure OpenAI Service. SSO/SAML, audit logs. Extensive plugin marketplace.\n- **FS Domain Expertise:** Broad but not deep. General-purpose model with financial services fine-tuning available at additional cost. Less precise on regulatory nuance.`,
       sources: [
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "OpenAI_GPT5_Technical_Assessment.pdf",
         },
         { type: "zoom", label: "OpenAI Enterprise Review (Mar 1)" },
@@ -221,7 +221,7 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
       content: `**Google Gemini Ultra (Enterprise Tier)**\n\n- **Model Performance:** Strongest multimodal capabilities (document + image analysis). Good on structured data extraction from financial statements. Lower accuracy on nuanced regulatory language (87.3%). Best for data-heavy analytical workflows.\n- **Security & Compliance:** SOC 2 Type II certified. Google Cloud deployment with granular data controls. EU data residency available. Passed InfoSec review.\n- **Enterprise Support:** Google Cloud enterprise support integration. 4-hour SLA through Cloud Premier. Vertex AI platform for model management.\n- **Pricing:** $20/seat/month (Enterprise tier, 500+ seats). Significant discount when bundled with existing Google Cloud spend — effective rate ~$12/seat at current GCP commitment. Fine-tuning: $125K one-time + $20K/quarter.\n- **Integration:** Vertex AI APIs, Python/Java/Go SDKs. Deep integration with Google Workspace. SSO via Google Cloud Identity.\n- **FS Domain Expertise:** Moderate. Strong on quantitative analysis and data extraction. Weaker on qualitative regulatory interpretation and deal-specific language.`,
       sources: [
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "Google_Gemini_Pilot_Results.xlsx",
         },
         { type: "zoom", label: "Google Gemini Pilot Review (Mar 6)" },
@@ -233,7 +233,7 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
       sources: [
         { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
         {
-          type: "google-drive",
+          type: "sharepoint",
           label: "AI_Vendor_Scoring_Matrix_Final.xlsx",
         },
       ],
@@ -259,23 +259,23 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
 /* ── Source refs for document flows ── */
 
 export const MODEL_SOURCES: SourceRef[] = [
-  { type: "google-drive", label: "Meridian_Corp_Q4_Financials.xlsx" },
+  { type: "sharepoint", label: "Meridian_Corp_Q4_Financials.xlsx" },
   { type: "zoom", label: "Deal Review — Meridian Corp (Mar 5)" },
-  { type: "google-drive", label: "Meridian_Investment_Memo_v3.docx" },
+  { type: "sharepoint", label: "Meridian_Investment_Memo_v3.docx" },
   { type: "zoom", label: "Meridian Corp Mgmt Presentation (Feb 28)" },
 ];
 
 export const WEEKLY_SOURCES: SourceRef[] = [
   { type: "zoom", label: "IT Infrastructure Call — Sentra Onboarding (Mar 7)" },
-  { type: "google-drive", label: "Sentra_x_JPM_Pilot_Kickoff_Notes.docx" },
-  { type: "google-drive", label: "Weekly_Adoption_Metrics_W10.xlsx" },
+  { type: "sharepoint", label: "Sentra_x_JPM_Pilot_Kickoff_Notes.docx" },
+  { type: "sharepoint", label: "Weekly_Adoption_Metrics_W10.xlsx" },
   { type: "zoom", label: "Sentra Quarterly Business Review (Mar 3)" },
 ];
 
 export const EM_PRD_SOURCES: SourceRef[] = [
-  { type: "google-meet", label: "Engineering Sprint Retro (Mar 3)" },
-  { type: "google-meet", label: "Pavel / Leo 1:1 (Mar 1)" },
-  { type: "slack", label: "#engineering" },
+  { type: "teams", label: "Engineering Sprint Retro (Mar 3)" },
+  { type: "teams", label: "Pavel / Leo 1:1 (Mar 1)" },
+  { type: "teams", label: "#engineering" },
   { type: "linear", label: "AUTH-142: Refactor auth service" },
 ];
 
@@ -283,15 +283,15 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Parsing 8 meeting transcripts from Google Meet...",
+        label: "Parsing 8 meeting transcripts from Microsoft Teams...",
         duration: 3200,
       },
       {
-        label: "Reading 5 ChatWorks threads and 3 Dokra pages...",
+        label: "Reading 5 Teams threads and 3 Notion pages...",
         duration: 3400,
       },
       {
-        label: "Scanning CRM pipeline and Google Calendar events...",
+        label: "Scanning CRM pipeline and Outlook Calendar events...",
         duration: 3400,
       },
     ],
@@ -300,9 +300,9 @@ export const MOCK_RESPONSES: MockResponse[] = [
         id: "p0-0",
         content: `**Pipeline Overview (Q1 2026)**\n\nTotal pipeline value is **$4.2M**, up 18% vs last quarter. There are 12 deals currently in negotiation with an average deal size of **$87K**. The weighted pipeline sits at $2.1M based on current stage probabilities.\n\nNew pipeline generation this week was strong with 4 new opportunities sourced — 2 from inbound (website demo requests), 1 from a partner referral via Campfire, and 1 from the LinkedIn campaign that launched last Monday. The partner-sourced deal (Meridian Corp) came in at $120K ARR, making it the largest single opportunity added this quarter.\n\nStage movement: 3 deals advanced from Discovery to Evaluation, and the Atlas Group deal moved to Contract Sent. Average days-in-stage for Evaluation dropped from 18 to 14 days, suggesting the new demo playbook is improving conversion velocity.`,
         sources: [
-          { type: "google-meet", label: "GTM Strategy Sync" },
-          { type: "slack", label: "#sales-pipeline" },
-          { type: "google-calendar", label: "Pipeline Review Meeting" },
+          { type: "teams", label: "GTM Strategy Sync" },
+          { type: "teams", label: "#sales-pipeline" },
+          { type: "outlook", label: "Pipeline Review Meeting" },
           { type: "notion", label: "Q1 Deal Tracker" },
         ],
         chart: {
@@ -326,10 +326,10 @@ export const MOCK_RESPONSES: MockResponse[] = [
         id: "p0-1",
         content: `**Top Insights**\n\nEnterprise segment grew 23% — driven by 3 new logos from the Q2 launch campaign. The largest new logo, Meridian Corp, was sourced through the Campfire partner referral and is evaluating a $120K ARR package with custom SLA requirements.\n\nSMB conversion rate dropped 4pts, likely tied to pricing feedback surfaced in 3 separate discovery calls this week. Customers are comparing against competitors offering usage-based pricing. Highest win rate remains in the Financial Services vertical at 64%, with Healthcare close behind at 58%.\n\nNotably, deals sourced from content marketing (blog + webinar) have a 40% higher close rate than cold outbound, though volume is 3x lower. Recommend increasing content investment for Q2 to capitalize on this signal.`,
         sources: [
-          { type: "google-meet", label: "Al <> Leo 1:1" },
-          { type: "slack", label: "#enterprise-deals" },
+          { type: "teams", label: "Al <> Leo 1:1" },
+          { type: "teams", label: "#enterprise-deals" },
           { type: "outlook", label: "Q4 Pipeline Report" },
-          { type: "google-drive", label: "Q1 Revenue Analysis" },
+          { type: "sharepoint", label: "Q1 Revenue Analysis" },
         ],
         chart: {
           type: "bar",
@@ -350,11 +350,11 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Reviewing 7 call transcripts from Zoom and Google Meet...",
+        label: "Reviewing 7 call transcripts from Zoom and Microsoft Teams...",
         duration: 3500,
       },
       {
-        label: "Reading 3 ChatWorks channels and 2 Dokra docs...",
+        label: "Reading 3 Teams channels and 2 Notion docs...",
         duration: 3500,
       },
       { label: "Checking 2 follow-up emails in Outlook...", duration: 3000 },
@@ -364,9 +364,9 @@ export const MOCK_RESPONSES: MockResponse[] = [
         id: "p1-0",
         content: `**Common Themes (7 calls reviewed)**\n\n5 of 7 customers mentioned integration complexity as a top concern — specifically around webhook reliability and API rate limits. The new reporting dashboard received positive sentiment in 4 calls, with users highlighting the real-time data refresh and customizable views.\n\n3 enterprise prospects explicitly asked about SSO/SAML support timeline, making it the most-requested security feature. Two of these prospects (Vantage and Relay) have deal values exceeding $90K and have indicated SSO is a hard requirement for procurement approval.\n\nInterestingly, 4 of 7 customers mentioned they discovered Sentra through word-of-mouth or peer recommendations, suggesting strong organic growth potential. Two customers specifically mentioned seeing the product demoed at a peer's company and wanting to evaluate it for their own team.`,
         sources: [
-          { type: "google-meet", label: "Vantage Discovery Call" },
+          { type: "teams", label: "Vantage Discovery Call" },
           { type: "zoom", label: "Nexus Demo" },
-          { type: "slack", label: "#customer-feedback" },
+          { type: "teams", label: "#customer-feedback" },
           { type: "notion", label: "Customer Interview Notes" },
         ],
       },
@@ -375,7 +375,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
         content: `**Notable Calls**\n\n**Vantage (Casey Morgan)** — Strong interest in the API tier; asked for custom SLA with 99.95% uptime guarantee. Their team of 45 needs admin controls and audit logging. Casey wants a follow-up demo with their CTO next Tuesday.\n\n**Nexus** — Evaluating against Voiceflow and Buzzbot; price-sensitive but impressed by the depth of meeting intelligence. They're running a 2-week trial with 8 team members. Decision expected by March 15.\n\n**Flux Labs** — Ready to expand from 12 to 50 seats if mobile app ships by Q2. Their distributed team relies heavily on async communication and needs mobile access for meeting summaries on the go. Budget already approved internally.`,
         sources: [
           { type: "zoom", label: "Vantage Follow-up" },
-          { type: "google-meet", label: "Flux Labs Check-in" },
+          { type: "teams", label: "Flux Labs Check-in" },
           { type: "outlook", label: "Nexus Pricing Thread" },
           { type: "linear", label: "MOBILE-34: Mobile app roadmap" },
         ],
@@ -385,14 +385,14 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Parsing 5 standup transcripts from Google Meet...",
+        label: "Parsing 5 standup transcripts from Microsoft Teams...",
         duration: 3200,
       },
       {
-        label: "Scanning 8 Trackline tickets and 4 GitHub PRs...",
+        label: "Scanning 8 Linear tickets and 4 GitHub PRs...",
         duration: 3400,
       },
-      { label: "Reading 4 ChatWorks threads and Asana board...", duration: 3400 },
+      { label: "Reading 4 Teams threads and Asana board...", duration: 3400 },
     ],
     paragraphs: [
       {
@@ -400,17 +400,17 @@ export const MOCK_RESPONSES: MockResponse[] = [
         content: `**Engineering Blockers**\n\nAuth service refactor (AUTH-142) is blocking 3 downstream features: SSO support, team permissions, and audit logging. Jordan estimates 4 more days of work, but the scope expanded after discovering legacy session handling that needs migration. Mobile push notification reliability was reported in 2 customer calls this week — the root cause is a race condition in the notification queue.\n\nThe database migration for the new analytics schema is 80% complete but hit an issue with backward compatibility on the reporting API. Pavel proposed a dual-write strategy to avoid downtime, adding approximately 2 days to the timeline.\n\nOn the positive side, the CI/CD pipeline improvements shipped this week, reducing build times from 12 minutes to 4 minutes. This is already improving developer velocity across the team.`,
         sources: [
           { type: "linear", label: "AUTH-142: Refactor auth service" },
-          { type: "slack", label: "#engineering" },
+          { type: "teams", label: "#engineering" },
           { type: "github", label: "PR #387: Push notification fix" },
           { type: "asana", label: "Sprint 14 Board" },
         ],
       },
       {
         id: "p2-1",
-        content: `**Sales & Product Blockers**\n\nLack of SOC 2 Type II certification is blocking 4 enterprise deals worth a combined $380K ARR. The audit is scheduled to begin March 10 with completion targeted for end of April. In the meantime, Raj is drafting a security whitepaper that may help unblock 2 of the 4 deals.\n\nNo self-serve onboarding flow is slowing SMB pipeline velocity — current median time-to-first-value is 6 days, and the target is under 24 hours. The new onboarding wizard designs are in Dokra and need engineering sign-off by Friday.\n\nFigma designs for the v2 dashboard are still in review (due: this Friday). The design team flagged that the data visualization components need accessibility improvements before handoff to engineering.`,
+        content: `**Sales & Product Blockers**\n\nLack of SOC 2 Type II certification is blocking 4 enterprise deals worth a combined $380K ARR. The audit is scheduled to begin March 10 with completion targeted for end of April. In the meantime, Raj is drafting a security whitepaper that may help unblock 2 of the 4 deals.\n\nNo self-serve onboarding flow is slowing SMB pipeline velocity — current median time-to-first-value is 6 days, and the target is under 24 hours. The new onboarding wizard designs are in Notion and need engineering sign-off by Friday.\n\nFigma designs for the v2 dashboard are still in review (due: this Friday). The design team flagged that the data visualization components need accessibility improvements before handoff to engineering.`,
         sources: [
-          { type: "google-meet", label: "GTM Strategy Call" },
-          { type: "slack", label: "#product" },
+          { type: "teams", label: "GTM Strategy Call" },
+          { type: "teams", label: "#product" },
           { type: "linear", label: "PROD-89: Self-serve onboarding" },
           { type: "notion", label: "Onboarding Wizard Spec" },
         ],
@@ -420,15 +420,15 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Searching 12 meeting notes across Google Meet and Zoom...",
+        label: "Searching 12 meeting notes across Microsoft Teams and Zoom...",
         duration: 3500,
       },
       {
-        label: "Reading 6 ChatWorks channels and Google Drive docs...",
+        label: "Reading 6 Teams channels and SharePoint docs...",
         duration: 3300,
       },
       {
-        label: "Scanning recent commits and Trackline updates...",
+        label: "Scanning recent commits and Linear updates...",
         duration: 3200,
       },
     ],
@@ -437,10 +437,10 @@ export const MOCK_RESPONSES: MockResponse[] = [
         id: "p3-0",
         content: `**Recent Updates**\n\nThe new analytics dashboard shipped on Monday and is seeing strong adoption — 78% of active users accessed it in the first 48 hours. Early feedback highlights the real-time data refresh as the standout feature, with 3 customers already asking about API access to the analytics data.\n\nMobile app beta went out to 25 testers on Wednesday. Initial feedback is overwhelmingly positive — testers rated the meeting summary experience 4.6/5 and the push notification reliability 4.2/5. The main request is offline access for meeting transcripts, which is already on the Q2 roadmap.\n\nThe TechConnect launch prep is 85% complete. Press kit is finalized, demo booth is confirmed at TechConnect Create, and the pre-launch teaser campaign is scheduled for March 10. 12 publications and 4 podcast contacts have been briefed.`,
         sources: [
-          { type: "slack", label: "#launches" },
+          { type: "teams", label: "#launches" },
           { type: "github", label: "v2.4.0 Release" },
-          { type: "google-meet", label: "Weekly All-Hands" },
-          { type: "google-drive", label: "TechConnect Press Kit" },
+          { type: "teams", label: "Weekly All-Hands" },
+          { type: "sharepoint", label: "TechConnect Press Kit" },
         ],
       },
       {
@@ -448,9 +448,9 @@ export const MOCK_RESPONSES: MockResponse[] = [
         content: `**Team Highlights**\n\nDesign team completed the onboarding redesign ahead of schedule — the new flow reduces steps from 8 to 4 and includes interactive tooltips. User testing showed a 35% improvement in completion rate compared to the current flow.\n\nBackend team resolved the N+1 query issue (PERF-201) that was causing 3-second page loads on the dashboard — now under 200ms. This fix also reduced database CPU utilization by 40%, which should delay the need for a database upgrade by several months.\n\nTwo new enterprise customers signed this week: Meridian Corp ($120K ARR, 45 seats) and Atlas Group ($85K ARR, 30 seats). Both cited meeting intelligence depth and the organizational memory features as key differentiators against competitors.`,
         sources: [
           { type: "linear", label: "PERF-201: N+1 query fix" },
-          { type: "slack", label: "#wins" },
+          { type: "teams", label: "#wins" },
           { type: "outlook", label: "Atlas Group Contract" },
-          { type: "google-calendar", label: "Onboarding Kickoffs" },
+          { type: "outlook", label: "Onboarding Kickoffs" },
         ],
       },
     ],
@@ -475,7 +475,7 @@ export const EM_SCAN_STEPS: PrdScanStep[] = [
     duration: 3000,
   },
   {
-    label: "Reading 12 Trackline tickets from Sprint 14 and backlog...",
+    label: "Reading 12 Linear tickets from Sprint 14 and backlog...",
     duration: 3500,
   },
   {
@@ -483,7 +483,7 @@ export const EM_SCAN_STEPS: PrdScanStep[] = [
     duration: 4000,
   },
   {
-    label: "Analyzing Dokra engineering specs and decision logs...",
+    label: "Analyzing Notion engineering specs and decision logs...",
     duration: 3500,
   },
 ];
@@ -492,7 +492,7 @@ export const EM_CONTENT = `# Product Requirements Document: Auth Service Refacto
 
 ## Overview
 
-Based on discussions from the Engineering Sprint Retro (Mar 3), Pavel/Leo 1:1 (Mar 1), and 12 related Trackline tickets, this PRD outlines the requirements for refactoring the authentication service to support enterprise SSO, team permissions, and audit logging.
+Based on discussions from the Engineering Sprint Retro (Mar 3), Pavel/Leo 1:1 (Mar 1), and 12 related Linear tickets, this PRD outlines the requirements for refactoring the authentication service to support enterprise SSO, team permissions, and audit logging.
 
 ## Problem Statement
 
@@ -549,7 +549,7 @@ RBAC middleware layer with role inheritance. Audit log writes to append-only \`a
 
 ---
 
-*Sources: Engineering Sprint Retro, Pavel/Leo 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering ChatWorks, Dokra Engineering Specs*`;
+*Sources: Engineering Sprint Retro, Pavel/Leo 1:1, LINEAR AUTH-142, LINEAR PROD-89, GitHub PR #387, #engineering Teams, Notion Engineering Specs*`;
 
 export const EM_BUILD_STEPS: PrdScanStep[] = [
   {
@@ -672,7 +672,7 @@ export const PRD_CONTENT = `# 3-Statement Financial Model: Meridian Corp
 
 ---
 
-*Sources: Meridian Corp deal memo, GTM Strategy Sync, Vantage Discovery Call notes, Q1 Deal Tracker (Dokra), #enterprise-deals ChatWorks, Google Drive financial disclosures*`;
+*Sources: Meridian Corp deal memo, GTM Strategy Sync, Vantage Discovery Call notes, Q1 Deal Tracker (Notion), #enterprise-deals Teams, SharePoint financial disclosures*`;
 
 export const PRD_BUILD_STEPS: PrdScanStep[] = [
   {
@@ -714,7 +714,7 @@ export const WEEKLY_SCAN_STEPS: PrdScanStep[] = [
     duration: 3200,
   },
   {
-    label: "Scanning #sentra-adoption ChatWorks channel (47 messages this week)...",
+    label: "Scanning #sentra-adoption Teams channel (47 messages this week)...",
     duration: 3500,
   },
   {
@@ -731,7 +731,7 @@ export const WEEKLY_SCAN_STEPS: PrdScanStep[] = [
     duration: 2500,
   },
   {
-    label: "Scanning #it-ops and #ai-tools-evaluation ChatWorks channels...",
+    label: "Scanning #it-ops and #ai-tools-evaluation Teams channels...",
     duration: 3000,
   },
 ];
@@ -816,7 +816,7 @@ Sentra pilot adoption continues to accelerate across the Technology & Innovation
 
 ---
 
-*Sources: Sentra x JPM Pilot Sync (Mar 5), IT Infrastructure Call (Mar 7), Sentra QBR (Mar 3), #sentra-adoption ChatWorks, #it-ops ChatWorks, Weekly_Adoption_Metrics_W10.xlsx, Sentra_Pricing_Structure_2026.xlsx*`;
+*Sources: Sentra x JPM Pilot Sync (Mar 5), IT Infrastructure Call (Mar 7), Sentra QBR (Mar 3), #sentra-adoption Teams, #it-ops Teams, Weekly_Adoption_Metrics_W10.xlsx, Sentra_Pricing_Structure_2026.xlsx*`;
 
 export const WEEKLY_BUILD_STEPS: PrdScanStep[] = [
   {

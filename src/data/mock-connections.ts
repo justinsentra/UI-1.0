@@ -276,7 +276,7 @@ export const people = [
 export const companies = [
   {
     id: "mcgi",
-    name: "AGV (Mitsubishi)",
+    name: "AGV (Greystone)",
     domain: "greystone.com",
     contacts: 2,
     lastInteraction: "2026-03-11",
@@ -367,22 +367,22 @@ export const companies = [
   },
   {
     id: "stripe",
-    name: "Payvine",
-    domain: "payvine.com",
+    name: "Stripe",
+    domain: "stripe.com",
     contacts: 1,
     lastInteraction: "2026-02-23",
   },
   {
     id: "notion",
-    name: "Dokra",
-    domain: "dokra.so",
+    name: "Notion",
+    domain: "notion.so",
     contacts: 1,
     lastInteraction: "2026-02-24",
   },
   {
     id: "linear",
-    name: "Trackline",
-    domain: "trackline.app",
+    name: "Linear",
+    domain: "linear.app",
     contacts: 1,
     lastInteraction: "2026-02-22",
   },

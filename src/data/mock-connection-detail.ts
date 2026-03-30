@@ -466,7 +466,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     company: "Sentra",
     tags: ["Sentra", "Operations"],
     relationshipStatus:
-      "Your right hand for operations and scheduling. Ingrid keeps things moving when you\u2019re heads-down. She\u2019s proactive about flagging calendar conflicts and anticipates what you\u2019ll need before you ask. You two have a shorthand \u2014 a ChatWorks emoji reaction is often enough to greenlight something.",
+      "Your right hand for operations and scheduling. Ingrid keeps things moving when you\u2019re heads-down. She\u2019s proactive about flagging calendar conflicts and anticipates what you\u2019ll need before you ask. You two have a shorthand \u2014 a Teams emoji reaction is often enough to greenlight something.",
     suggestions: [
       "What's Ingrid working on?",
       "Recent action items for Ingrid?",
