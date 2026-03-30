@@ -89,7 +89,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "Microsoft Teams",
     description: "Capture meetings and messages from Teams.",
     LogoIcon: TeamsIcon,
-    connected: false,
+    connected: true,
     category: "Communication",
     overview:
       "Connect Microsoft Teams to capture meeting transcripts, surface important messages, and interact with Sentra from within your Teams workspace.",
@@ -169,7 +169,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "ServiceNow",
     description: "Sync tickets, incidents, and workflows from ServiceNow.",
     logo: serviceNowLogo,
-    connected: false,
+    connected: true,
     category: "Operations",
     overview:
       "Connect ServiceNow to bring incidents, tickets, requests, and workflow status into Sentra so teams can coordinate faster with full service context.",
@@ -179,7 +179,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "Oracle Financials",
     description: "Access financial records, reports, and approvals.",
     logo: oracleFinancialsLogo,
-    connected: false,
+    connected: true,
     category: "Finance",
     overview:
       "Connect Oracle Financials to surface financial records, operational reports, and approval context in Sentra without switching systems.",
@@ -189,7 +189,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "Monday.com",
     description: "Sync boards, items, and project timelines automatically.",
     logo: mondayComLogo,
-    connected: false,
+    connected: true,
     category: "Project Management",
     overview:
       "Connect Monday.com to sync boards, project updates, owners, and timelines so Sentra can track execution work across teams.",

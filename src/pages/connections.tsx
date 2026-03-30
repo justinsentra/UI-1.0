@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown, X } from "lucide-react";
 import { cn } from "@lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { formatInteractionDate } from "@/lib/date-utils";
@@ -9,16 +9,28 @@ import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaConnections } from "@/data/content-resolver";
 import PageShell from "@/components/ui/page-shell";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
 
+const TAG_FILTERS = [
+  "Internal",
+  "External",
+  "Client",
+  "Vendor",
+  "Engineering",
+  "Leadership",
+  "Active Deal",
+] as const;
+
 type SortDirection = "desc" | "asc";
 
 const ConnectionsPage = () => {
   const [search, setSearch] = useState("");
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const [peopleSortDir, setPeopleSortDir] = useState<SortDirection>("desc");
   const [companiesSortDir, setCompaniesSortDir] =
     useState<SortDirection>("desc");
@@ -28,18 +40,34 @@ const ConnectionsPage = () => {
     [persona],
   );
 
+  const toggleTag = (tag: string) => {
+    setSelectedTags((previous) => {
+      const next = new Set(previous);
+      if (next.has(tag)) {
+        next.delete(tag);
+      } else {
+        next.add(tag);
+      }
+      return next;
+    });
+  };
+
   const filteredPeople = useMemo(() => {
-    const filtered = people.filter(
-      (p) =>
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        p.email.toLowerCase().includes(search.toLowerCase()),
-    );
+    const filtered = people.filter((person) => {
+      const matchesSearch =
+        person.name.toLowerCase().includes(search.toLowerCase()) ||
+        person.email.toLowerCase().includes(search.toLowerCase());
+      const matchesTags =
+        selectedTags.size === 0 ||
+        [...selectedTags].every((tag) => person.tags?.includes(tag));
+      return matchesSearch && matchesTags;
+    });
     return sortByDate(filtered, peopleSortDir);
-  }, [search, peopleSortDir, people]);
+  }, [search, selectedTags, peopleSortDir, people]);
 
   const filteredCompanies = useMemo(() => {
-    const filtered = companies.filter((c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()),
+    const filtered = companies.filter((company) =>
+      company.name.toLowerCase().includes(search.toLowerCase()),
     );
     return sortByDate(filtered, companiesSortDir);
   }, [search, companiesSortDir, companies]);
@@ -75,6 +103,38 @@ const ConnectionsPage = () => {
           </InputGroup>
         </div>
 
+        {/* Tag filters */}
+        <div className="flex flex-wrap items-center gap-1.5 mb-5">
+          {TAG_FILTERS.map((tag) => {
+            const isActive = selectedTags.has(tag);
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium border transition-colors cursor-pointer",
+                  isActive
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-muted-foreground border-border hover:text-foreground hover:border-foreground/50",
+                )}
+              >
+                {tag}
+                {isActive && <X size={10} />}
+              </button>
+            );
+          })}
+          {selectedTags.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setSelectedTags(new Set())}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none p-0 ml-1"
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+
         <TabsContent value="people">
           <div>
             <div className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-2 text-xs text-muted-foreground font-medium">
@@ -98,28 +158,37 @@ const ConnectionsPage = () => {
               <span className="text-right">Interactions</span>
             </div>
             <div className="divide-y divide-border">
-              {filteredPeople.map((p) => (
+              {filteredPeople.map((person) => (
                 <Link
-                  key={p.id}
-                  to={`/connection-detail?id=${p.id}`}
+                  key={person.id}
+                  to={`/connection-detail?id=${person.id}`}
                   className="grid grid-cols-[1fr_120px_80px] gap-x-6 px-4 py-3.5 items-center hover:bg-accent transition-colors no-underline"
                 >
                   <div className="flex items-center gap-3">
-                    <UserAvatar name={p.name} />
-                    <div className="flex flex-col">
+                    <UserAvatar name={person.name} />
+                    <div className="flex flex-col gap-1">
                       <span className="text-sm text-foreground">
-                        {p.name}
+                        {person.name}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        {p.email}
+                        {person.email}
                       </span>
+                      {person.tags && person.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {person.tags.map((tag) => (
+                            <Badge key={tag} variant="secondary" className="text-2xs">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    {formatInteractionDate(p.lastInteraction)}
+                    {formatInteractionDate(person.lastInteraction)}
                   </span>
                   <span className="text-sm text-foreground text-right">
-                    {p.interactions}
+                    {person.interactions}
                   </span>
                 </Link>
               ))}

@@ -1776,6 +1776,124 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     ],
     otherInteractors: ["Leo Hartwell", "Ryan Peters"],
   },
+  "david-chen": {
+    name: "David Chen",
+    email: "david.chen@novabridge.com",
+    domain: "novabridge.com",
+    role: "VP of Operations",
+    company: "NovaBridge",
+    tags: ["Client", "Active Deal", "External"],
+    relationshipStatus:
+      "David is leading a digital transformation initiative at NovaBridge and is evaluating enterprise tooling across the org. We connected through a mutual contact at a fintech conference. He's methodical and values ROI-driven conversations — always wants to see case studies and benchmarks before moving forward.",
+    suggestions: [
+      "What did we talk about last time?",
+      "Prep me for the next call with David",
+    ],
+    personalNotes: [
+      "- VP of Operations at NovaBridge, driving digital transformation",
+      "- met through mutual contact at FinTech Forward conference",
+      "- wants to see ROI case studies before committing to anything",
+      "- responsive on email, prefers morning meetings (EST)",
+      "- deal is progressing — need to send updated proposal by end of week",
+    ],
+    meetings: [
+      {
+        week: "This week",
+        items: [
+          {
+            id: "cd-dc-1",
+            title: "NovaBridge — Proposal Review",
+            date: "Mon, Mar 10",
+            time: "10:00 AM",
+            duration: "45 min",
+            participants: ["David Chen", "Tracy Kim", "Leo Hartwell"],
+            privacy: "private",
+          },
+        ],
+      },
+      {
+        week: "Last week",
+        items: [
+          {
+            id: "cd-dc-2",
+            title: "NovaBridge — Use Case Deep Dive",
+            date: "Wed, Mar 5",
+            time: "2:00 PM",
+            duration: "60 min",
+            participants: ["David Chen", "Tracy Kim"],
+            privacy: "private",
+          },
+          {
+            id: "cd-dc-3",
+            title: "NovaBridge — Initial Discovery",
+            date: "Mon, Mar 3",
+            time: "11:00 AM",
+            duration: "30 min",
+            participants: ["David Chen", "Tracy Kim", "Raj Sundaram"],
+            privacy: "public",
+          },
+        ],
+      },
+      {
+        week: "2 weeks ago",
+        items: [
+          {
+            id: "cd-dc-4",
+            title: "FinTech Forward — Intro Meeting",
+            date: "Thu, Feb 27",
+            time: "4:00 PM",
+            duration: "20 min",
+            participants: ["David Chen", "Tracy Kim"],
+            privacy: "public",
+          },
+        ],
+      },
+    ],
+    emails: [
+      {
+        id: "em-dc-1",
+        subject: "Re: NovaBridge — Updated Proposal",
+        date: "Mar 10, 2026",
+        snippet:
+          "Thanks Tracy — reviewed the proposal with our procurement team. A few questions on the implementation timeline. Can we schedule a follow-up this week?",
+        from: "David Chen",
+        to: ["Tracy Kim"],
+      },
+      {
+        id: "em-dc-2",
+        subject: "NovaBridge — Use Case Requirements",
+        date: "Mar 4, 2026",
+        snippet:
+          "Hi Tracy, attaching our internal requirements doc for the operations platform evaluation. The key criteria are on page 3.",
+        from: "David Chen",
+        to: ["Tracy Kim"],
+      },
+      {
+        id: "em-dc-3",
+        subject: "Re: Great meeting at FinTech Forward",
+        date: "Feb 28, 2026",
+        snippet:
+          "Great connecting with you at the conference! I'd love to explore how this could fit into our digital transformation roadmap. Let's set up a call next week.",
+        from: "David Chen",
+        to: ["Tracy Kim"],
+      },
+    ],
+    news: [
+      {
+        id: "n-dc-1",
+        headline:
+          "NovaBridge announces $150M digital transformation initiative",
+        date: "Mar 8, 2026",
+      },
+      {
+        id: "n-dc-2",
+        headline:
+          "NovaBridge partners with major cloud provider for enterprise modernization",
+        date: "Feb 20, 2026",
+      },
+    ],
+    otherInteractors: ["Raj Sundaram", "Leo Hartwell"],
+  },
   "mc-p8": {
     name: "Leo Hartwell",
     email: "leo@sentra.app",

@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Ellipsis, GitBranch, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -22,34 +22,44 @@ import {
   EmptyDescription,
 } from "@/components/ui/empty";
 import { MOCK_ACTIONS } from "@/data/mock-actions";
-import type { Action } from "@/data/mock-actions";
+import type { Action, ActionArtifact } from "@/data/mock-actions";
+import { useReportsStore } from "@/stores/reports-store";
 
-import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
-import githubLogo from "@/assets/logos/github.svg";
-import slackLogo from "@/assets/logos/slack.svg";
-import linearLogo from "@/assets/logos/linear.svg";
-import notionLogo from "@/assets/logos/notion.svg";
-import googleDriveLogo from "@/assets/logos/google-drive.svg";
+import outlookLogo from "@/assets/logos/outlook.png";
+import teamsLogo from "@/assets/logos/ms-teams.png";
+import excelLogo from "@/assets/logos/excel.png";
+import sharePointLogo from "@/assets/logos/sharepoint.png";
+import salesforceLogo from "@/assets/logos/salesforce.svg";
+import serviceNowLogo from "@/assets/logos/service-now.png";
+import mondayComLogo from "@/assets/logos/monday-com.webp";
+import { ZoomIcon } from "@/icons/source-icons";
+import type { ComponentType } from "react";
 
-const logoMap: Record<string, string> = {
-  gmail: gmailLogo,
-  calendar: calendarLogo,
-  github: githubLogo,
-  slack: slackLogo,
-  linear: linearLogo,
-  notion: notionLogo,
-  "google-drive": googleDriveLogo,
+interface ActionIntegrationVisual {
+  logo?: string;
+  LogoIcon?: ComponentType<{ size?: number; className?: string }>;
+}
+
+const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
+  outlook: { logo: outlookLogo },
+  teams: { logo: teamsLogo },
+  zoom: { LogoIcon: ZoomIcon },
+  excel: { logo: excelLogo },
+  sharepoint: { logo: sharePointLogo },
+  salesforce: { logo: salesforceLogo },
+  servicenow: { logo: serviceNowLogo },
+  "monday-com": { logo: mondayComLogo },
 };
 
 const integrationNames: Record<string, string> = {
-  gmail: "Gmail",
-  calendar: "Calendar",
-  github: "GitHub",
-  slack: "ChatWorks",
-  linear: "Trackline",
-  notion: "Dokra",
-  "google-drive": "Drive",
+  outlook: "Outlook",
+  teams: "Microsoft Teams",
+  zoom: "Zoom",
+  excel: "Excel",
+  sharepoint: "SharePoint",
+  salesforce: "Salesforce",
+  servicenow: "ServiceNow",
+  "monday-com": "Monday.com",
 };
 
 const triggerOptions = [
@@ -57,9 +67,23 @@ const triggerOptions = [
   { label: "Triggers", value: "triggered" },
 ];
 
+interface ActionDetailLocationState {
+  initialTab?: string;
+}
+
+const ACTION_DETAIL_TABS = ["plan", "history", "approved"];
+
 const ActionDetailPage = () => {
   const { actionId } = useParams<{ actionId: string }>();
+  const location = useLocation();
   const navigate = useNavigate();
+  const setSelectedReport = useReportsStore((state) => state.setSelectedReport);
+  const locationState = location.state as ActionDetailLocationState | null;
+  const requestedInitialTab = ACTION_DETAIL_TABS.includes(
+    locationState?.initialTab ?? "",
+  )
+    ? locationState?.initialTab ?? "plan"
+    : "plan";
 
   const existingAction = useMemo(
     () => MOCK_ACTIONS.find((a) => a.id === actionId),
@@ -77,6 +101,7 @@ const ActionDetailPage = () => {
     prompt: "",
     triggerType: "scheduled",
     frequency: { type: "DAILY", interval: 1, time: "09:00 AM" },
+    approvedArtifacts: [],
   };
 
   const [name, setName] = useState(initial.name);
@@ -92,6 +117,11 @@ const ActionDetailPage = () => {
   const [integrations, setIntegrations] = useState<string[]>(
     initial.integrations,
   );
+  const [selectedTab, setSelectedTab] = useState(requestedInitialTab);
+
+  useEffect(() => {
+    setSelectedTab(requestedInitialTab);
+  }, [requestedInitialTab, actionId]);
 
   if (!isNew && !existingAction) {
     return (
@@ -110,12 +140,24 @@ const ActionDetailPage = () => {
     );
   }
 
+  const handleApprovedArtifactClick = (actionArtifact: ActionArtifact) => {
+    if (actionArtifact.artifactType === "report" && actionArtifact.reportId) {
+      setSelectedReport(actionArtifact.reportId);
+      navigate("/report-detail");
+      return;
+    }
+
+    navigate("/deep-research", {
+      state: { prefill: actionArtifact.prompt ?? actionArtifact.title },
+    });
+  };
+
   return (
     <div className="px-8 pt-14 pb-16 min-h-screen max-w-5xl mx-auto">
       {/* Back link */}
       <Link
         to="/actions"
-        className="inline-flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-muted-foreground transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-muted-foreground transition-colors"
       >
         <ArrowLeft size={14} />
         All actions
@@ -129,7 +171,7 @@ const ActionDetailPage = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Untitled action"
             rows={1}
-            className="w-full border-0 bg-background p-0 !text-2xl font-medium text-foreground placeholder:text-muted-foreground ring-0 focus-visible:ring-0 focus-visible:border-0 !min-h-0 resize-none field-sizing-content dark:bg-background"
+            className="w-full min-h-0! border-0 bg-background p-0 text-2xl! font-medium text-foreground placeholder:text-muted-foreground ring-0 focus-visible:border-0 focus-visible:ring-0 resize-none field-sizing-content dark:bg-background"
           />
         </div>
 
@@ -144,11 +186,11 @@ const ActionDetailPage = () => {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="plan" className="mt-8">
+      <Tabs value={selectedTab} onValueChange={setSelectedTab} className="mt-8">
         <TabsList variant="underline">
           <TabsTrigger value="plan">Plan</TabsTrigger>
           <TabsTrigger value="history">History</TabsTrigger>
-          <TabsTrigger value="approvals">Approvals</TabsTrigger>
+          <TabsTrigger value="approved">Approved</TabsTrigger>
         </TabsList>
 
         <TabsContent value="plan">
@@ -213,9 +255,10 @@ const ActionDetailPage = () => {
               )}
 
               {triggerType === "triggered" && (
-                <EmptyDescription className="mt-3">
-                  This action will run when its trigger conditions are met.
-                </EmptyDescription>
+                <div className="mt-3 rounded-xl border border-border bg-background px-4 py-3 text-sm text-muted-foreground">
+                  {initial.triggerDetail ??
+                    "This action will run when its trigger conditions are met."}
+                </div>
               )}
             </div>
           </div>
@@ -237,33 +280,15 @@ const ActionDetailPage = () => {
             <div className="mt-2 flex flex-wrap gap-2">
               {integrations.length > 0 ? (
                 integrations.map((id) => (
-                  <Button
+                  <ActionIntegrationPill
                     key={id}
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
+                    integrationId={id}
+                    onRemove={() =>
                       setIntegrations((prev) =>
                         prev.filter((i) => i !== id),
                       )
                     }
-                    className="group/integration-item relative rounded-full px-2.5 py-1.5 h-auto gap-1.5"
-                  >
-                    {logoMap[id] && (
-                      <span className="size-5 shrink-0 rounded-full overflow-hidden flex items-center justify-center transition-opacity group-hover/integration-item:opacity-0">
-                        <img
-                          src={logoMap[id]}
-                          alt={id}
-                          className="size-3.5 object-contain"
-                        />
-                      </span>
-                    )}
-                    <span className="transition-opacity group-hover/integration-item:opacity-0">
-                      {integrationNames[id] ?? id}
-                    </span>
-                    <span className="absolute inset-0 flex items-center justify-center text-xs text-destructive opacity-0 group-hover/integration-item:opacity-100 transition-opacity rounded-[inherit]">
-                      Remove
-                    </span>
-                  </Button>
+                  />
                 ))
               ) : (
                 <EmptyDescription>
@@ -298,22 +323,90 @@ const ActionDetailPage = () => {
           </Empty>
         </TabsContent>
 
-        <TabsContent value="approvals">
-          <Empty className="mt-8 border border-dashed border-border rounded-2xl bg-muted/50 px-8 py-20">
-            <EmptyHeader>
-              <EmptyMedia>
-                <ShieldCheck size={36} className="text-muted-foreground" />
-              </EmptyMedia>
-              <EmptyTitle>No pending approvals</EmptyTitle>
-              <EmptyDescription>
-                When an action requires approval before running, it will
-                appear here.
-              </EmptyDescription>
-            </EmptyHeader>
-          </Empty>
+        <TabsContent value="approved">
+          {initial.approvedArtifacts.length > 0 ? (
+            <div className="mt-8 space-y-3">
+              {initial.approvedArtifacts.map((actionArtifact) => (
+                <button
+                  key={actionArtifact.id}
+                  type="button"
+                  onClick={() => handleApprovedArtifactClick(actionArtifact)}
+                  className="flex w-full items-start justify-between gap-4 rounded-2xl border border-border bg-card px-5 py-4 text-left transition-colors hover:bg-accent"
+                >
+                  <div>
+                    <p className="text-sm font-medium text-foreground">
+                      {actionArtifact.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {actionArtifact.description}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground">
+                    {actionArtifact.artifactType === "report"
+                      ? "Report"
+                      : "Artifact"}
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <Empty className="mt-8 border border-dashed border-border rounded-2xl bg-muted/50 px-8 py-20">
+              <EmptyHeader>
+                <EmptyMedia>
+                  <ShieldCheck size={36} className="text-muted-foreground" />
+                </EmptyMedia>
+                <EmptyTitle>No approved artifacts yet</EmptyTitle>
+                <EmptyDescription>
+                  Generated artifacts from this action will appear here.
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
+          )}
         </TabsContent>
       </Tabs>
     </div>
+  );
+};
+
+interface ActionIntegrationPillProps {
+  integrationId: string;
+  onRemove: () => void;
+}
+
+const ActionIntegrationPill = ({
+  integrationId,
+  onRemove,
+}: ActionIntegrationPillProps) => {
+  const integrationVisual = integrationVisualMap[integrationId];
+  const IntegrationLogoIcon = integrationVisual?.LogoIcon;
+
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={onRemove}
+      className="group/integration-item relative h-auto gap-1.5 rounded-full px-2.5 py-1.5"
+    >
+      {integrationVisual?.logo ? (
+        <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-full transition-opacity group-hover/integration-item:opacity-0">
+          <img
+            src={integrationVisual.logo}
+            alt={integrationId}
+            className="size-3.5 object-contain"
+          />
+        </span>
+      ) : IntegrationLogoIcon ? (
+        <span className="flex size-5 shrink-0 items-center justify-center transition-opacity group-hover/integration-item:opacity-0">
+          <IntegrationLogoIcon size={14} />
+        </span>
+      ) : null}
+      <span className="transition-opacity group-hover/integration-item:opacity-0">
+        {integrationNames[integrationId] ?? integrationId}
+      </span>
+      <span className="absolute inset-0 flex items-center justify-center rounded-[inherit] text-xs text-destructive opacity-0 transition-opacity group-hover/integration-item:opacity-100">
+        Remove
+      </span>
+    </Button>
   );
 };
 

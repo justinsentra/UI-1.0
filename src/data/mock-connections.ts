@@ -5,7 +5,7 @@ export const people = [
     email: "claire.lawson@mcgi.greystone.com",
     lastInteraction: "2026-03-11",
     interactions: 6,
-    tags: ["AGV", "AI Strategy", "Design Partner"],
+    tags: ["AGV", "AI Strategy", "Design Partner", "Client", "Active Deal"],
   },
   {
     id: "ryan-peters",
@@ -13,7 +13,7 @@ export const people = [
     email: "ryan.peters@mcgi.greystone.com",
     lastInteraction: "2026-03-11",
     interactions: 4,
-    tags: ["AGV", "Tech Partnerships"],
+    tags: ["AGV", "Tech Partnerships", "Client", "Active Deal"],
   },
   {
     id: "diana-calloway",
@@ -21,7 +21,7 @@ export const people = [
     email: "diana.calloway@greystone.com",
     lastInteraction: "2026-03-12",
     interactions: 18,
-    tags: ["TMT", "Managing Director"],
+    tags: ["TMT", "Managing Director", "Internal", "Leadership"],
   },
   {
     id: "nathan-lim",
@@ -29,7 +29,7 @@ export const people = [
     email: "nathan.lim@greystone.com",
     lastInteraction: "2026-03-12",
     interactions: 14,
-    tags: ["TMT", "Vice President"],
+    tags: ["TMT", "Vice President", "Internal"],
   },
   {
     id: "victor-kane",
@@ -37,7 +37,7 @@ export const people = [
     email: "victor.kane@greystone.com",
     lastInteraction: "2026-03-11",
     interactions: 11,
-    tags: ["IB Coverage", "Associate"],
+    tags: ["IB Coverage", "Associate", "Internal"],
   },
   {
     id: "raj-sundaram",
@@ -45,7 +45,7 @@ export const people = [
     email: "raj@sentra.app",
     lastInteraction: "2026-02-26",
     interactions: 24,
-    tags: ["Sentra", "Co-founder"],
+    tags: ["Sentra", "Co-founder", "Vendor"],
   },
   {
     id: "pavel-volkov",
@@ -53,7 +53,7 @@ export const people = [
     email: "pavel@sentra.app",
     lastInteraction: "2026-02-26",
     interactions: 19,
-    tags: ["Sentra", "Co-founder"],
+    tags: ["Sentra", "Co-founder", "Vendor", "Engineering"],
   },
   {
     id: "ingrid-solberg",
@@ -61,7 +61,7 @@ export const people = [
     email: "ingrid@sentra.app",
     lastInteraction: "2026-02-25",
     interactions: 12,
-    tags: ["Sentra", "Operations"],
+    tags: ["Sentra", "Operations", "Vendor"],
   },
   {
     id: "meera-kapoor",
@@ -69,7 +69,7 @@ export const people = [
     email: "meera@horizonfund.com",
     lastInteraction: "2026-02-20",
     interactions: 7,
-    tags: ["Investor", "Horizon Fund"],
+    tags: ["Investor", "Horizon Fund", "External"],
   },
   {
     id: "fiona-webb",
@@ -77,7 +77,7 @@ export const people = [
     email: "fiona@trailhead.io",
     lastInteraction: "2026-02-21",
     interactions: 4,
-    tags: ["Design Partner"],
+    tags: ["Design Partner", "External"],
   },
   {
     id: "derek-huang",
@@ -85,7 +85,15 @@ export const people = [
     email: "derek@conduit.app",
     lastInteraction: "2026-02-25",
     interactions: 5,
-    tags: ["Prospect"],
+    tags: ["Prospect", "External", "Engineering"],
+  },
+  {
+    id: "david-chen",
+    name: "David Chen",
+    email: "david.chen@novabridge.com",
+    lastInteraction: "2026-03-10",
+    interactions: 9,
+    tags: ["Client", "Active Deal", "External"],
   },
   {
     id: "nathan-cho",
@@ -93,6 +101,7 @@ export const people = [
     email: "nathan@docflow.so",
     lastInteraction: "2026-02-24",
     interactions: 8,
+    tags: ["Client"],
   },
   {
     id: "sofia-alvarez",
@@ -100,6 +109,7 @@ export const people = [
     email: "sofia@paylink.com",
     lastInteraction: "2026-02-23",
     interactions: 3,
+    tags: ["Vendor"],
   },
   {
     id: "liam-drayton",
@@ -107,6 +117,7 @@ export const people = [
     email: "liam@trackline.app",
     lastInteraction: "2026-02-22",
     interactions: 11,
+    tags: ["Client", "Active Deal"],
   },
   {
     id: "ananya-desai",
@@ -114,6 +125,7 @@ export const people = [
     email: "ananya@canvex.com",
     lastInteraction: "2026-02-21",
     interactions: 6,
+    tags: ["External"],
   },
   {
     id: "gavin-mercer",
@@ -121,6 +133,7 @@ export const people = [
     email: "gavin@deploykit.com",
     lastInteraction: "2026-02-19",
     interactions: 9,
+    tags: ["Engineering", "External"],
   },
   {
     id: "yara-osman",
@@ -128,6 +141,7 @@ export const people = [
     email: "yara@cortexai.com",
     lastInteraction: "2026-02-18",
     interactions: 2,
+    tags: ["External"],
   },
   {
     id: "rohit-iyer",
@@ -135,6 +149,7 @@ export const people = [
     email: "rohit@pinevc.com",
     lastInteraction: "2026-02-17",
     interactions: 4,
+    tags: ["External", "Investor"],
   },
   {
     id: "chloe-barrett",
@@ -142,6 +157,7 @@ export const people = [
     email: "chloe@bluewave.com",
     lastInteraction: "2026-02-16",
     interactions: 15,
+    tags: ["Client"],
   },
   {
     id: "owen-fang",
@@ -149,6 +165,7 @@ export const people = [
     email: "owen@renderlab.ml",
     lastInteraction: "2026-02-15",
     interactions: 7,
+    tags: ["Engineering", "External"],
   },
   {
     id: "eloise-dubois",
@@ -156,6 +173,7 @@ export const people = [
     email: "eloise@stellarbank.com",
     lastInteraction: "2026-02-14",
     interactions: 3,
+    tags: ["Client", "Leadership"],
   },
   {
     id: "declan-murphy",
@@ -163,6 +181,7 @@ export const people = [
     email: "declan@buildkit.com",
     lastInteraction: "2026-02-12",
     interactions: 5,
+    tags: ["Vendor"],
   },
   {
     id: "zara-okonkwo",
@@ -170,6 +189,7 @@ export const people = [
     email: "zara@cognitiveai.com",
     lastInteraction: "2026-02-10",
     interactions: 8,
+    tags: ["Engineering", "Leadership"],
   },
   {
     id: "tuan-pham",
@@ -177,6 +197,7 @@ export const people = [
     email: "tuan@basestack.io",
     lastInteraction: "2026-02-08",
     interactions: 6,
+    tags: ["External"],
   },
   {
     id: "vivian-xu",
@@ -184,6 +205,7 @@ export const people = [
     email: "vivian@launchpad.com",
     lastInteraction: "2026-02-05",
     interactions: 2,
+    tags: ["Vendor"],
   },
   {
     id: "ethan-rowe",
@@ -191,6 +213,7 @@ export const people = [
     email: "ethan@ventureloft.com",
     lastInteraction: "2026-02-03",
     interactions: 10,
+    tags: ["External", "Investor"],
   },
   {
     id: "clara-whitfield",
@@ -198,6 +221,7 @@ export const people = [
     email: "clara@chatworks.com",
     lastInteraction: "2026-01-28",
     interactions: 4,
+    tags: ["Client"],
   },
   {
     id: "gordon-yeung",
@@ -205,6 +229,7 @@ export const people = [
     email: "gordon@edgenet.com",
     lastInteraction: "2026-01-25",
     interactions: 3,
+    tags: ["External"],
   },
   {
     id: "beatriz-romero",
@@ -212,6 +237,7 @@ export const people = [
     email: "beatriz@metricshub.com",
     lastInteraction: "2026-01-20",
     interactions: 7,
+    tags: ["Client"],
   },
   {
     id: "douglas-hendricks",
@@ -219,6 +245,7 @@ export const people = [
     email: "douglas@finbridge.com",
     lastInteraction: "2026-01-15",
     interactions: 5,
+    tags: ["External", "Leadership"],
   },
   {
     id: "sloane-prescott",
@@ -226,6 +253,7 @@ export const people = [
     email: "sloane@spendwise.com",
     lastInteraction: "2026-01-10",
     interactions: 9,
+    tags: ["Client", "Active Deal"],
   },
   {
     id: "matteo-cortez",
@@ -233,6 +261,7 @@ export const people = [
     email: "matteo@cardvault.com",
     lastInteraction: "2025-12-18",
     interactions: 2,
+    tags: ["External"],
   },
   {
     id: "phoebe-langford",
@@ -240,6 +269,7 @@ export const people = [
     email: "phoebe@clipcast.com",
     lastInteraction: "2025-12-05",
     interactions: 4,
+    tags: ["External"],
   },
 ];
 

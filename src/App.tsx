@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AppLayout from "./components/app-layout";
 import HomePage from "./pages/home";
+import MorningBriefPage from "./pages/morning-brief";
 import MeetingNotesPage from "./pages/meeting-notes";
 import MeetingDetailPage from "./pages/meeting-detail";
 import DeepResearchPage from "./pages/deep-research";
@@ -18,6 +19,7 @@ import MeetingSettingsPage from "./pages/meeting-settings";
 import PreMeetingBriefPage from "./pages/pre-meeting-brief";
 import ActionsPage from "./pages/actions";
 import ActionDetailPage from "./pages/action-detail";
+import ArtifactDetailPage from "./pages/artifact-detail";
 
 const App = () => {
   return (
@@ -27,6 +29,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/morning-brief" element={<MorningBriefPage />} />
             <Route path="/meeting-notes" element={<MeetingNotesPage />} />
             <Route path="/meeting-detail" element={<MeetingDetailPage />} />
             <Route path="/deep-research" element={<DeepResearchPage />} />
@@ -65,6 +68,10 @@ const App = () => {
             />
             <Route path="/actions" element={<ActionsPage />} />
             <Route path="/actions/:actionId" element={<ActionDetailPage />} />
+            <Route
+              path="/artifact-detail/:artifactId"
+              element={<ArtifactDetailPage />}
+            />
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
         </Routes>

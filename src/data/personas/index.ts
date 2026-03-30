@@ -96,6 +96,7 @@ export interface PersonaConnectionsData {
     email: string;
     lastInteraction: string;
     interactions: number;
+    tags?: string[];
   }[];
   companies: {
     id: string;

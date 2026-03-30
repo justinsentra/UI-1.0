@@ -1,14 +1,12 @@
 import { useState, useCallback } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, ArrowUpRight, Plus, Check, X, Mic, FileUp, AtSign, ChevronRight, ListTodo, Mail, MessageSquare, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
+import { ArrowUp, ArrowRight, Plus, Mic, FileUp, AtSign, ChevronRight, Bell, Mail, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { cn } from "@lib/utils";
 import { getAvatarColor, getInitials } from "@lib/utils";
-import { usePersonaStore } from "@/stores/persona-store";
-import { useReportsStore } from "@/stores/reports-store";
-import { getPersonaHome } from "@/data/content-resolver";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -21,6 +19,12 @@ import outlookLogo from "@/assets/logos/outlook.png";
 import salesforceLogo from "@/assets/logos/salesforce.svg";
 import sharePointLogo from "@/assets/logos/sharepoint.png";
 import wordLogo from "@/assets/logos/word.png";
+
+const HOME_ACTION_IDS = {
+  weeklyDealPipelineHealthCheck: "weekly-deal-pipeline-health-check",
+  postMeetingFollowUp: "post-meeting-follow-up",
+  autoExcelUpdate: "auto-excel-update",
+};
 
 const ACTIVE_CONNECTION_LOGOS = [
   { id: "outlook", src: outlookLogo },
@@ -47,18 +51,72 @@ const getFormattedDate = (): string => {
   });
 };
 
-/* ── Todo Item ── */
-interface TodoItem {
+interface AttentionItem {
   id: string;
-  text: string;
-  checked: boolean;
-  source?: { label: string; href: string };
+  actionId: string;
+  actionTab: string;
+  category: string;
+  description: string;
+  title: string;
 }
 
-const INITIAL_TODOS: TodoItem[] = [
-  { id: "1", text: "Review Q1 pipeline metrics before standup", checked: false, source: { label: "TMT Group Weekly", href: "/meeting-notes" } },
-  { id: "2", text: "Prep talking points for investor update", checked: false, source: { label: "Email from Marcus Chen", href: "/home" } },
-  { id: "3", text: "Follow up with Diana on partnership timeline", checked: false, source: { label: "1:1 with Diana", href: "/meeting-notes" } },
+interface AttentionControl {
+  id: string;
+  label: string;
+}
+
+const ATTENTION_CONTROLS: AttentionControl[] = [
+  { id: "snooze-short", label: "15m" },
+  { id: "snooze-tomorrow", label: "Tomorrow" },
+  { id: "deprioritize", label: "Lower" },
+];
+
+const INITIAL_ATTENTION_ITEMS: AttentionItem[] = [
+  {
+    id: "follow-up-approval",
+    actionId: HOME_ACTION_IDS.postMeetingFollowUp,
+    actionTab: "approved",
+    category: "Approval",
+    title: "Follow-up email draft is pending approval",
+    description:
+      "A sales follow-up for the TMT Group Weekly sync is ready to review before it sends.",
+  },
+  {
+    id: "pipeline-report",
+    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
+    actionTab: "approved",
+    category: "Report",
+    title: "Q1 pipeline report needs attention",
+    description:
+      "The latest brief flags two stalled accounts and missing next-step owners before tomorrow morning.",
+  },
+  {
+    id: "weekly-summary",
+    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
+    actionTab: "plan",
+    category: "Action",
+    title: "Generate the weekly summary",
+    description:
+      "A recap can be prepared from Salesforce updates, meeting notes, and email highlights for leadership.",
+  },
+  {
+    id: "radar-timeline",
+    actionId: HOME_ACTION_IDS.postMeetingFollowUp,
+    actionTab: "plan",
+    category: "Radar",
+    title: "Radar alert: Meridian timeline shifted",
+    description:
+      "A partnership timeline changed after today’s meeting and should be reviewed before the next check-in.",
+  },
+  {
+    id: "investor-draft",
+    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
+    actionTab: "approved",
+    category: "Approval",
+    title: "Investor update draft is ready to review",
+    description:
+      "A follow-up note has been drafted and is waiting for approval before it goes out to the investor list.",
+  },
 ];
 
 /* ── Meeting Types ── */
@@ -124,15 +182,9 @@ const HOME_MEETINGS: HomeMeeting[] = [
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
-  const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
-  const persona = usePersonaStore((s) => s.persona);
-  const homeData = getPersonaHome(persona);
-  const suggestions = homeData.suggestions;
-  const artifactsToReview = homeData.artifacts;
 
-  const [todos, setTodos] = useState<TodoItem[]>(INITIAL_TODOS);
-  const [newTodo, setNewTodo] = useState("");
-  const [sidebarTab, setSidebarTab] = useState<string>("todo");
+  const [attentionItems, setAttentionItems] = useState<AttentionItem[]>(INITIAL_ATTENTION_ITEMS);
+  const [sidebarTab, setSidebarTab] = useState("attention");
   const [expandedMeeting, setExpandedMeeting] = useState<string | null>(null);
 
   const handleSearchSubmit = useCallback(() => {
@@ -141,33 +193,38 @@ const HomePage = () => {
     navigate("/deep-research");
   }, [searchValue, navigate]);
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchValue(suggestion);
-    navigate("/deep-research");
-  };
+  const handleAttentionItemClick = useCallback(
+    (attentionItem: AttentionItem) => {
+      navigate(`/actions/${attentionItem.actionId}`, {
+        state: { initialTab: attentionItem.actionTab },
+      });
+    },
+    [navigate],
+  );
 
-  const toggleTodo = (id: string) => {
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, checked: !t.checked } : t)),
-    );
-  };
+  const deprioritizeAttentionItem = useCallback((attentionItemId: string) => {
+    setAttentionItems((previousAttentionItems) => {
+      const selectedAttentionItem = previousAttentionItems.find(
+        (attentionItem) => attentionItem.id === attentionItemId,
+      );
 
-  const addTodo = () => {
-    const trimmed = newTodo.trim();
-    if (!trimmed) return;
-    setTodos((prev) => [
-      ...prev,
-      { id: Date.now().toString(), text: trimmed, checked: false },
-    ]);
-    setNewTodo("");
-  };
+      if (!selectedAttentionItem) {
+        return previousAttentionItems;
+      }
 
-  const removeTodo = (id: string) => {
-    setTodos((prev) => prev.filter((t) => t.id !== id));
-  };
+      return [
+        ...previousAttentionItems.filter(
+          (attentionItem) => attentionItem.id !== attentionItemId,
+        ),
+        selectedAttentionItem,
+      ];
+    });
+  }, []);
+
+  const visibleAttentionItems = attentionItems.slice(0, 3);
 
   return (
-    <div className="flex h-full w-full gap-0 bg-background">
+    <div className="relative flex h-full w-full gap-0 bg-background">
       {/* ── Left: Main Content (inset card) ── */}
       <div className="relative flex flex-1 flex-col min-w-0 h-full overflow-hidden">
         <div className="flex-1 overflow-y-auto">
@@ -181,81 +238,6 @@ const HomePage = () => {
                 {getGreeting()}, Jaden
               </h1>
             </div>
-
-            {/* ── Briefs to Review ── */}
-            <section className="flex flex-col mb-8 mt-6">
-              <div className="flex items-center gap-2 pb-3">
-                <h2 className="text-foreground text-sm font-medium leading-none m-0">
-                  Briefs to review
-                </h2>
-                <span className="text-muted-foreground text-xs font-medium leading-none font-mono">
-                  {artifactsToReview.slice(0, 3).length}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                {artifactsToReview.slice(0, 3).map((artifact) => (
-                  <button
-                    key={artifact.id}
-                    type="button"
-                    onClick={() => {
-                      if (artifact.deepResearchPrompt) {
-                        navigate("/deep-research", {
-                          state: { prefill: artifact.deepResearchPrompt },
-                        });
-                      } else {
-                        setSelectedReport(artifact.reportId ?? "");
-                        navigate("/report-detail");
-                      }
-                    }}
-                    className="group flex flex-col gap-2.5 p-4 bg-card rounded-xl border border-border cursor-pointer text-left hover:bg-accent/50 transition-colors duration-150 ease-out"
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <span
-                        className={cn(
-                          "text-[10px] font-medium leading-none px-2 py-1 rounded-full",
-                          artifact.type === "action"
-                            ? "bg-primary/10 text-primary"
-                            : "bg-muted text-muted-foreground",
-                        )}
-                      >
-                        {artifact.type === "radar"
-                          ? "Radar"
-                          : artifact.type === "action"
-                            ? "Action"
-                            : "Report"}
-                      </span>
-                      {artifact.badge && (
-                        <span
-                          className={cn(
-                            "text-[10px] font-semibold leading-none px-2 py-1 rounded-full",
-                            artifact.badge === "High"
-                              ? "bg-muted text-muted-foreground"
-                              : "bg-primary/10 text-primary",
-                          )}
-                        >
-                          {artifact.badge}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-sm font-normal text-foreground leading-[1.4] m-0">
-                        {artifact.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-normal m-0 line-clamp-2">
-                        {artifact.description}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-end mt-auto">
-                      <ChevronRight
-                        size={14}
-                        className="text-muted-foreground/40 transition duration-200 group-hover:text-muted-foreground group-hover:translate-x-0.5"
-                      />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </section>
 
             {/* Chat Input */}
             <div className="mb-16">
@@ -381,22 +363,23 @@ const HomePage = () => {
                   Quick Access
                 </p>
                 <p className="mt-1 text-lg font-medium text-foreground">
-                  {sidebarTab === "todo" ? "To Do" : sidebarTab === "meetings" ? "Meetings" : sidebarTab === "email" ? "Email" : "Slack"}
+                  {sidebarTab === "attention"
+                    ? "Attention"
+                    : sidebarTab === "meetings"
+                      ? "Meetings"
+                      : "Email"}
                 </p>
               </div>
-              <Tabs value={sidebarTab} onValueChange={(val) => setSidebarTab(val as string)} className="shrink-0">
+              <Tabs value={sidebarTab} onValueChange={setSidebarTab} className="shrink-0">
                 <TabsList className="h-11 p-1 gap-1 self-start">
-                  <TabsTrigger value="todo" className="px-3.5 py-2">
-                    <ListTodo size={18} />
+                  <TabsTrigger value="attention" className="px-3.5 py-2">
+                    <Bell size={18} />
                   </TabsTrigger>
                   <TabsTrigger value="meetings" className="px-3.5 py-2">
                     <Video size={18} />
                   </TabsTrigger>
                   <TabsTrigger value="email" className="px-3.5 py-2">
                     <Mail size={18} />
-                  </TabsTrigger>
-                  <TabsTrigger value="slack" className="px-3.5 py-2">
-                    <MessageSquare size={18} />
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -407,105 +390,65 @@ const HomePage = () => {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto px-5 py-3">
-          {sidebarTab === "todo" && (
-            <>
-              {/* New todo input */}
-              <div className="flex items-start gap-2.5 rounded-lg p-2 mb-2">
-                <button
-                  type="button"
-                  className="mt-0.5 shrink-0 size-4 rounded border border-muted-foreground/30 bg-transparent opacity-30"
-                  disabled
-                />
-                <input
-                  type="text"
-                  value={newTodo}
-                  onChange={(e) => setNewTodo(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && addTodo()}
-                  placeholder="Add new to do"
-                  className="flex-1 bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground/50 p-0"
-                />
-              </div>
-
-              {/* Todo items */}
-              <div className="flex flex-col">
-                {todos.map((todo) => (
-                  <div
-                    key={todo.id}
-                    className="group flex items-start gap-2.5 rounded-lg p-2 hover:bg-accent/50 transition-colors"
+          {sidebarTab === "attention" && (
+            <div className="flex flex-col gap-3 pt-1">
+              <AnimatePresence initial={false} mode="popLayout">
+                {visibleAttentionItems.map((attentionItem) => (
+                  <motion.div
+                    key={attentionItem.id}
+                    layout
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 28 }}
+                    className="group/attention relative overflow-hidden rounded-xl border border-border bg-card"
                   >
                     <button
                       type="button"
-                      onClick={() => toggleTodo(todo.id)}
-                      className={cn(
-                        "mt-0.5 shrink-0 size-4 rounded border flex items-center justify-center transition-colors cursor-pointer",
-                        todo.checked
-                          ? "bg-primary border-primary text-primary-foreground"
-                          : "border-muted-foreground/40 bg-transparent hover:border-muted-foreground/60",
-                      )}
+                      onClick={() => handleAttentionItemClick(attentionItem)}
+                      className="flex w-full cursor-pointer flex-col gap-3 p-4 text-left transition-colors hover:bg-accent/30"
                     >
-                      {todo.checked && <Check size={10} strokeWidth={3} />}
-                    </button>
-                    <div className="flex-1 min-w-0">
-                      <p
-                        className={cn(
-                          "text-sm leading-relaxed m-0",
-                          todo.checked
-                            ? "text-muted-foreground line-through"
-                            : "text-foreground",
-                        )}
-                      >
-                        {todo.text}
-                      </p>
-                      {todo.source && (
-                        <button
-                          type="button"
-                          onClick={() => navigate(todo.source!.href)}
-                          className="inline-flex items-center gap-1 mt-0.5 text-[11px] underline decoration-1 underline-offset-2 text-muted-foreground/60 hover:text-muted-foreground border-none bg-transparent cursor-pointer p-0 transition-colors"
+                      <div className="flex items-center justify-between gap-3 pr-24">
+                        <span
+                          className={cn(
+                            "rounded-full px-2 py-1 text-[10px] font-medium leading-none",
+                            attentionItem.category === "Approval"
+                              ? "bg-primary/10 text-primary"
+                              : "bg-muted text-muted-foreground",
+                          )}
                         >
-                          {todo.source.label}
-                          <ArrowUpRight size={10} className="shrink-0" strokeWidth={2} />
+                          {attentionItem.category}
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <p className="text-sm font-medium text-foreground m-0">
+                          {attentionItem.title}
+                        </p>
+                        <p className="text-xs leading-relaxed text-muted-foreground m-0">
+                          {attentionItem.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center text-xs font-medium text-muted-foreground">
+                        <span>Open action</span>
+                        <ChevronRight size={12} className="ml-1 shrink-0" />
+                      </div>
+                    </button>
+                    <div className="pointer-events-none absolute right-3 top-3 flex items-center gap-1 opacity-0 transition-opacity duration-200 group-hover/attention:opacity-100">
+                      {ATTENTION_CONTROLS.map((attentionControl) => (
+                        <button
+                          key={attentionControl.id}
+                          type="button"
+                          onClick={() => deprioritizeAttentionItem(attentionItem.id)}
+                          className="pointer-events-auto cursor-pointer rounded-full border border-border bg-background px-2 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                        >
+                          {attentionControl.label}
                         </button>
-                      )}
+                      ))}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => removeTodo(todo.id)}
-                      className="shrink-0 size-5 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive-foreground transition-all cursor-pointer bg-transparent border-none"
-                    >
-                      <X size={12} />
-                    </button>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-
-              {/* Suggestions section */}
-              <div className="mt-6">
-                <div className="flex items-center gap-1.5 mb-3">
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Suggestions
-                  </p>
-                </div>
-                <div className="h-px w-full bg-border mb-3" />
-                <div className="flex flex-col">
-                  {suggestions.slice(0, 3).map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      type="button"
-                      onClick={() => handleSuggestionClick(suggestion)}
-                      className="group flex items-start gap-2.5 rounded-lg p-3 hover:bg-accent/50 transition-colors w-full text-left cursor-pointer bg-transparent border-none"
-                    >
-                      <Plus
-                        size={12}
-                        className="mt-1 shrink-0 text-muted-foreground opacity-60 group-hover:opacity-100 transition-opacity"
-                      />
-                      <p className="text-sm text-foreground line-clamp-2">
-                        {suggestion}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
+              </AnimatePresence>
+            </div>
           )}
 
           {sidebarTab === "meetings" && (
@@ -682,30 +625,6 @@ const HomePage = () => {
                   </div>
                   <p className="text-xs font-medium text-foreground/80 m-0">{email.subject}</p>
                   <p className="text-xs text-muted-foreground m-0 line-clamp-2">{email.preview}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {sidebarTab === "slack" && (
-            <div className="flex flex-col gap-2 pt-1">
-              {[
-                { channel: "#deal-room", sender: "Alex Torres", time: "11:02 AM", message: "Just got off the call with Acme — they're ready to move forward with the pilot. Sending over the SOW today." },
-                { channel: "#team-updates", sender: "Priya Patel", time: "10:45 AM", message: "FYI the new CRM dashboard is live in staging. Would love feedback before we push to prod." },
-                { channel: "#general", sender: "Jordan Lee", time: "9:30 AM", message: "Reminder: all-hands at 2pm today. Agenda includes Q2 planning and the new product roadmap." },
-              ].map((msg) => (
-                <div
-                  key={msg.channel + msg.time}
-                  className="flex flex-col gap-1 p-3 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-primary/80">{msg.channel}</span>
-                    <span className="text-[11px] text-muted-foreground">{msg.time}</span>
-                  </div>
-                  <div className="flex items-start gap-1.5">
-                    <span className="text-xs font-medium text-foreground shrink-0">{msg.sender}:</span>
-                    <p className="text-xs text-muted-foreground m-0 line-clamp-2">{msg.message}</p>
-                  </div>
                 </div>
               ))}
             </div>

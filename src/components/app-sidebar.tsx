@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Home,
@@ -24,7 +25,7 @@ import {
 interface SidebarLinkProps {
   to: string;
   label: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: ComponentType<{ size?: number; className?: string }>;
 }
 
 const personalNav = [

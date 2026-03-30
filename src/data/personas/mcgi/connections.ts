@@ -8,6 +8,7 @@ export const connections: PersonaConnectionsData = {
       email: "claire.lawson@apexglobal.com",
       lastInteraction: "2026-03-11",
       interactions: 6,
+      tags: ["AGV", "AI Strategy", "Internal", "Leadership"],
     },
     {
       id: "ryan-peters",
@@ -15,6 +16,7 @@ export const connections: PersonaConnectionsData = {
       email: "ryan.peters@apexglobal.com",
       lastInteraction: "2026-03-11",
       interactions: 4,
+      tags: ["AGV", "Deal Origination", "Internal"],
     },
     {
       id: "mc-p3",
@@ -22,6 +24,7 @@ export const connections: PersonaConnectionsData = {
       email: "richard.caldwell@apexglobal.com",
       lastInteraction: "2026-03-10",
       interactions: 31,
+      tags: ["AGV", "Leadership", "Internal"],
     },
     {
       id: "mc-p4",
@@ -29,6 +32,7 @@ export const connections: PersonaConnectionsData = {
       email: "lauren.cho@apexglobal.com",
       lastInteraction: "2026-03-08",
       interactions: 28,
+      tags: ["AGV", "Internal"],
     },
     {
       id: "mc-p5",
@@ -36,6 +40,7 @@ export const connections: PersonaConnectionsData = {
       email: "sean.mercer@apexglobal.com",
       lastInteraction: "2026-03-10",
       interactions: 19,
+      tags: ["AGV", "Internal"],
     },
     {
       id: "mc-p6",
@@ -43,6 +48,7 @@ export const connections: PersonaConnectionsData = {
       email: "greg.lawton@apexglobal.com",
       lastInteraction: "2026-03-07",
       interactions: 12,
+      tags: ["AGV", "Internal"],
     },
     {
       id: "mc-p7",
@@ -50,6 +56,7 @@ export const connections: PersonaConnectionsData = {
       email: "raj@sentra.app",
       lastInteraction: "2026-03-09",
       interactions: 8,
+      tags: ["Vendor", "External"],
     },
     {
       id: "mc-p8",
@@ -57,6 +64,7 @@ export const connections: PersonaConnectionsData = {
       email: "leo@sentra.app",
       lastInteraction: "2026-03-09",
       interactions: 6,
+      tags: ["Vendor", "External"],
     },
     {
       id: "mc-p9",
@@ -64,6 +72,7 @@ export const connections: PersonaConnectionsData = {
       email: "joon@syntheticdb.ai",
       lastInteraction: "2026-03-06",
       interactions: 15,
+      tags: ["Client", "Active Deal", "External"],
     },
     {
       id: "mc-p10",
@@ -71,6 +80,7 @@ export const connections: PersonaConnectionsData = {
       email: "kavita@syntheticdb.ai",
       lastInteraction: "2026-03-06",
       interactions: 9,
+      tags: ["Client", "External", "Engineering"],
     },
     {
       id: "mc-p11",
@@ -78,6 +88,7 @@ export const connections: PersonaConnectionsData = {
       email: "nora@greencore.io",
       lastInteraction: "2026-03-07",
       interactions: 7,
+      tags: ["Active Deal", "External", "Engineering"],
     },
     {
       id: "mc-p12",
@@ -85,6 +96,7 @@ export const connections: PersonaConnectionsData = {
       email: "adam.corelli@pinnaclematerials.com",
       lastInteraction: "2026-03-08",
       interactions: 14,
+      tags: ["Client", "External"],
     },
     {
       id: "mc-p13",
@@ -92,6 +104,7 @@ export const connections: PersonaConnectionsData = {
       email: "beth.sinclair@pacificinsgroup.com",
       lastInteraction: "2026-03-08",
       interactions: 11,
+      tags: ["Client", "External"],
     },
     {
       id: "mc-p14",
@@ -99,6 +112,7 @@ export const connections: PersonaConnectionsData = {
       email: "liam@novamaterials.com",
       lastInteraction: "2026-03-05",
       interactions: 5,
+      tags: ["Client", "Active Deal", "External"],
     },
     {
       id: "mc-p15",
@@ -106,6 +120,7 @@ export const connections: PersonaConnectionsData = {
       email: "helen@ventureloft.com",
       lastInteraction: "2026-03-05",
       interactions: 8,
+      tags: ["External"],
     },
     {
       id: "mc-p16",
@@ -113,6 +128,7 @@ export const connections: PersonaConnectionsData = {
       email: "nathan.lim@sakuracap.com",
       lastInteraction: "2026-02-26",
       interactions: 6,
+      tags: ["External"],
     },
     {
       id: "mc-p17",
@@ -120,6 +136,7 @@ export const connections: PersonaConnectionsData = {
       email: "karen.novak@pacificmind.co.jp",
       lastInteraction: "2026-02-26",
       interactions: 10,
+      tags: ["External", "Leadership"],
     },
     {
       id: "mc-p18",
@@ -127,6 +144,7 @@ export const connections: PersonaConnectionsData = {
       email: "calvin@solarcore.energy",
       lastInteraction: "2026-02-26",
       interactions: 4,
+      tags: ["Client", "External"],
     },
     {
       id: "mc-p19",
@@ -134,6 +152,7 @@ export const connections: PersonaConnectionsData = {
       email: "vivian@neuralink.dev",
       lastInteraction: "2026-02-19",
       interactions: 3,
+      tags: ["External", "Engineering"],
     },
     {
       id: "mc-p20",
@@ -141,6 +160,7 @@ export const connections: PersonaConnectionsData = {
       email: "trevor@pinevc.com",
       lastInteraction: "2026-02-19",
       interactions: 7,
+      tags: ["External"],
     },
   ],
   companies: [

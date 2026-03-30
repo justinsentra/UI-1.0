@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import {
   Mail,
   Globe,
@@ -22,6 +22,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+
+const nameToIdMap: Record<string, string> = Object.fromEntries(
+  Object.entries(connectionData).map(([connectionId, entry]) => [entry.name, connectionId]),
+);
 
 const ConnectionDetailPage = () => {
   const [searchParams] = useSearchParams();
@@ -30,7 +36,17 @@ const ConnectionDetailPage = () => {
   const [askInput, setAskInput] = useState("");
   const [notes, setNotes] = useState(person.personalNotes.join("\n"));
   const [newsOpen, setNewsOpen] = useState(false);
-  const [reminderSet, setReminderSet] = useState(false);
+  const [reminderDate, setReminderDate] = useState<Date | undefined>(undefined);
+  const [reminderOpen, setReminderOpen] = useState(false);
+
+  const formattedReminderDate = useMemo(() => {
+    if (!reminderDate) return null;
+    return reminderDate.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }, [reminderDate]);
 
   usePageLabel(person.name);
 
@@ -60,13 +76,28 @@ const ConnectionDetailPage = () => {
             </span>
           </div>
         </div>
-        <Button
-          variant={reminderSet ? "secondary" : "outline"}
-          onClick={() => setReminderSet((prev) => !prev)}
-        >
-          <Bell size={13} />
-          {reminderSet ? "Reminder Set" : "Set Reminder"}
-        </Button>
+        <Popover open={reminderOpen} onOpenChange={setReminderOpen}>
+          <PopoverTrigger
+            render={
+              <Button
+                variant={reminderDate ? "secondary" : "outline"}
+              />
+            }
+          >
+            <Bell size={13} />
+            {formattedReminderDate ?? "Set Reminder"}
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-auto p-0">
+            <Calendar
+              mode="single"
+              selected={reminderDate}
+              onSelect={(date) => {
+                setReminderDate(date);
+                setReminderOpen(false);
+              }}
+            />
+          </PopoverContent>
+        </Popover>
       </div>
 
       {/* Tags */}
@@ -88,9 +119,26 @@ const ConnectionDetailPage = () => {
           <Users size={13} className="text-muted-foreground shrink-0" />
           <span className="text-xs text-muted-foreground">
             Also interacted with:{" "}
-            <span className="text-foreground font-medium">
-              {person.otherInteractors.join(", ")}
-            </span>
+            {person.otherInteractors.map((interactorName, index) => {
+              const interactorId = nameToIdMap[interactorName];
+              return (
+                <span key={interactorName}>
+                  {interactorId ? (
+                    <Link
+                      to={`/connection-detail?id=${interactorId}`}
+                      className="text-foreground font-medium hover:underline"
+                    >
+                      {interactorName}
+                    </Link>
+                  ) : (
+                    <span className="text-foreground font-medium">
+                      {interactorName}
+                    </span>
+                  )}
+                  {index < person.otherInteractors.length - 1 && ", "}
+                </span>
+              );
+            })}
           </span>
         </div>
       )}

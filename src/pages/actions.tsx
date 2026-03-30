@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ComponentType } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Clock, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,22 +11,29 @@ import {
 import { MOCK_ACTIONS } from "@/data/mock-actions";
 import type { Action } from "@/data/mock-actions";
 
-import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
-import githubLogo from "@/assets/logos/github.svg";
-import slackLogo from "@/assets/logos/slack.svg";
-import linearLogo from "@/assets/logos/linear.svg";
-import notionLogo from "@/assets/logos/notion.svg";
-import googleDriveLogo from "@/assets/logos/google-drive.svg";
+import outlookLogo from "@/assets/logos/outlook.png";
+import teamsLogo from "@/assets/logos/ms-teams.png";
+import excelLogo from "@/assets/logos/excel.png";
+import sharePointLogo from "@/assets/logos/sharepoint.png";
+import salesforceLogo from "@/assets/logos/salesforce.svg";
+import serviceNowLogo from "@/assets/logos/service-now.png";
+import mondayComLogo from "@/assets/logos/monday-com.webp";
+import { ZoomIcon } from "@/icons/source-icons";
 
-const logoMap: Record<string, string> = {
-  gmail: gmailLogo,
-  calendar: calendarLogo,
-  github: githubLogo,
-  slack: slackLogo,
-  linear: linearLogo,
-  notion: notionLogo,
-  "google-drive": googleDriveLogo,
+interface ActionIntegrationVisual {
+  logo?: string;
+  LogoIcon?: ComponentType<{ size?: number; className?: string }>;
+}
+
+const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
+  outlook: { logo: outlookLogo },
+  teams: { logo: teamsLogo },
+  zoom: { LogoIcon: ZoomIcon },
+  excel: { logo: excelLogo },
+  sharepoint: { logo: sharePointLogo },
+  salesforce: { logo: salesforceLogo },
+  servicenow: { logo: serviceNowLogo },
+  "monday-com": { logo: mondayComLogo },
 };
 
 const ActionCard = ({
@@ -40,20 +48,31 @@ const ActionCard = ({
     onClick={onClick}
   >
     <div className="flex flex-wrap items-center gap-2">
-      {action.integrations.map((id) =>
-        logoMap[id] ? (
+      {action.integrations.map((integrationId) => {
+        const integrationVisual = integrationVisualMap[integrationId];
+        const IntegrationLogoIcon = integrationVisual?.LogoIcon;
+
+        if (!integrationVisual) {
+          return null;
+        }
+
+        return (
           <div
-            key={id}
-            className="size-7 shrink-0 rounded-lg border border-border bg-white flex items-center justify-center"
+            key={integrationId}
+            className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-white"
           >
-            <img
-              src={logoMap[id]}
-              alt={id}
-              className="size-4 object-contain"
-            />
+            {integrationVisual.logo ? (
+              <img
+                src={integrationVisual.logo}
+                alt={integrationId}
+                className="size-4 object-contain"
+              />
+            ) : IntegrationLogoIcon ? (
+              <IntegrationLogoIcon size={16} />
+            ) : null}
           </div>
-        ) : null,
-      )}
+        );
+      })}
     </div>
 
     <CardTitle className="mt-4 line-clamp-2">{action.name}</CardTitle>
@@ -79,7 +98,7 @@ const ActionsPage = () => {
 
   return (
     <div className="px-8 pt-14 pb-16 min-h-screen @container/main">
-      <div className="mx-auto max-w-[100rem]">
+      <div className="mx-auto max-w-400">
         <div className="max-w-xl">
           <div className="text-3xl font-medium tracking-tight text-foreground">
             Actions

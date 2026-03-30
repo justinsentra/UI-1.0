@@ -9,6 +9,7 @@ export const connections: PersonaConnectionsData = {
       email: "blake@circlecrm.com",
       lastInteraction: "Today",
       interactions: 48,
+      tags: ["Internal", "Leadership"],
     },
     {
       id: "pn-p2",
@@ -16,6 +17,7 @@ export const connections: PersonaConnectionsData = {
       email: "simone@circlecrm.com",
       lastInteraction: "Today",
       interactions: 41,
+      tags: ["Internal", "Engineering"],
     },
     {
       id: "pn-p3",
@@ -23,6 +25,7 @@ export const connections: PersonaConnectionsData = {
       email: "dustin@circlecrm.com",
       lastInteraction: "Yesterday",
       interactions: 33,
+      tags: ["Internal"],
     },
     {
       id: "pn-p4",
@@ -30,6 +33,7 @@ export const connections: PersonaConnectionsData = {
       email: "tamara.novotny@buckeyestate.edu",
       lastInteraction: "2 days ago",
       interactions: 29,
+      tags: ["External", "Client"],
     },
     {
       id: "pn-p5",
@@ -37,6 +41,7 @@ export const connections: PersonaConnectionsData = {
       email: "felix@glintapp.com",
       lastInteraction: "3 days ago",
       interactions: 24,
+      tags: ["External", "Vendor"],
     },
     {
       id: "pn-p6",
@@ -44,6 +49,7 @@ export const connections: PersonaConnectionsData = {
       email: "wendy@circlecrm.com",
       lastInteraction: "2 days ago",
       interactions: 18,
+      tags: ["Internal"],
     },
     // VC / investor contacts
     {
@@ -52,6 +58,7 @@ export const connections: PersonaConnectionsData = {
       email: "nolan@pinnaclecap.com",
       lastInteraction: "3 days ago",
       interactions: 22,
+      tags: ["External", "Leadership"],
     },
     {
       id: "pn-p8",
@@ -59,6 +66,7 @@ export const connections: PersonaConnectionsData = {
       email: "monica@pinnaclecap.com",
       lastInteraction: "5 days ago",
       interactions: 14,
+      tags: ["External"],
     },
     {
       id: "pn-p9",
@@ -66,6 +74,7 @@ export const connections: PersonaConnectionsData = {
       email: "hector.reyes@ironhawkventures.org",
       lastInteraction: "4 days ago",
       interactions: 19,
+      tags: ["External", "Leadership"],
     },
     {
       id: "pn-p10",
@@ -73,6 +82,7 @@ export const connections: PersonaConnectionsData = {
       email: "divya@ironhawkventures.org",
       lastInteraction: "4 days ago",
       interactions: 16,
+      tags: ["External"],
     },
     // Customers / partners / beta users
     {
@@ -81,6 +91,7 @@ export const connections: PersonaConnectionsData = {
       email: "raj@sentra.app",
       lastInteraction: "3 days ago",
       interactions: 8,
+      tags: ["Client", "External"],
     },
     {
       id: "pn-p12",
@@ -88,6 +99,7 @@ export const connections: PersonaConnectionsData = {
       email: "leo@sentra.app",
       lastInteraction: "3 days ago",
       interactions: 6,
+      tags: ["Client", "External"],
     },
     {
       id: "pn-p13",
@@ -95,6 +107,7 @@ export const connections: PersonaConnectionsData = {
       email: "brent@molderhq.com",
       lastInteraction: "1 week ago",
       interactions: 7,
+      tags: ["Client", "Active Deal", "External"],
     },
     {
       id: "pn-p14",
@@ -102,6 +115,7 @@ export const connections: PersonaConnectionsData = {
       email: "sanya@tribe.app",
       lastInteraction: "1 week ago",
       interactions: 5,
+      tags: ["Client", "External"],
     },
     {
       id: "pn-p15",
@@ -109,6 +123,7 @@ export const connections: PersonaConnectionsData = {
       email: "keith@rolodex.app",
       lastInteraction: "2 weeks ago",
       interactions: 4,
+      tags: ["External", "Vendor"],
     },
     // Industry / academic contacts
     {
@@ -117,6 +132,7 @@ export const connections: PersonaConnectionsData = {
       email: "huxleyr@buckeyestate.edu",
       lastInteraction: "1 week ago",
       interactions: 12,
+      tags: ["External", "Leadership"],
     },
     {
       id: "pn-p17",
@@ -124,6 +140,7 @@ export const connections: PersonaConnectionsData = {
       email: "naomi@launchpad.com",
       lastInteraction: "2 weeks ago",
       interactions: 3,
+      tags: ["External"],
     },
     {
       id: "pn-p18",
@@ -131,6 +148,7 @@ export const connections: PersonaConnectionsData = {
       email: "conrad@rocketstars.com",
       lastInteraction: "2 weeks ago",
       interactions: 5,
+      tags: ["External", "Engineering"],
     },
     {
       id: "pn-p19",
@@ -138,6 +156,7 @@ export const connections: PersonaConnectionsData = {
       email: "lucia@heartlandventures.com",
       lastInteraction: "3 weeks ago",
       interactions: 6,
+      tags: ["External"],
     },
     {
       id: "pn-p20",
@@ -145,6 +164,7 @@ export const connections: PersonaConnectionsData = {
       email: "casey@moonlightclub.org",
       lastInteraction: "4 days ago",
       interactions: 15,
+      tags: ["External"],
     },
   ],
   companies: [
