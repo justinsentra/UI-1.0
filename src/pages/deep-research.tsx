@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import { Pencil } from "lucide-react";
-import type { ResponseParagraph, ScanStep } from "@/data/mock-deep-research";
+import type { ResponseParagraph, ScanStep, SuggestionRoute } from "@/data/mock-deep-research";
 import SourcePill from "@/components/deep-research/source-pill";
 import { usePersonaStore } from "@/stores/persona-store";
 import {
@@ -65,24 +65,6 @@ const formatTime = () =>
     minute: "2-digit",
     hour12: true,
   });
-
-/** Find a matching document flow config based on query keywords */
-function findMatchingFlow(
-  text: string,
-  flows: DocumentFlowConfig[],
-): DocumentFlowConfig | undefined {
-  const lower = text.toLowerCase();
-  return flows.find((flow) =>
-    flow.triggerKeywords.some((kw) => lower.includes(kw)),
-  );
-}
-
-/** Check if a query matches vendor eval keywords */
-function isVendorEvalMatch(text: string, keywords?: string[]): boolean {
-  if (!keywords) return false;
-  const lower = text.toLowerCase();
-  return keywords.some((kw) => lower.includes(kw));
-}
 
 /* ── PRD Document Renderer ── */
 
@@ -529,7 +511,9 @@ const DeepResearchPage = () => {
   });
 
   const location = useLocation();
-  const prefill = (location.state as { prefill?: string } | null)?.prefill;
+  const locationState = location.state as { prefill?: string; route?: SuggestionRoute } | null;
+  const prefill = locationState?.prefill;
+  const prefillRoute = locationState?.route;
   const hasPrefilled = useRef(false);
   const persona = usePersonaStore((s) => s.persona);
   const deepResearchData = getPersonaDeepResearch(persona);
@@ -623,22 +607,57 @@ const DeepResearchPage = () => {
     setPhase("prd-done");
   }, [chosenTool]);
 
-  /** Route a query to the right flow */
-  const routeQuery = useCallback(
-    (text: string) => {
-      // Check vendor eval
-      if (
-        deepResearchData.vendorEvalResponse &&
-        isVendorEvalMatch(text, deepResearchData.vendorEvalTriggerKeywords)
-      ) {
-        return { type: "vendor-eval" as const };
+  /** Execute a routed query — shared by suggestion clicks, typed input, and prefill */
+  const executeRoute = useCallback(
+    (text: string, route: SuggestionRoute) => {
+      const userMessage: ChatMessage = {
+        id: `user-${Date.now()}`,
+        role: "user",
+        content: text,
+      };
+
+      if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
+        setMessages((prev) => [...prev, userMessage]);
+        setInput("");
+        setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
+        setPendingResponse({
+          paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
+          timestamp: formatTime(),
+        });
+        setPhase("scanning");
+        return;
       }
-      // Check document flows
-      const flow = findMatchingFlow(text, deepResearchData.documentFlows);
-      if (flow) {
-        return { type: "document-flow" as const, flow };
+
+      if (route.type === "document-flow") {
+        const flow = deepResearchData.documentFlows.find(
+          (f) => f.id === route.flowId,
+        );
+        if (flow) {
+          setMessages((prev) => [...prev, userMessage]);
+          setInput("");
+          setActiveFlow(flow);
+          setActiveScanSteps(flow.scanSteps);
+          setPhase("prd-scanning");
+          return;
+        }
       }
-      return { type: "generic" as const };
+
+      // Generic response
+      const responseIndex = route.type === "generic" && route.index != null
+        ? route.index
+        : messageCountRef.current;
+      messageCountRef.current += 1;
+
+      const mockResponse = getMockResponse(responseIndex);
+
+      setMessages((prev) => [...prev, userMessage]);
+      setInput("");
+      setActiveScanSteps(mockResponse.scanSteps);
+      setPendingResponse({
+        paragraphs: mockResponse.paragraphs,
+        timestamp: formatTime(),
+      });
+      setPhase("scanning");
     },
     [deepResearchData],
   );
@@ -654,54 +673,23 @@ const DeepResearchPage = () => {
     )
       return;
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      role: "user",
-      content: trimmed,
-    };
+    // Typed input always goes to generic response
+    executeRoute(trimmed, { type: "generic" });
+  }, [input, phase, executeRoute]);
 
-    const route = routeQuery(trimmed);
-
-    if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
-      setMessages((prev) => [...prev, userMessage]);
-      setInput("");
-      setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
-      setPendingResponse({
-        paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
-        timestamp: formatTime(),
-      });
-      setPhase("scanning");
-      return;
-    }
-
-    if (route.type === "document-flow") {
-      setMessages((prev) => [...prev, userMessage]);
-      setInput("");
-      setActiveFlow(route.flow);
-      setActiveScanSteps(route.flow.scanSteps);
-      setPhase("prd-scanning");
-      return;
-    }
-
-    // Generic response
-    const responseIndex = messageCountRef.current;
-    messageCountRef.current += 1;
-
-    const mockResponse = getMockResponse(responseIndex);
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
-    setActiveScanSteps(mockResponse.scanSteps);
-    setPendingResponse({
-      paragraphs: mockResponse.paragraphs,
-      timestamp: formatTime(),
-    });
-    setPhase("scanning");
-  }, [input, phase, routeQuery, deepResearchData]);
-
-  const handleSuggestionClick = useCallback((text: string) => {
-    setInput(text);
-  }, []);
+  const handleSuggestionClick = useCallback(
+    (text: string, route: SuggestionRoute) => {
+      if (
+        phase === "scanning" ||
+        phase === "revealing" ||
+        phase === "prd-scanning" ||
+        phase === "prd-building"
+      )
+        return;
+      executeRoute(text, route);
+    },
+    [phase, executeRoute],
+  );
 
   const handleNewSession = useCallback(() => {
     setMessages([]);
@@ -754,40 +742,28 @@ const DeepResearchPage = () => {
     if (prefill && !hasPrefilled.current) {
       hasPrefilled.current = true;
 
-      const userMessage: ChatMessage = {
-        id: `user-${Date.now()}`,
-        role: "user",
-        content: prefill,
-      };
+      // Use explicit route if provided, otherwise try to match by flow keyword, fallback to generic
+      let route: SuggestionRoute = prefillRoute ?? { type: "generic", index: 0 };
 
-      const route = routeQuery(prefill);
-
-      if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
-        setMessages([userMessage]);
-        setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
-        setPendingResponse({
-          paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
-          timestamp: formatTime(),
-        });
-        setPhase("scanning");
-      } else if (route.type === "document-flow") {
-        setMessages([userMessage]);
-        setActiveFlow(route.flow);
-        setActiveScanSteps(route.flow.scanSteps);
-        setPhase("prd-scanning");
-      } else {
-        const mockResponse = getMockResponse(0);
-        messageCountRef.current = 1;
-        setMessages([userMessage]);
-        setActiveScanSteps(mockResponse.scanSteps);
-        setPendingResponse({
-          paragraphs: mockResponse.paragraphs,
-          timestamp: formatTime(),
-        });
-        setPhase("scanning");
+      if (!prefillRoute) {
+        // Keyword fallback for prefills from "Give this to Sentra?" buttons, homepage cards, etc.
+        const lower = prefill.toLowerCase();
+        const matchedFlow = deepResearchData.documentFlows.find((f) =>
+          f.triggerKeywords.some((kw) => lower.includes(kw)),
+        );
+        if (matchedFlow) {
+          route = { type: "document-flow", flowId: matchedFlow.id };
+        } else if (
+          deepResearchData.vendorEvalResponse &&
+          (lower.includes("vendor") || lower.includes("evaluation"))
+        ) {
+          route = { type: "vendor-eval" };
+        }
       }
+
+      executeRoute(prefill, route);
     }
-  }, [prefill, routeQuery, deepResearchData]);
+  }, [prefill, prefillRoute, executeRoute, deepResearchData]);
 
   const hasMessages = messages.length > 0;
   const isLoading =

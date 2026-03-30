@@ -299,7 +299,7 @@ const ActionSettingCombobox = ({
           placeholder={`Search ${placeholder.toLowerCase()}`}
           showClear={false}
           showTrigger={false}
-          className="m-1.5 h-9 rounded-md border border-input bg-input/20 shadow-none **:data-[slot=input-group-control]:text-sm md:**:data-[slot=input-group-control]:text-sm"
+          className="m-1.5 h-9 rounded-xl border border-input bg-input/20 shadow-none **:data-[slot=input-group-control]:text-sm md:**:data-[slot=input-group-control]:text-sm"
         />
         <ComboboxEmpty>No matches found.</ComboboxEmpty>
         <ComboboxList>

@@ -144,6 +144,130 @@ export const MOCK_ACTIONS: Action[] = [
       },
     ],
   },
+  // ── Pre-built action templates ──
+  {
+    id: "financial-modeling",
+    name: "Financial Modeling",
+    description:
+      "When new financials are received, build or refresh a 3-statement model, flag key variance drivers, and prepare an annotated output for the deal team.",
+    active: true,
+    schedule: "When new financials are received",
+    integrations: ["outlook", "excel", "sharepoint", "salesforce"],
+    prompt:
+      "When a client or internal team shares updated financials:\n\nStep 1: Pull the latest financials from the Outlook attachment or SharePoint upload.\n\nStep 2: Build or update the 3-statement model (Income Statement, Balance Sheet, Cash Flow) in Excel.\n\nStep 3: Flag key variance drivers vs. prior period and annotate assumption changes.\n\nStep 4: Push the updated model to SharePoint and notify the deal team via Outlook with a summary of changes and recommended review items.",
+    triggerType: "triggered",
+    triggerDetail: "Email archetype trigger: runs when new financials are received.",
+    triggerConfig: {
+      source: "outlook",
+      event: "client-sends-financials",
+      scope: "client-emails",
+    },
+    approvedArtifacts: [],
+  },
+  {
+    id: "deal-memo-production",
+    name: "Deal Memo Production",
+    description:
+      "After key deal meetings, compile a structured deal memo from meeting transcripts, CRM data, and existing research.",
+    active: true,
+    schedule: "After key deal meetings",
+    integrations: ["zoom", "teams", "salesforce", "sharepoint", "outlook"],
+    prompt:
+      "After a key deal meeting concludes:\n\nStep 1: Pull the Zoom or Teams transcript and extract investment thesis points, risks, and open questions.\n\nStep 2: Cross-reference Salesforce opportunity data for deal stage, valuation, and key contacts.\n\nStep 3: Pull prior research and diligence notes from SharePoint.\n\nStep 4: Compile a structured deal memo with sections for Company Overview, Investment Thesis, Key Risks, Valuation Summary, and Recommended Next Steps.\n\nStep 5: Draft and send via Outlook for team review.",
+    triggerType: "triggered",
+    triggerDetail: "Post-meeting trigger: runs after key deal meetings.",
+    triggerConfig: {
+      source: "zoom",
+      event: "after-call-ends",
+      scope: "external-calls",
+    },
+    approvedArtifacts: [],
+  },
+  {
+    id: "market-research",
+    name: "Market Research",
+    description:
+      "On a weekly cadence, scan for market developments, competitor moves, and sector trends relevant to active deals.",
+    active: true,
+    schedule: "Every Monday at 9:00 AM",
+    integrations: ["salesforce", "sharepoint", "outlook"],
+    prompt:
+      "Every Monday at 9:00 AM ET:\n\nStep 1: Pull the active deal list and sector tags from Salesforce.\n\nStep 2: Scan for recent market developments, competitor announcements, and sector trends relevant to each active deal.\n\nStep 3: Cross-reference findings with existing research documents in SharePoint.\n\nStep 4: Compile a Market Intelligence Brief organized by deal/sector.\n\nStep 5: Distribute via Outlook to the deal team with highlighted items requiring immediate attention.",
+    triggerType: "scheduled",
+    frequency: {
+      type: "WEEKLY",
+      interval: 1,
+      time: "09:00 AM",
+      dayOfWeek: "Monday",
+    },
+    approvedArtifacts: [],
+  },
+  {
+    id: "investor-reporting",
+    name: "Investor Reporting",
+    description:
+      "At month-end, aggregate portfolio performance data and generate investor-ready reporting packages.",
+    active: true,
+    schedule: "Last business day of month at 8:00 AM",
+    integrations: ["salesforce", "excel", "sharepoint", "outlook"],
+    prompt:
+      "On the last business day of each month:\n\nStep 1: Pull portfolio company KPIs, deal stage updates, and valuation marks from Salesforce.\n\nStep 2: Aggregate financial performance data from Excel models in SharePoint.\n\nStep 3: Generate an investor-ready reporting package with sections for Portfolio Overview, Performance Summary, Key Highlights, and Risk Flags.\n\nStep 4: Format for distribution and stage in Outlook for LP communications.",
+    triggerType: "scheduled",
+    frequency: {
+      type: "MONTHLY",
+      interval: 1,
+      time: "08:00 AM",
+    },
+    approvedArtifacts: [],
+  },
+  // ── Custom actions (suggested by Sentra) ──
+  {
+    id: "vendor-delay-tracker",
+    name: "Vendor Delay Tracker",
+    description:
+      "When a vendor deadline passes on Monday.com, flag the delay, assess downstream impact, and notify the deal team with a risk summary.",
+    active: true,
+    schedule: "When a vendor deadline passes",
+    integrations: ["monday-com", "salesforce", "outlook", "sharepoint"],
+    prompt:
+      "When a vendor deadline passes on Monday.com:\n\nStep 1: Identify the missed deadline, vendor name, and associated deal from Monday.com.\n\nStep 2: Assess downstream impact — check Salesforce for deal stage and timeline dependencies.\n\nStep 3: Pull related vendor agreements and SLAs from SharePoint.\n\nStep 4: Generate a Vendor Delay Risk Report with sections for Delay Summary, Downstream Impact, SLA Status, and Recommended Escalation Path.\n\nStep 5: Send the report via Outlook to the deal lead and flag the item in Monday.com as at-risk.",
+    triggerType: "triggered",
+    triggerDetail: "Event trigger: runs when a vendor deadline passes on Monday.com.",
+    triggerConfig: {
+      source: "monday-com",
+      event: "vendor-deadline-passes",
+      scope: "vendor-trackers",
+    },
+    approvedArtifacts: [
+      {
+        id: "vendor-delay-tracker-artifact-1",
+        title: "NovaTech Vendor Delay Risk Assessment",
+        description:
+          "Risk assessment for NovaTech vendor delay and downstream deal impact.",
+        artifactType: "report",
+        reportId: "rpt-eng-1",
+      },
+    ],
+  },
+  {
+    id: "ic-misalignment-tracker",
+    name: "IC Misalignment Tracker",
+    description:
+      "After Investment Committee meetings, detect misalignment between IC feedback and deal team positioning, and surface discrepancies for resolution.",
+    active: true,
+    schedule: "After IC meetings",
+    integrations: ["zoom", "teams", "salesforce", "sharepoint", "outlook"],
+    prompt:
+      "After every Investment Committee meeting:\n\nStep 1: Pull the Zoom or Teams transcript and extract IC member positions, objections, and conditions.\n\nStep 2: Compare IC feedback against the current deal memo and thesis in SharePoint.\n\nStep 3: Check Salesforce for the deal team's stated positioning and stage assumptions.\n\nStep 4: Flag misalignments between IC expectations and deal team positioning — highlight gaps in valuation view, risk assessment, or timeline.\n\nStep 5: Generate an IC Misalignment Report with sections for Key Discrepancies, Unresolved Objections, and Suggested Follow-Up Actions.\n\nStep 6: Distribute via Outlook to the deal lead with a 48-hour resolution deadline.",
+    triggerType: "triggered",
+    triggerDetail: "Post-meeting trigger: runs after IC meetings.",
+    triggerConfig: {
+      source: "zoom",
+      event: "after-call-ends",
+      scope: "leadership-calls",
+    },
+    approvedArtifacts: [],
+  },
 ];
 
 // Map integration IDs to logo imports

@@ -1,8 +1,9 @@
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaDeepResearch } from "@/data/content-resolver";
+import type { SuggestionRoute } from "@/data/mock-deep-research";
 
 interface EmptyStateProps {
-  onSuggestionClick: (text: string) => void;
+  onSuggestionClick: (text: string, route: SuggestionRoute) => void;
 }
 
 const EmptyState = ({ onSuggestionClick }: EmptyStateProps) => {
@@ -17,12 +18,12 @@ const EmptyState = ({ onSuggestionClick }: EmptyStateProps) => {
       <div className="flex flex-wrap gap-2 justify-center max-w-[520px]">
         {suggestions.map((suggestion) => (
           <button
-            key={suggestion}
+            key={suggestion.label}
             type="button"
-            onClick={() => onSuggestionClick(suggestion)}
+            onClick={() => onSuggestionClick(suggestion.label, suggestion.route)}
             className="items-center bg-transparent border border-solid border-border rounded-full text-muted-foreground cursor-pointer inline-flex text-sm leading-4 py-2 px-4 transition-colors hover:bg-accent hover:text-foreground"
           >
-            {suggestion}
+            {suggestion.label}
           </button>
         ))}
       </div>

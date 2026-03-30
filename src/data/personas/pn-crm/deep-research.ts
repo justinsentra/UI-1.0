@@ -828,11 +828,10 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "Update the pitch deck with our latest metrics",
-    "Draft the LP Summer 26 application",
-    "Build a competitive analysis of the personal CRM space",
-    "What happened in this week's meetings?",
-    "Summarize user feedback from the past month",
+    { label: "Update the pitch deck with our latest metrics", route: { type: "document-flow", flowId: "pn-crm-flow-pitch" } },
+    { label: "Draft the LP Summer 26 application", route: { type: "document-flow", flowId: "pn-crm-flow-yc" } },
+    { label: "Build a competitive analysis", route: { type: "document-flow", flowId: "pn-crm-flow-competitive" } },
+    { label: "What happened in this week's meetings?", route: { type: "generic", index: 0 } },
   ],
   sessionHistory: [
     {
@@ -945,7 +944,7 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "LP application draft pushed to Google Docs",
         description:
           "Your LP Summer 2026 application draft is ready for review.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
       },
       buildingLabel: "Drafting LP application",
     },
@@ -973,7 +972,7 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Competitive analysis pushed to Google Docs",
         description:
           "Your competitive landscape analysis is ready with feature matrices and positioning recommendations.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
       },
       buildingLabel: "Building competitive analysis",
     },
@@ -999,7 +998,7 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "DD template pushed to Google Docs",
         description:
           "Your standardized 2-week due diligence template is ready for the IronHawk Ventures team.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
       },
       buildingLabel: "Building DD template",
     },

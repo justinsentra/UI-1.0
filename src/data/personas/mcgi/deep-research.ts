@@ -674,6 +674,21 @@ const vendorEvalResponse: MockResponse = {
         { type: "affinity", label: "AGV Pipeline Tracker" },
         { type: "teams", label: "#mcgi-deal-flow" },
       ],
+      chart: {
+        type: "bar",
+        title: "AG Synergy Score & Investment Readiness",
+        data: [
+          { company: "Sentra", synergy: 9, teamScore: 9.2, deRisk: 5 },
+          { company: "GreenCore", synergy: 8, teamScore: 7.8, deRisk: 7.5 },
+          { company: "NovaMaterials", synergy: 6, teamScore: 6.5, deRisk: 4 },
+        ],
+        dataKeys: [
+          { key: "synergy", label: "AG Synergy (0-10)", color: "hsl(215, 80%, 55%)" },
+          { key: "teamScore", label: "Team Quality", color: "hsl(170, 65%, 45%)" },
+          { key: "deRisk", label: "De-Risk Level", color: "hsl(260, 55%, 60%)" },
+        ],
+        xAxisKey: "company",
+      },
     },
     {
       id: "mcgi-ve-2",
@@ -719,9 +734,10 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "Draft an investment memo for Sentra",
-    "Map the AI agent framework landscape",
-    "Build a 3-statement model for GreenCore",
+    { label: "Compare pipeline companies", route: { type: "vendor-eval" } },
+    { label: "Pipeline overview for Q1", route: { type: "generic", index: 0 } },
+    { label: "Draft an investment memo for Sentra", route: { type: "document-flow", flowId: "mcgi-flow-memo" } },
+    { label: "Build a 3-statement model for GreenCore", route: { type: "document-flow", flowId: "mcgi-flow-model" } },
   ],
   sessionHistory: [
     { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today", query: "Draft an investment memo for Sentra" },
@@ -801,7 +817,7 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Investment memo pushed to Google Docs",
         description:
           "Your investment memo has been created and is ready for IC review.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
       },
       buildingLabel: "Building memo",
     },
@@ -886,7 +902,7 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Consolidated brief exported to Google Docs",
         description:
           "All SyntheticDB diligence data from Dokra, Teams, Affinity, and SharePoint has been consolidated into a single document.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1T6G5C-6QZhpcqjAj1In2fJ5WsTBO9oAQtfQOk74rjFc/edit" },
+        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
       },
       buildingLabel: "Consolidating deal data",
     },

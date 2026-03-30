@@ -149,7 +149,9 @@ const EmailBriefCard = ({
                       <Button
                         variant="outline"
                         className="rounded-full"
-                        onClick={() => onDeepResearch(emailItem.sentraPrompt ?? "")}
+                        onClick={() =>
+                          onDeepResearch(emailItem.sentraPrompt ?? "")
+                        }
                       >
                         Give this to Sentra?
                       </Button>
@@ -299,56 +301,61 @@ export const MorningBriefSurface = ({
         ) : null}
         {briefReadyMeeting ? (
           <div className="absolute right-6 top-6 z-10 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-sm">
-            <span className="flex size-2.5 rounded-full bg-emerald-500" />
+            <span className="flex size-2.5 animate-pulse rounded-full bg-emerald-500" />
             <span>{MORNING_BRIEF_DATA.badgeLabel}</span>
           </div>
         ) : null}
 
         <div className="relative w-full max-w-screen-2xl mx-auto px-6 sm:px-8">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <div className="flex items-center justify-between gap-8 pb-6 pt-16">
+              <h1 className="text-3xl font-normal tracking-tight text-foreground">
+                {MORNING_BRIEF_DATA.title}
+              </h1>
+              <TabsList>
+                <TabsTrigger value="attention">
+                  <Bell size={18} />
+                </TabsTrigger>
+                <TabsTrigger value="email">
+                  <Mail size={18} />
+                </TabsTrigger>
+                <TabsTrigger value="meetings">
+                  <CalendarDays size={18} />
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <div className="flex items-center justify-between gap-8 pb-6 pt-16">
-            <h1 className="text-3xl font-normal tracking-tight text-foreground">
-              {MORNING_BRIEF_DATA.title}
-            </h1>
-            <TabsList>
-              <TabsTrigger value="attention">
-                <Bell size={18} />
-              </TabsTrigger>
-              <TabsTrigger value="email">
-                <Mail size={18} />
-              </TabsTrigger>
-              <TabsTrigger value="meetings">
-                <CalendarDays size={18} />
-              </TabsTrigger>
-            </TabsList>
-          </div>
+            <TabsContent value="attention" className="mt-8">
+              <div className="grid gap-5 xl:grid-cols-3">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {visibleAttentionItems.map((attentionItem) => {
+                    const isExpanded = expandedAttentionId === attentionItem.id;
+                    const primaryActionLabel = attentionItem.actionId
+                      ? "Open workflow"
+                      : attentionItem.messagePrompt
+                        ? "Message Sarah"
+                        : "Give this to Sentra";
 
-          <TabsContent value="attention" className="mt-8">
-            <div className="grid gap-5 xl:grid-cols-3">
-                  <AnimatePresence initial={false} mode="popLayout">
-                    {visibleAttentionItems.map((attentionItem) => {
-                      const isExpanded = expandedAttentionId === attentionItem.id;
-                      const primaryActionLabel = attentionItem.actionId
-                        ? "Open workflow"
-                        : attentionItem.messagePrompt
-                          ? "Message Sarah"
-                          : "Give this to Sentra";
-
-                      return (
-                        <motion.div
-                          key={attentionItem.id}
-                          layout
-                          initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -12, scale: 0.98 }}
-                          transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                          className="h-full"
-                        >
-                          <Card className="group/card flex h-full min-h-96 flex-col border-border bg-background shadow-sm">
+                    return (
+                      <motion.div
+                        key={attentionItem.id}
+                        layout
+                        initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 24,
+                        }}
+                        className="h-full"
+                      >
+                        <Card className="group/card flex h-full min-h-96 flex-col border-border bg-background shadow-sm">
                           <CardHeader className="gap-4">
                             <div className="flex items-start justify-between gap-3">
-                              <Badge variant="outline">{attentionItem.category}</Badge>
+                              <Badge variant="outline">
+                                {attentionItem.category}
+                              </Badge>
                               <div className="flex items-center gap-2 opacity-0 transition-opacity duration-200 group-hover/card:opacity-100">
                                 {attentionControls.map((attentionControl) => (
                                   <Button
@@ -378,15 +385,18 @@ export const MorningBriefSurface = ({
                             <button
                               type="button"
                               onClick={() =>
-                                setExpandedAttentionId((currentExpandedAttentionId) => {
-                                  if (
-                                    currentExpandedAttentionId === attentionItem.id
-                                  ) {
-                                    return null;
-                                  }
+                                setExpandedAttentionId(
+                                  (currentExpandedAttentionId) => {
+                                    if (
+                                      currentExpandedAttentionId ===
+                                      attentionItem.id
+                                    ) {
+                                      return null;
+                                    }
 
-                                  return attentionItem.id;
-                                })
+                                    return attentionItem.id;
+                                  },
+                                )
                               }
                               className="w-full rounded-2xl border border-border bg-background p-4 text-left transition-colors hover:bg-muted/40"
                             >
@@ -417,41 +427,48 @@ export const MorningBriefSurface = ({
                                   className="h-52 overflow-y-auto"
                                 >
                                   <div className="space-y-3 rounded-2xl border border-border bg-muted/40 p-4">
-                                    {attentionItem.trailItems.map((trailItem) => (
-                                      <div
-                                        key={trailItem.id}
-                                        className="rounded-2xl border border-border bg-background p-3"
-                                      >
-                                        <div className="flex items-center justify-between gap-3">
-                                          <p className="m-0 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                                            {trailItem.source}
+                                    {attentionItem.trailItems.map(
+                                      (trailItem) => (
+                                        <div
+                                          key={trailItem.id}
+                                          className="rounded-2xl border border-border bg-background p-3"
+                                        >
+                                          <div className="flex items-center justify-between gap-3">
+                                            <p className="m-0 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                                              {trailItem.source}
+                                            </p>
+                                            <span className="text-xs text-muted-foreground">
+                                              Connected signal
+                                            </span>
+                                          </div>
+                                          <p className="mt-2 text-sm font-medium text-foreground">
+                                            {trailItem.title}
                                           </p>
-                                          <span className="text-xs text-muted-foreground">
-                                            Connected signal
-                                          </span>
+                                          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                                            {trailItem.description}
+                                          </p>
                                         </div>
-                                        <p className="mt-2 text-sm font-medium text-foreground">
-                                          {trailItem.title}
-                                        </p>
-                                        <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                                          {trailItem.description}
-                                        </p>
-                                      </div>
-                                    ))}
+                                      ),
+                                    )}
                                     <div className="flex flex-wrap gap-3 pt-2">
                                       <Button
                                         className="rounded-full"
                                         onClick={() =>
-                                          handleAttentionPrimaryAction(attentionItem)
+                                          handleAttentionPrimaryAction(
+                                            attentionItem,
+                                          )
                                         }
                                       >
                                         {primaryActionLabel}
                                       </Button>
-                                      {attentionItem.id === "meridian-misalignment" ? (
+                                      {attentionItem.id ===
+                                      "meridian-misalignment" ? (
                                         <Button
                                           variant="outline"
                                           className="rounded-full"
-                                          onClick={() => navigate("/actions/new")}
+                                          onClick={() =>
+                                            navigate("/actions/new")
+                                          }
                                         >
                                           Create future action
                                         </Button>
@@ -465,80 +482,80 @@ export const MorningBriefSurface = ({
                           <CardFooter className="border-t border-border pt-4 text-sm text-muted-foreground">
                             {attentionItem.ownerLabel}
                           </CardFooter>
-                          </Card>
-                        </motion.div>
-                      );
-                    })}
-                  </AnimatePresence>
-                </div>
-              </TabsContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </TabsContent>
 
-              <TabsContent value="email" className="mt-8 space-y-4">
-                {MORNING_BRIEF_DATA.emails.map((emailItem) => (
-                  <EmailBriefCard
-                    key={emailItem.id}
-                    emailItem={emailItem}
-                    expandedEmailId={expandedEmailId}
-                    onDeepResearch={handleOpenDeepResearch}
-                    onToggle={handleToggleEmail}
-                  />
+            <TabsContent value="email" className="mt-8 space-y-4">
+              {MORNING_BRIEF_DATA.emails.map((emailItem) => (
+                <EmailBriefCard
+                  key={emailItem.id}
+                  emailItem={emailItem}
+                  expandedEmailId={expandedEmailId}
+                  onDeepResearch={handleOpenDeepResearch}
+                  onToggle={handleToggleEmail}
+                />
+              ))}
+            </TabsContent>
+
+            <TabsContent value="meetings" className="mt-8 space-y-5">
+              <div className="rounded-3xl border border-border bg-background p-6 shadow-sm">
+                <p className="text-base leading-7 text-muted-foreground">
+                  {MORNING_BRIEF_DATA.meetingsOverview}
+                </p>
+              </div>
+              <div className="grid gap-4">
+                {MORNING_BRIEF_DATA.meetings.map((meetingItem) => (
+                  <Card
+                    key={meetingItem.id}
+                    className="group/meeting border-border bg-background shadow-sm"
+                  >
+                    <CardHeader className="gap-3">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                          <CardTitle className="text-base text-foreground">
+                            {meetingItem.title}
+                          </CardTitle>
+                          <CardDescription className="mt-2 text-sm leading-6">
+                            {meetingItem.focus}
+                          </CardDescription>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {meetingItem.briefReady ? (
+                            <Badge variant="secondary">Brief ready</Badge>
+                          ) : (
+                            <Badge variant="outline">Brief in progress</Badge>
+                          )}
+                          <Button
+                            variant="outline"
+                            className="rounded-full opacity-0 transition-opacity duration-200 group-hover/meeting:opacity-100"
+                            onClick={() => handleOpenMeetingBrief(meetingItem)}
+                            disabled={!meetingItem.briefReady}
+                          >
+                            View Brief
+                          </Button>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardFooter className="flex flex-wrap items-center gap-4 border-t border-border pt-4 text-sm text-muted-foreground">
+                      <div className="inline-flex items-center gap-2">
+                        <Clock3 size={14} />
+                        <span>{meetingItem.time}</span>
+                      </div>
+                      <div className="inline-flex items-center gap-2">
+                        <CalendarDays size={14} />
+                        <span>{meetingItem.attendees}</span>
+                      </div>
+                    </CardFooter>
+                  </Card>
                 ))}
-              </TabsContent>
-
-              <TabsContent value="meetings" className="mt-8 space-y-5">
-                <div className="rounded-3xl border border-border bg-background p-6 shadow-sm">
-                  <p className="text-base leading-7 text-muted-foreground">
-                    {MORNING_BRIEF_DATA.meetingsOverview}
-                  </p>
-                </div>
-                <div className="grid gap-4">
-                  {MORNING_BRIEF_DATA.meetings.map((meetingItem) => (
-                    <Card
-                      key={meetingItem.id}
-                      className="group/meeting border-border bg-background shadow-sm"
-                    >
-                      <CardHeader className="gap-3">
-                        <div className="flex flex-wrap items-start justify-between gap-4">
-                          <div>
-                            <CardTitle className="text-base text-foreground">
-                              {meetingItem.title}
-                            </CardTitle>
-                            <CardDescription className="mt-2 text-sm leading-6">
-                              {meetingItem.focus}
-                            </CardDescription>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-2">
-                            {meetingItem.briefReady ? (
-                              <Badge variant="secondary">Brief ready</Badge>
-                            ) : (
-                              <Badge variant="outline">Brief in progress</Badge>
-                            )}
-                            <Button
-                              variant="outline"
-                              className="rounded-full opacity-0 transition-opacity duration-200 group-hover/meeting:opacity-100"
-                              onClick={() => handleOpenMeetingBrief(meetingItem)}
-                              disabled={!meetingItem.briefReady}
-                            >
-                              View Brief
-                            </Button>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardFooter className="flex flex-wrap items-center gap-4 border-t border-border pt-4 text-sm text-muted-foreground">
-                        <div className="inline-flex items-center gap-2">
-                          <Clock3 size={14} />
-                          <span>{meetingItem.time}</span>
-                        </div>
-                        <div className="inline-flex items-center gap-2">
-                          <CalendarDays size={14} />
-                          <span>{meetingItem.attendees}</span>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-          </TabsContent>
-        </Tabs>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

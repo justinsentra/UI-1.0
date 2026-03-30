@@ -21,15 +21,40 @@ export interface SourceRef {
   label: string;
 }
 
+export interface ParagraphChartDataKey {
+  key: string;
+  label: string;
+  color: string;
+}
+
+export interface ParagraphChart {
+  type: "bar" | "line" | "area";
+  title?: string;
+  data: Record<string, string | number>[];
+  dataKeys: ParagraphChartDataKey[];
+  xAxisKey: string;
+}
+
 export interface ResponseParagraph {
   id: string;
   content: string;
   sources: SourceRef[];
+  chart?: ParagraphChart;
 }
 
 export interface ScanStep {
   label: string;
   duration: number;
+}
+
+export type SuggestionRoute =
+  | { type: "vendor-eval" }
+  | { type: "document-flow"; flowId: string }
+  | { type: "generic"; index?: number };
+
+export interface SuggestionItem {
+  label: string;
+  route: SuggestionRoute;
 }
 
 export interface MockResponse {
@@ -86,18 +111,20 @@ export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
   ],
 };
 
-export const SUGGESTIONS: Record<string, string[]> = {
+export const SUGGESTIONS: Record<string, SuggestionItem[]> = {
   "engineering-manager": [
-    "What happened in today's meetings?",
-    "Summarize this week's progress",
-    "What are the team's blockers?",
-    "Draft a PRD",
+    { label: "What happened in today's meetings?", route: { type: "generic", index: 3 } },
+    { label: "Summarize this week's progress", route: { type: "generic", index: 0 } },
+    { label: "What are the team's blockers?", route: { type: "generic", index: 2 } },
+    { label: "Draft a PRD", route: { type: "document-flow", flowId: "em-prd" } },
   ],
   jpm: [
-    "What happened in today's meetings?",
-    "Summarize this week's AI strategy updates",
-    "Build a vendor evaluation matrix",
-    "Build a 3-statement model",
+    { label: "Build an AI vendor evaluation matrix", route: { type: "vendor-eval" } },
+    { label: "Pipeline overview for Q1", route: { type: "generic", index: 0 } },
+    { label: "Build a 3-statement model", route: { type: "document-flow", flowId: "jpm-model" } },
+    { label: "Weekly status update for Sentra", route: { type: "document-flow", flowId: "jpm-weekly" } },
+    { label: "What happened in today's meetings?", route: { type: "generic", index: 3 } },
+    { label: "Summarize this week's AI strategy updates", route: { type: "generic", index: 1 } },
   ],
 };
 
@@ -146,6 +173,21 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
         },
         { type: "zoom", label: "AI Strategy Committee (Mar 7)" },
       ],
+      chart: {
+        type: "bar",
+        title: "Model Accuracy — Regulatory Document Comprehension",
+        data: [
+          { vendor: "Anthropic Claude", accuracy: 94.2, fsDomain: 92, security: 95 },
+          { vendor: "OpenAI GPT-5", accuracy: 89.1, fsDomain: 78, security: 88 },
+          { vendor: "Google Gemini", accuracy: 87.3, fsDomain: 74, security: 90 },
+        ],
+        dataKeys: [
+          { key: "accuracy", label: "Document Accuracy (%)", color: "hsl(215, 80%, 55%)" },
+          { key: "fsDomain", label: "FS Domain Expertise", color: "hsl(170, 65%, 45%)" },
+          { key: "security", label: "Security & Compliance", color: "hsl(260, 55%, 60%)" },
+        ],
+        xAxisKey: "vendor",
+      },
     },
     {
       id: "ve-1",
@@ -194,6 +236,20 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
           label: "AI_Vendor_Scoring_Matrix_Final.xlsx",
         },
       ],
+      chart: {
+        type: "bar",
+        title: "Effective Cost per Seat at Scale ($/month)",
+        data: [
+          { tier: "500 seats", anthropic: 18, openai: 22, gemini: 20 },
+          { tier: "2,000 seats", anthropic: 14, openai: 18, gemini: 12 },
+        ],
+        dataKeys: [
+          { key: "anthropic", label: "Anthropic Claude", color: "hsl(215, 80%, 55%)" },
+          { key: "openai", label: "OpenAI GPT-5", color: "hsl(145, 55%, 45%)" },
+          { key: "gemini", label: "Google Gemini", color: "hsl(35, 90%, 55%)" },
+        ],
+        xAxisKey: "tier",
+      },
     },
   ],
 };
@@ -247,6 +303,20 @@ export const MOCK_RESPONSES: MockResponse[] = [
           { type: "google-calendar", label: "Pipeline Review Meeting" },
           { type: "notion", label: "Q1 Deal Tracker" },
         ],
+        chart: {
+          type: "bar",
+          title: "Pipeline by Deal Stage ($K)",
+          data: [
+            { stage: "Discovery", value: 480, deals: 4 },
+            { stage: "Evaluation", value: 1250, deals: 5 },
+            { stage: "Negotiation", value: 1580, deals: 3 },
+            { stage: "Contract Sent", value: 890, deals: 2 },
+          ],
+          dataKeys: [
+            { key: "value", label: "Pipeline Value ($K)", color: "hsl(215, 80%, 55%)" },
+          ],
+          xAxisKey: "stage",
+        },
       },
       {
         id: "p0-1",
@@ -257,6 +327,21 @@ export const MOCK_RESPONSES: MockResponse[] = [
           { type: "outlook", label: "Q4 Pipeline Report" },
           { type: "google-drive", label: "Q1 Revenue Analysis" },
         ],
+        chart: {
+          type: "bar",
+          title: "Win Rate by Vertical (%)",
+          data: [
+            { vertical: "Financial Services", winRate: 64 },
+            { vertical: "Healthcare", winRate: 58 },
+            { vertical: "Technology", winRate: 51 },
+            { vertical: "Retail", winRate: 43 },
+            { vertical: "Manufacturing", winRate: 38 },
+          ],
+          dataKeys: [
+            { key: "winRate", label: "Win Rate (%)", color: "hsl(170, 65%, 45%)" },
+          ],
+          xAxisKey: "vertical",
+        },
       },
     ],
   },

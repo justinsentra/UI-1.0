@@ -1,9 +1,28 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { motion } from "motion/react";
-import type { ResponseParagraph as ResponseParagraphType } from "@/data/mock-deep-research";
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+} from "recharts";
+import type { ResponseParagraph as ResponseParagraphType, ParagraphChart } from "@/data/mock-deep-research";
 import SourcePill from "./source-pill";
 import { Steps, StepsTrigger, StepsContent } from "@/components/ui/steps";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  type ChartConfig,
+} from "@/components/ui/chart";
 
 interface ResponseParagraphProps {
   paragraph: ResponseParagraphType;
@@ -11,6 +30,113 @@ interface ResponseParagraphProps {
 }
 
 const LINE_DELAY = 0.1;
+
+function buildChartConfig(chart: ParagraphChart): ChartConfig {
+  const config: ChartConfig = {};
+  for (const dk of chart.dataKeys) {
+    config[dk.key] = { label: dk.label, color: dk.color };
+  }
+  return config;
+}
+
+function ParagraphChartView({ chart, delay }: { chart: ParagraphChart; delay: number }) {
+  const config = buildChartConfig(chart);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.3, ease: "easeOut" }}
+      className="mt-4 mb-2 rounded-xl border border-border bg-card p-4"
+    >
+      {chart.title ? (
+        <p className="mb-3 text-xs font-medium text-foreground">{chart.title}</p>
+      ) : null}
+      <ChartContainer config={config} className="aspect-[2/1] w-full">
+        {chart.type === "bar" ? (
+          <BarChart data={chart.data} barCategoryGap="20%">
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey={chart.xAxisKey}
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(v: string) =>
+                v.length > 14 ? v.slice(0, 12) + "…" : v
+              }
+              fontSize={11}
+            />
+            <YAxis tickLine={false} axisLine={false} fontSize={11} width={40} />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            {chart.dataKeys.length > 1 ? (
+              <ChartLegend content={<ChartLegendContent />} />
+            ) : null}
+            {chart.dataKeys.map((dk) => (
+              <Bar
+                key={dk.key}
+                dataKey={dk.key}
+                fill={`var(--color-${dk.key})`}
+                radius={[4, 4, 0, 0]}
+              />
+            ))}
+          </BarChart>
+        ) : chart.type === "line" ? (
+          <LineChart data={chart.data}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey={chart.xAxisKey}
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              fontSize={11}
+            />
+            <YAxis tickLine={false} axisLine={false} fontSize={11} width={40} />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            {chart.dataKeys.length > 1 ? (
+              <ChartLegend content={<ChartLegendContent />} />
+            ) : null}
+            {chart.dataKeys.map((dk) => (
+              <Line
+                key={dk.key}
+                type="monotone"
+                dataKey={dk.key}
+                stroke={`var(--color-${dk.key})`}
+                strokeWidth={2}
+                dot={{ r: 3 }}
+              />
+            ))}
+          </LineChart>
+        ) : (
+          <AreaChart data={chart.data}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey={chart.xAxisKey}
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              fontSize={11}
+            />
+            <YAxis tickLine={false} axisLine={false} fontSize={11} width={40} />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            {chart.dataKeys.length > 1 ? (
+              <ChartLegend content={<ChartLegendContent />} />
+            ) : null}
+            {chart.dataKeys.map((dk) => (
+              <Area
+                key={dk.key}
+                type="monotone"
+                dataKey={dk.key}
+                fill={`var(--color-${dk.key})`}
+                stroke={`var(--color-${dk.key})`}
+                fillOpacity={0.2}
+              />
+            ))}
+          </AreaChart>
+        )}
+      </ChartContainer>
+    </motion.div>
+  );
+}
 
 const ResponseParagraph = ({
   paragraph,
@@ -37,13 +163,20 @@ const ResponseParagraph = ({
         ))}
       </div>
 
+      {paragraph.chart ? (
+        <ParagraphChartView
+          chart={paragraph.chart}
+          delay={(lineOffset + chunks.length) * LINE_DELAY}
+        />
+      ) : null}
+
       {paragraph.sources.length > 0 && (
         <motion.div
           className="mt-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            delay: (lineOffset + chunks.length) * LINE_DELAY,
+            delay: (lineOffset + chunks.length + (paragraph.chart ? 1 : 0)) * LINE_DELAY,
             duration: 0.3,
           }}
         >

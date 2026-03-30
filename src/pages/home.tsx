@@ -15,12 +15,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MorningBriefSurface } from "@/pages/morning-brief";
 import { useMorningBrief } from "@/contexts/morning-brief-context";
+import { ZoomIcon } from "@/icons/source-icons";
+import type { ComponentType } from "react";
 
-import githubLogo from "@/assets/logos/github.svg";
 import outlookLogo from "@/assets/logos/outlook.png";
 import salesforceLogo from "@/assets/logos/salesforce.svg";
 import sharePointLogo from "@/assets/logos/sharepoint.png";
-import wordLogo from "@/assets/logos/word.png";
+import teamsLogo from "@/assets/logos/ms-teams.png";
+import serviceNowLogo from "@/assets/logos/service-now.png";
+import oracleLogo from "@/assets/logos/oracle-financials.png";
+import mondayComLogo from "@/assets/logos/monday-com.webp";
 
 const HOME_ACTION_IDS = {
   weeklyDealPipelineHealthCheck: "weekly-deal-pipeline-health-check",
@@ -28,12 +32,15 @@ const HOME_ACTION_IDS = {
   autoExcelUpdate: "auto-excel-update",
 };
 
-const ACTIVE_CONNECTION_LOGOS = [
+const ACTIVE_CONNECTION_LOGOS: { id: string; src?: string; Icon?: ComponentType<{ size?: number; className?: string }> }[] = [
   { id: "outlook", src: outlookLogo },
+  { id: "teams", src: teamsLogo },
+  { id: "zoom", Icon: ZoomIcon },
   { id: "salesforce", src: salesforceLogo },
   { id: "sharepoint", src: sharePointLogo },
-  { id: "word", src: wordLogo },
-  { id: "github", src: githubLogo },
+  { id: "servicenow", src: serviceNowLogo },
+  { id: "oracle", src: oracleLogo },
+  { id: "monday-com", src: mondayComLogo },
 ];
 
 /* ── Helpers ── */
@@ -325,11 +332,15 @@ const HomePage = () => {
                       key={tool.id}
                       className="flex items-center justify-center size-6 rounded-md bg-white"
                     >
-                      <img
-                        src={tool.src}
-                        alt={tool.id}
-                        className="block size-4"
-                      />
+                      {tool.src ? (
+                        <img
+                          src={tool.src}
+                          alt={tool.id}
+                          className="block size-4"
+                        />
+                      ) : tool.Icon ? (
+                        <tool.Icon size={16} />
+                      ) : null}
                     </div>
                   ))}
                   <div className="grid transition-[grid-template-columns] duration-200 grid-cols-[0fr] group-hover:grid-cols-[1fr]">
