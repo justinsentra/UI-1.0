@@ -16,28 +16,18 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
-import notionLogo from "@/assets/logos/notion.svg";
-import googleDriveLogo from "@/assets/logos/google-drive.svg";
-import slackLogo from "@/assets/logos/slack.svg";
 import githubLogo from "@/assets/logos/github.svg";
-import linearLogo from "@/assets/logos/linear.svg";
-import outlookLogo from "@/assets/logos/outlook.svg";
-import asanaLogo from "@/assets/logos/asana.svg";
-import discordLogo from "@/assets/logos/discord.svg";
+import outlookLogo from "@/assets/logos/outlook.png";
+import salesforceLogo from "@/assets/logos/salesforce.svg";
+import sharePointLogo from "@/assets/logos/sharepoint.png";
+import wordLogo from "@/assets/logos/word.png";
 
-const TOOL_LOGOS = [
-  { id: "gmail", src: gmailLogo },
-  { id: "calendar", src: calendarLogo },
-  { id: "notion", src: notionLogo },
-  { id: "drive", src: googleDriveLogo },
-  { id: "slack", src: slackLogo },
-  { id: "github", src: githubLogo },
-  { id: "linear", src: linearLogo },
+const ACTIVE_CONNECTION_LOGOS = [
   { id: "outlook", src: outlookLogo },
-  { id: "asana", src: asanaLogo },
-  { id: "discord", src: discordLogo },
+  { id: "salesforce", src: salesforceLogo },
+  { id: "sharepoint", src: sharePointLogo },
+  { id: "word", src: wordLogo },
+  { id: "github", src: githubLogo },
 ];
 
 /* ── Helpers ── */
@@ -342,10 +332,10 @@ const HomePage = () => {
                 className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/50 dark:bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
               >
                 <p className="text-sm text-muted-foreground shrink-0">
-                  Connect Your Tools
+                  Active Connections
                 </p>
                 <div className="ml-auto flex items-center gap-1.5">
-                  {TOOL_LOGOS.map((tool) => (
+                  {ACTIVE_CONNECTION_LOGOS.map((tool) => (
                     <div
                       key={tool.id}
                       className="flex items-center justify-center size-6 rounded-md bg-white"

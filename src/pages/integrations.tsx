@@ -9,22 +9,30 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 
-import slackLogo from "../assets/logos/slack.svg";
-import asanaLogo from "../assets/logos/asana.svg";
-import githubLogo from "../assets/logos/github.svg";
-import linearLogo from "../assets/logos/linear.svg";
-import discordLogo from "../assets/logos/discord.svg";
+import outlookLogo from "../assets/logos/outlook.png";
+import excelLogo from "../assets/logos/excel.png";
+import wordLogo from "../assets/logos/word.png";
+import powerpointLogo from "../assets/logos/powerpoint.png";
+import sharePointLogo from "../assets/logos/sharepoint.png";
+import azureLogo from "../assets/logos/azure.png";
+import salesforceLogo from "../assets/logos/salesforce.svg";
+import serviceNowLogo from "../assets/logos/service-now.png";
+import oracleFinancialsLogo from "../assets/logos/oracle-financials.png";
+import mondayComLogo from "../assets/logos/monday-com.webp";
 import gmailLogo from "../assets/logos/gmail.svg";
 import calendarLogo from "../assets/logos/calendar.svg";
-import outlookLogo from "../assets/logos/outlook.svg";
-import notionLogo from "../assets/logos/notion.svg";
 import googleDriveLogo from "../assets/logos/google-drive.svg";
+import slackLogo from "../assets/logos/slack.svg";
+import githubLogo from "../assets/logos/github.svg";
+import notionLogo from "../assets/logos/notion.svg";
+import linearLogo from "../assets/logos/linear.svg";
+import asanaLogo from "../assets/logos/asana.svg";
+import discordLogo from "../assets/logos/discord.svg";
 
 import {
   ZoomIcon,
   GoogleMeetIcon,
   TeamsIcon,
-  SharePointIcon,
   AffinityIcon,
 } from "@/icons/source-icons";
 
@@ -40,7 +48,152 @@ export interface Integration {
   overview: string;
 }
 
+const PRIORITIZED_INTEGRATION_IDS = [
+  "outlook",
+  "teams",
+  "excel",
+  "word",
+  "powerpoint",
+  "sharepoint",
+  "azure",
+  "zoom",
+  "salesforce",
+  "servicenow",
+  "oracle-financials",
+  "monday-com",
+];
+
+const getIntegrationPriority = (integrationId: string) => {
+  const priorityIndex = PRIORITIZED_INTEGRATION_IDS.indexOf(integrationId);
+
+  if (priorityIndex === -1) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  return priorityIndex;
+};
+
 export const ALL_INTEGRATIONS: Integration[] = [
+  {
+    id: "outlook",
+    name: "Outlook",
+    description: "Connect Outlook email and calendar.",
+    logo: outlookLogo,
+    connected: true,
+    category: "Communication",
+    overview:
+      "Connect your Outlook account to sync emails and calendar events with Sentra. Get smart inbox management, meeting prep, and scheduling assistance across your Microsoft workflow.",
+  },
+  {
+    id: "teams",
+    name: "Microsoft Teams",
+    description: "Capture meetings and messages from Teams.",
+    LogoIcon: TeamsIcon,
+    connected: false,
+    category: "Communication",
+    overview:
+      "Connect Microsoft Teams to capture meeting transcripts, surface important messages, and interact with Sentra from within your Teams workspace.",
+  },
+  {
+    id: "excel",
+    name: "Excel",
+    description: "Search and analyze spreadsheets from Excel.",
+    logo: excelLogo,
+    connected: false,
+    category: "Productivity",
+    overview:
+      "Connect Excel to search workbook data, surface spreadsheet context, and pull key metrics into Sentra workflows without hunting through files manually.",
+  },
+  {
+    id: "word",
+    name: "Word",
+    description: "Access and summarize Word documents.",
+    logo: wordLogo,
+    connected: true,
+    category: "Productivity",
+    overview:
+      "Connect Word to surface documents, summarize drafts, and bring relevant file context directly into your work with Sentra.",
+  },
+  {
+    id: "powerpoint",
+    name: "PowerPoint",
+    description: "Find and reference PowerPoint decks.",
+    logo: powerpointLogo,
+    connected: false,
+    category: "Productivity",
+    overview:
+      "Connect PowerPoint to search decks, summarize presentation content, and reuse important slides and talking points across workflows.",
+  },
+  {
+    id: "sharepoint",
+    name: "SharePoint",
+    description: "Search and sync documents from SharePoint sites.",
+    logo: sharePointLogo,
+    connected: true,
+    category: "Productivity",
+    overview:
+      "Connect SharePoint to search and sync documents across your organization's sites. Sentra indexes your files for fast, contextual retrieval.",
+  },
+  {
+    id: "azure",
+    name: "Azure",
+    description: "Sync cloud resources and operational context from Azure.",
+    logo: azureLogo,
+    connected: false,
+    category: "Infrastructure",
+    overview:
+      "Connect Azure to bring subscriptions, services, identity context, and operational signals into Sentra for faster troubleshooting and planning.",
+  },
+  {
+    id: "zoom",
+    name: "Zoom",
+    description: "Capture meeting notes and transcripts from Zoom calls.",
+    LogoIcon: ZoomIcon,
+    connected: true,
+    category: "Communication",
+    overview:
+      "Connect Zoom to automatically capture meeting notes and transcripts. Sentra summarizes key takeaways, action items, and decisions so you can stay focused during calls.",
+  },
+  {
+    id: "salesforce",
+    name: "Salesforce",
+    description: "Bring accounts, contacts, and opportunities into Sentra.",
+    logo: salesforceLogo,
+    connected: true,
+    category: "CRM",
+    overview:
+      "Connect Salesforce to sync accounts, contacts, opportunities, and activity history so Sentra can surface CRM context exactly when you need it.",
+  },
+  {
+    id: "servicenow",
+    name: "ServiceNow",
+    description: "Sync tickets, incidents, and workflows from ServiceNow.",
+    logo: serviceNowLogo,
+    connected: false,
+    category: "Operations",
+    overview:
+      "Connect ServiceNow to bring incidents, tickets, requests, and workflow status into Sentra so teams can coordinate faster with full service context.",
+  },
+  {
+    id: "oracle-financials",
+    name: "Oracle Financials",
+    description: "Access financial records, reports, and approvals.",
+    logo: oracleFinancialsLogo,
+    connected: false,
+    category: "Finance",
+    overview:
+      "Connect Oracle Financials to surface financial records, operational reports, and approval context in Sentra without switching systems.",
+  },
+  {
+    id: "monday-com",
+    name: "Monday.com",
+    description: "Sync boards, items, and project timelines automatically.",
+    logo: mondayComLogo,
+    connected: false,
+    category: "Project Management",
+    overview:
+      "Connect Monday.com to sync boards, project updates, owners, and timelines so Sentra can track execution work across teams.",
+  },
   {
     id: "gmail",
     name: "Gmail",
@@ -72,16 +225,6 @@ export const ALL_INTEGRATIONS: Integration[] = [
       "Connect Google Drive to search, reference, and surface relevant files across your workspace. Sentra can pull context from documents to help you work faster.",
   },
   {
-    id: "zoom",
-    name: "Zoom",
-    description: "Capture meeting notes and transcripts from Zoom calls.",
-    LogoIcon: ZoomIcon,
-    connected: true,
-    category: "Communication",
-    overview:
-      "Connect Zoom to automatically capture meeting notes and transcripts. Sentra summarizes key takeaways, action items, and decisions so you can stay focused during calls.",
-  },
-  {
     id: "google-meet",
     name: "Google Meet",
     description: "Record and transcribe Google Meet conversations.",
@@ -110,16 +253,6 @@ export const ALL_INTEGRATIONS: Integration[] = [
     category: "Developer Tools",
     overview:
       "Link your GitHub workspace to connect pull requests, commits, and issues to your tasks. Sentra surfaces relevant code changes and keeps your project context up to date.",
-  },
-  {
-    id: "outlook",
-    name: "Outlook",
-    description: "Connect Outlook email and calendar.",
-    logo: outlookLogo,
-    connected: false,
-    category: "Communication",
-    overview:
-      "Connect your Outlook account to sync emails and calendar events with Sentra. Get smart inbox management, meeting prep, and scheduling assistance.",
   },
   {
     id: "notion",
@@ -174,28 +307,6 @@ export const ALL_INTEGRATIONS: Integration[] = [
       "Add the Sentra bot to your Discord server to receive updates, manage tasks, and interact with your AI assistant directly in channels or DMs.",
   },
   {
-    id: "teams",
-    name: "Microsoft Teams",
-    description: "Capture meetings and messages from Teams.",
-    LogoIcon: TeamsIcon,
-    connected: false,
-    comingSoon: true,
-    category: "Communication",
-    overview:
-      "Connect Microsoft Teams to capture meeting transcripts, surface important messages, and interact with Sentra from within your Teams workspace.",
-  },
-  {
-    id: "sharepoint",
-    name: "SharePoint",
-    description: "Search and sync documents from SharePoint sites.",
-    LogoIcon: SharePointIcon,
-    connected: false,
-    comingSoon: true,
-    category: "Productivity",
-    overview:
-      "Connect SharePoint to search and sync documents across your organization's sites. Sentra indexes your files for fast, contextual retrieval.",
-  },
-  {
     id: "affinity",
     name: "Affinity",
     description: "Sync relationship intelligence and deal pipeline data.",
@@ -223,13 +334,20 @@ const IntegrationsPage = () => {
   };
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return integrations;
-    const q = search.toLowerCase();
-    return integrations.filter(
-      (i) =>
-        i.name.toLowerCase().includes(q) ||
-        i.description.toLowerCase().includes(q) ||
-        i.category.toLowerCase().includes(q),
+    const normalizedSearch = search.trim().toLowerCase();
+    const visibleIntegrations = normalizedSearch
+      ? integrations.filter(
+          (integration) =>
+            integration.name.toLowerCase().includes(normalizedSearch) ||
+            integration.description.toLowerCase().includes(normalizedSearch) ||
+            integration.category.toLowerCase().includes(normalizedSearch),
+        )
+      : integrations;
+
+    return [...visibleIntegrations].sort(
+      (leftIntegration, rightIntegration) =>
+        getIntegrationPriority(leftIntegration.id) -
+        getIntegrationPriority(rightIntegration.id),
     );
   }, [integrations, search]);
 
@@ -242,7 +360,7 @@ const IntegrationsPage = () => {
       if (!groups[item.category]) groups[item.category] = [];
       groups[item.category].push(item);
     }
-    return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b));
+    return Object.entries(groups);
   }, [disconnected]);
 
   const renderCard = (integration: Integration) => (
@@ -255,12 +373,12 @@ const IntegrationsPage = () => {
           : "cursor-pointer hover:bg-accent"
       }`}
     >
-      <div className="size-10 shrink-0 rounded-lg border border-border bg-foreground flex items-center justify-center overflow-hidden">
+      <div className="size-10 shrink-0 rounded-lg border border-border bg-white flex items-center justify-center overflow-hidden">
         {integration.logo ? (
           <img
             src={integration.logo}
             alt={`${integration.name} logo`}
-            className="size-6 object-contain"
+            className={`size-6 object-contain ${integration.id === "servicenow" || integration.id === "oracle-financials" ? "rounded-full" : ""}`}
           />
         ) : integration.LogoIcon ? (
           <integration.LogoIcon size={22} />
