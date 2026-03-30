@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import {
   Bell,
   CalendarDays,
@@ -43,6 +44,7 @@ interface EmailBriefCardProps {
 }
 
 interface MorningBriefSurfaceProps {
+  isOverlay?: boolean;
   onClose?: () => void;
 }
 
@@ -163,7 +165,10 @@ const EmailBriefCard = ({
   );
 };
 
-export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
+export const MorningBriefSurface = ({
+  isOverlay = false,
+  onClose,
+}: MorningBriefSurfaceProps) => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("attention");
   const [attentionItems, setAttentionItems] = useState(
@@ -262,36 +267,50 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
   );
 
   return (
-    <div className="relative min-h-full overflow-hidden bg-background">
-      <div className="relative w-full max-w-6xl mx-auto px-6 py-10 sm:px-8">
+    <div
+      className={cn(
+        "relative overflow-hidden bg-background",
+        isOverlay ? "fixed inset-0 z-50 overflow-y-auto" : "min-h-full",
+      )}
+    >
+      {isOverlay ? (
+        <button
+          type="button"
+          aria-label="Close Morning Brief"
+          onClick={onClose}
+          className="absolute inset-0 bg-background/45 backdrop-blur-sm"
+        />
+      ) : null}
+      <div
+        className={cn(
+          "relative w-full",
+          isOverlay ? "min-h-screen flex items-center py-8" : "py-10",
+        )}
+      >
         {onClose ? (
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-6 top-6 z-10 text-muted-foreground hover:text-foreground"
+            className="absolute left-6 top-6 z-10 text-muted-foreground hover:text-foreground"
             aria-label="Close Morning Brief"
           >
             <X size={20} />
           </button>
         ) : null}
         {briefReadyMeeting ? (
-          <div className="absolute right-6 top-16 z-10">
-              <button
-                type="button"
-                onClick={() => handleOpenMeetingBrief(briefReadyMeeting)}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-sm"
-              >
-                <span className="flex size-2.5 rounded-full bg-emerald-500" />
-                <span>{MORNING_BRIEF_DATA.badgeLabel}</span>
-            </button>
+          <div className="absolute right-6 top-6 z-10 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-sm">
+            <span className="flex size-2.5 rounded-full bg-emerald-500" />
+            <span>{MORNING_BRIEF_DATA.badgeLabel}</span>
           </div>
         ) : null}
 
-        <div className="flex items-center justify-between gap-8 border-b border-border pb-6 pt-16">
-          <h1 className="text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
-            {MORNING_BRIEF_DATA.title}
-          </h1>
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <div className="relative w-full max-w-screen-2xl mx-auto px-6 sm:px-8">
+
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <div className="flex items-center justify-between gap-8 pb-6 pt-16">
+            <h1 className="text-3xl font-normal tracking-tight text-foreground">
+              {MORNING_BRIEF_DATA.title}
+            </h1>
             <TabsList>
               <TabsTrigger value="attention">
                 <Bell size={18} />
@@ -303,12 +322,10 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                 <CalendarDays size={18} />
               </TabsTrigger>
             </TabsList>
-          </Tabs>
-        </div>
+          </div>
 
-        <div className="mt-8">
-              <TabsContent value="attention" className="mt-0">
-                <div className="grid gap-5 xl:grid-cols-3">
+          <TabsContent value="attention" className="mt-8">
+            <div className="grid gap-5 xl:grid-cols-3">
                   <AnimatePresence initial={false} mode="popLayout">
                     {visibleAttentionItems.map((attentionItem) => {
                       const isExpanded = expandedAttentionId === attentionItem.id;
@@ -328,7 +345,7 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                           transition={{ type: "spring", stiffness: 260, damping: 24 }}
                           className="h-full"
                         >
-                          <Card className="group/card flex h-full border-border bg-background shadow-sm">
+                          <Card className="group/card flex h-full min-h-96 flex-col border-border bg-background shadow-sm">
                           <CardHeader className="gap-4">
                             <div className="flex items-start justify-between gap-3">
                               <Badge variant="outline">{attentionItem.category}</Badge>
@@ -393,11 +410,11 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                             <AnimatePresence initial={false}>
                               {isExpanded ? (
                                 <motion.div
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: "auto" }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.2, ease: "easeOut" }}
-                                  className="overflow-hidden"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.15 }}
+                                  className="h-52 overflow-y-auto"
                                 >
                                   <div className="space-y-3 rounded-2xl border border-border bg-muted/40 p-4">
                                     {attentionItem.trailItems.map((trailItem) => (
@@ -456,7 +473,7 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="email" className="mt-0 space-y-4">
+              <TabsContent value="email" className="mt-8 space-y-4">
                 {MORNING_BRIEF_DATA.emails.map((emailItem) => (
                   <EmailBriefCard
                     key={emailItem.id}
@@ -468,7 +485,7 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                 ))}
               </TabsContent>
 
-              <TabsContent value="meetings" className="mt-0 space-y-5">
+              <TabsContent value="meetings" className="mt-8 space-y-5">
                 <div className="rounded-3xl border border-border bg-background p-6 shadow-sm">
                   <p className="text-base leading-7 text-muted-foreground">
                     {MORNING_BRIEF_DATA.meetingsOverview}
@@ -521,6 +538,7 @@ export const MorningBriefSurface = ({ onClose }: MorningBriefSurfaceProps) => {
                   ))}
                 </div>
           </TabsContent>
+        </Tabs>
         </div>
       </div>
     </div>

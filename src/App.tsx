@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { MorningBriefProvider } from "./contexts/morning-brief-context";
 import AppLayout from "./components/app-layout";
 import HomePage from "./pages/home";
 import MorningBriefPage from "./pages/morning-brief";
@@ -24,8 +25,9 @@ import ArtifactDetailPage from "./pages/artifact-detail";
 const App = () => {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
+      <MorningBriefProvider>
+        <BrowserRouter>
+          <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
@@ -76,6 +78,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      </MorningBriefProvider>
     </ThemeProvider>
   );
 };

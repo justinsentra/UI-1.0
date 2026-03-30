@@ -7,41 +7,16 @@ import {
   ClipboardList,
   Share2,
   ExternalLink,
-  FileText,
-  AlertTriangle,
-  BarChart3,
-  Truck,
-  Microscope,
   Zap,
   Check,
 } from "lucide-react";
-import { Mail as MailIcon } from "lucide-react";
-import { cn } from "@lib/utils";
 import { Button } from "@/components/ui/button";
 import { useUIStore } from "@/stores/ui-store";
 import {
   MOCK_ARTIFACTS,
   ARTIFACT_TYPE_LABELS,
 } from "@/data/mock-artifacts";
-import type { ArtifactType, ArtifactNextStep } from "@/data/mock-artifacts";
-
-const TYPE_ICONS: Record<ArtifactType, typeof FileText> = {
-  memo: FileText,
-  "pipeline-summary": BarChart3,
-  "risk-report": AlertTriangle,
-  "vendor-delay-report": Truck,
-  research: Microscope,
-  "follow-up": MailIcon,
-};
-
-const TYPE_COLORS: Record<ArtifactType, string> = {
-  memo: "bg-blue-500/10 text-blue-500",
-  "pipeline-summary": "bg-emerald-500/10 text-emerald-500",
-  "risk-report": "bg-red-500/10 text-red-500",
-  "vendor-delay-report": "bg-amber-500/10 text-amber-500",
-  research: "bg-violet-500/10 text-violet-500",
-  "follow-up": "bg-sky-500/10 text-sky-500",
-};
+import type { ArtifactNextStep } from "@/data/mock-artifacts";
 
 const STEP_ICONS: Record<ArtifactNextStep["type"], typeof Calendar> = {
   "schedule-call": Calendar,
@@ -140,8 +115,6 @@ const ArtifactDetailPage = () => {
     );
   }
 
-  const TypeIcon = TYPE_ICONS[artifact.type];
-  const colorClass = TYPE_COLORS[artifact.type];
   const date = new Date(artifact.createdAt);
   const formatted = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -178,23 +151,11 @@ const ArtifactDetailPage = () => {
 
         {/* Header */}
         <div className="mt-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div
-              className={cn(
-                "flex size-10 shrink-0 items-center justify-center rounded-xl",
-                colorClass,
-              )}
-            >
-              <TypeIcon size={18} />
-            </div>
-            <div>
-              <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">
-                {ARTIFACT_TYPE_LABELS[artifact.type]}
-              </span>
-            </div>
-          </div>
+          <span className="text-xs font-medium text-muted-foreground/60">
+            {ARTIFACT_TYPE_LABELS[artifact.type]}
+          </span>
 
-          <h1 className="text-2xl font-medium text-foreground tracking-tight">
+          <h1 className="mt-2 text-2xl font-medium text-foreground tracking-tight">
             {artifact.title}
           </h1>
 

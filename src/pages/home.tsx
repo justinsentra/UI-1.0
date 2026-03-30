@@ -13,6 +13,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { MorningBriefSurface } from "@/pages/morning-brief";
+import { useMorningBrief } from "@/contexts/morning-brief-context";
 
 import githubLogo from "@/assets/logos/github.svg";
 import outlookLogo from "@/assets/logos/outlook.png";
@@ -182,6 +184,7 @@ const HOME_MEETINGS: HomeMeeting[] = [
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const { showMorningBrief, dismissMorningBrief } = useMorningBrief();
 
   const [attentionItems, setAttentionItems] = useState<AttentionItem[]>(INITIAL_ATTENTION_ITEMS);
   const [sidebarTab, setSidebarTab] = useState("attention");
@@ -631,6 +634,10 @@ const HomePage = () => {
           )}
         </div>
       </div>
+
+      {showMorningBrief ? (
+        <MorningBriefSurface isOverlay onClose={dismissMorningBrief} />
+      ) : null}
     </div>
   );
 };

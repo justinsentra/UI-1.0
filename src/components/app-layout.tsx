@@ -81,18 +81,10 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
   "/pre-meeting-brief": { path: "/morning-brief", icon: Home },
 };
 
-function resolveBackNav(pathname: string) {
-  if (BACK_NAV[pathname]) return BACK_NAV[pathname];
-  for (const prefix of Object.keys(BACK_NAV)) {
-    if (pathname.startsWith(prefix + "/")) return BACK_NAV[prefix];
-  }
-  return undefined;
-}
-
 const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const backNav = resolveBackNav(location.pathname);
+  const backNav = BACK_NAV[location.pathname];
 
   if (!backNav) return null;
 
@@ -128,7 +120,7 @@ const AppLayout = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      const backNav = resolveBackNav(location.pathname);
+      const backNav = BACK_NAV[location.pathname];
       if (!backNav) return;
       const tag = document.activeElement?.tagName?.toLowerCase();
       if (tag === "input" || tag === "textarea") {

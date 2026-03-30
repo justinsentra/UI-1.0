@@ -8,6 +8,7 @@ export interface Action {
   prompt: string;
   triggerType: "scheduled" | "triggered";
   triggerDetail?: string;
+  triggerConfig?: ActionTriggerConfig;
   frequency?: {
     type: "DAILY" | "WEEKLY" | "MONTHLY";
     interval: number;
@@ -24,6 +25,12 @@ export interface ActionArtifact {
   artifactType: "report" | "research";
   reportId?: string;
   prompt?: string;
+}
+
+export interface ActionTriggerConfig {
+  source: string;
+  event: string;
+  scope: string;
 }
 
 export const MOCK_ACTIONS: Action[] = [
@@ -75,6 +82,11 @@ export const MOCK_ACTIONS: Action[] = [
       "After every external call, review the Zoom or Teams transcript.\n\nStep 1: Extract decisions, owners, due dates, and follow-up asks.\n\nStep 2: Draft the follow-up email in Outlook with a concise summary and next steps.\n\nStep 3: Update Salesforce with meeting notes and surfaced risks.\n\nStep 4: Create a deal memo draft when the discussion changes the investment view.",
     triggerType: "triggered",
     triggerDetail: "Post-meeting trigger: runs after every external call.",
+    triggerConfig: {
+      source: "zoom",
+      event: "after-call-ends",
+      scope: "external-calls",
+    },
     approvedArtifacts: [
       {
         id: "post-meeting-follow-up-artifact-1",
@@ -108,6 +120,11 @@ export const MOCK_ACTIONS: Action[] = [
     triggerType: "triggered",
     triggerDetail:
       "Email archetype trigger: runs when a client sends financials.",
+    triggerConfig: {
+      source: "outlook",
+      event: "client-sends-financials",
+      scope: "client-emails",
+    },
     approvedArtifacts: [
       {
         id: "auto-excel-update-artifact-1",

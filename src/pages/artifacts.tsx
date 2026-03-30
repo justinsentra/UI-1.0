@@ -6,14 +6,7 @@ import {
   Search,
   Layers,
   Clock,
-  FileText,
-  AlertTriangle,
-  BarChart3,
-  Truck,
-  Microscope,
-  Mail,
 } from "lucide-react";
-import { cn } from "@lib/utils";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -28,24 +21,6 @@ import {
 } from "@/data/mock-artifacts";
 import type { Artifact, ArtifactType } from "@/data/mock-artifacts";
 
-const TYPE_ICONS: Record<ArtifactType, typeof FileText> = {
-  memo: FileText,
-  "pipeline-summary": BarChart3,
-  "risk-report": AlertTriangle,
-  "vendor-delay-report": Truck,
-  research: Microscope,
-  "follow-up": Mail,
-};
-
-const TYPE_COLORS: Record<ArtifactType, string> = {
-  memo: "bg-blue-500/10 text-blue-500",
-  "pipeline-summary": "bg-emerald-500/10 text-emerald-500",
-  "risk-report": "bg-red-500/10 text-red-500",
-  "vendor-delay-report": "bg-amber-500/10 text-amber-500",
-  research: "bg-violet-500/10 text-violet-500",
-  "follow-up": "bg-sky-500/10 text-sky-500",
-};
-
 type FilterValue = "all" | ArtifactType;
 type SortValue = "newest" | "oldest" | "action";
 
@@ -56,8 +31,6 @@ function ArtifactRow({
   artifact: Artifact;
   onClick: () => void;
 }) {
-  const Icon = TYPE_ICONS[artifact.type];
-  const colorClass = TYPE_COLORS[artifact.type];
   const date = new Date(artifact.createdAt);
   const formatted = date.toLocaleDateString("en-US", {
     month: "short",
@@ -71,15 +44,6 @@ function ArtifactRow({
       onClick={onClick}
       className="flex items-center gap-4 w-full py-3.5 px-4 rounded-xl hover:bg-accent transition-colors text-left cursor-pointer bg-transparent border-none"
     >
-      <div
-        className={cn(
-          "flex size-9 shrink-0 items-center justify-center rounded-lg",
-          colorClass,
-        )}
-      >
-        <Icon size={16} />
-      </div>
-
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-foreground truncate">
           {artifact.title}
@@ -126,7 +90,7 @@ function GroupedByAction({
     <div className="space-y-6">
       {groups.map((group) => (
         <div key={group.actionName}>
-          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider px-4 mb-1">
+          <p className="text-xs font-medium text-muted-foreground/60 px-4 mb-1">
             {group.actionName}
           </p>
           <div className="divide-y divide-border">

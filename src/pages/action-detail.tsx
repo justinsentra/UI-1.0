@@ -1,18 +1,26 @@
 import { useEffect, useMemo, useState } from "react";
+import type { ComponentType } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Ellipsis, GitBranch, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxTrigger,
+} from "@/components/ui/combobox";
 import { SegmentedToggle } from "@/components/ui/segmented-toggle";
 import {
   Empty,
@@ -24,6 +32,7 @@ import {
 import { MOCK_ACTIONS } from "@/data/mock-actions";
 import type { Action, ActionArtifact } from "@/data/mock-actions";
 import { useReportsStore } from "@/stores/reports-store";
+import { cn } from "@/lib/utils";
 
 import outlookLogo from "@/assets/logos/outlook.png";
 import teamsLogo from "@/assets/logos/ms-teams.png";
@@ -33,11 +42,16 @@ import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
 import { ZoomIcon } from "@/icons/source-icons";
-import type { ComponentType } from "react";
 
 interface ActionIntegrationVisual {
   logo?: string;
   LogoIcon?: ComponentType<{ size?: number; className?: string }>;
+}
+
+interface ActionFieldOption {
+  label: string;
+  value: string;
+  integrationId?: string;
 }
 
 const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
@@ -66,6 +80,246 @@ const triggerOptions = [
   { label: "Schedule", value: "scheduled" },
   { label: "Triggers", value: "triggered" },
 ];
+
+const scheduleFrequencyOptions: ActionFieldOption[] = [
+  { label: "Day", value: "DAILY" },
+  { label: "Week", value: "WEEKLY" },
+  { label: "Month", value: "MONTHLY" },
+];
+
+const scheduleDayOptions: ActionFieldOption[] = [
+  { label: "Monday", value: "Monday" },
+  { label: "Tuesday", value: "Tuesday" },
+  { label: "Wednesday", value: "Wednesday" },
+  { label: "Thursday", value: "Thursday" },
+  { label: "Friday", value: "Friday" },
+];
+
+const scheduleTimeOptions: ActionFieldOption[] = [
+  { label: "08:00 AM", value: "08:00 AM" },
+  { label: "09:00 AM", value: "09:00 AM" },
+  { label: "09:30 AM", value: "09:30 AM" },
+  { label: "10:00 AM", value: "10:00 AM" },
+  { label: "12:00 PM", value: "12:00 PM" },
+  { label: "05:00 PM", value: "05:00 PM" },
+];
+
+const triggerSourceOptions: ActionFieldOption[] = [
+  { label: "Outlook", value: "outlook", integrationId: "outlook" },
+  { label: "Zoom", value: "zoom", integrationId: "zoom" },
+  { label: "Microsoft Teams", value: "teams", integrationId: "teams" },
+  { label: "Salesforce", value: "salesforce", integrationId: "salesforce" },
+  { label: "Monday.com", value: "monday-com", integrationId: "monday-com" },
+  { label: "ServiceNow", value: "servicenow", integrationId: "servicenow" },
+  { label: "SharePoint", value: "sharepoint", integrationId: "sharepoint" },
+];
+
+const triggerEventOptionsBySource: Record<string, ActionFieldOption[]> = {
+  outlook: [
+    { label: "new email", value: "new-email" },
+    { label: "client sends financials", value: "client-sends-financials" },
+    { label: "investor update requested", value: "investor-update-requested" },
+  ],
+  zoom: [
+    { label: "after call ends", value: "after-call-ends" },
+    { label: "transcript ready", value: "transcript-ready" },
+    { label: "recording available", value: "recording-available" },
+  ],
+  teams: [
+    { label: "after call ends", value: "after-call-ends" },
+    { label: "transcript ready", value: "transcript-ready" },
+    { label: "meeting recap requested", value: "meeting-recap-requested" },
+  ],
+  salesforce: [
+    { label: "opportunity stage changes", value: "opportunity-stage-changes" },
+    { label: "owner changes", value: "owner-changes" },
+    { label: "new note added", value: "new-note-added" },
+  ],
+  "monday-com": [
+    { label: "vendor deadline passes", value: "vendor-deadline-passes" },
+    { label: "board status changes", value: "board-status-changes" },
+    { label: "new blocker added", value: "new-blocker-added" },
+  ],
+  servicenow: [
+    { label: "incident opened", value: "incident-opened" },
+    { label: "access request changed", value: "access-request-changed" },
+    { label: "blocker flagged", value: "blocker-flagged" },
+  ],
+  sharepoint: [
+    { label: "model updated", value: "model-updated" },
+    { label: "file uploaded", value: "file-uploaded" },
+    { label: "diligence folder updated", value: "diligence-folder-updated" },
+  ],
+};
+
+const triggerScopeOptionsBySource: Record<string, ActionFieldOption[]> = {
+  outlook: [
+    { label: "all emails", value: "all-emails" },
+    { label: "client emails", value: "client-emails" },
+    { label: "investor emails", value: "investor-emails" },
+  ],
+  zoom: [
+    { label: "all calls", value: "all-calls" },
+    { label: "external calls", value: "external-calls" },
+    { label: "leadership calls", value: "leadership-calls" },
+  ],
+  teams: [
+    { label: "all calls", value: "all-calls" },
+    { label: "external calls", value: "external-calls" },
+    { label: "internal syncs", value: "internal-syncs" },
+  ],
+  salesforce: [
+    { label: "all opportunities", value: "all-opportunities" },
+    { label: "assigned opportunities", value: "assigned-opportunities" },
+    { label: "at-risk deals", value: "at-risk-deals" },
+  ],
+  "monday-com": [
+    { label: "all boards", value: "all-boards" },
+    { label: "diligence boards", value: "diligence-boards" },
+    { label: "vendor trackers", value: "vendor-trackers" },
+  ],
+  servicenow: [
+    { label: "all incidents", value: "all-incidents" },
+    { label: "execution blockers", value: "execution-blockers" },
+    { label: "access requests", value: "access-requests" },
+  ],
+  sharepoint: [
+    { label: "all files", value: "all-files" },
+    { label: "model folders", value: "model-folders" },
+    { label: "diligence documents", value: "diligence-documents" },
+  ],
+};
+
+const getTriggerEventOptions = (triggerSourceValue: string) => {
+  return triggerEventOptionsBySource[triggerSourceValue] ?? triggerEventOptionsBySource.outlook;
+};
+
+const getTriggerScopeOptions = (triggerSourceValue: string) => {
+  return triggerScopeOptionsBySource[triggerSourceValue] ?? triggerScopeOptionsBySource.outlook;
+};
+
+const ActionIntegrationGlyph = ({
+  integrationId,
+  className,
+}: {
+  integrationId: string;
+  className?: string;
+}) => {
+  const integrationVisual = integrationVisualMap[integrationId];
+  const IntegrationLogoIcon = integrationVisual?.LogoIcon;
+
+  if (!integrationVisual) {
+    return null;
+  }
+
+  return (
+    <span
+      className={cn(
+        "flex size-4.5 items-center justify-center overflow-hidden rounded-sm bg-background",
+        className,
+      )}
+    >
+      {integrationVisual.logo ? (
+        <img
+          src={integrationVisual.logo}
+          alt={integrationNames[integrationId] ?? integrationId}
+          className="size-3.5 object-contain"
+        />
+      ) : IntegrationLogoIcon ? (
+        <IntegrationLogoIcon size={14} />
+      ) : null}
+    </span>
+  );
+};
+
+const ActionSettingCombobox = ({
+  value,
+  options,
+  placeholder,
+  onValueChange,
+  className,
+  showIntegrationIcon = false,
+}: {
+  value: string;
+  options: ActionFieldOption[];
+  placeholder: string;
+  onValueChange: (value: string) => void;
+  className?: string;
+  showIntegrationIcon?: boolean;
+}) => {
+  const selectedOption = useMemo(() => {
+    return options.find((actionFieldOption) => actionFieldOption.value === value) ?? null;
+  }, [options, value]);
+  const [searchValue, setSearchValue] = useState("");
+
+  return (
+    <Combobox
+      items={options}
+      itemToStringValue={(actionFieldOption) => actionFieldOption.label}
+      value={selectedOption}
+      inputValue={searchValue}
+      onInputValueChange={setSearchValue}
+      onValueChange={(nextOption) => {
+        if (!nextOption) {
+          return;
+        }
+
+        onValueChange(nextOption.value);
+        setSearchValue("");
+      }}
+      onOpenChange={(isOpen) => {
+        if (!isOpen) {
+          setSearchValue("");
+        }
+      }}
+      autoHighlight
+    >
+      <ComboboxTrigger
+        className={cn(
+          "inline-flex h-8 min-w-0 items-center gap-1.5 rounded-md border border-input bg-input/20 px-2 text-xs/relaxed text-foreground shadow-none transition-colors hover:border-foreground/30 focus-visible:border-foreground/30 [&>svg:last-child]:hidden",
+          className,
+        )}
+      >
+        <span className="flex min-w-0 items-center gap-2">
+          {showIntegrationIcon && selectedOption?.integrationId ? (
+            <ActionIntegrationGlyph integrationId={selectedOption.integrationId} />
+          ) : null}
+          <span
+            className={cn(
+              "truncate",
+              !selectedOption ? "text-muted-foreground" : "text-foreground",
+            )}
+          >
+            {selectedOption?.label ?? placeholder}
+          </span>
+        </span>
+      </ComboboxTrigger>
+      <ComboboxContent className="min-w-60 rounded-2xl md:min-w-64">
+        <ComboboxInput
+          placeholder={`Search ${placeholder.toLowerCase()}`}
+          showClear={false}
+          showTrigger={false}
+          className="m-1.5 h-9 rounded-md border border-input bg-input/20 shadow-none **:data-[slot=input-group-control]:text-sm md:**:data-[slot=input-group-control]:text-sm"
+        />
+        <ComboboxEmpty>No matches found.</ComboboxEmpty>
+        <ComboboxList>
+          {(actionFieldOption: ActionFieldOption) => (
+            <ComboboxItem
+              key={actionFieldOption.value}
+              value={actionFieldOption}
+              className="min-h-9 rounded-xl px-3 text-sm"
+            >
+              {actionFieldOption.integrationId ? (
+                <ActionIntegrationGlyph integrationId={actionFieldOption.integrationId} />
+              ) : null}
+              <span>{actionFieldOption.label}</span>
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+};
 
 interface ActionDetailLocationState {
   initialTab?: string;
@@ -113,7 +367,19 @@ const ActionDetailPage = () => {
   const [interval, setInterval] = useState(
     String(initial.frequency?.interval ?? 1),
   );
+  const [dayOfWeek, setDayOfWeek] = useState(
+    initial.frequency?.dayOfWeek ?? "Monday",
+  );
   const [time, setTime] = useState(initial.frequency?.time ?? "09:00 AM");
+  const [triggerSource, setTriggerSource] = useState(
+    initial.triggerConfig?.source ?? "outlook",
+  );
+  const [triggerEvent, setTriggerEvent] = useState(
+    initial.triggerConfig?.event ?? getTriggerEventOptions("outlook")[0].value,
+  );
+  const [triggerScope, setTriggerScope] = useState(
+    initial.triggerConfig?.scope ?? getTriggerScopeOptions("outlook")[0].value,
+  );
   const [integrations, setIntegrations] = useState<string[]>(
     initial.integrations,
   );
@@ -122,6 +388,27 @@ const ActionDetailPage = () => {
   useEffect(() => {
     setSelectedTab(requestedInitialTab);
   }, [requestedInitialTab, actionId]);
+
+  useEffect(() => {
+    const availableTriggerEventOptions = getTriggerEventOptions(triggerSource);
+    const availableTriggerScopeOptions = getTriggerScopeOptions(triggerSource);
+
+    if (
+      !availableTriggerEventOptions.some(
+        (triggerEventOption) => triggerEventOption.value === triggerEvent,
+      )
+    ) {
+      setTriggerEvent(availableTriggerEventOptions[0].value);
+    }
+
+    if (
+      !availableTriggerScopeOptions.some(
+        (triggerScopeOption) => triggerScopeOption.value === triggerScope,
+      )
+    ) {
+      setTriggerScope(availableTriggerScopeOptions[0].value);
+    }
+  }, [triggerEvent, triggerScope, triggerSource]);
 
   if (!isNew && !existingAction) {
     return (
@@ -176,9 +463,14 @@ const ActionDetailPage = () => {
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          <Button variant="outline" size="icon" className="rounded-full">
-            <Ellipsis size={16} />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center justify-center size-9 rounded-full border border-input bg-popover text-foreground shadow-xs/5 transition-colors hover:bg-accent/50">
+              <Ellipsis size={16} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => navigate("/actions")}>Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button className="rounded-full">
             Activate
           </Button>
@@ -197,8 +489,8 @@ const ActionDetailPage = () => {
           {/* When */}
           <div className="mt-8">
             <Label>When</Label>
-            <div className="mt-2 rounded-xl border border-border bg-card p-4">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="mt-2 rounded-xl border border-border bg-card px-3 py-2.5">
+              <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
                 <SegmentedToggle
                   options={triggerOptions}
                   value={triggerType}
@@ -206,60 +498,77 @@ const ActionDetailPage = () => {
                     setTriggerType(v as "scheduled" | "triggered")
                   }
                 />
-              </div>
 
-              {triggerType === "scheduled" && (
-                <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                  <span>Run</span>
-                  <Select
-                    value={frequencyType}
-                    onValueChange={(v) =>
-                      setFrequencyType(v as "DAILY" | "WEEKLY" | "MONTHLY")
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="DAILY">every day</SelectItem>
-                      <SelectItem value="WEEKLY">every week</SelectItem>
-                      <SelectItem value="MONTHLY">every month</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {frequencyType !== "DAILY" && (
-                    <>
-                      <span>every</span>
-                      <Input
-                        type="number"
-                        min={1}
-                        value={interval}
-                        onChange={(e) => setInterval(e.target.value)}
-                        className="w-14"
+                {triggerType === "scheduled" ? (
+                  <div className="flex flex-1 flex-wrap items-center justify-end gap-1.5 text-xs/relaxed text-muted-foreground">
+                    <span>Run</span>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      value={interval}
+                      onChange={(event) =>
+                        setInterval(event.target.value.replace(/\D/g, ""))
+                      }
+                      size={Math.max(interval.length, 1)}
+                      className="h-8 min-w-0 rounded-md border border-input bg-input/20 px-1.5 text-center text-xs/relaxed text-foreground shadow-none transition-colors outline-none focus-visible:border-foreground/30"
+                    />
+                    <ActionSettingCombobox
+                      value={frequencyType}
+                      options={scheduleFrequencyOptions}
+                      placeholder="Frequency"
+                      onValueChange={(value) =>
+                        setFrequencyType(value as "DAILY" | "WEEKLY" | "MONTHLY")
+                      }
+                      className="min-w-22"
+                    />
+                    {frequencyType === "WEEKLY" ? (
+                      <ActionSettingCombobox
+                        value={dayOfWeek}
+                        options={scheduleDayOptions}
+                        placeholder="Day"
+                        onValueChange={setDayOfWeek}
+                        className="min-w-24"
                       />
-                      <span>
-                        {frequencyType === "WEEKLY" ? "week(s)" : "month(s)"}
-                      </span>
-                    </>
-                  )}
-
-                  <span>at</span>
-                  <Input
-                    type="text"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    placeholder="09:00 AM"
-                    className="w-24"
-                  />
-                </div>
-              )}
-
-              {triggerType === "triggered" && (
-                <div className="mt-3 rounded-xl border border-border bg-background px-4 py-3 text-sm text-muted-foreground">
-                  {initial.triggerDetail ??
-                    "This action will run when its trigger conditions are met."}
-                </div>
-              )}
+                    ) : null}
+                    <ActionSettingCombobox
+                      value={time}
+                      options={scheduleTimeOptions}
+                      placeholder="Time"
+                      onValueChange={setTime}
+                      className="min-w-24"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-1 flex-wrap items-center justify-end gap-1.5 text-xs/relaxed text-muted-foreground">
+                    <span>Trigger:</span>
+                    <ActionSettingCombobox
+                      value={triggerSource}
+                      options={triggerSourceOptions}
+                      placeholder="Source"
+                      onValueChange={setTriggerSource}
+                      className="min-w-28"
+                      showIntegrationIcon
+                    />
+                    <span>on</span>
+                    <ActionSettingCombobox
+                      value={triggerEvent}
+                      options={getTriggerEventOptions(triggerSource)}
+                      placeholder="Event"
+                      onValueChange={setTriggerEvent}
+                      className="min-w-32"
+                    />
+                    <span>for</span>
+                    <ActionSettingCombobox
+                      value={triggerScope}
+                      options={getTriggerScopeOptions(triggerSource)}
+                      placeholder="Scope"
+                      onValueChange={setTriggerScope}
+                      className="min-w-28"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
