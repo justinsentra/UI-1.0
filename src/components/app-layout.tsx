@@ -16,6 +16,7 @@ import {
   Users,
   FileText,
   Home,
+  Waves,
 } from "lucide-react";
 import AppSidebar from "./app-sidebar";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
@@ -76,12 +77,17 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
   "/artifacts/reports-settings": { path: "/artifacts", icon: FileText },
   "/artifacts/radar-settings": { path: "/artifacts", icon: FileText },
   "/pre-meeting-brief": { path: "/morning-brief", icon: Home },
+  "/swimlanes/": { path: "/swimlanes", icon: Waves },
 };
 
 const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const backNav = BACK_NAV[location.pathname];
+  const backNav =
+    BACK_NAV[location.pathname] ??
+    Object.entries(BACK_NAV).find(([prefix]) =>
+      location.pathname.startsWith(prefix),
+    )?.[1];
 
   if (!backNav) return null;
 

@@ -21,6 +21,8 @@ import PreMeetingBriefPage from "./pages/pre-meeting-brief";
 import ActionsPage from "./pages/actions";
 import ActionDetailPage from "./pages/action-detail";
 import ArtifactDetailPage from "./pages/artifact-detail";
+import SwimlanesPage from "./pages/swimlanes";
+import SwimlaneDetailPage from "./pages/swimlane-detail";
 
 const App = () => {
   return (
@@ -76,6 +78,11 @@ const App = () => {
               <Route
                 path="/artifact-detail/:artifactId"
                 element={<ArtifactDetailPage />}
+              />
+              <Route path="/swimlanes" element={<SwimlanesPage />} />
+              <Route
+                path="/swimlanes/:swimlaneId"
+                element={<SwimlaneDetailPage />}
               />
               <Route path="/settings" element={<SettingsPage />} />
             </Route>

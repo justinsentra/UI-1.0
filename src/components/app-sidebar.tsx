@@ -9,6 +9,7 @@ import {
   FileText,
   Puzzle,
   Settings,
+  Waves,
 } from "lucide-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { SidebarLeftIcon } from "@hugeicons/core-free-icons";
@@ -38,6 +39,7 @@ const personalNav = [
 
 const orgNav = [
   { to: "/artifacts", label: "Artifacts", icon: FileText },
+  { to: "/swimlanes", label: "Swimlanes", icon: Waves },
   { to: "/integrations", label: "Integrations", icon: Puzzle },
 ];
 
