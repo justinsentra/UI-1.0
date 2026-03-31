@@ -20,12 +20,8 @@ import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import oracleLogo from "@/assets/logos/oracle-financials.png";
 import mondayLogo from "@/assets/logos/monday-com.webp";
-import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
-import slackLogo from "@/assets/logos/slack.svg";
-import notionLogo from "@/assets/logos/notion.svg";
+import zoomLogo from "@/assets/logos/zoom.svg";
 import linearLogo from "@/assets/logos/linear.svg";
-import googleDriveLogo from "@/assets/logos/google-drive.svg";
 
 const ICON_MAP: Record<string, string> = {
   outlook: outlookLogo,
@@ -38,12 +34,8 @@ const ICON_MAP: Record<string, string> = {
   "service-now": serviceNowLogo,
   "oracle-financials": oracleLogo,
   "monday-com": mondayLogo,
-  gmail: gmailLogo,
-  zoom: calendarLogo,
-  slack: slackLogo,
-  notion: notionLogo,
+  zoom: zoomLogo,
   linear: linearLogo,
-  "google-drive": googleDriveLogo,
 };
 
 interface ScanningLoaderProps {

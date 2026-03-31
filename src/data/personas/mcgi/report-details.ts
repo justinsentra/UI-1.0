@@ -138,7 +138,7 @@ export const reportDetails: Record<string, ReportDetail> = {
         ],
         sources: [
           { type: "slack", label: "#mcgi-deal-flow" },
-          { type: "google-calendar", label: "AGV Team Calendar" },
+          { type: "outlook", label: "AGV Team Calendar" },
           { type: "email", label: "Ashmore AI Summit invitation" },
           { type: "teams", label: "#m-lab-consortium" },
         ],
@@ -368,7 +368,7 @@ export const reportDetails: Record<string, ReportDetail> = {
           "The team is also preparing for the LP Winter 26 batch preview, with scouting assignments distributed across the team. AGV has secured early access to 8 companies in the AI and climate categories through the Catalyst Alliance consortium relationship with LP partners. A scouting debrief is scheduled for Mar 5.",
         ],
         sources: [
-          { type: "google-calendar", label: "AGV Team Calendar" },
+          { type: "outlook", label: "AGV Team Calendar" },
           { type: "slack", label: "#mcgi-deal-flow" },
           { type: "teams", label: "#m-lab-consortium" },
           { type: "email", label: "LP Winter 26 early access list" },

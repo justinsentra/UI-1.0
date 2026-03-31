@@ -14,9 +14,9 @@ const attendees: Attendee[] = [
   { name: "Cole", domain: "campfire.ai", email: "cole@campfire.ai" },
   { name: "Josh", domain: "campfire.ai", email: "josh@campfire.ai" },
   {
-    name: "Tracy",
+    name: "Mark",
     domain: "jpmorgan.com",
-    email: "tracy.kim@jpmorgan.com",
+    email: "mark.davis@jpmorgan.com",
     isMe: true,
   },
   { name: "Pavel", domain: "sentra.app", email: "pavel@sentra.app" },

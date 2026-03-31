@@ -68,7 +68,10 @@ export const usePageLabel = (label: string) => {
   }, [label, setPageLabel]);
 };
 
-const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
+const BACK_NAV: Record<
+  string,
+  { path: string; icon: LucideIcon; state?: Record<string, unknown> }
+> = {
   "/meeting-detail": { path: "/meeting-notes", icon: Calendar },
   "/meeting-settings": { path: "/meeting-notes", icon: Calendar },
   "/connection-detail": { path: "/connections", icon: Users },
@@ -76,7 +79,11 @@ const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
   "/artifact-detail": { path: "/artifacts", icon: FileText },
   "/artifacts/reports-settings": { path: "/artifacts", icon: FileText },
   "/artifacts/radar-settings": { path: "/artifacts", icon: FileText },
-  "/pre-meeting-brief": { path: "/morning-brief", icon: Home },
+  "/pre-meeting-brief": {
+    path: "/morning-brief",
+    icon: Home,
+    state: { tab: "meetings" },
+  },
   "/swimlanes/": { path: "/swimlanes", icon: Waves },
 };
 
@@ -95,7 +102,7 @@ const TopBar = () => {
     <div className="absolute top-3 left-3 z-10">
       <button
         type="button"
-        onClick={() => navigate(backNav.path)}
+        onClick={() => navigate(backNav.path, { state: backNav.state })}
         className="inline-flex items-center gap-1 h-7 pl-1.5 pr-2.5 rounded-full border border-(--border) bg-(--secondary) hover:bg-secondary-hover text-[var(--muted-foreground)] hover:text-muted-foreground transition-colors duration-150 ease-out cursor-pointer"
         title="Go back"
       >

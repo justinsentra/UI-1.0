@@ -20,7 +20,7 @@ import serviceNowLogo from "../assets/logos/service-now.png";
 import oracleFinancialsLogo from "../assets/logos/oracle-financials.png";
 import mondayComLogo from "../assets/logos/monday-com.webp";
 import gmailLogo from "../assets/logos/gmail.svg";
-import calendarLogo from "../assets/logos/calendar.svg";
+import zoomLogo from "../assets/logos/zoom.svg";
 import googleDriveLogo from "../assets/logos/google-drive.svg";
 import slackLogo from "../assets/logos/slack.svg";
 import githubLogo from "../assets/logos/github.svg";
@@ -208,7 +208,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     id: "calendar",
     name: "Google Calendar",
     description: "Sync your calendar for scheduling and reminders.",
-    logo: calendarLogo,
+    logo: zoomLogo,
     connected: true,
     category: "Productivity",
     overview:

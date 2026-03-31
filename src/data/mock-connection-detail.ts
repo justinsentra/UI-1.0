@@ -71,7 +71,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Claire Lawson",
               "Ryan Peters",
-              "Tracy Kim",
+              "Mark Kim",
               "Raj Sundaram",
             ],
             privacy: "private",
@@ -87,7 +87,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Mar 6",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Claire Lawson", "Tracy Kim"],
+            participants: ["Claire Lawson", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -101,7 +101,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Sat, Mar 1",
             time: "3:30 PM",
             duration: "15 min",
-            participants: ["Claire Lawson", "Tracy Kim"],
+            participants: ["Claire Lawson", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -115,7 +115,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Thanks Leo — Ryan and I are looking forward to reviewing the deck. Can you also include the data governance section we discussed?",
         from: "Claire Lawson",
-        to: ["Tracy Kim"],
+        to: ["Mark Kim"],
       },
       {
         id: "em-sunna-2",
@@ -124,7 +124,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Great meeting you at the conference! I'd love to set up a proper discovery call to explore how Sentra could fit into AGV's workflow.",
         from: "Claire Lawson",
-        to: ["Tracy Kim"],
+        to: ["Mark Kim"],
       },
       {
         id: "em-sunna-3",
@@ -133,7 +133,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "We're currently evaluating 4 vendors in the organizational intelligence space. Would be great to understand Sentra's differentiation.",
         from: "Claire Lawson",
-        to: ["Tracy Kim", "Ryan Peters"],
+        to: ["Mark Kim", "Ryan Peters"],
       },
     ],
     news: [
@@ -191,7 +191,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "10:00 AM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -203,7 +203,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Raj Sundaram",
               "Pavel Volkov",
-              "Tracy Kim",
+              "Mark Kim",
               "Ingrid Solberg",
             ],
             privacy: "public",
@@ -214,7 +214,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 24",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Raj Sundaram", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -228,7 +228,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -237,7 +237,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "1:00 PM",
             duration: "60 min",
-            participants: ["Raj Sundaram", "Tracy Kim", "Meera Kapoor"],
+            participants: ["Raj Sundaram", "Mark Kim", "Meera Kapoor"],
             privacy: "public",
           },
         ],
@@ -251,7 +251,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "11:00 AM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -260,7 +260,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "3:00 PM",
             duration: "30 min",
-            participants: ["Raj Sundaram", "Tracy Kim", "Ingrid Solberg"],
+            participants: ["Raj Sundaram", "Mark Kim", "Ingrid Solberg"],
             privacy: "public",
           },
         ],
@@ -270,11 +270,11 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         items: [
           {
             id: "cd-mtg-a3",
-            title: "Raj / Tracy 1:1",
+            title: "Raj / Mark 1:1",
             date: "Thu, Feb 6",
             time: "10:00 AM",
             duration: "30 min",
-            participants: ["Raj Sundaram", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -283,7 +283,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 4",
             time: "2:00 PM",
             duration: "60 min",
-            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Mark Kim"],
             privacy: "public",
           },
           {
@@ -292,7 +292,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 3",
             time: "10:00 AM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -329,7 +329,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "4:30 PM",
             duration: "60 min",
-            participants: ["Pavel Volkov", "Raj Sundaram", "Tracy Kim"],
+            participants: ["Pavel Volkov", "Raj Sundaram", "Mark Kim"],
             privacy: "public",
           },
           {
@@ -338,7 +338,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 24",
             time: "1:30 PM",
             duration: "45 min",
-            participants: ["Pavel Volkov", "Tracy Kim"],
+            participants: ["Pavel Volkov", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -352,7 +352,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "10:00 AM",
             duration: "45 min",
-            participants: ["Pavel Volkov", "Tracy Kim", "Ingrid Solberg"],
+            participants: ["Pavel Volkov", "Mark Kim", "Ingrid Solberg"],
             privacy: "public",
           },
           {
@@ -361,7 +361,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "3:00 PM",
             duration: "60 min",
-            participants: ["Pavel Volkov", "Tracy Kim"],
+            participants: ["Pavel Volkov", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -375,7 +375,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 14",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Pavel Volkov", "Tracy Kim"],
+            participants: ["Pavel Volkov", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -384,7 +384,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "4:00 PM",
             duration: "45 min",
-            participants: ["Pavel Volkov", "Tracy Kim", "Derek Huang"],
+            participants: ["Pavel Volkov", "Mark Kim", "Derek Huang"],
             privacy: "public",
           },
           {
@@ -393,7 +393,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "9:30 AM",
             duration: "30 min",
-            participants: ["Pavel Volkov", "Tracy Kim"],
+            participants: ["Pavel Volkov", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -407,7 +407,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 6",
             time: "2:00 PM",
             duration: "60 min",
-            participants: ["Pavel Volkov", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Pavel Volkov", "Mark Kim", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -444,7 +444,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "2:00 PM",
             duration: "45 min",
-            participants: ["Ingrid Solberg", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Ingrid Solberg", "Mark Kim", "Raj Sundaram"],
             privacy: "public",
           },
           {
@@ -453,7 +453,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 25",
             time: "10:00 AM",
             duration: "60 min",
-            participants: ["Ingrid Solberg", "Tracy Kim"],
+            participants: ["Ingrid Solberg", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -467,7 +467,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "1:00 PM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Tracy Kim"],
+            participants: ["Ingrid Solberg", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -476,7 +476,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "11:00 AM",
             duration: "45 min",
-            participants: ["Ingrid Solberg", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Ingrid Solberg", "Mark Kim", "Raj Sundaram"],
             privacy: "public",
           },
         ],
@@ -490,7 +490,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "9:00 AM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Tracy Kim"],
+            participants: ["Ingrid Solberg", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -499,7 +499,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "4:00 PM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Tracy Kim"],
+            participants: ["Ingrid Solberg", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -536,7 +536,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Tracy Kim", "Pavel Volkov"],
+            participants: ["Fiona Webb", "Mark Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -550,7 +550,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 21",
             time: "11:00 AM",
             duration: "60 min",
-            participants: ["Fiona Webb", "Tracy Kim"],
+            participants: ["Fiona Webb", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -564,7 +564,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "2:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Tracy Kim", "Pavel Volkov"],
+            participants: ["Fiona Webb", "Mark Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -578,7 +578,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 4",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Tracy Kim"],
+            participants: ["Fiona Webb", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -587,7 +587,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 3",
             time: "1:00 PM",
             duration: "30 min",
-            participants: ["Fiona Webb", "Tracy Kim"],
+            participants: ["Fiona Webb", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -624,7 +624,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 25",
             time: "4:00 PM",
             duration: "60 min",
-            participants: ["Derek Huang", "Tracy Kim", "Pavel Volkov"],
+            participants: ["Derek Huang", "Mark Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -638,7 +638,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "3:30 PM",
             duration: "45 min",
-            participants: ["Derek Huang", "Tracy Kim"],
+            participants: ["Derek Huang", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -652,7 +652,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "4:00 PM",
             duration: "60 min",
-            participants: ["Derek Huang", "Tracy Kim", "Pavel Volkov"],
+            participants: ["Derek Huang", "Mark Kim", "Pavel Volkov"],
             privacy: "public",
           },
           {
@@ -661,7 +661,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "2:00 PM",
             duration: "30 min",
-            participants: ["Derek Huang", "Tracy Kim"],
+            participants: ["Derek Huang", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -699,7 +699,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 19",
             time: "1:00 PM",
             duration: "30 min",
-            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Meera Kapoor", "Mark Kim", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -713,7 +713,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 14",
             time: "10:00 AM",
             duration: "30 min",
-            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Meera Kapoor", "Mark Kim", "Raj Sundaram"],
             privacy: "private",
           },
           {
@@ -722,7 +722,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 11",
             time: "2:00 PM",
             duration: "30 min",
-            participants: ["Meera Kapoor", "Tracy Kim"],
+            participants: ["Meera Kapoor", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -736,7 +736,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Jan 30",
             time: "11:00 AM",
             duration: "45 min",
-            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
+            participants: ["Meera Kapoor", "Mark Kim", "Raj Sundaram"],
             privacy: "private",
           },
           {
@@ -745,7 +745,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Jan 20",
             time: "3:00 PM",
             duration: "60 min",
-            participants: ["Meera Kapoor", "Tracy Kim"],
+            participants: ["Meera Kapoor", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -756,7 +756,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             duration: "30 min",
             participants: [
               "Meera Kapoor",
-              "Tracy Kim",
+              "Mark Kim",
               "Raj Sundaram",
               "Pavel Volkov",
             ],
@@ -826,7 +826,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Ryan Peters",
               "Claire Lawson",
-              "Tracy Kim",
+              "Mark Kim",
               "Raj Sundaram",
             ],
             privacy: "private",
@@ -1572,7 +1572,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
               "Raj Sundaram",
               "Claire Lawson",
               "Ryan Peters",
-              "Tracy Kim",
+              "Mark Kim",
             ],
             privacy: "private",
           },
@@ -1601,7 +1601,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Claire Lawson", "Tracy Kim"],
+            participants: ["Raj Sundaram", "Claire Lawson", "Mark Kim"],
             privacy: "private",
           },
           {
@@ -1664,7 +1664,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Feb 5, 2026",
       },
     ],
-    otherInteractors: ["Tracy Kim", "Ryan Peters"],
+    otherInteractors: ["Mark Kim", "Ryan Peters"],
   },
   "david-chen": {
     name: "David Chen",
@@ -1690,25 +1690,6 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     ],
     meetings: [
       {
-        week: "Today",
-        items: [
-          {
-            id: "cd-dc-1",
-            title: "David Chen — Secondary Offering Discussion",
-            date: "Mon, Mar 30",
-            time: "2:00 PM",
-            duration: "45 min",
-            participants: [
-              "David Chen",
-              "Margaret Liu",
-              "Tracy Kim",
-              "Nathan Lim",
-            ],
-            privacy: "private",
-          },
-        ],
-      },
-      {
         week: "6 weeks ago",
         items: [
           {
@@ -1717,7 +1698,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 17",
             time: "10:00 AM",
             duration: "45 min",
-            participants: ["David Chen", "Tracy Kim"],
+            participants: ["David Chen", "Mark Kim"],
             privacy: "private",
           },
         ],
@@ -1731,7 +1712,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Jan 6",
             time: "11:00 AM",
             duration: "60 min",
-            participants: ["David Chen", "Tracy Kim", "Diana Calloway"],
+            participants: ["David Chen", "Mark Kim", "Diana Calloway"],
             privacy: "private",
           },
           {
@@ -1740,7 +1721,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Dec 19",
             time: "3:00 PM",
             duration: "30 min",
-            participants: ["David Chen", "Tracy Kim"],
+            participants: ["David Chen", "Mark Kim"],
             privacy: "public",
           },
         ],
@@ -1754,43 +1735,43 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
         from: "Margaret Liu",
-        to: ["Kevin Park", "Tracy Kim"],
+        to: ["Kevin Park", "Mark Kim"],
       },
       {
         id: "em-dc-2",
         subject: "Re: Secondary Offering — Preliminary Timeline",
         date: "Mar 10, 2026",
         snippet:
-          "Tracy — thanks for the framework. We're aligned on the indicative timeline. I'd like to discuss board composition before we formalize anything. Can we get time on your calendar?",
+          "Mark — thanks for the framework. We're aligned on the indicative timeline. I'd like to discuss board composition before we formalize anything. Can we get time on your calendar?",
         from: "David Chen",
-        to: ["Tracy Kim"],
+        to: ["Mark Kim"],
       },
       {
         id: "em-dc-3",
         subject: "Follow-up: Governance Advisor Introduction",
         date: "Feb 20, 2026",
         snippet:
-          "Hi Tracy — just following up on the governance advisor intro you mentioned on our last call. We'd like to have that conversation before the next board meeting in April.",
+          "Hi Mark — just following up on the governance advisor intro you mentioned on our last call. We'd like to have that conversation before the next board meeting in April.",
         from: "David Chen",
-        to: ["Tracy Kim"],
+        to: ["Mark Kim"],
       },
       {
         id: "em-dc-4",
         subject: "Re: NovaBridge Capital — Advisory Engagement",
         date: "Jan 15, 2026",
         snippet:
-          "Tracy — Happy New Year. Looking forward to reconnecting in Q1. The board has approved exploring the secondary offering and we're ready to kick off the process.",
+          "Mark — Happy New Year. Looking forward to reconnecting in Q1. The board has approved exploring the secondary offering and we're ready to kick off the process.",
         from: "David Chen",
-        to: ["Tracy Kim"],
+        to: ["Mark Kim"],
       },
       {
         id: "em-dc-5",
         subject: "NovaBridge — Q4 Board Materials",
         date: "Dec 20, 2025",
         snippet:
-          "Hi Tracy, attaching the Q4 board package for your reference ahead of our January discussion. Revenue came in above plan for Q4.",
+          "Hi Mark, attaching the Q4 board package for your reference ahead of our January discussion. Revenue came in above plan for Q4.",
         from: "Margaret Liu",
-        to: ["Tracy Kim", "Kevin Park"],
+        to: ["Mark Kim", "Kevin Park"],
       },
       {
         id: "em-dc-6",
@@ -1799,7 +1780,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Great discussion today. I'm aligned on the advisory scope you outlined. Let's formalize the engagement terms in the next couple of weeks.",
         from: "David Chen",
-        to: ["Tracy Kim", "Diana Calloway"],
+        to: ["Mark Kim", "Diana Calloway"],
       },
     ],
     news: [
@@ -1829,7 +1810,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     otherInteractors: ["Nathan Lim", "Kevin Park", "Diana Calloway"],
   },
   "mc-p8": {
-    name: "Tracy Kim",
+    name: "Mark Kim",
     email: "tracy.kim@jpmorgan.com",
     domain: "jpmorgan.com",
     role: "Managing Director",
@@ -1856,7 +1837,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             time: "2:00 PM",
             duration: "45 min",
             participants: [
-              "Tracy Kim",
+              "Mark Kim",
               "Claire Lawson",
               "Ryan Peters",
               "Raj Sundaram",
@@ -1874,7 +1855,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Mar 6",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Tracy Kim", "Claire Lawson"],
+            participants: ["Mark Kim", "Claire Lawson"],
             privacy: "private",
           },
         ],
@@ -1888,7 +1869,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Tracy Kim", "Claire Lawson", "Raj Sundaram"],
+            participants: ["Mark Kim", "Claire Lawson", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -1901,7 +1882,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Mar 11, 2026",
         snippet:
           "Hi Claire — great chatting today! Here's the deck with the data governance deep dive you asked about. Let me know if you want a follow-up walkthrough.",
-        from: "Tracy Kim",
+        from: "Mark Kim",
         to: ["Claire Lawson", "Ryan Peters"],
       },
       {
@@ -1910,7 +1891,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Mar 3, 2026",
         snippet:
           "Great meeting you at the conference Claire! Would love to set up a proper call to explore how Sentra could help AGV's workflow. Free next week?",
-        from: "Tracy Kim",
+        from: "Mark Kim",
         to: ["Claire Lawson"],
       },
     ],
@@ -1937,7 +1918,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     company: "J.P. Morgan",
     tags: ["IB Coverage", "Analyst", "Internal"],
     relationshipStatus:
-      "Sarah is an analyst on Tracy's coverage team. Sharp, reliable, and fast on execution. She was not in last Thursday's IC meeting and has been working on the Meridian pitch deck without knowing it was deprioritized — Tracy needs to redirect her to the two higher-conviction mandates.",
+      "Sarah is an analyst on Mark's coverage team. Sharp, reliable, and fast on execution. She was not in last Thursday's IC meeting and has been working on the Meridian pitch deck without knowing it was deprioritized — Mark needs to redirect her to the two higher-conviction mandates.",
     suggestions: ["Sarah's current work", "Last conversation recap"],
     personalNotes: [
       "- strong analyst, fast on comps and financial models",
@@ -1957,7 +1938,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             duration: "45 min",
             participants: [
               "Sarah Park",
-              "Tracy Kim",
+              "Mark Kim",
               "Nathan Lim",
               "Kevin Park",
             ],
@@ -1983,7 +1964,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Mar 26",
             time: "9:00 AM",
             duration: "15 min",
-            participants: ["Sarah Park", "Tracy Kim", "Nathan Lim"],
+            participants: ["Sarah Park", "Mark Kim", "Nathan Lim"],
             privacy: "public",
           },
         ],
@@ -2011,7 +1992,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     ],
     news: [],
     otherInteractors: [
-      "Tracy Kim",
+      "Mark Kim",
       "Kevin Park",
       "Nathan Lim",
       "Diana Calloway",
@@ -2025,7 +2006,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     company: "NovaBridge Capital",
     tags: ["Client", "Active Deal", "External"],
     relationshipStatus:
-      "Margaret is NovaBridge Capital's CFO and David Chen's right hand on financial matters. She's been the primary point of contact for financials, sending Q3 actuals and the updated FY26 forecast to Tracy's analyst Kevin Park. Professional and detail-oriented.",
+      "Margaret is NovaBridge Capital's CFO and David Chen's right hand on financial matters. She's been the primary point of contact for financials, sending Q3 actuals and the updated FY26 forecast to Mark's analyst Kevin Park. Professional and detail-oriented.",
     suggestions: ["Recent documents", "NovaBridge financials"],
     personalNotes: [
       "- CFO at NovaBridge Capital, reports to David Chen",
@@ -2046,7 +2027,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "David Chen",
               "Margaret Liu",
-              "Tracy Kim",
+              "Mark Kim",
               "Nathan Lim",
             ],
             privacy: "private",
@@ -2076,7 +2057,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
         from: "Margaret Liu",
-        to: ["Kevin Park", "Tracy Kim"],
+        to: ["Kevin Park", "Mark Kim"],
       },
       {
         id: "em-ml-2",
@@ -2096,7 +2077,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Mar 12, 2026",
       },
     ],
-    otherInteractors: ["David Chen", "Kevin Park", "Tracy Kim"],
+    otherInteractors: ["David Chen", "Kevin Park", "Mark Kim"],
   },
   "kevin-park": {
     name: "Kevin Park",
@@ -2106,7 +2087,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     company: "J.P. Morgan",
     tags: ["IB Coverage", "Analyst", "Internal"],
     relationshipStatus:
-      "Kevin is an analyst on Tracy's team, primarily supporting the NovaBridge Capital deal. He's the main point of contact with Margaret Liu (NovaBridge CFO) and has been managing the financial model updates.",
+      "Kevin is an analyst on Mark's team, primarily supporting the NovaBridge Capital deal. He's the main point of contact with Margaret Liu (NovaBridge CFO) and has been managing the financial model updates.",
     suggestions: ["Current workload", "NovaBridge email thread"],
     personalNotes: [
       "- analyst supporting NovaBridge Capital deal",
@@ -2126,7 +2107,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             duration: "45 min",
             participants: [
               "Kevin Park",
-              "Tracy Kim",
+              "Mark Kim",
               "Nathan Lim",
               "Sarah Park",
             ],
@@ -2155,9 +2136,9 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         subject: "Re: Q3 Actuals and Updated Forecast",
         date: "Mar 24, 2026",
         snippet:
-          "Thanks Margaret — I've updated the model with the new actuals. Revenue is tracking 8% above prior forecast. Flagging for Tracy.",
+          "Thanks Margaret — I've updated the model with the new actuals. Revenue is tracking 8% above prior forecast. Flagging for Mark.",
         from: "Kevin Park",
-        to: ["Margaret Liu", "Tracy Kim"],
+        to: ["Margaret Liu", "Mark Kim"],
       },
       {
         id: "em-kp-2",
@@ -2170,6 +2151,6 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
       },
     ],
     news: [],
-    otherInteractors: ["Tracy Kim", "Margaret Liu", "Nathan Lim"],
+    otherInteractors: ["Mark Kim", "Margaret Liu", "Nathan Lim"],
   },
 };

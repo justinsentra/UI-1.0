@@ -10,7 +10,16 @@ import {
   Newspaper,
   ArrowUpRight,
   Plus,
+  X,
+  Send,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { cn } from "@lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { usePageLabel } from "../components/app-layout";
@@ -35,6 +44,120 @@ const nameToIdMap: Record<string, string> = Object.fromEntries(
     connectionId,
   ]),
 );
+
+interface ConnectionEmail {
+  id: string;
+  subject: string;
+  date: string;
+  snippet: string;
+  from: string;
+  to: string[];
+}
+
+const ConnectionEmailRow = ({ email }: { email: ConnectionEmail }) => {
+  const [open, setOpen] = useState(false);
+  const [replyText, setReplyText] = useState("");
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger
+        render={
+          <div
+            className="flex flex-col gap-1 px-4 py-3.5 rounded-lg hover:bg-accent transition-colors cursor-pointer"
+            onClick={() => setOpen(true)}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">
+                {email.subject}
+              </span>
+              <span className="text-2xs text-muted-foreground shrink-0 ml-3">
+                {email.date}
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground line-clamp-1">
+              {email.from} → {email.to.join(", ")}
+            </p>
+            <p className="text-xs text-muted-foreground/60 line-clamp-2 leading-relaxed">
+              {email.snippet}
+            </p>
+          </div>
+        }
+      />
+      <DialogContent
+        showCloseButton={false}
+        className="max-w-[54rem] sm:max-w-[54rem] rounded-xl p-0"
+      >
+        <DialogTitle className="sr-only">{email.subject}</DialogTitle>
+        <DialogDescription className="sr-only">
+          Email from {email.from}
+        </DialogDescription>
+        <div className="flex max-h-[90vh] w-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-xl">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-border px-8 py-5">
+            <div className="flex flex-col gap-1">
+              <p className="m-0 text-lg font-semibold text-foreground">
+                {email.subject}
+              </p>
+              <p className="m-0 text-xs text-muted-foreground">
+                {email.from} → {email.to.join(", ")}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="rounded-md p-1.5 text-muted-foreground hover:bg-accent"
+            >
+              <X size={14} />
+            </button>
+          </div>
+
+          {/* Email body */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="border-b border-border px-8 py-6">
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-semibold text-foreground">
+                  {email.from}
+                </span>
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {email.date}
+                </span>
+              </div>
+              <div className="mt-4 space-y-5">
+                <p className="m-0 whitespace-pre-line text-sm leading-7 text-foreground/65">
+                  {email.snippet}
+                </p>
+              </div>
+            </div>
+
+            {/* Reply box — empty */}
+            <div className="bg-muted/20 px-8 py-6">
+              <p className="m-0 text-xs font-medium text-muted-foreground">
+                Reply
+              </p>
+              <div className="mt-3 rounded-lg border border-border bg-card p-5">
+                <textarea
+                  value={replyText}
+                  onChange={(e) => setReplyText(e.target.value)}
+                  placeholder="Write a reply..."
+                  className="w-full resize-none border-none bg-transparent text-sm leading-7 text-foreground/65 outline-none placeholder:text-muted-foreground/40"
+                  rows={4}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="flex items-center justify-end border-t border-border px-8 py-4">
+            <Button className="rounded-lg" disabled={!replyText.trim()}>
+              <Send size={14} />
+              Send reply
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const ConnectionDetailPage = () => {
   const [searchParams] = useSearchParams();
@@ -257,29 +380,34 @@ const ConnectionDetailPage = () => {
           <TabsTrigger value="emails">Emails</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="meetings">
+        <TabsContent value="meetings" className="mt-6">
           {person.meetings.map((group) => (
-            <div key={group.week} className="mb-6">
-              <p className="text-2xs font-medium text-muted-foreground mb-3">
+            <div key={group.week} className="mb-8">
+              <p className="text-xs font-medium text-muted-foreground mb-4">
                 {group.week}
               </p>
               <div className="space-y-0.5">
                 {group.items.map((m) => (
-                  <MeetingRow
+                  <Link
                     key={m.id}
-                    id={m.id}
-                    title={m.title}
-                    participants={m.participants}
-                    time={m.time}
-                    privacy={m.privacy}
-                  />
+                    to="/meeting-detail"
+                    className="no-underline text-inherit"
+                  >
+                    <MeetingRow
+                      id={m.id}
+                      title={m.title}
+                      participants={m.participants}
+                      time={m.time}
+                      privacy={m.privacy}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
           ))}
         </TabsContent>
 
-        <TabsContent value="emails">
+        <TabsContent value="emails" className="mt-6">
           <div className="space-y-1">
             {person.emails.length === 0 ? (
               <p className="text-sm text-muted-foreground py-4 text-center">
@@ -287,25 +415,7 @@ const ConnectionDetailPage = () => {
               </p>
             ) : (
               person.emails.map((email) => (
-                <div
-                  key={email.id}
-                  className="flex flex-col gap-1 px-4 py-3.5 rounded-lg hover:bg-accent transition-colors cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-foreground">
-                      {email.subject}
-                    </span>
-                    <span className="text-2xs text-muted-foreground shrink-0 ml-3">
-                      {email.date}
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground line-clamp-1">
-                    {email.from} → {email.to.join(", ")}
-                  </p>
-                  <p className="text-xs text-muted-foreground/60 line-clamp-2 leading-relaxed">
-                    {email.snippet}
-                  </p>
-                </div>
+                <ConnectionEmailRow key={email.id} email={email} />
               ))
             )}
           </div>

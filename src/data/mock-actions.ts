@@ -274,7 +274,7 @@ export const MOCK_ACTIONS: Action[] = [
     schedule: "When a vendor deadline passes",
     integrations: ["monday-com", "teams", "outlook", "sharepoint"],
     prompt:
-      "Whenever a vendor delivery deadline passes without a confirmed completion in email or Teams, flag it immediately.\n\nStep 1: Identify the missed deadline, vendor name, and associated project from Monday.com.\n\nStep 2: Assess downstream impact — check for blocked workstreams, engineering idle time, and timeline dependencies.\n\nStep 3: Pull related vendor agreements and SLAs from SharePoint.\n\nStep 4: Generate a Vendor Delay Risk Report with sections for Missed Delivery Summary, Impacted Workstreams, Responsible Parties, and Recommended Escalation Steps.\n\nStep 5: Deliver the report to Tracy's Outlook and notify the project lead.",
+      "Whenever a vendor delivery deadline passes without a confirmed completion in email or Teams, flag it immediately.\n\nStep 1: Identify the missed deadline, vendor name, and associated project from Monday.com.\n\nStep 2: Assess downstream impact — check for blocked workstreams, engineering idle time, and timeline dependencies.\n\nStep 3: Pull related vendor agreements and SLAs from SharePoint.\n\nStep 4: Generate a Vendor Delay Risk Report with sections for Missed Delivery Summary, Impacted Workstreams, Responsible Parties, and Recommended Escalation Steps.\n\nStep 5: Deliver the report to Mark's Outlook and notify the project lead.",
     triggerType: "triggered",
     triggerDetail:
       "Event trigger: runs when a vendor deadline passes on Monday.com.",

@@ -196,9 +196,14 @@ export const meetings: Meeting[] = [
     time: "2:00 PM",
     endTime: "3:00 PM",
     duration: "1h",
-    participants: ["Claire Lawson", "Tom Brennan", "Raj Sundaram", "Tracy Kim"],
+    participants: [
+      "Claire Lawson",
+      "Tom Brennan",
+      "Raj Sundaram",
+      "Mark Davis",
+    ],
     tags: ["due-diligence", "enterprise-ai"],
-    platform: "Google Meet",
+    platform: "Zoom",
     privacy: "public",
     summary:
       "Deep dive into Sentra's product architecture and go-to-market strategy with the founding team. Reviewed the organizational memory concept, current traction with design partners, and potential synergies with AG portfolio companies and business units. The interaction-first approach is technically differentiated from Prism and AssistAI, and the team demonstrated strong product-market fit signals from early design partners.",
@@ -213,7 +218,7 @@ export const meetings: Meeting[] = [
         title: "Strong design partner engagement",
         description:
           "Active design partners include teams at BlueBridge, RenderLab, and Campfire. ICP is Series A/B startups (30-1000 employees) plus enterprise teams as design partners.",
-        participants: ["Tracy Kim", "Tom Brennan"],
+        participants: ["Mark Davis", "Tom Brennan"],
       },
       {
         title: "Clear AG synergy opportunities",
@@ -265,7 +270,7 @@ export const meetings: Meeting[] = [
         text: "Prism takes an aggregation-first approach — they index documents and files. We take an interaction-first approach. We capture the decision history, the context, the why behind decisions. That's what gets lost as companies scale.",
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "On the GTM side, we're focused on Series A through B companies right now — 30 to 1000 employees — plus enterprise teams as design partners. We have active pilots with teams at BlueBridge, RenderLab, and Campfire.",
       },
       {
@@ -291,7 +296,7 @@ export const meetings: Meeting[] = [
         text: "The multi-language timeline is important for us. European is obviously a priority. How are you thinking about localization beyond just translation — the cultural nuances of communication in European business contexts?",
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "We've thought about this a lot. It's not just translation — it's understanding the implicit communication patterns in different cultures. In European business settings, what's left unsaid is often as important as what's said. Our interaction model actually captures those patterns better than document-based approaches.",
       },
       {
@@ -308,7 +313,7 @@ export const meetings: Meeting[] = [
         text: "And for our own operations — AG has offices in 90 countries. The cross-cultural knowledge transfer problem is real. Claire, let's map out which business units would be the best fit for a pilot.",
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "We'd love that. We're particularly interested in how the product performs in multilingual, cross-timezone environments. That's exactly the kind of design partner feedback we need.",
       },
       {
@@ -467,7 +472,7 @@ export const meetings: Meeting[] = [
       "Greg Lawton",
     ],
     tags: ["due-diligence", "climate-tech"],
-    platform: "Google Meet",
+    platform: "Zoom",
     privacy: "private",
     summary:
       "Technical due diligence session for GreenCore with AG's industrial materials division. Reviewed carbon capture efficiency claims, unit economics at scale, and potential integration with AG's existing industrial portfolio. Independent lab results validated the 40% efficiency improvement, and unit economics below $80 per ton at scale are competitive with regulatory carbon credit pricing. Greg confirmed strong interest from the materials division for a 12-15 facility rollout if the pilot validates.",
@@ -828,7 +833,7 @@ export const meetings: Meeting[] = [
     duration: "45m",
     participants: ["Claire Lawson", "Jake Brennan", "Dr. Nathan Cho"],
     tags: ["screening", "advanced-materials"],
-    platform: "Google Meet",
+    platform: "Zoom",
     privacy: "private",
     summary:
       "Initial screening call with NovaMaterials founder Dr. Nathan Cho. Company is developing proprietary battery recycling technology with a novel hydrometallurgical process achieving 95% metal recovery rates. Pilot facility under construction in Nevada, expected operational Q2 2026. Two EV manufacturer LOIs already signed for feedstock supply. Team recommended a smaller initial check with milestone-based follow-on given the earlier stage and execution risk.",
@@ -1267,7 +1272,7 @@ export const meetings: Meeting[] = [
     duration: "45m",
     participants: ["Claire Lawson", "David Chen", "Lisa Park"],
     tags: ["portfolio", "check-in"],
-    platform: "Google Meet",
+    platform: "Zoom",
     privacy: "public",
     summary:
       "Quarterly review with QuantumSense (Series A portfolio). Product-market fit strengthening in semiconductor QA vertical with $3.2M ARR, up from $2.1M last quarter. Three new chip manufacturer contracts signed in Q1 including Apex Semi Oregon. Discussed international expansion through AG's semiconductor trading arm and potential Series B lead investors. The Europe market opportunity is significant given the new Apex Semi and Rapidus fabs.",
@@ -1530,7 +1535,7 @@ export const meetings: Meeting[] = [
     duration: "1h",
     participants: ["Richard Caldwell", "Sean Mercer"],
     tags: ["due-diligence", "climate-tech"],
-    platform: "Google Meet",
+    platform: "Zoom",
     privacy: "private",
     summary: "",
     keyPoints: [],

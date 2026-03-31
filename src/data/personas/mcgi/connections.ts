@@ -60,8 +60,8 @@ export const connections: PersonaConnectionsData = {
     },
     {
       id: "mc-p8",
-      name: "Tracy Kim",
-      email: "tracy.kim@jpmorgan.com",
+      name: "Mark Davis",
+      email: "mark.davis@jpmorgan.com",
       lastInteraction: "2026-03-09",
       interactions: 6,
       tags: ["Vendor", "External"],

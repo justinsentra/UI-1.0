@@ -211,7 +211,7 @@ export const MOCK_ARTIFACTS: Artifact[] = [
     actionName: "Vendor Delay Tracker",
     createdAt: "2026-03-26T10:00:00Z",
     summary:
-      "DataBridge Solutions missed their second delivery deadline on February 17 for the transformed data set needed for integration testing. The vendor cited resource constraints and provided no revised ETA for five business days. Impact: the Oracle migration is now 5 weeks behind the original March 14 deadline, with a revised go-live target of April 18. The engineering team was forced to context-switch, losing additional productivity. The project lead did not escalate to Tracy or senior leadership until March 5 — 16 days after the missed deadline. This is a recurring pattern: same vendor, same failure mode, same delayed escalation.",
+      "DataBridge Solutions missed their second delivery deadline on February 17 for the transformed data set needed for integration testing. The vendor cited resource constraints and provided no revised ETA for five business days. Impact: the Oracle migration is now 5 weeks behind the original March 14 deadline, with a revised go-live target of April 18. The engineering team was forced to context-switch, losing additional productivity. The project lead did not escalate to Mark or senior leadership until March 5 — 16 days after the missed deadline. This is a recurring pattern: same vendor, same failure mode, same delayed escalation.",
     nextSteps: [
       {
         id: "ns-5-1",

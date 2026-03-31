@@ -109,7 +109,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "On the comp set — where are we landing on the valuation range? I want to make sure we're anchoring to the right peer group given how quickly multiples have moved this quarter.",
         isMe: true,
       },
@@ -134,7 +134,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That concentration number is a real concern. For context, most of the recent successful sell-side mandates we've run in vertical SaaS had top-10 concentration below 30%. We should frame this as a risk but also show the path to diversification — their pipeline might tell that story.",
         isMe: true,
       },
@@ -164,7 +164,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll start drafting the deal committee memo in parallel. Two pages covering the investment thesis, valuation range, key risks, and our recommended next steps. Grant, anything specific you want me to emphasize for the committee?",
         isMe: true,
       },
@@ -190,7 +190,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Yes, absolutely break that out. Professional services revenue at 12% of mix with presumably lower margins will drag the blended gross margin number. If we can show the software-only margin trajectory separately, that tells a much cleaner story for the deal committee.",
         isMe: true,
       },
@@ -220,7 +220,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Twelve months of runway with breakeven projected in Q3 — that creates an interesting dynamic for the raise. They're not desperate for capital, which gives them negotiating leverage, but they also can't afford to let the process drag out. What's the implied use of proceeds?",
         isMe: true,
       },
@@ -240,7 +240,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll add that as a question for the management meeting. Let's also make sure we understand the competitive landscape in Europe. If there's a local player with strong market share, the customer acquisition costs could be significantly higher than what Meridian is modeling.",
         isMe: true,
       },
@@ -265,7 +265,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "On the deal committee memo — Grant, do you want me to include a section on the management team's background and track record? The committee usually wants to know whether the founders have done this before and whether they have the operating chops to execute the plan.",
         isMe: true,
       },
@@ -290,7 +290,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Sounds good. I'll also loop in the acquirer landscape section so we have a complete picture. If anyone runs into blockers before Wednesday, let's flag it in the group chat rather than waiting for the meeting.",
         isMe: true,
       },
@@ -310,7 +310,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "One last thought — should we prepare a one-page executive summary as a leave-behind for the committee? Sometimes the full memo is more detail than they want upfront, and having a concise version ensures the key points land even if they don't read the whole thing.",
         isMe: true,
       },
@@ -407,7 +407,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's a strong pipeline week. Which of those three do you think has the highest probability of converting to a signed engagement? I want to make sure we're prioritizing the right conversations.",
         isMe: true,
       },
@@ -427,7 +427,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That convergence dynamic is important for how we position both the CloudSync and NeuralPath engagements. If private multiples are about to re-rate, the timing argument for both a raise and a sale gets stronger.",
         isMe: true,
       },
@@ -457,7 +457,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Have the sponsors commented on the cloud cost issue? In my experience, PE firms doing tech LBOs are increasingly focused on infrastructure efficiency as a value creation lever. If they see it as fixable, it could actually strengthen the thesis rather than weaken it.",
         isMe: true,
       },
@@ -487,7 +487,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "One quick thing — can we make sure the comp table includes the three recent S-1 filers? Those forward projections will be useful for both the CloudSync and NeuralPath conversations. Otherwise I think we're in good shape.",
         isMe: true,
       },
@@ -503,7 +503,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Healthcare vertical expansion is interesting. That's a sector with long sales cycles but very high retention once you're in. Do we know who else is advising them? If they're talking to multiple banks, we need to differentiate our pitch.",
         isMe: true,
       },
@@ -523,7 +523,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Nathan, make sure the rollover analysis includes the equity incentive structure as well. If the sponsors are offering a management equity pool on top of the rollover, the total economics to the management team could be quite attractive even at 20% rollover.",
         isMe: true,
       },
@@ -543,7 +543,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Do we have any view on CloudSync's current investor base? If their Series B investors are participating in the Series C, that's a strong signal. If they're not, we need to understand why before we go to market.",
         isMe: true,
       },
@@ -563,7 +563,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Those premiums are notable and worth highlighting in client conversations. Both CloudSync and NeuralPath should understand that the M&A market is paying up for quality assets in cloud and AI. It strengthens the timing argument across our entire pipeline.",
         isMe: true,
       },
@@ -588,7 +588,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll prepare talking points for the CloudSync intro call based on the comp table once Nathan has it ready. I also want to draft a preliminary engagement letter framework we can customize for each of these three mandates. Let's stay tight on the timelines this week — we have a lot of moving pieces.",
         isMe: true,
       },
@@ -613,7 +613,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good thinking, Victor. That enterprise growth rate also has implications for the CloudSync positioning. If enterprise AI adoption is accelerating at that rate across the board, it supports a higher valuation for CloudSync's Series C as well. Nathan, make sure the comp table captures that trend.",
         isMe: true,
       },
@@ -633,7 +633,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's efficient. Victor, go ahead and get that started as a low-priority background task. If Vantage stays exploratory, we haven't lost much time. If they accelerate, we'll be glad we have it. Alright, I think we've covered everything now. Let's execute.",
         isMe: true,
       },
@@ -646,7 +646,7 @@ export const meetings: Meeting[] = [
   },
   {
     id: "mtg-3",
-    title: "Diana / Tracy 1:1",
+    title: "Diana / Mark 1:1",
     date: daysAgo(0),
     time: "11:30 AM",
     endTime: "12:00 PM",
@@ -695,7 +695,7 @@ export const meetings: Meeting[] = [
         title: "Draft pricing proposal for 150-seat expansion",
         description:
           "Prepare a detailed pricing proposal with enterprise tier features, volume discounts, and comparison against Prism and AssistAI alternatives.",
-        assignee: "Tracy Kim",
+        assignee: "Mark Davis",
         checked: false,
       },
       {
@@ -719,7 +719,7 @@ export const meetings: Meeting[] = [
         title: "Follow up with IT Security on SSO timeline",
         description:
           "Confirm the March 24 target for SAML claim mapping completion. Escalate if there are any blockers that could push the date.",
-        assignee: "Tracy Kim",
+        assignee: "Mark Davis",
         checked: false,
       },
     ],
@@ -730,7 +730,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's a 53% jump in daily actives week-over-week. What's the feedback from the Coverage team specifically? I want to understand what's resonating with them so we can use it in the expansion pitch.",
         isMe: true,
       },
@@ -740,7 +740,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "The DealStream ask makes sense — that's the backbone of their deal pipeline tracking. I'll flag it to our product team as a feature request. Can you get me 3 or 4 specific quotes from those VPs? Having named testimonials in the expansion proposal will be much more compelling than aggregate stats.",
         isMe: true,
       },
@@ -750,7 +750,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Perfect. Now what's the status on the Compliance team pilot? Last I heard it was blocked on SSO.",
         isMe: true,
       },
@@ -760,7 +760,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "What's the timeline looking like? Is there anything we can do to accelerate it, or is this purely on IT Security's side?",
         isMe: true,
       },
@@ -770,7 +770,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll reach out today. Making the business case clear — that this is blocking a six-figure expansion — should help move it up in their queue. Let's talk about the expansion proposal itself. Where are we on the pricing side?",
         isMe: true,
       },
@@ -780,7 +780,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "We need to position this against the alternatives clearly. Prism is $65 per seat and it's really a document search tool — their meeting capabilities are minimal. AssistAI is $30 but the meeting features are shallow and the organizational memory piece doesn't exist. Our value prop is strongest for meeting-heavy teams, and IB Coverage is exactly that.",
         isMe: true,
       },
@@ -790,7 +790,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good thinking. I'll draft the full pricing proposal this week with the competitive comparison, ROI analysis, and the testimonials once you have them. Let's target having a polished version ready by next Monday so we can socialize it internally before the April 15 deadline.",
         isMe: true,
       },
@@ -800,7 +800,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Yes, definitely loop Priya in. If she can speak to the Compliance team's intent to adopt, it shows demand beyond just the IB Coverage group. That cross-functional pull is exactly what budget holders want to see.",
         isMe: true,
       },
@@ -811,7 +811,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's encouraging, but let's not get ahead of ourselves. We want the 150-seat expansion to succeed before we start talking about a third wave. But we should definitely note that demand in the proposal — it shows organic pull beyond the teams we're targeting.",
         isMe: true,
       },
@@ -821,7 +821,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "What are you seeing on the prep time side? I know anecdotally that the organizational memory feature is helping people get context on prior conversations, but do we have data on that?",
         isMe: true,
       },
@@ -831,7 +831,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's compelling. So we're looking at 45 minutes saved per external meeting. If the average Coverage banker has 3-4 external calls per day, that's over two hours of productivity recovered daily. At their billing rates, the dollar value is substantial.",
         isMe: true,
       },
@@ -841,7 +841,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That ROI number is going to be the centerpiece of our pitch. Let's make sure we present it clearly with the underlying assumptions spelled out. Budget holders will push back on the inputs, so we need each number to be defensible.",
         isMe: true,
       },
@@ -851,7 +851,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good. Let's also talk about the rollout plan for the expanded seats. If we get approval, are we doing a big-bang launch or a phased approach?",
         isMe: true,
       },
@@ -861,7 +861,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Phased makes sense. It also gives us a chance to address any issues that come up in wave one before they affect a larger user base. Include the phased rollout timeline in the proposal — it shows we've thought about the operational side, not just the budget ask.",
         isMe: true,
       },
@@ -871,7 +871,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Yes, a recorded module would scale much better. Keep it under 15 minutes — nobody's going to watch a 45-minute training video. Cover the three most-used features and point people to the team champion for everything else.",
         isMe: true,
       },
@@ -881,7 +881,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Let me handle it through the account relationship. If we're about to commit to 150 seats, that gives us leverage to push for product roadmap commitments. I'll position the DealStream integration as a condition of the expanded contract — or at least a strong expectation.",
         isMe: true,
       },
@@ -891,7 +891,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Exactly. I'll bring it up in my next call with their account executive. Let's also make sure the contract includes SLA commitments on uptime and support response times. At 150 seats, we're a significant client and should be getting premium support.",
         isMe: true,
       },
@@ -901,7 +901,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good. Alright, I think we have a clear plan for the week. You're working on testimonials, survey data for the ROI analysis, and the phased rollout plan. I'll handle the SSO escalation, the DealStream conversation with Sentra, and the pricing proposal draft. Let's sync again Thursday to review progress.",
         isMe: true,
       },
@@ -911,7 +911,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good point. If we do see a dip, let's proactively address it — maybe a tips-and-tricks email or a short lunch-and-learn session to re-engage users. We need the adoption curve to hold through the March 21 evaluation checkpoint. Alright, let's execute. Talk Thursday.",
         isMe: true,
       },
@@ -921,7 +921,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Dokra integration is an interesting one. It's not as high-priority as DealStream for the Coverage team, but it's a quality-of-life feature that would drive stickiness. I'll add it to the feature request list when I talk to Sentra's account team. Any sense of how many users have asked for it?",
         isMe: true,
       },
@@ -931,7 +931,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's helpful. Having specific use cases attached to the request makes it much easier for Sentra's product team to evaluate and prioritize. Include that in the feature request document and I'll reference it in my next call with them.",
         isMe: true,
       },
@@ -941,7 +941,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's reasonable. Let's make sure the data lifecycle walkthrough happens before the March 21 checkpoint. Can you coordinate with Priya and Sentra's compliance team to schedule a 45-minute deep dive? I'd like to attend that as well so I understand the details for the budget presentation.",
         isMe: true,
       },
@@ -951,7 +951,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Perfect. That covers the compliance angle. One last thought — we should also think about what success looks like beyond the quantitative metrics. Are there any qualitative signals you're watching for? Things like whether people are using it without being prompted, or sharing summaries proactively with colleagues?",
         isMe: true,
       },
@@ -961,7 +961,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's exactly the kind of signal we want to see. It means people aren't just using it because they were told to — they're finding genuine value. Make sure we capture those anecdotes for the expansion proposal. Organic adoption stories are more persuasive to budget holders than any dashboard metric. Alright, great chat. Talk Thursday.",
         isMe: true,
       },
@@ -1069,7 +1069,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "How did Prism and AssistAI fare on the security assessment? I want to make sure we're comparing apples to apples across all three vendors.",
         isMe: true,
       },
@@ -1089,7 +1089,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "The pricing delta between Sentra and AssistAI is only $12 per seat. If Sentra saves each user even 20 minutes a day on meeting follow-ups — and we're hearing 30 minutes from the pilot — the ROI case writes itself. The question is whether Prism's document search adds enough value to justify a 55% premium over Sentra.",
         isMe: true,
       },
@@ -1109,7 +1109,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I think we're converging on a recommendation. Nathan, can you build a weighted scorecard that captures all of this — security, features, pricing, and integration — so we have something concrete for the evaluation committee? Weight the categories based on what matters most for IB Coverage specifically.",
         isMe: true,
       },
@@ -1134,7 +1134,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Let's also make sure we have the pen test report and retention confirmation from Sentra before the March 21 deadline. Those are the two outstanding items that could derail the recommendation. Priya, can you follow up on both this week?",
         isMe: true,
       },
@@ -1155,7 +1155,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "The calendar permission issue is something we need to address proactively in the expanded rollout. Can we work with Sentra to configure a more granular permission model? Ideally users should be able to select which calendar events Sentra has access to, rather than granting blanket access.",
         isMe: true,
       },
@@ -1175,7 +1175,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's a common pattern we're seeing — incumbent tools bolting on AI features to check a box. The question is whether Prism will invest deeply enough in meeting intelligence to close the gap, or if it will always be a secondary feature for them. Given that their core business is document search, I'd bet on the latter.",
         isMe: true,
       },
@@ -1195,7 +1195,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good points. We should include the vendor viability assessment in the scorecard as a sub-factor under security and compliance. It's a legitimate concern that the evaluation committee will raise, and we should have a clear answer ready.",
         isMe: true,
       },
@@ -1215,7 +1215,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Data portability should be a requirement in the contract regardless of which vendor we choose. Victor, can you draft a data portability clause that we can include in the negotiation? We should have full export rights with no more than 30 days notice.",
         isMe: true,
       },
@@ -1235,7 +1235,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "This is shaping up well. Let's plan to do a dry run of the evaluation committee presentation on March 19 — two days before the deadline. That gives us time to incorporate any final feedback and make sure the recommendation is bulletproof. Everyone comfortable with that timeline?",
         isMe: true,
       },
@@ -1255,7 +1255,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good. Let's stay in close contact this week. If any blockers emerge, flag them immediately in the group chat. The March 21 deadline is firm and I don't want any surprises. Alright, I think we're aligned. Good meeting everyone.",
         isMe: true,
       },
@@ -1275,7 +1275,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Agreed. Let's add migration risk and data portability as a formal criterion in the scorecard — maybe as a sub-category under security and compliance. Nathan, weight it at about 5% of the total score so it's visible but doesn't dominate the evaluation.",
         isMe: true,
       },
@@ -1295,7 +1295,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good call. Include it as a qualitative section in the recommendation narrative alongside the quantitative scorecard. The committee appreciates when we go beyond the numbers. Alright, with that addition I think we have a thorough evaluation framework. Let's finalize everything for the March 19 dry run.",
         isMe: true,
       },
@@ -1381,7 +1381,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "What's driving the urgency on NeuralPath's side? Is this competitive pressure or are they seeing a window in the market they want to capitalize on?",
         isMe: true,
       },
@@ -1416,7 +1416,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That $18M fee pool is strong. What's the probability-weighted number? I want to make sure we have a realistic view for the quarterly forecast.",
         isMe: true,
       },
@@ -1441,7 +1441,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Makes sense. Grant, should we also schedule a call with NeuralPath's board before we start reaching out to acquirers? We want to make sure everyone's aligned on valuation expectations and process timeline. The last thing we want is to bring a strong offer and have the board reject it because expectations weren't set properly.",
         isMe: true,
       },
@@ -1462,7 +1462,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "We should flag that in the CIM — potential acquirers will want audited numbers before signing a definitive agreement. Having the audit in progress is fine for the teaser phase, but we need to push NeuralPath to expedite the completion.",
         isMe: true,
       },
@@ -1487,7 +1487,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "If Cascade moves forward, that would be another data infrastructure deal, which plays to our strengths. Monica, is there any overlap between the Cascade opportunity and the Meridian work that would let you leverage the same comp set and market analysis?",
         isMe: true,
       },
@@ -1507,7 +1507,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's the right approach. Showing them we're not just pushing for a quick transaction builds trust. If they decide to wait, we're still the natural choice when they're ready to move. Let's make sure we stay in regular contact with the Vertex founder — quarterly touchpoints at minimum.",
         isMe: true,
       },
@@ -1527,7 +1527,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll also connect with Nathan separately about the NeuralPath positioning. If we can tie the sell-side narrative to the broader AI infrastructure re-rating he's been tracking, it strengthens the urgency argument for potential acquirers. The market timing story works for both buyers and sellers in this case.",
         isMe: true,
       },
@@ -1542,7 +1542,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Quick thought before everyone drops — for the Thursday reconvene, can we also review the fee structure for NeuralPath? Given the accelerated timeline and the complexity of a sell-side mandate with multiple potential acquirers, we should make sure our engagement terms reflect the scope of work.",
         isMe: true,
       },
@@ -1572,7 +1572,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That would be a great outcome. A quick close on Pinnacle frees up bandwidth for the NeuralPath mandate and gives us a completed deal to reference in our pipeline conversations. Grant, do you want me to coordinate with Pinnacle's legal counsel to push the timeline?",
         isMe: true,
       },
@@ -1587,7 +1587,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's a solid number. And with Meridian, DataVault, and NeuralPath all in various stages of active diligence, Q2 could be even stronger. The pipeline is the healthiest I've seen it in the last 18 months.",
         isMe: true,
       },
@@ -1607,7 +1607,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'll prepare a brief macro scenario analysis for the NeuralPath board discussion — two slides covering the base case where rates hold steady and the risk case where hawkish guidance triggers a 10-15% pullback in AI multiples. That gives the board context for why timing matters.",
         isMe: true,
       },
@@ -1715,7 +1715,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Before we dive into the details, I want to set some context. Sentra is the meeting intelligence platform we've been evaluating alongside Prism and AssistAI. This pilot is our chance to gather real usage data to inform the vendor decision. The more actively people use it, the better data we'll have to make the right call.",
         isMe: true,
       },
@@ -1740,7 +1740,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Priya, we've already confirmed with Sentra's infrastructure team that US-East is their default region for enterprise deployments. On the 7-year retention, their default is 2 years but they've confirmed they can configure custom retention for financial services clients. Victor spoke with them last week about this.",
         isMe: true,
       },
@@ -1765,7 +1765,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "We should also designate a champion within each team — someone who's a power user and can handle day-to-day questions without everything funneling through Diana. It reduces the support burden and gives us embedded advocates in each group.",
         isMe: true,
       },
@@ -1785,7 +1785,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Good. And let's be clear about the decision timeline — March 21 is our evaluation checkpoint. That gives us about two and a half weeks of pilot data before we need to make a go/no-go recommendation on the 150-seat expansion. The budget request needs to be submitted by April 15, so March 21 gives us enough runway for approvals.",
         isMe: true,
       },
@@ -1806,7 +1806,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "I'd suggest a lightweight approach — a three-question pulse survey at the end of each week, plus an open feedback channel like a dedicated ChatWorks channel where people can share thoughts in real time. We don't want to over-survey people and create friction.",
         isMe: true,
       },
@@ -1841,7 +1841,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That's a pragmatic approach. Let's get the desktop experience dialed in first and then evaluate mobile in the second half of the pilot. Diana, make sure the onboarding guide specifies desktop-only for the initial phase.",
         isMe: true,
       },
@@ -1856,7 +1856,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Priya, is that something we can enforce at the platform level, or does it need to be a policy-based control? If Sentra can restrict sharing to specific user groups, that's much more reliable than relying on people reading the policy.",
         isMe: true,
       },
@@ -1881,7 +1881,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "That timeline means we should start the budget approval process in parallel with the pilot evaluation, not sequentially. Diana, can you prepare a preliminary budget request that we can have ready to submit as soon as we make the go decision? That would save us at least a week.",
         isMe: true,
       },
@@ -1901,7 +1901,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Let's schedule that demo for the week of March 17, right before the evaluation checkpoint. We want it fresh in his mind when we present the recommendation. Diana, can you coordinate with Sentra's account team to set that up?",
         isMe: true,
       },
@@ -1921,7 +1921,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Agreed. Everyone knows their responsibilities. The key thing is to keep the communication tight — any issues that come up during the pilot should be flagged immediately, not saved for the Monday review. If something goes wrong with the first batch of users, we want to fix it before the rest of the teams onboard. Alright, great kickoff. Let's go make this happen.",
         isMe: true,
       },
@@ -1950,7 +1950,7 @@ export const meetings: Meeting[] = [
     participants: ["David Chen", "Margaret Liu", "Nathan Lim"],
     tags: ["Client", "Active Deal"],
     summary:
-      "Secondary offering discussion with NovaBridge Capital CEO David Chen. Covered the offering timeline, board composition concerns David raised six weeks ago, and the updated financials from CFO Margaret Liu. Discussed the Apex-Cobalt merger and its impact on competitive positioning. Tracy committed to the governance advisor introduction this week.",
+      "Secondary offering discussion with NovaBridge Capital CEO David Chen. Covered the offering timeline, board composition concerns David raised six weeks ago, and the updated financials from CFO Margaret Liu. Discussed the Apex-Cobalt merger and its impact on competitive positioning. Mark committed to the governance advisor introduction this week.",
     keyPoints: [
       {
         title: "Offering timeline",
@@ -1961,8 +1961,8 @@ export const meetings: Meeting[] = [
       {
         title: "Board composition",
         description:
-          "David reiterated concerns about governance structure post-offering. Wants an independent board seat as part of the deal terms. Tracy to introduce governance advisor this week.",
-        participants: ["David Chen", "Tracy Kim"],
+          "David reiterated concerns about governance structure post-offering. Wants an independent board seat as part of the deal terms. Mark to introduce governance advisor this week.",
+        participants: ["David Chen", "Mark Davis"],
       },
       {
         title: "Updated financials",
@@ -1977,7 +1977,7 @@ export const meetings: Meeting[] = [
         title: "Send governance advisor introduction to David Chen",
         description:
           "Connect David with the governance advisory team this week to address board composition concerns before formalizing the offering.",
-        assignee: "Tracy Kim",
+        assignee: "Mark Davis",
         checked: false,
       },
       {
@@ -1993,19 +1993,19 @@ export const meetings: Meeting[] = [
         title: "Schedule board presentation for April 14",
         description:
           "Book a 60-minute slot for the NovaBridge board to review secondary offering materials.",
-        assignee: "Tracy Kim",
+        assignee: "Mark Davis",
         checked: false,
       },
     ],
     transcript: [
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "David, Margaret — thanks for joining. I know it's been a few weeks since we last connected. I want to start by catching up on where things stand with the secondary offering and then walk through the updated financials Margaret sent over.",
         isMe: true,
       },
       {
         speaker: "David Chen",
-        text: "Thanks Tracy. I'll be direct — the Apex-Cobalt deal has changed the landscape for us. At $280M, that acquisition reprices the entire mid-market advisory space. We need to move faster than we originally planned.",
+        text: "Thanks Mark. I'll be direct — the Apex-Cobalt deal has changed the landscape for us. At $280M, that acquisition reprices the entire mid-market advisory space. We need to move faster than we originally planned.",
         isMe: false,
       },
       {
@@ -2020,11 +2020,11 @@ export const meetings: Meeting[] = [
       },
       {
         speaker: "David Chen",
-        text: "That aligns with what we're hearing from our side. But I want to be clear — the board composition question hasn't gone away. Before we formalize anything, I need to see a credible path to an independent board seat. Tracy, you mentioned a governance advisor introduction last time. Where does that stand?",
+        text: "That aligns with what we're hearing from our side. But I want to be clear — the board composition question hasn't gone away. Before we formalize anything, I need to see a credible path to an independent board seat. Mark, you mentioned a governance advisor introduction last time. Where does that stand?",
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "You're right, and I owe you that intro. I'll make it happen this week — I have someone in mind who's worked with several firms through exactly this kind of transition. Let me connect you directly.",
         isMe: true,
       },
@@ -2043,7 +2043,7 @@ export const meetings: Meeting[] = [
     participants: ["James Whitfield", "Sarah Park", "Kevin Park"],
     tags: ["Internal", "Operations"],
     summary:
-      "Executive sponsor review of the Oracle migration project. Tracy walked in with the full delay timeline from Sentra's Deep Research. Identified DataBridge Solutions' recurring missed deliveries as the root cause of the 5-week delay. Decided to enable automated vendor delay tracking and escalate directly with DataBridge's account lead.",
+      "Executive sponsor review of the Oracle migration project. Mark walked in with the full delay timeline from Sentra's Deep Research. Identified DataBridge Solutions' recurring missed deliveries as the root cause of the 5-week delay. Decided to enable automated vendor delay tracking and escalate directly with DataBridge's account lead.",
     keyPoints: [
       {
         title: "Root cause identified",
@@ -2055,7 +2055,7 @@ export const meetings: Meeting[] = [
         title: "Escalation gap",
         description:
           "Internal escalation was delayed by 7-16 days each time because the project lead relied on weekly standups rather than real-time monitoring. No automated system was catching vendor delays.",
-        participants: ["Tracy Kim", "James Whitfield"],
+        participants: ["Mark Davis", "James Whitfield"],
       },
       {
         title: "Revised timeline",
@@ -2070,7 +2070,7 @@ export const meetings: Meeting[] = [
         title: "Enable Vendor Delay Tracker action in Sentra",
         description:
           "Configure automated monitoring of Monday.com vendor deadlines with immediate flagging of missed deliveries.",
-        assignee: "Tracy Kim",
+        assignee: "Mark Davis",
         checked: false,
       },
       {
@@ -2084,7 +2084,7 @@ export const meetings: Meeting[] = [
     ],
     transcript: [
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "Before we start — I did some digging on why we're behind schedule. Sentra pulled together a full timeline. The root cause is clear: DataBridge Solutions has missed two consecutive delivery deadlines, and both times it took over a week before anyone escalated.",
         isMe: true,
       },
@@ -2094,7 +2094,7 @@ export const meetings: Meeting[] = [
         isMe: false,
       },
       {
-        speaker: "Tracy Kim",
+        speaker: "Mark Davis",
         text: "The part that concerns me is the escalation gap. 7 days the first time, 16 days the second. We can't have a vendor blocking a critical project for weeks without anyone flagging it to leadership. I've already set up an automated tracker in Sentra — any time a vendor deadline passes without confirmed completion, I get an alert immediately.",
         isMe: true,
       },

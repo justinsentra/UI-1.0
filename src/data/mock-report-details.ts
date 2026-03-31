@@ -52,9 +52,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-strategy" },
       { type: "slack", label: "#tech-partnerships" },
-      { type: "google-meet", label: "AI Strategy Weekly" },
-      { type: "google-meet", label: "Tech Partnerships Review" },
-      { type: "google-meet", label: "Vendor Evaluation Sync" },
+      { type: "zoom", label: "AI Strategy Weekly" },
+      { type: "zoom", label: "Tech Partnerships Review" },
+      { type: "zoom", label: "Vendor Evaluation Sync" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send Anthropic partnership proposal" },
@@ -113,10 +113,10 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#tech-partnerships" },
       { type: "slack", label: "#deal-pipeline" },
-      { type: "google-meet", label: "Anthropic Term Sheet Review" },
-      { type: "google-meet", label: "Bloomberg Technical Due Diligence" },
-      { type: "google-meet", label: "Sentra Pilot Review" },
-      { type: "google-meet", label: "Partnership Pipeline Sync" },
+      { type: "zoom", label: "Anthropic Term Sheet Review" },
+      { type: "zoom", label: "Bloomberg Technical Due Diligence" },
+      { type: "zoom", label: "Sentra Pilot Review" },
+      { type: "zoom", label: "Partnership Pipeline Sync" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send revised Anthropic term sheet to legal" },
@@ -168,9 +168,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-strategy" },
       { type: "slack", label: "#ai-platform" },
-      { type: "google-meet", label: "AI Strategy Operating Committee" },
-      { type: "google-meet", label: "MRM Framework Review" },
-      { type: "google-meet", label: "Agentic Workflow Pilot Readout" },
+      { type: "zoom", label: "AI Strategy Operating Committee" },
+      { type: "zoom", label: "MRM Framework Review" },
+      { type: "zoom", label: "Agentic Workflow Pilot Readout" },
     ],
     suggestedActions: [
       { icon: "calendar", label: "Schedule MRM compliance sign-off meeting" },
@@ -230,9 +230,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
       { type: "slack", label: "#ai-platform" },
       { type: "slack", label: "#infosec" },
       { type: "slack", label: "#incidents" },
-      { type: "google-meet", label: "Infrastructure Weekly Review" },
-      { type: "google-meet", label: "Security Audit Readout" },
-      { type: "google-meet", label: "SOC 2 Preparation Sync" },
+      { type: "zoom", label: "Infrastructure Weekly Review" },
+      { type: "zoom", label: "Security Audit Readout" },
+      { type: "zoom", label: "SOC 2 Preparation Sync" },
     ],
     suggestedActions: [
       {
@@ -289,8 +289,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     ],
     sources: [
       { type: "slack", label: "#talent-acquisition" },
-      { type: "google-meet", label: "Hiring Pipeline Review" },
-      { type: "google-meet", label: "Compensation Benchmarking Sync" },
+      { type: "zoom", label: "Hiring Pipeline Review" },
+      { type: "zoom", label: "Compensation Benchmarking Sync" },
     ],
     suggestedActions: [
       {
@@ -347,9 +347,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-adoption" },
       { type: "slack", label: "#ai-support" },
-      { type: "google-meet", label: "Divisional Adoption Review — IB" },
-      { type: "google-meet", label: "Divisional Adoption Review — AM" },
-      { type: "google-meet", label: "AI Training Program Sync" },
+      { type: "zoom", label: "Divisional Adoption Review — IB" },
+      { type: "zoom", label: "Divisional Adoption Review — AM" },
+      { type: "zoom", label: "AI Training Program Sync" },
     ],
     suggestedActions: [
       {
@@ -398,8 +398,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#regulatory-affairs" },
       { type: "slack", label: "#ai-compliance" },
-      { type: "google-meet", label: "Regulatory Impact Assessment" },
-      { type: "google-meet", label: "Legal Review — SEC Proposed Rules" },
+      { type: "zoom", label: "Regulatory Impact Assessment" },
+      { type: "zoom", label: "Legal Review — SEC Proposed Rules" },
     ],
     suggestedActions: [
       { icon: "calendar", label: "Schedule MRM gap analysis review" },
@@ -440,8 +440,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-vendor-eval" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Vendor Evaluation Committee" },
-      { type: "google-meet", label: "Anthropic Technical Deep Dive" },
+      { type: "zoom", label: "Vendor Evaluation Committee" },
+      { type: "zoom", label: "Anthropic Technical Deep Dive" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Review final benchmark results" },
@@ -482,8 +482,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     ],
     sources: [
       { type: "slack", label: "#tech-partnerships" },
-      { type: "google-meet", label: "Anthropic Partnership Review" },
-      { type: "google-meet", label: "Sentra Pilot Expansion Planning" },
+      { type: "zoom", label: "Anthropic Partnership Review" },
+      { type: "zoom", label: "Sentra Pilot Expansion Planning" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send Anthropic term sheet redline to legal" },
@@ -528,8 +528,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#market-intelligence" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Market Risk Assessment" },
-      { type: "google-meet", label: "Talent Market Briefing" },
+      { type: "zoom", label: "Market Risk Assessment" },
+      { type: "zoom", label: "Talent Market Briefing" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Share budget impact analysis with CFO office" },
@@ -571,8 +571,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-finance" },
       { type: "slack", label: "#budget-planning" },
-      { type: "google-meet", label: "Monthly Budget Review" },
-      { type: "google-meet", label: "ROI Analysis Sync" },
+      { type: "zoom", label: "Monthly Budget Review" },
+      { type: "zoom", label: "ROI Analysis Sync" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Review GPU compute cost optimization plan" },
@@ -616,8 +616,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#competitive-intel" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Competitive Intelligence Briefing" },
-      { type: "google-meet", label: "Goldman AI Platform Analysis" },
+      { type: "zoom", label: "Competitive Intelligence Briefing" },
+      { type: "zoom", label: "Goldman AI Platform Analysis" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Update competitive landscape deck for OpCo" },
@@ -649,7 +649,7 @@ const fallbackDetail: ReportDetail = {
   ],
   sources: [
     { type: "slack", label: "#ai-strategy" },
-    { type: "google-meet", label: "Weekly Sync" },
+    { type: "zoom", label: "Weekly Sync" },
   ],
   suggestedActions: [
     { icon: "mail", label: "Review action items from this period" },

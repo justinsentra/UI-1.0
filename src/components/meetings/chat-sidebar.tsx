@@ -10,12 +10,12 @@ const DEFAULT_SUGGESTED_QUESTIONS = [
 
 const SCAN_STEPS: ScanStep[] = [
   {
-    label: "Parsing 8 meeting transcripts from Google Meet...",
+    label: "Parsing 8 meeting transcripts from Zoom...",
     duration: 3200,
   },
   { label: "Reading 5 ChatWorks threads and 3 Dokra pages...", duration: 3400 },
   {
-    label: "Scanning CRM pipeline and Google Calendar events...",
+    label: "Scanning CRM pipeline and Outlook Calendar events...",
     duration: 3400,
   },
   {
@@ -32,7 +32,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
       content:
         "**Key Decisions This Week**\n\nBased on 8 meetings reviewed, there were 4 key decisions: 1) Standardize on the new demo flow for enterprise prospects \u2014 Raj rated confidence at '100% or more.' 2) Prioritize SSO/SAML support since 3 enterprise prospects flagged it as a hard requirement. 3) Reframe risk radar as 'commitment tracking' to better match user mental models. 4) Increase content marketing investment for Q2 based on 40% higher close rates from content-sourced deals.",
       sources: [
-        { type: "google-meet", label: "GTM Strategy Sync" },
+        { type: "zoom", label: "GTM Strategy Sync" },
         { type: "slack", label: "#sales-pipeline" },
         { type: "notion", label: "Q1 Deal Tracker" },
       ],
@@ -44,7 +44,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
       content:
         "**Outstanding Action Items**\n\nYou have 5 outstanding action items: 1) Schedule design review with broader team \u2014 due Friday. 2) Prepare enterprise demo script for Vantage follow-up \u2014 due next Tuesday. 3) Follow up with Meridian Corp on custom SLA requirements. 4) Review onboarding wizard designs in Dokra before engineering handoff. 5) Coordinate with Ingrid on TechConnect press kit completion.",
       sources: [
-        { type: "google-meet", label: "Weekly Team Standup" },
+        { type: "zoom", label: "Weekly Team Standup" },
         { type: "slack", label: "#action-items" },
         { type: "linear", label: "Sprint Board" },
       ],
@@ -56,7 +56,7 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
       content:
         "**Recurring Themes**\n\nRecurring themes across your last 12 meetings: **Pipeline velocity** (mentioned in 8/12), **Enterprise readiness** including SOC 2 and SSO (6/12), **Product onboarding** friction and time-to-value (5/12), and **Content marketing ROI** (4/12). The enterprise readiness theme has increased significantly in the last 2 weeks.",
       sources: [
-        { type: "google-meet", label: "Product Roadmap Review" },
+        { type: "zoom", label: "Product Roadmap Review" },
         { type: "zoom", label: "Engineering Sprint Retro" },
         { type: "slack", label: "#product" },
       ],
@@ -68,8 +68,8 @@ const MOCK_PARAGRAPHS: ResponseParagraph[][] = [
       content:
         "**Meeting Frequency**\n\nIn the past 30 days, your most frequent meetings were with: **Raj** (8 meetings \u2014 mostly strategy and design reviews), **Pavel** (5 meetings \u2014 product and engineering sync), **Ingrid** (3 meetings \u2014 operations and event prep). You also had 6 external meetings with prospects.",
       sources: [
-        { type: "google-calendar", label: "Calendar Analysis" },
-        { type: "google-meet", label: "Raj / Leo 1:1" },
+        { type: "outlook", label: "Outlook Calendar" },
+        { type: "zoom", label: "Raj / Leo 1:1" },
       ],
     },
   ],

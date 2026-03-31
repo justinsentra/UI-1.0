@@ -76,9 +76,9 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
   title: "Morning Brief",
   subtitle: "Monday, March 30",
   intro:
-    "Welcome back, Tracy. You were on-site with a client all last week, missed internal meetings, and now have seven meetings stacked today. Sentra has triaged what needs attention first so you can get current fast.",
+    "Welcome back, Mark. You were at a conference all last week, missed internal meetings, and now have seven meetings stacked today. Sentra has triaged what needs attention first so you can get current fast.",
   badgeLabel: "Pre-meeting brief ready",
-  briefBadgeMeetingId: "david-chen-secondary",
+  briefBadgeMeetingId: "david-chen-contract",
   connectedTools: [
     {
       id: "tool-m365",
@@ -131,292 +131,233 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
   ],
   attentionItems: [
     {
-      id: "synthetic-db",
-      category: "Deal review",
-      title: "Synthetic DB needs clean numbers before Thursday's IC meeting",
+      id: "onboarding-rollout",
+      category: "Operations",
+      title:
+        "Onboarding system rollout numbers need review before Thursday's steering committee",
       description:
-        "Your analyst started the consolidation, but the updated figures still need review and a Salesforce push before committee sees stale data.",
+        "Your lead started gathering the data but the project tracker still shows outdated figures. The steering committee meets Thursday — Mark needs to review and update before then.",
       detail:
-        "Sentra stitched together the analyst's workbook updates, the stale Salesforce opportunity record, and the Thursday IC agenda. If you do nothing, the committee will review last week's numbers instead of the refreshed view.",
-      ownerLabel: "Primary owner: Tracy",
+        "Sentra stitched together the draft rollout numbers Lisa shared, the outdated SharePoint tracker, and the Thursday steering committee agenda. If nothing changes, the committee will review stale figures instead of the current rollout status.",
+      ownerLabel: "Primary owner: Mark",
       actionId: "monday-triage",
       actionTab: "plan",
       trailItems: [
         {
-          id: "synthetic-db-trail-1",
-          source: "SharePoint workbook",
-          title: "Analyst refreshed revenue bridge at 7:18 AM",
-          description:
-            "Three regional tabs were updated, but the debt schedule and customer concentration sheet were left unresolved.",
+          id: "onboarding-rollout-trail-1",
+          source: "Teams",
+          title:
+            "Lisa shared draft rollout numbers in #onboarding-project (Fri)",
+          description: "",
         },
         {
-          id: "synthetic-db-trail-2",
-          source: "Salesforce opportunity",
-          title: "CRM still reflects last Tuesday's figures",
-          description:
-            "The IC briefing packet is reading the prior ARR and EBITDA numbers from Salesforce, not the revised workbook.",
+          id: "onboarding-rollout-trail-2",
+          source: "SharePoint",
+          title: "Onboarding_System_Rollout_Tracker_v3.xlsx last edited Mar 14",
+          description: "",
         },
         {
-          id: "synthetic-db-trail-3",
-          source: "IC agenda",
-          title: "Synthetic DB is first on Thursday's committee agenda",
-          description:
-            "Finance leadership requested the latest consolidated numbers before the packet locks tomorrow night.",
+          id: "onboarding-rollout-trail-3",
+          source: "Outlook",
+          title:
+            "Steering Committee agenda sent — rollout numbers listed as open item",
+          description: "",
         },
       ],
     },
     {
-      id: "engagement-terms",
+      id: "apex-contract",
       category: "Client commitment",
-      title: "Revised engagement terms still have not gone back to the client",
+      title: "Revised contract response to Apex Systems is two weeks overdue",
       description:
-        "You promised a redline two weeks ago and never followed through. The client asked again this morning for an update before legal reviews today.",
+        "Mark committed to sending updated contract terms to Apex Systems two weeks ago. The vendor is waiting and the project milestone depends on it.",
       detail:
-        "Sentra found the original commitment in your notes, the follow-up email that came in this morning, and the untouched draft in Word. The fastest move is to send a cleaned-up response now and attach the revised terms after one pass.",
-      ownerLabel: "Primary owner: Tracy",
-      draftPrompt:
-        "Draft a reply to the client acknowledging the delay, sharing that revised engagement terms are attached for review, and proposing a quick call later today if they want to walk through the changes.",
+        "Sentra found the original commitment in Mark's email, the follow-up flagged in the vendor contracts channel, and the reminder from Apex this morning. The fastest move is to finalize and send the revised terms now.",
+      ownerLabel: "Primary owner: Mark",
+      draftPrompt: "Send revised contract",
       trailItems: [
         {
-          id: "engagement-terms-trail-1",
-          source: "Meeting notes",
-          title: "Commitment captured two weeks ago",
-          description:
-            "You closed the advisory check-in by saying you would send revised terms by end of week.",
-        },
-        {
-          id: "engagement-terms-trail-2",
+          id: "apex-contract-trail-1",
           source: "Outlook",
-          title: "Client follow-up landed at 6:42 AM",
-          description:
-            "They need the updated terms before their internal legal review starts this afternoon.",
+          title: "Mark committed to revised terms in email to Apex (Mar 14)",
+          description: "",
         },
         {
-          id: "engagement-terms-trail-3",
-          source: "Word draft",
-          title: "The latest redline is already prepared",
-          description:
-            "Only the fee schedule paragraph and the response email still need your sign-off.",
+          id: "apex-contract-trail-2",
+          source: "Teams",
+          title: "Apex follow-up flagged in #vendor-contracts (Mar 21)",
+          description: "",
+        },
+        {
+          id: "apex-contract-trail-3",
+          source: "Outlook",
+          title: "Apex PM sent reminder email this morning",
+          description: "",
         },
       ],
     },
     {
       id: "meridian-misalignment",
       category: "Misalignment detected",
-      title: "Sarah is still advancing Meridian after the IC deprioritized it",
+      title:
+        "Sarah is continuing Chicago office buildout planning after leadership paused it",
       description:
-        "Sarah missed the decision, kept building the Meridian pitch deck, asked for comp data on Friday, and emailed the CFO for updated financials this morning.",
+        "Sarah missed the decision, kept planning the Chicago buildout, asked for contractor bids on Friday, and emailed a real estate broker this morning.",
       detail:
-        "Sentra connected the missed IC decision, the follow-up email among senior team members, and Sarah's downstream activity. The issue is not just that Meridian is active again — it's that nobody told the working team the mandate had been shelved.",
+        "Sentra connected the missed leadership decision, the follow-up emails among senior leaders, and Sarah's downstream activity. The issue is not just that Chicago is active again — it's that nobody told the working team the buildout had been paused.",
       ownerLabel: "Primary owner: Sarah",
       messagePrompt:
-        "Draft a concise Microsoft Teams message to Sarah explaining that Meridian was deprioritized in last Thursday's IC meeting, asking her to stop work on the pitch deck, and redirecting her toward the two higher-conviction mandates the committee advanced.",
+        "Draft a concise Microsoft Teams message to Sarah explaining that the Chicago office buildout was paused in last Thursday's leadership meeting in favor of the Austin expansion, asking her to stop work on contractor outreach, and redirecting her toward the Austin planning workstream.",
       trailItems: [
         {
           id: "meridian-misalignment-trail-1",
           source: "Zoom",
-          title: "IC meeting — Meridian deprioritized (Thu)",
+          title: "Leadership meeting — Chicago buildout paused (Thu)",
           description: "",
         },
         {
           id: "meridian-misalignment-trail-2",
-          source: "Gmail",
-          title: "Diana confirmed shift to Nathan via email (Thu)",
+          source: "Outlook",
+          title: "VP Ops confirmed pause to CFO via email (Thu)",
           description: "",
         },
         {
           id: "meridian-misalignment-trail-3",
-          source: "Gmail",
-          title: "Nathan replied — agreed, reallocating team (Fri AM)",
+          source: "Outlook",
+          title: "CFO replied — agreed, reallocating budget to Austin (Fri AM)",
           description: "",
         },
         {
           id: "meridian-misalignment-trail-4",
           source: "Teams",
-          title: "Sarah asked colleague for Meridian comp data (Fri PM)",
+          title: "Sarah asked colleague for Chicago contractor bids (Fri PM)",
           description: "",
         },
         {
           id: "meridian-misalignment-trail-5",
-          source: "Gmail",
-          title:
-            "Sarah emailed Meridian CFO for updated financials (Today, 7:12 AM)",
-          description: "",
-        },
-      ],
-    },
-    {
-      id: "board-prep",
-      category: "Board prep",
-      title: "Comparative market analysis request is sitting in your inbox",
-      description:
-        "A portfolio company CFO needs a comps-backed market view ahead of tomorrow's board meeting.",
-      detail:
-        "Sentra already identified the prior deck, the latest market update, and three comparable public companies. This is a good candidate to hand off into Deep Research.",
-      ownerLabel: "Primary owner: Tracy",
-      draftPrompt:
-        "Prepare a comparative market analysis for the portfolio company's board meeting using the latest sector comp set, recent transactions, and key valuation drivers.",
-      trailItems: [
-        {
-          id: "board-prep-trail-1",
           source: "Outlook",
-          title: "CFO requested a comp set before tomorrow's board prep",
-          description:
-            "They asked specifically for valuation benchmarks, growth ranges, and the latest market movement.",
-        },
-        {
-          id: "board-prep-trail-2",
-          source: "SharePoint",
-          title: "Prior board materials are available",
-          description:
-            "Last quarter's deck and the most recent market update are both already indexed in Sentra.",
-        },
-      ],
-    },
-    {
-      id: "servicenow-escalation",
-      category: "Operations",
-      title:
-        "ServiceNow escalation is blocking diligence requests from going out",
-      description:
-        "Procurement access failed over the weekend, so diligence checklists are not syncing to the client workspace.",
-      detail:
-        "Sentra flagged the failed workflow because the diligence board in Monday.com is still waiting on the procurement handoff from ServiceNow.",
-      ownerLabel: "Primary owner: RevOps",
-      actionId: "meeting-followup",
-      actionTab: "history",
-      trailItems: [
-        {
-          id: "servicenow-escalation-trail-1",
-          source: "ServiceNow",
-          title: "Workflow error opened Sunday night",
-          description:
-            "A read-write permission failure blocked the final approval step tied to procurement access.",
-        },
-        {
-          id: "servicenow-escalation-trail-2",
-          source: "Monday.com",
-          title: "Diligence checklist is now waiting on the sync",
-          description:
-            "Owners cannot send the next request batch until procurement access is restored.",
+          title:
+            "Sarah emailed real estate broker for walkthrough (Today, 7:12 AM)",
+          description: "",
         },
       ],
     },
   ],
   emails: [
     {
-      id: "email-engagement-terms",
+      id: "email-vendor-requirements",
       tag: "Action Needed",
-      title: "Client wants revised engagement terms today",
-      subject: "Re: Updated engagement terms for advisory work",
-      from: "Julia Mercer, CFO",
+      title:
+        "Vendor asking for updated requirements ahead of project milestone",
+      subject: "Re: Updated requirements for Phase 2 milestone",
+      from: "Kevin Park, Apex Systems",
       receivedAt: "6:42 AM",
       summaryPoints: [
-        "Client needs the revised redline before legal starts review this afternoon.",
-        "They are aligned on scope, but want the fee schedule and timing language tightened.",
-        "Sentra drafted a reply using the prior call notes and latest Word changes.",
+        "Apex needs the updated requirements doc before they can begin Phase 2 work.",
+        "They're aligned on scope but need Mark's sign-off on the revised deliverables.",
+        "Sentra drafted a reply using the prior call notes and latest project changes.",
       ],
       body: [
-        "Hi Tracy — circling back on the revised engagement terms we discussed two weeks ago.",
-        "Legal is starting their review later today, so if you can send the latest draft before then we can keep this moving. The only areas we still expect to review closely are the fee schedule and the timing language around board support.",
-        "If helpful, I can also make time for a quick pass this afternoon.",
+        "Hi Mark — circling back on the Phase 2 requirements we discussed two weeks ago.",
+        "Our team is ready to begin work but we need the finalized requirements document before we can proceed. The only areas still outstanding are the integration specifications and the timeline for the testing phase.",
+        "If helpful, I can also make time for a quick call this afternoon to align.",
       ],
       draftedReply: [
-        "Hi Julia — thanks for the nudge, and apologies for the delay while I was on-site last week.",
-        "I am sending the revised engagement terms over this morning with the fee schedule and board-support timing language cleaned up based on our last discussion. If your team would find it helpful, I can also make time later today to walk through the redline live.",
-        "Best, Tracy",
+        "Hi Kevin — thanks for the nudge, and apologies for the delay while I was at the conference last week.",
+        "I'm sending the updated requirements doc over this morning with the integration specs and testing timeline finalized based on our last discussion. If your team would find it helpful, I can also make time later today to walk through the changes.",
+        "Best, Mark",
       ],
     },
     {
-      id: "email-secondary-offering",
+      id: "email-vendor-comparison",
       tag: "Action Needed",
-      title: "David Chen wants to accelerate the secondary offering timeline",
-      subject: "Re: Secondary offering — updated timeline and financials",
-      from: "David Chen, CEO",
+      title: "Department head needs vendor comparison before budget review",
+      subject: "Need a vendor comparison before Friday's budget review",
+      from: "Rachel Torres, VP Operations",
       receivedAt: "7:05 AM",
       summaryPoints: [
-        "David wants to move faster on the secondary offering after Apex-Cobalt's acquisition news.",
-        "Margaret sent updated Q3 actuals and FY26 forecast — they're in your inbox.",
-        "This is a strong handoff candidate for Sentra to draft the preliminary memo.",
+        "Rachel wants a side-by-side comparison of two vendors for the infrastructure upgrade.",
+        "The ask spans pricing from email threads, the SharePoint budget model, and reviews from other teams.",
+        "This is a strong handoff candidate for Sentra's Deep Research flow.",
       ],
       body: [
-        "Hi Tracy — given the Apex-Cobalt announcement this morning, I think we need to accelerate our secondary offering timeline. The window is opening faster than we expected.",
-        "Margaret sent Kevin the updated Q3 actuals and FY26 forecast yesterday. Can you pull together a preliminary secondary offering memo before our 2pm call? Would be great to have the financials, comps, and a valuation range to discuss.",
-        "Thanks — looking forward to the call.",
+        "Hi Mark — before Friday's budget review, can you pull together a vendor comparison for the infrastructure upgrade?",
+        "What would be most useful is a side-by-side on pricing, implementation timeline, and feedback from other teams who've used either vendor. If you can ground it in the budget model we built last quarter, even better.",
+        "Thanks as always.",
       ],
       draftedReply: [
-        "Hi David — completely agree, the Apex-Cobalt news changes the calculus. I'll have a preliminary memo ready before our 2pm.",
-        "I'll pull from Margaret's updated financials, the SharePoint model, and comparable transactions from the last 12 months to frame the valuation range.",
-        "See you at 2.",
+        "Hi Rachel — absolutely. I'm pulling together a comparison now and will frame it against the same budget model we used last quarter so the review stays consistent.",
+        "I'll include updated pricing, implementation timelines, and satisfaction data from teams that have used each vendor.",
+        "I'll send a clean draft as soon as it's ready.",
       ],
       sentraPrompt:
-        "Draft a preliminary secondary offering memo for David Chen's company using the latest financials from the CFO email thread, the Q3 earnings data in the SharePoint model, and comparable transactions from the last 12 months.",
+        "Draft a vendor comparison for David Chen's company using the latest pricing from the email thread, the budget model in SharePoint, and reviews from other teams who've used both vendors in the last 12 months.",
     },
     {
-      id: "email-ic-recap",
+      id: "email-leadership-recap",
       tag: "FYI",
-      title: "Leadership recap confirms Thursday's IC priority shift",
-      subject: "IC follow-up: updated focus list",
+      title: "Leadership recap confirms Thursday's Chicago pause decision",
+      subject: "Leadership follow-up: updated priorities",
       from: "Diana Calloway",
       receivedAt: "8:11 AM",
       summaryPoints: [
-        "Leadership confirmed Meridian is deprioritized in favor of two higher-conviction mandates.",
-        "The recap notes who is driving each newly prioritized workstream this week.",
-        "This email is informational, but it explains the Meridian misalignment Sentra surfaced above.",
+        "Leadership confirmed Chicago buildout is paused in favor of Austin expansion.",
+        "The recap notes who is driving Austin planning this week.",
+        "This email is informational, but it explains the misalignment Sentra surfaced above.",
       ],
       body: [
-        "Hi all — following up on Thursday's IC discussion, we are formally shifting focus away from Meridian and toward the two mandates we agreed have stronger conviction and better near-term timing.",
-        "Nathan will coordinate the first workstream and Victor will pull together the supporting materials for the second. Please make sure any active effort tied to Meridian is paused unless there is a specific exception we discuss live.",
+        "Hi all — following up on Thursday's leadership discussion, we are formally pausing the Chicago office buildout and redirecting budget toward the Austin expansion.",
+        "Nathan will coordinate the Austin planning workstream and Victor will pull together the supporting materials. Please make sure any active effort tied to Chicago is paused unless there is a specific exception we discuss live.",
       ],
       draftedReply: [
-        "No reply drafted. Sentra marked this message as FYI because it closes the loop on the committee decision and informs the misalignment alert.",
+        "No reply drafted. Sentra marked this message as FYI because it closes the loop on the leadership decision and informs the misalignment alert.",
       ],
     },
   ],
   meetingsOverview:
-    "Today you have 7 meetings. You're speaking with David Chen about the secondary offering timeline, your team about Q1 pipeline, and Apex Corp about revised engagement terms.",
+    "Today you have 7 meetings. You're speaking with David Chen about the contract renewal timeline, your team about Q1 priorities, and Apex Systems about updated project requirements.",
   meetings: [
     {
-      id: "portfolio-ops-sync",
-      title: "Synthetic DB operating review",
+      id: "onboarding-steering",
+      title: "Onboarding rollout steering prep",
       time: "9:30 AM - 10:15 AM",
-      attendees: "Tracy, Diana, Nathan, operating team",
+      attendees: "Mark, Lisa Park, Nathan, operations team",
       focus:
-        "You need the latest deal numbers, committee sensitivities, and the specific questions leadership is likely to raise.",
+        "Review the latest rollout numbers, identify gaps in the project tracker, and align on what to present at Thursday's steering committee.",
       briefReady: true,
     },
     {
-      id: "team-pipeline-sync",
-      title: "Q1 pipeline review",
+      id: "team-priorities-sync",
+      title: "Q1 priorities review",
       time: "11:00 AM - 11:45 AM",
-      attendees: "Tracy, Nathan, Victor, Sarah, Kevin",
+      attendees: "Mark, Nathan, Victor, Sarah, Kevin",
       focus:
-        "Walk through active deals, flag the Meridian reprioritization, and align the team on coverage assignments for the week.",
+        "Walk through active workstreams, flag the Chicago buildout pause, and align the team on priority assignments for the week.",
       briefReady: true,
     },
     {
-      id: "client-terms-review",
-      title: "Apex Corp — engagement terms follow-up",
+      id: "vendor-sync",
+      title: "Apex Systems — vendor sync",
       time: "1:00 PM - 1:30 PM",
-      attendees: "Tracy, Julia Mercer, legal",
+      attendees: "Mark, Kevin Park, procurement",
       focus:
-        "Come in with the revised fee schedule, the latest redline, and a clear recommendation on timeline language.",
+        "Come in with the revised contract terms, the latest requirements doc, and a clear recommendation on the Phase 2 timeline.",
       briefReady: false,
     },
     {
-      id: "david-chen-secondary",
-      title: "David Chen — secondary offering",
+      id: "david-chen-contract",
+      title: "David Chen — contract renewal",
       time: "2:00 PM - 2:45 PM",
-      attendees: "Tracy, David Chen, Margaret Liu, Nathan",
+      attendees: "Mark, David Chen, Lisa Park, Nathan",
       focus:
-        "Discuss the secondary offering timeline, address board composition concerns David raised six weeks ago, and present the updated financials from the CFO.",
+        "Discuss the contract renewal timeline, address pricing concerns David raised six weeks ago, and present the updated budget figures.",
       briefReady: true,
     },
     {
       id: "oracle-migration-review",
-      title: "Oracle migration project review",
+      title: "Oracle migration review",
       time: "3:00 PM - 3:45 PM",
-      attendees: "Tracy, project lead, engineering, vendor team",
+      attendees: "Mark, project lead, engineering, vendor team",
       focus:
         "You're the executive sponsor and heard it's behind schedule. Walk in knowing what happened and why.",
       briefReady: false,
@@ -425,18 +366,18 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
       id: "leadership-reconnect",
       title: "Internal leadership catch-up",
       time: "4:00 PM - 4:30 PM",
-      attendees: "Tracy, Diana, Victor",
+      attendees: "Mark, Diana, Victor",
       focus:
-        "Close decision gaps from last week, including the Meridian reprioritization and ownership changes across the active mandates.",
+        "Close decision gaps from last week, including the Chicago buildout pause and ownership changes across active workstreams.",
       briefReady: false,
     },
     {
-      id: "board-prep-call",
-      title: "Portfolio company board prep",
+      id: "budget-review-prep",
+      title: "Budget review preparation",
       time: "4:45 PM - 5:15 PM",
-      attendees: "Tracy, Evan Brooks, finance team",
+      attendees: "Mark, Rachel Torres, finance team",
       focus:
-        "The board prep hinges on a current market analysis and a crisp explanation of valuation movement since last quarter.",
+        "Finalize the vendor comparison and budget model updates ahead of Friday's budget review with leadership.",
       briefReady: false,
     },
   ],

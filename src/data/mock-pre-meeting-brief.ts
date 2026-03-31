@@ -76,7 +76,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
     },
     {
       heading:
-        "Since your last call, Tracy's analyst exchanged emails with David's CFO about updated financials. Margaret sent Q3 actuals and a revised forecast last week.",
+        "Since your last call, Mark's analyst exchanged emails with David's CFO about updated financials. Margaret sent Q3 actuals and a revised forecast last week.",
       source: {
         quote:
           "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
@@ -92,7 +92,7 @@ export const PRE_MEETING_BRIEF: PreMeetingBrief = {
         "A colleague on a separate team mentioned David's company in last week's pipeline review, and a competitor of David's just announced a major acquisition.",
       source: {
         quote:
-          "NovaBridge came up in the context of the Apex-Cobalt merger — their positioning in the mid-market advisory space is increasingly differentiated. Worth flagging for Tracy's coverage.",
+          "NovaBridge came up in the context of the Apex-Cobalt merger — their positioning in the mid-market advisory space is increasingly differentiated. Worth flagging for Mark's coverage.",
         meetingTitle: "IB Pipeline Review",
         meetingDate: "Mar 26",
         sourceType: "teams",

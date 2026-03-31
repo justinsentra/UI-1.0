@@ -490,62 +490,68 @@ export const MOCK_RESPONSES: MockResponse[] = [
     paragraphs: [
       {
         id: "p0-0",
-        content: `**Pipeline Overview (Q1 2026)**\n\nTotal pipeline value is **$4.2M**, up 18% vs last quarter. There are 12 deals currently in negotiation with an average deal size of **$87K**. The weighted pipeline sits at $2.1M based on current stage probabilities.\n\nNew pipeline generation this week was strong with 4 new opportunities sourced — 2 from inbound (website demo requests), 1 from a partner referral via Campfire, and 1 from the LinkedIn campaign that launched last Monday. The partner-sourced deal (Meridian Corp) came in at $120K ARR, making it the largest single opportunity added this quarter.\n\nStage movement: 3 deals advanced from Discovery to Evaluation, and the Atlas Group deal moved to Contract Sent. Average days-in-stage for Evaluation dropped from 18 to 14 days, suggesting the new demo playbook is improving conversion velocity.`,
+        content: `**Vendor Comparison: Apex Systems vs. Meridian IT Solutions**\n\nBased on the latest pricing from David Chen's email thread, the budget model in SharePoint, and reviews from 6 internal teams who've used both vendors in the last 12 months, here is the side-by-side comparison.\n\n**Pricing:** Apex Systems quoted **$1.2M** for the full infrastructure upgrade (24-month contract, fixed). Meridian IT Solutions quoted **$980K** for comparable scope but with a variable component tied to usage that could push total cost to $1.15M. Apex includes 24/7 premium support in their base price; Meridian charges an additional 12% for equivalent SLA.\n\n**Implementation Timeline:** Apex estimates **14 weeks** to full deployment with a dedicated project manager. Meridian estimates **10 weeks** but their track record shows an average 3-week overrun based on 4 past engagements tracked in our vendor reviews.`,
         sources: [
-          { type: "teams", label: "GTM Strategy Sync" },
-          { type: "teams", label: "#sales-pipeline" },
-          { type: "outlook", label: "Pipeline Review Meeting" },
-          { type: "sharepoint", label: "Q1 Deal Tracker (SharePoint)" },
+          { type: "outlook", label: "David Chen — Pricing Update (Mar 24)" },
+          { type: "sharepoint", label: "Infrastructure_Budget_Model_v3.xlsx" },
+          { type: "teams", label: "Vendor Review — IT Ops Team" },
         ],
         chart: {
-          type: "line",
-          title: "Meridian Corp — Revenue & Gross Profit Projections ($M)",
+          type: "bar",
+          title: "Projected Quarterly Cost ($K)",
           data: [
-            { year: "FY25A", revenue: 18.0, grossProfit: 13.0, ebitda: -3.1 },
-            { year: "FY26E", revenue: 26.1, grossProfit: 19.0, ebitda: -3.4 },
-            { year: "FY27E", revenue: 35.2, grossProfit: 26.1, ebitda: -2.5 },
-            { year: "FY28E", revenue: 45.1, grossProfit: 34.3, ebitda: -0.4 },
+            { quarter: "Q1", apex: 320, meridian: 280 },
+            { quarter: "Q2", apex: 310, meridian: 260 },
+            { quarter: "Q3", apex: 290, meridian: 250 },
+            { quarter: "Q4", apex: 280, meridian: 260 },
           ],
           dataKeys: [
-            { key: "revenue", label: "Revenue", color: "hsl(215, 80%, 55%)" },
+            { key: "apex", label: "Apex Systems", color: "hsl(215, 80%, 55%)" },
             {
-              key: "grossProfit",
-              label: "Gross Profit",
+              key: "meridian",
+              label: "Meridian IT",
               color: "hsl(170, 65%, 45%)",
             },
-            { key: "ebitda", label: "EBITDA", color: "hsl(0, 70%, 55%)" },
           ],
-          xAxisKey: "year",
+          xAxisKey: "quarter",
         },
       },
       {
         id: "p0-1",
-        content: `**Top Insights**\n\nEnterprise segment grew 23% — driven by 3 new logos from the Q2 launch campaign. The largest new logo, Meridian Corp, was sourced through the Campfire partner referral and is evaluating a $120K ARR package with custom SLA requirements.\n\nSMB conversion rate dropped 4pts, likely tied to pricing feedback surfaced in 3 separate discovery calls this week. Customers are comparing against competitors offering usage-based pricing. Highest win rate remains in the Financial Services vertical at 64%, with Healthcare close behind at 58%.\n\nNotably, deals sourced from content marketing (blog + webinar) have a 40% higher close rate than cold outbound, though volume is 3x lower. Recommend increasing content investment for Q2 to capitalize on this signal.`,
+        content: `**Team Satisfaction & Track Record**\n\n6 internal teams have used one or both vendors in the past 12 months. Apex Systems received an average satisfaction score of **8.4/10** across 4 engagements, with teams citing reliable delivery, strong project management, and responsive support. The IT Ops team specifically noted Apex's ability to handle scope changes without timeline impact.\n\nMeridian IT Solutions scored **7.1/10** across 3 engagements. Teams appreciated their competitive pricing and technical depth, but flagged recurring issues with delivery timelines (average 3-week overrun) and communication gaps during implementation. The Finance team's engagement ran 5 weeks over schedule.\n\n**Recommendation:** Apex Systems is the lower-risk choice with stronger delivery track record and team satisfaction. Meridian offers a cost advantage of ~$150K but carries meaningful execution risk based on internal experience. For a project of this criticality, Apex is the recommended vendor.`,
         sources: [
-          { type: "teams", label: "Al <> Leo 1:1" },
-          { type: "teams", label: "#enterprise-deals" },
-          { type: "outlook", label: "Q4 Pipeline Report" },
-          { type: "sharepoint", label: "Q1 Revenue Analysis" },
+          { type: "sharepoint", label: "Vendor Review Database (SharePoint)" },
+          { type: "teams", label: "IT Ops — Apex Engagement Retro" },
+          { type: "teams", label: "Finance — Meridian Post-Mortem" },
+          { type: "outlook", label: "Vendor Satisfaction Survey Results" },
         ],
         chart: {
-          type: "bar",
-          title: "Meridian Corp — Valuation Sensitivity (EV/Revenue, FY26E $M)",
+          type: "line",
+          title: "Team Satisfaction Scores by Engagement",
           data: [
-            { scenario: "Bear (8x)", ev: 209 },
-            { scenario: "Base (12x)", ev: 313 },
-            { scenario: "Bull (16x)", ev: 418 },
+            { team: "IT Ops", apex: 9.0, meridian: 6.8 },
+            { team: "Finance", apex: 8.2, meridian: 6.5 },
+            { team: "Engineering", apex: 8.1, meridian: 7.8 },
+            { team: "HR Systems", apex: 8.6, meridian: 7.0 },
           ],
           dataKeys: [
+            { key: "apex", label: "Apex Systems", color: "hsl(215, 80%, 55%)" },
             {
-              key: "ev",
-              label: "Enterprise Value ($M)",
-              color: "hsl(215, 80%, 55%)",
+              key: "meridian",
+              label: "Meridian IT",
+              color: "hsl(170, 65%, 45%)",
             },
           ],
-          xAxisKey: "scenario",
+          xAxisKey: "team",
         },
       },
     ],
+    actionSuggestion: {
+      prompt:
+        "Export this vendor comparison as a formatted document for the budget review on Friday.",
+      actionId: "vendor-comparison-export",
+      actionName: "View Doc",
+    },
   },
   {
     scanSteps: [
@@ -765,7 +771,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
             title: "Project kickoff and scope alignment",
             detail:
               "Full team alignment on migration scope, timeline, and vendor responsibilities. DataBridge Solutions confirmed extraction delivery for Feb 3.",
-            involved: ["Tracy Kim", "James Whitfield", "DataBridge PM"],
+            involved: ["Mark Kim", "James Whitfield", "DataBridge PM"],
             sources: [
               { type: "teams", label: "Oracle Migration Kickoff (Jan 13)" },
               {
@@ -873,7 +879,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
           {
             title: "Escalation delayed by 16 days",
             detail:
-              "Project lead did not escalate to Tracy or senior leadership until Mar 5 — 16 days after the second missed deadline. Same pattern as Week 3.",
+              "Project lead did not escalate to Mark or senior leadership until Mar 5 — 16 days after the second missed deadline. Same pattern as Week 3.",
             involved: ["James Whitfield"],
             sources: [
               { type: "teams", label: "Oracle Migration Standup (Mar 5)" },
@@ -911,7 +917,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
             title: "Revised go-live date set: April 18",
             detail:
               "After cumulative 5-week delay, project timeline officially revised. Original March 14 go-live pushed to April 18. Any further vendor delays would push into Q3.",
-            involved: ["Tracy Kim", "James Whitfield", "Engineering Team"],
+            involved: ["Mark Kim", "James Whitfield", "Engineering Team"],
             sources: [
               { type: "teams", label: "Oracle Migration Weekly (Mar 10)" },
               {
@@ -1440,7 +1446,7 @@ At the base case, a 25% secondary stake implies a $50M raise, providing both gro
 
 ## Key Considerations
 
-1. **Board composition** — David raised concerns about governance structure post-offering; governance advisor introduction still pending (Tracy committed Feb 17)
+1. **Board composition** — David raised concerns about governance structure post-offering; governance advisor introduction still pending (Mark committed Feb 17)
 2. **Timing** — Apex-Cobalt merger creates a favorable market window; delaying risks valuation compression
 3. **Investor appetite** — Three institutional investors have expressed preliminary interest via Nathan Lim's coverage network
 

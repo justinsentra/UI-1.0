@@ -139,11 +139,7 @@ function NewSwimlaneDialog() {
           <DialogClose render={<Button variant="outline" size="sm" />}>
             Cancel
           </DialogClose>
-          <Button
-            size="sm"
-            onClick={handleCreate}
-            disabled={!title.trim()}
-          >
+          <Button size="sm" onClick={handleCreate} disabled={!title.trim()}>
             Create
           </Button>
         </DialogFooter>

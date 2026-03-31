@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Pencil, Zap, Calendar, X } from "lucide-react";
+import { ArrowLeft, Pencil, Calendar, X } from "lucide-react";
 import type {
   ResponseParagraph,
   ScanStep,
@@ -46,7 +46,7 @@ import sharepointLogo from "@/assets/logos/sharepoint.png";
 import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
+import zoomLogo from "@/assets/logos/zoom.svg";
 
 const STEP_ICON_MAP: Record<string, string> = {
   outlook: outlookLogo,
@@ -57,7 +57,7 @@ const STEP_ICON_MAP: Record<string, string> = {
   salesforce: salesforceLogo,
   "service-now": serviceNowLogo,
   gmail: gmailLogo,
-  zoom: calendarLogo,
+  zoom: zoomLogo,
 };
 
 /* ── Types ── */
@@ -98,6 +98,27 @@ const formatTime = () =>
 
 function ActionSuggestionCTA({ suggestion }: { suggestion: ActionSuggestion }) {
   const navigate = useNavigate();
+  const isViewDoc = suggestion.actionName === "View Doc";
+
+  if (isViewDoc) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.6 }}
+        className="mt-4 flex gap-2"
+      >
+        <a
+          href="https://docs.google.com/document/d/1PP6CSeNE6voeOn2o-AIxnvvz-0slW2SKVY52sxk15IM/edit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] no-underline cursor-pointer transition-colors hover:bg-[var(--accent)]"
+        >
+          View Doc
+        </a>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -106,31 +127,25 @@ function ActionSuggestionCTA({ suggestion }: { suggestion: ActionSuggestion }) {
       transition={{ duration: 0.4, delay: 0.6 }}
       className="mt-4 rounded-xl border border-dashed border-[var(--border)] bg-[var(--muted)]/40 p-4"
     >
-      <div className="flex items-start gap-3">
-        <div className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]">
-          <Zap size={14} className="text-[var(--foreground)]" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="m-0 text-sm font-medium text-[var(--foreground)]">
-            Create an action to track future repeat instances of this event?
-          </p>
-          <p className="m-0 mt-1 text-sm leading-relaxed text-[var(--muted-foreground)]">
-            {suggestion.prompt}
-          </p>
-          <div className="mt-3 flex gap-2">
-            <button
-              type="button"
-              onClick={() =>
-                navigate(`/actions/${suggestion.actionId}`, {
-                  state: { initialTab: "plan" },
-                })
-              }
-              className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
-            >
-              <Zap size={13} />
-              Enable {suggestion.actionName}
-            </button>
-          </div>
+      <div className="flex-1 min-w-0">
+        <p className="m-0 text-sm font-medium text-[var(--foreground)]">
+          Create an action to track future repeat instances of this event?
+        </p>
+        <p className="m-0 mt-1 text-sm leading-relaxed text-[var(--muted-foreground)]">
+          {suggestion.prompt}
+        </p>
+        <div className="mt-3 flex gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              navigate(`/actions/${suggestion.actionId}`, {
+                state: { initialTab: "plan" },
+              })
+            }
+            className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+          >
+            Enable {suggestion.actionName}
+          </button>
         </div>
       </div>
     </motion.div>
@@ -696,11 +711,13 @@ const DeepResearchPage = () => {
     width: historyWidth,
   });
 
+  const navigate = useNavigate();
   const location = useLocation();
   const locationState = location.state as {
     prefill?: string;
     route?: SuggestionRoute;
     typeOnly?: boolean;
+    fromMorningBrief?: boolean;
   } | null;
   const prefill = locationState?.prefill;
   const prefillRoute = locationState?.route;
@@ -722,6 +739,9 @@ const DeepResearchPage = () => {
     timeline?: TimelineWeek[];
   } | null>(null);
   const [chosenTool, setChosenTool] = useState<string | null>(null);
+  const [showOracleToast, setShowOracleToast] = useState(false);
+  const oracleToastDismissed = useRef(false);
+  const oracleToastTriggered = useRef(false);
   const messageCountRef = useRef(0);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -730,12 +750,36 @@ const DeepResearchPage = () => {
       const container = chatContainerRef.current;
       if (!container) return;
       const userMessages = container.querySelectorAll("[data-user-message]");
-      const lastUserMsg = userMessages[userMessages.length - 1];
+      const lastUserMsg = userMessages[userMessages.length - 1] as
+        | HTMLElement
+        | undefined;
       if (lastUserMsg) {
-        lastUserMsg.scrollIntoView({ block: "start", behavior: "instant" });
+        // Use scrollTop on the container instead of scrollIntoView to avoid affecting parent scroll
+        container.scrollTop = lastUserMsg.offsetTop - 16;
       }
     });
   }, []);
+
+  // Scroll to user message when scanning starts
+  useEffect(() => {
+    if (phase === "scanning" || phase === "prd-scanning") {
+      scrollToLastUserMessage();
+    }
+  }, [phase, scrollToLastUserMessage]);
+
+  // Show Oracle meeting toast once after the first vendor comparison completes (from morning brief handoff only)
+  useEffect(() => {
+    if (
+      locationState?.fromMorningBrief &&
+      phase === "complete" &&
+      !oracleToastTriggered.current &&
+      !oracleToastDismissed.current
+    ) {
+      oracleToastTriggered.current = true;
+      const timeout = setTimeout(() => setShowOracleToast(true), 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [locationState?.fromMorningBrief, phase]);
 
   const handleScanComplete = useCallback(() => {
     if (!pendingResponse) return;
@@ -972,18 +1016,9 @@ const DeepResearchPage = () => {
       hasPrefilled.current = true;
 
       if (typeOnly) {
-        // Type out the text character by character instead of auto-submitting
-        let i = 0;
-        const chars = prefill.split("");
-        const interval = setInterval(() => {
-          if (i < chars.length) {
-            setInput((prev) => prev + chars[i]);
-            i++;
-          } else {
-            clearInterval(interval);
-          }
-        }, 12);
-        return () => clearInterval(interval);
+        // Set the full text in the input immediately so it's visible
+        setInput(prefill);
+        return;
       }
 
       // Use explicit route if provided, otherwise try to match by flow keyword, fallback to generic
@@ -1020,7 +1055,10 @@ const DeepResearchPage = () => {
     phase === "prd-building";
 
   return (
-    <div className="flex overflow-hidden h-full">
+    <div
+      className="flex overflow-hidden"
+      style={{ height: "calc(100vh - 2rem)" }}
+    >
       <LeftSecondarySidebar
         defaultWidth={220}
         minWidth={180}
@@ -1035,6 +1073,16 @@ const DeepResearchPage = () => {
         />
       </LeftSecondarySidebar>
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+        {locationState?.fromMorningBrief && (
+          <button
+            type="button"
+            onClick={() => navigate("/morning-brief")}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-2 bg-transparent border-none cursor-pointer p-0 mx-6 mt-4"
+          >
+            <ArrowLeft size={14} />
+            Morning Brief
+          </button>
+        )}
         {!hasMessages && phase === "idle" ? (
           <div className="flex-1 min-h-0 overflow-y-auto">
             <EmptyState onSuggestionClick={handleSuggestionClick} />
@@ -1185,6 +1233,61 @@ const DeepResearchPage = () => {
           />
         </div>
       </div>
+
+      {/* Oracle meeting toast */}
+      <AnimatePresence>
+        {showOracleToast && (
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 60 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="group/toast fixed top-4 right-4 z-50 w-80 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4 shadow-lg"
+          >
+            <button
+              type="button"
+              onClick={() => {
+                oracleToastDismissed.current = true;
+                setShowOracleToast(false);
+              }}
+              className="absolute top-2 right-2 flex size-6 items-center justify-center rounded-md text-[var(--muted-foreground)] opacity-0 group-hover/toast:opacity-100 hover:bg-[var(--accent)] hover:text-[var(--foreground)] transition-all border-none bg-transparent cursor-pointer"
+            >
+              <X size={14} />
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]">
+                <Calendar size={16} className="text-[var(--foreground)]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="m-0 text-sm font-medium text-[var(--foreground)]">
+                  Oracle Migration Review
+                </p>
+                <p className="m-0 text-2xs text-[var(--muted-foreground)]">
+                  3:00 PM · Starting soon
+                </p>
+              </div>
+            </div>
+            <div className="mt-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowOracleToast(false);
+                  navigate("/pre-meeting-brief");
+                }}
+                className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+              >
+                View Brief
+              </button>
+              <button
+                type="button"
+                className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+              >
+                Join
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

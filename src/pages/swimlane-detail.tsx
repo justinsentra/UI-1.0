@@ -18,7 +18,11 @@ import {
 import { cn } from "@/lib/utils";
 import { getSourceIcon } from "@/icons/source-icons";
 import { MOCK_SWIMLANES, STATUS_CONFIG } from "@/data/mock-swimlanes";
-import type { SwimlaneEvent, SwimlaneWeek, Swimlane } from "@/data/mock-swimlanes";
+import type {
+  SwimlaneEvent,
+  SwimlaneWeek,
+  Swimlane,
+} from "@/data/mock-swimlanes";
 import type { SourceType } from "@/data/mock-deep-research";
 
 const CATEGORY_CONFIG: Record<

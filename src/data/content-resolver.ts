@@ -273,7 +273,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "7",
     title: "Draft 150-seat pricing proposal for Sentra expansion",
-    meeting: "Sarah / Tracy 1:1",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 18",
@@ -282,7 +282,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "8",
     title: "Schedule Compliance team pilot kickoff for March 17",
-    meeting: "Sarah / Tracy 1:1",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 15",
@@ -372,7 +372,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "18",
     title: "Review DealStream integration requirements for TMT team",
-    meeting: "Sarah / Tracy 1:1",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 21",
@@ -464,7 +464,7 @@ const BUILTIN_EM_FLOWS: DocumentFlowConfig[] = [
       description: "Your PRD has been created and is ready for review.",
       link: {
         label: "Open in SharePoint",
-        url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
       },
     },
     buildingLabel: "Pushing to",
@@ -495,7 +495,7 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       description: "Your GreenCore 3-statement financial model is ready.",
       link: {
         label: "Open in Excel",
-        url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
       },
     },
     buildingLabel: "Building model",
@@ -523,7 +523,7 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       description: "Your market landscape analysis deck is ready for review.",
       link: {
         label: "Open in PowerPoint",
-        url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
       },
     },
     buildingLabel: "Building deck",
@@ -536,12 +536,7 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
     content: SECONDARY_OFFERING_CONTENT,
     buildSteps: SECONDARY_OFFERING_BUILD_STEPS,
     sources: SECONDARY_OFFERING_SOURCES,
-    triggerKeywords: [
-      "secondary offering",
-      "novabridge",
-      "david chen",
-      "offering memo",
-    ],
+    triggerKeywords: ["secondary offering", "novabridge", "offering memo"],
     toolChoices: [
       { label: "View Doc", action: "external" },
       { label: "Build Investor Deck", action: "build" },
@@ -552,7 +547,7 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
         "Your NovaBridge Capital secondary offering memo is ready for review.",
       link: {
         label: "Open in Word",
-        url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
       },
     },
     buildingLabel: "Building memo",

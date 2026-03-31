@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
+  AlertTriangle,
   Bell,
   CalendarDays,
   Check,
@@ -50,7 +51,7 @@ import outlookLogo from "@/assets/logos/outlook.png";
 import wordLogo from "@/assets/logos/word.png";
 import teamsLogo from "@/assets/logos/ms-teams.png";
 import gmailLogo from "@/assets/logos/gmail.svg";
-import calendarLogo from "@/assets/logos/calendar.svg";
+import zoomLogo from "@/assets/logos/zoom.svg";
 
 const SOURCE_LOGOS: Record<string, string> = {
   "SharePoint workbook": sharepointLogo,
@@ -64,7 +65,7 @@ const SOURCE_LOGOS: Record<string, string> = {
   "Email follow-up": outlookLogo,
   "Word draft": wordLogo,
   Gmail: gmailLogo,
-  Zoom: calendarLogo,
+  Zoom: zoomLogo,
   Teams: teamsLogo,
   "Teams and Outlook": teamsLogo,
   "Teams + Outlook": teamsLogo,
@@ -75,11 +76,9 @@ const SOURCE_LOGOS: Record<string, string> = {
 /* ── Attention Tab — Horizontal Stack ── */
 
 const ATTENTION_ACTION_LABELS: Record<string, string> = {
-  "synthetic-db": "Review in Salesforce",
-  "engagement-terms": "Send draft reply",
+  "onboarding-rollout": "Review rollout tracker",
+  "apex-contract": "Send revised contract",
   "meridian-misalignment": "Message Sarah",
-  "board-prep": "Give this to Sentra",
-  "servicenow-escalation": "Open workflow",
 };
 
 const AttentionCard = ({
@@ -88,15 +87,24 @@ const AttentionCard = ({
   onToggle,
   onAction,
   onReorder,
+  onDismiss,
 }: {
   attentionItem: MorningBriefAttentionItem;
   isExpanded: boolean;
   onToggle: () => void;
   onAction: () => void;
   onReorder: () => void;
+  onDismiss: () => void;
 }) => {
   const actionLabel =
     ATTENTION_ACTION_LABELS[attentionItem.id] ?? "Open workflow";
+  const [showMessageDraft, setShowMessageDraft] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
+  const [messageBody, setMessageBody] = useState(
+    attentionItem.id === "meridian-misalignment"
+      ? "Hi Sarah,\n\nQuick heads-up — in last Thursday's leadership meeting, the committee decided to pause the Chicago office buildout and redirect budget toward the Austin expansion. I know you weren't in that meeting (I wasn't either), so wanted to make sure you had this context before you spend more time on it.\n\nCan you hold off on the contractor outreach and broker walkthrough for now? Nathan is leading the Austin planning workstream and could use your help getting that spun up instead.\n\nHappy to jump on a quick call if you want to talk through it.\n\nBest,\nMark"
+      : "",
+  );
 
   return (
     <div
@@ -167,39 +175,65 @@ const AttentionCard = ({
               {attentionItem.trailItems.length > 0 ? (
                 <div className="flex flex-col gap-2">
                   <p className="m-0 text-xs font-medium tracking-wide text-muted-foreground">
-                    Connected signals
+                    {attentionItem.id === "meridian-misalignment"
+                      ? "Decision traces"
+                      : "Connected signals"}
                   </p>
-                  {attentionItem.trailItems.map((trailItem) => {
-                    const logo = SOURCE_LOGOS[trailItem.source];
-                    return (
-                      <div
-                        key={trailItem.id}
-                        className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 px-4 py-3"
-                      >
-                        {logo ? (
-                          <img
-                            src={logo}
-                            alt={trailItem.source}
-                            className="mt-0.5 size-4 shrink-0 object-contain"
-                          />
-                        ) : (
-                          <span className="mt-0.5 w-4 shrink-0 text-xs font-medium text-muted-foreground">
-                            {trailItem.source.charAt(0)}
+                  {attentionItem.id === "meridian-misalignment" ? (
+                    <DecisionTraces trailItems={attentionItem.trailItems} />
+                  ) : (
+                    attentionItem.trailItems.map((trailItem) => {
+                      const logo = SOURCE_LOGOS[trailItem.source];
+                      return (
+                        <div
+                          key={trailItem.id}
+                          className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 px-4 py-3"
+                        >
+                          {logo ? (
+                            <img
+                              src={logo}
+                              alt={trailItem.source}
+                              className="mt-0.5 size-4 shrink-0 object-contain"
+                            />
+                          ) : (
+                            <span className="mt-0.5 w-4 shrink-0 text-xs font-medium text-muted-foreground">
+                              {trailItem.source.charAt(0)}
+                            </span>
+                          )}
+                          <span className="text-sm font-medium text-foreground/80">
+                            {trailItem.title}
                           </span>
-                        )}
-                        <span className="text-sm font-medium text-foreground/80">
-                          {trailItem.title}
-                        </span>
-                      </div>
-                    );
-                  })}
+                        </div>
+                      );
+                    })
+                  )}
                 </div>
               ) : null}
               <div className="flex gap-3">
-                <Button className="rounded-lg" onClick={onAction}>
-                  {actionLabel}
-                </Button>
                 {attentionItem.id === "meridian-misalignment" ? (
+                  messageSent ? (
+                    <Button
+                      className="rounded-lg bg-emerald-600 hover:bg-emerald-600 text-white cursor-default"
+                      disabled
+                    >
+                      <Check size={14} />
+                      Sent to Sarah
+                    </Button>
+                  ) : (
+                    <Button
+                      className="rounded-lg"
+                      onClick={() => setShowMessageDraft(!showMessageDraft)}
+                    >
+                      {showMessageDraft ? "Close draft" : actionLabel}
+                    </Button>
+                  )
+                ) : (
+                  <Button className="rounded-lg" onClick={onAction}>
+                    {actionLabel}
+                  </Button>
+                )}
+                {attentionItem.id === "meridian-misalignment" &&
+                !messageSent ? (
                   <Button
                     variant="outline"
                     className="rounded-lg"
@@ -208,7 +242,7 @@ const AttentionCard = ({
                     Create future action to avoid this?
                   </Button>
                 ) : null}
-                {attentionItem.id === "engagement-terms" ? (
+                {attentionItem.id === "apex-contract" ? (
                   <Button
                     variant="outline"
                     className="rounded-lg"
@@ -218,6 +252,71 @@ const AttentionCard = ({
                   </Button>
                 ) : null}
               </div>
+
+              {/* Inline email compose for Message Sarah */}
+              <AnimatePresence>
+                {showMessageDraft &&
+                  attentionItem.id === "meridian-misalignment" &&
+                  !messageSent && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{
+                        height: { duration: 0.25, ease: "easeInOut" },
+                        opacity: { duration: 0.15 },
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-1 rounded-lg border border-border bg-card">
+                        <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
+                          <span className="text-2xs text-muted-foreground">
+                            To:
+                          </span>
+                          <span className="text-2xs font-medium text-foreground">
+                            Sarah Mitchell &lt;sarah.mitchell@company.com&gt;
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
+                          <span className="text-2xs text-muted-foreground">
+                            Subject:
+                          </span>
+                          <span className="text-2xs font-medium text-foreground">
+                            Chicago buildout — paused per leadership decision
+                          </span>
+                        </div>
+                        <div className="p-4">
+                          <textarea
+                            value={messageBody}
+                            onChange={(e) => setMessageBody(e.target.value)}
+                            className="w-full resize-none border-none bg-transparent text-sm leading-7 text-foreground/65 outline-none"
+                            rows={10}
+                          />
+                        </div>
+                        <div className="flex items-center justify-end gap-2 border-t border-border px-4 py-3">
+                          <Button
+                            variant="outline"
+                            className="rounded-lg"
+                            onClick={() => setShowMessageDraft(false)}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            className="rounded-lg"
+                            onClick={() => {
+                              setMessageSent(true);
+                              setShowMessageDraft(false);
+                              setTimeout(() => onDismiss(), 1500);
+                            }}
+                          >
+                            <Send size={14} />
+                            Send
+                          </Button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+              </AnimatePresence>
             </div>
           </motion.div>
         )}
@@ -232,6 +331,171 @@ const categoryColorMap: Record<string, string> = {
   "Misalignment detected": "bg-rose-900",
   "Board prep": "bg-amber-900",
   Operations: "bg-emerald-900",
+};
+
+const DecisionTraces = ({
+  trailItems,
+}: {
+  trailItems: (typeof MORNING_BRIEF_DATA.attentionItems)[0]["trailItems"];
+}) => {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const traceDetails: Record<
+    string,
+    {
+      detail: string;
+      alert?: string;
+      sources: { icon: string; label: string }[];
+    }
+  > = {
+    "meridian-misalignment-trail-1": {
+      detail:
+        "The leadership committee voted to pause the Chicago office buildout and redirect budget toward the Austin expansion. The decision was unanimous among attending members.",
+      alert: "Sarah and You did not attend",
+      sources: [
+        { icon: "Zoom", label: "Leadership Committee Meeting (Thu)" },
+        { icon: "Teams", label: "Meeting recording & transcript" },
+      ],
+    },
+    "meridian-misalignment-trail-2": {
+      detail:
+        "VP of Operations sent a follow-up email to the CFO confirming the pause and outlining the budget reallocation timeline for Austin.",
+      sources: [
+        { icon: "Outlook", label: "VP Ops → CFO email thread (Thu PM)" },
+      ],
+    },
+    "meridian-misalignment-trail-3": {
+      detail:
+        "CFO replied agreeing with the reallocation. Budget transfers were approved to begin the following week.",
+      sources: [
+        { icon: "Outlook", label: "CFO reply — budget reallocation (Fri)" },
+        { icon: "Outlook", label: "Finance team CC'd on approval" },
+      ],
+    },
+    "meridian-misalignment-trail-4": {
+      detail:
+        "Sarah messaged a colleague in the #facilities channel asking for contractor bids on Chicago office space renovations — unaware of the pause decision.",
+      sources: [
+        { icon: "Teams", label: "#facilities channel message (Fri PM)" },
+      ],
+    },
+    "meridian-misalignment-trail-5": {
+      detail:
+        "Sarah emailed an external real estate broker requesting a walkthrough of the Chicago space this week.",
+      sources: [
+        { icon: "Outlook", label: "Sarah → broker email (Today, 7:12 AM)" },
+        { icon: "Outlook", label: "Walkthrough scheduling thread" },
+      ],
+    },
+  };
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      {trailItems.map((trailItem) => {
+        const isExpanded = expandedId === trailItem.id;
+        const logo = SOURCE_LOGOS[trailItem.source];
+        const trace = traceDetails[trailItem.id];
+
+        return (
+          <div key={trailItem.id}>
+            <button
+              type="button"
+              onClick={() => setExpandedId(isExpanded ? null : trailItem.id)}
+              className={cn(
+                "flex w-full items-center gap-3 rounded-lg border px-3.5 py-2.5 text-left transition-colors",
+                trace?.alert
+                  ? "border-rose-500/30 bg-rose-500/5 hover:bg-rose-500/10"
+                  : "border-border bg-muted/30 hover:bg-muted/50",
+                isExpanded && "rounded-b-none",
+              )}
+            >
+              {logo ? (
+                <img
+                  src={logo}
+                  alt={trailItem.source}
+                  className="size-3.5 shrink-0 object-contain"
+                />
+              ) : (
+                <span className="w-3.5 shrink-0 text-2xs font-medium text-muted-foreground">
+                  {trailItem.source.charAt(0)}
+                </span>
+              )}
+              <span className="flex-1 text-sm text-foreground/80">
+                {trailItem.title}
+              </span>
+              <ChevronDown
+                size={12}
+                className={cn(
+                  "shrink-0 text-muted-foreground/40 transition-transform duration-200",
+                  isExpanded && "rotate-180",
+                )}
+              />
+            </button>
+            <AnimatePresence>
+              {isExpanded && trace && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{
+                    height: { duration: 0.2, ease: "easeInOut" },
+                    opacity: { duration: 0.12 },
+                  }}
+                  className="overflow-hidden"
+                >
+                  <div
+                    className={cn(
+                      "rounded-b-lg border border-t-0 px-3.5 py-3",
+                      trace.alert
+                        ? "border-rose-500/30 bg-rose-500/5"
+                        : "border-border bg-muted/20",
+                    )}
+                  >
+                    {trace.alert && (
+                      <div className="mb-2 flex items-center gap-1.5 rounded-md bg-rose-500/10 px-2.5 py-1.5">
+                        <AlertTriangle
+                          size={12}
+                          className="shrink-0 text-rose-500"
+                        />
+                        <span className="text-2xs font-medium text-rose-600">
+                          {trace.alert}
+                        </span>
+                      </div>
+                    )}
+                    <p className="m-0 text-sm leading-relaxed text-muted-foreground">
+                      {trace.detail}
+                    </p>
+                    {trace.sources.length > 0 && (
+                      <div className="mt-2.5 flex flex-wrap gap-1.5">
+                        {trace.sources.map((src) => {
+                          const srcLogo = SOURCE_LOGOS[src.icon];
+                          return (
+                            <span
+                              key={src.label}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-2xs text-muted-foreground"
+                            >
+                              {srcLogo && (
+                                <img
+                                  src={srcLogo}
+                                  alt={src.icon}
+                                  className="size-3 object-contain"
+                                />
+                              )}
+                              {src.label}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 /* ── Email Tab — List + Superhuman Popup ── */
@@ -307,10 +571,14 @@ const EmailPopup = ({
   emailItem,
   onClose,
   onHandoff,
+  isSent,
+  onMarkSent,
 }: {
   emailItem: MorningBriefEmailItem;
   onClose: () => void;
   onHandoff: () => void;
+  isSent: boolean;
+  onMarkSent: () => void;
 }) => {
   const [draftText, setDraftText] = useState(
     emailItem.draftedReply.join("\n\n"),
@@ -318,7 +586,6 @@ const EmailPopup = ({
   const [expandedThreadIds, setExpandedThreadIds] = useState<Set<number>>(
     new Set(),
   );
-  const [sent, setSent] = useState(false);
 
   const toggleThread = (id: number) => {
     setExpandedThreadIds((prev) => {
@@ -337,26 +604,26 @@ const EmailPopup = ({
   const threadMessages = [
     {
       id: 0,
-      sender: "Tracy",
-      preview: `Hi ${senderFirstName}, following up on our conversation — I'll have the revised terms to you by end of week...`,
+      sender: "Mark",
+      preview: `Hi ${senderFirstName}, following up on our conversation — I'll have the revised requirements to you by end of week...`,
       date: "Mar 17",
       body: [
         `Hi ${senderFirstName},`,
-        `Following up on our conversation last Thursday — I'll have the revised engagement terms to you by end of week. We've incorporated the changes your team flagged around scope and deliverable timelines.`,
-        `I've also looped in our legal team to do a parallel review so we're not holding things up on our end. Let me know if there's anything specific you'd like me to prioritize in the revision.`,
-        `Best,\nTracy`,
+        `Following up on our conversation last Thursday — I'll have the revised requirements to you by end of week. We've incorporated the changes your team flagged around scope and deliverable timelines.`,
+        `I've also looped in our procurement team to do a parallel review so we're not holding things up on our end. Let me know if there's anything specific you'd like me to prioritize in the revision.`,
+        `Best,\nMark`,
       ],
     },
     {
       id: 1,
       sender: senderFirstName,
       preview:
-        "Thanks Tracy. We'll hold off on internal review until we have the updated draft...",
+        "Thanks Mark. We'll hold off on internal review until we have the updated draft...",
       date: "Mar 18",
       body: [
-        `Thanks Tracy.`,
-        `We'll hold off on internal review until we have the updated draft. The main areas we'll focus on are the fee schedule structure and the timing language around board support — those were the two sticking points from our last discussion.`,
-        `If possible, could you also include a redline against the previous version? That would help our legal team move faster on their end.`,
+        `Thanks Mark.`,
+        `We'll hold off on internal review until we have the updated draft. The main areas we'll focus on are the integration specifications and the testing phase timeline — those were the two sticking points from our last discussion.`,
+        `If possible, could you also include a redline against the previous version? That would help our team move faster on their end.`,
         `Appreciate the quick turnaround.`,
         senderFirstName,
       ],
@@ -382,7 +649,7 @@ const EmailPopup = ({
             </Badge>
           </div>
           <p className="m-0 text-xs text-muted-foreground">
-            {emailItem.from} and Tracy
+            {emailItem.from} and Mark
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -469,7 +736,7 @@ const EmailPopup = ({
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="space-y-3 px-8 pb-5 pt-1">
+                      <div className="space-y-5 px-8 pb-5 pt-1">
                         {msg.body.map((paragraph) => (
                           <p
                             key={paragraph}
@@ -496,11 +763,11 @@ const EmailPopup = ({
               {emailItem.receivedAt}
             </span>
           </div>
-          <div className="mt-4 space-y-3">
+          <div className="mt-4 space-y-5">
             {emailItem.body.map((paragraph) => (
               <p
                 key={paragraph}
-                className="m-0 text-sm leading-7 text-foreground/65"
+                className="m-0 whitespace-pre-line text-sm leading-7 text-foreground/65"
               >
                 {paragraph}
               </p>
@@ -540,7 +807,7 @@ const EmailPopup = ({
           <Button variant="outline" className="rounded-lg" onClick={onHandoff}>
             Hand off to Sentra
           </Button>
-          {sent ? (
+          {isSent ? (
             <Button
               className="rounded-lg bg-emerald-600 hover:bg-emerald-600 text-white cursor-default"
               disabled
@@ -549,7 +816,7 @@ const EmailPopup = ({
               Sent!
             </Button>
           ) : (
-            <Button className="rounded-lg" onClick={() => setSent(true)}>
+            <Button className="rounded-lg" onClick={onMarkSent}>
               <Send size={14} />
               Send reply
             </Button>
@@ -650,10 +917,10 @@ const EXTRA_EMAILS: MorningBriefEmailItem[] = [
     summaryPoints: [
       "Project is three weeks behind the original timeline.",
       "Vendor missed a second data delivery deadline last week.",
-      "James is asking Tracy to approve the revised rollout schedule.",
+      "James is asking Mark to approve the revised rollout schedule.",
     ],
     body: [
-      "Hi Tracy — attaching the updated status report for the Oracle migration. We're now three weeks past the original go-live date.",
+      "Hi Mark — attaching the updated status report for the Oracle migration. We're now three weeks past the original go-live date.",
       "The root cause is the same vendor delivery issue we flagged in week 3. I've outlined a revised rollout timeline and need your sign-off before we communicate it to the broader team.",
     ],
     draftedReply: [
@@ -662,22 +929,24 @@ const EXTRA_EMAILS: MorningBriefEmailItem[] = [
     ],
   },
   {
-    id: "email-pipeline-summary",
+    id: "email-procurement-approval",
     tag: "FYI",
-    title: "Q1 pipeline summary is ready for review",
-    subject: "Q1 Pipeline Summary — Draft",
+    title: "Procurement approved the Austin office furniture order",
+    subject: "Austin office — furniture order approved",
     from: "Nathan Lim",
     receivedAt: "9:12 AM",
     summaryPoints: [
-      "Draft pipeline summary covers all active deals and their current status.",
-      "Two accounts flagged as stalled with no activity in 14 days.",
+      "Procurement signed off on the Austin office furniture and equipment order.",
+      "Delivery is scheduled for mid-April pending final logistics confirmation.",
       "Informational — no immediate action required.",
     ],
     body: [
-      "Hi Tracy — sharing the Q1 pipeline summary for your review ahead of this afternoon's team call. Two accounts are flagged as stalled.",
-      "Happy to walk through the details if you want to discuss before the meeting.",
+      "Hi Mark — just a heads-up that procurement approved the furniture and equipment order for the Austin office buildout. Delivery is penciled in for the week of April 14.",
+      "Happy to walk through the details if you want to discuss before the leadership sync.",
     ],
-    draftedReply: ["Thanks Nathan. I'll take a look before the 3pm call."],
+    draftedReply: [
+      "Thanks Nathan. Good to know — I'll flag it in the leadership catch-up this afternoon.",
+    ],
   },
 ];
 
@@ -693,7 +962,9 @@ export const MorningBriefSurface = ({
   onClose,
 }: MorningBriefSurfaceProps) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("attention");
+  const location = useLocation();
+  const locationState = location.state as { tab?: string } | null;
+  const [activeTab, setActiveTab] = useState(locationState?.tab ?? "attention");
   const [attentionItems, setAttentionItems] = useState(
     MORNING_BRIEF_DATA.attentionItems,
   );
@@ -702,6 +973,7 @@ export const MorningBriefSurface = ({
   );
   const [selectedEmailItem, setSelectedEmailItem] =
     useState<MorningBriefEmailItem | null>(null);
+  const [sentEmailIds, setSentEmailIds] = useState<Set<string>>(new Set());
   const [dismissedEmailIds, setDismissedEmailIds] = useState<Set<string>>(
     new Set(),
   );
@@ -758,7 +1030,11 @@ export const MorningBriefSurface = ({
     (emailItem: MorningBriefEmailItem) => {
       if (emailItem.sentraPrompt) {
         navigate("/deep-research", {
-          state: { prefill: emailItem.sentraPrompt, typeOnly: true },
+          state: {
+            prefill: emailItem.sentraPrompt,
+            typeOnly: true,
+            fromMorningBrief: true,
+          },
         });
       }
     },
@@ -849,6 +1125,7 @@ export const MorningBriefSurface = ({
                         handleAttentionPrimaryAction(attentionItem)
                       }
                       onReorder={() => handleAttentionReorder(attentionItem.id)}
+                      onDismiss={() => handleAttentionReorder(attentionItem.id)}
                     />
                   ))}
                 </AnimatePresence>
@@ -912,6 +1189,12 @@ export const MorningBriefSurface = ({
                             emailItem={emailItem}
                             onClose={() => setSelectedEmailItem(null)}
                             onHandoff={() => handleEmailHandoff(emailItem)}
+                            isSent={sentEmailIds.has(emailItem.id)}
+                            onMarkSent={() =>
+                              setSentEmailIds(
+                                (prev) => new Set([...prev, emailItem.id]),
+                              )
+                            }
                           />
                         </DialogContent>
                       </Dialog>

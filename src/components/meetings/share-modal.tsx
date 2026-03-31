@@ -12,7 +12,7 @@ interface ShareModalProps {
 }
 
 const DEFAULT_PEOPLE = [
-  { name: "Tracy Kim", email: "tracy.kim@jpmorgan.com" },
+  { name: "Mark Davis", email: "mark.davis@jpmorgan.com" },
   { name: "Raj Sundaram", email: "raj@sentra.app" },
 ];
 

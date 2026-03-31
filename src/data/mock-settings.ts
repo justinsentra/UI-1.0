@@ -8,8 +8,8 @@ export interface UserProfile {
 }
 
 export const currentUser: UserProfile = {
-  email: "tracy.kim@jpmorgan.com",
-  fullName: "Tracy Kim",
+  email: "mark.davis@jpmorgan.com",
+  fullName: "Mark Davis",
   title: "Managing Director, Investment Banking",
   phone: "+1 212-555-0147",
   language: "English",
@@ -44,8 +44,8 @@ export const workspaceMembers: WorkspaceMember[] = [
   },
   {
     id: "wm-3",
-    name: "Tracy Kim",
-    email: "tracy.kim@jpmorgan.com",
+    name: "Mark Davis",
+    email: "mark.davis@jpmorgan.com",
     role: "Admin",
     initials: "TK",
     avatarColor: "#3A4D54",

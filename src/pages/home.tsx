@@ -38,28 +38,28 @@ const MORNING_BRIEF_SIDEBAR_MEETINGS = [
     id: "m1",
     title: "Secondary offering with David Chen",
     time: "2:00 PM",
-    attendeesShort: "Tracy, David & 2 others",
+    attendeesShort: "Mark, David & 2 others",
     briefReady: true,
   },
   {
     id: "m2",
     title: "Q1 pipeline review",
     time: "3:00 PM",
-    attendeesShort: "Tracy, Diana & 4 others",
+    attendeesShort: "Mark, Diana & 4 others",
     briefReady: true,
   },
   {
     id: "m3",
     title: "Apex Corp engagement terms",
     time: "4:00 PM",
-    attendeesShort: "Tracy, Julia & 1 other",
+    attendeesShort: "Mark, Julia & 1 other",
     briefReady: false,
   },
   {
     id: "m4",
     title: "Portfolio board prep",
     time: "5:00 PM",
-    attendeesShort: "Tracy, Evan & 3 others",
+    attendeesShort: "Mark, Evan & 3 others",
     briefReady: false,
   },
 ];
@@ -219,7 +219,7 @@ const HomePage = () => {
                 {getFormattedDate()}
               </p>
               <h1 className="mt-2 text-3xl font-normal tracking-tight text-foreground pb-2">
-                {getGreeting()}, Tracy
+                {getGreeting()}, Mark
               </h1>
             </div>
 
