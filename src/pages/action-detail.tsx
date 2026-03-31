@@ -42,6 +42,7 @@ import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
 import powerpointLogo from "@/assets/logos/powerpoint.png";
+import wordLogo from "@/assets/logos/word.png";
 import { ZoomIcon } from "@/icons/source-icons";
 
 interface ActionIntegrationVisual {
@@ -65,6 +66,7 @@ const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
   servicenow: { logo: serviceNowLogo },
   "monday-com": { logo: mondayComLogo },
   powerpoint: { logo: powerpointLogo },
+  word: { logo: wordLogo },
 };
 
 const integrationNames: Record<string, string> = {
@@ -77,6 +79,7 @@ const integrationNames: Record<string, string> = {
   servicenow: "ServiceNow",
   "monday-com": "Monday.com",
   powerpoint: "PowerPoint",
+  word: "Word",
 };
 
 const triggerOptions = [
@@ -621,43 +624,78 @@ const ActionDetailPage = () => {
         <TabsContent value="history">
           {initial.historyRuns && initial.historyRuns.length > 0 ? (
             <div className="mt-6 space-y-3">
-              {initial.historyRuns.map((run) => (
-                <button
-                  key={run.id}
-                  type="button"
-                  onClick={() => {
-                    if (run.reportId) {
+              {initial.historyRuns.map((run) => {
+                const isPending = run.status === "pending-approval";
+                return (
+                  <button
+                    key={run.id}
+                    type="button"
+                    onClick={() => {
+                    if (run.externalUrl) {
+                      window.open(run.externalUrl, "_blank", "noopener");
+                    } else if (run.artifactId) {
+                      navigate(`/artifact-detail/${run.artifactId}`);
+                    } else if (run.reportId) {
                       setSelectedReport(run.reportId);
                       navigate("/report-detail");
                     }
-                  }}
-                  className="flex w-full items-start justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4 text-left transition-colors hover:bg-accent"
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">
-                      {run.title}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {run.description}
-                    </p>
-                  </div>
-                  <div className="flex flex-col items-end gap-1.5 shrink-0">
-                    <span className="text-xs text-muted-foreground">
-                      {run.date}
-                    </span>
-                    <span
-                      className={cn(
-                        "rounded-full px-2 py-0.5 text-2xs font-medium",
-                        run.status === "completed"
-                          ? "bg-emerald-500/10 text-emerald-600"
-                          : "bg-rose-500/10 text-rose-600",
+                    }}
+                    className={cn(
+                      "flex w-full items-start gap-4 rounded-xl border px-5 py-4 text-left transition-colors",
+                      isPending
+                        ? "border-amber-500/30 bg-amber-500/5 hover:bg-amber-500/10"
+                        : "border-border bg-card hover:bg-accent",
+                    )}
+                  >
+                    {run.externalUrlIcon &&
+                      integrationVisualMap[run.externalUrlIcon]?.logo && (
+                        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-white mt-0.5">
+                          <img
+                            src={
+                              integrationVisualMap[run.externalUrlIcon].logo
+                            }
+                            alt={run.externalUrlIcon}
+                            className="size-5 object-contain"
+                          />
+                        </div>
                       )}
-                    >
-                      {run.status === "completed" ? "Completed" : "Failed"}
-                    </span>
-                  </div>
-                </button>
-              ))}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-foreground">
+                        {run.title}
+                      </p>
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        {run.description}
+                      </p>
+                      {isPending && (
+                        <span className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3.5 py-1.5 text-xs font-medium text-white">
+                          Review &amp; Approve
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5 shrink-0">
+                      <span className="text-xs text-muted-foreground">
+                        {run.date}
+                      </span>
+                      <span
+                        className={cn(
+                          "rounded-full px-2 py-0.5 text-2xs font-medium",
+                          isPending
+                            ? "bg-amber-500/10 text-amber-600"
+                            : run.status === "completed"
+                              ? "bg-emerald-500/10 text-emerald-600"
+                              : "bg-rose-500/10 text-rose-600",
+                        )}
+                      >
+                        {isPending
+                          ? "Pending Approval"
+                          : run.status === "completed"
+                            ? "Completed"
+                            : "Failed"}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           ) : (
             <Empty className="mt-8 border border-dashed border-border rounded-xl bg-muted/50 px-8 py-20">

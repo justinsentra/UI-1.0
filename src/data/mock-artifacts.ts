@@ -18,6 +18,21 @@ export interface ArtifactNextStep {
   detail: string;
 }
 
+export interface ArtifactEvidenceItem {
+  id: string;
+  title: string;
+  detail: string;
+  severity?: "high" | "medium" | "low";
+  sourceType: string;
+  sourceLabel: string;
+}
+
+export interface ArtifactSection {
+  id: string;
+  title: string;
+  items: ArtifactEvidenceItem[];
+}
+
 export interface Artifact {
   id: string;
   title: string;
@@ -27,6 +42,7 @@ export interface Artifact {
   actionName: string;
   createdAt: string;
   summary: string;
+  sections?: ArtifactSection[];
   nextSteps: ArtifactNextStep[];
 }
 
@@ -317,6 +333,214 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         type: "schedule-call",
         detail:
           "Schedule a call with Apex's IR team to get delivery commitments on the 3 outstanding data room documents.",
+      },
+    ],
+  },
+  {
+    id: "complaint-digest-mar-28",
+    title: "Customer Risk Digest — Mar 28",
+    description:
+      "Daily digest of customer complaints, escalation patterns, and at-risk renewal accounts.",
+    type: "risk-report",
+    actionId: "customer-complaint-scanner",
+    actionName: "Customer Complaint Scanner",
+    createdAt: "2025-03-28T07:00:00Z",
+    summary:
+      "3 new complaints flagged today across Teams and Outlook channels. NovaCare account escalated with 2 unresolved support tickets ahead of their April 15 renewal. Billing discrepancy mentions are up 40% week-over-week, indicating a systemic issue that may require a product fix rather than individual resolution.",
+    sections: [
+      {
+        id: "sec-new-complaints",
+        title: "New Complaints",
+        items: [
+          {
+            id: "ev-1",
+            title: "NovaCare — Onboarding data import failing",
+            detail:
+              "Customer reported CSV imports timing out for files over 10MB. Support ticket open for 5 days with no resolution. Account renews April 15.",
+            severity: "high",
+            sourceType: "teams",
+            sourceLabel: "#support-escalations",
+          },
+          {
+            id: "ev-2",
+            title: "NovaCare — Missing invoice for February",
+            detail:
+              "Finance team at NovaCare flagged they never received the February invoice. Billing team confirmed it was sent to an outdated email address.",
+            severity: "medium",
+            sourceType: "outlook",
+            sourceLabel: "NovaCare billing thread",
+          },
+          {
+            id: "ev-3",
+            title: "TechCorp — SSO login failures after update",
+            detail:
+              "Multiple users reporting intermittent SSO failures since the v3.2 release on March 25. Engineering aware but no ETA on fix.",
+            severity: "high",
+            sourceType: "teams",
+            sourceLabel: "#product-incidents",
+          },
+          {
+            id: "ev-4",
+            title: "UrbanGrid — Dashboard load times >30s",
+            detail:
+              "Customer flagged performance degradation on their analytics dashboard. Correlates with increased data volume after Q1 import.",
+            severity: "medium",
+            sourceType: "outlook",
+            sourceLabel: "UrbanGrid support email",
+          },
+          {
+            id: "ev-5",
+            title: "Harbour Digital — Incorrect usage metrics in report",
+            detail:
+              "Partner reported that the co-branded usage report showed inflated numbers for March. Data team investigating double-counting bug.",
+            severity: "low",
+            sourceType: "teams",
+            sourceLabel: "#partner-harbour",
+          },
+        ],
+      },
+      {
+        id: "sec-patterns",
+        title: "Escalation Patterns",
+        items: [
+          {
+            id: "ev-6",
+            title: "Billing discrepancy mentions up 40% WoW",
+            detail:
+              "Across all channels, billing-related complaints increased from 5 last week to 7 this week. Most common issue: invoices sent to wrong contacts after the CRM migration.",
+            severity: "high",
+            sourceType: "sharepoint",
+            sourceLabel: "Complaint Trend Analysis",
+          },
+          {
+            id: "ev-7",
+            title: "SSO-related tickets trending upward",
+            detail:
+              "3 SSO-related complaints in the past 7 days (TechCorp, Meridian, FinServ). All correlate with the v3.2 release. Engineering tracking under INC-4821.",
+            severity: "medium",
+            sourceType: "teams",
+            sourceLabel: "#engineering-incidents",
+          },
+        ],
+      },
+      {
+        id: "sec-at-risk",
+        title: "At-Risk Renewals",
+        items: [
+          {
+            id: "ev-8",
+            title: "NovaCare — Renewal April 15 ($300K ARR)",
+            detail:
+              "2 open unresolved tickets. Champion sentiment dropped from 'positive' to 'neutral' in last QBR. CSM flagged as at-risk last week.",
+            severity: "high",
+            sourceType: "outlook",
+            sourceLabel: "CSM escalation — NovaCare",
+          },
+          {
+            id: "ev-9",
+            title: "TechCorp — Renewal May 1 ($380K ARR)",
+            detail:
+              "SSO issues affecting 12 users. Champion supportive but flagged that continued instability could delay expansion discussion.",
+            severity: "medium",
+            sourceType: "teams",
+            sourceLabel: "TechCorp account channel",
+          },
+          {
+            id: "ev-10",
+            title: "UrbanGrid — Renewal June 1 ($250K ARR)",
+            detail:
+              "Performance complaint is the second in 60 days. Not yet escalated beyond support but CSM monitoring closely.",
+            severity: "low",
+            sourceType: "sharepoint",
+            sourceLabel: "Customer Health Dashboard",
+          },
+        ],
+      },
+    ],
+    nextSteps: [
+      {
+        id: "ns-cd-1",
+        label: "Escalate NovaCare tickets to engineering lead",
+        type: "send-email",
+        detail:
+          "Send priority escalation for the 2 open NovaCare tickets with April 15 renewal context.",
+      },
+      {
+        id: "ns-cd-2",
+        label: "Schedule NovaCare save call with CSM + VP CS",
+        type: "schedule-call",
+        detail:
+          "Book a 30-minute call with the NovaCare champion to address open issues before renewal.",
+      },
+      {
+        id: "ns-cd-3",
+        label: "Create task for billing contact audit",
+        type: "create-task",
+        detail:
+          "Run a full audit of billing contacts post-CRM migration to prevent further invoice delivery failures.",
+      },
+      {
+        id: "ns-cd-4",
+        label: "Share digest with CS leadership",
+        type: "share-report",
+        detail:
+          "Distribute today's risk digest to VP CS and CS managers for morning standup.",
+      },
+    ],
+  },
+  {
+    id: "complaint-digest-mar-27",
+    title: "Customer Risk Digest — Mar 27",
+    description:
+      "Daily digest of customer complaints, escalation patterns, and at-risk renewal accounts.",
+    type: "risk-report",
+    actionId: "customer-complaint-scanner",
+    actionName: "Customer Complaint Scanner",
+    createdAt: "2025-03-27T07:00:00Z",
+    summary:
+      "5 complaints scanned, 1 pattern identified: billing discrepancy mentions up 40% this week. Meridian Health reported an API rate limit issue affecting their integration.",
+    sections: [
+      {
+        id: "sec-complaints-27",
+        title: "New Complaints",
+        items: [
+          {
+            id: "ev-27-1",
+            title: "Meridian Health — API rate limits hit during sync",
+            detail:
+              "Customer's nightly data sync failed due to rate limits. Requested limit increase or batch optimization guidance.",
+            severity: "medium",
+            sourceType: "outlook",
+            sourceLabel: "Meridian support thread",
+          },
+          {
+            id: "ev-27-2",
+            title: "FinServ Global — Report export truncated",
+            detail:
+              "Compliance report export cut off at 10K rows. Customer needs full dataset for audit. Feature request logged.",
+            severity: "medium",
+            sourceType: "teams",
+            sourceLabel: "#support-enterprise",
+          },
+          {
+            id: "ev-27-3",
+            title: "NovaCare — CSV import still failing",
+            detail:
+              "Follow-up on yesterday's ticket. Customer attempted workaround (splitting files) but still hitting timeout on 8MB files.",
+            severity: "high",
+            sourceType: "teams",
+            sourceLabel: "#support-escalations",
+          },
+        ],
+      },
+    ],
+    nextSteps: [
+      {
+        id: "ns-cd27-1",
+        label: "Investigate API rate limit policy",
+        type: "create-task",
+        detail:
+          "Review current rate limits and assess feasibility of per-customer overrides for enterprise accounts.",
       },
     ],
   },

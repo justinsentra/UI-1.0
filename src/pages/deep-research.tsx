@@ -109,7 +109,7 @@ function ActionSuggestionCTA({ suggestion }: { suggestion: ActionSuggestion }) {
         className="mt-4 flex gap-2"
       >
         <a
-          href="https://docs.google.com/document/d/1PP6CSeNE6voeOn2o-AIxnvvz-0slW2SKVY52sxk15IM/edit"
+          href="https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] no-underline cursor-pointer transition-colors hover:bg-[var(--accent)]"

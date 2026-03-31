@@ -15,6 +15,7 @@ import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
 import powerpointLogo from "@/assets/logos/powerpoint.png";
+import wordLogo from "@/assets/logos/word.png";
 import { ZoomIcon } from "@/icons/source-icons";
 
 interface ActionIntegrationVisual {
@@ -32,6 +33,7 @@ const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
   servicenow: { logo: serviceNowLogo },
   "monday-com": { logo: mondayComLogo },
   powerpoint: { logo: powerpointLogo },
+  word: { logo: wordLogo },
 };
 
 const ActionCard = ({
