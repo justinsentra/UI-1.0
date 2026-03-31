@@ -157,7 +157,7 @@ const PromptInputTextarea = ({
       rows={1}
       className={cn(
         "w-full resize-none bg-transparent px-5 py-3.5 text-sm leading-relaxed text-foreground",
-        "placeholder:text-disabled-foreground outline-none border-none",
+        "placeholder:text-muted-foreground outline-none border-none",
         "min-h-[40px] overflow-y-auto",
         disabled && "cursor-not-allowed",
         className,

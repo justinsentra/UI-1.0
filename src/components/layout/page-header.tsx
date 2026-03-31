@@ -11,11 +11,13 @@ export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
     <div className="mb-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight text-[var(--fg-base)]">
+          <h1 className="text-3xl font-normal tracking-tight text-[var(--foreground)]">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-1 text-sm text-[var(--fg-muted)]">{subtitle}</p>
+            <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+              {subtitle}
+            </p>
           )}
         </div>
         {actions && (

@@ -30,10 +30,10 @@ import { useState } from "react";
 
 const SOURCE_TYPE_TO_ICON: Record<string, SourceType> = {
   slack: "slack",
-  meeting: "google-meet",
-  "google-meet": "google-meet",
-  "google-calendar": "google-calendar",
-  "google-drive": "google-drive",
+  meeting: "zoom",
+  "google-meet": "zoom",
+  "google-calendar": "outlook",
+  "google-drive": "sharepoint",
   linear: "linear",
   email: "email",
   outlook: "outlook",
@@ -42,47 +42,47 @@ const SOURCE_TYPE_TO_ICON: Record<string, SourceType> = {
   discord: "discord",
   zoom: "zoom",
   github: "github",
-  "google-docs": "google-docs",
+  "google-docs": "outlook",
   teams: "teams",
   sharepoint: "sharepoint",
   affinity: "affinity",
 };
 
 const SOURCE_TYPE_TO_HREF: Record<string, string> = {
-  slack: "https://slack.com",
-  meeting: "https://meet.google.com",
-  "google-meet": "https://meet.google.com",
-  "google-calendar": "https://calendar.google.com",
-  "google-drive": "https://drive.google.com",
-  linear: "https://linear.app",
-  email: "https://mail.google.com",
+  slack: "https://chatworks.com",
+  meeting: "https://zoom.us",
+  "google-meet": "https://zoom.us",
+  "google-calendar": "https://outlook.live.com",
+  "google-drive": "https://sharepoint.com",
+  linear: "https://trackline.app",
+  email: "https://outlook.live.com",
   outlook: "https://outlook.live.com",
-  notion: "https://notion.so",
+  notion: "https://dokra.so",
   asana: "https://app.asana.com",
   discord: "https://discord.com",
   zoom: "https://zoom.us",
   github: "https://github.com",
-  "google-docs": "https://docs.google.com",
+  "google-docs": "https://sharepoint.com",
   teams: "https://teams.microsoft.com",
   sharepoint: "https://sharepoint.com",
   affinity: "https://affinity.co",
 };
 
 const SOURCE_TYPE_LABEL: Record<string, string> = {
-  slack: "Slack",
-  meeting: "Meeting",
-  "google-meet": "Google Meet",
-  "google-calendar": "Google Calendar",
-  "google-drive": "Google Drive",
-  linear: "Linear",
+  slack: "ChatWorks",
+  meeting: "Zoom",
+  "google-meet": "Zoom",
+  "google-calendar": "Outlook Calendar",
+  "google-drive": "SharePoint",
+  linear: "Trackline",
   email: "Email",
   outlook: "Outlook",
-  notion: "Notion",
+  notion: "Dokra",
   asana: "Asana",
   discord: "Discord",
   zoom: "Zoom",
   github: "GitHub",
-  "google-docs": "Google Docs",
+  "google-docs": "Word",
   teams: "Microsoft Teams",
   sharepoint: "SharePoint",
   affinity: "Affinity",
@@ -170,47 +170,45 @@ const ReportDetailPage = () => {
   };
 
   return (
-    <div
-      className="flex overflow-hidden h-full"
-    >
+    <div className="relative flex overflow-hidden h-full">
+      {/* Top-right action buttons */}
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
+        <button
+          type="button"
+          onClick={handleCopyLink}
+          className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors cursor-pointer border-none"
+          title="Copy link"
+        >
+          <Link2 size={15} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowChatSidebar((p) => !p)}
+          className={cn(
+            "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
+            showChatSidebar
+              ? "bg-[var(--accent)] text-[var(--muted-foreground)]"
+              : "bg-transparent hover:bg-[var(--accent)] text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)]",
+          )}
+          title="Deep Research"
+        >
+          <MessageSquare size={15} />
+        </button>
+      </div>
+
       <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
         <PageShell className="relative pb-32">
-          {/* Top-right action buttons */}
-          <div className="absolute top-[12px] right-0 z-10 flex items-center gap-1">
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="h-7 w-7 rounded-md bg-transparent hover:bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors cursor-pointer border-none"
-              title="Copy link"
-            >
-              <Link2 size={15} />
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowChatSidebar((p) => !p)}
-              className={cn(
-                "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
-                showChatSidebar
-                  ? "bg-[var(--bg-component-hover)] text-[var(--fg-muted)]"
-                  : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
-              )}
-              title="Deep Research"
-            >
-              <MessageSquare size={15} />
-            </button>
-          </div>
-
           {/* Title */}
           <div className="mb-2">
-            <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
+            <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
               {report.title}
             </h1>
           </div>
-          <p className="text-sm text-[var(--fg-muted)] mb-6">
+          <p className="text-sm text-[var(--muted-foreground)] mb-6">
             {report.dateRange}
           </p>
 
-          <div className="border-t border-[var(--border-base)] mb-8" />
+          <div className="border-t border-[var(--border)] mb-8" />
 
           {/* Report Content */}
           <div className="space-y-8">
@@ -251,7 +249,14 @@ const ReportDetailPage = () => {
       </div>
 
       {/* Chat Sidebar */}
-      <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
+      <RightSidebarProvider
+        open={showChatSidebar}
+        onOpenChange={setShowChatSidebar}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
         <ChatSidebar
           isOpen={showChatSidebar}
           onClose={() => setShowChatSidebar(false)}
@@ -305,7 +310,7 @@ function ReportSection({
     <HighlightedContent sectionIndex={sectionIndex} containerRef={containerRef}>
       <section>
         {section.heading && (
-          <h2 className="text-md font-normal text-[var(--fg-base)] mb-4">
+          <h2 className="text-md font-normal text-[var(--foreground)] mb-4">
             {section.heading}
           </h2>
         )}
@@ -313,7 +318,7 @@ function ReportSection({
           <p
             key={pIdx}
             className={cn(
-              "text-sm text-[var(--fg-muted)] leading-relaxed",
+              "text-sm text-[var(--muted-foreground)] leading-relaxed",
               pIdx < section.paragraphs.length - 1 && "mb-4",
             )}
           >
@@ -335,7 +340,7 @@ function ReportSection({
 function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
   return (
     <div className="mt-10">
-      <h2 className="text-md font-normal text-[var(--fg-base)] mb-6">
+      <h2 className="text-md font-normal text-[var(--foreground)] mb-6">
         Evidence
       </h2>
       <div className="space-y-6">
@@ -344,12 +349,12 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
           const Icon = getSourceIcon(iconType);
           return (
             <div key={`${item.speaker}-${item.meetingDate}-${idx}`}>
-              <p className="text-xs font-medium text-[var(--fg-base)] mb-2">
+              <p className="text-xs font-medium text-[var(--foreground)] mb-2">
                 From {item.meetingTitle}
               </p>
-              <div className="border-l-2 border-[var(--border-base)] pl-4">
-                <p className="text-sm text-[var(--fg-muted)] leading-relaxed italic">
-                  <span className="font-semibold not-italic text-[var(--fg-base)]">
+              <div className="border-l-2 border-[var(--border)] pl-4">
+                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed italic">
+                  <span className="font-semibold not-italic text-[var(--foreground)]">
                     {item.speaker}
                   </span>
                   : {item.quote}
@@ -357,7 +362,7 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
                     <Icon size={12} className="opacity-40" />
                   </span>
                 </p>
-                <p className="text-2xs text-[var(--fg-disabled)] mt-1.5">
+                <p className="text-2xs text-[var(--muted-foreground)] mt-1.5">
                   {item.meetingDate}
                 </p>
               </div>
@@ -369,13 +374,7 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
   );
 }
 
-function InlineCitation({
-  source,
-  index,
-}: {
-  source: Source;
-  index: number;
-}) {
+function InlineCitation({ source, index }: { source: Source; index: number }) {
   const href = SOURCE_TYPE_TO_HREF[source.type] ?? "#";
   const platformLabel = SOURCE_TYPE_LABEL[source.type] ?? source.type;
 

@@ -5,43 +5,45 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getInitials(name: string): string {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-}
-
-const AVATAR_COLORS: Record<string, string> = {
-  "Ashwin Gopinath": "#3A4D54",
-  "Justin Cheng": "#3A4D54",
-  "Andrey Starenky": "#6B7555",
-  "Kristina Beaman": "#8B6B5B",
-  "Lakshmi Shankar": "#6B7585",
-  "James Richardson": "#5B6B55",
-  "Kevin Liu": "#4A6670",
-  "Ali Kazemi": "#7B5B8B",
-  "Sarah Chen": "#5B7B8B",
-  "Shaurya Patel": "#6B6555",
-};
-
-export function formatParticipants(names: string[]): string {
-  const firstNames = names.map((n) => n.split(" ")[0]);
-  if (firstNames.length <= 2) {
-    return firstNames.join(" & ");
-  }
-  const [first, second, ...rest] = firstNames;
-  return `${first}, ${second} & ${rest.length} other${rest.length > 1 ? "s" : ""}`;
-}
+const avatarColors = [
+  "#8B7E74",
+  "#7A8B8B",
+  "#8B7B8B",
+  "#7B7E8B",
+  "#8B8574",
+  "#748B7E",
+  "#7E7A8B",
+  "#8B7478",
+  "#74848B",
+  "#847B74",
+  "#7B8B74",
+  "#8B8480",
+  "#74808B",
+  "#807484",
+  "#7E8B7A",
+  "#84807B",
+];
 
 export function getAvatarColor(name: string): string {
-  if (AVATAR_COLORS[name]) return AVATAR_COLORS[name];
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 25%, 40%)`;
+  return avatarColors[Math.abs(hash) % avatarColors.length];
+}
+
+export function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return (parts[0]?.[0] ?? "").toUpperCase();
+}
+
+export function formatParticipants(participants: string[]): string {
+  if (participants.length === 0) return "";
+  if (participants.length === 1) return participants[0];
+  if (participants.length === 2)
+    return `${participants[0]} and ${participants[1]}`;
+  return `${participants[0]}, ${participants[1]} +${participants.length - 2} more`;
 }

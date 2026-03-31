@@ -5,6 +5,7 @@ import {
   SidebarResizeHandle,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { AsciiDither } from "@/components/ui/ascii-dither";
 
 interface RightSidebarProviderProps {
   open: boolean;
@@ -58,8 +59,13 @@ function RightSidebarInner({
     >
       {/* Inner div stays at full width so content never squishes during animation */}
       <div className="relative h-full" style={{ width: sidebarWidth }}>
-        <SidebarResizeHandle side="right" fullHeight onWidthChange={onWidthChange} />
+        <SidebarResizeHandle
+          side="right"
+          fullHeight
+          onWidthChange={onWidthChange}
+        />
         <div className="h-full overflow-hidden">{children}</div>
+        <AsciiDither />
       </div>
     </div>
   );
@@ -73,8 +79,6 @@ export function RightSidebarContent({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("flex flex-col h-full", className)}>
-      {children}
-    </div>
+    <div className={cn("flex flex-col h-full", className)}>{children}</div>
   );
 }

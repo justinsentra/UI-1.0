@@ -9,36 +9,36 @@ import type { ToolChoice } from "@/data/personas";
 const INVESTMENT_MEMO_SCAN_STEPS: PrdScanStep[] = [
   {
     label: "Pulling deal records and relationship history from Affinity...",
-    duration: 3000,
+    duration: 5000,
   },
   {
-    label: "Reading Sentra due diligence notes from Notion...",
-    duration: 2800,
+    label: "Reading Sentra due diligence notes from Dokra...",
+    duration: 4500,
   },
   {
     label: "Scanning deal discussion threads on Microsoft Teams...",
-    duration: 3200,
+    duration: 5500,
   },
   {
     label: "Retrieving screening memos and IC docs from SharePoint...",
-    duration: 2600,
+    duration: 4000,
   },
   {
     label: "Cross-referencing pipeline data and synergy assessments...",
-    duration: 2800,
+    duration: 4500,
   },
-  { label: "Synthesizing investment thesis...", duration: 2400 },
+  { label: "Synthesizing investment thesis...", duration: 4000 },
 ];
 
 const INVESTMENT_MEMO_CONTENT = `# Investment Memo: Sentra
 
 ## Company Overview
 
-**Sentra** is building organizational memory — a living system that captures decision history and context as teams scale. Founded by Ashwin Gopinath (CEO, MIT professor) and Andrey Starenky (CTO), the company takes an interaction-first approach to enterprise knowledge management.
+**Sentra** is building organizational memory — a living system that captures decision history and context as teams scale. Founded by Raj Sundaram (CEO, university professor) and Pavel Volkov (CTO), the company takes an interaction-first approach to enterprise knowledge management.
 
 ## Investment Thesis
 
-Sentra addresses a fundamental problem in scaling organizations: the loss of institutional knowledge. Unlike Glean (aggregation-first, indexing documents) or Microsoft Copilot (chat layer over existing tools), Sentra captures the *why* behind decisions by treating actors and interactions as first-class objects.
+Sentra addresses a fundamental problem in scaling organizations: the loss of institutional knowledge. Unlike Prism (aggregation-first, indexing documents) or Microsoft AssistAI (chat layer over existing tools), Sentra captures the *why* behind decisions by treating actors and interactions as first-class objects.
 
 ### Market Opportunity
 
@@ -48,7 +48,7 @@ Sentra addresses a fundamental problem in scaling organizations: the loss of ins
 
 ### Competitive Positioning
 
-| Feature | Sentra | Glean | Copilot |
+| Feature | Sentra | Prism | AssistAI |
 |---------|--------|-------|---------|
 | Interaction capture | Native | None | Basic |
 | Decision tracking | Yes | No | No |
@@ -58,60 +58,60 @@ Sentra addresses a fundamental problem in scaling organizations: the loss of ins
 
 ### Traction
 
-- Design partners: SoftBank, Runway, Campfire
+- Design partners: BlueBridge, RenderLab, Campfire
 - ICP: Series A/B startups (30-1000 employees), enterprise teams as DPs
-- Stage: Pre-seed, $5M raised from a16z Speedrun + Together Fund
-- Team: 11 employees, SF-based
+- Stage: Pre-seed, $5M raised from Apex AI Conference + Horizon Fund
+- Team: 11 employees, NY-based
 
-## MC Synergy Analysis
+## AG Synergy Analysis
 
 **Direct deployment opportunities:**
-- MC group companies (1,700+) for cross-cultural knowledge transfer
-- MCGI portfolio companies for operational efficiency
-- MC's 90-country operations for cross-timezone context preservation
+- AG group companies (1,700+) for cross-cultural knowledge transfer
+- AGV portfolio companies for operational efficiency
+- AG's 90-country operations for cross-timezone context preservation
 
 **Strategic value:**
 - Validates enterprise AI investment thesis
-- Potential platform for MCGI portfolio value-add services
-- Aligns with MC Corporate Strategy 2027 "Create" digital transformation pillar
+- Potential platform for AGV portfolio value-add services
+- Aligns with AG Corporate Strategy 2027 "Create" digital transformation pillar
 
 ## Financial Analysis
 
 - Current burn: ~$250K/month (estimated)
-- Runway: 20+ months at current pace
+- RenderLab: 20+ months at current pace
 - Next round: Likely seed/Series A in 6-9 months
-- MCGI entry: $3-5M at pre-seed valuation, targeting 8-12% ownership
+- AGV entry: $3-5M at pre-seed valuation, targeting 8-12% ownership
 
 ## Risk Assessment
 
 1. **Market risk (Medium):** Category creation required — "organizational memory" is not yet established
 2. **Competition risk (Low-Medium):** Defensible through interaction-first architecture and data moat
-3. **Execution risk (Low):** Strong technical founding team, MIT pedigree, a16z backing
-4. **Japan market risk (Medium):** Multi-language support not yet built; critical for MC synergy thesis
+3. **Execution risk (Low):** Strong technical founding team, Westbrook pedigree, Summit Ventures backing
+4. **Europe market risk (Medium):** Multi-language support not yet built; critical for AG synergy thesis
 
 ## Recommendation
 
-**INVEST.** Recommend $4M check at current round. Strong product-market fit signals, differentiated technology, and clear MC synergy path. Assign Sunna Mo as board observer to maximize strategic value.
+**INVEST.** Recommend $4M check at current round. Strong product-market fit signals, differentiated technology, and clear AG synergy path. Assign Claire Lawson as board observer to maximize strategic value.
 
 ## Next Steps
 
-1. Complete technical DD with MCGI engineering advisors
+1. Complete technical DD with AGV engineering advisors
 2. Reference calls with existing design partners
-3. Map 3-5 MC business units for pilot deployment
+3. Map 3-5 AG business units for pilot deployment
 4. Finalize term sheet for IC approval
 `;
 
 const INVESTMENT_MEMO_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Formatting investment memo structure...", duration: 2000 },
-  { label: "Generating financial projections table...", duration: 2500 },
-  { label: "Adding competitive analysis matrix...", duration: 2000 },
-  { label: "Finalizing MC synergy scoring...", duration: 1800 },
+  { label: "Formatting investment memo structure...", duration: 4000 },
+  { label: "Generating financial projections table...", duration: 5000 },
+  { label: "Adding competitive analysis matrix...", duration: 4500 },
+  { label: "Writing to Google Docs...", duration: 3500 },
 ];
 
 const MEMO_SOURCES: SourceRef[] = [
   { type: "affinity", label: "Sentra — Deal Record & Contacts" },
   { type: "notion", label: "Sentra DD Notes & Market Sizing" },
-  { type: "teams", label: "MCGI Deal Flow — Sentra thread" },
+  { type: "teams", label: "AGV Deal Flow — Sentra thread" },
   { type: "sharepoint", label: "IC Screening Memo — Sentra" },
   { type: "affinity", label: "Investment Committee — Q1 Pipeline" },
   { type: "notion", label: "Market sizing model — Enterprise AI" },
@@ -123,21 +123,22 @@ const MEMO_TOOL_CHOICES: ToolChoice[] = [
 ];
 
 const LANDSCAPE_SCAN_STEPS: PrdScanStep[] = [
-  { label: "Pulling sector deal records from Affinity...", duration: 3200 },
-  { label: "Reading market intelligence pages from Notion...", duration: 2800 },
+  { label: "Pulling sector deal records from Affinity...", duration: 5000 },
+  { label: "Reading market intelligence pages from Dokra...", duration: 4500 },
   {
-    label: "Scanning M-Lab consortium channel on Microsoft Teams...",
-    duration: 3000,
+    label:
+      "Scanning Catalyst Alliance consortium channel on Microsoft Teams...",
+    duration: 5000,
   },
-  { label: "Retrieving sector reports from SharePoint...", duration: 2600 },
-  { label: "Synthesizing landscape analysis...", duration: 2200 },
+  { label: "Retrieving sector reports from SharePoint...", duration: 4000 },
+  { label: "Synthesizing landscape analysis...", duration: 4500 },
 ];
 
 const LANDSCAPE_CONTENT = `# AI Agent Framework — Market Landscape Analysis
 
 ## Executive Summary
 
-AI agent orchestration platforms represent the fastest-growing category in enterprise AI, with $2.1B deployed in Q1 2026 alone. The market is pre-consolidation, creating a strategic investment window for MCGI.
+AI agent orchestration platforms represent the fastest-growing category in enterprise AI, with $2.1B deployed in Q1 2026 alone. The market is pre-consolidation, creating a strategic investment window for AGV.
 
 ## Market Sizing
 
@@ -161,24 +162,24 @@ AI agent orchestration platforms represent the fastest-growing category in enter
 ### Tier 3: Vertical/Enterprise Players
 - **Cognigy** — Enterprise conversational AI agents. Focus on customer service. $200M+ ARR.
 - **Moveworks** — IT automation agents. $2B valuation.
-- **Various YC W26 companies** — Multiple agent-first startups in current batch.
+- **Various LP Winter 26 companies** — Multiple agent-first startups in current batch.
 
-## Investment Thesis for MCGI
+## Investment Thesis for AGV
 
 ### What to look for:
 1. **Enterprise-grade reliability** — Agents that work within corporate governance structures
-2. **Auditability** — Full decision trace for regulated industries (critical for MC's financial and industrial verticals)
+2. **Auditability** — Full decision trace for regulated industries (critical for AG's financial and industrial verticals)
 3. **Integration depth** — Platforms that connect to enterprise systems, not just LLM APIs
-4. **Japan readiness** — Multi-language support and cultural awareness in agent behavior
+4. **Europe readiness** — Multi-language support and cultural awareness in agent behavior
 
-### Where MCGI can add unique value:
-- Immediate deployment opportunity across MC's 1,700+ group companies
+### Where AGV can add unique value:
+- Immediate deployment opportunity across AG's 1,700+ group companies
 - Validation environment across multiple industries (industrial, financial, energy, logistics)
-- Japan market entry support — no other CVC can offer this at MC's scale
+- Europe market entry support — no other CVC can offer this at AG's scale
 
 ## Recommended Scouting Targets
 
-1. **AgentLayer** (YC W26) — Enterprise agent orchestration with built-in compliance
+1. **AgentLayer** (LP Winter 26) — Enterprise agent orchestration with built-in compliance
 2. **NexusAI** (seed) — Vertical agents for manufacturing quality control
 3. **Kigen** (pre-seed) — Agent reliability and testing infrastructure
 
@@ -186,26 +187,27 @@ AI agent orchestration platforms represent the fastest-growing category in enter
 
 - **Commoditization risk:** As foundation model providers add native agent capabilities, standalone orchestration may compress
 - **Enterprise adoption pace:** Agent adoption slower than chatbot adoption due to trust barriers
-- **Regulatory uncertainty:** EU AI Act and Japan AI governance framework may impact agent autonomy
+- **Regulatory uncertainty:** EU AI Act and Europe AI governance framework may impact agent autonomy
 
 ## Next Steps
 
-1. Attend Stanford HAI conference — meet with 8 targeted presenters
-2. Deep dive on AgentLayer at YC demo day
+1. Attend Ashmore AI Summit conference — meet with 8 targeted presenters
+2. Deep dive on AgentLayer at LP demo day
 3. Schedule consortium working session on agent framework thesis
-4. Present landscape analysis to Tokyo HQ for allocation discussion
+4. Present landscape analysis to London HQ for allocation discussion
 `;
 
 const LANDSCAPE_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Building competitive matrix...", duration: 2200 },
-  { label: "Generating market sizing charts...", duration: 2600 },
-  { label: "Formatting scouting recommendations...", duration: 2000 },
+  { label: "Building competitive matrix...", duration: 4500 },
+  { label: "Generating market sizing charts...", duration: 5000 },
+  { label: "Formatting scouting recommendations...", duration: 4000 },
+  { label: "Writing to Google Slides...", duration: 3500 },
 ];
 
 const LANDSCAPE_SOURCES: SourceRef[] = [
   { type: "affinity", label: "AI Sector Deal Pipeline" },
   { type: "notion", label: "Competitor CVC investment log" },
-  { type: "teams", label: "M-Lab Consortium Monthly" },
+  { type: "teams", label: "Catalyst Alliance Consortium Monthly" },
   { type: "sharepoint", label: "AI Sector Tracking Sheet" },
   { type: "notion", label: "PitchBook sector alerts" },
 ];
@@ -221,27 +223,27 @@ const ONBOARDING_SCAN_STEPS: PrdScanStep[] = [
   {
     label:
       "Pulling Sentra deal record and interaction history from Affinity...",
-    duration: 3200,
+    duration: 5000,
   },
   {
-    label: "Reading due diligence notes and meeting logs from Notion...",
-    duration: 2800,
+    label: "Reading due diligence notes and meeting logs from Dokra...",
+    duration: 4500,
   },
   {
     label: "Scanning 14 deal discussion threads on Microsoft Teams...",
-    duration: 3400,
+    duration: 5500,
   },
   {
     label: "Retrieving IC memos and screening docs from SharePoint...",
-    duration: 2600,
+    duration: 4000,
   },
   {
     label: "Pulling contact history and email threads from Affinity...",
-    duration: 2400,
+    duration: 4500,
   },
   {
     label: "Reconstructing deal timeline...",
-    duration: 2200,
+    duration: 4000,
   },
 ];
 
@@ -250,41 +252,41 @@ const ONBOARDING_CONTENT = `# Deal Timeline: Sentra
 ## Current Status
 
 **Stage:** Due Diligence — IC vote scheduled March 19
-**Deal Lead:** Sunna Mo | **Sponsor:** Takeshi Yamamoto
+**Deal Lead:** Claire Lawson | **Sponsor:** Sean Yamamoto
 **Proposed Check:** $4M at pre-seed valuation, targeting 8-12% ownership
 
 ---
 
 ## November 2025
 
-- **Nov 8** — Sentra flagged by Sunna Mo during YC W25 batch review. Initial screen based on interaction-first architecture and MIT founding team. Added to Affinity pipeline as "Tracking."
-- **Nov 14** — Takeshi Yamamoto reviewed Sentra's pitch deck shared via a16z Speedrun network. Noted strong alignment with MC Corporate Strategy 2027 "Create" pillar.
-- **Nov 21** — First call with Ashwin Gopinath (CEO). 45-minute intro covering product vision, team background, and early traction. Sunna flagged organizational memory as a potential new category.
+- **Nov 8** — Sentra flagged by Claire Lawson during LP W25 batch review. Initial screen based on interaction-first architecture and Westbrook founding team. Added to Affinity pipeline as "Tracking."
+- **Nov 14** — Sean Yamamoto reviewed Sentra's pitch deck shared via Apex AI Conference network. Noted strong alignment with AG Corporate Strategy 2027 "Create" pillar.
+- **Nov 21** — First call with Raj Sundaram (CEO). 45-minute intro covering product vision, team background, and early traction. Claire flagged organizational memory as a potential new category.
 
 ## December 2025
 
-- **Dec 3** — Product deep dive with Andrey Starenky (CTO). Reviewed interaction-first architecture, data model, and technical differentiation vs. Glean and Copilot. Engineering team assessed architecture as "defensible and novel."
+- **Dec 3** — Product deep dive with Pavel Volkov (CTO). Reviewed interaction-first architecture, data model, and technical differentiation vs. Prism and AssistAI. Engineering team assessed architecture as "defensible and novel."
 - **Dec 10** — Market sizing working session (internal). Estimated enterprise knowledge management TAM at $42B with 18% CAGR. Organizational memory subset estimated at $15B+.
-- **Dec 17** — Deal moved to "Active Screening" in Affinity. Sunna circulated 2-page screening memo to MCGI SF team via SharePoint.
+- **Dec 17** — Deal moved to "Active Screening" in Affinity. Claire circulated 2-page screening memo to AGV SF team via SharePoint.
 
 ## January 2026
 
-- **Jan 9** — Reference call with SoftBank design partner lead. Confirmed strong product-market fit signals — "replaced 30 minutes of manual CRM updates after every call." Net promoter score from early users: 72.
-- **Jan 15** — MC synergy assessment initiated. Mapped 3 potential deployment paths: MC group companies (1,700+) for cross-cultural knowledge transfer, MCGI portfolio companies for operational efficiency, MC's 90-country operations for cross-timezone context preservation.
-- **Jan 22** — Competitive landscape review. Key finding: no direct competitor in "organizational memory" — Glean is aggregation-first (indexing documents), Copilot is a chat layer over existing tools. Sentra is the only interaction-first player.
-- **Jan 28** — Financial analysis completed. Current burn ~$250K/month, 20+ months runway. a16z Speedrun + Together Fund round at $5M. Team: 11 employees, SF-based.
+- **Jan 9** — Reference call with BlueBridge design partner lead. Confirmed strong product-market fit signals — "replaced 30 minutes of manual CRM updates after every call." Net promoter score from early users: 72.
+- **Jan 15** — AG synergy assessment initiated. Mapped 3 potential deployment paths: AG group companies (1,700+) for cross-cultural knowledge transfer, AGV portfolio companies for operational efficiency, AG's 90-country operations for cross-timezone context preservation.
+- **Jan 22** — Competitive landscape review. Key finding: no direct competitor in "organizational memory" — Prism is aggregation-first (indexing documents), AssistAI is a chat layer over existing tools. Sentra is the only interaction-first player.
+- **Jan 28** — Financial analysis completed. Current burn ~$250K/month, 20+ months runway. Apex AI Conference + Horizon Fund round at $5M. Team: 11 employees, NY-based.
 
 ## February 2026
 
-- **Feb 5** — Deal moved to "Due Diligence" in Affinity. Takeshi approved proceeding to full DD.
-- **Feb 12** — Technical DD session with MCGI engineering advisors. Reviewed data architecture, security posture, and scalability. Key gap identified: multi-language support not yet built — critical for Japan market deployment.
-- **Feb 19** — Second reference call — Runway design partner. Confirmed meeting intelligence depth as key differentiator. Quote: "It's like having an institutional memory that never forgets."
-- **Feb 26** — Japan market entry assessment. Multi-language support on roadmap for Q3 2026. MC Japan team expressed strong interest pending localization. Risk rated Medium.
+- **Feb 5** — Deal moved to "Due Diligence" in Affinity. Sean approved proceeding to full DD.
+- **Feb 12** — Technical DD session with AGV engineering advisors. Reviewed data architecture, security posture, and scalability. Key gap identified: multi-language support not yet built — critical for Europe market deployment.
+- **Feb 19** — Second reference call — RenderLab design partner. Confirmed meeting intelligence depth as key differentiator. Quote: "It's like having an institutional memory that never forgets."
+- **Feb 26** — Europe market entry assessment. Multi-language support on roadmap for Q3 2026. AG Europe team expressed strong interest pending localization. Risk rated Medium.
 
 ## March 2026
 
-- **Mar 3** — Investment Committee pre-read circulated via SharePoint. Proposed $4M check, 8-12% ownership, Sunna Mo as board observer.
-- **Mar 7** — IC Q&A session on Teams. Key discussion points: Japan market timeline, competitive moat durability, and path to Series A. Committee requested additional reference calls before final vote.
+- **Mar 3** — Investment Committee pre-read circulated via SharePoint. Proposed $4M check, 8-12% ownership, Claire Lawson as board observer.
+- **Mar 7** — IC Q&A session on Teams. Key discussion points: Europe market timeline, competitive moat durability, and path to Series A. Committee requested additional reference calls before final vote.
 - **Mar 10** — Third reference call scheduled — Campfire design partner. Focus: enterprise deployment complexity and onboarding time.
 - **Mar 19** — **IC vote scheduled.** Final term sheet to be presented for approval.
 
@@ -294,37 +296,37 @@ const ONBOARDING_CONTENT = `# Deal Timeline: Sentra
 
 | Name | Role | Organization |
 |------|------|-------------|
-| Ashwin Gopinath | CEO / Co-founder | Sentra |
-| Andrey Starenky | CTO / Co-founder | Sentra |
-| Sunna Mo | Deal Lead | MCGI SF |
-| Takeshi Yamamoto | Deal Sponsor | MCGI SF |
-| Lakshmi Shankar | Lead Investor | Together Fund |
+| Raj Sundaram | CEO / Co-founder | Sentra |
+| Pavel Volkov | CTO / Co-founder | Sentra |
+| Claire Lawson | Deal Lead | AGV SF |
+| Sean Yamamoto | Deal Sponsor | AGV SF |
+| Meera Kapoor | Lead Investor | Horizon Fund |
 
 ## Open Items
 
 1. Third reference call (Campfire) — scheduled Mar 10
 2. Final term sheet preparation — due Mar 14
 3. IC vote — Mar 19
-4. Japan localization timeline confirmation from Sentra
+4. Europe localization timeline confirmation from Sentra
 
 ---
 
-*Reconstructed from 23 interactions across Affinity, Notion, Microsoft Teams, and SharePoint*`;
+*Reconstructed from 23 interactions across Affinity, Dokra, Microsoft Teams, and SharePoint*`;
 
 const ONBOARDING_SOURCES: SourceRef[] = [
   { type: "affinity", label: "Sentra — Deal Record (47 interactions)" },
   { type: "notion", label: "Sentra DD Notes & Screening Memo" },
-  { type: "teams", label: "MCGI Deal Flow — Sentra thread (14 messages)" },
+  { type: "teams", label: "AGV Deal Flow — Sentra thread (14 messages)" },
   { type: "sharepoint", label: "IC Pre-Read — Sentra Investment" },
   { type: "affinity", label: "Sentra — Contact History & Emails" },
-  { type: "notion", label: "MC Synergy Assessment — Sentra" },
+  { type: "notion", label: "AG Synergy Assessment — Sentra" },
 ];
 
 const ONBOARDING_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Organizing events into chronological timeline...", duration: 2200 },
-  { label: "Linking sources to each timeline entry...", duration: 2400 },
-  { label: "Generating key people and open items summary...", duration: 2000 },
-  { label: "Formatting deal brief document...", duration: 1800 },
+  { label: "Organizing events into chronological timeline...", duration: 4500 },
+  { label: "Linking sources to each timeline entry...", duration: 5000 },
+  { label: "Generating key people and open items summary...", duration: 4000 },
+  { label: "Writing to Google Docs...", duration: 3500 },
 ];
 
 const ONBOARDING_TOOL_CHOICES: ToolChoice[] = [
@@ -332,40 +334,40 @@ const ONBOARDING_TOOL_CHOICES: ToolChoice[] = [
   { label: "Cancel", action: "cancel" },
 ];
 
-/* ── Financial Model Flow (CarbonGrid DD) ── */
+/* ── Financial Model Flow (GreenCore DD) ── */
 
 const FINANCIAL_MODEL_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling CarbonGrid deal record and financials from Affinity...",
-    duration: 3000,
+    label: "Pulling GreenCore deal record and financials from Affinity...",
+    duration: 5000,
   },
   {
-    label: "Reading CarbonGrid technical DD and unit economics from Notion...",
-    duration: 2800,
+    label: "Reading GreenCore technical DD and unit economics from Dokra...",
+    duration: 4500,
   },
   {
-    label: "Scanning CarbonGrid diligence threads on Microsoft Teams...",
-    duration: 3200,
+    label: "Scanning GreenCore diligence threads on Microsoft Teams...",
+    duration: 5500,
   },
   {
-    label: "Retrieving CarbonGrid pitch deck and data room from SharePoint...",
-    duration: 2600,
+    label: "Retrieving GreenCore pitch deck and data room from SharePoint...",
+    duration: 4000,
   },
   {
     label: "Pulling comparable company data from Affinity deal records...",
-    duration: 2400,
+    duration: 4500,
   },
   {
     label: "Building financial projections...",
-    duration: 2200,
+    duration: 4000,
   },
 ];
 
-const FINANCIAL_MODEL_CONTENT = `# 3-Statement Financial Model: CarbonGrid
+const FINANCIAL_MODEL_CONTENT = `# 3-Statement Financial Model: GreenCore
 
 ## Company Overview
 
-**CarbonGrid** — Direct air capture (DAC) technology for industrial carbon removal. Series A company with $6.2M ARR from 4 enterprise contracts. Proprietary sorbent material achieves 40% efficiency improvement over industry standard. Model built from data room financials, technical DD, and comparable company analysis.
+**GreenCore** — Direct air capture (DAC) technology for industrial carbon removal. Series A company with $6.2M ARR from 4 enterprise contracts. Proprietary sorbent material achieves 40% efficiency improvement over industry standard. Model built from data room financials, technical DD, and comparable company analysis.
 
 ## Key Assumptions
 
@@ -438,40 +440,40 @@ const FINANCIAL_MODEL_CONTENT = `# 3-Statement Financial Model: CarbonGrid
 
 **Key risks:** Capital-intensive scaling, carbon credit price volatility, permitting delays for new facilities, technology risk on next-gen sorbent material.
 
-**MC synergy upside:** Direct deployment to 12-15 MC industrial facilities could add $8-12M in contracted revenue by FY28E, not reflected in base case.
+**AG synergy upside:** Direct deployment to 12-15 AG industrial facilities could add $8-12M in contracted revenue by FY28E, not reflected in base case.
 
 ---
 
-*Sources: CarbonGrid data room (SharePoint), Technical DD notes (Notion), Deal team discussions (Teams), Comparable deals (Affinity)*`;
+*Sources: GreenCore data room (SharePoint), Technical DD notes (Dokra), Deal team discussions (Teams), Comparable deals (Affinity)*`;
 
 const FINANCIAL_MODEL_SOURCES: SourceRef[] = [
-  { type: "affinity", label: "CarbonGrid — Deal Record & Financials" },
-  { type: "notion", label: "CarbonGrid Technical DD — Unit Economics" },
-  { type: "teams", label: "CarbonGrid Diligence — Deal Team Thread" },
+  { type: "affinity", label: "GreenCore — Deal Record & Financials" },
+  { type: "notion", label: "GreenCore Technical DD — Unit Economics" },
+  { type: "teams", label: "GreenCore Diligence — Deal Team Thread" },
   {
     type: "sharepoint",
-    label: "CarbonGrid Data Room — Pitch Deck & Financials",
+    label: "GreenCore Data Room — Pitch Deck & Financials",
   },
   { type: "affinity", label: "Climate Tech Comparable Deals" },
 ];
 
 const FINANCIAL_MODEL_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Pulling revenue assumptions from data room...", duration: 2600 },
+  { label: "Pulling revenue assumptions from data room...", duration: 4500 },
   {
     label: "Building income statement — mapping COGS, OpEx, D&A...",
-    duration: 3000,
+    duration: 5000,
   },
   {
     label: "Constructing balance sheet — linking PP&E, AR, deferred revenue...",
-    duration: 3200,
+    duration: 5500,
   },
   {
     label: "Generating cash flow statement — CFO, CapEx, FCF bridge...",
-    duration: 2800,
+    duration: 5000,
   },
   {
-    label: "Running unit economics and valuation sensitivity...",
-    duration: 2400,
+    label: "Writing to Google Sheets...",
+    duration: 3500,
   },
 ];
 
@@ -480,23 +482,23 @@ const FINANCIAL_MODEL_TOOL_CHOICES: ToolChoice[] = [
   { label: "Cancel", action: "cancel" },
 ];
 
-/* ── Deal Data Consolidation Flow (NeuralDB) ── */
+/* ── Deal Data Consolidation Flow (SyntheticDB) ── */
 
 const CONSOLIDATION_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling NeuralDB deal record and activity log from Affinity...",
+    label: "Pulling SyntheticDB deal record and activity log from Affinity...",
     duration: 2800,
   },
   {
-    label: "Reading 12 NeuralDB pages from Notion workspace...",
+    label: "Reading 12 SyntheticDB pages from Dokra workspace...",
     duration: 3200,
   },
   {
-    label: "Scanning 8 NeuralDB channels and threads on Microsoft Teams...",
+    label: "Scanning 8 SyntheticDB channels and threads on Microsoft Teams...",
     duration: 3400,
   },
   {
-    label: "Retrieving NeuralDB docs and reports from SharePoint...",
+    label: "Retrieving SyntheticDB docs and reports from SharePoint...",
     duration: 2600,
   },
   {
@@ -509,11 +511,11 @@ const CONSOLIDATION_SCAN_STEPS: PrdScanStep[] = [
   },
 ];
 
-const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: NeuralDB
+const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: SyntheticDB
 
 ## Overview
 
-**NeuralDB** — Vector database infrastructure for enterprise AI applications. Series B candidate, currently in active due diligence. This brief consolidates all information scattered across Notion, Microsoft Teams, and Affinity into a single source of truth.
+**SyntheticDB** — Vector database infrastructure for enterprise AI applications. Series B candidate, currently in active due diligence. This brief consolidates all information scattered across Dokra, Microsoft Teams, and Affinity into a single source of truth.
 
 *Last updated: March 12, 2026 — 43 sources consolidated*
 
@@ -524,7 +526,7 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: NeuralDB
 | Field | Detail |
 |-------|--------|
 | Founded | 2023 (San Francisco) |
-| Stage | Series A ($12M raised, Sequoia + Index Ventures) |
+| Stage | Series A ($12M raised, Redwood + Index Ventures) |
 | ARR | $9.4M (as of Feb 2026) |
 | Growth | 140% YoY |
 | Team | 38 employees (24 engineering) |
@@ -535,69 +537,69 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: NeuralDB
 
 | Contact | Role | Last Interaction | Notes |
 |---------|------|-----------------|-------|
-| Sarah Chen | CEO / Co-founder | Mar 8 (Teams call) | Stanford CS PhD, ex-Google Brain |
-| Marcus Webb | CTO / Co-founder | Mar 3 (Product deep dive) | Ex-Pinecone founding engineer |
+| Fiona Webb | CEO / Co-founder | Mar 8 (Teams call) | Ashmore CS PhD, ex-Google Brain |
+| Conrad Finley | CTO / Co-founder | Mar 3 (Product deep dive) | Ex-Pinecone founding engineer |
 | Diana Choi | VP Sales | Feb 26 (Email) | Driving enterprise motion, ex-Snowflake |
-| Raj Patel | Board (Sequoia) | Feb 19 (IC reference) | Supportive of MC strategic investment |
+| Raj Patel | Board (Redwood) | Feb 19 (IC reference) | Supportive of AG strategic investment |
 
-**MCGI Deal Team:** Sunna Mo (lead), Mihiro Nakamura (associate), Ryotaro Nakamura (technical DD)
+**AGV Deal Team:** Claire Lawson (lead), Jake Brennan (associate), Tom Brennan (technical DD)
 
 ---
 
 ## Diligence Findings (Consolidated)
 
 ### Product & Technical Assessment
-*Source: Notion — "NeuralDB Technical DD Notes" + Teams — "NeuralDB Product Deep Dive (Mar 3)"*
+*Source: Dokra — "SyntheticDB Technical DD Notes" + Teams — "SyntheticDB Product Deep Dive (Mar 3)"*
 
 - Custom indexing engine built on Rust — 3x throughput vs Pinecone on standard benchmarks
 - Multi-tenancy architecture supports enterprise isolation requirements
 - Hybrid search (vector + keyword + metadata filtering) in single query
 - SOC 2 Type II certified, HIPAA-compliant deployment option
-- **Gap identified:** No native support for Japanese language tokenization — critical for MC Japan deployment. Team estimates 6-8 weeks to implement.
+- **Gap identified:** No native support for European language tokenization — critical for AG Europe deployment. Team estimates 6-8 weeks to implement.
 
 ### Market Position
-*Source: Notion — "Vector DB Competitive Landscape" + SharePoint — "AI Infrastructure Market Report Q1 2026"*
+*Source: Dokra — "Vector DB Competitive Landscape" + SharePoint — "AI Infrastructure Market Report Q1 2026"*
 
 - Vector database market estimated at $4.8B by 2028 (62% CAGR)
 - Key competitors: Pinecone ($100M ARR), Weaviate ($28M ARR), Qdrant ($8M ARR)
-- NeuralDB differentiator: enterprise-grade reliability + hybrid search + managed service
+- SyntheticDB differentiator: enterprise-grade reliability + hybrid search + managed service
 - Win rate vs Pinecone in enterprise evaluations: 58% (per Diana Choi, Feb 26 email)
 
 ### Customer References
-*Source: Teams — "NeuralDB Reference Calls" thread + Affinity — Contact notes*
+*Source: Teams — "SyntheticDB Reference Calls" thread + Affinity — Contact notes*
 
-- **Stripe** — Using for fraud detection model serving. "NeuralDB is the only vendor that met our latency SLA at scale." — Staff Eng, ML Platform
-- **Notion** (ironic) — Powers their AI search feature. Migrated from Pinecone in Q4 2025 citing reliability issues.
+- **Payvine** — Using for fraud detection model serving. "SyntheticDB is the only vendor that met our latency SLA at scale." — Staff Eng, ML Platform
+- **Dokra** (ironic) — Powers their AI search feature. Migrated from Pinecone in Q4 2025 citing reliability issues.
 - **DoorDash** — Deploying for real-time recommendation engine. POC to production in 3 weeks.
 
 ### Financial Analysis
-*Source: SharePoint — "NeuralDB Financial Model v2" + Notion — "Series B Pricing Analysis"*
+*Source: SharePoint — "SyntheticDB Financial Model v2" + Dokra — "Series B Pricing Analysis"*
 
 - Current ARR: $9.4M, projecting $22M by Dec 2026
 - Gross margin: 72% (infrastructure-heavy but improving)
 - Net revenue retention: 145%
 - Burn: $1.8M/month, 14 months runway at current pace
 - Series B target: $40-50M at $280-320M pre-money valuation
-- MCGI proposed entry: $8-10M check
+- AGV proposed entry: $8-10M check
 
-### MC Synergy Assessment
-*Source: Notion — "MC Synergy Scoring — NeuralDB" + Teams — "MCGI Strategy Sync (Feb 28)"*
+### AG Synergy Assessment
+*Source: Dokra — "AG Synergy Scoring — SyntheticDB" + Teams — "AGV Strategy Sync (Feb 28)"*
 
 - **Synergy Score: 7/10**
-- MC group AI initiatives could deploy NeuralDB across 5+ business units
-- MC's data infrastructure modernization program (FY26-28) creates immediate demand
-- Japan market entry support is high-value strategic lever for NeuralDB
+- AG group AI initiatives could deploy SyntheticDB across 5+ business units
+- AG's data infrastructure modernization program (FY26-28) creates immediate demand
+- Europe market entry support is high-value strategic lever for SyntheticDB
 - Lower synergy than Sentra due to infrastructure (vs application) positioning
 
 ---
 
 ## Open Questions & Next Steps
 
-1. **Series B timeline** — Sarah Chen indicated April close target. Need to confirm allocation and move fast.
-2. **Japan tokenization** — Ryotaro to follow up on technical feasibility and timeline by Mar 15
+1. **Series B timeline** — Fiona Webb indicated April close target. Need to confirm allocation and move fast.
+2. **Europe tokenization** — Tom to follow up on technical feasibility and timeline by Mar 15
 3. **Competitive displacement risk** — Pinecone's enterprise tier launching Q2 2026. Assess defensibility.
 4. **Reference call** — DoorDash ML Platform lead scheduled for Mar 14
-5. **IC pre-read** — Sunna drafting, target circulation Mar 21
+5. **IC pre-read** — Claire drafting, target circulation Mar 21
 
 ---
 
@@ -605,27 +607,27 @@ const CONSOLIDATION_CONTENT = `# Consolidated Deal Brief: NeuralDB
 
 | Platform | Documents | Key Items |
 |----------|-----------|-----------|
-| Notion | 12 pages | DD notes, competitive analysis, synergy scoring, financial model |
+| Dokra | 12 pages | DD notes, competitive analysis, synergy scoring, financial model |
 | Teams | 8 threads | Product deep dive, reference calls, strategy sync, deal team updates |
 | Affinity | 31 interactions | Contact history, meeting notes, email threads, deal record |
 | SharePoint | 4 documents | Data room, market report, financial model, IC template |
 
 ---
 
-*Consolidated from 43 sources across Notion (12), Microsoft Teams (8), Affinity (31), and SharePoint (4)*`;
+*Consolidated from 43 sources across Dokra (12), Microsoft Teams (8), Affinity (31), and SharePoint (4)*`;
 
 const CONSOLIDATION_SOURCES: SourceRef[] = [
-  { type: "notion", label: "NeuralDB Technical DD Notes" },
+  { type: "notion", label: "SyntheticDB Technical DD Notes" },
   { type: "notion", label: "Vector DB Competitive Landscape" },
-  { type: "teams", label: "NeuralDB Product Deep Dive (Mar 3)" },
-  { type: "teams", label: "NeuralDB Reference Calls thread" },
-  { type: "affinity", label: "NeuralDB — Deal Record (31 interactions)" },
-  { type: "sharepoint", label: "NeuralDB Data Room & Market Report" },
+  { type: "teams", label: "SyntheticDB Product Deep Dive (Mar 3)" },
+  { type: "teams", label: "SyntheticDB Reference Calls thread" },
+  { type: "affinity", label: "SyntheticDB — Deal Record (31 interactions)" },
+  { type: "sharepoint", label: "SyntheticDB Data Room & Market Report" },
 ];
 
 const CONSOLIDATION_BUILD_STEPS: PrdScanStep[] = [
   {
-    label: "Deduplicating overlapping notes from Notion and Teams...",
+    label: "Deduplicating overlapping notes from Dokra and Teams...",
     duration: 2400,
   },
   {
@@ -651,7 +653,7 @@ const VENDOR_EVAL_SCAN: PrdScanStep[] = [
     duration: 2400,
   },
   {
-    label: "Reading startup metrics and traction data from Notion...",
+    label: "Reading startup metrics and traction data from Dokra...",
     duration: 2800,
   },
   {
@@ -670,14 +672,41 @@ const vendorEvalResponse: MockResponse = {
       content:
         "Based on analysis of your pipeline data, meeting transcripts, and market intelligence, here is a comparative assessment of the three companies currently in due diligence:",
       sources: [
-        { type: "affinity", label: "MCGI Pipeline Tracker" },
+        { type: "affinity", label: "AGV Pipeline Tracker" },
         { type: "teams", label: "#mcgi-deal-flow" },
       ],
+      chart: {
+        type: "bar",
+        title: "AG Synergy Score & Investment Readiness",
+        data: [
+          { company: "Sentra", synergy: 9, teamScore: 9.2, deRisk: 5 },
+          { company: "GreenCore", synergy: 8, teamScore: 7.8, deRisk: 7.5 },
+          { company: "NovaMaterials", synergy: 6, teamScore: 6.5, deRisk: 4 },
+        ],
+        dataKeys: [
+          {
+            key: "synergy",
+            label: "AG Synergy (0-10)",
+            color: "hsl(215, 80%, 55%)",
+          },
+          {
+            key: "teamScore",
+            label: "Team Quality",
+            color: "hsl(170, 65%, 45%)",
+          },
+          {
+            key: "deRisk",
+            label: "De-Risk Level",
+            color: "hsl(260, 55%, 60%)",
+          },
+        ],
+        xAxisKey: "company",
+      },
     },
     {
       id: "mcgi-ve-2",
       content:
-        "**Sentra** (Enterprise AI — Organizational Memory): Strongest MC synergy score (9/10). Differentiated interaction-first architecture with no direct competitors. Pre-seed stage means higher risk but better entry valuation. Team quality is exceptional (MIT founder, a16z backing). Japan market readiness is the primary gap — multi-language support planned but not yet built.",
+        "**Sentra** (Enterprise AI — Organizational Memory): Strongest AG synergy score (9/10). Differentiated interaction-first architecture with no direct competitors. Pre-seed stage means higher risk but better entry valuation. Team quality is exceptional (Westbrook founder, Summit Ventures backing). Europe market readiness is the primary gap — multi-language support planned but not yet built.",
       sources: [
         {
           type: "affinity",
@@ -688,24 +717,24 @@ const vendorEvalResponse: MockResponse = {
     {
       id: "mcgi-ve-3",
       content:
-        "**CarbonGrid** (Climate Tech — Carbon Capture): Strong MC synergy (8/10) with immediate deployment path to 12-15 MC industrial facilities. Technical validation complete — 40% efficiency improvement confirmed by independent lab. Unit economics work at scale ($78/ton). Series A stage provides more de-risked entry. Climate tech allocation increase from board makes timing favorable.",
+        "**GreenCore** (Climate Tech — Carbon Capture): Strong AG synergy (8/10) with immediate deployment path to 12-15 AG industrial facilities. Technical validation complete — 40% efficiency improvement confirmed by independent lab. Unit economics work at scale ($78/ton). Series A stage provides more de-risked entry. Climate tech allocation increase from board makes timing favorable.",
       sources: [
         {
           type: "teams",
-          label: "CarbonGrid — Technical DD Discussion",
+          label: "GreenCore — Technical DD Discussion",
         },
       ],
     },
     {
       id: "mcgi-ve-4",
       content:
-        "**FluxMaterials** (Advanced Materials — Battery Recycling): Moderate MC synergy (6/10). Technology is promising but early — pilot facility not yet operational. Market is growing rapidly with regulatory tailwinds (EU battery directive). Seed stage with higher execution risk. Recommend proceeding but with smaller initial check and milestone-based follow-on.",
-      sources: [{ type: "sharepoint", label: "FluxMaterials technical brief" }],
+        "**NovaMaterials** (Advanced Materials — Battery Recycling): Moderate AG synergy (6/10). Technology is promising but early — pilot facility not yet operational. Market is growing rapidly with regulatory tailwinds (EU battery directive). Seed stage with higher execution risk. Recommend proceeding but with smaller initial check and milestone-based follow-on.",
+      sources: [{ type: "sharepoint", label: "NovaMaterials technical brief" }],
     },
     {
       id: "mcgi-ve-5",
       content:
-        "**Recommendation:** Prioritize Sentra and CarbonGrid for immediate investment. Both have clear MC synergy paths, strong teams, and favorable entry points. FluxMaterials should proceed with a smaller exploratory investment pending pilot facility results.",
+        "**Recommendation:** Prioritize Sentra and GreenCore for immediate investment. Both have clear AG synergy paths, strong teams, and favorable entry points. NovaMaterials should proceed with a smaller exploratory investment pending pilot facility results.",
       sources: [
         {
           type: "notion",
@@ -718,99 +747,80 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "I just joined the Sentra deal — catch me up",
-    "Draft an investment memo for Sentra",
-    "Map the AI agent framework landscape",
-    "Compare pipeline companies on MC synergy",
-    "Summarize this week's deal flow activity",
+    { label: "Compare pipeline companies", route: { type: "vendor-eval" } },
+    { label: "Pipeline overview for Q1", route: { type: "generic", index: 0 } },
+    {
+      label: "Draft an investment memo for Sentra",
+      route: { type: "document-flow", flowId: "mcgi-flow-memo" },
+    },
+    {
+      label: "Build a 3-statement model for GreenCore",
+      route: { type: "document-flow", flowId: "mcgi-flow-model" },
+    },
   ],
   sessionHistory: [
-    { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today" },
+    {
+      id: "mcgi-s1",
+      title: "Sentra investment memo draft",
+      date: "Today",
+      query: "Draft an investment memo for Sentra",
+    },
     {
       id: "mcgi-s2",
       title: "AI agent framework landscape",
       date: "Today",
+      query: "Map the AI agent framework landscape",
     },
     {
       id: "mcgi-s3",
       title: "Q1 pipeline company comparison",
       date: "Yesterday",
+      query: "Compare pipeline companies on AG synergy for Q1",
     },
     {
       id: "mcgi-s4",
-      title: "CarbonGrid technical DD summary",
+      title: "GreenCore technical DD summary",
       date: "Yesterday",
+      query: "Summarize the technical due diligence for GreenCore",
     },
     {
       id: "mcgi-s5",
       title: "Competitive CVC activity tracker",
       date: "Last week",
+      query: "Track competitive CVC activity in our focus areas",
     },
     {
       id: "mcgi-s6",
-      title: "NeuralDB Series B readiness",
+      title: "SyntheticDB Series B readiness",
       date: "Last week",
+      query: "Assess SyntheticDB's readiness for a Series B round",
     },
     {
       id: "mcgi-s7",
       title: "Climate tech allocation analysis",
       date: "Last week",
+      query: "Analyze our climate tech allocation and performance",
     },
     {
       id: "mcgi-s8",
-      title: "M-Lab consortium insights summary",
+      title: "Catalyst Alliance consortium insights summary",
       date: "Last week",
+      query: "Summarize insights from the Catalyst Alliance consortium",
     },
     {
       id: "mcgi-s9",
       title: "QuantumSense runway analysis",
       date: "2 weeks ago",
+      query: "Analyze QuantumSense's runway and burn rate",
     },
     {
       id: "mcgi-s10",
-      title: "Japan market entry playbook",
+      title: "Europe market entry playbook",
       date: "2 weeks ago",
+      query: "Build a Europe market entry playbook for our portfolio",
     },
   ],
   documentFlows: [
-    {
-      id: "mcgi-flow-onboarding",
-      label: "Deal Timeline",
-      filename: "sentra-deal-timeline.md",
-      scanSteps: ONBOARDING_SCAN_STEPS,
-      content: ONBOARDING_CONTENT,
-      buildSteps: ONBOARDING_BUILD_STEPS,
-      sources: ONBOARDING_SOURCES,
-      triggerKeywords: [
-        "just joined",
-        "just got",
-        "brought onto",
-        "new to",
-        "catch up",
-        "catch me up",
-        "onboarded",
-        "full history",
-        "deal history",
-        "what happened",
-        "where do we stand",
-        "get up to speed",
-        "bring me up to speed",
-        "what do i need to know",
-        "what should i know",
-        "timeline",
-        "deal timeline",
-        "need to know",
-        "background on",
-      ],
-      toolChoices: ONBOARDING_TOOL_CHOICES,
-      doneMessage: {
-        title: "Deal timeline pushed to Google Docs",
-        description:
-          "Your deal onboarding brief is ready. Covers the complete Sentra deal history from first contact through current status.",
-        link: { label: "Open in Google Docs", url: "#" },
-      },
-      buildingLabel: "Building deal timeline",
-    },
     {
       id: "mcgi-flow-memo",
       label: "Investment Memo",
@@ -831,7 +841,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Investment memo pushed to Google Docs",
         description:
           "Your investment memo has been created and is ready for IC review.",
-        link: { label: "Open in Google Docs", url: "#" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building memo",
     },
@@ -855,7 +868,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Landscape deck pushed to Google Slides",
         description:
           "Your market landscape analysis is ready for consortium review.",
-        link: { label: "Open in Google Slides", url: "#" },
+        link: {
+          label: "Open in Google Slides",
+          url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit",
+        },
       },
       buildingLabel: "Building deck",
     },
@@ -883,8 +899,11 @@ export const deepResearchData: PersonaDeepResearchData = {
       doneMessage: {
         title: "Financial model ready in Google Sheets",
         description:
-          "Your 3-statement model for CarbonGrid has been generated with full income statement, balance sheet, and cash flow projections.",
-        link: { label: "Open in Google Sheets", url: "#" },
+          "Your 3-statement model for GreenCore has been generated with full income statement, balance sheet, and cash flow projections.",
+        link: {
+          label: "Open in Google Sheets",
+          url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U",
+        },
       },
       buildingLabel: "Building financial model",
     },
@@ -913,10 +932,13 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: CONSOLIDATION_TOOL_CHOICES,
       doneMessage: {
-        title: "Consolidated brief exported to Microsoft Word",
+        title: "Consolidated brief exported to Google Docs",
         description:
-          "All NeuralDB diligence data from Notion, Teams, Affinity, and SharePoint has been consolidated into a single document.",
-        link: { label: "Open in Microsoft Word", url: "#" },
+          "All SyntheticDB diligence data from Dokra, Teams, Affinity, and SharePoint has been consolidated into a single document.",
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Consolidating deal data",
     },

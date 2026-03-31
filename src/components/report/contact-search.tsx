@@ -1,9 +1,9 @@
 export const MOCK_CONTACTS = [
   { name: "Malcolm Ocean", email: "malcolm@softmax.ai" },
   { name: "Andrew Greener", email: "andrew@campfire.co" },
-  { name: "Ashwin Gopinath", email: "ashwin@sentra.app" },
-  { name: "Andrey Starenky", email: "andrey@sentra.app" },
-  { name: "Kristina Beaman", email: "kristina@sentra.app" },
+  { name: "Raj Sundaram", email: "raj@sentra.app" },
+  { name: "Pavel Volkov", email: "pavel@sentra.app" },
+  { name: "Ingrid Solberg", email: "ingrid@sentra.app" },
   { name: "David Kim", email: "david.kim@jpm.com" },
 ];
 
@@ -30,13 +30,13 @@ export function ContactSearch({
   return (
     <>
       <div className="fixed inset-0 z-20" onClick={onClose} />
-      <div className="absolute left-0 top-full mt-1 z-30 w-[240px] bg-background rounded-lg border border-[var(--border-base)] shadow-lg overflow-hidden">
+      <div className="absolute left-0 top-full mt-1 z-30 w-[240px] bg-background rounded-lg border border-[var(--border)] shadow-lg overflow-hidden">
         <input
           type="text"
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
           placeholder="Search contacts..."
-          className="w-full px-3 py-2 text-xs border-b border-[var(--border-base)] bg-transparent text-[var(--fg-base)] placeholder:text-[var(--fg-disabled)] outline-none"
+          className="w-full px-3 py-2 text-xs border-b border-[var(--border)] bg-transparent text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] outline-none"
           autoFocus
         />
         <div className="max-h-[160px] overflow-y-auto">
@@ -45,14 +45,16 @@ export function ContactSearch({
               key={c.email}
               type="button"
               onClick={() => onSelect(c.email)}
-              className="w-full px-3 py-2 text-left hover:bg-[var(--bg-subtle)] transition-colors bg-transparent border-none cursor-pointer"
+              className="w-full px-3 py-2 text-left hover:bg-[var(--muted)] transition-colors bg-transparent border-none cursor-pointer"
             >
-              <div className="text-xs text-[var(--fg-base)]">{c.name}</div>
-              <div className="text-2xs text-[var(--fg-muted)]">{c.email}</div>
+              <div className="text-xs text-[var(--foreground)]">{c.name}</div>
+              <div className="text-2xs text-[var(--muted-foreground)]">
+                {c.email}
+              </div>
             </button>
           ))}
           {contacts.length === 0 && (
-            <div className="px-3 py-2 text-xs text-[var(--fg-muted)]">
+            <div className="px-3 py-2 text-xs text-[var(--muted-foreground)]">
               No contacts found
             </div>
           )}

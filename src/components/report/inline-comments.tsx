@@ -47,7 +47,7 @@ export function InlineCommentPopup({
     const comment: ReportComment = {
       id: `comment-${Date.now()}`,
       text: text.trim(),
-      author: "Justin Cheng",
+      author: "Mark Davis",
       timestamp: new Date().toISOString(),
       highlightedText,
       sectionIndex,
@@ -69,7 +69,7 @@ export function InlineCommentPopup({
       animate={{ opacity: 1, scale: 1, x: 0 }}
       exit={{ opacity: 0, scale: 0.95, x: -4 }}
       transition={{ duration: 0.15 }}
-      className="fixed z-50 w-[256px] p-3 bg-background border border-[var(--border-base)] shadow-lg rounded-xl"
+      className="fixed z-50 w-[256px] p-3 bg-background border border-[var(--border)] shadow-lg rounded-xl"
       style={{ top: clampedTop, left: clampedLeft }}
     >
       <textarea
@@ -78,13 +78,13 @@ export function InlineCommentPopup({
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a note..."
         rows={3}
-        className="w-full px-2 py-1.5 rounded-lg border border-[var(--border-base)] bg-transparent text-xs text-[var(--fg-base)] leading-relaxed resize-none placeholder:text-[var(--fg-disabled)] outline-none focus:border-[var(--fg-muted)]"
+        className="w-full px-2 py-1.5 rounded-lg border border-[var(--border)] bg-transparent text-xs text-[var(--foreground)] leading-relaxed resize-none placeholder:text-[var(--muted-foreground)] outline-none focus:border-[var(--muted-foreground)]"
       />
       <div className="flex items-center justify-between mt-2">
         <button
           type="button"
           onClick={onCancel}
-          className="text-2xs text-[var(--fg-muted)] hover:text-[var(--fg-base)] bg-transparent border-none cursor-pointer"
+          className="text-2xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] bg-transparent border-none cursor-pointer"
         >
           Cancel
         </button>
@@ -95,8 +95,8 @@ export function InlineCommentPopup({
           className={cn(
             "px-3 py-1 rounded-full text-2xs font-medium border-none cursor-pointer transition-opacity",
             text.trim()
-              ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:opacity-90"
-              : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
+              ? "bg-[var(--foreground)] text-[var(--background)] hover:opacity-90"
+              : "bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed",
           )}
         >
           Save
@@ -154,27 +154,27 @@ export function NotePopover({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -4 }}
       transition={{ duration: 0.12 }}
-      className="fixed z-50 w-[256px] p-3 bg-background border border-[var(--border-base)] shadow-lg rounded-xl group/note"
+      className="fixed z-50 w-[256px] p-3 bg-background border border-[var(--border)] shadow-lg rounded-xl group/note"
       style={{ top: clampedTop, left: clampedLeft }}
     >
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-3xs font-medium text-[var(--fg-muted)] uppercase tracking-wider">
+        <span className="text-3xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
           Note
         </span>
         <div className="flex items-center gap-0.5 opacity-0 group-hover/note:opacity-100 transition-opacity">
           <button
             type="button"
             onClick={() => onDelete(comment.id)}
-            className="h-5 w-5 rounded flex items-center justify-center text-[var(--fg-muted)] hover:text-red-500 hover:bg-red-50 bg-transparent border-none cursor-pointer transition-colors"
+            className="h-5 w-5 rounded flex items-center justify-center text-[var(--muted-foreground)] hover:text-red-500 hover:bg-red-50 bg-transparent border-none cursor-pointer transition-colors"
           >
             <Trash2 size={11} />
           </button>
         </div>
       </div>
-      <p className="text-xs text-[var(--fg-base)] leading-relaxed">
+      <p className="text-xs text-[var(--foreground)] leading-relaxed">
         {comment.text}
       </p>
-      <p className="text-3xs text-[var(--fg-disabled)] mt-1.5">
+      <p className="text-3xs text-[var(--muted-foreground)] mt-1.5">
         {comment.author} &middot;{" "}
         {new Date(comment.timestamp).toLocaleDateString("en-US", {
           month: "short",

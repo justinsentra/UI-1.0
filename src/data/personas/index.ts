@@ -11,6 +11,7 @@ import type {
   MockResponse,
   SourceRef,
   PrdScanStep,
+  SuggestionItem,
 } from "@/data/mock-deep-research";
 import type { PreMeetingBrief } from "@/data/mock-pre-meeting-brief";
 
@@ -72,13 +73,12 @@ export interface ToolChoice {
 }
 
 export interface PersonaDeepResearchData {
-  suggestions: string[];
+  suggestions: SuggestionItem[];
   sessionHistory: SessionHistoryItem[];
   /** Document flows for this persona (PRD, financial model, weekly report, etc.) */
   documentFlows: DocumentFlowConfig[];
   /** Optional vendor eval or custom research flow */
   vendorEvalResponse?: MockResponse;
-  vendorEvalTriggerKeywords?: string[];
 }
 
 export interface PersonaReportsData {
@@ -96,6 +96,7 @@ export interface PersonaConnectionsData {
     email: string;
     lastInteraction: string;
     interactions: number;
+    tags?: string[];
   }[];
   companies: {
     id: string;

@@ -47,20 +47,20 @@ export function MeetingTagDropdown({
 
   const TagIcon = ({ type }: { type: "users" | "folder" }) => {
     if (type === "users")
-      return <Users size={14} className="text-[var(--fg-muted)]" />;
-    return <Folder size={14} className="text-[var(--fg-muted)]" />;
+      return <Users size={14} className="text-[var(--muted-foreground)]" />;
+    return <Folder size={14} className="text-[var(--muted-foreground)]" />;
   };
 
   return (
     <div
       ref={ref}
-      className="absolute top-full left-0 mt-1 z-50 w-[260px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border-base)] py-2 shadow-xl"
+      className="absolute top-full left-0 mt-1 z-50 w-[260px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border)] py-2 shadow-xl"
     >
       <div className="px-3 pb-2">
         <div className="relative">
           <Search
             size={14}
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--fg-muted)]"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]"
           />
           <input
             ref={inputRef}
@@ -68,20 +68,20 @@ export function MeetingTagDropdown({
             placeholder="Search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full h-8 pl-8 pr-3 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--border-base)] placeholder:text-[var(--fg-muted)] focus:outline-none"
+            className="w-full h-8 pl-8 pr-3 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--border)] placeholder:text-[var(--muted-foreground)] focus:outline-none"
           />
         </div>
       </div>
 
       <button
         type="button"
-        className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--border-base)] hover:bg-[var(--bg-component-hover)] transition-colors bg-transparent border-none cursor-pointer"
+        className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--border)] hover:bg-[var(--accent)] transition-colors bg-transparent border-none cursor-pointer"
       >
-        <Lock size={14} className="text-[var(--fg-muted)]" />
+        <Lock size={14} className="text-[var(--muted-foreground)]" />
         My notes
       </button>
 
-      <div className="border-t border-[var(--border-base)] my-1" />
+      <div className="border-t border-[var(--border)] my-1" />
 
       <div className="max-h-[200px] overflow-y-auto">
         {filtered.map((tag) => (
@@ -91,25 +91,25 @@ export function MeetingTagDropdown({
             className={cn(
               "w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors bg-transparent border-none cursor-pointer",
               tag.isActive
-                ? "bg-[var(--bg-component-hover)] text-[var(--border-base)]"
-                : "text-[var(--border-base)] hover:bg-[var(--bg-component-hover)]",
+                ? "bg-[var(--accent)] text-[var(--border)]"
+                : "text-[var(--border)] hover:bg-[var(--accent)]",
             )}
           >
             <TagIcon type={tag.icon} />
             <span className="flex-1 text-left">{tag.name}</span>
             {tag.isActive && (
-              <Check size={14} className="text-[var(--fg-muted)]" />
+              <Check size={14} className="text-[var(--muted-foreground)]" />
             )}
           </button>
         ))}
         {filtered.length === 0 && (
-          <p className="px-3 py-2 text-sm text-[var(--fg-muted)]">
+          <p className="px-3 py-2 text-sm text-[var(--muted-foreground)]">
             No tags found
           </p>
         )}
       </div>
 
-      <div className="border-t border-[var(--border-base)] my-1" />
+      <div className="border-t border-[var(--border)] my-1" />
 
       <button
         type="button"
@@ -117,7 +117,7 @@ export function MeetingTagDropdown({
           onClose();
           onNewTag();
         }}
-        className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors bg-transparent border-none cursor-pointer"
+        className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--muted-foreground)] hover:bg-[var(--accent)] transition-colors bg-transparent border-none cursor-pointer"
       >
         <Plus size={14} />
         New Tag

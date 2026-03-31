@@ -19,25 +19,25 @@ export function CreateTagModal({ onClose }: CreateTagModalProps) {
         tabIndex={0}
         aria-label="Close modal"
       />
-      <div className="relative w-[480px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border-base)] shadow-2xl">
+      <div className="relative w-[480px] bg-[var(--bg-raised)] rounded-xl border border-[var(--border)] shadow-2xl">
         <div className="flex items-center justify-between px-6 pt-5 pb-4">
-          <h2 className="text-md font-semibold text-[var(--border-base)]">
+          <h2 className="text-md font-semibold text-[var(--border)]">
             Create tag
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--border-base)] transition-colors cursor-pointer border-none"
+            className="w-7 h-7 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--border)] transition-colors cursor-pointer border-none"
           >
             <X size={14} />
           </button>
         </div>
 
-        <div className="border-t border-[var(--border-base)]" />
+        <div className="border-t border-[var(--border)]" />
 
         <div className="px-6 py-5 space-y-5">
           <div>
-            <label className="block text-sm text-[var(--fg-muted)] mb-2">
+            <label className="block text-sm text-[var(--muted-foreground)] mb-2">
               Title and icon
             </label>
             <input
@@ -45,12 +45,12 @@ export function CreateTagModal({ onClose }: CreateTagModalProps) {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full h-10 px-4 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--border-base)] placeholder:text-[var(--fg-muted)] focus:outline-none"
+              className="w-full h-10 px-4 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--border)] placeholder:text-[var(--muted-foreground)] focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-[var(--fg-muted)] mb-2">
+            <label className="block text-sm text-[var(--muted-foreground)] mb-2">
               Description
             </label>
             <textarea
@@ -58,44 +58,44 @@ export function CreateTagModal({ onClose }: CreateTagModalProps) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--border-base)] placeholder:text-[var(--fg-muted)] focus:outline-none resize-none"
+              className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--border)] placeholder:text-[var(--muted-foreground)] focus:outline-none resize-none"
             />
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-base)]">
-            <div className="w-9 h-9 rounded-lg bg-[var(--bg-component-hover)] flex items-center justify-center text-[var(--fg-muted)] shrink-0">
+          <div className="flex items-center gap-3 p-3 rounded-lg border border-[var(--border)]">
+            <div className="w-9 h-9 rounded-lg bg-[var(--accent)] flex items-center justify-center text-[var(--muted-foreground)] shrink-0">
               <Lock size={16} />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-[var(--border-base)]">
+              <div className="text-sm font-medium text-[var(--border)]">
                 My notes
               </div>
-              <div className="text-xs text-[var(--fg-muted)]">
+              <div className="text-xs text-[var(--muted-foreground)]">
                 <span className="font-medium">Private</span> Only people added
                 to the folder can view.
               </div>
             </div>
             <ChevronDown
               size={16}
-              className="text-[var(--fg-muted)] shrink-0"
+              className="text-[var(--muted-foreground)] shrink-0"
             />
           </div>
         </div>
 
-        <div className="border-t border-[var(--border-base)]" />
+        <div className="border-t border-[var(--border)]" />
 
         <div className="flex items-center justify-between px-6 py-4">
           <button
             type="button"
             onClick={onClose}
-            className="h-9 px-4 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--border-base)] hover:bg-[var(--bg-component-hover)] transition-colors cursor-pointer"
+            className="h-9 px-4 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--border)] hover:bg-[var(--accent)] transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="h-9 px-5 rounded-lg bg-[var(--bg-component-hover)] text-sm text-[var(--fg-muted)] cursor-pointer border-none"
+            className="h-9 px-5 rounded-lg bg-[var(--accent)] text-sm text-[var(--muted-foreground)] cursor-pointer border-none"
           >
             Create
           </button>

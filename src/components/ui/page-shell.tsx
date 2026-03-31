@@ -7,7 +7,9 @@ interface PageShellProps {
 }
 
 const PageShell = ({ children, className }: PageShellProps) => (
-  <div className={cn("max-w-3xl mx-auto pt-14 px-8 pb-16 min-h-screen", className)}>
+  <div
+    className={cn("max-w-3xl mx-auto pt-14 px-8 pb-16 min-h-screen", className)}
+  >
     {children}
   </div>
 );

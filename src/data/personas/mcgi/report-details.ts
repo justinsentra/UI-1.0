@@ -9,14 +9,14 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "",
         paragraphs: [
-          "SoftBank Vision Fund led a $140M Series C into MemoryAI, a direct competitor to Sentra in the organizational memory space. The round closed yesterday and was flagged across two internal channels. This is significant because MCGI is actively evaluating Sentra for investment — SoftBank's move validates the category but introduces competitive pressure on deal terms and timeline.",
-          "Separately, Samsung Next participated in a $45M co-investment round for CarbonGrid's Series A alongside Breakthrough Energy Ventures. MCGI had CarbonGrid in active due diligence for a solo lead position. Samsung's entry changes the cap table dynamics and may compress the window for MCGI to secure favorable terms.",
+          "BlueBridge Vision Fund led a $140M Series C into MemoryAI, a direct competitor to Sentra in the organizational memory space. The round closed yesterday and was flagged across two internal channels. This is significant because AGV is actively evaluating Sentra for investment — BlueBridge's move validates the category but introduces competitive pressure on deal terms and timeline.",
+          "Separately, Hanwa Electronics Next participated in a $45M co-investment round for GreenCore's Series A alongside Breakthrough Energy Ventures. AGV had GreenCore in active due diligence for a solo lead position. Hanwa Electronics's entry changes the cap table dynamics and may compress the window for AGV to secure favorable terms.",
         ],
         sources: [
           { type: "teams", label: "#mcgi-deal-flow" },
           { type: "teams", label: "#mcgi-market-intel" },
-          { type: "zoom", label: "MCGI Daily Standup — Mar 12" },
-          { type: "meeting", label: "CarbonGrid — Founder Check-in" },
+          { type: "zoom", label: "AGV Daily Standup — Mar 12" },
+          { type: "meeting", label: "GreenCore — Founder Check-in" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
           { type: "email", label: "PitchBook CVC deal alerts" },
         ],
@@ -24,25 +24,25 @@ export const reportDetails: Record<string, ReportDetail> = {
     ],
     evidence: [
       {
-        speaker: "Sunna Mo",
+        speaker: "Claire Lawson",
         quote:
-          "Just saw the TechCrunch article — SoftBank put $140M into MemoryAI. That's the same category as Sentra. We need to move faster on the investment memo before this changes the competitive landscape.",
+          "Just saw the TechPulse article — BlueBridge put $140M into MemoryAI. That's the same category as Sentra. We need to move faster on the investment memo before this changes the competitive landscape.",
         meetingTitle: "#mcgi-deal-flow — Teams Chat",
         meetingDate: "Mar 12, 2026 · 9:14 AM",
         sourceType: "teams",
       },
       {
-        speaker: "Ryotaro Nakamura",
+        speaker: "Tom Brennan",
         quote:
-          "Samsung Next co-invested in CarbonGrid's Series A. We were planning to lead that round. This is a problem — we need to discuss with Mihiro whether our terms still hold or if we need to renegotiate.",
-        meetingTitle: "MCGI Daily Standup — Zoom",
+          "Hanwa Electronics Next co-invested in GreenCore's Series A. We were planning to lead that round. This is a problem — we need to discuss with Jake whether our terms still hold or if we need to renegotiate.",
+        meetingTitle: "AGV Daily Standup — Zoom",
         meetingDate: "Mar 12, 2026 · 8:30 AM",
         sourceType: "zoom",
       },
       {
-        speaker: "Mihiro Nakamura",
+        speaker: "Jake Brennan",
         quote:
-          "The CarbonGrid founders said Samsung reached out directly after the M-Lab demo. They're open to MCGI leading but want us to confirm by end of week.",
+          "The GreenCore founders said Hanwa Electronics reached out directly after the Catalyst Alliance demo. They're open to AGV leading but want us to confirm by end of week.",
         meetingTitle: "#mcgi-deal-flow — Teams Chat",
         meetingDate: "Mar 12, 2026 · 10:02 AM",
         sourceType: "teams",
@@ -51,8 +51,8 @@ export const reportDetails: Record<string, ReportDetail> = {
     sources: [
       { type: "teams", label: "#mcgi-deal-flow" },
       { type: "teams", label: "#mcgi-market-intel" },
-      { type: "zoom", label: "MCGI Daily Standup — Mar 12" },
-      { type: "meeting", label: "CarbonGrid — Founder Check-in" },
+      { type: "zoom", label: "AGV Daily Standup — Mar 12" },
+      { type: "meeting", label: "GreenCore — Founder Check-in" },
       { type: "slack", label: "#mcgi-portfolio-updates" },
       { type: "email", label: "PitchBook CVC deal alerts" },
     ],
@@ -63,11 +63,11 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
       {
         icon: "calendar",
-        label: "Schedule emergency CarbonGrid terms discussion",
+        label: "Schedule emergency GreenCore terms discussion",
       },
       {
         icon: "clock",
-        label: "Set alert for CarbonGrid founder response deadline",
+        label: "Set alert for GreenCore founder response deadline",
       },
     ],
   },
@@ -79,11 +79,11 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Pipeline Overview",
         paragraphs: [
-          "MCGI's active pipeline grew to 14 companies this week, up from 11 at the end of February. The increase was driven primarily by strong inbound referral volume (23 new referrals, a 40% increase over the monthly average) and three companies advancing from initial screening to active evaluation.",
+          "AGV's active pipeline grew to 14 companies this week, up from 11 at the end of February. The increase was driven primarily by strong inbound referral volume (23 new referrals, a 40% increase over the monthly average) and three companies advancing from initial screening to active evaluation.",
           "The pipeline is concentrated in three thesis areas: AI infrastructure and enterprise software (6 companies, 43%), climate technology (5 companies, 36%), and advanced materials (3 companies, 21%). This distribution aligns with the board-approved allocation targets, though climate tech may need to increase to 35% per recent guidance.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+          { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
           { type: "email", label: "Inbound referral tracker" },
           { type: "slack", label: "#mcgi-deal-flow" },
           {
@@ -95,8 +95,8 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Key Pipeline Movements",
         paragraphs: [
-          "Three companies were approved by the Investment Committee to advance to full due diligence: Sentra (organizational memory / enterprise AI, pre-seed), CarbonGrid (industrial carbon capture, Series A), and FluxMaterials (battery recycling, seed). All three demonstrate strong alignment with MC business unit needs and represent significant market opportunities.",
-          "Sentra is particularly notable as a potential strategic investment — their organizational memory product could be deployed across MC's 1,700+ group companies to preserve institutional knowledge during leadership transitions. The founding team (MIT professor + strong technical co-founder) has secured $5M from a16z Speedrun and already has design partners including teams at SoftBank and Runway.",
+          "Three companies were approved by the Investment Committee to advance to full due diligence: Sentra (organizational memory / enterprise AI, pre-seed), GreenCore (industrial carbon capture, Series A), and NovaMaterials (battery recycling, seed). All three demonstrate strong alignment with AG business unit needs and represent significant market opportunities.",
+          "Sentra is particularly notable as a potential strategic investment — their organizational memory product could be deployed across AG's 1,700+ group companies to preserve institutional knowledge during leadership transitions. The founding team (university professor + strong technical co-founder) has secured $5M from Apex AI Conference and already has design partners including teams at BlueBridge and RenderLab.",
           "Two companies were passed on this week: DataMesh (insufficient technical differentiation in the vector database space) and GreenFleet (unit economics don't work without regulatory subsidies that are uncertain post-2027).",
         ],
         sources: [
@@ -106,40 +106,40 @@ export const reportDetails: Record<string, ReportDetail> = {
           },
           {
             type: "meeting",
-            label: "CarbonGrid — Technical Due Diligence Review",
+            label: "GreenCore — Technical Due Diligence Review",
           },
           {
             type: "meeting",
             label: "Investment Committee — Q1 Pipeline Review",
           },
           { type: "notion", label: "IC Screening Notes — Mar 7" },
-          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+          { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
         ],
       },
       {
         heading: "Deployment Pacing",
         paragraphs: [
           "Year-to-date capital deployment stands at $48M against the $120M annual target, representing 40% of the annual allocation deployed in the first 10 weeks. If quality deal flow continues at the current pace, the team may need to request an increased allocation for H2 2026 or tighten investment criteria.",
-          "Average check size has increased to $6.2M from $4.8M in Q4 2025, reflecting a shift toward slightly later-stage opportunities where MCGI can provide more meaningful strategic value through MC business unit introductions.",
+          "Average check size has increased to $6.2M from $4.8M in Q4 2025, reflecting a shift toward slightly later-stage opportunities where AGV can provide more meaningful strategic value through AG business unit introductions.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Capital Allocation Model" },
+          { type: "google-docs", label: "AGV Capital Allocation Model" },
           {
             type: "meeting",
             label: "Investment Committee — Q1 Pipeline Review",
           },
-          { type: "sharepoint", label: "MC CVC Annual Deployment Tracker" },
+          { type: "sharepoint", label: "AG CVC Annual Deployment Tracker" },
         ],
       },
       {
         heading: "Upcoming Pipeline Activities",
         paragraphs: [
-          "Key activities for the coming week include: Sentra investment memo preparation (lead: Sunna Mo), CarbonGrid technical DD with MC industrial team (lead: Mihiro Nakamura), Stanford HAI conference networking (team attendance), and NeuralDB Series B co-investor introductions. The YC W26 demo day scouting plan has been finalized with M-Lab consortium members.",
+          "Key activities for the coming week include: Sentra investment memo preparation (lead: Claire Lawson), GreenCore technical DD with AG industrial team (lead: Jake Brennan), Ashmore AI Summit conference networking (team attendance), and SyntheticDB Series B co-investor introductions. The LP Winter 26 demo day scouting plan has been finalized with Catalyst Alliance consortium members.",
         ],
         sources: [
           { type: "slack", label: "#mcgi-deal-flow" },
-          { type: "google-calendar", label: "MCGI Team Calendar" },
-          { type: "email", label: "Stanford HAI invitation" },
+          { type: "outlook", label: "AGV Team Calendar" },
+          { type: "email", label: "Ashmore AI Summit invitation" },
           { type: "teams", label: "#m-lab-consortium" },
         ],
       },
@@ -148,15 +148,15 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Sentra — Due Diligence Summary",
         paragraphs: [
-          "Sentra is building organizational memory — a system that captures decision history and context as teams scale. Their interaction-first approach (capturing actors + interactions, deriving decisions and commitments) is differentiated from Glean's aggregation model. Current traction includes design partners at SoftBank, Runway, and Campfire. ICP is Series A/B startups (30-1000 employees). Pre-seed stage, $5M raised from a16z Speedrun and Together Fund.",
-          "MC synergy score: HIGH. Potential deployment across MC group companies for cross-cultural knowledge transfer. Additional value as portfolio company tool for MCGI's broader portfolio.",
+          "Sentra is building organizational memory — a system that captures decision history and context as teams scale. Their interaction-first approach (capturing actors + interactions, deriving decisions and commitments) is differentiated from Prism's aggregation model. Current traction includes design partners at BlueBridge, RenderLab, and Campfire. ICP is Series A/B startups (30-1000 employees). Pre-seed stage, $5M raised from Apex AI Conference and Horizon Fund.",
+          "AG synergy score: HIGH. Potential deployment across AG group companies for cross-cultural knowledge transfer. Additional value as portfolio company tool for AGV's broader portfolio.",
         ],
       },
       {
-        heading: "CarbonGrid — Technical Assessment",
+        heading: "GreenCore — Technical Assessment",
         paragraphs: [
-          "CarbonGrid's proprietary polymer membrane achieves 92% CO2 selectivity at ambient temperature, eliminating energy-intensive heating. Independent lab results confirm 40% efficiency improvement over competitors. Unit economics project $78/ton at 10K+ ton annual scale, competitive with EU and Japan carbon credit pricing.",
-          "MC synergy score: HIGH. Immediate deployment opportunity across 12-15 cement and steel facilities in MC's industrial portfolio. Hiroshi Tanabe (MC Industrial Materials) has confirmed strong interest from division leadership.",
+          "GreenCore's proprietary polymer membrane achieves 92% CO2 selectivity at ambient temperature, eliminating energy-intensive heating. Independent lab results confirm 40% efficiency improvement over competitors. Unit economics project $78/ton at 10K+ ton annual scale, competitive with EU and Europe carbon credit pricing.",
+          "AG synergy score: HIGH. Immediate deployment opportunity across 12-15 cement and steel facilities in AG's industrial portfolio. Greg Lawton (AG Industrial Materials) has confirmed strong interest from division leadership.",
         ],
       },
     ],
@@ -168,19 +168,19 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
       {
         type: "meeting",
-        label: "CarbonGrid — Technical Due Diligence Review",
+        label: "GreenCore — Technical Due Diligence Review",
       },
       { type: "slack", label: "#mcgi-deal-flow" },
       { type: "email", label: "Inbound referral tracker" },
-      { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+      { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Send pipeline summary to Tokyo HQ" },
+      { icon: "mail", label: "Send pipeline summary to London HQ" },
       {
         icon: "calendar",
         label: "Schedule Sentra IC vote for next committee meeting",
       },
-      { icon: "clock", label: "Set reminder for CarbonGrid site visit" },
+      { icon: "clock", label: "Set reminder for GreenCore site visit" },
     ],
   },
   "mcgi-rpt-portfolio-1": {
@@ -191,62 +191,65 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Portfolio Overview",
         paragraphs: [
-          "MCGI's active portfolio comprises 12 companies across AI/enterprise (5), climate tech (4), and advanced materials (3). Combined portfolio revenue grew 34% quarter-over-quarter to $28.4M ARR. Two portfolio companies (NeuralDB and GridScale) are in active fundraising processes for their next rounds.",
+          "AGV's active portfolio comprises 12 companies across AI/enterprise (5), climate tech (4), and advanced materials (3). Combined portfolio revenue grew 34% quarter-over-quarter to $28.4M ARR. Two portfolio companies (SyntheticDB and GridScale) are in active fundraising processes for their next rounds.",
           "Portfolio health metrics are strong: 10 of 12 companies are at or above plan on their key milestones, one is tracking slightly behind (EcoSynth — delayed pilot with a key customer), and one is in watch status (QuantumSense — burn rate concerns, runway at 8 months).",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Portfolio Dashboard Q1" },
+          { type: "google-docs", label: "AGV Portfolio Dashboard Q1" },
           { type: "email", label: "Monthly portfolio company reports" },
-          { type: "sharepoint", label: "MC CVC Portfolio Metrics" },
+          { type: "sharepoint", label: "AG CVC Portfolio Metrics" },
         ],
       },
       {
         heading: "Top Performers",
         paragraphs: [
-          "NeuralDB continues to be the standout, reaching $1.8M ARR with 25% month-over-month growth. Their enterprise motion is working well with three $100K+ ACV deals closed in February. Planning a $30M Series B for Q3 — MCGI is facilitating Japan market introductions and co-investor connections to JAFCO and Global Brain.",
-          "GridScale Energy hit a major milestone with their first utility-scale deployment contract ($4.2M) with a California utility. This validates their grid-scale battery storage technology and positions them well for a Series B in H1 2026.",
+          "SyntheticDB continues to be the standout, reaching $1.8M ARR with 25% month-over-month growth. Their enterprise motion is working well with three $100K+ ACV deals closed in February. Planning a $30M Series B for Q3 — AGV is facilitating Europe market introductions and co-investor connections to Sakura Capital and Pacific Mind.",
+          "SolarCore Energy hit a major milestone with their first utility-scale deployment contract ($4.2M) with a California utility. This validates their grid-scale battery storage technology and positions them well for a Series B in H1 2026.",
         ],
         sources: [
-          { type: "meeting", label: "Portfolio Company Check-in — NeuralDB" },
+          {
+            type: "meeting",
+            label: "Portfolio Company Check-in — SyntheticDB",
+          },
           { type: "meeting", label: "GridScale — Milestone Review" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
-          { type: "email", label: "NeuralDB — Feb Board Deck" },
+          { type: "email", label: "SyntheticDB — Feb Board Deck" },
         ],
       },
       {
-        heading: "MC Business Unit Engagement",
+        heading: "AG Business Unit Engagement",
         paragraphs: [
-          "Active MC synergy engagements: NeuralDB → MC IT Infrastructure (pilot evaluation), CarbonGrid → MC Industrial Materials (technical DD complete, commercial discussion initiated), GridScale → MC Power Solutions (joint go-to-market in Southeast Asia under discussion).",
-          "Three new synergy opportunities identified this quarter through the M-Lab consortium network. Conversion from introduction to active engagement running at 45%, up from 30% in Q4 2025.",
+          "Active AG synergy engagements: SyntheticDB → AG IT Infrastructure (pilot evaluation), GreenCore → AG Industrial Materials (technical DD complete, commercial discussion initiated), GridScale → AG Power Solutions (joint go-to-market in Latin America under discussion).",
+          "Three new synergy opportunities identified this quarter through the Catalyst Alliance consortium network. Conversion from introduction to active engagement running at 45%, up from 30% in Q4 2025.",
         ],
         sources: [
           { type: "teams", label: "#mc-synergy-tracking" },
-          { type: "meeting", label: "M-Lab Consortium Monthly" },
-          { type: "google-docs", label: "MC BU Engagement Tracker" },
+          { type: "meeting", label: "Catalyst Alliance Consortium Monthly" },
+          { type: "google-docs", label: "AG BU Engagement Tracker" },
         ],
       },
       {
         heading: "Watch List & Risk Factors",
         paragraphs: [
           "QuantumSense requires close monitoring — their burn rate of $850K/month against $6.8M remaining runway gives approximately 8 months. They need to either close their bridge round or significantly reduce burn by Q2. Recommendation: schedule CEO check-in within 2 weeks to assess plan.",
-          "Broader market risk: rising interest rates have slowed later-stage funding. Two portfolio companies (Series B+) may face valuation pressure if they need to raise in H2 2026. MCGI should prepare bridge financing scenarios as contingency.",
+          "Broader market risk: rising interest rates have slowed later-stage funding. Two portfolio companies (Series B+) may face valuation pressure if they need to raise in H2 2026. AGV should prepare bridge financing scenarios as contingency.",
         ],
         sources: [
           { type: "email", label: "QuantumSense — Monthly Update" },
-          { type: "google-docs", label: "MCGI Risk Register Q1" },
+          { type: "google-docs", label: "AGV Risk Register Q1" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
         ],
       },
     ],
     sources: [
-      { type: "meeting", label: "Portfolio Company Check-in — NeuralDB" },
-      { type: "google-docs", label: "MCGI Portfolio Dashboard Q1" },
+      { type: "meeting", label: "Portfolio Company Check-in — SyntheticDB" },
+      { type: "google-docs", label: "AGV Portfolio Dashboard Q1" },
       { type: "slack", label: "#mcgi-portfolio-updates" },
       { type: "email", label: "Monthly portfolio company reports" },
     ],
     suggestedActions: [
       { icon: "calendar", label: "Schedule QuantumSense CEO check-in" },
-      { icon: "mail", label: "Share Q1 portfolio report with MC board" },
+      { icon: "mail", label: "Share Q1 portfolio report with AG board" },
       {
         icon: "clock",
         label: "Set reminder for GridScale Series B timeline",
@@ -273,22 +276,22 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "AI Agent Frameworks — Key Investment Theme",
         paragraphs: [
-          "AI agent orchestration platforms have emerged as the fastest-growing category in enterprise AI. The M-Lab consortium independently identified this as a priority scouting area, with three member companies flagging urgent enterprise demand.",
-          "Key players to watch: Anthropic (Claude Code, agent SDK), LangChain (LangGraph), CrewAI, and several YC W26 batch companies. The market is pre-consolidation, creating a window for strategic investment in differentiated approaches.",
-          "MCGI thesis: Agent frameworks that focus on enterprise-grade reliability, auditability, and integration with existing business processes will win over general-purpose orchestration tools. This aligns with MC business unit needs for automation that works within Japanese corporate governance structures.",
+          "AI agent orchestration platforms have emerged as the fastest-growing category in enterprise AI. The Catalyst Alliance consortium independently identified this as a priority scouting area, with three member companies flagging urgent enterprise demand.",
+          "Key players to watch: Anthropic (Claude Code, agent SDK), LangChain (LangGraph), CrewAI, and several LP Winter 26 batch companies. The market is pre-consolidation, creating a window for strategic investment in differentiated approaches.",
+          "AGV thesis: Agent frameworks that focus on enterprise-grade reliability, auditability, and integration with existing business processes will win over general-purpose orchestration tools. This aligns with AG business unit needs for automation that works within European corporate governance structures.",
         ],
         sources: [
-          { type: "meeting", label: "M-Lab Consortium Monthly" },
+          { type: "meeting", label: "Catalyst Alliance Consortium Monthly" },
           { type: "notion", label: "Agent Framework Landscape Map" },
-          { type: "email", label: "YC W26 batch scouting notes" },
-          { type: "google-docs", label: "MCGI Investment Thesis — AI Agents" },
+          { type: "email", label: "LP Winter 26 batch scouting notes" },
+          { type: "google-docs", label: "AGV Investment Thesis — AI Agents" },
         ],
       },
       {
         heading: "Competitive CVC Landscape",
         paragraphs: [
-          "Notable competitor investments this month: SoftBank Vision Fund led a $200M round in AgentOS (AI agent platform), Samsung Next invested in three AI infrastructure companies totaling $45M, and Intel Capital made a strategic investment in a chip-design AI startup.",
-          "MCGI maintains differentiated positioning through the MC business unit synergy model — no other CVC can offer immediate access to 1,700+ group companies across 90 countries for customer validation and commercial deployment.",
+          "Notable competitor investments this month: BlueBridge Vision Fund led a $200M round in AgentOS (AI agent platform), Hanwa Electronics Next invested in three AI infrastructure companies totaling $45M, and Intel Capital made a strategic investment in a chip-design AI startup.",
+          "AGV maintains differentiated positioning through the AG business unit synergy model — no other CVC can offer immediate access to 1,700+ group companies across 90 countries for customer validation and commercial deployment.",
         ],
         sources: [
           { type: "email", label: "PitchBook CVC deal alerts" },
@@ -298,18 +301,18 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
     ],
     sources: [
-      { type: "meeting", label: "M-Lab Consortium Monthly" },
+      { type: "meeting", label: "Catalyst Alliance Consortium Monthly" },
       { type: "slack", label: "#mcgi-market-intel" },
       { type: "google-docs", label: "AI Sector Tracking Sheet" },
       { type: "email", label: "PitchBook AI sector alerts" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Share AI agent thesis with Tokyo team" },
+      { icon: "mail", label: "Share AI agent thesis with London team" },
       {
         icon: "calendar",
         label: "Schedule deep dive on agent framework startups",
       },
-      { icon: "clock", label: "Set alert for YC W26 demo day" },
+      { icon: "clock", label: "Set alert for LP Winter 26 demo day" },
     ],
   },
   "mcgi-rpt-pipeline-2": {
@@ -320,86 +323,86 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Pipeline Summary",
         paragraphs: [
-          "MCGI's active pipeline stands at 11 companies entering the final week of February, reflecting a slight contraction from 13 at the start of the month after two companies were moved to pass status following Investment Committee review. The current distribution skews toward AI infrastructure (5 companies, 45%) and climate tech (4 companies, 36%), with advanced materials rounding out the pipeline at 2 companies (18%).",
-          "Despite the pipeline contraction in active names, the quality of companies under evaluation has improved. Average founding team strength score (an internal MCGI metric combining academic pedigree, domain experience, and prior exits) rose to 8.2 out of 10, up from 7.6 in January. This suggests the screening process refinements introduced at the start of Q1 are filtering more effectively.",
-          "Capital deployment year-to-date sits at $38M against the $120M annual target. The team is on track but will need to accelerate commitments in March to maintain even quarterly pacing, particularly as two Series A opportunities (CarbonGrid and NeuralDB follow-on) are expected to close by mid-March.",
+          "AGV's active pipeline stands at 11 companies entering the final week of February, reflecting a slight contraction from 13 at the start of the month after two companies were moved to pass status following Investment Committee review. The current distribution skews toward AI infrastructure (5 companies, 45%) and climate tech (4 companies, 36%), with advanced materials rounding out the pipeline at 2 companies (18%).",
+          "Despite the pipeline contraction in active names, the quality of companies under evaluation has improved. Average founding team strength score (an internal AGV metric combining academic pedigree, domain experience, and prior exits) rose to 8.2 out of 10, up from 7.6 in January. This suggests the screening process refinements introduced at the start of Q1 are filtering more effectively.",
+          "Capital deployment year-to-date sits at $38M against the $120M annual target. The team is on track but will need to accelerate commitments in March to maintain even quarterly pacing, particularly as two Series A opportunities (GreenCore and SyntheticDB follow-on) are expected to close by mid-March.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+          { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
           { type: "slack", label: "#mcgi-deal-flow" },
-          { type: "sharepoint", label: "MC CVC Annual Deployment Tracker" },
+          { type: "sharepoint", label: "AG CVC Annual Deployment Tracker" },
         ],
       },
       {
         heading: "New Inbound Activity",
         paragraphs: [
-          "Inbound referral volume was exceptionally strong this week with 18 new referrals received across multiple channels. The M-Lab consortium network contributed 11 referrals, representing the highest single-week volume from this channel since the consortium's formation. Companies referred through M-Lab tend to have higher conversion rates (35% reach screening vs. 12% for cold inbound), making this a valuable leading indicator for pipeline growth in March.",
-          "The Stanford Energy & Climate Conference (Feb 25–26) generated 7 additional inbound connections. Sunna Mo and Ryotaro Nakamura attended and flagged three companies as particularly promising: ThermoVault (industrial heat storage), SynthCarbon (direct air capture with novel sorbent), and AgriSense (precision agriculture AI). Initial screening calls have been scheduled for the first week of March.",
+          "Inbound referral volume was exceptionally strong this week with 18 new referrals received across multiple channels. The Catalyst Alliance consortium network contributed 11 referrals, representing the highest single-week volume from this channel since the consortium's formation. Companies referred through Catalyst Alliance tend to have higher conversion rates (35% reach screening vs. 12% for cold inbound), making this a valuable leading indicator for pipeline growth in March.",
+          "The Ashmore Energy & Climate Conference (Feb 25–26) generated 7 additional inbound connections. Claire Lawson and Tom Brennan attended and flagged three companies as particularly promising: ThermoVault (industrial heat storage), SynthCarbon (direct air capture with novel sorbent), and AgriSense (precision agriculture AI). Initial screening calls have been scheduled for the first week of March.",
           "Of the 18 total referrals, 6 have been prioritized for immediate screening based on thesis alignment and market timing. The remaining 12 will be triaged during the Monday pipeline review meeting.",
         ],
         sources: [
           { type: "email", label: "Inbound referral tracker" },
           { type: "teams", label: "#m-lab-consortium" },
-          { type: "meeting", label: "Stanford Energy & Climate Conference" },
+          { type: "meeting", label: "Ashmore Energy & Climate Conference" },
           { type: "slack", label: "#mcgi-deal-flow" },
         ],
       },
       {
         heading: "Key Pipeline Movements",
         paragraphs: [
-          "Two companies advanced from initial screening to active evaluation this week. FluxMaterials (battery recycling, seed stage) was approved by the screening committee after a strong technical presentation demonstrating their proprietary hydrometallurgical process. Their unit economics at pilot scale are compelling — 60% gross margin on recovered lithium and cobalt — and MC's metals trading division has expressed interest in an offtake partnership.",
-          "GridScale Energy (grid-scale battery storage, Series A) also moved to active evaluation following completion of preliminary technical due diligence. Their vanadium redox flow battery technology shows promising cycle life data (>15,000 cycles with <5% degradation), and the founding team includes two former Tesla Energy engineers with deep expertise in utility-scale deployments.",
+          "Two companies advanced from initial screening to active evaluation this week. NovaMaterials (battery recycling, seed stage) was approved by the screening committee after a strong technical presentation demonstrating their proprietary hydrometallurgical process. Their unit economics at pilot scale are compelling — 60% gross margin on recovered lithium and cobalt — and AG's metals trading division has expressed interest in an offtake partnership.",
+          "SolarCore Energy (grid-scale battery storage, Series A) also moved to active evaluation following completion of preliminary technical due diligence. Their vanadium redox flow battery technology shows promising cycle life data (>15,000 cycles with <5% degradation), and the founding team includes two former Tesla Energy engineers with deep expertise in utility-scale deployments.",
           "One company was passed this week: DataVault (enterprise data management). While the team was strong, the competitive landscape in enterprise data management is crowded, and DataVault's differentiation around compliance automation was deemed insufficient relative to established players like Informatica and Collibra. The IC recommended monitoring for a potential future entry if they demonstrate stronger product-market fit.",
         ],
         sources: [
-          { type: "meeting", label: "FluxMaterials — Technical Screening" },
+          { type: "meeting", label: "NovaMaterials — Technical Screening" },
           { type: "meeting", label: "GridScale — Preliminary DD Review" },
           { type: "notion", label: "IC Screening Notes — Feb 26" },
-          { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+          { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
         ],
       },
       {
         heading: "Upcoming Activities",
         paragraphs: [
-          "The coming week is dense with pipeline activity. Priority items include: completing the CarbonGrid technical due diligence site visit (scheduled for Mar 3 at their Oakland pilot facility), finalizing the Sentra investment memo draft for IC pre-read, and conducting initial screening calls with the three Stanford conference referrals. Mihiro Nakamura will lead the CarbonGrid visit alongside an engineer from MC Industrial Materials.",
-          "The team is also preparing for the YC W26 batch preview, with scouting assignments distributed across the team. MCGI has secured early access to 8 companies in the AI and climate categories through the M-Lab consortium relationship with YC partners. A scouting debrief is scheduled for Mar 5.",
+          "The coming week is dense with pipeline activity. Priority items include: completing the GreenCore technical due diligence site visit (scheduled for Mar 3 at their Oakland pilot facility), finalizing the Sentra investment memo draft for IC pre-read, and conducting initial screening calls with the three Ashmore conference referrals. Jake Brennan will lead the GreenCore visit alongside an engineer from AG Industrial Materials.",
+          "The team is also preparing for the LP Winter 26 batch preview, with scouting assignments distributed across the team. AGV has secured early access to 8 companies in the AI and climate categories through the Catalyst Alliance consortium relationship with LP partners. A scouting debrief is scheduled for Mar 5.",
         ],
         sources: [
-          { type: "google-calendar", label: "MCGI Team Calendar" },
+          { type: "outlook", label: "AGV Team Calendar" },
           { type: "slack", label: "#mcgi-deal-flow" },
           { type: "teams", label: "#m-lab-consortium" },
-          { type: "email", label: "YC W26 early access list" },
+          { type: "email", label: "LP Winter 26 early access list" },
         ],
       },
     ],
     drillDowns: [
       {
-        heading: "FluxMaterials — Screening Summary",
+        heading: "NovaMaterials — Screening Summary",
         paragraphs: [
-          "FluxMaterials is developing a hydrometallurgical battery recycling process that recovers lithium, cobalt, and nickel at significantly higher purity (99.5%+) than conventional pyrometallurgical methods. Seed stage, raising $8M led by DCVC with MCGI considering a $3M co-invest. Founding team includes a Stanford materials science PhD and a former Redwood Materials operations lead.",
-          "MC synergy score: HIGH. MC Metals Trading has confirmed interest in an offtake agreement for recovered materials, and MC's automotive portfolio companies represent a potential supply chain for end-of-life battery feedstock. This could create a closed-loop recycling model within the MC ecosystem.",
+          "NovaMaterials is developing a hydrometallurgical battery recycling process that recovers lithium, cobalt, and nickel at significantly higher purity (99.5%+) than conventional pyrometallurgical methods. Seed stage, raising $8M led by DCVC with AGV considering a $3M co-invest. Founding team includes a Ashmore materials science PhD and a former Redwood Materials operations lead.",
+          "AG synergy score: HIGH. AG Metals Trading has confirmed interest in an offtake agreement for recovered materials, and AG's automotive portfolio companies represent a potential supply chain for end-of-life battery feedstock. This could create a closed-loop recycling model within the AG ecosystem.",
         ],
       },
     ],
     sources: [
-      { type: "google-docs", label: "MCGI Pipeline Tracker Q1 2026" },
+      { type: "google-docs", label: "AGV Pipeline Tracker Q1 2026" },
       { type: "email", label: "Inbound referral tracker" },
       { type: "slack", label: "#mcgi-deal-flow" },
       { type: "teams", label: "#m-lab-consortium" },
-      { type: "meeting", label: "Stanford Energy & Climate Conference" },
+      { type: "meeting", label: "Ashmore Energy & Climate Conference" },
     ],
     suggestedActions: [
       {
         icon: "calendar",
-        label: "Confirm CarbonGrid site visit logistics with MC Industrial",
+        label: "Confirm GreenCore site visit logistics with AG Industrial",
       },
       {
         icon: "mail",
-        label: "Distribute YC W26 scouting assignments to team",
+        label: "Distribute LP Winter 26 scouting assignments to team",
       },
       {
         icon: "clock",
-        label: "Set reminder for Stanford referral screening calls",
+        label: "Set reminder for Ashmore referral screening calls",
       },
     ],
   },
@@ -411,69 +414,72 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Portfolio Overview",
         paragraphs: [
-          "MCGI's active portfolio at the close of Q4 2025 comprised 10 companies across three core thesis areas: AI and enterprise software (4 companies), climate technology (3 companies), and advanced materials (3 companies). Combined portfolio revenue reached $21.2M ARR, representing 28% quarter-over-quarter growth driven primarily by NeuralDB's breakout enterprise traction and GridScale Energy's first commercial contract.",
-          "Total capital deployed by MCGI across the portfolio stands at $62M, with an aggregate portfolio MOIC of 1.4x based on latest round valuations. The portfolio is young — average holding period is 14 months — so markup-driven returns are expected to accelerate as companies reach Series B milestones in 2026.",
+          "AGV's active portfolio at the close of Q4 2025 comprised 10 companies across three core thesis areas: AI and enterprise software (4 companies), climate technology (3 companies), and advanced materials (3 companies). Combined portfolio revenue reached $21.2M ARR, representing 28% quarter-over-quarter growth driven primarily by SyntheticDB's breakout enterprise traction and SolarCore Energy's first commercial contract.",
+          "Total capital deployed by AGV across the portfolio stands at $62M, with an aggregate portfolio MOIC of 1.4x based on latest round valuations. The portfolio is young — average holding period is 14 months — so markup-driven returns are expected to accelerate as companies reach Series B milestones in 2026.",
           "Portfolio health improved relative to Q3: 8 of 10 companies are at or above plan on key milestones. Two companies require active monitoring (QuantumSense and EcoSynth), though neither is in critical status. The overall portfolio risk profile is moderate, with concentration risk in AI/enterprise being the primary concern flagged by the IC.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Portfolio Dashboard Q4 2025" },
-          { type: "sharepoint", label: "MC CVC Portfolio Metrics" },
+          { type: "google-docs", label: "AGV Portfolio Dashboard Q4 2025" },
+          { type: "sharepoint", label: "AG CVC Portfolio Metrics" },
           { type: "email", label: "Q4 portfolio company reports" },
         ],
       },
       {
         heading: "Top Performers",
         paragraphs: [
-          "NeuralDB was the standout performer in Q4, reaching $1.2M ARR — a 3x increase from $400K at the start of the quarter. This inflection was driven by the launch of their enterprise tier in October and three landmark deals: a $120K ACV contract with a Fortune 500 financial services firm, a $95K deployment with a Japanese logistics company (introduced through MC's supply chain division), and a $80K deal with a Bay Area tech company.",
-          "The MC-facilitated introduction to the Japanese logistics company is a proof point for MCGI's strategic value model. NeuralDB's CEO credited the warm introduction and MC's endorsement as the decisive factors in closing the deal within 6 weeks — half their typical enterprise sales cycle. This success has generated interest from two additional MC group companies for pilot evaluations in Q1 2026.",
-          "GridScale Energy also delivered strong results, completing their pilot deployment with a regional California utility and receiving a letter of intent for a full-scale deployment worth $4.2M. Their technology performance exceeded specifications, with the vanadium redox flow battery achieving 87% round-trip efficiency over the 90-day pilot period.",
+          "SyntheticDB was the standout performer in Q4, reaching $1.2M ARR — a 3x increase from $400K at the start of the quarter. This inflection was driven by the launch of their enterprise tier in October and three landmark deals: a $120K ACV contract with a Fortune 500 financial services firm, a $95K deployment with a European logistics company (introduced through AG's supply chain division), and a $80K deal with a East Coast tech company.",
+          "The AG-facilitated introduction to the European logistics company is a proof point for AGV's strategic value model. SyntheticDB's CEO credited the warm introduction and AG's endorsement as the decisive factors in closing the deal within 6 weeks — half their typical enterprise sales cycle. This success has generated interest from two additional AG group companies for pilot evaluations in Q1 2026.",
+          "SolarCore Energy also delivered strong results, completing their pilot deployment with a regional California utility and receiving a letter of intent for a full-scale deployment worth $4.2M. Their technology performance exceeded specifications, with the vanadium redox flow battery achieving 87% round-trip efficiency over the 90-day pilot period.",
         ],
         sources: [
-          { type: "meeting", label: "NeuralDB — Q4 Board Meeting" },
+          { type: "meeting", label: "SyntheticDB — Q4 Board Meeting" },
           { type: "meeting", label: "GridScale — Pilot Results Review" },
-          { type: "email", label: "NeuralDB — Q4 Board Deck" },
+          { type: "email", label: "SyntheticDB — Q4 Board Deck" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
         ],
       },
       {
-        heading: "MC Business Unit Engagement",
+        heading: "AG Business Unit Engagement",
         paragraphs: [
-          "Q4 saw a meaningful acceleration in MC business unit engagement with portfolio companies. Total active synergy engagements increased from 5 to 8, with 3 new introductions converting to pilot evaluations. The conversion rate from introduction to active engagement improved to 30%, up from 22% in Q3, reflecting better matching processes between portfolio capabilities and BU needs.",
-          "Key engagements: NeuralDB with MC IT Infrastructure (pilot evaluation for group-wide deployment), CarbonGrid with MC Industrial Materials (technical assessment for cement plant integration), and a new engagement between PolymerX (advanced materials portfolio company) and MC Chemicals for a joint development agreement on biodegradable packaging materials.",
-          "The M-Lab consortium also facilitated 4 cross-portfolio introductions between MCGI companies and portfolio companies of other consortium CVCs, creating potential partnership and customer relationships outside the MC ecosystem.",
+          "Q4 saw a meaningful acceleration in AG business unit engagement with portfolio companies. Total active synergy engagements increased from 5 to 8, with 3 new introductions converting to pilot evaluations. The conversion rate from introduction to active engagement improved to 30%, up from 22% in Q3, reflecting better matching processes between portfolio capabilities and BU needs.",
+          "Key engagements: SyntheticDB with AG IT Infrastructure (pilot evaluation for group-wide deployment), GreenCore with AG Industrial Materials (technical assessment for cement plant integration), and a new engagement between PolymerX (advanced materials portfolio company) and AG Chemicals for a joint development agreement on biodegradable packaging materials.",
+          "The Catalyst Alliance consortium also facilitated 4 cross-portfolio introductions between AGV companies and portfolio companies of other consortium CVCs, creating potential partnership and customer relationships outside the AG ecosystem.",
         ],
         sources: [
           { type: "teams", label: "#mc-synergy-tracking" },
-          { type: "meeting", label: "MC BU Quarterly Synergy Review" },
-          { type: "google-docs", label: "MC BU Engagement Tracker" },
-          { type: "notion", label: "M-Lab Cross-Portfolio Introductions" },
+          { type: "meeting", label: "AG BU Quarterly Synergy Review" },
+          { type: "google-docs", label: "AG BU Engagement Tracker" },
+          {
+            type: "notion",
+            label: "Catalyst Alliance Cross-Portfolio Introductions",
+          },
         ],
       },
       {
         heading: "Watch List",
         paragraphs: [
           "QuantumSense remains on the watch list entering Q1 2026. Revenue growth stalled at $180K ARR as their primary customer segment (semiconductor fabs) delayed purchasing decisions amid an industry-wide capex slowdown. Burn rate is $850K/month with approximately 10 months of runway remaining at end of Q4. The CEO has initiated conversations with three potential bridge investors and is exploring a pivot toward pharmaceutical quality inspection, where the technology shows promising early results.",
-          "EcoSynth experienced a setback when their planned pilot with a major Japanese chemical company was delayed from November to February 2026 due to the customer's internal reorganization. While the pilot is still expected to proceed, the delay pushes their Series A fundraise timeline back by one quarter. MCGI is monitoring closely but the underlying technology and market opportunity remain intact.",
+          "EcoSynth experienced a setback when their planned pilot with a major European chemical company was delayed from November to February 2026 due to the customer's internal reorganization. While the pilot is still expected to proceed, the delay pushes their Series A fundraise timeline back by one quarter. AGV is monitoring closely but the underlying technology and market opportunity remain intact.",
         ],
         sources: [
           { type: "email", label: "QuantumSense — Q4 Update" },
           { type: "email", label: "EcoSynth — Pilot Delay Notification" },
-          { type: "google-docs", label: "MCGI Risk Register Q4 2025" },
+          { type: "google-docs", label: "AGV Risk Register Q4 2025" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
         ],
       },
     ],
     sources: [
-      { type: "google-docs", label: "MCGI Portfolio Dashboard Q4 2025" },
-      { type: "meeting", label: "NeuralDB — Q4 Board Meeting" },
+      { type: "google-docs", label: "AGV Portfolio Dashboard Q4 2025" },
+      { type: "meeting", label: "SyntheticDB — Q4 Board Meeting" },
       { type: "email", label: "Q4 portfolio company reports" },
       { type: "slack", label: "#mcgi-portfolio-updates" },
-      { type: "sharepoint", label: "MC CVC Portfolio Metrics" },
+      { type: "sharepoint", label: "AG CVC Portfolio Metrics" },
     ],
     suggestedActions: [
       {
         icon: "mail",
-        label: "Share Q4 portfolio report with MC Investment Division",
+        label: "Share Q4 portfolio report with AG Investment Division",
       },
       {
         icon: "calendar",
@@ -493,57 +499,69 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Market Overview",
         paragraphs: [
-          "Global climate tech venture funding reached $9.4B in Q1 2026, a 22% increase year-over-year and a notable reversal of the mid-2024 slowdown. Growth-stage deals (Series B+) drove the majority of capital deployed, but early-stage activity is also accelerating — seed and Series A climate deals increased 35% by count, signaling a healthy pipeline of emerging companies for MCGI's investment focus.",
-          "The funding recovery is unevenly distributed across sub-sectors. Carbon management (capture, utilization, and storage) attracted $2.8B, up 60% year-over-year, buoyed by expanding compliance markets in the EU, Japan, and California. Grid-scale energy storage received $2.1B as utilities accelerate procurement ahead of renewable portfolio standard deadlines. Battery recycling and circular economy startups attracted $1.2B, a category that barely existed two years ago.",
-          "Geographically, the US remains the dominant market (55% of global funding), but Japan and Southeast Asia are emerging as significant growth markets. Japan's Green Transformation (GX) policy framework, backed by ¥20 trillion in public-private investment commitments, is creating substantial demand for climate technologies that align with MCGI's portfolio strategy and MC's operational footprint.",
+          "Global climate tech venture funding reached $9.4B in Q1 2026, a 22% increase year-over-year and a notable reversal of the mid-2024 slowdown. Growth-stage deals (Series B+) drove the majority of capital deployed, but early-stage activity is also accelerating — seed and Series A climate deals increased 35% by count, signaling a healthy pipeline of emerging companies for AGV's investment focus.",
+          "The funding recovery is unevenly distributed across sub-sectors. Carbon management (capture, utilization, and storage) attracted $2.8B, up 60% year-over-year, buoyed by expanding compliance markets in the EU, Europe, and California. Grid-scale energy storage received $2.1B as utilities accelerate procurement ahead of renewable portfolio standard deadlines. Battery recycling and circular economy startups attracted $1.2B, a category that barely existed two years ago.",
+          "Geographically, the US remains the dominant market (55% of global funding), but Europe and Latin America are emerging as significant growth markets. Europe's Green Transformation (GX) policy framework, backed by ¥20 trillion in public-private investment commitments, is creating substantial demand for climate technologies that align with AGV's portfolio strategy and AG's operational footprint.",
         ],
         sources: [
           { type: "email", label: "PitchBook Climate Tech Q1 Report" },
           { type: "google-docs", label: "Climate Tech Sector Tracking Sheet" },
           { type: "slack", label: "#mcgi-market-intel" },
-          { type: "meeting", label: "M-Lab Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
       {
         heading: "Key Sub-Sectors",
         paragraphs: [
-          "Carbon capture and storage remains the most active sub-sector and a core MCGI thesis area. Direct air capture (DAC) is receiving outsized attention following Occidental's Stratos plant launch, but industrial point-source capture — where MCGI portfolio company CarbonGrid operates — offers more immediate unit economics. CarbonGrid's polymer membrane approach at $78/ton compares favorably to DAC costs of $400–600/ton, making it viable under Japan's current carbon credit pricing of ¥10,000/ton ($73). Three new competitors have entered the industrial capture space this quarter, but none match CarbonGrid's efficiency data.",
-          "Grid-scale energy storage is entering a critical deployment phase. Lithium-ion remains dominant for 2–4 hour duration, but longer-duration storage (8+ hours) is seeing rapid innovation in iron-air, vanadium redox flow, and compressed air technologies. MCGI portfolio company GridScale Energy's vanadium redox approach is well-positioned for the 8–12 hour duration sweet spot that utilities increasingly need for renewable integration. The sub-sector faces supply chain risks around vanadium sourcing, which MC's metals trading relationships could help mitigate.",
-          "Battery recycling has emerged as a compelling investment category driven by regulatory mandates (EU Battery Regulation effective February 2027, Japan's equivalent expected by 2028) and the sheer volume of EV batteries reaching end-of-life. MCGI is evaluating FluxMaterials in this space, whose hydrometallurgical process achieves higher recovery rates than incumbent pyrometallurgical methods. The regulatory tailwinds create a durable demand floor that reduces technology risk for investors.",
+          "Carbon capture and storage remains the most active sub-sector and a core AGV thesis area. Direct air capture (DAC) is receiving outsized attention following Occidental's Stratos plant launch, but industrial point-source capture — where AGV portfolio company GreenCore operates — offers more immediate unit economics. GreenCore's polymer membrane approach at $78/ton compares favorably to DAC costs of $400–600/ton, making it viable under Europe's current carbon credit pricing of ¥10,000/ton ($73). Three new competitors have entered the industrial capture space this quarter, but none match GreenCore's efficiency data.",
+          "Grid-scale energy storage is entering a critical deployment phase. Lithium-ion remains dominant for 2–4 hour duration, but longer-duration storage (8+ hours) is seeing rapid innovation in iron-air, vanadium redox flow, and compressed air technologies. AGV portfolio company SolarCore Energy's vanadium redox approach is well-positioned for the 8–12 hour duration sweet spot that utilities increasingly need for renewable integration. The sub-sector faces supply chain risks around vanadium sourcing, which AG's metals trading relationships could help mitigate.",
+          "Battery recycling has emerged as a compelling investment category driven by regulatory mandates (EU Battery Regulation effective February 2027, Europe's equivalent expected by 2028) and the sheer volume of EV batteries reaching end-of-life. AGV is evaluating NovaMaterials in this space, whose hydrometallurgical process achieves higher recovery rates than incumbent pyrometallurgical methods. The regulatory tailwinds create a durable demand floor that reduces technology risk for investors.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Climate Tech Thesis — 2026" },
-          { type: "meeting", label: "CarbonGrid — Technical DD Review" },
+          { type: "google-docs", label: "AGV Climate Tech Thesis — 2026" },
+          { type: "meeting", label: "GreenCore — Technical DD Review" },
           { type: "email", label: "BloombergNEF Energy Storage Outlook" },
           { type: "notion", label: "Battery Recycling Landscape Map" },
         ],
       },
       {
-        heading: "MCGI Thesis Alignment",
+        heading: "AGV Thesis Alignment",
         paragraphs: [
-          "MCGI's climate tech thesis centers on technologies that can be deployed through MC's industrial network — specifically, solutions targeting heavy industry decarbonization (cement, steel, chemicals), grid infrastructure modernization, and circular economy models for critical minerals. This thesis is differentiated from generalist climate funds because MCGI can offer portfolio companies immediate access to MC's 1,700+ group companies as pilot sites and anchor customers.",
-          "The Q1 landscape validates this thesis. The three most active sub-sectors (carbon capture, grid storage, battery recycling) all align with MC business unit capabilities and operational needs. Hiroshi Tanabe from MC Industrial Materials has confirmed that 12–15 cement and steel facilities are ready to evaluate carbon capture solutions, creating a tangible deployment pipeline for CarbonGrid if the investment proceeds.",
-          "One area for thesis expansion: agricultural carbon and methane reduction technologies are gaining momentum, particularly in Southeast Asia where MC has extensive agricultural operations. The M-Lab consortium flagged three early-stage companies in this space during the February working group meeting. Recommendation: add agricultural carbon as a secondary thesis area for H2 2026 scouting.",
+          "AGV's climate tech thesis centers on technologies that can be deployed through AG's industrial network — specifically, solutions targeting heavy industry decarbonization (cement, steel, chemicals), grid infrastructure modernization, and circular economy models for critical minerals. This thesis is differentiated from generalist climate funds because AGV can offer portfolio companies immediate access to AG's 1,700+ group companies as pilot sites and anchor customers.",
+          "The Q1 landscape validates this thesis. The three most active sub-sectors (carbon capture, grid storage, battery recycling) all align with AG business unit capabilities and operational needs. Greg Lawton from AG Industrial Materials has confirmed that 12–15 cement and steel facilities are ready to evaluate carbon capture solutions, creating a tangible deployment pipeline for GreenCore if the investment proceeds.",
+          "One area for thesis expansion: agricultural carbon and methane reduction technologies are gaining momentum, particularly in Latin America where AG has extensive agricultural operations. The Catalyst Alliance consortium flagged three early-stage companies in this space during the February working group meeting. Recommendation: add agricultural carbon as a secondary thesis area for H2 2026 scouting.",
         ],
         sources: [
-          { type: "google-docs", label: "MCGI Climate Tech Thesis — 2026" },
-          { type: "meeting", label: "MC Industrial Materials — Synergy Review" },
+          { type: "google-docs", label: "AGV Climate Tech Thesis — 2026" },
+          {
+            type: "meeting",
+            label: "AG Industrial Materials — Synergy Review",
+          },
           { type: "teams", label: "#mc-synergy-tracking" },
-          { type: "meeting", label: "M-Lab Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
       {
         heading: "Competitive CVC Activity",
         paragraphs: [
-          "Corporate venture activity in climate tech intensified in Q1. Breakthrough Energy Ventures (BEV) deployed approximately $380M across 6 deals, maintaining their position as the most active climate-focused fund. Their $140M investment in CarbonSink (DAC technology) is notable as it signals continued conviction in high-cost capture approaches that MCGI views as less commercially viable near-term.",
-          "Among peer CVCs, Samsung Next co-invested in CarbonGrid's round (complicating MCGI's solo lead ambitions), Shell Ventures backed two hydrogen storage startups, and BP Ventures made a significant investment in a methane detection satellite company. Japanese CVCs remain underweight in climate tech — SBI Investment and JAFCO have made only two climate deals combined in Q1, leaving MCGI as the most active Japanese CVC in the space.",
-          "MCGI's competitive advantage remains the MC operational footprint. While BEV and other financial CVCs can offer larger check sizes, they cannot match MCGI's ability to provide immediate deployment sites and revenue-generating customer relationships through MC group companies. This positioning is particularly compelling for industrial climate tech companies that need enterprise customers to validate their technology at scale.",
+          "Corporate venture activity in climate tech intensified in Q1. Breakthrough Energy Ventures (BEV) deployed approximately $380M across 6 deals, maintaining their position as the most active climate-focused fund. Their $140M investment in CarbonSink (DAC technology) is notable as it signals continued conviction in high-cost capture approaches that AGV views as less commercially viable near-term.",
+          "Among peer CVCs, Hanwa Electronics Next co-invested in GreenCore's round (complicating AGV's solo lead ambitions), Shell Ventures backed two hydrogen storage startups, and BP Ventures made a significant investment in a methane detection satellite company. European CVCs remain underweight in climate tech — Fuji Investment and Sakura Capital have made only two climate deals combined in Q1, leaving AGV as the most active European CVC in the space.",
+          "AGV's competitive advantage remains the AG operational footprint. While BEV and other financial CVCs can offer larger check sizes, they cannot match AGV's ability to provide immediate deployment sites and revenue-generating customer relationships through AG group companies. This positioning is particularly compelling for industrial climate tech companies that need enterprise customers to validate their technology at scale.",
         ],
         sources: [
           { type: "email", label: "PitchBook CVC deal alerts" },
           { type: "slack", label: "#mcgi-market-intel" },
           { type: "teams", label: "#mcgi-competitive-intel" },
-          { type: "meeting", label: "M-Lab Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
     ],
@@ -551,33 +569,37 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Carbon Capture Sub-Sector Deep Dive",
         paragraphs: [
-          "The carbon capture market is bifurcating into two distinct investment categories: direct air capture (DAC) and industrial point-source capture. DAC has attracted headline-grabbing mega-rounds (Climeworks, CarbonSink) but faces fundamental cost challenges — current DAC costs of $400–600/ton are 5–8x higher than industrial capture. Point-source capture, where CarbonGrid operates, benefits from higher CO2 concentrations in flue gas and achieves $70–120/ton economics today.",
-          "MCGI's view is that point-source capture represents the better near-term investment opportunity because of viable unit economics under existing carbon pricing mechanisms. Japan's GX framework includes carbon pricing escalation to ¥15,000/ton by 2030, which would make point-source capture highly profitable. DAC may become investable at scale by 2030–2032 as costs decline, but current valuations price in optimistic cost curves.",
+          "The carbon capture market is bifurcating into two distinct investment categories: direct air capture (DAC) and industrial point-source capture. DAC has attracted headline-grabbing mega-rounds (Climeworks, CarbonSink) but faces fundamental cost challenges — current DAC costs of $400–600/ton are 5–8x higher than industrial capture. Point-source capture, where GreenCore operates, benefits from higher CO2 concentrations in flue gas and achieves $70–120/ton economics today.",
+          "AGV's view is that point-source capture represents the better near-term investment opportunity because of viable unit economics under existing carbon pricing mechanisms. Europe's GX framework includes carbon pricing escalation to ¥15,000/ton by 2030, which would make point-source capture highly profitable. DAC may become investable at scale by 2030–2032 as costs decline, but current valuations price in optimistic cost curves.",
         ],
       },
       {
-        heading: "Japan GX Policy Impact Analysis",
+        heading: "Europe GX Policy Impact Analysis",
         paragraphs: [
-          "Japan's Green Transformation (GX) initiative represents a ¥20 trillion ($150B) public-private investment commitment over 10 years, creating one of the world's largest addressable markets for climate technology. Key policy mechanisms include: a carbon pricing system starting at ¥5,000/ton (2026) escalating to ¥15,000/ton (2030), mandatory emissions reporting for companies above 100K tons CO2/year, and preferential procurement for companies deploying certified green technologies.",
-          "For MCGI's portfolio, GX creates direct revenue opportunities. CarbonGrid's technology would be eligible for GX deployment subsidies covering up to 30% of installation costs at MC facilities. GridScale's battery storage qualifies for grid modernization incentives. The policy framework essentially de-risks the Japan market entry for MCGI portfolio companies while providing MC business units with regulatory compliance solutions.",
+          "Europe's Green Transformation (GX) initiative represents a ¥20 trillion ($150B) public-private investment commitment over 10 years, creating one of the world's largest addressable markets for climate technology. Key policy mechanisms include: a carbon pricing system starting at ¥5,000/ton (2026) escalating to ¥15,000/ton (2030), mandatory emissions reporting for companies above 100K tons CO2/year, and preferential procurement for companies deploying certified green technologies.",
+          "For AGV's portfolio, GX creates direct revenue opportunities. GreenCore's technology would be eligible for GX deployment subsidies covering up to 30% of installation costs at AG facilities. GridScale's battery storage qualifies for grid modernization incentives. The policy framework essentially de-risks the Europe market entry for AGV portfolio companies while providing AG business units with regulatory compliance solutions.",
         ],
       },
     ],
     sources: [
       { type: "email", label: "PitchBook Climate Tech Q1 Report" },
-      { type: "google-docs", label: "MCGI Climate Tech Thesis — 2026" },
+      { type: "google-docs", label: "AGV Climate Tech Thesis — 2026" },
       { type: "slack", label: "#mcgi-market-intel" },
-      { type: "meeting", label: "M-Lab Climate Tech Working Group" },
-      { type: "meeting", label: "MC Industrial Materials — Synergy Review" },
+      {
+        type: "meeting",
+        label: "Catalyst Alliance Climate Tech Working Group",
+      },
+      { type: "meeting", label: "AG Industrial Materials — Synergy Review" },
     ],
     suggestedActions: [
       {
         icon: "mail",
-        label: "Share climate tech landscape brief with MC Strategy Division",
+        label: "Share climate tech landscape brief with AG Strategy Division",
       },
       {
         icon: "calendar",
-        label: "Schedule agricultural carbon thesis exploration with M-Lab",
+        label:
+          "Schedule agricultural carbon thesis exploration with Catalyst Alliance",
       },
       {
         icon: "clock",

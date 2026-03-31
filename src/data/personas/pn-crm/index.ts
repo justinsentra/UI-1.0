@@ -22,7 +22,7 @@ registerPersonaData("pn-crm", data);
 
 registerPersonaConfig({
   id: "pn-crm",
-  label: "Personal Network CRM",
+  label: "Circle CRM",
   description:
     "Student entrepreneur: relationship intelligence, fundraising, venture capital, community building",
   industry: "Personal CRM / Relationship Intelligence",

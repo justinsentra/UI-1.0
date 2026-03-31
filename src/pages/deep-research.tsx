@@ -1,8 +1,14 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import { useLocation } from "react-router-dom";
-import { motion } from "motion/react";
-import { Pencil } from "lucide-react";
-import type { ResponseParagraph, ScanStep } from "@/data/mock-deep-research";
+import { useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowLeft, Pencil, Calendar, X } from "lucide-react";
+import type {
+  ResponseParagraph,
+  ScanStep,
+  SuggestionRoute,
+  ActionSuggestion,
+  TimelineWeek,
+} from "@/data/mock-deep-research";
 import SourcePill from "@/components/deep-research/source-pill";
 import { usePersonaStore } from "@/stores/persona-store";
 import {
@@ -16,10 +22,7 @@ import ResponseBlock from "@/components/deep-research/response-block";
 import Chatbox from "@/components/deep-research/chatbox";
 import SessionSidebar from "@/components/deep-research/session-sidebar";
 import { LeftSecondarySidebar } from "@/components/ui/left-sidebar";
-import {
-  useRegisterSidebar,
-  SidebarPosition,
-} from "@/contexts/layout-context";
+import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
 import { Message, MessageContent } from "@/components/prompt-kit/message";
 import {
   ChatContainerRoot,
@@ -34,6 +37,29 @@ import {
   StepsTrigger,
 } from "@/components/ui/steps";
 
+// Integration logos for scan step icons
+import outlookLogo from "@/assets/logos/outlook.png";
+import teamsLogo from "@/assets/logos/ms-teams.png";
+import excelLogo from "@/assets/logos/excel.png";
+import wordLogo from "@/assets/logos/word.png";
+import sharepointLogo from "@/assets/logos/sharepoint.png";
+import salesforceLogo from "@/assets/logos/salesforce.svg";
+import serviceNowLogo from "@/assets/logos/service-now.png";
+import gmailLogo from "@/assets/logos/gmail.svg";
+import zoomLogo from "@/assets/logos/zoom.svg";
+
+const STEP_ICON_MAP: Record<string, string> = {
+  outlook: outlookLogo,
+  "ms-teams": teamsLogo,
+  excel: excelLogo,
+  word: wordLogo,
+  sharepoint: sharepointLogo,
+  salesforce: salesforceLogo,
+  "service-now": serviceNowLogo,
+  gmail: gmailLogo,
+  zoom: zoomLogo,
+};
+
 /* ── Types ── */
 
 interface ChatMessage {
@@ -45,6 +71,8 @@ interface ChatMessage {
   type?: "text" | "prd" | "choice" | "building" | "done";
   prdContent?: string;
   chosenTool?: string;
+  actionSuggestion?: ActionSuggestion;
+  timeline?: TimelineWeek[];
 }
 
 type Phase =
@@ -66,22 +94,62 @@ const formatTime = () =>
     hour12: true,
   });
 
-/** Find a matching document flow config based on query keywords */
-function findMatchingFlow(
-  text: string,
-  flows: DocumentFlowConfig[],
-): DocumentFlowConfig | undefined {
-  const lower = text.toLowerCase();
-  return flows.find((flow) =>
-    flow.triggerKeywords.some((kw) => lower.includes(kw)),
-  );
-}
+/* ── Action Suggestion CTA ── */
 
-/** Check if a query matches vendor eval keywords */
-function isVendorEvalMatch(text: string, keywords?: string[]): boolean {
-  if (!keywords) return false;
-  const lower = text.toLowerCase();
-  return keywords.some((kw) => lower.includes(kw));
+function ActionSuggestionCTA({ suggestion }: { suggestion: ActionSuggestion }) {
+  const navigate = useNavigate();
+  const isViewDoc = suggestion.actionName === "View Doc";
+
+  if (isViewDoc) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.6 }}
+        className="mt-4 flex gap-2"
+      >
+        <a
+          href="https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] no-underline cursor-pointer transition-colors hover:bg-[var(--accent)]"
+        >
+          View Doc
+        </a>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.6 }}
+      className="mt-4 rounded-xl border border-dashed border-[var(--border)] bg-[var(--muted)]/40 p-4"
+    >
+      <div className="flex-1 min-w-0">
+        <p className="m-0 text-sm font-medium text-[var(--foreground)]">
+          Create an action to track future repeat instances of this event?
+        </p>
+        <p className="m-0 mt-1 text-sm leading-relaxed text-[var(--muted-foreground)]">
+          {suggestion.prompt}
+        </p>
+        <div className="mt-3 flex gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              navigate(`/actions/${suggestion.actionId}`, {
+                state: { initialTab: "plan" },
+              })
+            }
+            className="inline-flex items-center gap-2 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-4 py-2 text-sm font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+          >
+            Enable {suggestion.actionName}
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 /* ── PRD Document Renderer ── */
@@ -112,15 +180,15 @@ function PrdDocument({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="rounded-lg border border-[var(--border-base)] bg-[var(--bg-base)] shadow-card overflow-hidden"
+      className="rounded-lg border border-[var(--border)] bg-[var(--background)] shadow-card overflow-hidden"
     >
-      <div className="px-5 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-subtle)] flex items-center gap-2">
+      <div className="px-5 py-3 border-b border-[var(--border)] bg-[var(--muted)] flex items-center gap-2">
         <svg
           width="14"
           height="14"
           viewBox="0 0 16 16"
           fill="none"
-          className="text-[var(--fg-muted)]"
+          className="text-[var(--muted-foreground)]"
         >
           <path
             d="M4 1h5.5L13 4.5V14a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z"
@@ -134,13 +202,13 @@ function PrdDocument({
             strokeLinecap="round"
           />
         </svg>
-        <span className="text-xs font-medium text-[var(--fg-muted)] flex-1">
+        <span className="text-xs font-medium text-[var(--muted-foreground)] flex-1">
           {filename}
         </span>
         <button
           type="button"
           onClick={handleToggleEdit}
-          className="p-1 text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] transition-colors bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--bg-component-hover)]"
+          className="p-1 text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] transition-colors bg-transparent border-none cursor-pointer rounded-md hover:bg-[var(--accent)]"
           title={isEditing ? "Save changes" : "Edit document"}
         >
           <Pencil size={13} />
@@ -151,7 +219,7 @@ function PrdDocument({
           <textarea
             value={editContent}
             onChange={(e) => setEditContent(e.target.value)}
-            className="w-full min-h-[360px] bg-transparent border-none outline-none resize-none text-xs text-[var(--fg-subtle)] leading-relaxed font-mono"
+            className="w-full min-h-[360px] bg-transparent border-none outline-none resize-none text-xs text-[var(--muted-foreground)] leading-relaxed font-mono"
           />
         ) : (
           <div className="prose-sm">
@@ -160,7 +228,7 @@ function PrdDocument({
                 return (
                   <h1
                     key={i}
-                    className="text-base font-semibold text-[var(--fg-base)] m-0 mb-3 leading-snug"
+                    className="text-base font-semibold text-[var(--foreground)] m-0 mb-3 leading-snug"
                   >
                     {line.slice(2)}
                   </h1>
@@ -170,7 +238,7 @@ function PrdDocument({
                 return (
                   <h2
                     key={i}
-                    className="text-sm font-semibold text-[var(--fg-base)] m-0 mt-4 mb-2 leading-snug"
+                    className="text-sm font-semibold text-[var(--foreground)] m-0 mt-4 mb-2 leading-snug"
                   >
                     {line.slice(3)}
                   </h2>
@@ -180,7 +248,7 @@ function PrdDocument({
                 return (
                   <p
                     key={i}
-                    className="text-sm font-medium text-[var(--fg-base)] m-0 mt-3 mb-1"
+                    className="text-sm font-medium text-[var(--foreground)] m-0 mt-3 mb-1"
                   >
                     {line.slice(2, -2)}
                   </p>
@@ -195,7 +263,7 @@ function PrdDocument({
                 return (
                   <div
                     key={i}
-                    className="grid grid-cols-4 gap-2 py-1 text-xs text-[var(--fg-subtle)] border-b border-[var(--border-subtle)]"
+                    className="grid grid-cols-4 gap-2 py-1 text-xs text-[var(--muted-foreground)] border-b border-[var(--border)]"
                   >
                     {cells.map((cell, j) => (
                       <span key={j}>{cell}</span>
@@ -207,9 +275,9 @@ function PrdDocument({
                 return (
                   <div
                     key={i}
-                    className="flex gap-2 text-xs text-[var(--fg-subtle)] leading-relaxed ml-2 mb-0.5"
+                    className="flex gap-2 text-xs text-[var(--muted-foreground)] leading-relaxed ml-2 mb-0.5"
                   >
-                    <span className="text-[var(--fg-disabled)] shrink-0">
+                    <span className="text-[var(--muted-foreground)] shrink-0">
                       -
                     </span>
                     <span>{line.slice(2)}</span>
@@ -220,7 +288,7 @@ function PrdDocument({
                 return (
                   <hr
                     key={i}
-                    className="border-t border-[var(--border-subtle)] my-3"
+                    className="border-t border-[var(--border)] my-3"
                   />
                 );
               }
@@ -228,7 +296,7 @@ function PrdDocument({
                 return (
                   <p
                     key={i}
-                    className="text-2xs text-[var(--fg-disabled)] m-0 mt-2 italic"
+                    className="text-2xs text-[var(--muted-foreground)] m-0 mt-2 italic"
                   >
                     {line.slice(1, -1)}
                   </p>
@@ -238,16 +306,16 @@ function PrdDocument({
               const formatted = line
                 .replace(
                   /\*\*(.+?)\*\*/g,
-                  '<strong class="font-medium text-[var(--fg-base)]">$1</strong>',
+                  '<strong class="font-medium text-[var(--foreground)]">$1</strong>',
                 )
                 .replace(
                   /`(.+?)`/g,
-                  '<code class="text-2xs bg-[var(--bg-subtle)] px-1 py-0.5 rounded">$1</code>',
+                  '<code class="text-2xs bg-[var(--muted)] px-1 py-0.5 rounded">$1</code>',
                 );
               return (
                 <p
                   key={i}
-                  className="text-xs text-[var(--fg-subtle)] leading-relaxed m-0 mb-1"
+                  className="text-xs text-[var(--muted-foreground)] leading-relaxed m-0 mb-1"
                   dangerouslySetInnerHTML={{ __html: formatted }}
                 />
               );
@@ -271,7 +339,7 @@ function ToolChoicePills({
   onCancel: () => void;
 }) {
   const pillClass =
-    "inline-flex items-center gap-2 px-4 py-2 rounded-full border border-solid border-[var(--border-base)] bg-transparent text-sm text-[var(--fg-subtle)] cursor-pointer transition-colors hover:bg-[var(--bg-component-hover)] hover:text-[var(--fg-base)]";
+    "inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-solid border-[var(--border)] bg-transparent text-sm text-[var(--muted-foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)] hover:text-[var(--foreground)]";
 
   return (
     <motion.div
@@ -280,7 +348,7 @@ function ToolChoicePills({
       transition={{ duration: 0.3, delay: 0.3 }}
       className="flex flex-col gap-3"
     >
-      <p className="text-sm text-[var(--fg-base)] m-0">
+      <p className="text-sm text-[var(--foreground)] m-0">
         What would you like to do next?
       </p>
       <div className="flex gap-2 flex-wrap">
@@ -384,12 +452,24 @@ function BuildingLoader({
             >
               <StepsItem>
                 <span
-                  className={
+                  className={`inline-flex items-center gap-2 ${
                     index === visibleCount - 1
                       ? "text-muted-foreground"
-                      : "text-[var(--fg-disabled)]"
-                  }
+                      : "text-[var(--muted-foreground)]"
+                  }`}
                 >
+                  {"icons" in step &&
+                    (step as { icons?: string[] }).icons?.map((iconKey) => {
+                      const src = STEP_ICON_MAP[iconKey];
+                      return src ? (
+                        <img
+                          key={iconKey}
+                          src={src}
+                          alt={iconKey}
+                          className="size-3.5 object-contain shrink-0"
+                        />
+                      ) : null;
+                    })}
                   {step.label}
                 </span>
               </StepsItem>
@@ -411,51 +491,152 @@ function DoneMessage({
   tool: string;
 }) {
   const { doneMessage } = flow;
+  const [savedToExcel, setSavedToExcel] = useState(false);
+  const [showMeetingToast, setShowMeetingToast] = useState(false);
+
+  useEffect(() => {
+    if (savedToExcel) {
+      const timeout = setTimeout(() => setShowMeetingToast(true), 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [savedToExcel]);
+
+  const meetingToast = (
+    <AnimatePresence>
+      {showMeetingToast && (
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 60 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          className="fixed top-4 right-4 z-50 w-80 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4 shadow-lg"
+        >
+          <button
+            type="button"
+            onClick={() => setShowMeetingToast(false)}
+            className="absolute top-2 right-2 flex size-6 items-center justify-center rounded-md text-[var(--muted-foreground)] hover:bg-[var(--accent)] hover:text-[var(--foreground)] transition-colors border-none bg-transparent cursor-pointer"
+          >
+            <X size={14} />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]">
+              <Calendar size={16} className="text-[var(--foreground)]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="m-0 text-sm font-medium text-[var(--foreground)]">
+                Oracle Migration Sync
+              </p>
+              <p className="m-0 text-2xs text-[var(--muted-foreground)]">
+                3:00 PM · Starting soon
+              </p>
+            </div>
+          </div>
+          <div className="mt-3 flex gap-2">
+            <button
+              type="button"
+              className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+            >
+              Join
+            </button>
+            <button
+              type="button"
+              className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+            >
+              View Brief
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   if (doneMessage.link) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="flex flex-col gap-2"
-      >
-        <div className="flex items-center gap-2">
-          <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 16 16"
-              fill="none"
-              className="text-[var(--fg-info)]"
-            >
-              <path
-                d="M3 8.5L6.5 12L13 4"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+      <>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col gap-2"
+        >
+          <div className="flex items-center gap-2">
+            <div className="size-5 rounded-full bg-[var(--info)] flex items-center justify-center">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 16 16"
+                fill="none"
+                className="text-[var(--info-foreground)]"
+              >
+                <path
+                  d="M3 8.5L6.5 12L13 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <span className="text-sm font-medium text-[var(--foreground)]">
+              {doneMessage.title}
+            </span>
           </div>
-          <span className="text-sm font-medium text-[var(--fg-base)]">
-            {doneMessage.title}
-          </span>
-        </div>
-        <p className="text-sm text-[var(--fg-subtle)] m-0 ml-7">
-          {doneMessage.description}
-        </p>
-        <div className="ml-7 mt-1">
-          <a
-            href={doneMessage.link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-subtle)] max-w-fit text-sm text-[var(--fg-base)] no-underline cursor-pointer transition-colors hover:bg-[var(--bg-component-hover)]"
-          >
-            {doneMessage.link.label}
-          </a>
-        </div>
-      </motion.div>
+          <p className="text-sm text-[var(--muted-foreground)] m-0 ml-7">
+            {doneMessage.description}
+          </p>
+          <div className="ml-7 mt-1 flex items-center gap-2">
+            <a
+              href={doneMessage.link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--muted)] border border-[var(--border)] max-w-fit text-sm text-[var(--foreground)] no-underline cursor-pointer transition-colors hover:bg-[var(--accent)]"
+            >
+              {doneMessage.link.label}
+            </a>
+            <motion.button
+              type="button"
+              onClick={() => setSavedToExcel(true)}
+              disabled={savedToExcel}
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-md border border-[var(--border)] text-sm cursor-pointer transition-colors ${
+                savedToExcel
+                  ? "bg-emerald-600/10 border-emerald-600/30 text-emerald-600"
+                  : "bg-[var(--muted)] text-[var(--foreground)] hover:bg-[var(--accent)]"
+              }`}
+              layout
+            >
+              <img
+                src={excelLogo}
+                alt="Excel"
+                className="size-4 object-contain"
+              />
+              <motion.span layout>
+                {savedToExcel ? "Saved" : "Save to Excel?"}
+              </motion.span>
+              {savedToExcel && (
+                <motion.svg
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="text-emerald-600"
+                >
+                  <path
+                    d="M3 8.5L6.5 12L13 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </motion.svg>
+              )}
+            </motion.button>
+          </div>
+        </motion.div>
+        {meetingToast}
+      </>
     );
   }
 
@@ -473,13 +654,13 @@ function DoneMessage({
       className="flex flex-col gap-2"
     >
       <div className="flex items-center gap-2">
-        <div className="size-5 rounded-full bg-[var(--bg-info-subtle)] flex items-center justify-center">
+        <div className="size-5 rounded-full bg-[var(--info)] flex items-center justify-center">
           <svg
             width="12"
             height="12"
             viewBox="0 0 16 16"
             fill="none"
-            className="text-[var(--fg-info)]"
+            className="text-[var(--info-foreground)]"
           >
             <path
               d="M3 8.5L6.5 12L13 4"
@@ -490,18 +671,20 @@ function DoneMessage({
             />
           </svg>
         </div>
-        <span className="text-sm font-medium text-[var(--fg-base)]">Done!</span>
+        <span className="text-sm font-medium text-[var(--foreground)]">
+          Done!
+        </span>
       </div>
-      <p className="text-sm text-[var(--fg-subtle)] m-0 ml-7">
+      <p className="text-sm text-[var(--muted-foreground)] m-0 ml-7">
         The file has been pushed to {tool}. You can find it at:
       </p>
-      <div className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-subtle)] max-w-fit">
+      <div className="ml-7 inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[var(--muted)] border border-[var(--border)] max-w-fit">
         <svg
           width="13"
           height="13"
           viewBox="0 0 16 16"
           fill="none"
-          className="text-[var(--fg-muted)] shrink-0"
+          className="text-[var(--muted-foreground)] shrink-0"
         >
           <path
             d="M4 1h5.5L13 4.5V14a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z"
@@ -509,7 +692,7 @@ function DoneMessage({
             strokeWidth="1.2"
           />
         </svg>
-        <code className="text-xs text-[var(--fg-base)] font-mono">
+        <code className="text-xs text-[var(--foreground)] font-mono">
           {filePath}
         </code>
       </div>
@@ -528,8 +711,17 @@ const DeepResearchPage = () => {
     width: historyWidth,
   });
 
+  const navigate = useNavigate();
   const location = useLocation();
-  const prefill = (location.state as { prefill?: string } | null)?.prefill;
+  const locationState = location.state as {
+    prefill?: string;
+    route?: SuggestionRoute;
+    typeOnly?: boolean;
+    fromMorningBrief?: boolean;
+  } | null;
+  const prefill = locationState?.prefill;
+  const prefillRoute = locationState?.route;
+  const typeOnly = locationState?.typeOnly ?? false;
   const hasPrefilled = useRef(false);
   const persona = usePersonaStore((s) => s.persona);
   const deepResearchData = getPersonaDeepResearch(persona);
@@ -543,9 +735,51 @@ const DeepResearchPage = () => {
   const [pendingResponse, setPendingResponse] = useState<{
     paragraphs: ResponseParagraph[];
     timestamp: string;
+    actionSuggestion?: ActionSuggestion;
+    timeline?: TimelineWeek[];
   } | null>(null);
   const [chosenTool, setChosenTool] = useState<string | null>(null);
+  const [showOracleToast, setShowOracleToast] = useState(false);
+  const oracleToastDismissed = useRef(false);
+  const oracleToastTriggered = useRef(false);
   const messageCountRef = useRef(0);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToLastUserMessage = useCallback(() => {
+    requestAnimationFrame(() => {
+      const container = chatContainerRef.current;
+      if (!container) return;
+      const userMessages = container.querySelectorAll("[data-user-message]");
+      const lastUserMsg = userMessages[userMessages.length - 1] as
+        | HTMLElement
+        | undefined;
+      if (lastUserMsg) {
+        // Use scrollTop on the container instead of scrollIntoView to avoid affecting parent scroll
+        container.scrollTop = lastUserMsg.offsetTop - 16;
+      }
+    });
+  }, []);
+
+  // Scroll to user message when scanning starts
+  useEffect(() => {
+    if (phase === "scanning" || phase === "prd-scanning") {
+      scrollToLastUserMessage();
+    }
+  }, [phase, scrollToLastUserMessage]);
+
+  // Show Oracle meeting toast once after the first vendor comparison completes (from morning brief handoff only)
+  useEffect(() => {
+    if (
+      locationState?.fromMorningBrief &&
+      phase === "complete" &&
+      !oracleToastTriggered.current &&
+      !oracleToastDismissed.current
+    ) {
+      oracleToastTriggered.current = true;
+      const timeout = setTimeout(() => setShowOracleToast(true), 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [locationState?.fromMorningBrief, phase]);
 
   const handleScanComplete = useCallback(() => {
     if (!pendingResponse) return;
@@ -555,12 +789,15 @@ const DeepResearchPage = () => {
       role: "assistant",
       paragraphs: pendingResponse.paragraphs,
       timestamp: pendingResponse.timestamp,
+      actionSuggestion: pendingResponse.actionSuggestion,
+      timeline: pendingResponse.timeline,
     };
 
     setMessages((prev) => [...prev, assistantMessage]);
     setPendingResponse(null);
     setPhase("complete");
-  }, [pendingResponse]);
+    scrollToLastUserMessage();
+  }, [pendingResponse, scrollToLastUserMessage]);
 
   const handlePrdScanComplete = useCallback(() => {
     const docContent = activeFlow?.content ?? "";
@@ -623,22 +860,60 @@ const DeepResearchPage = () => {
     setPhase("prd-done");
   }, [chosenTool]);
 
-  /** Route a query to the right flow */
-  const routeQuery = useCallback(
-    (text: string) => {
-      // Check vendor eval
-      if (
-        deepResearchData.vendorEvalResponse &&
-        isVendorEvalMatch(text, deepResearchData.vendorEvalTriggerKeywords)
-      ) {
-        return { type: "vendor-eval" as const };
+  /** Execute a routed query — shared by suggestion clicks, typed input, and prefill */
+  const executeRoute = useCallback(
+    (text: string, route: SuggestionRoute) => {
+      const userMessage: ChatMessage = {
+        id: `user-${Date.now()}`,
+        role: "user",
+        content: text,
+      };
+
+      if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
+        setMessages((prev) => [...prev, userMessage]);
+        setInput("");
+        setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
+        setPendingResponse({
+          paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
+          timestamp: formatTime(),
+        });
+        setPhase("scanning");
+        return;
       }
-      // Check document flows
-      const flow = findMatchingFlow(text, deepResearchData.documentFlows);
-      if (flow) {
-        return { type: "document-flow" as const, flow };
+
+      if (route.type === "document-flow") {
+        const flow = deepResearchData.documentFlows.find(
+          (f) => f.id === route.flowId,
+        );
+        if (flow) {
+          setMessages((prev) => [...prev, userMessage]);
+          setInput("");
+          setActiveFlow(flow);
+          setActiveScanSteps(flow.scanSteps);
+          setPhase("prd-scanning");
+          return;
+        }
       }
-      return { type: "generic" as const };
+
+      // Generic response
+      const responseIndex =
+        route.type === "generic" && route.index != null
+          ? route.index
+          : messageCountRef.current;
+      messageCountRef.current += 1;
+
+      const mockResponse = getMockResponse(responseIndex);
+
+      setMessages((prev) => [...prev, userMessage]);
+      setInput("");
+      setActiveScanSteps(mockResponse.scanSteps);
+      setPendingResponse({
+        paragraphs: mockResponse.paragraphs,
+        timestamp: formatTime(),
+        actionSuggestion: mockResponse.actionSuggestion,
+        timeline: mockResponse.timeline,
+      });
+      setPhase("scanning");
     },
     [deepResearchData],
   );
@@ -654,54 +929,40 @@ const DeepResearchPage = () => {
     )
       return;
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      role: "user",
-      content: trimmed,
-    };
+    // Check for keyword matches to specific response indices
+    const lower = trimmed.toLowerCase();
 
-    const route = routeQuery(trimmed);
-
-    if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
-      setMessages((prev) => [...prev, userMessage]);
-      setInput("");
-      setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
-      setPendingResponse({
-        paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
-        timestamp: formatTime(),
-      });
-      setPhase("scanning");
+    // Match document flows first
+    const matchedFlow = deepResearchData.documentFlows.find((f) =>
+      f.triggerKeywords.some((kw) => lower.includes(kw)),
+    );
+    if (matchedFlow) {
+      executeRoute(trimmed, { type: "document-flow", flowId: matchedFlow.id });
       return;
     }
 
-    if (route.type === "document-flow") {
-      setMessages((prev) => [...prev, userMessage]);
-      setInput("");
-      setActiveFlow(route.flow);
-      setActiveScanSteps(route.flow.scanSteps);
-      setPhase("prd-scanning");
+    // Keyword-to-index mapping for generic responses
+    if (lower.includes("oracle") && lower.includes("migration")) {
+      executeRoute(trimmed, { type: "generic", index: 4 });
       return;
     }
 
-    // Generic response
-    const responseIndex = messageCountRef.current;
-    messageCountRef.current += 1;
+    executeRoute(trimmed, { type: "generic" });
+  }, [input, phase, deepResearchData, executeRoute]);
 
-    const mockResponse = getMockResponse(responseIndex);
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
-    setActiveScanSteps(mockResponse.scanSteps);
-    setPendingResponse({
-      paragraphs: mockResponse.paragraphs,
-      timestamp: formatTime(),
-    });
-    setPhase("scanning");
-  }, [input, phase, routeQuery, deepResearchData]);
-
-  const handleSuggestionClick = useCallback((text: string) => {
-    setInput(text);
-  }, []);
+  const handleSuggestionClick = useCallback(
+    (text: string, route: SuggestionRoute) => {
+      if (
+        phase === "scanning" ||
+        phase === "revealing" ||
+        phase === "prd-scanning" ||
+        phase === "prd-building"
+      )
+        return;
+      executeRoute(text, route);
+    },
+    [phase, executeRoute],
+  );
 
   const handleNewSession = useCallback(() => {
     setMessages([]);
@@ -714,49 +975,77 @@ const DeepResearchPage = () => {
     messageCountRef.current = 0;
   }, []);
 
-  const handleSelectSession = useCallback((id: string) => {
-    setActiveSessionId(id);
-  }, []);
+  const handleSelectSession = useCallback(
+    (id: string) => {
+      const session = deepResearchData.sessionHistory.find((s) => s.id === id);
+      if (!session) return;
 
-  // Auto-submit prefilled prompt from navigation state
+      setActiveSessionId(id);
+      setActiveFlow(null);
+      setChosenTool(null);
+      setPendingResponse(null);
+
+      // Use a deterministic index based on session id for varied responses
+      const idNum = parseInt(id.replace(/\D/g, ""), 10) || 0;
+      const mockResponse = getMockResponse(idNum);
+
+      const userMsg: ChatMessage = {
+        id: `user-hist-${id}`,
+        role: "user",
+        content: session.query,
+      };
+
+      const assistantMsg: ChatMessage = {
+        id: `assistant-hist-${id}`,
+        role: "assistant",
+        paragraphs: mockResponse.paragraphs,
+        timestamp: "Earlier",
+      };
+
+      setMessages([userMsg, assistantMsg]);
+      setPhase("complete");
+      setInput("");
+      messageCountRef.current = 1;
+    },
+    [deepResearchData],
+  );
+
+  // Auto-submit prefilled prompt from navigation state (or type it out for typeOnly)
   useEffect(() => {
     if (prefill && !hasPrefilled.current) {
       hasPrefilled.current = true;
 
-      const userMessage: ChatMessage = {
-        id: `user-${Date.now()}`,
-        role: "user",
-        content: prefill,
+      if (typeOnly) {
+        // Set the full text in the input immediately so it's visible
+        setInput(prefill);
+        return;
+      }
+
+      // Use explicit route if provided, otherwise try to match by flow keyword, fallback to generic
+      let route: SuggestionRoute = prefillRoute ?? {
+        type: "generic",
+        index: 0,
       };
 
-      const route = routeQuery(prefill);
-
-      if (route.type === "vendor-eval" && deepResearchData.vendorEvalResponse) {
-        setMessages([userMessage]);
-        setActiveScanSteps(deepResearchData.vendorEvalResponse.scanSteps);
-        setPendingResponse({
-          paragraphs: deepResearchData.vendorEvalResponse.paragraphs,
-          timestamp: formatTime(),
-        });
-        setPhase("scanning");
-      } else if (route.type === "document-flow") {
-        setMessages([userMessage]);
-        setActiveFlow(route.flow);
-        setActiveScanSteps(route.flow.scanSteps);
-        setPhase("prd-scanning");
-      } else {
-        const mockResponse = getMockResponse(0);
-        messageCountRef.current = 1;
-        setMessages([userMessage]);
-        setActiveScanSteps(mockResponse.scanSteps);
-        setPendingResponse({
-          paragraphs: mockResponse.paragraphs,
-          timestamp: formatTime(),
-        });
-        setPhase("scanning");
+      if (!prefillRoute) {
+        // Keyword fallback for prefills from "Give this to Sentra?" buttons, homepage cards, etc.
+        const lower = prefill.toLowerCase();
+        const matchedFlow = deepResearchData.documentFlows.find((f) =>
+          f.triggerKeywords.some((kw) => lower.includes(kw)),
+        );
+        if (matchedFlow) {
+          route = { type: "document-flow", flowId: matchedFlow.id };
+        } else if (
+          deepResearchData.vendorEvalResponse &&
+          (lower.includes("vendor") || lower.includes("evaluation"))
+        ) {
+          route = { type: "vendor-eval" };
+        }
       }
+
+      executeRoute(prefill, route);
     }
-  }, [prefill, routeQuery, deepResearchData]);
+  }, [prefill, prefillRoute, typeOnly, executeRoute, deepResearchData]);
 
   const hasMessages = messages.length > 0;
   const isLoading =
@@ -767,7 +1056,8 @@ const DeepResearchPage = () => {
 
   return (
     <div
-      className="flex overflow-hidden h-full"
+      className="flex overflow-hidden"
+      style={{ height: "calc(100vh - 2rem)" }}
     >
       <LeftSecondarySidebar
         defaultWidth={220}
@@ -783,12 +1073,22 @@ const DeepResearchPage = () => {
         />
       </LeftSecondarySidebar>
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+        {locationState?.fromMorningBrief && (
+          <button
+            type="button"
+            onClick={() => navigate("/morning-brief")}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-2 bg-transparent border-none cursor-pointer p-0 mx-6 mt-4"
+          >
+            <ArrowLeft size={14} />
+            Morning Brief
+          </button>
+        )}
         {!hasMessages && phase === "idle" ? (
           <div className="flex-1 min-h-0 overflow-y-auto">
             <EmptyState onSuggestionClick={handleSuggestionClick} />
           </div>
         ) : (
-          <ChatContainerRoot className="flex-1 min-h-0">
+          <ChatContainerRoot ref={chatContainerRef} className="flex-1 min-h-0">
             <ChatContainerContent className="max-w-[680px] mx-auto px-6 pt-8 pb-4 space-y-5">
               {messages.map((msg) => {
                 if (msg.type === "prd" && activeFlow) {
@@ -806,7 +1106,7 @@ const DeepResearchPage = () => {
                           transition={{ delay: 0.5, duration: 0.3 }}
                         >
                           <Steps defaultOpen={false}>
-                            <StepsTrigger className="text-2xs font-medium text-[var(--fg-muted)]">
+                            <StepsTrigger className="text-2xs font-medium text-[var(--muted-foreground)]">
                               {activeFlow.sources.length} sources
                             </StepsTrigger>
                             <StepsContent>
@@ -855,8 +1155,12 @@ const DeepResearchPage = () => {
 
                 if (msg.role === "user") {
                   return (
-                    <Message key={msg.id} className="justify-end">
-                      <MessageContent className="bg-[var(--bg-component-hover)] text-[var(--fg-base)] max-w-[72%] text-sm">
+                    <Message
+                      key={msg.id}
+                      className="justify-end"
+                      data-user-message
+                    >
+                      <MessageContent className="bg-[var(--accent)] text-[var(--foreground)] max-w-[72%] text-sm">
                         {msg.content}
                       </MessageContent>
                     </Message>
@@ -865,11 +1169,17 @@ const DeepResearchPage = () => {
 
                 return (
                   <Message key={msg.id} className="justify-start">
-                    <div className="flex-1 min-w-0 bg-[var(--bg-subtle)] rounded-2xl p-4">
+                    <div className="flex-1 min-w-0">
                       <ResponseBlock
                         paragraphs={msg.paragraphs ?? []}
                         timestamp={msg.timestamp ?? ""}
+                        timeline={msg.timeline}
                       />
+                      {msg.actionSuggestion ? (
+                        <ActionSuggestionCTA
+                          suggestion={msg.actionSuggestion}
+                        />
+                      ) : null}
                     </div>
                   </Message>
                 );
@@ -923,6 +1233,61 @@ const DeepResearchPage = () => {
           />
         </div>
       </div>
+
+      {/* Oracle meeting toast */}
+      <AnimatePresence>
+        {showOracleToast && (
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 60 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="group/toast fixed top-4 right-4 z-50 w-80 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4 shadow-lg"
+          >
+            <button
+              type="button"
+              onClick={() => {
+                oracleToastDismissed.current = true;
+                setShowOracleToast(false);
+              }}
+              className="absolute top-2 right-2 flex size-6 items-center justify-center rounded-md text-[var(--muted-foreground)] opacity-0 group-hover/toast:opacity-100 hover:bg-[var(--accent)] hover:text-[var(--foreground)] transition-all border-none bg-transparent cursor-pointer"
+            >
+              <X size={14} />
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)]">
+                <Calendar size={16} className="text-[var(--foreground)]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="m-0 text-sm font-medium text-[var(--foreground)]">
+                  Oracle Migration Review
+                </p>
+                <p className="m-0 text-2xs text-[var(--muted-foreground)]">
+                  3:00 PM · Starting soon
+                </p>
+              </div>
+            </div>
+            <div className="mt-3 flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowOracleToast(false);
+                  navigate("/pre-meeting-brief");
+                }}
+                className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+              >
+                View Brief
+              </button>
+              <button
+                type="button"
+                className="flex-1 rounded-lg border border-solid border-[var(--border)] bg-[var(--background)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] cursor-pointer transition-colors hover:bg-[var(--accent)]"
+              >
+                Join
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -1,286 +1,271 @@
-import { useState, useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, Settings, MessageSquare } from "lucide-react";
-import { cn } from "@lib/utils";
-import { usePersonaStore } from "@/stores/persona-store";
-import { getPersonaReports } from "@/data/content-resolver";
-import { useReportsStore } from "@/stores/reports-store";
-import { ArtifactsSearchBar } from "@components/artifacts/search-bar";
-import { ArtifactsResearchSidebar } from "@components/artifacts/artifacts-research-sidebar";
-import { RightSidebarProvider } from "@/components/ui/right-sidebar";
-import { useRegisterSidebar, SidebarPosition } from "@/contexts/layout-context";
-import type { ReportCategory, ReportSummary } from "@/types";
-import PageShell from "@/components/ui/page-shell";
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ChevronRight, ListFilter, Search, Layers, Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
+import { MOCK_ARTIFACTS, ARTIFACT_TYPE_LABELS } from "@/data/mock-artifacts";
+import type { Artifact, ArtifactType } from "@/data/mock-artifacts";
 
-const TAB_LABELS = ["Reports", "Radar"] as const;
+type FilterValue = "all" | ArtifactType;
+type SortValue = "newest" | "oldest" | "action";
 
-function PriorityDot({ priority }: { priority: "High" | "Med" }) {
-  return (
-    <span
-      className={cn(
-        "w-1.5 h-1.5 rounded-full inline-block",
-        priority === "High"
-          ? "bg-[var(--color-gray-600)]"
-          : "bg-[var(--color-gray-400)]",
-      )}
-    />
-  );
-}
-
-function CategoryRow({ category }: { category: ReportCategory }) {
-  const { expandedCategories, toggleCategory, setSelectedReport } =
-    useReportsStore();
-  const isExpanded = expandedCategories.has(category.id);
-  const visibleReports = isExpanded
-    ? category.reports
-    : category.reports.slice(0, 1);
+function ArtifactRow({
+  artifact,
+  onClick,
+}: {
+  artifact: Artifact;
+  onClick: () => void;
+}) {
+  const date = new Date(artifact.createdAt);
+  const formatted = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => toggleCategory(category.id)}
-        className="flex items-center justify-between w-full py-4 group bg-transparent border-none cursor-pointer text-left"
-      >
-        <div className="flex items-center gap-2">
-          <ChevronRight
-            size={16}
-            className={cn(
-              "text-[var(--fg-disabled)] transition-transform",
-              isExpanded && "rotate-90",
-            )}
-          />
-          <span className="text-sm text-[var(--fg-base)]">{category.name}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          {category.type === "radar" && category.priority && (
-            <span
-              className={cn(
-                "flex items-center gap-1.5 text-xs font-semibold",
-                category.priority === "High"
-                  ? "text-[var(--color-gray-600)]"
-                  : "text-[var(--color-gray-400)]",
-              )}
-            >
-              <PriorityDot priority={category.priority} />
-              {category.priority}
-            </span>
-          )}
-          <span className="text-sm text-[var(--fg-muted)]">
-            {category.reportCount}{" "}
-            {category.type === "radar" ? "items" : "reports"}
-          </span>
-        </div>
-      </button>
-
-      <div className="pb-2">
-        {visibleReports.map((report) => (
-          <Link
-            key={report.id}
-            to="/report-detail"
-            onClick={() => setSelectedReport(report.id)}
-            className="flex items-center justify-between py-3 pl-8 pr-2 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
-          >
-            <span className="text-sm text-[var(--fg-base)]">
-              {report.dateRange}
-            </span>
-            <div className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
-              {report.isLatest && <span>Latest</span>}
-              <ChevronRight size={14} />
-            </div>
-          </Link>
-        ))}
+    <button
+      type="button"
+      onClick={onClick}
+      className="flex items-center gap-4 w-full py-3.5 px-4 rounded-xl hover:bg-accent transition-colors text-left cursor-pointer bg-transparent border-none"
+    >
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium text-foreground truncate">
+          {artifact.title}
+        </p>
+        <p className="text-xs text-muted-foreground/60 mt-0.5 truncate">
+          {artifact.actionName}
+        </p>
       </div>
-    </div>
+
+      <span className="hidden sm:inline-flex rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground shrink-0">
+        {ARTIFACT_TYPE_LABELS[artifact.type]}
+      </span>
+
+      <span className="text-xs text-muted-foreground/60 shrink-0 tabular-nums">
+        {formatted}
+      </span>
+
+      <ChevronRight size={14} className="text-muted-foreground/40 shrink-0" />
+    </button>
   );
 }
 
-interface FlatReportRow {
-  report: ReportSummary;
-  category: ReportCategory;
-}
-
-function ByDateView({ categories }: { categories: ReportCategory[] }) {
-  const setSelectedReport = useReportsStore((s) => s.setSelectedReport);
-  const allReports = useMemo(() => {
-    const flat: FlatReportRow[] = categories.flatMap((cat) =>
-      cat.reports.map((report) => ({ report, category: cat })),
-    );
-    return flat.sort(
-      (a, b) =>
-        new Date(b.report.date).getTime() - new Date(a.report.date).getTime(),
-    );
-  }, [categories]);
+function GroupedByAction({
+  artifacts,
+  onSelect,
+}: {
+  artifacts: Artifact[];
+  onSelect: (id: string) => void;
+}) {
+  const groups = useMemo(() => {
+    const map = new Map<string, { actionName: string; items: Artifact[] }>();
+    for (const a of artifacts) {
+      const existing = map.get(a.actionId);
+      if (existing) {
+        existing.items.push(a);
+      } else {
+        map.set(a.actionId, { actionName: a.actionName, items: [a] });
+      }
+    }
+    return Array.from(map.values());
+  }, [artifacts]);
 
   return (
-    <div className="divide-y divide-[var(--border-base)]">
-      {allReports.map(({ report, category }) => (
-        <Link
-          key={report.id}
-          to="/report-detail"
-          onClick={() => setSelectedReport(report.id)}
-          className="flex items-center justify-between py-3.5 px-4 hover:bg-[var(--bg-component-hover)] transition-colors no-underline"
-        >
-          <div className="flex items-center gap-3">
-            {category.type === "radar" && category.priority ? (
-              <span
-                className={cn(
-                  "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-2xs font-semibold",
-                  category.priority === "High"
-                    ? "bg-red-50 text-[var(--color-gray-600)]"
-                    : "bg-amber-50 text-[var(--color-gray-400)]",
-                )}
-              >
-                <PriorityDot priority={category.priority} />
-                Radar
-              </span>
-            ) : (
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md text-2xs font-semibold bg-[var(--bg-subtle)] text-[var(--fg-muted)]">
-                Report
-              </span>
-            )}
-            <span className="text-sm text-[var(--fg-base)]">
-              {category.name}
-            </span>
+    <div className="space-y-6">
+      {groups.map((group) => (
+        <div key={group.actionName}>
+          <p className="text-xs font-medium text-muted-foreground/60 px-4 mb-1">
+            {group.actionName}
+          </p>
+          <div className="divide-y divide-border">
+            {group.items.map((artifact) => (
+              <ArtifactRow
+                key={artifact.id}
+                artifact={artifact}
+                onClick={() => onSelect(artifact.id)}
+              />
+            ))}
           </div>
-          <div className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
-            <span>{report.dateRange}</span>
-            <ChevronRight size={14} />
-          </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
 }
 
+const FILTER_OPTIONS: { label: string; value: FilterValue }[] = [
+  { label: "All Types", value: "all" },
+  { label: "Memos", value: "memo" },
+  { label: "Pipeline Summaries", value: "pipeline-summary" },
+  { label: "Risk Reports", value: "risk-report" },
+  { label: "Vendor Delay Reports", value: "vendor-delay-report" },
+  { label: "Research", value: "research" },
+  { label: "Follow-Ups", value: "follow-up" },
+];
+
+const SORT_OPTIONS: { label: string; value: SortValue }[] = [
+  { label: "Newest First", value: "newest" },
+  { label: "Oldest First", value: "oldest" },
+  { label: "By Action", value: "action" },
+];
+
 const ArtifactsPage = () => {
   const navigate = useNavigate();
-  const persona = usePersonaStore((s) => s.persona);
-  const { reportCategories } = getPersonaReports(persona);
-  const {
-    viewMode,
-    activeTab,
-    setActiveTab,
-    searchQuery,
-    isArtifactsChatOpen,
-    setArtifactsChatOpen,
-  } = useReportsStore();
-  const [chatWidth, setChatWidth] = useState(380);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filter, setFilter] = useState<FilterValue>("all");
+  const [sort, setSort] = useState<SortValue>("newest");
 
-  useRegisterSidebar({
-    position: SidebarPosition.RIGHT,
-    open: isArtifactsChatOpen,
-    width: chatWidth,
-  });
+  const filtered = useMemo(() => {
+    let result = MOCK_ARTIFACTS;
 
-  const filteredCategories = useMemo(() => {
-    const byType = reportCategories.filter((cat) =>
-      activeTab === "reports" ? cat.type === "report" : cat.type === "radar",
-    );
-
-    if (!searchQuery.trim()) return byType;
-
-    const query = searchQuery.toLowerCase();
-    return byType.filter(
-      (cat) =>
-        cat.name.toLowerCase().includes(query) ||
-        cat.reports.some((r) => r.dateRange.toLowerCase().includes(query)),
-    );
-  }, [activeTab, searchQuery, reportCategories]);
-
-  const handleSettingsClick = () => {
-    if (activeTab === "reports") {
-      navigate("/artifacts/reports-settings");
-    } else {
-      navigate("/artifacts/radar-settings");
+    if (filter !== "all") {
+      result = result.filter((a) => a.type === filter);
     }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (a) =>
+          a.title.toLowerCase().includes(q) ||
+          a.actionName.toLowerCase().includes(q) ||
+          a.description.toLowerCase().includes(q),
+      );
+    }
+
+    if (sort === "newest") {
+      result = [...result].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+    } else if (sort === "oldest") {
+      result = [...result].sort(
+        (a, b) =>
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+      );
+    }
+
+    return result;
+  }, [filter, searchQuery, sort]);
+
+  const handleSelect = (artifactId: string) => {
+    navigate(`/artifact-detail/${artifactId}`);
   };
 
+  const filterLabel =
+    FILTER_OPTIONS.find((o) => o.value === filter)?.label ?? "All Types";
+  const sortLabel =
+    SORT_OPTIONS.find((o) => o.value === sort)?.label ?? "Newest First";
+
   return (
-    <div className="flex overflow-hidden h-full">
-    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <div className="relative">
-      <div
-        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
-      >
-        <div className="rounded-[8px] p-[2px]">
-          {TAB_LABELS.map((label) => (
-            <button
-              key={label}
-              type="button"
-              onClick={() => setActiveTab(label.toLowerCase() as "reports" | "radar")}
-              className={cn(
-                "inline-flex items-center justify-center px-3 font-medium border-none cursor-pointer rounded-md",
-                activeTab === label.toLowerCase()
-                  ? "bg-[var(--bg-selected)] text-[var(--fg-base)]"
-                  : "bg-transparent text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
-              )}
-              style={{
-                height: "var(--toolbar-btn-size)",
-                fontSize: "var(--toolbar-font-size)",
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={handleSettingsClick}
-          className="h-7 w-7 flex items-center justify-center rounded-md bg-transparent text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)] transition-colors duration-150 ease-out cursor-pointer border-none"
-        >
-          <Settings size={15} />
-        </button>
-        <button
-          type="button"
-          onClick={() => setArtifactsChatOpen(!isArtifactsChatOpen)}
-          className={cn(
-            "h-7 w-7 flex items-center justify-center rounded-md transition-colors duration-150 ease-out cursor-pointer border-none",
-            isArtifactsChatOpen
-              ? "bg-[var(--bg-selected)] text-[var(--fg-muted)]"
-              : "bg-transparent text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-component-hover)]",
-          )}
-        >
-          <MessageSquare size={15} />
-        </button>
-      </div>
-
-      <PageShell>
-        <div className="mb-6">
-          <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
-            Artifacts
-          </h1>
-        </div>
-
-        <ArtifactsSearchBar />
-
-        {viewMode === "by-type" ? (
-          <div className="divide-y divide-[var(--border-base)]">
-            {filteredCategories.map((cat) => (
-              <CategoryRow key={cat.id} category={cat} />
-            ))}
-          </div>
-        ) : (
-          <ByDateView categories={filteredCategories} />
-        )}
-
-        {filteredCategories.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-sm text-[var(--fg-disabled)]">
-              No {activeTab === "reports" ? "reports" : "radars"} found
+    <div className="h-full overflow-x-hidden overflow-y-auto">
+      <div className="relative min-h-full px-4 py-6 pt-14 sm:p-12 sm:pt-24 md:pt-24">
+        <div className="max-w-screen-4xl mx-auto w-full">
+          {/* Header */}
+          <div className="mx-auto max-w-xl text-center">
+            <h1 className="text-center font-medium text-[40px] leading-[48px] text-foreground tracking-tight">
+              Artifacts
+            </h1>
+            <p className="mt-2 text-base text-muted-foreground/60">
+              All outputs produced across your actions.
             </p>
           </div>
-        )}
 
-    </PageShell>
-    </div>
-    </div>
-    <RightSidebarProvider open={isArtifactsChatOpen} onOpenChange={setArtifactsChatOpen} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
-      <ArtifactsResearchSidebar
-        isOpen={isArtifactsChatOpen}
-        onClose={() => setArtifactsChatOpen(false)}
-      />
-    </RightSidebarProvider>
+          {/* Filters & Search */}
+          <div className="mx-auto mt-12 w-full max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex h-7 shrink-0 items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 text-xs text-muted-foreground transition hover:border-muted-foreground cursor-pointer">
+                  <ListFilter className="size-3.5 text-muted-foreground/60" />
+                  <span>{filterLabel}</span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" sideOffset={6}>
+                  <DropdownMenuRadioGroup
+                    value={filter}
+                    onValueChange={(v) => setFilter(v as FilterValue)}
+                  >
+                    {FILTER_OPTIONS.map((opt) => (
+                      <DropdownMenuRadioItem key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </DropdownMenuRadioItem>
+                    ))}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex h-7 items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 text-xs text-muted-foreground transition hover:border-muted-foreground cursor-pointer">
+                  <Clock className="size-3.5 text-muted-foreground/60" />
+                  {sortLabel}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" sideOffset={6}>
+                  <DropdownMenuRadioGroup
+                    value={sort}
+                    onValueChange={(v) => setSort(v as SortValue)}
+                  >
+                    {SORT_OPTIONS.map((opt) => (
+                      <DropdownMenuRadioItem key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </DropdownMenuRadioItem>
+                    ))}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <div className="relative w-full sm:ml-auto sm:max-w-64">
+                <div className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+                  <Search className="size-3.5 text-muted-foreground/60" />
+                </div>
+                <Input
+                  placeholder="Search artifacts..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  rounded="full"
+                  size="default"
+                  className="pl-8 text-xs"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            {filtered.length > 0 ? (
+              sort === "action" ? (
+                <div className="mt-6">
+                  <GroupedByAction
+                    artifacts={filtered}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              ) : (
+                <div className="mt-6 divide-y divide-border">
+                  {filtered.map((artifact) => (
+                    <ArtifactRow
+                      key={artifact.id}
+                      artifact={artifact}
+                      onClick={() => handleSelect(artifact.id)}
+                    />
+                  ))}
+                </div>
+              )
+            ) : (
+              <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-border px-8 py-24 text-center">
+                <Layers
+                  className="size-10 text-muted-foreground/60"
+                  strokeWidth={1}
+                />
+                <p className="mt-2 text-sm font-medium text-muted-foreground">
+                  No artifacts found
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

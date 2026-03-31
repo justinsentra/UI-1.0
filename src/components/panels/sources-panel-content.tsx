@@ -13,34 +13,34 @@ interface SourcesPanelContentProps {
 }
 
 const TYPE_LABELS: Record<string, string> = {
-  slack: "Slack",
-  meeting: "Meetings",
-  "google-meet": "Google Meet",
-  "google-calendar": "Google Calendar",
-  "google-drive": "Google Drive",
-  linear: "Linear",
+  slack: "ChatWorks",
+  meeting: "Zoom",
+  "google-meet": "Zoom",
+  "google-calendar": "Outlook Calendar",
+  "google-drive": "SharePoint",
+  linear: "Trackline",
   email: "Email",
   outlook: "Outlook",
-  notion: "Notion",
+  notion: "Dokra",
   asana: "Asana",
   discord: "Discord",
   zoom: "Zoom",
   github: "GitHub",
-  "google-docs": "Google Docs",
+  "google-docs": "Word",
   teams: "Microsoft Teams",
   sharepoint: "SharePoint",
 };
 
 const SOURCE_DESCRIPTIONS: Record<string, string> = {
-  slack: "Slack channel or thread",
-  linear: "Linear issue or project",
+  slack: "ChatWorks channel or thread",
+  linear: "Trackline issue or project",
   github: "GitHub repository or PR",
   zoom: "Zoom meeting recording",
-  "google-docs": "Google Docs document",
-  "google-meet": "Google Meet transcript",
-  "google-calendar": "Google Calendar event",
-  "google-drive": "Google Drive file",
-  notion: "Notion page or database",
+  "google-docs": "Word document",
+  "google-meet": "Zoom meeting transcript",
+  "google-calendar": "Outlook Calendar event",
+  "google-drive": "SharePoint file",
+  notion: "Dokra page or database",
   asana: "Asana task or project",
   discord: "Discord channel",
   outlook: "Outlook email thread",
@@ -52,10 +52,10 @@ const SOURCE_DESCRIPTIONS: Record<string, string> = {
 
 const ICON_COMPATIBLE_TYPES: Record<string, SourceType> = {
   slack: "slack",
-  meeting: "google-meet",
-  "google-meet": "google-meet",
-  "google-calendar": "google-calendar",
-  "google-drive": "google-drive",
+  meeting: "zoom",
+  "google-meet": "zoom",
+  "google-calendar": "outlook",
+  "google-drive": "sharepoint",
   linear: "linear",
   email: "email",
   outlook: "outlook",
@@ -64,7 +64,7 @@ const ICON_COMPATIBLE_TYPES: Record<string, SourceType> = {
   discord: "discord",
   zoom: "zoom",
   github: "github",
-  "google-docs": "google-docs",
+  "google-docs": "outlook",
   teams: "teams",
   sharepoint: "sharepoint",
 };
@@ -119,10 +119,10 @@ export function SourcesPanelContent({ sources }: SourcesPanelContentProps) {
   return (
     <div className="p-4 space-y-5">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-semibold text-[var(--fg-base)]">
+        <span className="text-sm font-semibold text-[var(--foreground)]">
           Sources
         </span>
-        <span className="text-sm text-[var(--fg-muted)]">
+        <span className="text-sm text-[var(--muted-foreground)]">
           {sources.length} references
         </span>
       </div>
@@ -135,7 +135,7 @@ export function SourcesPanelContent({ sources }: SourcesPanelContentProps) {
           <div key={type}>
             <div className="flex items-center gap-1.5 mb-2">
               <Icon size={14} />
-              <p className="text-xs font-medium text-[var(--fg-disabled)] ">
+              <p className="text-xs font-medium text-[var(--muted-foreground)] ">
                 {TYPE_LABELS[type] ?? type}
               </p>
             </div>

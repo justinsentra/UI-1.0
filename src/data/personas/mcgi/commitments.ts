@@ -12,7 +12,7 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c2",
-    title: "Schedule CarbonGrid technical DD with MC industrial team",
+    title: "Schedule GreenCore technical DD with AG industrial team",
     meeting: "Investment Committee — Q1 Pipeline Review",
     meetingId: "mcgi-mtg-1",
     meetingDate: "Mar 10, 2026",
@@ -39,7 +39,7 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c5",
-    title: "Map MC business units for potential Sentra deployment",
+    title: "Map AG business units for potential Sentra deployment",
     meeting: "Sentra — Product Deep Dive & Strategic Fit",
     meetingId: "mcgi-mtg-2",
     meetingDate: "Mar 7, 2026",
@@ -49,7 +49,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "mcgi-c6",
     title: "Compile AI agent framework landscape analysis",
-    meeting: "M-Lab Consortium Monthly — AI Landscape Update",
+    meeting: "Catalyst Alliance Consortium Monthly — AI Landscape Update",
     meetingId: "mcgi-mtg-3",
     meetingDate: "Mar 6, 2026",
     dueDate: "Mar 13",
@@ -57,8 +57,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c7",
-    title: "Coordinate YC W26 demo day attendance",
-    meeting: "M-Lab Consortium Monthly — AI Landscape Update",
+    title: "Coordinate LP Winter 26 demo day attendance",
+    meeting: "Catalyst Alliance Consortium Monthly — AI Landscape Update",
     meetingId: "mcgi-mtg-3",
     meetingDate: "Mar 6, 2026",
     dueDate: "Mar 10",
@@ -66,8 +66,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c8",
-    title: "Draft CarbonGrid technical DD summary",
-    meeting: "CarbonGrid — Technical Due Diligence Review",
+    title: "Draft GreenCore technical DD summary",
+    meeting: "GreenCore — Technical Due Diligence Review",
     meetingId: "mcgi-mtg-4",
     meetingDate: "Mar 5, 2026",
     dueDate: "Mar 12",
@@ -75,8 +75,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c9",
-    title: "Schedule CarbonGrid site visit to pilot facility",
-    meeting: "CarbonGrid — Technical Due Diligence Review",
+    title: "Schedule GreenCore site visit to pilot facility",
+    meeting: "GreenCore — Technical Due Diligence Review",
     meetingId: "mcgi-mtg-4",
     meetingDate: "Mar 5, 2026",
     dueDate: "Mar 14",
@@ -84,8 +84,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c10",
-    title: "Introduce NeuralDB to MC's IT infrastructure team",
-    meeting: "Portfolio Company Check-in — NeuralDB",
+    title: "Introduce SyntheticDB to AG's IT infrastructure team",
+    meeting: "Portfolio Company Check-in — SyntheticDB",
     meetingId: "mcgi-mtg-5",
     meetingDate: "Mar 4, 2026",
     dueDate: "Mar 11",
@@ -93,8 +93,8 @@ export const commitments: CommitmentItem[] = [
   },
   {
     id: "mcgi-c11",
-    title: "Connect NeuralDB with Japan-focused VCs for Series B",
-    meeting: "Portfolio Company Check-in — NeuralDB",
+    title: "Connect SyntheticDB with Europe-focused VCs for Series B",
+    meeting: "Portfolio Company Check-in — SyntheticDB",
     meetingId: "mcgi-mtg-5",
     meetingDate: "Mar 4, 2026",
     dueDate: "Mar 14",
@@ -103,7 +103,7 @@ export const commitments: CommitmentItem[] = [
   {
     id: "mcgi-c12",
     title: "Update screening criteria for inbound deal flow",
-    meeting: "MCGI Weekly — Deal Flow & Operations",
+    meeting: "AGV Weekly — Deal Flow & Operations",
     meetingId: "mcgi-mtg-6",
     meetingDate: "Mar 3, 2026",
     dueDate: "Mar 7",

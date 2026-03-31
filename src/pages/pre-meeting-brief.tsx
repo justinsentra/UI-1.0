@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@lib/utils";
 import { motion } from "motion/react";
 import { Users, Clock, MessageSquare, ArrowUpRight } from "lucide-react";
 import { usePageLabel } from "../components/app-layout";
+import { UserAvatar } from "@/components/user-avatar";
 import PageShell from "@/components/ui/page-shell";
 import { ChatSidebar } from "@/components/meetings/chat-sidebar";
 import { RightSidebarProvider } from "@/components/ui/right-sidebar";
@@ -36,8 +38,11 @@ function BriefSourcePill({
     >
       {Icon && <Icon size={13} />}
       <span className="truncate max-w-[200px]">{label}</span>
-      <span className="text-[var(--fg-disabled)]">{date}</span>
-      <ArrowUpRight size={10} className="text-[var(--fg-disabled)] shrink-0" />
+      <span className="text-[var(--muted-foreground)]">{date}</span>
+      <ArrowUpRight
+        size={10}
+        className="text-[var(--muted-foreground)] shrink-0"
+      />
     </button>
   );
 }
@@ -47,12 +52,12 @@ function BriefSourcePill({
 function InsightCard({ insight }: { insight: BriefInsight }) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-sm text-[var(--fg-base)] leading-[1.7] m-0">
+      <p className="text-sm text-[var(--foreground)] leading-[1.7] m-0">
         {insight.heading}
       </p>
 
-      <div className="rounded-lg bg-[var(--bg-subtle)] border border-[var(--border-subtle)] p-3.5">
-        <p className="text-sm text-[var(--fg-subtle)] leading-[1.7] m-0 italic">
+      <div className="rounded-lg bg-[var(--muted)] border border-[var(--border)] p-3.5">
+        <p className="text-sm text-[var(--muted-foreground)] leading-[1.7] m-0 italic">
           &ldquo;{insight.source.quote}&rdquo;
         </p>
         <div className="mt-2.5">
@@ -64,7 +69,7 @@ function InsightCard({ insight }: { insight: BriefInsight }) {
         </div>
       </div>
 
-      <p className="text-sm text-[var(--fg-muted)] leading-[1.7] m-0">
+      <p className="text-sm text-[var(--muted-foreground)] leading-[1.7] m-0">
         {insight.summary}
       </p>
     </div>
@@ -125,99 +130,130 @@ const PreMeetingBriefPage = () => {
 
   return (
     <div className="flex overflow-hidden h-full">
-    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <PageShell className="relative pb-[40vh]">
-      {/* Top-right action buttons — identical to meeting-detail */}
-      <div
-        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
-      >
-        <button
-          type="button"
-          onClick={() => setShowChatSidebar((p) => !p)}
-          className={cn(
-            "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
-            showChatSidebar
-              ? "bg-[var(--bg-selected)] text-[var(--fg-muted)]"
-              : "bg-transparent hover:bg-[var(--bg-component-hover)] text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
-          )}
-          title="Deep Research"
-        >
-          <MessageSquare size={15} />
-        </button>
-      </div>
+      <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+        <PageShell className="relative pb-[40vh]">
+          {/* Top-right action buttons — identical to meeting-detail */}
+          <div className="absolute top-[12px] right-5 z-10 flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => setShowChatSidebar((p) => !p)}
+              className={cn(
+                "h-7 w-7 rounded-md flex items-center justify-center transition-colors cursor-pointer border-none",
+                showChatSidebar
+                  ? "bg-[var(--accent)] text-[var(--muted-foreground)]"
+                  : "bg-transparent hover:bg-[var(--accent)] text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)]",
+              )}
+              title="Deep Research"
+            >
+              <MessageSquare size={15} />
+            </button>
+          </div>
 
-      {/* Title */}
-      <div className="mb-4">
-        <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight">
-          {brief.meetingTitle}
-        </h1>
-      </div>
+          {/* Title */}
+          <div className="mb-4">
+            <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
+              {brief.meetingTitle}
+            </h1>
+          </div>
 
-      {/* Meta Badges */}
-      <div className="flex items-center gap-2 mb-5">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent">
-          <Clock size={14} />
-          {brief.meetingTime} – {brief.meetingEndTime}
-        </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-base)] text-sm text-[var(--fg-muted)] bg-transparent">
-          <Users size={14} />
-          {brief.attendees.length} attendees
-        </div>
-      </div>
-
-      {/* Tabs — identical structure to meeting-detail */}
-      <div className="relative flex gap-8 border-b border-[var(--border-base)] mb-6">
-        {tabs.map((tab, i) => (
-          <button
-            key={tab}
-            ref={(el) => {
-              tabRefs.current[i] = el;
-            }}
-            type="button"
-            onClick={() => setActiveTab(tab)}
-            className={cn(
-              "pb-3 px-1 text-sm font-medium transition-colors bg-transparent cursor-pointer border-none",
-              activeTab === tab
-                ? "text-[var(--fg-base)]"
-                : "text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
-            )}
-          >
-            {tab}
-          </button>
-        ))}
-        <motion.div
-          className="absolute bottom-0 h-[2px] bg-[var(--fg-base)] rounded-full"
-          animate={{ left: tabIndicator.left, width: tabIndicator.width }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        />
-      </div>
-
-      {/* Context Tab */}
-      {activeTab === "Context" && (
-        <div className="animate-fade-in">
-          {/* Key Context / Insights */}
-          <div>
-            <h3 className="text-2xs font-medium text-[var(--fg-muted)] mb-4">
-              Key context
-            </h3>
-            <div className="flex flex-col gap-8">
-              {brief.insights.map((insight, i) => (
-                <InsightCard key={i} insight={insight} />
-              ))}
+          {/* Meta Badges */}
+          <div className="flex items-center gap-2 mb-5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border)] text-sm text-[var(--muted-foreground)] bg-transparent">
+              <Clock size={14} />
+              {brief.meetingTime} – {brief.meetingEndTime}
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border)] text-sm text-[var(--muted-foreground)] bg-transparent">
+              <Users size={14} />
+              {brief.attendees.length} attendees
             </div>
           </div>
-        </div>
-      )}
 
-    </PageShell>
-    </div>
-    <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
-      <ChatSidebar
-        isOpen={showChatSidebar}
-        onClose={() => setShowChatSidebar(false)}
-        suggestedQuestions={chatSuggestions}
-      />
-    </RightSidebarProvider>
+          {/* Attendees */}
+          <div className="flex flex-wrap gap-3 mb-6">
+            {brief.attendees.map((attendee) => {
+              const slug = attendee.name.toLowerCase().replace(/\s+/g, "-");
+              return (
+                <Link
+                  key={attendee.name}
+                  to={`/connection-detail?id=${slug}`}
+                  className="flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-transparent px-2 py-1.5 pr-3.5 text-sm no-underline transition-colors hover:bg-[var(--accent)]"
+                >
+                  <UserAvatar name={attendee.name} size="sm" />
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium text-[var(--foreground)] leading-tight">
+                      {attendee.name}
+                    </span>
+                    <span className="text-2xs text-[var(--muted-foreground)] leading-tight">
+                      {attendee.role} · Last spoke {attendee.lastSpoke}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Tabs — identical structure to meeting-detail */}
+          <div className="relative flex gap-8 border-b border-[var(--border)] mb-6">
+            {tabs.map((tab, i) => (
+              <button
+                key={tab}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  "pb-3 px-1 text-sm font-medium transition-colors bg-transparent cursor-pointer border-none",
+                  activeTab === tab
+                    ? "text-[var(--foreground)]"
+                    : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]",
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+            <motion.div
+              className="absolute bottom-0 h-[2px] bg-[var(--foreground)] rounded-full"
+              animate={{ left: tabIndicator.left, width: tabIndicator.width }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            />
+          </div>
+
+          {/* Context Tab */}
+          {activeTab === "Context" && (
+            <div className="animate-fade-in">
+              {/* Key Context / Insights */}
+              <div>
+                <h3 className="text-2xs font-medium text-[var(--muted-foreground)] mb-4">
+                  Key context
+                </h3>
+                <div className="flex flex-col gap-8">
+                  {brief.insights.map((insight, i) => (
+                    <div key={i}>
+                      {i > 0 && <div className="mb-8 h-px bg-border" />}
+                      <InsightCard insight={insight} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </PageShell>
+      </div>
+      <RightSidebarProvider
+        open={showChatSidebar}
+        onOpenChange={setShowChatSidebar}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
+        <ChatSidebar
+          isOpen={showChatSidebar}
+          onClose={() => setShowChatSidebar(false)}
+          suggestedQuestions={chatSuggestions}
+        />
+      </RightSidebarProvider>
     </div>
   );
 };

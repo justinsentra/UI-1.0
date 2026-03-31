@@ -1,5 +1,5 @@
-import { useState, useRef, useLayoutEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import {
   Mail,
   Globe,
@@ -10,14 +10,154 @@ import {
   Newspaper,
   ArrowUpRight,
   Plus,
+  X,
+  Send,
 } from "lucide-react";
-import { getInitials, getAvatarColor, cn } from "@lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { cn } from "@lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
 import { usePageLabel } from "../components/app-layout";
 import { MeetingRow } from "@components/meetings/meeting-row";
 import { connectionData } from "@/data/mock-connection-detail";
 import PageShell from "@/components/ui/page-shell";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
-type BottomTab = "meetings" | "emails";
+const nameToIdMap: Record<string, string> = Object.fromEntries(
+  Object.entries(connectionData).map(([connectionId, entry]) => [
+    entry.name,
+    connectionId,
+  ]),
+);
+
+interface ConnectionEmail {
+  id: string;
+  subject: string;
+  date: string;
+  snippet: string;
+  from: string;
+  to: string[];
+}
+
+const ConnectionEmailRow = ({ email }: { email: ConnectionEmail }) => {
+  const [open, setOpen] = useState(false);
+  const [replyText, setReplyText] = useState("");
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger
+        render={
+          <div
+            className="flex flex-col gap-1 px-4 py-3.5 rounded-lg hover:bg-accent transition-colors cursor-pointer"
+            onClick={() => setOpen(true)}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">
+                {email.subject}
+              </span>
+              <span className="text-2xs text-muted-foreground shrink-0 ml-3">
+                {email.date}
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground line-clamp-1">
+              {email.from} → {email.to.join(", ")}
+            </p>
+            <p className="text-xs text-muted-foreground/60 line-clamp-2 leading-relaxed">
+              {email.snippet}
+            </p>
+          </div>
+        }
+      />
+      <DialogContent
+        showCloseButton={false}
+        className="max-w-[54rem] sm:max-w-[54rem] rounded-xl p-0"
+      >
+        <DialogTitle className="sr-only">{email.subject}</DialogTitle>
+        <DialogDescription className="sr-only">
+          Email from {email.from}
+        </DialogDescription>
+        <div className="flex max-h-[90vh] w-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-xl">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-border px-8 py-5">
+            <div className="flex flex-col gap-1">
+              <p className="m-0 text-lg font-semibold text-foreground">
+                {email.subject}
+              </p>
+              <p className="m-0 text-xs text-muted-foreground">
+                {email.from} → {email.to.join(", ")}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="rounded-md p-1.5 text-muted-foreground hover:bg-accent"
+            >
+              <X size={14} />
+            </button>
+          </div>
+
+          {/* Email body */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="border-b border-border px-8 py-6">
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-semibold text-foreground">
+                  {email.from}
+                </span>
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {email.date}
+                </span>
+              </div>
+              <div className="mt-4 space-y-5">
+                <p className="m-0 whitespace-pre-line text-sm leading-7 text-foreground/65">
+                  {email.snippet}
+                </p>
+              </div>
+            </div>
+
+            {/* Reply box — empty */}
+            <div className="bg-muted/20 px-8 py-6">
+              <p className="m-0 text-xs font-medium text-muted-foreground">
+                Reply
+              </p>
+              <div className="mt-3 rounded-lg border border-border bg-card p-5">
+                <textarea
+                  value={replyText}
+                  onChange={(e) => setReplyText(e.target.value)}
+                  placeholder="Write a reply..."
+                  className="w-full resize-none border-none bg-transparent text-sm leading-7 text-foreground/65 outline-none placeholder:text-muted-foreground/40"
+                  rows={4}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="flex items-center justify-end border-t border-border px-8 py-4">
+            <Button className="rounded-lg" disabled={!replyText.trim()}>
+              <Send size={14} />
+              Send reply
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const ConnectionDetailPage = () => {
   const [searchParams] = useSearchParams();
@@ -25,22 +165,18 @@ const ConnectionDetailPage = () => {
   const person = connectionData[connectionId] ?? connectionData["sunna-mo"];
   const [askInput, setAskInput] = useState("");
   const [notes, setNotes] = useState(person.personalNotes.join("\n"));
-  const [bottomTab, setBottomTab] = useState<BottomTab>("meetings");
   const [newsOpen, setNewsOpen] = useState(false);
-  const [reminderSet, setReminderSet] = useState(false);
+  const [reminderDate, setReminderDate] = useState<Date | undefined>(undefined);
+  const [reminderOpen, setReminderOpen] = useState(false);
 
-  // Animated tab underline
-  const meetingsTabRef = useRef<HTMLButtonElement>(null);
-  const emailsTabRef = useRef<HTMLButtonElement>(null);
-  const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
-
-  useLayoutEffect(() => {
-    const activeRef = bottomTab === "meetings" ? meetingsTabRef : emailsTabRef;
-    const el = activeRef.current;
-    if (el) {
-      setUnderlineStyle({ left: el.offsetLeft, width: el.offsetWidth });
-    }
-  }, [bottomTab]);
+  const formattedReminderDate = useMemo(() => {
+    if (!reminderDate) return null;
+    return reminderDate.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }, [reminderDate]);
 
   usePageLabel(person.name);
 
@@ -49,135 +185,141 @@ const ConnectionDetailPage = () => {
   return (
     <PageShell>
       {/* Title */}
-      <h1 className="text-3xl font-normal text-[var(--fg-base)] tracking-tight mb-6">
+      <h1 className="text-3xl font-normal text-foreground tracking-tight mb-6">
         {person.name}
       </h1>
 
       {/* Avatar + contact info */}
       <div className="flex items-start gap-4 mb-3">
-        <div
-          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-medium shrink-0"
-          style={{ backgroundColor: getAvatarColor(person.name) }}
-        >
-          {getInitials(person.name)}
-        </div>
+        <UserAvatar name={person.name} size="xl" />
         <div className="flex flex-col gap-1.5 flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <Mail size={14} className="text-[var(--fg-disabled)] shrink-0" />
-            <span className="text-sm text-[var(--fg-muted)]">
+            <Mail size={14} className="text-muted-foreground shrink-0" />
+            <span className="text-sm text-muted-foreground">
               {person.email}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <Globe size={14} className="text-[var(--fg-disabled)] shrink-0" />
-            <span className="text-sm text-[var(--fg-muted)]">
+            <Globe size={14} className="text-muted-foreground shrink-0" />
+            <span className="text-sm text-muted-foreground">
               {person.domain}
             </span>
           </div>
         </div>
-        {/* Reminder button */}
-        <button
-          type="button"
-          onClick={() => setReminderSet((prev) => !prev)}
-          className={cn(
-            "shrink-0 flex items-center gap-1.5 h-8 px-3 rounded-md text-xs font-medium transition-colors border-none cursor-pointer",
-            reminderSet
-              ? "bg-[var(--bg-info-subtle)] text-[var(--fg-info)]"
-              : "bg-[var(--bg-base)] text-[var(--fg-muted)] shadow-button-neutral hover:bg-[var(--bg-component-hover)]",
-          )}
-        >
-          <Bell size={13} />
-          {reminderSet ? "Reminder Set" : "Set Reminder"}
-        </button>
+        <Popover open={reminderOpen} onOpenChange={setReminderOpen}>
+          <PopoverTrigger
+            render={<Button variant={reminderDate ? "secondary" : "outline"} />}
+          >
+            <Bell size={13} />
+            {formattedReminderDate ?? "Set Reminder"}
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-auto p-0">
+            <Calendar
+              mode="single"
+              selected={reminderDate}
+              onSelect={(date) => {
+                setReminderDate(date);
+                setReminderOpen(false);
+              }}
+            />
+          </PopoverContent>
+        </Popover>
       </div>
 
       {/* Tags */}
       <div className="flex items-center gap-1.5 mb-3">
         {person.tags.map((tag) => (
-          <span
-            key={tag}
-            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-2xs font-medium bg-[var(--bg-info-subtle)] text-[var(--fg-info)]"
-          >
+          <Badge key={tag} variant="secondary">
             {tag}
-          </span>
+          </Badge>
         ))}
-        <button
-          type="button"
-          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-2xs font-medium text-[var(--fg-disabled)] border border-dashed border-[var(--border-base)] bg-transparent cursor-pointer hover:text-[var(--fg-muted)] hover:border-[var(--fg-disabled)] transition-colors"
-        >
+        <Badge variant="outline" className="border-dashed cursor-pointer">
           <Plus size={10} />
           Add
-        </button>
+        </Badge>
       </div>
 
       {/* Other interactors */}
       {person.otherInteractors.length > 0 && (
         <div className="mt-5 mb-3 flex items-center gap-2">
-          <Users size={13} className="text-[var(--fg-disabled)] shrink-0" />
-          <span className="text-xs text-[var(--fg-muted)]">
+          <Users size={13} className="text-muted-foreground shrink-0" />
+          <span className="text-xs text-muted-foreground">
             Also interacted with:{" "}
-            <span className="text-[var(--fg-base)] font-medium">
-              {person.otherInteractors.join(", ")}
-            </span>
+            {person.otherInteractors.map((interactorName, index) => {
+              const interactorId = nameToIdMap[interactorName];
+              return (
+                <span key={interactorName}>
+                  {interactorId ? (
+                    <Link
+                      to={`/connection-detail?id=${interactorId}`}
+                      className="text-foreground font-medium hover:underline"
+                    >
+                      {interactorName}
+                    </Link>
+                  ) : (
+                    <span className="text-foreground font-medium">
+                      {interactorName}
+                    </span>
+                  )}
+                  {index < person.otherInteractors.length - 1 && ", "}
+                </span>
+              );
+            })}
           </span>
         </div>
       )}
 
-      {/* Ask Input — arrow inside the box */}
+      {/* Ask Input */}
       <div className="relative mt-6 mb-3">
-        <input
-          type="text"
+        <Input
+          size="lg"
+          rounded="full"
           value={askInput}
           onChange={(e) => setAskInput(e.target.value)}
           placeholder={`Ask anything about ${person.name.split(" ")[0]}...`}
-          className="w-full h-11 pl-4 pr-12 rounded-xl border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)]"
         />
-        <button
-          type="button"
-          className={cn(
-            "absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full flex items-center justify-center transition-colors border-none cursor-pointer shrink-0",
-            askInput.trim()
-              ? "bg-[var(--fg-base)] text-[var(--bg-base)] hover:bg-[var(--fg-base)]"
-              : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
-          )}
+        <Button
+          size="icon-sm"
+          rounded="full"
+          variant={askInput.trim() ? "default" : "ghost"}
           disabled={!askInput.trim()}
+          className="absolute right-1 top-1/2 -translate-y-1/2"
         >
           <ArrowUp size={14} />
-        </button>
+        </Button>
       </div>
 
       {/* Suggestion pills */}
       <div className="flex gap-2 mb-8">
         {person.suggestions.map((s) => (
-          <button
+          <Button
             key={s}
-            type="button"
+            variant="outline"
+            rounded="full"
+            className="font-normal"
             onClick={() => setAskInput(s)}
-            className="px-4 py-2 rounded-full border border-[var(--border-base)] bg-background text-sm text-[var(--fg-muted)] hover:bg-[var(--bg-subtle)] transition-colors cursor-pointer"
           >
             {s}
-          </button>
+          </Button>
         ))}
       </div>
 
       {/* Relationship Status */}
       <div className="mb-8">
-        <h3 className="text-sm text-[var(--fg-base)] mb-3">
-          Relationship Status
-        </h3>
-        <p className="text-sm text-[var(--fg-muted)] leading-relaxed">
+        <h3 className="text-sm text-foreground mb-3">Relationship Status</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {person.relationshipStatus}
         </p>
       </div>
 
       {/* Personal Notes */}
       <div className="mb-8">
-        <h3 className="text-sm text-[var(--fg-base)] mb-3">Personal Notes</h3>
-        <textarea
+        <h3 className="text-sm text-foreground mb-3">Personal Notes</h3>
+        <Textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="w-full border border-[var(--border-base)] rounded-xl p-4 min-h-[120px] max-h-[200px] resize-y text-sm text-[var(--fg-muted)] leading-relaxed bg-transparent"
           placeholder="Add personal notes..."
+          rows={6}
         />
       </div>
 
@@ -189,17 +331,14 @@ const ConnectionDetailPage = () => {
             onClick={() => setNewsOpen((prev) => !prev)}
             className="flex items-center gap-2 w-full text-left bg-transparent border-none cursor-pointer p-0 group"
           >
-            <Newspaper
-              size={14}
-              className="text-[var(--fg-disabled)] shrink-0"
-            />
-            <h3 className="text-sm text-[var(--fg-base)] flex-1">
+            <Newspaper size={14} className="text-muted-foreground shrink-0" />
+            <h3 className="text-sm text-foreground flex-1">
               Recent News on {companyShort}
             </h3>
             <ChevronDown
               size={14}
               className={cn(
-                "text-[var(--fg-disabled)] transition-transform duration-200",
+                "text-muted-foreground transition-transform duration-200",
                 newsOpen && "rotate-180",
               )}
             />
@@ -212,18 +351,18 @@ const ConnectionDetailPage = () => {
                   type="button"
                   className="flex items-start gap-2 w-full text-left bg-transparent border-none cursor-pointer p-0 group"
                 >
-                  <span className="text-[var(--fg-disabled)] text-xs mt-0.5 shrink-0">
+                  <span className="text-muted-foreground text-xs mt-0.5 shrink-0">
                     •
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-[var(--fg-base)] leading-snug underline decoration-[var(--border-base)] underline-offset-2 group-hover:decoration-[var(--fg-info)] group-hover:text-[var(--fg-info)] transition-colors">
+                    <p className="text-sm text-foreground leading-snug underline decoration-border underline-offset-2 group-hover:decoration-info-foreground group-hover:text-info-foreground transition-colors">
                       {item.headline}
                       <ArrowUpRight
                         size={12}
-                        className="inline-block ml-1 -mt-0.5 text-[var(--fg-disabled)] group-hover:text-[var(--fg-info)] transition-colors"
+                        className="inline-block ml-1 -mt-0.5 text-muted-foreground group-hover:text-info-foreground transition-colors"
                       />
                     </p>
-                    <p className="text-2xs text-[var(--fg-disabled)] mt-0.5">
+                    <p className="text-2xs text-muted-foreground mt-0.5">
                       {item.date}
                     </p>
                   </div>
@@ -234,102 +373,54 @@ const ConnectionDetailPage = () => {
         </div>
       )}
 
-      {/* Bottom Tabs — Meetings / Emails with animated underline */}
-      <div className="relative mb-8">
-        <div className="flex gap-8">
-          <button
-            ref={meetingsTabRef}
-            type="button"
-            onClick={() => setBottomTab("meetings")}
-            className={cn(
-              "text-sm pb-3 bg-transparent border-none cursor-pointer px-0 transition-colors",
-              bottomTab === "meetings"
-                ? "text-[var(--fg-base)]"
-                : "text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
-            )}
-          >
-            Meetings
-          </button>
-          <button
-            ref={emailsTabRef}
-            type="button"
-            onClick={() => setBottomTab("emails")}
-            className={cn(
-              "text-sm pb-3 bg-transparent border-none cursor-pointer px-0 transition-colors",
-              bottomTab === "emails"
-                ? "text-[var(--fg-base)]"
-                : "text-[var(--fg-disabled)] hover:text-[var(--fg-muted)]",
-            )}
-          >
-            Emails
-          </button>
-        </div>
-        {/* Static border */}
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[var(--border-base)]" />
-        {/* Animated underline */}
-        <div
-          className="absolute bottom-0 h-[2px] bg-[var(--fg-base)] transition-all duration-300 ease-out rounded-full"
-          style={{
-            left: underlineStyle.left,
-            width: underlineStyle.width,
-          }}
-        />
-      </div>
+      {/* Bottom Tabs — Meetings / Emails */}
+      <Tabs defaultValue="meetings" className="mb-8">
+        <TabsList variant="line">
+          <TabsTrigger value="meetings">Meetings</TabsTrigger>
+          <TabsTrigger value="emails">Emails</TabsTrigger>
+        </TabsList>
 
-      {/* Meetings Tab */}
-      {bottomTab === "meetings" &&
-        person.meetings.map((group) => (
-          <div key={group.week} className="mb-6">
-            <p className="text-2xs font-medium text-[var(--fg-muted)] mb-3">
-              {group.week}
-            </p>
-            <div className="space-y-0.5">
-              {group.items.map((m) => (
-                <MeetingRow
-                  key={m.id}
-                  id={m.id}
-                  title={m.title}
-                  participants={m.participants}
-                  time={m.time}
-                  privacy={m.privacy}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-
-      {/* Emails Tab */}
-      {bottomTab === "emails" && (
-        <div className="space-y-1">
-          {person.emails.length === 0 ? (
-            <p className="text-sm text-[var(--fg-disabled)] py-4 text-center">
-              No email threads found
-            </p>
-          ) : (
-            person.emails.map((email) => (
-              <div
-                key={email.id}
-                className="flex flex-col gap-1 px-4 py-3.5 rounded-lg hover:bg-[var(--bg-component-hover)] transition-colors cursor-pointer"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-[var(--fg-base)]">
-                    {email.subject}
-                  </span>
-                  <span className="text-2xs text-[var(--fg-disabled)] shrink-0 ml-3">
-                    {email.date}
-                  </span>
-                </div>
-                <p className="text-xs text-[var(--fg-muted)] line-clamp-1">
-                  {email.from} → {email.to.join(", ")}
-                </p>
-                <p className="text-xs text-[var(--fg-disabled)] line-clamp-2 leading-relaxed">
-                  {email.snippet}
-                </p>
+        <TabsContent value="meetings" className="mt-6">
+          {person.meetings.map((group) => (
+            <div key={group.week} className="mb-8">
+              <p className="text-xs font-medium text-muted-foreground mb-4">
+                {group.week}
+              </p>
+              <div className="space-y-0.5">
+                {group.items.map((m) => (
+                  <Link
+                    key={m.id}
+                    to="/meeting-detail"
+                    className="no-underline text-inherit"
+                  >
+                    <MeetingRow
+                      id={m.id}
+                      title={m.title}
+                      participants={m.participants}
+                      time={m.time}
+                      privacy={m.privacy}
+                    />
+                  </Link>
+                ))}
               </div>
-            ))
-          )}
-        </div>
-      )}
+            </div>
+          ))}
+        </TabsContent>
+
+        <TabsContent value="emails" className="mt-6">
+          <div className="space-y-1">
+            {person.emails.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-4 text-center">
+                No email threads found
+              </p>
+            ) : (
+              person.emails.map((email) => (
+                <ConnectionEmailRow key={email.id} email={email} />
+              ))
+            )}
+          </div>
+        </TabsContent>
+      </Tabs>
     </PageShell>
   );
 };

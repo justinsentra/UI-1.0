@@ -22,7 +22,7 @@ registerPersonaData("mcgi", data);
 
 registerPersonaConfig({
   id: "mcgi",
-  label: "MC Global Innovation",
+  label: "AG Global Innovation",
   description:
     "Corporate venture capital: startup scouting, deal flow, portfolio management",
   industry: "Corporate Venture Capital",

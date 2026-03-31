@@ -16,18 +16,11 @@ import {
   Users,
   FileText,
   Home,
+  Waves,
 } from "lucide-react";
 import AppSidebar from "./app-sidebar";
-import {
-  SidebarProvider,
-  SidebarInset,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import {
-  LayoutProvider,
-  SidebarPosition,
-  useLayout,
-} from "@/contexts/layout-context";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { LayoutProvider } from "@/contexts/layout-context";
 import { useReportsStore } from "@/stores/reports-store";
 import { useUIStore } from "@/stores/ui-store";
 
@@ -47,7 +40,7 @@ const ToastContainer = () => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="flex items-center gap-2 px-4 py-2.5 bg-background rounded-xl shadow-lg border border-(--border-base) text-sm text-(--fg-base)slideUp_0.2s_ease-out]"
+          className="flex items-center gap-2 px-4 py-2.5 bg-background rounded-xl shadow-lg border border-(--border) text-sm text-(--foreground)slideUp_0.2s_ease-out]"
         >
           {iconMap[toast.type]}
           {toast.message}
@@ -75,46 +68,47 @@ export const usePageLabel = (label: string) => {
   }, [label, setPageLabel]);
 };
 
-const BACK_NAV: Record<string, { path: string; icon: LucideIcon }> = {
+const BACK_NAV: Record<
+  string,
+  { path: string; icon: LucideIcon; state?: Record<string, unknown> }
+> = {
   "/meeting-detail": { path: "/meeting-notes", icon: Calendar },
   "/meeting-settings": { path: "/meeting-notes", icon: Calendar },
   "/connection-detail": { path: "/connections", icon: Users },
   "/report-detail": { path: "/artifacts", icon: FileText },
+  "/artifact-detail": { path: "/artifacts", icon: FileText },
   "/artifacts/reports-settings": { path: "/artifacts", icon: FileText },
   "/artifacts/radar-settings": { path: "/artifacts", icon: FileText },
-  "/pre-meeting-brief": { path: "/home", icon: Home },
+  "/pre-meeting-brief": {
+    path: "/morning-brief",
+    icon: Home,
+    state: { tab: "meetings" },
+  },
+  "/swimlanes/": { path: "/swimlanes", icon: Waves },
 };
 
 const TopBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { getOpenSidebar } = useLayout();
-  const backNav = BACK_NAV[location.pathname];
+  const backNav =
+    BACK_NAV[location.pathname] ??
+    Object.entries(BACK_NAV).find(([prefix]) =>
+      location.pathname.startsWith(prefix),
+    )?.[1];
 
-  const leftSecondary = getOpenSidebar(SidebarPosition.LEFT_SECONDARY);
-  const hasLeftSecondary = !!leftSecondary;
+  if (!backNav) return null;
 
   return (
-    <div
-      className="absolute top-3 z-10 flex items-center gap-2"
-      style={{
-        left: hasLeftSecondary
-          ? "calc(var(--left-secondary-width, 220px) + 12px)"
-          : 12,
-      }}
-    >
-      <SidebarTrigger className="shrink-0 text-disabled-foreground hover:text-muted-foreground cursor-pointer" />
-      {backNav && (
-        <button
-          type="button"
-          onClick={() => navigate(backNav.path)}
-          className="inline-flex items-center gap-1 h-7 pl-1.5 pr-2.5 rounded-full border border-(--border-base) bg-(--bg-component) hover:bg-secondary-hover text-muted-foreground transition-colors duration-150 ease-out cursor-pointer"
-          title="Go back"
-        >
-          <ChevronLeft size={15} strokeWidth={2} />
-          <backNav.icon size={15} />
-        </button>
-      )}
+    <div className="absolute top-3 left-3 z-10">
+      <button
+        type="button"
+        onClick={() => navigate(backNav.path, { state: backNav.state })}
+        className="inline-flex items-center gap-1 h-7 pl-1.5 pr-2.5 rounded-full border border-(--border) bg-(--secondary) hover:bg-secondary-hover text-[var(--muted-foreground)] hover:text-muted-foreground transition-colors duration-150 ease-out cursor-pointer"
+        title="Go back"
+      >
+        <ChevronLeft size={15} strokeWidth={2} />
+        <backNav.icon size={15} />
+      </button>
     </div>
   );
 };
@@ -136,18 +130,19 @@ const AppLayout = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      const backNav = BACK_NAV[location.pathname];
-      if (!backNav) return;
+      // If a dialog/modal is open, let the dialog handle it
+      if (document.querySelector("[data-slot='dialog-overlay']")) return;
       const tag = document.activeElement?.tagName?.toLowerCase();
       if (tag === "input" || tag === "textarea") {
         (document.activeElement as HTMLElement).blur();
         return;
       }
-      navigate(backNav.path);
+      // Navigate back to the previous page in browser history
+      navigate(-1);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [location.pathname, navigate]);
+  }, [navigate]);
 
   return (
     <BreadcrumbContext.Provider
@@ -155,12 +150,13 @@ const AppLayout = () => {
     >
       <LayoutProvider>
         <SidebarProvider>
-          <div className="flex h-screen w-full overflow-hidden relative">
+          <div className="flex h-screen w-full overflow-hidden relative bg-sidebar">
             <div className="drag absolute top-0 left-0 right-0 h-5 z-50" />
+            <div className="fixed top-0 left-0 right-0 h-3 bg-sidebar z-30" />
             <AppSidebar />
-            <SidebarInset className="relative overflow-hidden">
-              <TopBar />
-              <div className="h-full overflow-x-hidden overflow-y-auto">
+            <SidebarInset className="overflow-hidden bg-sidebar p-3 pl-0">
+              <div className="relative flex-1 min-h-0 overflow-x-hidden overflow-y-auto bg-background rounded-xl border border-border">
+                <TopBar />
                 <Outlet />
               </div>
             </SidebarInset>

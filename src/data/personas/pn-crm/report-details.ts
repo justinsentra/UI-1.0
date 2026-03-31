@@ -9,25 +9,25 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "",
         paragraphs: [
-          "Clay announced a new 'Relationship Score' feature this morning — an AI-powered metric that rates contact health based on interaction recency and depth. This directly overlaps with PN CRM's core relationship intelligence differentiation. Clay's implementation appears to be enrichment-based (pulling from public data) rather than interaction-based (pulling from your actual conversations), which is a meaningful distinction, but the marketing messaging will blur that line for users.",
-          "Separately, Folk raised a $6M seed extension led by Accel. They're doubling down on the 'personal CRM for teams' angle, adding shared pipelines and collaborative note-taking. This doesn't directly compete with PN CRM's individual focus but signals that the personal CRM category is attracting serious investor attention — useful validation for the pre-seed raise.",
+          "Molder announced a new 'Relationship Score' feature this morning — an AI-powered metric that rates contact health based on interaction recency and depth. This directly overlaps with Circle CRM's core relationship intelligence differentiation. Molder's implementation appears to be enrichment-based (pulling from public data) rather than interaction-based (pulling from your actual conversations), which is a meaningful distinction, but the marketing messaging will blur that line for users.",
+          "Separately, Tribe raised a $6M seed extension led by Apex Ventures. They're doubling down on the 'personal CRM for teams' angle, adding shared pipelines and collaborative note-taking. This doesn't directly compete with Circle CRM's individual focus but signals that the personal CRM category is attracting serious investor attention — useful validation for the pre-seed raise.",
         ],
       },
     ],
     evidence: [
       {
-        speaker: "Tyler Williams",
+        speaker: "Blake Carrington",
         quote:
-          "Just saw Clay's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
-        meetingTitle: "#pn-crm-product — Slack",
+          "Just saw Molder's announcement about relationship scoring. Their approach looks superficial — it's based on email frequency and LinkedIn signals, not actual conversation depth. Our decay algorithm is way more sophisticated.",
+        meetingTitle: "#pn-crm-product — Teams",
         meetingDate: "Mar 12, 2026 · 8:45 AM",
         sourceType: "slack",
       },
       {
-        speaker: "Katherine McIntosh",
+        speaker: "Simone Hartley",
         quote:
-          "Folk just closed their seed extension. $6M from Accel. Good signal for the category — makes our fundraising story stronger if investors are deploying into personal CRM tools.",
-        meetingTitle: "#pn-crm-general — Slack",
+          "Tribe just closed their seed extension. $6M from Apex Ventures. Good signal for the category — makes our fundraising story stronger if investors are deploying into personal CRM tools.",
+        meetingTitle: "#pn-crm-general — Teams",
         meetingDate: "Mar 12, 2026 · 10:22 AM",
         sourceType: "slack",
       },
@@ -36,7 +36,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       { type: "slack", label: "#pn-crm-product" },
       { type: "slack", label: "#pn-crm-general" },
       { type: "notion", label: "Competitive Landscape Tracker" },
-      { type: "google-docs", label: "Clay Feature Comparison Sheet" },
+      { type: "google-docs", label: "Molder Feature Comparison Sheet" },
       { type: "email", label: "Product Hunt daily digest" },
     ],
     suggestedActions: [
@@ -50,7 +50,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
       {
         icon: "clock",
-        label: "Set alert for Clay relationship score user reviews",
+        label: "Set alert for Molder relationship score user reviews",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Growth Overview",
         paragraphs: [
-          "Total registered users reached 1,247 this week, up 78 from 1,169 last week (6.7% WoW growth). Organic signups accounted for 85% of new users, driven primarily by word-of-mouth referrals and a viral LinkedIn post about personal networking that referenced PN CRM. Paid acquisition remains paused pending the pre-seed raise.",
+          "Total registered users reached 1,247 this week, up 78 from 1,169 last week (6.7% WoW growth). Organic signups accounted for 85% of new users, driven primarily by word-of-mouth referrals and a viral LinkedIn post about personal networking that referenced Circle CRM. Paid acquisition remains paused pending the pre-seed raise.",
           "Weekly active users (WAU) hit 474, representing a 38% activation rate. This is flat versus last week (37.8%), which is concerning — new user growth is not translating proportionally to active usage. The onboarding funnel analysis suggests the contact import step is the primary bottleneck, with 40% of new users failing to complete CSV import.",
         ],
       },
@@ -82,7 +82,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Growth Priorities",
         paragraphs: [
-          "Three priorities for the coming week: (1) Fix the contact import funnel — Sarah is redesigning the CSV mapping with auto-detection. (2) Launch referral program v1 — each user gets a unique invite link with 'import your contacts together' incentive. (3) Prepare growth metrics section of the pitch deck for investor meetings.",
+          "Three priorities for the coming week: (1) Fix the contact import funnel — Wendy is redesigning the CSV mapping with auto-detection. (2) Launch referral program v1 — each user gets a unique invite link with 'import your contacts together' incentive. (3) Prepare growth metrics section of the pitch deck for investor meetings.",
         ],
       },
     ],
@@ -91,12 +91,12 @@ export const reportDetails: Record<string, ReportDetail> = {
         heading: "Contact Import Funnel Analysis",
         paragraphs: [
           "The import funnel has four steps: file upload → column mapping → deduplication review → confirmation. Drop-off rates: 8% at upload (mostly file format issues), 40% at column mapping (users confused by field mapping UI), 12% at deduplication (users surprised by duplicate detection), 5% at confirmation. The column mapping step is responsible for the vast majority of import abandonment.",
-          "Proposed fix: AI-powered auto-detection of column types with manual override. Estimated impact: reduce column mapping drop-off from 40% to 15%, increasing overall import completion from 60% to 78%. Sarah has scoped this at 1 week of engineering work.",
+          "Proposed fix: AI-powered auto-detection of column types with manual override. Estimated impact: reduce column mapping drop-off from 40% to 15%, increasing overall import completion from 60% to 78%. Wendy has scoped this at 1 week of engineering work.",
         ],
       },
     ],
     sources: [
-      { type: "notion", label: "PN CRM Growth Dashboard" },
+      { type: "notion", label: "Circle CRM Growth Dashboard" },
       { type: "slack", label: "#pn-crm-metrics" },
       { type: "google-docs", label: "Retention Cohort Analysis — March" },
       { type: "notion", label: "User Feedback Synthesis" },
@@ -109,7 +109,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
       {
         icon: "calendar",
-        label: "Schedule import funnel design review with Sarah",
+        label: "Schedule import funnel design review with Wendy",
       },
       {
         icon: "clock",
@@ -125,21 +125,21 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Round Status",
         paragraphs: [
-          "Pre-seed target: $500K on SAFE (post-money cap $5M). Current pipeline: 4 warm intros in progress, 8 angel investors identified for outreach, 2 micro-VCs with student/early-stage focus. Mark Richey (1809 Capital) committed to making 3-4 warm introductions this week. No term sheets yet — round officially kicks off once the pitch deck is updated with latest metrics.",
-          "Timeline: Target first close by end of April 2026. YC S26 application deadline is April 15 — if accepted, would likely supersede the angel round. Parallel-tracking both paths.",
+          "Pre-seed target: $500K on SAFE (post-money cap $5M). Current pipeline: 4 warm intros in progress, 8 angel investors identified for outreach, 2 micro-VCs with student/early-stage focus. Nolan Prescott (Pinnacle Capital) committed to making 3-4 warm introductions this week. No term sheets yet — round officially kicks off once the pitch deck is updated with latest metrics.",
+          "Timeline: Target first close by end of April 2026. LP Summer 26 application deadline is April 15 — if accepted, would likely supersede the angel round. Parallel-tracking both paths.",
         ],
       },
       {
         heading: "Investor Engagement",
         paragraphs: [
-          "Warm intros in progress: (1) Sarah Winters via Mark Richey — angel investor focused on prosumer SaaS, (2) Dan Chen via Genine Fallon — Altman Institute connection, runs a student founder fund, (3) Emily Cho via David Nguyen — YC partner, exploratory conversation about S26 batch, (4) Mike Tran via 1809 Capital network — solo GP at a $10M micro-VC focused on first-time founders.",
+          "Warm intros in progress: (1) Helen Greyson via Nolan Prescott — angel investor focused on prosumer SaaS, (2) Dan Chen via Tamara Novotny — Altman Institute connection, runs a student founder fund, (3) Naomi Reeves via Hector Reyes — LP partner, exploratory conversation about S26 batch, (4) Mike Tran via Pinnacle Capital network — solo GP at a $10M micro-VC focused on first-time founders.",
           "Target investor profile: angels and micro-VCs who understand personal productivity tools, have invested in the CRM/networking space, or have a thesis around AI-powered relationship tools. Ideal check size: $25-75K per angel, $100-200K from a micro-VC lead.",
         ],
       },
       {
         heading: "Pitch Deck Status",
         paragraphs: [
-          "Current deck is v3, last updated February 18. Needs refresh with: (1) Updated user metrics (1,247 users, 38% WAU, 4.7 NPS), (2) Retention curve visualization showing week-8 flattening, (3) Competitive positioning slide reflecting Clay's new relationship score feature, (4) Use of funds slide with 12-month runway projection. Target completion: March 17.",
+          "Current deck is v3, last updated February 18. Needs refresh with: (1) Updated user metrics (1,247 users, 38% WAU, 4.7 NPS), (2) Retention curve visualization showing week-8 flattening, (3) Competitive positioning slide reflecting Molder's new relationship score feature, (4) Use of funds slide with 12-month runway projection. Target completion: March 17.",
         ],
       },
     ],
@@ -147,18 +147,21 @@ export const reportDetails: Record<string, ReportDetail> = {
       { type: "notion", label: "Investor Pipeline Tracker" },
       {
         type: "meeting",
-        label: "PN CRM — Investor Readiness & Pre-Seed Strategy",
+        label: "Circle CRM — Investor Readiness & Pre-Seed Strategy",
       },
       { type: "google-docs", label: "Pre-Seed Pitch Deck v3" },
       { type: "email", label: "Investor intro email threads" },
     ],
     suggestedActions: [
-      { icon: "mail", label: "Send updated pitch deck to Mark for review" },
+      { icon: "mail", label: "Send updated pitch deck to Nolan for review" },
       {
         icon: "calendar",
         label: "Schedule intro calls with angel investor targets",
       },
-      { icon: "clock", label: "Set reminder for YC S26 application deadline" },
+      {
+        icon: "clock",
+        label: "Set reminder for LP Summer 26 application deadline",
+      },
     ],
   },
   "pn-crm-rpt-product-1": {
@@ -183,7 +186,7 @@ export const reportDetails: Record<string, ReportDetail> = {
       {
         heading: "Sprint 13 Planning",
         paragraphs: [
-          "Priority items for Sprint 13: (1) Contact import auto-detection — Sarah's spec is approved, targeting 1-week build. (2) Tiered decay algorithm — carryover from Sprint 12, Tyler targeting mid-week completion. (3) Referral program v1 — unique invite links with shared import incentive. (4) Pitch deck metrics dashboard — real-time stats page for investor conversations.",
+          "Priority items for Sprint 13: (1) Contact import auto-detection — Wendy's spec is approved, targeting 1-week build. (2) Tiered decay algorithm — carryover from Sprint 12, Blake targeting mid-week completion. (3) Referral program v1 — unique invite links with shared import incentive. (4) Pitch deck metrics dashboard — real-time stats page for investor conversations.",
         ],
       },
     ],

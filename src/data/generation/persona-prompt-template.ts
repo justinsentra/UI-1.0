@@ -254,7 +254,7 @@ interface PersonaDeepResearchData {
   vendorEvalTriggerKeywords?: string[];
 }
 
-interface SessionHistoryItem { id: string; title: string; date: string }
+interface SessionHistoryItem { id: string; title: string; date: string; query: string }
 
 interface DocumentFlowConfig {
   id: string;
@@ -364,7 +364,7 @@ registerPersonaData("{{personaId}}", {
 3. **Commitments ↔ Meetings:** Every commitment's meetingId must match a meeting in meetings.ts
 4. **Report IDs:** Artifact cards linking to reports must use IDs that exist in reports.ts
 5. **Deep Research ↔ Reports:** Artifact cards with deepResearchPrompt should trigger a document flow
-6. **Source types:** Use tools the persona's industry actually uses (e.g. finance uses Bloomberg, Salesforce — map to closest available SourceType)
+6. **Source types:** Use tools the persona's industry actually uses (e.g. finance uses Bloomberg, CloudForce — map to closest available SourceType)
 8. **Dates:** Keep dates in early March 2026, use relative dates ("Today", "Yesterday", "2 days ago") where possible
 9. **Names:** Use realistic names for the industry/region. Include the prospect's actual name as a participant in at least 2 meetings.
 

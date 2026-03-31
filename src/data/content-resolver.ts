@@ -27,6 +27,10 @@ import {
   WEEKLY_SCAN_STEPS,
   WEEKLY_CONTENT,
   WEEKLY_BUILD_STEPS,
+  SECONDARY_OFFERING_SOURCES,
+  SECONDARY_OFFERING_SCAN_STEPS,
+  SECONDARY_OFFERING_CONTENT,
+  SECONDARY_OFFERING_BUILD_STEPS,
 } from "@/data/mock-deep-research";
 import { PRE_MEETING_BRIEF } from "@/data/mock-pre-meeting-brief";
 import { getGeneratedPersonaData } from "@/data/personas";
@@ -58,19 +62,19 @@ const BUILTIN_SUGGESTIONS: Record<string, string[]> = {
     "Draft a PRD",
   ],
   jpm: [
-    "What happened in today's meetings?",
-    "Summarize this week's AI strategy updates",
-    "What are the open items from the partnerships review?",
+    "Catch me up on what I missed last week",
+    "Prep me for the 2pm call with David Chen",
+    "What's the status of the Oracle migration?",
   ],
 };
 
 const BUILTIN_UPCOMING_MEETING: PersonaUpcomingMeeting = {
   id: "um-1",
-  title: "TMT Group Weekly",
+  title: "David Chen — Secondary Offering",
   time: "2:00 PM",
-  endTime: "3:00 PM",
-  duration: "60 min",
-  participants: ["Sarah Mitchell", "David Park", "Michael Chen"],
+  endTime: "2:45 PM",
+  duration: "45 min",
+  participants: ["David Chen", "Margaret Liu", "Nathan Lim"],
   platform: "Zoom",
 };
 
@@ -105,21 +109,22 @@ const BUILTIN_ARTIFACTS: Record<string, PersonaArtifactCard[]> = {
   jpm: [
     {
       id: "art-1",
-      title: "AI Vendor Evaluation Matrix",
+      title: "Secondary Offering Memo — NovaBridge Capital",
       description:
-        "Side-by-side AI vendor comparison pulling from demo notes, technical assessments, and vendor meetings",
+        "Draft a preliminary secondary offering memo using the latest CFO financials, SharePoint model, and comparable transactions",
       type: "action",
       badge: "New",
       deepResearchPrompt:
-        "Build an AI vendor evaluation matrix comparing Anthropic, OpenAI, and Google",
+        "Draft a preliminary secondary offering memo for David Chen's company using the latest financials from the CFO email thread, the Q3 earnings data in the SharePoint model, and comparable transactions from the last 12 months",
     },
     {
       id: "art-2",
-      title: "Weekly Status Update for Sentra Adoption",
+      title: "Oracle Migration Delay Analysis",
       description:
-        "Compile adoption metrics, team feedback, and blockers from this week's Sentra pilot across IB Coverage and TMT",
+        "Investigate why the Oracle migration is past its original deadline and identify the root cause",
       type: "action",
-      deepResearchPrompt: "Scope out weekly status update for Sentra adoption",
+      deepResearchPrompt:
+        "Why are we past the original deadline for the Oracle migration?",
     },
     {
       id: "art-3",
@@ -268,7 +273,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "7",
     title: "Draft 150-seat pricing proposal for Sentra expansion",
-    meeting: "Sarah / Justin 1:1",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 18",
@@ -277,7 +282,7 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "8",
     title: "Schedule Compliance team pilot kickoff for March 17",
-    meeting: "Sarah / Justin 1:1",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 15",
@@ -366,8 +371,8 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   },
   {
     id: "18",
-    title: "Review Dealogic integration requirements for TMT team",
-    meeting: "Sarah / Justin 1:1",
+    title: "Review DealStream integration requirements for TMT team",
+    meeting: "Sarah / Mark 1:1",
     meetingId: "mtg-3",
     meetingDate: "Today",
     dueDate: "Due Mar 21",
@@ -385,11 +390,47 @@ const JPM_COMMITMENTS: CommitmentItem[] = [
   {
     id: "20",
     title:
-      "Compile Sentra vs Glean vs Copilot feature comparison for decision memo",
+      "Compile Sentra vs Prism vs AssistAI feature comparison for decision memo",
     meeting: "AI Vendor Evaluation — Round 2",
     meetingId: "mtg-4",
     meetingDate: "Yesterday",
     dueDate: "Due Mar 18",
+    completed: false,
+  },
+  {
+    id: "21",
+    title: "Send governance advisor introduction to David Chen",
+    meeting: "David Chen — Secondary Offering Discussion",
+    meetingId: "mtg-7",
+    meetingDate: "Today",
+    dueDate: "Due Apr 2",
+    completed: false,
+  },
+  {
+    id: "22",
+    title: "Finalize secondary offering memo with updated financials",
+    meeting: "David Chen — Secondary Offering Discussion",
+    meetingId: "mtg-7",
+    meetingDate: "Today",
+    dueDate: "Due Apr 4",
+    completed: false,
+  },
+  {
+    id: "23",
+    title: "Send revised engagement terms to Apex Corp client",
+    meeting: "Apex Corp — Engagement Terms Follow-up",
+    meetingId: "mtg-7",
+    meetingDate: "Today",
+    dueDate: "Overdue",
+    completed: false,
+  },
+  {
+    id: "24",
+    title: "Enable Vendor Delay Tracker in Sentra for Oracle migration",
+    meeting: "Oracle Migration Project Review",
+    meetingId: "mtg-8",
+    meetingDate: "Today",
+    dueDate: "Due Apr 1",
     completed: false,
   },
 ];
@@ -419,9 +460,12 @@ const BUILTIN_EM_FLOWS: DocumentFlowConfig[] = [
       { label: "View in Docs", action: "external" },
     ],
     doneMessage: {
-      title: "PRD pushed to Google Docs",
+      title: "PRD pushed to SharePoint",
       description: "Your PRD has been created and is ready for review.",
-      link: { label: "Open in Google Docs", url: "#" },
+      link: {
+        label: "Open in SharePoint",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
+      },
     },
     buildingLabel: "Pushing to",
   },
@@ -447,9 +491,12 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Cancel", action: "cancel" },
     ],
     doneMessage: {
-      title: "Model pushed to Google Sheets",
-      description: "Your 3-statement financial model is ready.",
-      link: { label: "Open in Google Sheets", url: "#" },
+      title: "Model pushed to Excel",
+      description: "Your GreenCore 3-statement financial model is ready.",
+      link: {
+        label: "Open in Excel",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
+      },
     },
     buildingLabel: "Building model",
   },
@@ -472,11 +519,38 @@ const BUILTIN_JPM_FLOWS: DocumentFlowConfig[] = [
       { label: "Build Weekly Update Deck", action: "build" },
     ],
     doneMessage: {
-      title: "Deck pushed to Google Slides",
-      description: "Your weekly status deck is ready for review.",
-      link: { label: "Open in Google Slides", url: "#" },
+      title: "Deck pushed to PowerPoint",
+      description: "Your market landscape analysis deck is ready for review.",
+      link: {
+        label: "Open in PowerPoint",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
+      },
     },
     buildingLabel: "Building deck",
+  },
+  {
+    id: "jpm-secondary-offering",
+    label: "Secondary Offering Memo",
+    filename: "novabridge-capital-secondary-offering-memo.md",
+    scanSteps: SECONDARY_OFFERING_SCAN_STEPS,
+    content: SECONDARY_OFFERING_CONTENT,
+    buildSteps: SECONDARY_OFFERING_BUILD_STEPS,
+    sources: SECONDARY_OFFERING_SOURCES,
+    triggerKeywords: ["secondary offering", "novabridge", "offering memo"],
+    toolChoices: [
+      { label: "View Doc", action: "external" },
+      { label: "Build Investor Deck", action: "build" },
+    ],
+    doneMessage: {
+      title: "Memo pushed to SharePoint",
+      description:
+        "Your NovaBridge Capital secondary offering memo is ready for review.",
+      link: {
+        label: "Open in Word",
+        url: "https://word.cloud.microsoft/open/onedrive/?docId=2D85C18AE9AD5230%21s94d3941d13ed4f6fbf926e696bd921b4&driveId=2d85c18ae9ad5230",
+      },
+    },
+    buildingLabel: "Building memo",
   },
 ];
 
@@ -491,13 +565,6 @@ const BUILTIN_DEEP_RESEARCH: Record<string, PersonaDeepResearchData> = {
     sessionHistory: SESSION_HISTORY.jpm ?? [],
     documentFlows: BUILTIN_JPM_FLOWS,
     vendorEvalResponse: VENDOR_EVAL_RESPONSE,
-    vendorEvalTriggerKeywords: [
-      "vendor evaluation",
-      "vendor matrix",
-      "ai vendor",
-      "compare anthropic",
-      "compare openai",
-    ],
   },
 };
 

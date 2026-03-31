@@ -13,7 +13,7 @@ export function SegmentedToggle({
   onChange,
 }: SegmentedToggleProps) {
   return (
-    <div className="flex items-center bg-[var(--bg-subtle)] rounded-lg p-0.5 gap-0.5">
+    <div className="flex items-center bg-[var(--muted)] rounded-lg p-0.5 gap-0.5">
       {options.map((option) => (
         <button
           key={option.value}
@@ -22,8 +22,8 @@ export function SegmentedToggle({
           className={cn(
             "relative px-3 py-1 text-sm font-medium rounded-md transition-colors bg-transparent border-none cursor-pointer z-10",
             value === option.value
-              ? "text-[var(--fg-base)]"
-              : "text-[var(--fg-muted)] hover:text-[var(--fg-base)]",
+              ? "text-[var(--foreground)]"
+              : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]",
           )}
         >
           {value === option.value && (

@@ -78,7 +78,13 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       registerSidebar,
       unregisterSidebar,
     }),
-    [getSidebars, hasSidebar, getOpenSidebar, registerSidebar, unregisterSidebar],
+    [
+      getSidebars,
+      hasSidebar,
+      getOpenSidebar,
+      registerSidebar,
+      unregisterSidebar,
+    ],
   );
 
   return (
@@ -107,5 +113,11 @@ export function useRegisterSidebar(sidebar: SidebarInfo) {
     registerSidebar(sidebar);
     return () => unregisterSidebar(sidebar.position);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidebar.position, sidebar.open, sidebar.width, registerSidebar, unregisterSidebar]);
+  }, [
+    sidebar.position,
+    sidebar.open,
+    sidebar.width,
+    registerSidebar,
+    unregisterSidebar,
+  ]);
 }

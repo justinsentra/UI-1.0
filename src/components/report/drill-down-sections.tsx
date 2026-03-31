@@ -10,14 +10,14 @@ export function DrillDownSections({ drillDowns }: DrillDownSectionsProps) {
     <div className="space-y-8 mt-8">
       {drillDowns.map((dd) => (
         <section key={dd.heading}>
-          <h2 className="text-md font-normal text-[var(--fg-base)] mb-4">
+          <h2 className="text-md font-normal text-[var(--foreground)] mb-4">
             {dd.heading}
           </h2>
           {dd.paragraphs.map((paragraph, pIdx) => (
             <p
               key={pIdx}
               className={cn(
-                "text-sm text-[var(--fg-muted)] leading-relaxed",
+                "text-sm text-[var(--muted-foreground)] leading-relaxed",
                 pIdx < dd.paragraphs.length - 1 && "mb-4",
               )}
             >
@@ -35,7 +35,7 @@ function formatBold(text: string): React.ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold text-[var(--fg-base)]">
+        <strong key={i} className="font-semibold text-[var(--foreground)]">
           {part.slice(2, -2)}
         </strong>
       );

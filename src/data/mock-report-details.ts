@@ -13,14 +13,14 @@ const reportDetailMap: Record<string, ReportDetail> = {
         heading: "Executive Summary",
         paragraphs: [
           "The AI Strategy & Tech Partnerships division had a high-velocity week across vendor evaluation, competitive positioning, and internal deployment expansion. The team completed Phase 2 evaluations of Anthropic, OpenAI, and Google for firm-wide LLM deployment, with Anthropic's Claude emerging as the frontrunner for regulated financial services use cases.",
-          "On the competitive front, Goldman Sachs accelerated their internal AI platform rollout, prompting an updated response strategy. Internally, the Sentra pilot is expanding from 60 to 200 seats across IB Coverage and TMT groups following strong adoption metrics and positive feedback from Managing Directors on meeting intelligence capabilities.",
+          "On the competitive front, Morgan Vale accelerated their internal AI platform rollout, prompting an updated response strategy. Internally, the Sentra pilot is expanding from 60 to 200 seats across IB Coverage and TMT groups following strong adoption metrics and positive feedback from Managing Directors on meeting intelligence capabilities.",
         ],
       },
       {
         heading: "Key Developments",
         paragraphs: [
           "AI Vendor Evaluations: Completed head-to-head benchmarking of Anthropic Claude, OpenAI GPT-5, and Google Gemini Ultra across document analysis, trade surveillance, and KYC automation use cases. Claude demonstrated superior performance on regulatory document comprehension and citation accuracy, critical for our compliance requirements.",
-          "Goldman Sachs Competitive Response: Goldman announced expansion of their internal GS AI platform to 10,000 seats across IB and Asset Management. Our competitive analysis identifies three areas where JPM can leapfrog: agentic workflows for deal execution, cross-divisional knowledge graphs, and client-facing AI advisory tools.",
+          "Morgan Vale Competitive Response: Goldman announced expansion of their internal GS AI platform to 10,000 seats across IB and Asset Management. Our competitive analysis identifies three areas where JPM can leapfrog: agentic workflows for deal execution, cross-divisional knowledge graphs, and client-facing AI advisory tools.",
           "Sentra Pilot Expansion: The organizational memory pilot is scaling from 60 seats (IB Coverage) to 200 seats spanning IB Coverage and TMT groups. Adoption rate is at 78% weekly active usage, with Managing Directors citing pre-meeting briefs and decision tracking as highest-value features.",
           "Regulatory Landscape: OCC issued updated guidance on AI model risk management in banking. Our framework is aligned, but the new requirements around explainability and audit trails accelerate the need for source-cited AI outputs across all internal tools.",
         ],
@@ -37,8 +37,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "AI Infrastructure Modernization Progress",
         paragraphs: [
-          "The cloud migration from on-prem GPU clusters to a hybrid architecture is 65% complete. Phase 1 (development and testing workloads) migrated to AWS GovCloud with full data residency compliance. Phase 2 (production inference serving) is in security review, with VPC configurations and encryption-at-rest requirements being validated by InfoSec.",
-          "On-prem NVIDIA H100 cluster utilization is at 87%, up from 72% last quarter. The capacity constraint is driving urgency on the hybrid cloud strategy — without additional compute, the model fine-tuning pipeline will bottleneck within 6 weeks.",
+          "The cloud migration from on-prem GPU clusters to a hybrid architecture is 65% complete. Phase 1 (development and testing workloads) migrated to CloudPrime GovCloud with full data residency compliance. Phase 2 (production inference serving) is in security review, with VPC configurations and encryption-at-rest requirements being validated by InfoSec.",
+          "On-prem Titan Compute X900 cluster utilization is at 87%, up from 72% last quarter. The capacity constraint is driving urgency on the hybrid cloud strategy — without additional compute, the model fine-tuning pipeline will bottleneck within 6 weeks.",
         ],
       },
       {
@@ -52,9 +52,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-strategy" },
       { type: "slack", label: "#tech-partnerships" },
-      { type: "google-meet", label: "AI Strategy Weekly" },
-      { type: "google-meet", label: "Tech Partnerships Review" },
-      { type: "google-meet", label: "Vendor Evaluation Sync" },
+      { type: "zoom", label: "AI Strategy Weekly" },
+      { type: "zoom", label: "Tech Partnerships Review" },
+      { type: "zoom", label: "Vendor Evaluation Sync" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send Anthropic partnership proposal" },
@@ -113,10 +113,10 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#tech-partnerships" },
       { type: "slack", label: "#deal-pipeline" },
-      { type: "google-meet", label: "Anthropic Term Sheet Review" },
-      { type: "google-meet", label: "Bloomberg Technical Due Diligence" },
-      { type: "google-meet", label: "Sentra Pilot Review" },
-      { type: "google-meet", label: "Partnership Pipeline Sync" },
+      { type: "zoom", label: "Anthropic Term Sheet Review" },
+      { type: "zoom", label: "Bloomberg Technical Due Diligence" },
+      { type: "zoom", label: "Sentra Pilot Review" },
+      { type: "zoom", label: "Partnership Pipeline Sync" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send revised Anthropic term sheet to legal" },
@@ -168,9 +168,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-strategy" },
       { type: "slack", label: "#ai-platform" },
-      { type: "google-meet", label: "AI Strategy Operating Committee" },
-      { type: "google-meet", label: "MRM Framework Review" },
-      { type: "google-meet", label: "Agentic Workflow Pilot Readout" },
+      { type: "zoom", label: "AI Strategy Operating Committee" },
+      { type: "zoom", label: "MRM Framework Review" },
+      { type: "zoom", label: "Agentic Workflow Pilot Readout" },
     ],
     suggestedActions: [
       { icon: "calendar", label: "Schedule MRM compliance sign-off meeting" },
@@ -195,7 +195,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "AI Platform Reliability",
         paragraphs: [
-          "GPU Cluster Utilization: On-prem H100 cluster utilization optimized from 87% to 92% through improved job scheduling and workload balancing. Inference serving now runs on dedicated partitions separate from training workloads, eliminating the latency spikes that impacted production last month.",
+          "GPU Cluster Utilization: On-prem X900 cluster utilization optimized from 87% to 92% through improved job scheduling and workload balancing. Inference serving now runs on dedicated partitions separate from training workloads, eliminating the latency spikes that impacted production last month.",
           "Model Serving Latency: P95 latency for the document analysis API dropped from 340ms to 185ms after migrating to batched inference with dynamic batching. This brings all client-facing AI endpoints within the 200ms SLA for the first time.",
           "Data Pipeline Health: The real-time market data ingestion pipeline processed 2.3B events this week with zero data loss. Three anomalies detected in the KYC document processing pipeline — all traced to malformed PDFs from a single vendor, now filtered at ingestion.",
           "Model Registry: 47 models in production across 12 use cases. All models now have automated drift detection and performance monitoring. Two models flagged for retraining based on accuracy degradation over the past 30 days.",
@@ -221,7 +221,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Infrastructure Incident Review",
         paragraphs: [
-          "The GPU memory fragmentation issue that caused intermittent OOM errors on the inference cluster was root-caused to a memory allocator bug in the CUDA 12.3 driver. Workaround deployed (explicit memory pool pre-allocation) while waiting for the upstream fix from NVIDIA. No client-facing impact due to automatic failover to the backup cluster.",
+          "The GPU memory fragmentation issue that caused intermittent OOM errors on the inference cluster was root-caused to a memory allocator bug in the CUDA 12.3 driver. Workaround deployed (explicit memory pool pre-allocation) while waiting for the upstream fix from Titan Compute. No client-facing impact due to automatic failover to the backup cluster.",
           "Key takeaway: the redundant inference architecture paid for itself this week. Investment in multi-cluster failover means infrastructure incidents no longer translate to SLA breaches. Monitoring coverage expanded to include GPU memory fragmentation as a leading indicator.",
         ],
       },
@@ -230,9 +230,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
       { type: "slack", label: "#ai-platform" },
       { type: "slack", label: "#infosec" },
       { type: "slack", label: "#incidents" },
-      { type: "google-meet", label: "Infrastructure Weekly Review" },
-      { type: "google-meet", label: "Security Audit Readout" },
-      { type: "google-meet", label: "SOC 2 Preparation Sync" },
+      { type: "zoom", label: "Infrastructure Weekly Review" },
+      { type: "zoom", label: "Security Audit Readout" },
+      { type: "zoom", label: "SOC 2 Preparation Sync" },
     ],
     suggestedActions: [
       {
@@ -261,7 +261,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
         paragraphs: [
           "Candidate A (ex-Google DeepMind): 8 years in large-scale model training and inference optimization. Led the deployment of Gemini's financial services fine-tuning pipeline. Strong expertise in distributed training across GPU clusters. On-site scheduled for next Tuesday.",
           "Candidate B (ex-Meta FAIR): 6 years in NLP research with a focus on document understanding and information extraction — directly relevant to our KYC automation and due diligence use cases. Published at NeurIPS and ICML. Phone screen completed; advancing to technical round.",
-          "Candidate C (ex-Stripe): 5 years building ML infrastructure for fraud detection and risk scoring. Experience with real-time model serving at scale and A/B testing frameworks. Particularly strong on the MLOps and model monitoring side. Initial conversation went well; scheduling technical assessment.",
+          "Candidate C (ex-Payvine): 5 years building ML infrastructure for fraud detection and risk scoring. Experience with real-time model serving at scale and A/B testing frameworks. Particularly strong on the MLOps and model monitoring side. Initial conversation went well; scheduling technical assessment.",
         ],
       },
       {
@@ -274,7 +274,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Data Scientists (1 candidate)",
         paragraphs: [
-          "Candidate F (ex-Two Sigma): 4 years in quantitative research and alternative data analysis. PhD in computational finance from MIT. Interested in transitioning from pure quant research to applied AI strategy. Would support the model risk management framework and AI use case validation.",
+          "Candidate F (ex-Two Sigma): 4 years in quantitative research and alternative data analysis. PhD in computational finance from Westbrook. Interested in transitioning from pure quant research to applied AI strategy. Would support the model risk management framework and AI use case validation.",
         ],
       },
       {
@@ -289,13 +289,13 @@ const reportDetailMap: Record<string, ReportDetail> = {
     ],
     sources: [
       { type: "slack", label: "#talent-acquisition" },
-      { type: "google-meet", label: "Hiring Pipeline Review" },
-      { type: "google-meet", label: "Compensation Benchmarking Sync" },
+      { type: "zoom", label: "Hiring Pipeline Review" },
+      { type: "zoom", label: "Compensation Benchmarking Sync" },
     ],
     suggestedActions: [
       {
         icon: "calendar",
-        label: "Confirm on-site schedule for DeepMind candidate",
+        label: "Confirm on-site schedule for NeuralForge candidate",
       },
       { icon: "mail", label: "Send comp adjustment proposal to HR" },
       {
@@ -347,9 +347,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-adoption" },
       { type: "slack", label: "#ai-support" },
-      { type: "google-meet", label: "Divisional Adoption Review — IB" },
-      { type: "google-meet", label: "Divisional Adoption Review — AM" },
-      { type: "google-meet", label: "AI Training Program Sync" },
+      { type: "zoom", label: "Divisional Adoption Review — IB" },
+      { type: "zoom", label: "Divisional Adoption Review — AM" },
+      { type: "zoom", label: "AI Training Program Sync" },
     ],
     suggestedActions: [
       {
@@ -398,8 +398,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#regulatory-affairs" },
       { type: "slack", label: "#ai-compliance" },
-      { type: "google-meet", label: "Regulatory Impact Assessment" },
-      { type: "google-meet", label: "Legal Review — SEC Proposed Rules" },
+      { type: "zoom", label: "Regulatory Impact Assessment" },
+      { type: "zoom", label: "Legal Review — SEC Proposed Rules" },
     ],
     suggestedActions: [
       { icon: "calendar", label: "Schedule MRM gap analysis review" },
@@ -440,8 +440,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#ai-vendor-eval" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Vendor Evaluation Committee" },
-      { type: "google-meet", label: "Anthropic Technical Deep Dive" },
+      { type: "zoom", label: "Vendor Evaluation Committee" },
+      { type: "zoom", label: "Anthropic Technical Deep Dive" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Review final benchmark results" },
@@ -458,7 +458,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Status Overview",
         paragraphs: [
-          "Strategic technology partnerships are advancing across five active engagements. The Anthropic enterprise agreement is the highest-priority deal, with the Sentra pilot expansion and Bloomberg AI integration close behind. Microsoft Copilot rollout continues at scale while Palantir AIP is in early evaluation for compliance use cases.",
+          "Strategic technology partnerships are advancing across five active engagements. The Anthropic enterprise agreement is the highest-priority deal, with the Sentra pilot expansion and Bloomberg AI integration close behind. Microsoft AssistAI rollout continues at scale while Palantir AIP is in early evaluation for compliance use cases.",
         ],
       },
       {
@@ -468,7 +468,7 @@ const reportDetailMap: Record<string, ReportDetail> = {
           "Sentra Pilot Expansion: Organizational memory platform expanding from 60 to 200 seats. Pilot results exceeded benchmarks — 78% weekly active usage, 4.1-hour average weekly time savings per user, and 92% satisfaction among Managing Directors. Procurement vendor risk assessment scheduled for next Tuesday.",
           "Bloomberg AI Integration: Technical architecture review for integrating AI-powered research synthesis into Bloomberg Terminal workflows. Would serve 8,000+ JPM analysts across Equities Research, Fixed Income, and Economics. Bloomberg's API team is responsive; joint technical spec due in two weeks.",
           "Palantir AIP Evaluation: Early-stage evaluation for trade surveillance and regulatory compliance use cases. Initial demo showed strong capabilities for pattern detection across structured and unstructured data. Vendor risk team raised concerns around data sovereignty and the proprietary data model — assessment in progress.",
-          "Microsoft Copilot Rollout: Firm-wide deployment at 15,000 seats across corporate functions. Adoption is steady at 61% weekly active usage. Highest adoption in legal (78%) and finance (72%). Lowest in IB (34%) where bankers prefer specialized tools over general-purpose Copilot.",
+          "Microsoft AssistAI Rollout: Firm-wide deployment at 15,000 seats across corporate functions. Adoption is steady at 61% weekly active usage. Highest adoption in legal (78%) and finance (72%). Lowest in IB (34%) where bankers prefer specialized tools over general-purpose AssistAI.",
         ],
       },
       {
@@ -482,8 +482,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     ],
     sources: [
       { type: "slack", label: "#tech-partnerships" },
-      { type: "google-meet", label: "Anthropic Partnership Review" },
-      { type: "google-meet", label: "Sentra Pilot Expansion Planning" },
+      { type: "zoom", label: "Anthropic Partnership Review" },
+      { type: "zoom", label: "Sentra Pilot Expansion Planning" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Send Anthropic term sheet redline to legal" },
@@ -507,14 +507,14 @@ const reportDetailMap: Record<string, ReportDetail> = {
         heading: "Macroeconomic Signals",
         paragraphs: [
           "Fed Rate Decision (HIGH IMPACT): The Fed held rates steady but signaled a hawkish stance on inflation, reducing expectations for rate cuts in H2 2026. Impact on our division: technology investment budgets across the firm may face additional scrutiny in Q2 planning. The $47M partnership pipeline could see procurement delays if cost discipline tightens.",
-          "AI Infrastructure Cost Inflation (MEDIUM IMPACT): GPU compute costs increased 15% quarter-over-quarter driven by demand from enterprise AI adoption. NVIDIA H100 pricing is firm with no volume discounts below 1,000-unit orders. Our on-prem cluster expansion budget is now 12% over initial estimates.",
+          "AI Infrastructure Cost Inflation (MEDIUM IMPACT): GPU compute costs increased 15% quarter-over-quarter driven by demand from enterprise AI adoption. Titan Compute X900 pricing is firm with no volume discounts below 1,000-unit orders. Our on-prem cluster expansion budget is now 12% over initial estimates.",
         ],
       },
       {
         heading: "Talent Market Pressure",
         paragraphs: [
           "Competition for AI/ML talent intensified this week. Google DeepMind announced a 20% comp increase for senior researchers, and Anthropic's Series D valuation is driving aggressive equity packages that JPM's cash-heavy compensation cannot match. Three of our top candidates have competing offers.",
-          "Mitigation: HR approved an accelerated hiring timeline for critical AI roles — reducing the interview-to-offer cycle from 6 weeks to 3 weeks. Also exploring research partnerships with universities (MIT, Stanford, CMU) as an alternative talent pipeline.",
+          "Mitigation: HR approved an accelerated hiring timeline for critical AI roles — reducing the interview-to-offer cycle from 6 weeks to 3 weeks. Also exploring research partnerships with universities (Westbrook, Ashmore, CMU) as an alternative talent pipeline.",
         ],
       },
       {
@@ -528,8 +528,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#market-intelligence" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Market Risk Assessment" },
-      { type: "google-meet", label: "Talent Market Briefing" },
+      { type: "zoom", label: "Market Risk Assessment" },
+      { type: "zoom", label: "Talent Market Briefing" },
     ],
     suggestedActions: [
       { icon: "mail", label: "Share budget impact analysis with CFO office" },
@@ -553,9 +553,9 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Key Updates",
         paragraphs: [
-          "GPU Compute Costs: On-prem cluster operating costs at $1.2M/month, up 15% from Q4 due to increased training workloads and the new inference serving partition. Cloud burst capacity (AWS GovCloud) added $340K in February for peak workload overflow. Total compute spend is 8% over budget — the hybrid cloud migration should reduce this by Q3.",
-          "AI Vendor Licensing: Current committed spend across AI vendors is $3.8M annually (Microsoft Copilot $2.1M, various evaluation licenses $1.7M). The Anthropic enterprise agreement, if signed, would add $18M ACV but includes a $4.2M first-year discount. Net new vendor spend for FY2026 would be $13.8M, requiring a budget amendment.",
-          "Cloud Infrastructure: AWS GovCloud spend at $890K/month for AI workloads, up from $720K in January. Primary drivers: expanded model serving fleet, new data pipeline infrastructure for the KYC automation project, and disaster recovery environment provisioning.",
+          "GPU Compute Costs: On-prem cluster operating costs at $1.2M/month, up 15% from Q4 due to increased training workloads and the new inference serving partition. Cloud burst capacity (CloudPrime GovCloud) added $340K in February for peak workload overflow. Total compute spend is 8% over budget — the hybrid cloud migration should reduce this by Q3.",
+          "AI Vendor Licensing: Current committed spend across AI vendors is $3.8M annually (Microsoft AssistAI $2.1M, various evaluation licenses $1.7M). The Anthropic enterprise agreement, if signed, would add $18M ACV but includes a $4.2M first-year discount. Net new vendor spend for FY2026 would be $13.8M, requiring a budget amendment.",
+          "Cloud Infrastructure: CloudPrime GovCloud spend at $890K/month for AI workloads, up from $720K in January. Primary drivers: expanded model serving fleet, new data pipeline infrastructure for the KYC automation project, and disaster recovery environment provisioning.",
           "Headcount Budget: 45 FTEs currently, targeting 80 by year-end. Compensation budget for new hires estimated at $14.2M annually (loaded cost). Current run rate is $9.8M. The gap requires Q2 budget approval from the Operating Committee.",
         ],
       },
@@ -564,15 +564,15 @@ const reportDetailMap: Record<string, ReportDetail> = {
         paragraphs: [
           "Document Analysis AI: $2.1M annual cost, $7.8M estimated productivity savings across 300 IB analysts. ROI: 3.7x.",
           "Meeting Intelligence (Sentra): $252K annual cost (60 seats), $1.1M estimated time savings based on pilot data. ROI: 4.4x. Expansion to 200 seats would increase cost to $840K with projected savings of $3.6M.",
-          "Microsoft Copilot: $2.1M annual cost, $4.8M estimated productivity savings across 15,000 seats. ROI: 2.3x. Below the average but justified by firm-wide coverage and baseline productivity improvement.",
+          "Microsoft AssistAI: $2.1M annual cost, $4.8M estimated productivity savings across 15,000 seats. ROI: 2.3x. Below the average but justified by firm-wide coverage and baseline productivity improvement.",
         ],
       },
     ],
     sources: [
       { type: "slack", label: "#ai-finance" },
       { type: "slack", label: "#budget-planning" },
-      { type: "google-meet", label: "Monthly Budget Review" },
-      { type: "google-meet", label: "ROI Analysis Sync" },
+      { type: "zoom", label: "Monthly Budget Review" },
+      { type: "zoom", label: "ROI Analysis Sync" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Review GPU compute cost optimization plan" },
@@ -592,13 +592,13 @@ const reportDetailMap: Record<string, ReportDetail> = {
       {
         heading: "Status Overview",
         paragraphs: [
-          "Competitive intelligence signals intensified this week as peer institutions accelerated their AI strategy execution. Goldman Sachs, Morgan Stanley, Citi, Bank of America, and Wells Fargo all made notable moves in the AI space. JPM's differentiation lies in the breadth of our partnership approach and the depth of our model risk management framework, but the window for establishing a durable lead is narrowing.",
+          "Competitive intelligence signals intensified this week as peer institutions accelerated their AI strategy execution. Morgan Vale, Morgan Stanley, Citi, Bank of America, and Wells Fargo all made notable moves in the AI space. JPM's differentiation lies in the breadth of our partnership approach and the depth of our model risk management framework, but the window for establishing a durable lead is narrowing.",
         ],
       },
       {
         heading: "Key Updates",
         paragraphs: [
-          "Goldman Sachs — GS AI Platform: Goldman expanded their internal AI platform to 10,000 seats across IB and Asset Management. Their approach is vertically integrated — proprietary models trained on Goldman's data, deployed on internal infrastructure. Strength: data moat from decades of deal history. Weakness: siloed by division with no cross-divisional knowledge graph. Their build-first strategy is expensive and slow to iterate.",
+          "Morgan Vale — GS AI Platform: Goldman expanded their internal AI platform to 10,000 seats across IB and Asset Management. Their approach is vertically integrated — proprietary models trained on Goldman's data, deployed on internal infrastructure. Strength: data moat from decades of deal history. Weakness: siloed by division with no cross-divisional knowledge graph. Their build-first strategy is expensive and slow to iterate.",
           "Morgan Stanley — Deloitte Partnership: Morgan Stanley deepened their Deloitte partnership for AI transformation, focusing on wealth management and client advisory. The partnership model gives them consulting bench strength but creates dependency. Their AI-powered 'Next Best Action' tool for financial advisors is reportedly seeing strong adoption in the wealth management division.",
           "Citi — AI-First Strategy: Citi's new CEO doubled down on the 'AI-first' strategy announced last quarter, committing $2B in AI investment over three years. Focus areas: trade operations automation, regulatory reporting, and client onboarding. Their aggressive spending creates pressure on JPM to match investment levels.",
           "Bank of America — Erica Evolution: BofA's Erica virtual assistant now handles 1.5B client interactions annually and is being extended to commercial banking. Their consumer AI advantage is significant but the technology doesn't translate easily to institutional banking where JPM has its primary book of business.",
@@ -616,8 +616,8 @@ const reportDetailMap: Record<string, ReportDetail> = {
     sources: [
       { type: "slack", label: "#competitive-intel" },
       { type: "slack", label: "#ai-strategy" },
-      { type: "google-meet", label: "Competitive Intelligence Briefing" },
-      { type: "google-meet", label: "Goldman AI Platform Analysis" },
+      { type: "zoom", label: "Competitive Intelligence Briefing" },
+      { type: "zoom", label: "Goldman AI Platform Analysis" },
     ],
     suggestedActions: [
       { icon: "clock", label: "Update competitive landscape deck for OpCo" },
@@ -649,7 +649,7 @@ const fallbackDetail: ReportDetail = {
   ],
   sources: [
     { type: "slack", label: "#ai-strategy" },
-    { type: "google-meet", label: "Weekly Sync" },
+    { type: "zoom", label: "Weekly Sync" },
   ],
   suggestedActions: [
     { icon: "mail", label: "Review action items from this period" },

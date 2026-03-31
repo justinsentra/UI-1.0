@@ -47,34 +47,34 @@ export function MeetingComposer({
     <div className="pt-4 pb-2 space-y-3">
       {/* Title */}
       <div className="flex items-center gap-2">
-        <span className="text-2xs text-[var(--fg-muted)] w-8 shrink-0">
+        <span className="text-2xs text-[var(--muted-foreground)] w-8 shrink-0">
           Title
         </span>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 px-3 py-2 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--fg-base)] placeholder:text-[var(--fg-disabled)] outline-none focus:border-[var(--fg-muted)]"
+          className="flex-1 px-3 py-2 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] outline-none focus:border-[var(--muted-foreground)]"
           placeholder="Meeting title"
         />
       </div>
 
       {/* Participants */}
       <div className="flex items-start gap-2">
-        <span className="text-2xs text-[var(--fg-muted)] mt-1.5 w-8 shrink-0">
+        <span className="text-2xs text-[var(--muted-foreground)] mt-1.5 w-8 shrink-0">
           With
         </span>
         <div className="flex-1 flex flex-wrap items-center gap-1.5">
           {participants.map((email) => (
             <span
               key={email}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--bg-subtle)] text-2xs text-[var(--fg-base)]"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--muted)] text-2xs text-[var(--foreground)]"
             >
               {MOCK_CONTACTS.find((c) => c.email === email)?.name ?? email}
               <button
                 type="button"
                 onClick={() => removeParticipant(email)}
-                className="bg-transparent border-none cursor-pointer p-0 text-[var(--fg-muted)] hover:text-[var(--fg-base)]"
+                className="bg-transparent border-none cursor-pointer p-0 text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
               >
                 <X size={10} />
               </button>
@@ -84,7 +84,7 @@ export function MeetingComposer({
             <button
               type="button"
               onClick={() => setShowSearch(true)}
-              className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-transparent border border-dashed border-[var(--border-base)] text-[var(--fg-muted)] hover:text-[var(--fg-base)] hover:border-[var(--fg-muted)] transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-transparent border border-dashed border-[var(--border)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[var(--muted-foreground)] transition-colors cursor-pointer"
             >
               <Plus size={10} />
             </button>
@@ -106,13 +106,13 @@ export function MeetingComposer({
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         rows={3}
-        className="w-full px-3 py-2 rounded-lg border border-[var(--border-base)] bg-transparent text-sm text-[var(--fg-muted)] leading-relaxed resize-none placeholder:text-[var(--fg-disabled)] outline-none focus:border-[var(--fg-muted)]"
+        className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-transparent text-sm text-[var(--muted-foreground)] leading-relaxed resize-none placeholder:text-[var(--muted-foreground)] outline-none focus:border-[var(--muted-foreground)]"
         placeholder="Add a description..."
       />
 
       {/* Time Slot Cards */}
       <div>
-        <span className="text-2xs text-[var(--fg-muted)] mb-2 block">
+        <span className="text-2xs text-[var(--muted-foreground)] mb-2 block">
           Suggested times
         </span>
         <div className="flex gap-2">
@@ -124,8 +124,8 @@ export function MeetingComposer({
               className={cn(
                 "flex-1 py-2 rounded-lg border text-xs font-medium transition-all cursor-pointer bg-transparent",
                 selectedTime === slot.value
-                  ? "border-[var(--fg-base)] text-[var(--fg-base)] bg-[var(--bg-subtle)]"
-                  : "border-[var(--border-base)] text-[var(--fg-muted)] hover:border-[var(--fg-muted)] hover:text-[var(--fg-base)]",
+                  ? "border-[var(--foreground)] text-[var(--foreground)] bg-[var(--muted)]"
+                  : "border-[var(--border)] text-[var(--muted-foreground)] hover:border-[var(--muted-foreground)] hover:text-[var(--foreground)]",
               )}
             >
               {slot.label}
@@ -139,7 +139,7 @@ export function MeetingComposer({
         <button
           type="button"
           onClick={onCancel}
-          className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg-base)] bg-transparent border-none cursor-pointer"
+          className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)] bg-transparent border-none cursor-pointer"
         >
           Cancel
         </button>
@@ -150,8 +150,8 @@ export function MeetingComposer({
           className={cn(
             "px-4 py-1.5 rounded-full text-xs font-medium border-none transition-opacity",
             selectedTime
-              ? "bg-[var(--fg-base)] text-[var(--bg-base)] cursor-pointer hover:opacity-90"
-              : "bg-[var(--bg-subtle)] text-[var(--fg-disabled)] cursor-not-allowed",
+              ? "bg-[var(--foreground)] text-[var(--background)] cursor-pointer hover:opacity-90"
+              : "bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed",
           )}
         >
           Schedule

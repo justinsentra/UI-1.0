@@ -8,12 +8,12 @@ export interface UserProfile {
 }
 
 export const currentUser: UserProfile = {
-  email: "justin@sentra.app",
-  fullName: "Justin Cheng",
-  title: "Head of Strategy & Operations",
-  phone: "+1 647-401-3399",
+  email: "mark.davis@jpmorgan.com",
+  fullName: "Mark Davis",
+  title: "Managing Director, Investment Banking",
+  phone: "+1 212-555-0147",
   language: "English",
-  timezone: "America/Toronto (EST)",
+  timezone: "America/New_York (EST)",
 };
 
 export interface WorkspaceMember {
@@ -28,42 +28,42 @@ export interface WorkspaceMember {
 export const workspaceMembers: WorkspaceMember[] = [
   {
     id: "wm-1",
-    name: "Ashwin Gopinath",
-    email: "ashwin@sentra.app",
+    name: "Raj Sundaram",
+    email: "raj@sentra.app",
     role: "Admin",
-    initials: "AG",
+    initials: "RS",
     avatarColor: "#3A4D54",
   },
   {
     id: "wm-2",
-    name: "Andrey Starenky",
-    email: "andrey@sentra.app",
+    name: "Pavel Volkov",
+    email: "pavel@sentra.app",
     role: "Admin",
-    initials: "AS",
+    initials: "PV",
     avatarColor: "#5E6AD2",
   },
   {
     id: "wm-3",
-    name: "Justin Cheng",
-    email: "justin@sentra.app",
+    name: "Mark Davis",
+    email: "mark.davis@jpmorgan.com",
     role: "Admin",
-    initials: "JC",
+    initials: "TK",
     avatarColor: "#3A4D54",
   },
   {
     id: "wm-4",
-    name: "Kristina Beaman",
-    email: "kristina@sentra.app",
+    name: "Ingrid Solberg",
+    email: "ingrid@sentra.app",
     role: "Member",
-    initials: "KB",
+    initials: "IS",
     avatarColor: "#E91E8C",
   },
   {
     id: "wm-5",
-    name: "Shaurya Patel",
-    email: "shaurya@sentra.app",
+    name: "Arjun Reddy",
+    email: "arjun@sentra.app",
     role: "Member",
-    initials: "SP",
+    initials: "AR",
     avatarColor: "#EA4335",
   },
 ];

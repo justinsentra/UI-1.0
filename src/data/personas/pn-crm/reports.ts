@@ -60,7 +60,7 @@ export const reportsData: PersonaReportsData = {
     },
     {
       id: "pn-crm-rpt-redhawk",
-      name: "RedHawk Ventures Deal Pipeline",
+      name: "IronHawk Ventures Deal Pipeline",
       type: "report",
       reportCount: 3,
       reports: [
@@ -107,7 +107,7 @@ export const reportsData: PersonaReportsData = {
       id: "pn-crm-radar-1",
       name: "Personal CRM Competitor Activity",
       prompt:
-        "Track product launches, funding rounds, and feature updates from Clay, Folk, Dex, Monica, and other personal CRM tools",
+        "Track product launches, funding rounds, and feature updates from Molder, Tribe, Rolodex, Monica, and other personal CRM tools",
       isActive: true,
       createdAt: "2026-01-10",
     },
@@ -115,7 +115,7 @@ export const reportsData: PersonaReportsData = {
       id: "pn-crm-radar-2",
       name: "VC & Accelerator Signals",
       prompt:
-        "Monitor YC, Techstars, and top accelerator batch announcements for companies in the personal productivity and CRM space",
+        "Monitor LP, RocketStars, and top accelerator batch announcements for companies in the personal productivity and CRM space",
       isActive: true,
       createdAt: "2026-02-01",
     },
@@ -123,7 +123,7 @@ export const reportsData: PersonaReportsData = {
       id: "pn-crm-radar-3",
       name: "Student Startup Ecosystem",
       prompt:
-        "Track student startup competitions, university VC fund investments, and student founder success stories at Miami University and peer institutions",
+        "Track student startup competitions, university VC fund investments, and student founder success stories at Buckeye State University and peer institutions",
       isActive: true,
       createdAt: "2026-01-20",
     },
@@ -131,7 +131,7 @@ export const reportsData: PersonaReportsData = {
       id: "pn-crm-radar-4",
       name: "Relationship Intelligence Trends",
       prompt:
-        "Monitor AI and ML advances in relationship scoring, social graph analysis, and professional networking that could enhance PN CRM's intelligence layer",
+        "Monitor AI and ML advances in relationship scoring, social graph analysis, and professional networking that could enhance Circle CRM's intelligence layer",
       isActive: true,
       createdAt: "2026-02-15",
     },
@@ -179,7 +179,7 @@ export const reportsData: PersonaReportsData = {
       id: "pn-crm-ro-3",
       label: "Accelerator Deadlines",
       description:
-        "Track application deadlines for YC, Techstars, and relevant accelerators",
+        "Track application deadlines for LP, RocketStars, and relevant accelerators",
     },
     {
       id: "pn-crm-ro-4",
@@ -193,12 +193,12 @@ export const reportsData: PersonaReportsData = {
       "How is user retention trending week over week?",
       "Where are we on the pre-seed fundraising pipeline?",
       "What shipped in the last sprint?",
-      "Which RedHawk Ventures deals are moving forward?",
+      "Which IronHawk Ventures deals are moving forward?",
     ],
     radar: [
       "Any new personal CRM competitors that launched recently?",
-      "What did Clay or Folk announce this week?",
-      "Any YC or Techstars deadlines coming up?",
+      "What did Molder or Tribe announce this week?",
+      "Any LP or RocketStars deadlines coming up?",
       "New AI relationship intelligence tools to watch?",
     ],
   },

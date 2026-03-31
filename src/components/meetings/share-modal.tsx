@@ -3,7 +3,7 @@ import { X, UserPlus, Copy } from "lucide-react";
 import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";
 import { meetings } from "@/data/mock-meetings";
-import { getInitials, getAvatarColor } from "@lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -12,8 +12,8 @@ interface ShareModalProps {
 }
 
 const DEFAULT_PEOPLE = [
-  { name: "Justin Cheng", email: "justin@sentra.app" },
-  { name: "Ashwin Gopinath", email: "ashwin@sentra.app" },
+  { name: "Mark Davis", email: "mark.davis@jpmorgan.com" },
+  { name: "Raj Sundaram", email: "raj@sentra.app" },
 ];
 
 export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
@@ -88,18 +88,18 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
         {/* Header */}
         <div className="px-6 pt-6 pb-0">
           <div className="flex items-start justify-between mb-1">
-            <h2 className="text-md font-semibold text-[var(--fg-base)]">
+            <h2 className="text-md font-semibold text-[var(--foreground)]">
               Share "{meeting?.title}"
             </h2>
             <button
               type="button"
               onClick={handleClose}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--fg-disabled)] hover:text-[var(--fg-muted)] hover:bg-[var(--bg-subtle)] transition-colors -mt-0.5 -mr-1"
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--muted-foreground)] hover:text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-colors -mt-0.5 -mr-1"
             >
               <X size={16} />
             </button>
           </div>
-          <p className="text-sm text-[var(--fg-muted)] mb-4">
+          <p className="text-sm text-[var(--muted-foreground)] mb-4">
             Add people and manage access to this meeting.
           </p>
 
@@ -107,7 +107,7 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
           <div className="relative mb-5">
             <UserPlus
               size={15}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--fg-disabled)]"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]"
             />
             <input
               type="text"
@@ -115,7 +115,7 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
               onChange={(e) => setEmailInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Add people..."
-              className="w-full h-10 pl-9 pr-3 rounded-lg border border-[var(--border-base)] bg-background text-sm placeholder:text-[var(--fg-disabled)] focus:border-[var(--fg-muted)] focus:outline-none"
+              className="w-full h-10 pl-9 pr-3 rounded-lg border border-[var(--border)] bg-background text-sm placeholder:text-[var(--muted-foreground)] focus:border-[var(--muted-foreground)] focus:outline-none"
             />
           </div>
         </div>
@@ -123,10 +123,10 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
         {/* People with access */}
         <div className="px-6 flex-1 overflow-y-auto">
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-medium text-[var(--fg-base)]">
+            <p className="text-sm font-medium text-[var(--foreground)]">
               People with access
             </p>
-            <span className="text-xs text-[var(--fg-disabled)]">
+            <span className="text-xs text-[var(--muted-foreground)]">
               {allPeople.length}
             </span>
           </div>
@@ -136,17 +136,12 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
                 key={person.email}
                 className="flex items-center gap-3 py-2.5"
               >
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white text-2xs font-medium shrink-0"
-                  style={{ backgroundColor: getAvatarColor(person.name) }}
-                >
-                  {getInitials(person.name)}
-                </div>
+                <UserAvatar name={person.name} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[var(--fg-base)] leading-tight">
+                  <p className="text-sm font-medium text-[var(--foreground)] leading-tight">
                     {person.name}
                   </p>
-                  <p className="text-xs text-[var(--fg-muted)]">
+                  <p className="text-xs text-[var(--muted-foreground)]">
                     {person.email}
                   </p>
                 </div>
@@ -158,13 +153,13 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
         {/* Footer */}
         <div className="px-6 pb-5 pt-0">
           {/* Privacy row */}
-          <div className="border-t border-[var(--border-base)] pt-4 mb-3">
+          <div className="border-t border-[var(--border)] pt-4 mb-3">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-[var(--fg-base)]">
+                <p className="text-sm font-medium text-[var(--foreground)]">
                   {isPrivate ? "Private" : "Public"}
                 </p>
-                <p className="text-xs text-[var(--fg-muted)]">
+                <p className="text-xs text-[var(--muted-foreground)]">
                   {isPrivate
                     ? "Only you can view"
                     : "Attendees and admins can view"}
@@ -175,7 +170,7 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
                 onClick={() =>
                   setVisibility(meetingId, isPrivate ? "public" : "private")
                 }
-                className="text-sm font-medium text-[var(--fg-base)] hover:text-[var(--fg-muted)] transition-colors"
+                className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--muted-foreground)] transition-colors"
               >
                 {isPrivate ? "Make public" : "Make private"}
               </button>
@@ -183,17 +178,17 @@ export function ShareModal({ isOpen, onClose, meetingId }: ShareModalProps) {
           </div>
 
           {/* Share link */}
-          <div className="border-t border-[var(--border-base)] pt-3">
+          <div className="border-t border-[var(--border)] pt-3">
             <div className="flex items-center gap-2">
-              <div className="flex-1 h-9 px-3 rounded-lg border border-[var(--border-base)] bg-[var(--bg-subtle)] flex items-center overflow-hidden">
-                <span className="text-sm text-[var(--fg-muted)] truncate">
+              <div className="flex-1 h-9 px-3 rounded-lg border border-[var(--border)] bg-[var(--muted)] flex items-center overflow-hidden">
+                <span className="text-sm text-[var(--muted-foreground)] truncate">
                   {shareLink}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={handleCopyLink}
-                className="h-9 w-9 shrink-0 rounded-lg border border-[var(--border-base)] flex items-center justify-center text-[var(--fg-muted)] hover:bg-[var(--bg-subtle)] transition-colors"
+                className="h-9 w-9 shrink-0 rounded-lg border border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] hover:bg-[var(--muted)] transition-colors"
               >
                 <Copy size={15} />
               </button>

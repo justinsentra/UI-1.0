@@ -22,7 +22,7 @@ function Toggle({
       onClick={() => onChange(!checked)}
       className={`relative w-11 h-6 rounded-full transition-colors border-none cursor-pointer ${
         disabled ? "opacity-60 cursor-not-allowed" : ""
-      } ${checked ? "bg-[var(--fg-base)]" : "bg-[var(--border-base)]"}`}
+      } ${checked ? "bg-[var(--foreground)]" : "bg-[var(--border)]"}`}
     >
       <span
         className={`absolute top-[2px] left-[2px] w-5 h-5 rounded-full bg-background shadow-sm transition-transform ${
@@ -40,20 +40,20 @@ export function DeliverabilitySection({
 }: DeliverabilityProps) {
   return (
     <div>
-      <h2 className="text-md font-semibold text-[var(--fg-base)] mb-1">
+      <h2 className="text-md font-semibold text-[var(--foreground)] mb-1">
         Deliverability
       </h2>
-      <p className="text-sm text-[var(--fg-muted)] mb-5">
+      <p className="text-sm text-[var(--muted-foreground)] mb-5">
         Choose how you want to receive your reports
       </p>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-sm font-medium text-[var(--fg-base)]">
+            <div className="text-sm font-medium text-[var(--foreground)]">
               Email
             </div>
-            <div className="text-sm text-[var(--fg-muted)]">
+            <div className="text-sm text-[var(--muted-foreground)]">
               Receive reports in your inbox
             </div>
           </div>
@@ -66,11 +66,11 @@ export function DeliverabilitySection({
 
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-sm font-medium text-[var(--fg-base)]">
-              Slack
+            <div className="text-sm font-medium text-[var(--foreground)]">
+              ChatWorks
             </div>
-            <div className="text-sm text-[var(--fg-muted)]">
-              Receive a notification via Slack DM
+            <div className="text-sm text-[var(--muted-foreground)]">
+              Receive a notification via ChatWorks DM
             </div>
           </div>
           <Toggle

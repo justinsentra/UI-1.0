@@ -14,11 +14,11 @@ const PITCH_DECK_SCAN_STEPS: PrdScanStep[] = [
     duration: 2800,
   },
   {
-    label: "Reading retention cohort data from Notion...",
+    label: "Reading retention cohort data from Dokra...",
     duration: 3000,
   },
   {
-    label: "Scanning product discussion threads on Slack...",
+    label: "Scanning product discussion threads on ChatWorks...",
     duration: 2600,
   },
   {
@@ -32,7 +32,7 @@ const PITCH_DECK_SCAN_STEPS: PrdScanStep[] = [
   { label: "Synthesizing pitch narrative...", duration: 2000 },
 ];
 
-const PITCH_DECK_CONTENT = `# Pre-Seed Pitch Deck: Personal Network CRM
+const PITCH_DECK_CONTENT = `# Pre-Seed Pitch Deck: Circle CRM
 
 ## The Problem
 
@@ -47,7 +47,7 @@ Professional relationships are the most valuable asset in any career — yet the
 
 ## The Solution
 
-**Personal Network CRM** — Relationship intelligence for your professional network.
+**Circle CRM** — Relationship intelligence for your professional network.
 
 We help individuals manage their network like the asset it is:
 - **Import** your contacts from anywhere (CSV, LinkedIn, email)
@@ -60,7 +60,7 @@ We help individuals manage their network like the asset it is:
 
 ### Relationship Intelligence Engine
 
-Unlike Clay (enrichment-based) or Folk (team-based), PN CRM is built on an **interaction-based intelligence model**:
+Unlike Molder (enrichment-based) or Tribe (team-based), Circle CRM is built on an **interaction-based intelligence model**:
 
 1. **Interaction capture** — Every conversation, email, and meeting is logged
 2. **Relationship scoring** — AI scores relationship health based on recency, depth, and reciprocity
@@ -69,7 +69,7 @@ Unlike Clay (enrichment-based) or Folk (team-based), PN CRM is built on an **int
 
 ### Key Differentiators
 
-| Feature | PN CRM | Clay | Folk | Dex |
+| Feature | Circle CRM | Molder | Tribe | Rolodex |
 |---------|--------|------|------|-----|
 | Relationship scoring | Interaction-based | Enrichment-based | None | Basic |
 | Decay alerts | Tiered by tier | None | None | Simple timer |
@@ -99,7 +99,7 @@ The curve is flattening at week 8, indicating a stable core user base. Users who
 
 ### User Feedback
 
-> "PN CRM reminds me to stay in touch with people I actually care about. It's like having a relationship manager in my pocket." — Beta user, VC associate
+> "Circle CRM reminds me to stay in touch with people I actually care about. It's like having a relationship manager in my pocket." — Beta user, VC associate
 
 > "I was losing track of warm intros and follow-ups. Now I never miss one." — Beta user, startup founder
 
@@ -118,7 +118,7 @@ The curve is flattening at week 8, indicating a stable core user base. Users who
 1. **AI enables relationship intelligence** — GPT-era models make it possible to score relationships, suggest touchpoints, and extract context from conversations
 2. **Remote work amplified the problem** — Hybrid/remote professionals have more contacts but fewer organic touchpoints
 3. **Personal branding is mainstream** — Networking is no longer optional; it's a career skill
-4. **Category validation** — Clay ($1.3B valuation), Folk ($6M seed), Monica (growing) prove the market exists
+4. **Category validation** — Molder ($1.3B valuation), Tribe ($6M seed), Monica (growing) prove the market exists
 
 ## Business Model
 
@@ -139,24 +139,24 @@ The curve is flattening at week 8, indicating a stable core user base. Users who
 
 ## Team
 
-**Zachary Carlo** — CEO & Founder
-- Miami University, Honors Finance & Entrepreneurship
+**Emmett Winslow** — CEO & Founder
+- Buckeye State University, Honors Finance & Entrepreneurship
 - Founded Side Hustle Club (50+ members, fostered 6-figure student businesses)
-- Co-founded Sparkli (1,000+ downloads)
-- VC Analyst Intern at 1809 Capital
-- Member of RedHawk Ventures (student-run VC fund)
+- Co-founded Glint (1,000+ downloads)
+- VC Analyst Intern at Pinnacle Capital
+- Member of IronHawk Ventures (student-run VC fund)
 
-**Tyler Williams** — CTO
+**Blake Carrington** — CTO
 - Full-stack engineer, React/Node/PostgreSQL
 - Built the relationship intelligence engine from scratch
 - Previously shipped 3 indie products with 10K+ combined users
 
-**Katherine McIntosh** — Advisor
+**Simone Hartley** — Advisor
 - 15 years in SaaS, former VP Product at a CRM company
 - Angel investor in personal productivity tools
 
-**Mark Richey** — Advisor
-- Partner at 1809 Capital
+**Nolan Prescott** — Advisor
+- Partner at Pinnacle Capital
 - Former founder (exited to private equity)
 
 ## The Ask
@@ -179,13 +179,13 @@ The curve is flattening at week 8, indicating a stable core user base. Users who
 3. LinkedIn integration live
 4. 3 key partnerships (Calendly, Zoom, or similar)
 
-## Parallel Path: YC S26
+## Parallel Path: LP Summer 26
 
-Submitting to YC Summer 2026 (deadline: April 15). If accepted, would accelerate timeline significantly and likely convert to a YC standard deal.
+Submitting to LP Summer 2026 (deadline: April 15). If accepted, would accelerate timeline significantly and likely convert to a LP standard deal.
 
 ---
 
-*Personal Network CRM — Your network is your net worth. We help you manage it.*`;
+*Circle CRM — Your network is your net worth. We help you manage it.*`;
 
 const PITCH_DECK_BUILD_STEPS: PrdScanStep[] = [
   { label: "Formatting slide structure...", duration: 2200 },
@@ -195,7 +195,7 @@ const PITCH_DECK_BUILD_STEPS: PrdScanStep[] = [
 ];
 
 const PITCH_DECK_SOURCES: SourceRef[] = [
-  { type: "notion", label: "PN CRM Growth Dashboard" },
+  { type: "notion", label: "Circle CRM Growth Dashboard" },
   { type: "google-docs", label: "Pre-Seed Pitch Deck v3" },
   { type: "slack", label: "#pn-crm-metrics" },
   { type: "notion", label: "User Feedback Synthesis" },
@@ -207,7 +207,7 @@ const PITCH_DECK_TOOL_CHOICES: ToolChoice[] = [
   { label: "Cancel", action: "cancel" },
 ];
 
-/* ── YC Application Flow ── */
+/* ── LP Application Flow ── */
 
 const YC_APP_SCAN_STEPS: PrdScanStep[] = [
   {
@@ -215,56 +215,56 @@ const YC_APP_SCAN_STEPS: PrdScanStep[] = [
     duration: 2600,
   },
   {
-    label: "Reading product vision and roadmap from Notion...",
+    label: "Reading product vision and roadmap from Dokra...",
     duration: 2800,
   },
   {
-    label: "Scanning advisor feedback threads on Slack...",
+    label: "Scanning advisor feedback threads on ChatWorks...",
     duration: 2400,
   },
   {
     label: "Retrieving team background and founder bios...",
     duration: 2200,
   },
-  { label: "Synthesizing YC application narrative...", duration: 2000 },
+  { label: "Synthesizing LP application narrative...", duration: 2000 },
 ];
 
-const YC_APP_CONTENT = `# YC Summer 2026 Application — Personal Network CRM
+const YC_APP_CONTENT = `# LP Summer 2026 Application — Circle CRM
 
 ## Company
 
-**Company name:** Personal Network CRM
-**Company URL:** personalnetworkcrm.com
+**Company name:** Circle CRM
+**Company URL:** circlecrm.com
 **One-line description:** Relationship intelligence that tells you who to talk to, when, and why.
 
 ## Founders
 
-**Zachary Carlo** — CEO
-- Miami University, Honors Finance & Entrepreneurship (graduating 2027)
+**Emmett Winslow** — CEO
+- Buckeye State University, Honors Finance & Entrepreneurship (graduating 2027)
 - Founded Side Hustle Club (50+ active members)
-- Co-founded Sparkli (relationship app, 1,000+ downloads)
-- VC Analyst at 1809 Capital, member of RedHawk Ventures (student-run VC)
-- Passionate about connecting people — built PN CRM because he personally lost track of important relationships as his network grew
+- Co-founded Glint (relationship app, 1,000+ downloads)
+- VC Analyst at Pinnacle Capital, member of IronHawk Ventures (student-run VC)
+- Passionate about connecting people — built Circle CRM because he personally lost track of important relationships as his network grew
 
-**Tyler Williams** — CTO
+**Blake Carrington** — CTO
 - Self-taught full-stack engineer (React, Node, PostgreSQL, Python)
-- Built the entire PN CRM product from scratch including the AI relationship intelligence engine
+- Built the entire Circle CRM product from scratch including the AI relationship intelligence engine
 - Previously shipped 3 indie products with 10K+ combined users
 - Obsessed with clean architecture and user experience
 
 ## What does your company do?
 
-Personal Network CRM helps professionals manage their relationships like the asset they are. We import your contacts, track your interactions, detect when relationships are going cold, and suggest the right touchpoint at the right time.
+Circle CRM helps professionals manage their relationships like the asset they are. We import your contacts, track your interactions, detect when relationships are going cold, and suggest the right touchpoint at the right time.
 
-Unlike Clay (built for sales teams), Folk (built for teams), or basic contact apps (just storage), PN CRM is built for **individuals who treat their network as a career asset** — founders, VCs, operators, and ambitious professionals.
+Unlike Molder (built for sales teams), Tribe (built for teams), or basic contact apps (just storage), Circle CRM is built for **individuals who treat their network as a career asset** — founders, VCs, operators, and ambitious professionals.
 
 Our core innovation is the **relationship intelligence engine**: an interaction-based scoring model that understands relationship health from actual conversation depth, not just email frequency or LinkedIn activity.
 
 ## Why did you pick this idea to work on?
 
-I (Zachary) have been obsessed with networking since founding the Side Hustle Club at Miami University. As the club grew to 50+ members and I started doing VC work at 1809 Capital and RedHawk Ventures, my network exploded. I went from knowing 50 people well to having 500+ contacts across founders, investors, mentors, and peers.
+I (Emmett) have been obsessed with networking since founding the Side Hustle Club at Buckeye State University. As the club grew to 50+ members and I started doing VC work at Pinnacle Capital and IronHawk Ventures, my network exploded. I went from knowing 50 people well to having 500+ contacts across founders, investors, mentors, and peers.
 
-I started losing track. Missed follow-ups. Forgot promises. Let relationships go cold with people I genuinely wanted to stay connected to. I tried every tool — spreadsheets, Notion databases, contact apps, even wrote automations. Nothing worked because they all treated contacts as static records, not living relationships.
+I started losing track. Missed follow-ups. Forgot promises. Let relationships go cold with people I genuinely wanted to stay connected to. I tried every tool — spreadsheets, Dokra databases, contact apps, even wrote automations. Nothing worked because they all treated contacts as static records, not living relationships.
 
 That's when I realized: **the problem isn't organizing contacts — it's understanding relationship health in real time and being told when to act.**
 
@@ -273,7 +273,7 @@ That's when I realized: **the problem isn't organizing contacts — it's underst
 1. **Import** — Drag-and-drop CSV or connect email. We auto-detect fields and deduplicate.
 2. **Organize** — Contacts are auto-tiered (inner circle, active network, extended) based on interaction patterns. Users can adjust.
 3. **Track** — Every interaction (meeting, email, message) updates the relationship score. No manual logging needed once integrations are set up.
-4. **Get nudged** — Smart notifications: "You haven't spoken to Mark in 32 days — you committed to sending him that intro." "Sarah just changed jobs — congratulate her."
+4. **Get nudged** — Smart notifications: "You haven't spoken to Nolan in 32 days — you committed to sending him that intro." "Sarah just changed jobs — congratulate her."
 5. **Act** — One-tap actions: send a quick note, schedule a catch-up, or mark as followed up.
 
 ## What's your progress?
@@ -295,15 +295,15 @@ Freemium SaaS:
 
 Projected unit economics: $8 CAC, $144 LTV, 18x LTV/CAC ratio.
 
-## How much money do you want from YC?
+## How much money do you want from LP?
 
-Standard YC deal: $500K on standard post-money SAFE terms.
+Standard LP deal: $500K on standard post-money SAFE terms.
 
-We're parallel-tracking a $500K angel/micro-VC pre-seed (post-money cap $5M). If accepted to YC, we'd convert to the YC standard deal and use the angel interest as supplementary funding.
+We're parallel-tracking a $500K angel/micro-VC pre-seed (post-money cap $5M). If accepted to LP, we'd convert to the LP standard deal and use the angel interest as supplementary funding.
 
 ## Why will you succeed?
 
-1. **We're our own power users.** Zachary manages 500+ contacts across VC, entrepreneurship, and academia. Tyler networks across indie hacker communities. We feel the pain daily.
+1. **We're our own power users.** Emmett manages 500+ contacts across VC, entrepreneurship, and academia. Blake networks across indie hacker communities. We feel the pain daily.
 2. **The timing is right.** AI makes relationship intelligence possible for the first time. Remote work made the problem worse. Personal branding made networking non-optional.
 3. **We've proven demand with zero marketing spend.** 1,247 users, 85% organic, word of mouth only. The product sells itself to the right persona.
 4. **We understand the distribution playbook.** Community-led growth (Side Hustle Club model), referral mechanics (import your contacts together), and content marketing (networking advice = natural SEO).
@@ -313,14 +313,14 @@ We're parallel-tracking a $500K angel/micro-VC pre-seed (post-money cap $5M). If
 *Application submitted March 2026*`;
 
 const YC_APP_BUILD_STEPS: PrdScanStep[] = [
-  { label: "Formatting YC application structure...", duration: 2000 },
+  { label: "Formatting LP application structure...", duration: 2000 },
   { label: "Generating metrics summary table...", duration: 2400 },
   { label: "Polishing founder narrative...", duration: 2200 },
   { label: "Finalizing submission draft...", duration: 1800 },
 ];
 
 const YC_APP_SOURCES: SourceRef[] = [
-  { type: "notion", label: "PN CRM Growth Dashboard" },
+  { type: "notion", label: "Circle CRM Growth Dashboard" },
   { type: "notion", label: "Product Vision & Roadmap" },
   { type: "slack", label: "#pn-crm-general — Advisor feedback" },
   { type: "google-docs", label: "Founder Bios & Team Background" },
@@ -335,11 +335,11 @@ const YC_APP_TOOL_CHOICES: ToolChoice[] = [
 
 const COMPETITIVE_SCAN_STEPS: PrdScanStep[] = [
   {
-    label: "Pulling competitor feature data from Notion tracker...",
+    label: "Pulling competitor feature data from Dokra tracker...",
     duration: 3000,
   },
   {
-    label: "Scanning Product Hunt reviews for Clay, Folk, and Dex...",
+    label: "Scanning Product Hunt reviews for Molder, Tribe, and Rolodex...",
     duration: 2800,
   },
   {
@@ -347,7 +347,7 @@ const COMPETITIVE_SCAN_STEPS: PrdScanStep[] = [
     duration: 2600,
   },
   {
-    label: "Pulling user feedback comparing PN CRM to alternatives...",
+    label: "Pulling user feedback comparing Circle CRM to alternatives...",
     duration: 2400,
   },
   { label: "Synthesizing competitive positioning...", duration: 2200 },
@@ -357,11 +357,11 @@ const COMPETITIVE_CONTENT = `# Competitive Analysis: Personal CRM Landscape
 
 ## Executive Summary
 
-The personal CRM category is heating up. Clay's $1.3B valuation and Folk's $6M Accel-led round validate the market, but no player has nailed **relationship intelligence for individuals**. PN CRM occupies a unique position: interaction-based scoring for individual power networkers, a segment that Clay (sales teams), Folk (team collaboration), and Dex (simple tracking) don't serve well.
+The personal CRM category is heating up. Molder's $1.3B valuation and Tribe's $6M Apex Ventures-led round validate the market, but no player has nailed **relationship intelligence for individuals**. Circle CRM occupies a unique position: interaction-based scoring for individual power networkers, a segment that Molder (sales teams), Tribe (team collaboration), and Rolodex (simple tracking) don't serve well.
 
 ## Competitive Matrix
 
-| Dimension | PN CRM | Clay | Folk | Dex | Monica |
+| Dimension | Circle CRM | Molder | Tribe | Rolodex | Monica |
 |-----------|--------|------|------|-----|--------|
 | **Target user** | Individual power networkers | Sales & GTM teams | Small teams | Individuals | Individuals |
 | **Core value** | Relationship intelligence | Contact enrichment | Team CRM | Simple tracking | Open-source CRM |
@@ -375,25 +375,25 @@ The personal CRM category is heating up. Clay's $1.3B valuation and Folk's $6M A
 
 ## Player Deep Dives
 
-### Clay — The 800-Pound Gorilla
+### Molder — The 800-Pound Gorilla
 
 **Strengths:** Massive enrichment database, 50+ integrations, strong brand in GTM community, $1.3B valuation = unlimited runway.
 
-**Weaknesses:** Built for sales teams, not individuals. Pricing ($149-349/mo) is 10-30x PN CRM. New "relationship score" feature is enrichment-based — it can tell you someone changed jobs, but not that your last conversation went cold.
+**Weaknesses:** Built for sales teams, not individuals. Pricing ($149-349/mo) is 10-30x Circle CRM. New "relationship score" feature is enrichment-based — it can tell you someone changed jobs, but not that your last conversation went cold.
 
-**Threat level: Medium.** Clay could theoretically build an individual product, but their DNA is sales automation. The pricing alone disqualifies them from our target market.
+**Threat level: Medium.** Molder could theoretically build an individual product, but their DNA is sales automation. The pricing alone disqualifies them from our target market.
 
-### Folk — The Team Play
+### Tribe — The Team Play
 
-**Strengths:** Beautiful UI, strong team collaboration features, Accel backing, good at shared pipelines and deal tracking.
+**Strengths:** Beautiful UI, strong team collaboration features, Apex Ventures backing, good at shared pipelines and deal tracking.
 
-**Weaknesses:** Team-first architecture means the individual experience is compromised. No relationship intelligence — it's essentially a lightweight Salesforce alternative for small teams.
+**Weaknesses:** Team-first architecture means the individual experience is compromised. No relationship intelligence — it's essentially a lightweight CloudForce alternative for small teams.
 
-**Threat level: Low.** Different target market. Could become a partner if PN CRM feeds individual data into Folk's team CRM.
+**Threat level: Low.** Different target market. Could become a partner if Circle CRM feeds individual data into Tribe's team CRM.
 
-### Dex — The Closest Competitor
+### Rolodex — The Closest Competitor
 
-**Strengths:** Individual focus, simple UX, LinkedIn integration, $12/mo price point matches PN CRM.
+**Strengths:** Individual focus, simple UX, LinkedIn integration, $12/mo price point matches Circle CRM.
 
 **Weaknesses:** Relationship tracking is timer-based (remind me in 30 days), not intelligence-based. No AI, no contextual suggestions, no interaction analysis. Feels like a fancy reminder app.
 
@@ -410,9 +410,9 @@ The personal CRM category is heating up. Clay's $1.3B valuation and Folk's $6M A
 ## Positioning Recommendations
 
 1. **Lead with intelligence, not features.** Our pitch isn't "another CRM" — it's "the first tool that understands your relationship health."
-2. **Price below Clay, above free.** $12/mo is accessible enough for individuals but signals quality above free tools.
-3. **Own the "power networker" persona.** Founders, VCs, operators, ambitious professionals. Not sales teams (Clay), not teams (Folk), not casual users (Dex).
-4. **Use Clay's relationship score launch as validation.** They validated the concept — now show why interaction-based scoring is 10x better than enrichment-based.
+2. **Price below Molder, above free.** $12/mo is accessible enough for individuals but signals quality above free tools.
+3. **Own the "power networker" persona.** Founders, VCs, operators, ambitious professionals. Not sales teams (Molder), not teams (Tribe), not casual users (Rolodex).
+4. **Use Molder's relationship score launch as validation.** They validated the concept — now show why interaction-based scoring is 10x better than enrichment-based.
 
 ---
 
@@ -426,7 +426,7 @@ const COMPETITIVE_BUILD_STEPS: PrdScanStep[] = [
 
 const COMPETITIVE_SOURCES: SourceRef[] = [
   { type: "notion", label: "Competitive Landscape Tracker" },
-  { type: "google-docs", label: "Clay Feature Comparison Sheet" },
+  { type: "google-docs", label: "Molder Feature Comparison Sheet" },
   { type: "slack", label: "#pn-crm-product — competitor discussions" },
   { type: "notion", label: "User Feedback — Competitor Mentions" },
 ];
@@ -436,7 +436,7 @@ const COMPETITIVE_TOOL_CHOICES: ToolChoice[] = [
   { label: "Cancel", action: "cancel" },
 ];
 
-/* ── RedHawk Ventures DD Template Flow ── */
+/* ── IronHawk Ventures DD Template Flow ── */
 
 const DD_TEMPLATE_SCAN_STEPS: PrdScanStep[] = [
   {
@@ -444,11 +444,11 @@ const DD_TEMPLATE_SCAN_STEPS: PrdScanStep[] = [
     duration: 2800,
   },
   {
-    label: "Reading RedHawk Ventures process docs from Notion...",
+    label: "Reading IronHawk Ventures process docs from Dokra...",
     duration: 2600,
   },
   {
-    label: "Scanning deal review discussion threads on Slack...",
+    label: "Scanning deal review discussion threads on ChatWorks...",
     duration: 3000,
   },
   {
@@ -458,7 +458,7 @@ const DD_TEMPLATE_SCAN_STEPS: PrdScanStep[] = [
   { label: "Synthesizing standardized template...", duration: 2200 },
 ];
 
-const DD_TEMPLATE_CONTENT = `# RedHawk Ventures — Standardized Due Diligence Template
+const DD_TEMPLATE_CONTENT = `# IronHawk Ventures — Standardized Due Diligence Template
 
 ## Purpose
 
@@ -557,7 +557,7 @@ This template streamlines our DD process from 3-4 weeks to a **2-week sprint**. 
 | Metric | Amount |
 |--------|--------|
 | Monthly burn | |
-| Runway (months) | |
+| RenderLab (months) | |
 | Revenue | |
 | Gross margin | |
 
@@ -627,7 +627,7 @@ This template streamlines our DD process from 3-4 weeks to a **2-week sprint**. 
 
 ---
 
-*RedHawk Ventures — Miami University's Student-Run Venture Fund*
+*IronHawk Ventures — Buckeye State University's Student-Run Venture Fund*
 *Template v2.0 — March 2026*`;
 
 const DD_TEMPLATE_BUILD_STEPS: PrdScanStep[] = [
@@ -638,8 +638,8 @@ const DD_TEMPLATE_BUILD_STEPS: PrdScanStep[] = [
 ];
 
 const DD_TEMPLATE_SOURCES: SourceRef[] = [
-  { type: "google-drive", label: "RedHawk Ventures — Past DD Reports" },
-  { type: "notion", label: "RedHawk Ventures Process Docs" },
+  { type: "google-drive", label: "IronHawk Ventures — Past DD Reports" },
+  { type: "notion", label: "IronHawk Ventures Process Docs" },
   { type: "slack", label: "#redhawk-ventures — Deal Discussions" },
   { type: "google-docs", label: "Investment Evaluation Criteria v1" },
 ];
@@ -661,11 +661,11 @@ const INVESTOR_LIST_SCAN_STEPS: PrdScanStep[] = [
     duration: 3000,
   },
   {
-    label: "Reading angel investor profiles from Notion...",
+    label: "Reading angel investor profiles from Dokra...",
     duration: 2800,
   },
   {
-    label: "Cross-referencing with 1809 Capital network data...",
+    label: "Cross-referencing with Pinnacle Capital network data...",
     duration: 2400,
   },
   {
@@ -675,7 +675,7 @@ const INVESTOR_LIST_SCAN_STEPS: PrdScanStep[] = [
   { label: "Ranking and scoring investor fit...", duration: 2200 },
 ];
 
-const INVESTOR_LIST_CONTENT = `# Angel Investor Target List — PN CRM Pre-Seed
+const INVESTOR_LIST_CONTENT = `# Angel Investor Target List — Circle CRM Pre-Seed
 
 ## Overview
 
@@ -685,21 +685,21 @@ Target: 15-20 angel investors and micro-VCs for the $500K pre-seed round. Priori
 
 | Investor | Background | Check Size | Intro Path | Fit Score |
 |----------|-----------|------------|------------|-----------|
-| Sarah Winters | Angel, ex-VP Product at a prosumer SaaS | $50K | Mark Richey (1809 Capital) | 9/10 |
-| Dan Chen | Altman Institute Fund, student founder focus | $75K | Genine Fallon (Miami U) | 8/10 |
-| Mike Tran | Solo GP, $10M micro-VC, first-time founders | $150K | 1809 Capital network | 9/10 |
-| Emily Cho | YC Partner (exploratory for S26 batch) | YC deal | David Nguyen (RedHawk) | 8/10 |
+| Helen Greyson | Angel, ex-VP Product at a prosumer SaaS | $50K | Nolan Prescott (Pinnacle Capital) | 9/10 |
+| Dan Chen | Altman Institute Fund, student founder focus | $75K | Tamara Novotny (Miami U) | 8/10 |
+| Mike Tran | Solo GP, $10M micro-VC, first-time founders | $150K | Pinnacle Capital network | 9/10 |
+| Naomi Reeves | LP Partner (exploratory for S26 batch) | LP deal | Hector Reyes (RedHawk) | 8/10 |
 
 ## Tier 2: Cold Outreach with Strong Fit
 
 | Investor | Background | Check Size | Why They'd Care | Fit Score |
 |----------|-----------|------------|-----------------|-----------|
-| Julie Kim | Angel, invested in Dex and Savvy Wealth | $50K | Personal CRM thesis, Dex exit potential | 8/10 |
-| Raj Sharma | Ex-Salesforce VP, angel investing in CRM tools | $75K | Deep CRM domain expertise | 8/10 |
+| Julie Kim | Angel, invested in Rolodex and Savvy Wealth | $50K | Personal CRM thesis, Rolodex exit potential | 8/10 |
+| Raj Sharma | Ex-CloudForce VP, angel investing in CRM tools | $75K | Deep CRM domain expertise | 8/10 |
 | Amanda Torres | Angel, focus on Gen-Z SaaS founders | $25K | Student founder angle + product love | 7/10 |
 | Chris Bakker | Micro-VC ($5M fund), personal productivity | $100K | Thesis alignment: "tools for individuals" | 8/10 |
 | Nate Collins | Ex-LinkedIn PM, angel investor | $50K | Network graph expertise | 9/10 |
-| Priya Srinivasan | Ex-Clay employee, now angel investing | $25K | Deep competitor knowledge, category belief | 7/10 |
+| Priya Srinivasan | Ex-Molder employee, now angel investing | $25K | Deep competitor knowledge, category belief | 7/10 |
 
 ## Tier 3: Stretch Targets
 
@@ -713,12 +713,12 @@ Target: 15-20 angel investors and micro-VCs for the $500K pre-seed round. Priori
 ## Outreach Strategy
 
 ### Phase 1 (Week 1-2): Warm Intros
-- Mark Richey introduces Sarah Winters and Mike Tran
-- Genine connects with Dan Chen at Altman Institute
-- David Nguyen brokers Emily Cho conversation (YC)
+- Nolan Prescott introduces Helen Greyson and Mike Tran
+- Tamara connects with Dan Chen at Altman Institute
+- Hector Reyes brokers Naomi Reeves conversation (LP)
 
 ### Phase 2 (Week 3-4): Targeted Cold
-- Personalized emails to Tier 2 list (reference Clay's relationship score launch as market validation)
+- Personalized emails to Tier 2 list (reference Molder's relationship score launch as market validation)
 - Twitter DMs to accessible angels (Sahil, Priya)
 
 ### Phase 3 (Week 5-6): Close
@@ -731,14 +731,14 @@ Subject: Personal CRM with relationship intelligence — 1,247 users, $0 spent o
 
 Hi [Name],
 
-I'm Zachary, founder of Personal Network CRM. We help professionals manage their network with AI-powered relationship intelligence — think "Mint for your professional relationships."
+I'm Emmett, founder of Circle CRM. We help professionals manage their network with AI-powered relationship intelligence — think "Mint for your professional relationships."
 
 Quick numbers: 1,247 users (all organic), 38% weekly active, 4.7 NPS. We're raising a $500K pre-seed.
 
 I'm reaching out because [personalized reason]. Would love 15 minutes to walk you through the product and our vision.
 
 Best,
-Zachary
+Emmett
 
 ---
 
@@ -755,7 +755,7 @@ const INVESTOR_LIST_SOURCES: SourceRef[] = [
   { type: "notion", label: "Investor Pipeline Tracker" },
   { type: "email", label: "Advisor intro email threads" },
   { type: "slack", label: "#pn-crm-fundraising" },
-  { type: "google-docs", label: "1809 Capital LP Network" },
+  { type: "google-docs", label: "Pinnacle Capital LP Network" },
   { type: "notion", label: "CRM/Productivity Investor Database" },
 ];
 
@@ -772,7 +772,7 @@ const VENDOR_EVAL_SCAN: PrdScanStep[] = [
     duration: 2400,
   },
   {
-    label: "Reading feature comparison notes from Notion...",
+    label: "Reading feature comparison notes from Dokra...",
     duration: 2800,
   },
   {
@@ -789,7 +789,7 @@ const vendorEvalResponse: MockResponse = {
     {
       id: "pn-crm-ve-1",
       content:
-        "Based on analysis of product data, user feedback, and market research, here's how PN CRM stacks up against the key competitors in the personal CRM space:",
+        "Based on analysis of product data, user feedback, and market research, here's how Circle CRM stacks up against the key competitors in the personal CRM space:",
       sources: [
         { type: "notion", label: "Competitive Landscape Tracker" },
         { type: "slack", label: "#pn-crm-product" },
@@ -798,27 +798,27 @@ const vendorEvalResponse: MockResponse = {
     {
       id: "pn-crm-ve-2",
       content:
-        "**Clay** is the dominant player at $1.3B valuation, but they're built for sales teams with pricing that starts at $149/month. Their new relationship score feature is enrichment-based — it pulls from public data sources like LinkedIn and company databases. PN CRM's interaction-based scoring analyzes actual conversation depth and reciprocity, which is fundamentally more accurate for personal relationship health.",
+        "**Molder** is the dominant player at $1.3B valuation, but they're built for sales teams with pricing that starts at $149/month. Their new relationship score feature is enrichment-based — it pulls from public data sources like LinkedIn and company databases. Circle CRM's interaction-based scoring analyzes actual conversation depth and reciprocity, which is fundamentally more accurate for personal relationship health.",
       sources: [
-        { type: "google-docs", label: "Clay Feature Comparison Sheet" },
+        { type: "google-docs", label: "Molder Feature Comparison Sheet" },
       ],
     },
     {
       id: "pn-crm-ve-3",
       content:
-        "**Folk** ($6M Accel-led seed) targets small teams with shared CRM functionality. Their strength is collaboration — shared pipelines, team notes, deal tracking. But for an individual managing a personal network, the team features add complexity without value. Folk has no relationship intelligence layer at all.",
-      sources: [{ type: "notion", label: "Folk Product Analysis" }],
+        "**Tribe** ($6M Apex Ventures-led seed) targets small teams with shared CRM functionality. Their strength is collaboration — shared pipelines, team notes, deal tracking. But for an individual managing a personal network, the team features add complexity without value. Tribe has no relationship intelligence layer at all.",
+      sources: [{ type: "notion", label: "Tribe Product Analysis" }],
     },
     {
       id: "pn-crm-ve-4",
       content:
-        "**Dex** ($3M seed) is the closest competitor in terms of target market — individuals managing personal networks. However, their tracking is timer-based ('remind me in 30 days') rather than intelligence-based. No AI, no contextual suggestions, no interaction analysis. At $12/month, they set a price anchor that PN CRM can match while delivering significantly more value.",
-      sources: [{ type: "notion", label: "Dex Competitive Notes" }],
+        "**Rolodex** ($3M seed) is the closest competitor in terms of target market — individuals managing personal networks. However, their tracking is timer-based ('remind me in 30 days') rather than intelligence-based. No AI, no contextual suggestions, no interaction analysis. At $12/month, they set a price anchor that Circle CRM can match while delivering significantly more value.",
+      sources: [{ type: "notion", label: "Rolodex Competitive Notes" }],
     },
     {
       id: "pn-crm-ve-5",
       content:
-        "**Recommendation:** PN CRM's positioning should emphasize three things: (1) interaction-based intelligence vs. enrichment-based or timer-based, (2) individual focus vs. team/sales tools, (3) accessible pricing vs. Clay's enterprise cost. The competitive moat deepens as users accumulate interaction history — switching costs increase over time.",
+        "**Recommendation:** Circle CRM's positioning should emphasize three things: (1) interaction-based intelligence vs. enrichment-based or timer-based, (2) individual focus vs. team/sales tools, (3) accessible pricing vs. Molder's enterprise cost. The competitive moat deepens as users accumulate interaction history — switching costs increase over time.",
       sources: [
         { type: "google-docs", label: "Competitive Positioning Strategy" },
       ],
@@ -828,62 +828,83 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    "Update the pitch deck with our latest metrics",
-    "Draft the YC S26 application",
-    "Build a competitive analysis of the personal CRM space",
-    "What happened in this week's meetings?",
-    "Summarize user feedback from the past month",
+    {
+      label: "Update the pitch deck with our latest metrics",
+      route: { type: "document-flow", flowId: "pn-crm-flow-pitch" },
+    },
+    {
+      label: "Draft the LP Summer 26 application",
+      route: { type: "document-flow", flowId: "pn-crm-flow-yc" },
+    },
+    {
+      label: "Build a competitive analysis",
+      route: { type: "document-flow", flowId: "pn-crm-flow-competitive" },
+    },
+    {
+      label: "What happened in this week's meetings?",
+      route: { type: "generic", index: 0 },
+    },
   ],
   sessionHistory: [
     {
       id: "pn-crm-s1",
       title: "Pre-seed pitch deck update",
       date: "Today",
+      query: "Update the pre-seed pitch deck with latest metrics",
     },
     {
       id: "pn-crm-s2",
-      title: "Clay competitive response analysis",
+      title: "Molder competitive response analysis",
       date: "Today",
+      query: "Build a competitive analysis of the personal CRM space",
     },
     {
       id: "pn-crm-s3",
-      title: "YC S26 application first draft",
+      title: "LP Summer 26 application first draft",
       date: "Yesterday",
+      query: "Draft the LP Summer 26 application",
     },
     {
       id: "pn-crm-s4",
       title: "User retention cohort analysis",
       date: "Yesterday",
+      query: "Analyze user retention cohorts from the past month",
     },
     {
       id: "pn-crm-s5",
       title: "Angel investor target list",
       date: "Last week",
+      query: "Build a target list of angel investors for our pre-seed",
     },
     {
       id: "pn-crm-s6",
       title: "Contact import funnel analysis",
       date: "Last week",
+      query: "Analyze the contact import funnel drop-off rates",
     },
     {
       id: "pn-crm-s7",
-      title: "RedHawk Ventures DD template",
+      title: "IronHawk Ventures DD template",
       date: "Last week",
+      query: "Prepare due diligence materials for IronHawk Ventures",
     },
     {
       id: "pn-crm-s8",
       title: "MeetingMind competitive DD",
       date: "Last week",
+      query: "Research MeetingMind as a competitive threat",
     },
     {
       id: "pn-crm-s9",
       title: "FounderOS investment thesis",
       date: "2 weeks ago",
+      query: "Draft the FounderOS investment thesis",
     },
     {
       id: "pn-crm-s10",
       title: "Side Hustle Club growth plan",
       date: "2 weeks ago",
+      query: "Build a growth plan for Side Hustle Club partnership",
     },
   ],
   documentFlows: [
@@ -909,13 +930,16 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Pitch deck pushed to Google Slides",
         description:
           "Your pre-seed pitch deck has been updated with the latest metrics, competitive positioning, and use of funds.",
-        link: { label: "Open in Google Slides", url: "#" },
+        link: {
+          label: "Open in Google Slides",
+          url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit",
+        },
       },
       buildingLabel: "Building pitch deck",
     },
     {
       id: "pn-crm-flow-yc",
-      label: "YC Application",
+      label: "LP Application",
       filename: "yc-s26-application.md",
       scanSteps: YC_APP_SCAN_STEPS,
       content: YC_APP_CONTENT,
@@ -932,12 +956,15 @@ export const deepResearchData: PersonaDeepResearchData = {
       ],
       toolChoices: YC_APP_TOOL_CHOICES,
       doneMessage: {
-        title: "YC application draft pushed to Google Docs",
+        title: "LP application draft pushed to Google Docs",
         description:
-          "Your YC Summer 2026 application draft is ready for review.",
-        link: { label: "Open in Google Docs", url: "#" },
+          "Your LP Summer 2026 application draft is ready for review.",
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
-      buildingLabel: "Drafting YC application",
+      buildingLabel: "Drafting LP application",
     },
     {
       id: "pn-crm-flow-competitive",
@@ -963,7 +990,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Competitive analysis pushed to Google Docs",
         description:
           "Your competitive landscape analysis is ready with feature matrices and positioning recommendations.",
-        link: { label: "Open in Google Docs", url: "#" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building competitive analysis",
     },
@@ -988,8 +1018,11 @@ export const deepResearchData: PersonaDeepResearchData = {
       doneMessage: {
         title: "DD template pushed to Google Docs",
         description:
-          "Your standardized 2-week due diligence template is ready for the RedHawk Ventures team.",
-        link: { label: "Open in Google Docs", url: "#" },
+          "Your standardized 2-week due diligence template is ready for the IronHawk Ventures team.",
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building DD template",
     },
@@ -1016,7 +1049,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Investor target list pushed to Google Sheets",
         description:
           "Your scored and tiered angel investor target list is ready with intro paths and outreach strategy.",
-        link: { label: "Open in Google Sheets", url: "#" },
+        link: {
+          label: "Open in Google Sheets",
+          url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U",
+        },
       },
       buildingLabel: "Compiling investor list",
     },

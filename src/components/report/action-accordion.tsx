@@ -38,10 +38,10 @@ export function ActionAccordion({ actions }: ActionAccordionProps) {
 
   return (
     <div className="mt-10">
-      <h3 className="text-2xs font-medium text-[var(--fg-muted)] mb-4">
+      <h3 className="text-2xs font-medium text-[var(--muted-foreground)] mb-4">
         Suggested Actions
       </h3>
-      <div className="flex flex-col divide-y divide-[var(--border-base)]">
+      <div className="flex flex-col divide-y divide-[var(--border)]">
         {actions.map((action, idx) => {
           const isExpanded = expandedIdx === idx;
           const isCompleted = completedActions.has(idx);
@@ -57,13 +57,16 @@ export function ActionAccordion({ actions }: ActionAccordionProps) {
                   isCompleted ? "cursor-default opacity-50" : "cursor-pointer",
                 )}
               >
-                <Icon size={14} className="shrink-0 text-[var(--fg-muted)]" />
+                <Icon
+                  size={14}
+                  className="shrink-0 text-[var(--muted-foreground)]"
+                />
                 <span
                   className={cn(
                     "flex-1 text-sm font-medium transition-colors",
                     isCompleted
-                      ? "text-[var(--fg-disabled)] line-through"
-                      : "text-[var(--fg-base)] group-hover:text-[var(--accent)]",
+                      ? "text-[var(--muted-foreground)] line-through"
+                      : "text-[var(--foreground)] group-hover:text-[var(--primary)]",
                   )}
                 >
                   {action.label}
@@ -76,7 +79,7 @@ export function ActionAccordion({ actions }: ActionAccordionProps) {
                       stiffness: 300,
                       damping: 25,
                     }}
-                    className="shrink-0 text-[var(--fg-muted)]"
+                    className="shrink-0 text-[var(--muted-foreground)]"
                   >
                     <ChevronDown size={14} />
                   </motion.span>
@@ -108,7 +111,7 @@ export function ActionAccordion({ actions }: ActionAccordionProps) {
                         onSchedule={() => handleComplete(idx)}
                       />
                     ) : (
-                      <div className="pt-3 pb-2 text-sm text-[var(--fg-muted)]">
+                      <div className="pt-3 pb-2 text-sm text-[var(--muted-foreground)]">
                         {action.label}
                       </div>
                     )}
