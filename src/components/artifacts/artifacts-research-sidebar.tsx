@@ -33,7 +33,7 @@ export function ArtifactsResearchSidebar({
     <BaseChatSidebar
       isOpen={isOpen}
       onClose={onClose}
-      suggestedQuestions={suggestions.slice(0, 4)}
+      suggestedQuestions={suggestions.slice(0, 4).map((s) => s.label)}
       scanSteps={SCAN_STEPS}
       getMockResponse={getMockResponse}
       placeholder="Ask Sentra anything..."

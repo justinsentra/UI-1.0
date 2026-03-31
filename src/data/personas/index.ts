@@ -79,6 +79,8 @@ export interface PersonaDeepResearchData {
   documentFlows: DocumentFlowConfig[];
   /** Optional vendor eval or custom research flow */
   vendorEvalResponse?: MockResponse;
+  /** Keywords that steer the UI toward the vendor-eval flow when matched */
+  vendorEvalTriggerKeywords?: string[];
 }
 
 export interface PersonaReportsData {

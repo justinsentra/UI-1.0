@@ -75,18 +75,22 @@ function SourceChip({ source }: { source: Source }) {
   const description = SOURCE_DESCRIPTIONS[source.type] ?? "Source reference";
 
   return (
-    <HoverCard openDelay={200} closeDelay={0}>
-      <HoverCardTrigger asChild>
-        <span
-          className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium",
-            "bg-muted text-muted-foreground hover:bg-secondary-hover transition-colors cursor-pointer",
-          )}
-        >
-          <Icon size={13} />
-          {source.label}
-        </span>
-      </HoverCardTrigger>
+    <HoverCard>
+      <HoverCardTrigger
+        delay={200}
+        closeDelay={0}
+        render={
+          <span
+            className={cn(
+              "inline-flex cursor-pointer items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium",
+              "bg-muted text-muted-foreground hover:bg-secondary-hover transition-colors",
+            )}
+          >
+            <Icon size={13} />
+            {source.label}
+          </span>
+        }
+      />
       <HoverCardContent className="w-64 p-0 shadow-xs">
         <div className="flex flex-col gap-2 p-3">
           <div className="flex items-center gap-1.5">

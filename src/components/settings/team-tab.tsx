@@ -3,7 +3,12 @@ import { Search, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { cn } from "@lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { workspaceMembers, type WorkspaceMember } from "@/data/mock-settings";
-import { DropdownMenu } from "@components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@components/ui/dropdown-menu";
 
 const roleBadgeStyles: Record<WorkspaceMember["role"], string> = {
   Admin: "bg-primary text-primary-foreground",
@@ -58,29 +63,31 @@ export function TeamTab() {
             >
               {member.role}
             </span>
-            <DropdownMenu
-              trigger={
-                <button
-                  type="button"
-                  className="p-1.5 rounded-md hover:bg-accent transition-colors cursor-pointer"
-                >
-                  <MoreHorizontal size={16} className="text-muted-foreground" />
-                </button>
-              }
-              items={[
-                {
-                  icon: <Pencil size={16} />,
-                  label: "Edit user",
-                  onClick: () => {},
-                },
-                {
-                  icon: <Trash2 size={16} />,
-                  label: "Delete user",
-                  onClick: () => {},
-                  destructive: true,
-                },
-              ]}
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <button
+                    type="button"
+                    className="cursor-pointer rounded-md p-1.5 transition-colors hover:bg-accent"
+                  >
+                    <MoreHorizontal
+                      size={16}
+                      className="text-muted-foreground"
+                    />
+                  </button>
+                }
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => {}}>
+                  <Pencil size={16} />
+                  Edit user
+                </DropdownMenuItem>
+                <DropdownMenuItem variant="destructive" onClick={() => {}}>
+                  <Trash2 size={16} />
+                  Delete user
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ))}
       </div>

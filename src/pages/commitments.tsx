@@ -11,7 +11,7 @@ import type { CommitmentItem } from "../data/mock-commitments";
 import PageShell from "@/components/ui/page-shell";
 import { usePersonaStore } from "@/stores/persona-store";
 import { getPersonaCommitments } from "@/data/content-resolver";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const filters = ["All", "Open", "Completed"] as const;
 type Filter = (typeof filters)[number];

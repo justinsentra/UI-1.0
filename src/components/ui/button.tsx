@@ -58,6 +58,8 @@ export interface ButtonProps extends useRender.ComponentProps<"button"> {
   size?: VariantProps<typeof buttonVariants>["size"];
   rounded?: VariantProps<typeof buttonVariants>["rounded"];
   loading?: boolean;
+  /** When using `render` with a non-button element (e.g. `<a>`), set to false. */
+  nativeButton?: boolean;
 }
 
 export function Button({
