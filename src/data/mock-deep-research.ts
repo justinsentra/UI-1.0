@@ -40,11 +40,15 @@ export interface ResponseParagraph {
   content: string;
   sources: SourceRef[];
   chart?: ParagraphChart;
+  /** If true, this paragraph renders collapsed by default with a clickable header to expand */
+  collapsible?: boolean;
 }
 
 export interface ScanStep {
   label: string;
   duration: number;
+  /** Optional list of integration icon keys to display alongside the step */
+  icons?: string[];
 }
 
 export type SuggestionRoute =
@@ -57,9 +61,33 @@ export interface SuggestionItem {
   route: SuggestionRoute;
 }
 
+export interface ActionSuggestion {
+  prompt: string;
+  actionId: string;
+  actionName: string;
+}
+
+export interface TimelineEvent {
+  title: string;
+  detail: string;
+  involved: string[];
+  sources: { type: string; label: string }[];
+}
+
+export interface TimelineWeek {
+  week: number;
+  label: string;
+  dateRange: string;
+  summary: string;
+  events: TimelineEvent[];
+  highlight?: "warning" | "critical";
+}
+
 export interface MockResponse {
   scanSteps: ScanStep[];
   paragraphs: ResponseParagraph[];
+  actionSuggestion?: ActionSuggestion;
+  timeline?: TimelineWeek[];
 }
 
 export interface SessionHistoryItem {
@@ -71,41 +99,129 @@ export interface SessionHistoryItem {
 
 export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
   "engineering-manager": [
-    { id: "s-1", title: "Pipeline overview Q1 2026", date: "Today", query: "Give me an overview of the pipeline for Q1 2026" },
-    { id: "s-2", title: "Customer call themes this week", date: "Today", query: "What are the key themes from customer calls this week?" },
-    { id: "s-3", title: "Engineering blockers summary", date: "Yesterday", query: "Summarize the current engineering blockers" },
-    { id: "s-4", title: "TechConnect launch readiness check", date: "Yesterday", query: "How ready are we for the TechConnect launch?" },
-    { id: "s-5", title: "SOC 2 deal impact analysis", date: "Mar 3", query: "What's the impact of SOC 2 compliance on our deals?" },
-    { id: "s-6", title: "Onboarding flow conversion audit", date: "Mar 3", query: "Audit the onboarding flow conversion rates" },
-    { id: "s-7", title: "Mobile app beta feedback", date: "Mar 2", query: "Summarize the mobile app beta feedback" },
-    { id: "s-8", title: "Weekly all-hands recap", date: "Mar 1", query: "What happened in the weekly all-hands?" },
-    { id: "s-9", title: "Competitor pricing research", date: "Feb 28", query: "Research competitor pricing strategies" },
-    { id: "s-10", title: "Design partner NPS review", date: "Feb 27", query: "Review the NPS scores from design partners" },
-  ],
-  jpm: [
-    { id: "s-1", title: "AI vendor evaluation matrix", date: "Today", query: "Build an AI vendor evaluation matrix comparing Anthropic, OpenAI, and Google" },
-    { id: "s-2", title: "Meridian Corp 3-statement model", date: "Today", query: "Build a 3-statement financial model for Meridian Corp" },
-    { id: "s-3", title: "Sentra weekly adoption update", date: "Today", query: "Scope out weekly status update for Sentra adoption" },
+    {
+      id: "s-1",
+      title: "Pipeline overview Q1 2026",
+      date: "Today",
+      query: "Give me an overview of the pipeline for Q1 2026",
+    },
+    {
+      id: "s-2",
+      title: "Customer call themes this week",
+      date: "Today",
+      query: "What are the key themes from customer calls this week?",
+    },
+    {
+      id: "s-3",
+      title: "Engineering blockers summary",
+      date: "Yesterday",
+      query: "Summarize the current engineering blockers",
+    },
     {
       id: "s-4",
-      title: "AI sector comp analysis — Q1 multiples",
+      title: "TechConnect launch readiness check",
       date: "Yesterday",
-      query: "Analyze AI sector comparable companies with Q1 trading multiples",
+      query: "How ready are we for the TechConnect launch?",
     },
     {
       id: "s-5",
-      title: "LBO sensitivity for DataVault acquisition",
-      date: "Yesterday",
-      query: "Run an LBO sensitivity analysis for the DataVault acquisition",
+      title: "SOC 2 deal impact analysis",
+      date: "Mar 3",
+      query: "What's the impact of SOC 2 compliance on our deals?",
     },
-    { id: "s-6", title: "TMT coverage pipeline review", date: "Mar 3", query: "Review the TMT coverage pipeline status" },
-    { id: "s-7", title: "DCF assumptions — Meridian Corp", date: "Mar 3", query: "What are the DCF assumptions for Meridian Corp?" },
-    { id: "s-8", title: "Tech IPO readiness scorecard", date: "Mar 2", query: "Build a tech IPO readiness scorecard" },
-    { id: "s-9", title: "M&A deal comps — enterprise SaaS", date: "Mar 1", query: "Pull M&A deal comps for enterprise SaaS" },
+    {
+      id: "s-6",
+      title: "Onboarding flow conversion audit",
+      date: "Mar 3",
+      query: "Audit the onboarding flow conversion rates",
+    },
+    {
+      id: "s-7",
+      title: "Mobile app beta feedback",
+      date: "Mar 2",
+      query: "Summarize the mobile app beta feedback",
+    },
+    {
+      id: "s-8",
+      title: "Weekly all-hands recap",
+      date: "Mar 1",
+      query: "What happened in the weekly all-hands?",
+    },
+    {
+      id: "s-9",
+      title: "Competitor pricing research",
+      date: "Feb 28",
+      query: "Research competitor pricing strategies",
+    },
+    {
+      id: "s-10",
+      title: "Design partner NPS review",
+      date: "Feb 27",
+      query: "Review the NPS scores from design partners",
+    },
+  ],
+  jpm: [
+    {
+      id: "s-1",
+      title: "NovaBridge Capital secondary offering memo",
+      date: "Today",
+      query:
+        "Draft a preliminary secondary offering memo for David Chen's company using the latest financials from the CFO email thread, the Q3 earnings data in the SharePoint model, and comparable transactions from the last 12 months",
+    },
+    {
+      id: "s-2",
+      title: "Oracle migration delay analysis",
+      date: "Today",
+      query: "Why are we past the original deadline for the Oracle migration?",
+    },
+    {
+      id: "s-3",
+      title: "Comparative market analysis — board prep",
+      date: "Today",
+      query:
+        "Build a comparative market analysis for tomorrow's board meeting using the company's last board deck, current public comparables, recent relevant transactions, and a concise valuation readout with key drivers",
+    },
+    {
+      id: "s-4",
+      title: "AI vendor evaluation matrix",
+      date: "Last week",
+      query:
+        "Build an AI vendor evaluation matrix comparing Anthropic, OpenAI, and Google",
+    },
+    {
+      id: "s-5",
+      title: "Meridian Corp 3-statement model",
+      date: "Last week",
+      query: "Build a 3-statement financial model for Meridian Corp",
+    },
+    {
+      id: "s-6",
+      title: "AI sector comp analysis — Q1 multiples",
+      date: "Mar 20",
+      query: "Analyze AI sector comparable companies with Q1 trading multiples",
+    },
+    {
+      id: "s-7",
+      title: "TMT coverage pipeline review",
+      date: "Mar 18",
+      query: "Review the TMT coverage pipeline status",
+    },
+    {
+      id: "s-8",
+      title: "Sentra weekly adoption update",
+      date: "Mar 14",
+      query: "Scope out weekly status update for Sentra adoption",
+    },
+    {
+      id: "s-9",
+      title: "M&A deal comps — enterprise SaaS",
+      date: "Mar 10",
+      query: "Pull M&A deal comps for enterprise SaaS",
+    },
     {
       id: "s-10",
       title: "Pitch book draft — Series C advisory",
-      date: "Feb 28",
+      date: "Mar 5",
       query: "Draft a pitch book for the Series C advisory engagement",
     },
   ],
@@ -113,17 +229,44 @@ export const SESSION_HISTORY: Record<string, SessionHistoryItem[]> = {
 
 export const SUGGESTIONS: Record<string, SuggestionItem[]> = {
   "engineering-manager": [
-    { label: "What happened in today's meetings?", route: { type: "generic", index: 3 } },
-    { label: "Summarize this week's progress", route: { type: "generic", index: 0 } },
-    { label: "What are the team's blockers?", route: { type: "generic", index: 2 } },
-    { label: "Draft a PRD", route: { type: "document-flow", flowId: "em-prd" } },
+    {
+      label: "What happened in today's meetings?",
+      route: { type: "generic", index: 3 },
+    },
+    {
+      label: "Summarize this week's progress",
+      route: { type: "generic", index: 0 },
+    },
+    {
+      label: "What are the team's blockers?",
+      route: { type: "generic", index: 2 },
+    },
+    {
+      label: "Draft a PRD",
+      route: { type: "document-flow", flowId: "em-prd" },
+    },
   ],
   jpm: [
-    { label: "AI sector comp analysis — Q1 multiples", route: { type: "vendor-eval" } },
-    { label: "Meridian Corp revenue & valuation outlook", route: { type: "generic", index: 0 } },
-    { label: "Build a 3-statement model", route: { type: "document-flow", flowId: "jpm-model" } },
-    { label: "Weekly status update for Sentra", route: { type: "document-flow", flowId: "jpm-weekly" } },
-    { label: "What happened in today's meetings?", route: { type: "generic", index: 3 } },
+    {
+      label: "Draft a secondary offering memo for NovaBridge Capital",
+      route: { type: "document-flow", flowId: "jpm-secondary-offering" },
+    },
+    {
+      label: "Why are we past the original deadline for the Oracle migration?",
+      route: { type: "generic", index: 4 },
+    },
+    {
+      label: "Build a 3-statement model",
+      route: { type: "document-flow", flowId: "jpm-model" },
+    },
+    {
+      label: "AI sector comp analysis — Q1 multiples",
+      route: { type: "vendor-eval" },
+    },
+    {
+      label: "What happened in today's meetings?",
+      route: { type: "generic", index: 3 },
+    },
   ],
 };
 
@@ -149,8 +292,7 @@ export const VENDOR_EVAL_SCAN_STEPS: ScanStep[] = [
     duration: 3000,
   },
   {
-    label:
-      "Scanning AI_Vendor_Security_Audit_Results.xlsx from SharePoint...",
+    label: "Scanning AI_Vendor_Security_Audit_Results.xlsx from SharePoint...",
     duration: 2800,
   },
   {
@@ -184,8 +326,16 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
           { company: "Meridian", evRevenue: 12.0, revGrowth: 45 },
         ],
         dataKeys: [
-          { key: "evRevenue", label: "EV/Revenue (x)", color: "hsl(215, 80%, 55%)" },
-          { key: "revGrowth", label: "Revenue Growth (%)", color: "hsl(170, 65%, 45%)" },
+          {
+            key: "evRevenue",
+            label: "EV/Revenue (x)",
+            color: "hsl(215, 80%, 55%)",
+          },
+          {
+            key: "revGrowth",
+            label: "Revenue Growth (%)",
+            color: "hsl(170, 65%, 45%)",
+          },
         ],
         xAxisKey: "company",
       },
@@ -241,12 +391,31 @@ export const VENDOR_EVAL_RESPONSE: MockResponse = {
         type: "bar",
         title: "Implied Valuation Range — EV/Revenue Sensitivity ($M)",
         data: [
-          { scenario: "Bear (8x)", anthropic: 1640, openai: 3000, meridian: 209 },
-          { scenario: "Base (12x)", anthropic: 2460, openai: 4500, meridian: 313 },
-          { scenario: "Bull (16x)", anthropic: 3280, openai: 6000, meridian: 418 },
+          {
+            scenario: "Bear (8x)",
+            anthropic: 1640,
+            openai: 3000,
+            meridian: 209,
+          },
+          {
+            scenario: "Base (12x)",
+            anthropic: 2460,
+            openai: 4500,
+            meridian: 313,
+          },
+          {
+            scenario: "Bull (16x)",
+            anthropic: 3280,
+            openai: 6000,
+            meridian: 418,
+          },
         ],
         dataKeys: [
-          { key: "meridian", label: "Meridian Corp", color: "hsl(215, 80%, 55%)" },
+          {
+            key: "meridian",
+            label: "Meridian Corp",
+            color: "hsl(215, 80%, 55%)",
+          },
           { key: "anthropic", label: "Anthropic", color: "hsl(170, 65%, 45%)" },
           { key: "openai", label: "OpenAI", color: "hsl(260, 55%, 60%)" },
         ],
@@ -283,16 +452,39 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Parsing 8 meeting transcripts from Microsoft Teams...",
-        duration: 3200,
+        label: "Parsing 5 meeting transcripts from Zoom...",
+        duration: 2400,
+        icons: ["zoom"],
       },
       {
-        label: "Reading 5 Teams threads and 3 Notion pages...",
-        duration: 3400,
+        label: "Parsing 3 meeting transcripts from Microsoft Teams...",
+        duration: 2200,
+        icons: ["ms-teams"],
       },
       {
-        label: "Scanning CRM pipeline and Outlook Calendar events...",
-        duration: 3400,
+        label: "Reading 12 email threads from Outlook...",
+        duration: 2800,
+        icons: ["outlook"],
+      },
+      {
+        label: "Scanning CRM pipeline from Salesforce...",
+        duration: 2400,
+        icons: ["salesforce"],
+      },
+      {
+        label: "Pulling documents from SharePoint...",
+        duration: 2200,
+        icons: ["sharepoint"],
+      },
+      {
+        label: "Reading Word drafts and templates...",
+        duration: 2000,
+        icons: ["word"],
+      },
+      {
+        label: "Checking tickets in ServiceNow...",
+        duration: 2000,
+        icons: ["service-now"],
       },
     ],
     paragraphs: [
@@ -303,7 +495,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
           { type: "teams", label: "GTM Strategy Sync" },
           { type: "teams", label: "#sales-pipeline" },
           { type: "outlook", label: "Pipeline Review Meeting" },
-          { type: "notion", label: "Q1 Deal Tracker" },
+          { type: "sharepoint", label: "Q1 Deal Tracker (SharePoint)" },
         ],
         chart: {
           type: "line",
@@ -316,7 +508,11 @@ export const MOCK_RESPONSES: MockResponse[] = [
           ],
           dataKeys: [
             { key: "revenue", label: "Revenue", color: "hsl(215, 80%, 55%)" },
-            { key: "grossProfit", label: "Gross Profit", color: "hsl(170, 65%, 45%)" },
+            {
+              key: "grossProfit",
+              label: "Gross Profit",
+              color: "hsl(170, 65%, 45%)",
+            },
             { key: "ebitda", label: "EBITDA", color: "hsl(0, 70%, 55%)" },
           ],
           xAxisKey: "year",
@@ -340,7 +536,11 @@ export const MOCK_RESPONSES: MockResponse[] = [
             { scenario: "Bull (16x)", ev: 418 },
           ],
           dataKeys: [
-            { key: "ev", label: "Enterprise Value ($M)", color: "hsl(215, 80%, 55%)" },
+            {
+              key: "ev",
+              label: "Enterprise Value ($M)",
+              color: "hsl(215, 80%, 55%)",
+            },
           ],
           xAxisKey: "scenario",
         },
@@ -350,14 +550,25 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Reviewing 7 call transcripts from Zoom and Microsoft Teams...",
-        duration: 3500,
+        label: "Reviewing 4 call transcripts from Zoom...",
+        duration: 2600,
+        icons: ["zoom"],
       },
       {
-        label: "Reading 3 Teams channels and 2 Notion docs...",
-        duration: 3500,
+        label: "Reviewing 3 call transcripts from Microsoft Teams...",
+        duration: 2400,
+        icons: ["ms-teams"],
       },
-      { label: "Checking 2 follow-up emails in Outlook...", duration: 3000 },
+      {
+        label: "Reading 3 Teams channel threads...",
+        duration: 2800,
+        icons: ["ms-teams"],
+      },
+      {
+        label: "Checking 2 follow-up emails in Outlook...",
+        duration: 2400,
+        icons: ["outlook"],
+      },
     ],
     paragraphs: [
       {
@@ -367,7 +578,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
           { type: "teams", label: "Vantage Discovery Call" },
           { type: "zoom", label: "Nexus Demo" },
           { type: "teams", label: "#customer-feedback" },
-          { type: "notion", label: "Customer Interview Notes" },
+          { type: "sharepoint", label: "Customer Interview Notes" },
         ],
       },
       {
@@ -387,12 +598,18 @@ export const MOCK_RESPONSES: MockResponse[] = [
       {
         label: "Parsing 5 standup transcripts from Microsoft Teams...",
         duration: 3200,
+        icons: ["ms-teams"],
       },
       {
-        label: "Scanning 8 Linear tickets and 4 GitHub PRs...",
-        duration: 3400,
+        label: "Scanning 8 Linear tickets...",
+        duration: 2600,
+        icons: ["linear"],
       },
-      { label: "Reading 4 Teams threads and Asana board...", duration: 3400 },
+      {
+        label: "Reading 4 Teams channel threads...",
+        duration: 2400,
+        icons: ["ms-teams"],
+      },
     ],
     paragraphs: [
       {
@@ -412,7 +629,7 @@ export const MOCK_RESPONSES: MockResponse[] = [
           { type: "teams", label: "GTM Strategy Call" },
           { type: "teams", label: "#product" },
           { type: "linear", label: "PROD-89: Self-serve onboarding" },
-          { type: "notion", label: "Onboarding Wizard Spec" },
+          { type: "sharepoint", label: "Onboarding Wizard Spec" },
         ],
       },
     ],
@@ -420,16 +637,29 @@ export const MOCK_RESPONSES: MockResponse[] = [
   {
     scanSteps: [
       {
-        label: "Searching 12 meeting notes across Microsoft Teams and Zoom...",
-        duration: 3500,
+        label: "Searching 8 meeting notes from Microsoft Teams...",
+        duration: 2600,
+        icons: ["ms-teams"],
       },
       {
-        label: "Reading 6 Teams channels and SharePoint docs...",
-        duration: 3300,
+        label: "Searching 4 meeting notes from Zoom...",
+        duration: 2400,
+        icons: ["zoom"],
       },
       {
-        label: "Scanning recent commits and Linear updates...",
-        duration: 3200,
+        label: "Reading 6 Teams channel threads...",
+        duration: 2600,
+        icons: ["ms-teams"],
+      },
+      {
+        label: "Pulling documents from SharePoint...",
+        duration: 2200,
+        icons: ["sharepoint"],
+      },
+      {
+        label: "Scanning Linear updates...",
+        duration: 2000,
+        icons: ["linear"],
       },
     ],
     paragraphs: [
@@ -455,6 +685,272 @@ export const MOCK_RESPONSES: MockResponse[] = [
       },
     ],
   },
+  // Index 4: Oracle migration timeline
+  {
+    scanSteps: [
+      {
+        label: "Searching Oracle Migration project board on Monday.com...",
+        duration: 3200,
+        icons: ["monday-com"],
+      },
+      {
+        label: "Pulling 9 meeting transcripts from Microsoft Teams...",
+        duration: 2800,
+        icons: ["ms-teams"],
+      },
+      {
+        label: "Pulling 5 meeting transcripts from Zoom...",
+        duration: 2400,
+        icons: ["zoom"],
+      },
+      {
+        label:
+          "Reading vendor delivery logs and SLA documents from SharePoint...",
+        duration: 3400,
+        icons: ["sharepoint"],
+      },
+      {
+        label: "Scanning escalation emails in Outlook...",
+        duration: 3000,
+        icons: ["outlook"],
+      },
+      {
+        label: "Cross-referencing ServiceNow tickets with project timeline...",
+        duration: 3200,
+        icons: ["service-now"],
+      },
+    ],
+    paragraphs: [
+      {
+        id: "oracle-0",
+        content: `**Oracle Migration Project — Delay Analysis**\n\nThe Oracle migration is currently **5 weeks behind the original deadline**. The project was scheduled to complete by March 14 but is now projected for April 18. The root cause is a recurring pattern of missed vendor deliveries from DataBridge Solutions, the third-party data migration vendor.\n\nSentra traced the delay through 14 meetings, 23 email threads, and 8 Monday.com status updates to reconstruct the full timeline below.`,
+        sources: [
+          { type: "teams", label: "Oracle Migration Kickoff (Jan 13)" },
+          {
+            type: "sharepoint",
+            label: "Oracle_Migration_Project_Plan_v2.docx",
+          },
+          { type: "outlook", label: "DataBridge SLA Agreement" },
+        ],
+        chart: {
+          type: "bar",
+          title: "Oracle Migration — Cumulative Delay by Week (Business Days)",
+          data: [
+            { week: "Wk 1-2", planned: 0, actual: 0 },
+            { week: "Wk 3", planned: 0, actual: 5 },
+            { week: "Wk 4", planned: 0, actual: 5 },
+            { week: "Wk 5", planned: 0, actual: 10 },
+            { week: "Wk 6", planned: 0, actual: 15 },
+            { week: "Wk 7-8", planned: 0, actual: 25 },
+          ],
+          dataKeys: [
+            {
+              key: "actual",
+              label: "Cumulative Delay (days)",
+              color: "hsl(0, 70%, 55%)",
+            },
+          ],
+          xAxisKey: "week",
+        },
+      },
+    ],
+    timeline: [
+      {
+        week: 1,
+        label: "Week 1",
+        dateRange: "Jan 13 – Jan 17",
+        summary: "Project kicked off on schedule. Vendor onboarded.",
+        events: [
+          {
+            title: "Project kickoff and scope alignment",
+            detail:
+              "Full team alignment on migration scope, timeline, and vendor responsibilities. DataBridge Solutions confirmed extraction delivery for Feb 3.",
+            involved: ["Tracy Kim", "James Whitfield", "DataBridge PM"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Kickoff (Jan 13)" },
+              {
+                type: "sharepoint",
+                label: "Oracle_Migration_Project_Plan_v2.docx",
+              },
+            ],
+          },
+          {
+            title: "Vendor SLA agreement signed",
+            detail:
+              "DataBridge signed delivery SLA with 5-day extraction turnaround. Penalty clauses included for delays exceeding 10 business days.",
+            involved: ["James Whitfield", "DataBridge Legal"],
+            sources: [
+              { type: "outlook", label: "DataBridge SLA Agreement (Jan 15)" },
+            ],
+          },
+        ],
+      },
+      {
+        week: 2,
+        label: "Week 2",
+        dateRange: "Jan 20 – Jan 24",
+        summary: "Environment setup completed. On track.",
+        events: [
+          {
+            title: "Staging environment provisioned",
+            detail:
+              "Engineering team completed Oracle staging environment setup and ran connectivity tests with DataBridge's extraction endpoint.",
+            involved: ["Engineering Team", "James Whitfield"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Standup (Jan 22)" },
+            ],
+          },
+        ],
+      },
+      {
+        week: 3,
+        label: "Week 3",
+        dateRange: "Jan 27 – Jan 31",
+        summary: "Vendor missed first delivery deadline. Engineering blocked.",
+        highlight: "critical",
+        events: [
+          {
+            title: "Missed vendor delivery — data extraction",
+            detail:
+              "DataBridge Solutions missed the Feb 3 extraction delivery. Vendor cited 'unexpected schema complexity' in the legacy Oracle database. Engineering team fully blocked — cannot begin integration or data validation without extraction output.",
+            involved: ["DataBridge PM", "James Whitfield"],
+            sources: [
+              {
+                type: "outlook",
+                label: "DataBridge — Revised Delivery Schedule",
+              },
+              { type: "sharepoint", label: "DataBridge_SLA_Tracking.xlsx" },
+            ],
+          },
+          {
+            title: "Escalation delayed by 7 days",
+            detail:
+              "Project lead did not escalate the missed deadline until Feb 10, a full week after it was due. No automated tracking was in place to catch the delay.",
+            involved: ["James Whitfield"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Standup (Feb 10)" },
+            ],
+          },
+        ],
+      },
+      {
+        week: 4,
+        label: "Week 4",
+        dateRange: "Feb 3 – Feb 7",
+        summary: "Still waiting on vendor. Engineering idle.",
+        events: [
+          {
+            title: "Engineering team reassigned temporarily",
+            detail:
+              "With no vendor delivery in sight, engineering team was pulled to other projects. Context-switch cost estimated at 1 week when delivery arrives.",
+            involved: ["Engineering Team", "James Whitfield"],
+            sources: [
+              { type: "teams", label: "Engineering Capacity Planning (Feb 5)" },
+            ],
+          },
+        ],
+      },
+      {
+        week: 5,
+        label: "Week 5",
+        dateRange: "Feb 10 – Feb 14",
+        summary: "Vendor missed second deadline. No escalation for 16 days.",
+        highlight: "critical",
+        events: [
+          {
+            title: "Missed vendor delivery — transformed data set",
+            detail:
+              "DataBridge missed the revised delivery deadline again on Feb 17 for the transformed data set needed for integration testing. Vendor reported 'resource constraints' and provided no revised ETA for 5 business days.",
+            involved: ["DataBridge PM", "James Whitfield"],
+            sources: [
+              { type: "outlook", label: "Re: DataBridge Delivery Status" },
+              {
+                type: "sharepoint",
+                label: "Oracle_Migration_Risk_Register.xlsx",
+              },
+            ],
+          },
+          {
+            title: "Escalation delayed by 16 days",
+            detail:
+              "Project lead did not escalate to Tracy or senior leadership until Mar 5 — 16 days after the second missed deadline. Same pattern as Week 3.",
+            involved: ["James Whitfield"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Standup (Mar 5)" },
+            ],
+          },
+        ],
+      },
+      {
+        week: 6,
+        label: "Week 6",
+        dateRange: "Feb 17 – Feb 21",
+        summary: "Vendor data finally received. Ramp-up period began.",
+        events: [
+          {
+            title: "Data delivery received from DataBridge",
+            detail:
+              "Vendor delivered transformed data set on Feb 28. Engineering team needed a full week to context-switch back and validate the data before beginning integration testing.",
+            involved: ["Engineering Team", "DataBridge PM"],
+            sources: [
+              {
+                type: "outlook",
+                label: "DataBridge — Delivery Confirmation (Feb 28)",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        week: 7,
+        label: "Week 7",
+        dateRange: "Feb 24 – Feb 28",
+        summary: "Integration testing started. Timeline revised to April 18.",
+        events: [
+          {
+            title: "Revised go-live date set: April 18",
+            detail:
+              "After cumulative 5-week delay, project timeline officially revised. Original March 14 go-live pushed to April 18. Any further vendor delays would push into Q3.",
+            involved: ["Tracy Kim", "James Whitfield", "Engineering Team"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Weekly (Mar 10)" },
+              {
+                type: "sharepoint",
+                label: "Oracle_Migration_Status_Report_W10.docx",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        week: 8,
+        label: "Week 8",
+        dateRange: "Mar 3 – Mar 7",
+        summary: "Integration testing in progress. Monitoring vendor closely.",
+        events: [
+          {
+            title: "Integration testing phase — 60% complete",
+            detail:
+              "Engineering team progressing through integration testing. No new vendor delays but team flagged that next DataBridge delivery (UAT data) is due Mar 21 — needs active monitoring.",
+            involved: ["Engineering Team", "James Whitfield"],
+            sources: [
+              { type: "teams", label: "Oracle Migration Weekly (Mar 24)" },
+              {
+                type: "sharepoint",
+                label: "Oracle_Migration_Status_Report_W12.docx",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    actionSuggestion: {
+      prompt:
+        "Whenever a vendor delivery deadline passes without a confirmed completion in email or Teams, flag it immediately and generate a risk report.",
+      actionId: "vendor-delay-tracker",
+      actionName: "Vendor Delay Tracker",
+    },
+  },
 ];
 
 export const getMockResponse = (index: number): MockResponse =>
@@ -465,6 +961,7 @@ export const getMockResponse = (index: number): MockResponse =>
 export interface PrdScanStep {
   label: string;
   duration: number;
+  icons?: string[];
 }
 
 /* ── Engineering Manager: PRD Flow ── */
@@ -841,6 +1338,145 @@ export const WEEKLY_BUILD_STEPS: PrdScanStep[] = [
   },
   {
     label: "Formatting slide deck and applying JPM template...",
+    duration: 2500,
+  },
+];
+
+/* ── JPM: Secondary Offering Memo Flow ── */
+
+export const SECONDARY_OFFERING_SOURCES: SourceRef[] = [
+  {
+    type: "email",
+    label: "Margaret Liu — Q3 Actuals & FY26 Forecast (Mar 24)",
+  },
+  { type: "sharepoint", label: "NovaBridge_Capital_Financial_Model_v4.xlsx" },
+  { type: "sharepoint", label: "NovaBridge_Deal_Memo_Draft.docx" },
+  { type: "zoom", label: "NovaBridge Capital — Advisory Check-in (Feb 17)" },
+  { type: "teams", label: "IB Pipeline Review (Mar 26)" },
+];
+
+export const SECONDARY_OFFERING_SCAN_STEPS: PrdScanStep[] = [
+  {
+    label: "Pulling Q3 actuals from Margaret Liu email attachment...",
+    duration: 3200,
+    icons: ["outlook"],
+  },
+  {
+    label:
+      "Reading NovaBridge_Capital_Financial_Model_v4.xlsx from SharePoint...",
+    duration: 3800,
+    icons: ["sharepoint", "excel"],
+  },
+  {
+    label:
+      "Scanning 14 comparable secondary transactions from the last 12 months...",
+    duration: 4000,
+    icons: ["salesforce"],
+  },
+  {
+    label: "Reviewing NovaBridge_Deal_Memo_Draft.docx from SharePoint...",
+    duration: 3200,
+    icons: ["sharepoint", "word"],
+  },
+  {
+    label: "Pulling transcript from NovaBridge Advisory Check-in (Feb 17)...",
+    duration: 3000,
+    icons: ["zoom"],
+  },
+  {
+    label: "Cross-referencing IB Pipeline Review notes (Mar 26)...",
+    duration: 2800,
+    icons: ["ms-teams"],
+  },
+];
+
+export const SECONDARY_OFFERING_CONTENT = `# Preliminary Secondary Offering Memo: NovaBridge Capital
+
+## Company Overview
+
+**NovaBridge Capital** is a mid-market advisory firm with $42M in revenue (FY25A), specializing in M&A advisory and capital markets transactions for technology and financial services companies. The firm has 180 professionals across three offices and has completed 28 transactions in the trailing twelve months.
+
+## Secondary Offering Rationale
+
+David Chen (CEO) is exploring a secondary offering to bring in growth capital while providing partial liquidity to early investors. Key drivers:
+
+1. **Growth acceleration** — NovaBridge has won 8 new mandates in Q1 alone, straining capacity
+2. **Competitive positioning** — The Apex-Cobalt merger ($280M) reshapes the mid-market landscape, creating urgency to scale
+3. **Talent acquisition** — Need to fund 30+ senior hires across coverage and execution teams
+4. **Geographic expansion** — Board has approved a London office contingent on capital raise
+
+## Financial Summary
+
+| Metric | FY24A | FY25A | FY26E | FY27E |
+|--------|-------|-------|-------|-------|
+| Revenue | $34.2M | $42.0M | $52.5M | $63.0M |
+| EBITDA | $8.6M | $11.8M | $15.2M | $19.5M |
+| EBITDA Margin | 25.1% | 28.1% | 29.0% | 31.0% |
+| Revenue per Professional | $210K | $233K | $262K | $292K |
+| Transactions Completed | 22 | 28 | 34 | 40 |
+
+Revenue is tracking 8% above the prior forecast (per Margaret Liu's updated FY26 projections received Mar 24), driven by two new enterprise advisory mandates signed in February.
+
+## Comparable Transactions (Trailing 12 Months)
+
+| Company | Transaction | Date | EV/Revenue | EV/EBITDA |
+|---------|------------|------|------------|-----------|
+| Meridian Advisory | Secondary | Q4 2025 | 3.8x | 14.2x |
+| Atlas Partners | Minority Sale | Q3 2025 | 4.1x | 15.8x |
+| Cobalt Advisory | Acquisition by Apex | Q1 2026 | 4.5x | 16.1x |
+| Evergreen Capital | Secondary | Q1 2026 | 3.6x | 13.5x |
+| Summit Advisory | Minority Sale | Q2 2025 | 3.2x | 12.8x |
+| **Median** | | | **3.8x** | **14.2x** |
+
+## Indicative Valuation
+
+Based on FY26E financials and comparable transaction multiples:
+
+- **Bear case (3.2x revenue):** $168M
+- **Base case (3.8x revenue):** $200M
+- **Bull case (4.5x revenue):** $236M
+
+At the base case, a 25% secondary stake implies a $50M raise, providing both growth capital and early-investor liquidity.
+
+## Key Considerations
+
+1. **Board composition** — David raised concerns about governance structure post-offering; governance advisor introduction still pending (Tracy committed Feb 17)
+2. **Timing** — Apex-Cobalt merger creates a favorable market window; delaying risks valuation compression
+3. **Investor appetite** — Three institutional investors have expressed preliminary interest via Nathan Lim's coverage network
+
+## Recommended Next Steps
+
+1. Complete governance advisor introduction this week
+2. Finalize financial model with updated Q3 actuals
+3. Prepare investor-ready materials for preliminary outreach
+4. Schedule board presentation for April 14
+
+---
+
+*Sources: Margaret Liu email (Mar 24), NovaBridge Financial Model v4 (SharePoint), Deal Memo Draft (SharePoint), Advisory Check-in transcript (Feb 17), IB Pipeline Review (Mar 26)*`;
+
+export const SECONDARY_OFFERING_BUILD_STEPS: PrdScanStep[] = [
+  {
+    label: "Pulling revenue and EBITDA projections from financial model...",
+    duration: 2800,
+    icons: ["excel", "sharepoint"],
+  },
+  {
+    label: "Building comparable transaction table from deal database...",
+    duration: 3200,
+    icons: ["salesforce"],
+  },
+  {
+    label: "Calculating indicative valuation range across scenarios...",
+    duration: 3000,
+  },
+  {
+    label: "Compiling key considerations from meeting transcripts...",
+    duration: 3500,
+    icons: ["zoom", "ms-teams"],
+  },
+  {
+    label: "Formatting memo and verifying source citations...",
     duration: 2500,
   },
 ];

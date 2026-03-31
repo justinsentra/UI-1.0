@@ -170,9 +170,7 @@ const ReportDetailPage = () => {
   };
 
   return (
-    <div
-      className="relative flex overflow-hidden h-full"
-    >
+    <div className="relative flex overflow-hidden h-full">
       {/* Top-right action buttons */}
       <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
         <button
@@ -251,7 +249,14 @@ const ReportDetailPage = () => {
       </div>
 
       {/* Chat Sidebar */}
-      <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
+      <RightSidebarProvider
+        open={showChatSidebar}
+        onOpenChange={setShowChatSidebar}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
         <ChatSidebar
           isOpen={showChatSidebar}
           onClose={() => setShowChatSidebar(false)}
@@ -369,13 +374,7 @@ function EvidenceSection({ evidence }: { evidence: EvidenceQuote[] }) {
   );
 }
 
-function InlineCitation({
-  source,
-  index,
-}: {
-  source: Source;
-  index: number;
-}) {
+function InlineCitation({ source, index }: { source: Source; index: number }) {
   const href = SOURCE_TYPE_TO_HREF[source.type] ?? "#";
   const platformLabel = SOURCE_TYPE_LABEL[source.type] ?? source.type;
 

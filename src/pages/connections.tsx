@@ -176,7 +176,11 @@ const ConnectionsPage = () => {
                       {person.tags && person.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1">
                           {person.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-2xs">
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="text-2xs"
+                            >
                               {tag}
                             </Badge>
                           ))}
@@ -231,9 +235,7 @@ const ConnectionsPage = () => {
                       className="w-8 h-8 rounded-full shrink-0 bg-muted"
                     />
                     <div className="flex flex-col">
-                      <span className="text-sm text-foreground">
-                        {c.name}
-                      </span>
+                      <span className="text-sm text-foreground">{c.name}</span>
                       <a
                         href={`https://${c.domain}`}
                         target="_blank"

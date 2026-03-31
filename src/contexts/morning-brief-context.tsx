@@ -10,7 +10,7 @@ const MorningBriefContext = createContext<MorningBriefContextType | undefined>(
 );
 
 export const MorningBriefProvider = ({ children }: { children: ReactNode }) => {
-  const [showMorningBrief, setShowMorningBrief] = useState(true);
+  const [showMorningBrief, setShowMorningBrief] = useState(false);
 
   const dismissMorningBrief = () => {
     setShowMorningBrief(false);

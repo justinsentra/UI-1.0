@@ -158,7 +158,10 @@ export const reportDetails: Record<string, ReportDetail> = {
         icon: "calendar",
         label: "Schedule intro calls with angel investor targets",
       },
-      { icon: "clock", label: "Set reminder for LP Summer 26 application deadline" },
+      {
+        icon: "clock",
+        label: "Set reminder for LP Summer 26 application deadline",
+      },
     ],
   },
   "pn-crm-rpt-product-1": {

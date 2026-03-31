@@ -29,17 +29,20 @@ const Chatbox = ({ value, onChange, onSubmit, isLoading }: ChatboxProps) => {
         onValueChange={onChange}
         isLoading={isLoading}
         onSubmit={onSubmit}
-        className="rounded-3xl"
+        className="rounded-xl"
       >
         <PromptInputTextarea placeholder="Ask Sentra anything..." />
         <PromptInputActions className="justify-between px-3 pb-3">
           <DropdownMenu>
-            <DropdownMenuTrigger
-              className="items-center border-none rounded-full flex shrink-0 size-7 justify-center p-0 bg-transparent text-muted-foreground cursor-pointer transition-colors hover:text-foreground hover:bg-accent"
-            >
+            <DropdownMenuTrigger className="items-center border-none rounded-full flex shrink-0 size-7 justify-center p-0 bg-transparent text-muted-foreground cursor-pointer transition-colors hover:text-foreground hover:bg-accent">
               <Plus size={16} />
             </DropdownMenuTrigger>
-            <DropdownMenuContent side="top" align="start" sideOffset={8} className="min-w-36">
+            <DropdownMenuContent
+              side="top"
+              align="start"
+              sideOffset={8}
+              className="min-w-36"
+            >
               <DropdownMenuItem>
                 <FileUp />
                 Upload file

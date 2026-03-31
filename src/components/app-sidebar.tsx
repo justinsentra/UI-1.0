@@ -124,9 +124,9 @@ const AppSidebar = () => {
             to="/settings"
             className="flex items-center gap-2.5 px-2.5 py-1 no-underline overflow-hidden transition-[padding,background-color] duration-200 ease-linear group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0"
           >
-            <UserAvatar name="Leo Hartwell" size="sm" />
+            <UserAvatar name="Tracy Kim" size="sm" />
             <span className="text-xs text-foreground whitespace-nowrap group-data-[collapsible=icon]:hidden">
-              Leo Hartwell
+              Tracy Kim
             </span>
           </NavLink>
         </div>

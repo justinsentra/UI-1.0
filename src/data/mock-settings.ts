@@ -8,12 +8,12 @@ export interface UserProfile {
 }
 
 export const currentUser: UserProfile = {
-  email: "leo@sentra.app",
-  fullName: "Leo Hartwell",
-  title: "Head of Strategy & Operations",
-  phone: "+1 555-867-5309",
+  email: "tracy.kim@jpmorgan.com",
+  fullName: "Tracy Kim",
+  title: "Managing Director, Investment Banking",
+  phone: "+1 212-555-0147",
   language: "English",
-  timezone: "America/Toronto (EST)",
+  timezone: "America/New_York (EST)",
 };
 
 export interface WorkspaceMember {
@@ -44,10 +44,10 @@ export const workspaceMembers: WorkspaceMember[] = [
   },
   {
     id: "wm-3",
-    name: "Leo Hartwell",
-    email: "leo@sentra.app",
+    name: "Tracy Kim",
+    email: "tracy.kim@jpmorgan.com",
     role: "Admin",
-    initials: "LH",
+    initials: "TK",
     avatarColor: "#3A4D54",
   },
   {

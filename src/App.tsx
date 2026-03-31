@@ -28,56 +28,59 @@ const App = () => {
       <MorningBriefProvider>
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route element={<AppLayout />}>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/morning-brief" element={<MorningBriefPage />} />
-            <Route path="/meeting-notes" element={<MeetingNotesPage />} />
-            <Route path="/meeting-detail" element={<MeetingDetailPage />} />
-            <Route path="/deep-research" element={<DeepResearchPage />} />
-            <Route path="/artifacts" element={<ArtifactsPage />} />
-            <Route
-              path="/artifacts/reports-settings"
-              element={<ArtifactsReportsSettingsPage />}
-            />
-            <Route
-              path="/artifacts/radar-settings"
-              element={<ArtifactsRadarSettingsPage />}
-            />
-            <Route path="/report-detail" element={<ReportDetailPage />} />
-            <Route
-              path="/weekly-reports"
-              element={<Navigate to="/artifacts" replace />}
-            />
-            <Route
-              path="/radar"
-              element={<Navigate to="/artifacts" replace />}
-            />
-            <Route path="/integrations" element={<IntegrationsPage />} />
-            <Route
-              path="/integrations/:integrationId"
-              element={<IntegrationDetailPage />}
-            />
-            <Route path="/connections" element={<ConnectionsPage />} />
-            <Route
-              path="/connection-detail"
-              element={<ConnectionDetailPage />}
-            />
-            <Route path="/meeting-settings" element={<MeetingSettingsPage />} />
-            <Route
-              path="/pre-meeting-brief"
-              element={<PreMeetingBriefPage />}
-            />
-            <Route path="/actions" element={<ActionsPage />} />
-            <Route path="/actions/:actionId" element={<ActionDetailPage />} />
-            <Route
-              path="/artifact-detail/:artifactId"
-              element={<ArtifactDetailPage />}
-            />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route element={<AppLayout />}>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/morning-brief" element={<MorningBriefPage />} />
+              <Route path="/meeting-notes" element={<MeetingNotesPage />} />
+              <Route path="/meeting-detail" element={<MeetingDetailPage />} />
+              <Route path="/deep-research" element={<DeepResearchPage />} />
+              <Route path="/artifacts" element={<ArtifactsPage />} />
+              <Route
+                path="/artifacts/reports-settings"
+                element={<ArtifactsReportsSettingsPage />}
+              />
+              <Route
+                path="/artifacts/radar-settings"
+                element={<ArtifactsRadarSettingsPage />}
+              />
+              <Route path="/report-detail" element={<ReportDetailPage />} />
+              <Route
+                path="/weekly-reports"
+                element={<Navigate to="/artifacts" replace />}
+              />
+              <Route
+                path="/radar"
+                element={<Navigate to="/artifacts" replace />}
+              />
+              <Route path="/integrations" element={<IntegrationsPage />} />
+              <Route
+                path="/integrations/:integrationId"
+                element={<IntegrationDetailPage />}
+              />
+              <Route path="/connections" element={<ConnectionsPage />} />
+              <Route
+                path="/connection-detail"
+                element={<ConnectionDetailPage />}
+              />
+              <Route
+                path="/meeting-settings"
+                element={<MeetingSettingsPage />}
+              />
+              <Route
+                path="/pre-meeting-brief"
+                element={<PreMeetingBriefPage />}
+              />
+              <Route path="/actions" element={<ActionsPage />} />
+              <Route path="/actions/:actionId" element={<ActionDetailPage />} />
+              <Route
+                path="/artifact-detail/:artifactId"
+                element={<ArtifactDetailPage />}
+              />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </MorningBriefProvider>
     </ThemeProvider>
   );

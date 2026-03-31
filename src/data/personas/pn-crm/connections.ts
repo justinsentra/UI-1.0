@@ -95,8 +95,8 @@ export const connections: PersonaConnectionsData = {
     },
     {
       id: "pn-p12",
-      name: "Leo Hartwell",
-      email: "leo@sentra.app",
+      name: "Tracy Kim",
+      email: "tracy.kim@jpmorgan.com",
       lastInteraction: "3 days ago",
       interactions: 6,
       tags: ["Client", "External"],

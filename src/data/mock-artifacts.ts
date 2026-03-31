@@ -9,7 +9,12 @@ export type ArtifactType =
 export interface ArtifactNextStep {
   id: string;
   label: string;
-  type: "schedule-call" | "send-email" | "create-task" | "share-report" | "open-link";
+  type:
+    | "schedule-call"
+    | "send-email"
+    | "create-task"
+    | "share-report"
+    | "open-link";
   detail: string;
 }
 
@@ -36,6 +41,41 @@ export const ARTIFACT_TYPE_LABELS: Record<ArtifactType, string> = {
 
 export const MOCK_ARTIFACTS: Artifact[] = [
   {
+    id: "art-0",
+    title: "Secondary Offering Memo — NovaBridge Capital",
+    description:
+      "Preliminary secondary offering memo for David Chen's company using CFO financials, SharePoint model, and comparable transactions.",
+    type: "memo",
+    actionId: "deal-memo-production",
+    actionName: "Deal Memo Production",
+    createdAt: "2026-03-30T09:15:00Z",
+    summary:
+      "NovaBridge Capital is exploring a secondary offering to bring in growth capital. Revenue is $42M (FY25A) with 28.1% EBITDA margins, tracking 8% above prior forecast. Comparable transactions in the trailing 12 months show median multiples of 3.8x revenue and 14.2x EBITDA. Base case valuation at 3.8x FY26E revenue implies $200M, with a 25% secondary stake raising $50M. Key consideration: David Chen raised board composition concerns six weeks ago and is waiting on a governance advisor introduction. The Apex-Cobalt merger ($280M) creates urgency — delaying risks valuation compression.",
+    nextSteps: [
+      {
+        id: "ns-0-1",
+        label: "Send governance advisor introduction to David Chen",
+        type: "send-email",
+        detail:
+          "Draft introduction email connecting David Chen with the governance advisory team, referencing the commitment from the February 17 call.",
+      },
+      {
+        id: "ns-0-2",
+        label: "Schedule board presentation for April 14",
+        type: "schedule-call",
+        detail:
+          "Book a 60-minute slot for the NovaBridge Capital board to review the secondary offering materials.",
+      },
+      {
+        id: "ns-0-3",
+        label: "Share memo with Nathan Lim for review",
+        type: "share-report",
+        detail:
+          "Send the preliminary memo to Nathan for feedback before sharing with David's team.",
+      },
+    ],
+  },
+  {
     id: "art-1",
     title: "Weekly Deal Pipeline Health Check — Mar 28",
     description:
@@ -51,19 +91,22 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-1-1",
         label: "Email Meridian Corp CFO for financials",
         type: "send-email",
-        detail: "Draft follow-up to Sarah Chen requesting the outstanding audited financials package.",
+        detail:
+          "Draft follow-up to Sarah Chen requesting the outstanding audited financials package.",
       },
       {
         id: "ns-1-2",
         label: "Schedule reference call with HelixBio management",
         type: "schedule-call",
-        detail: "Book a 30-minute management reference call with HelixBio's CEO for next week.",
+        detail:
+          "Book a 30-minute management reference call with HelixBio's CEO for next week.",
       },
       {
         id: "ns-1-3",
         label: "Escalate ServiceNow access for Apex Industries",
         type: "send-email",
-        detail: "Send escalation email to IT requesting urgent data room access for Apex Industries.",
+        detail:
+          "Send escalation email to IT requesting urgent data room access for Apex Industries.",
       },
     ],
   },
@@ -83,13 +126,15 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-2-1",
         label: "Share snapshot with Investment Committee",
         type: "share-report",
-        detail: "Distribute the Q1 pipeline snapshot to the IC distribution list ahead of Monday's meeting.",
+        detail:
+          "Distribute the Q1 pipeline snapshot to the IC distribution list ahead of Monday's meeting.",
       },
       {
         id: "ns-2-2",
         label: "Schedule IC pre-read discussion",
         type: "schedule-call",
-        detail: "Set up a 15-minute pre-read sync with the IC Chair before Monday's full committee meeting.",
+        detail:
+          "Set up a 15-minute pre-read sync with the IC Chair before Monday's full committee meeting.",
       },
     ],
   },
@@ -109,19 +154,22 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-3-1",
         label: "Send follow-up email to Meridian team",
         type: "send-email",
-        detail: "Send the drafted follow-up email with meeting summary, decisions, and action items to the Meridian deal team.",
+        detail:
+          "Send the drafted follow-up email with meeting summary, decisions, and action items to the Meridian deal team.",
       },
       {
         id: "ns-3-2",
         label: "Schedule legal sync on environmental cap",
         type: "schedule-call",
-        detail: "Book a 45-minute call between both legal teams to negotiate the environmental liability cap language.",
+        detail:
+          "Book a 45-minute call between both legal teams to negotiate the environmental liability cap language.",
       },
       {
         id: "ns-3-3",
         label: "Create task for exclusivity amendment",
         type: "create-task",
-        detail: "Create a tracked task for drafting the 2-week exclusivity extension amendment by end of week.",
+        detail:
+          "Create a tracked task for drafting the 2-week exclusivity extension amendment by end of week.",
       },
     ],
   },
@@ -141,45 +189,50 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-4-1",
         label: "Share memo with deal team for review",
         type: "share-report",
-        detail: "Circulate the updated deal memo to the Meridian deal team for feedback before IC submission.",
+        detail:
+          "Circulate the updated deal memo to the Meridian deal team for feedback before IC submission.",
       },
       {
         id: "ns-4-2",
         label: "Schedule IC presentation for Meridian",
         type: "schedule-call",
-        detail: "Reserve a 30-minute IC slot for the Meridian final vote presentation, targeting the week of April 7.",
+        detail:
+          "Reserve a 30-minute IC slot for the Meridian final vote presentation, targeting the week of April 7.",
       },
     ],
   },
   {
     id: "art-5",
-    title: "NovaTech Vendor Delay Risk Assessment",
+    title: "Oracle Migration — Vendor Delay Report (Week 5)",
     description:
-      "Risk report on the NovaTech environmental assessment vendor delay and its impact on deal timeline and closing conditions.",
+      "Risk report on DataBridge Solutions' second missed delivery and its downstream impact on the Oracle migration timeline.",
     type: "vendor-delay-report",
-    actionId: "weekly-deal-pipeline-health-check",
-    actionName: "Weekly Deal Pipeline Health Check",
+    actionId: "vendor-delay-tracker",
+    actionName: "Vendor Delay Tracker",
     createdAt: "2026-03-26T10:00:00Z",
     summary:
-      "EnviroCheck LLC, the third-party vendor conducting the Phase II environmental assessment for NovaTech, has reported a 2-week delay due to lab capacity constraints. Original delivery: April 1. Revised delivery: April 15. Impact: this pushes the projected close date from April 18 to May 2, potentially crossing into Q2. Mitigation options: (1) engage a secondary vendor for parallel assessment at ~$15K incremental cost; (2) negotiate a conditional close with an environmental holdback escrow. Recommendation: pursue option 2 given the incremental cost and low probability of material findings based on the Phase I results.",
+      "DataBridge Solutions missed their second delivery deadline on February 17 for the transformed data set needed for integration testing. The vendor cited resource constraints and provided no revised ETA for five business days. Impact: the Oracle migration is now 5 weeks behind the original March 14 deadline, with a revised go-live target of April 18. The engineering team was forced to context-switch, losing additional productivity. The project lead did not escalate to Tracy or senior leadership until March 5 — 16 days after the missed deadline. This is a recurring pattern: same vendor, same failure mode, same delayed escalation.",
     nextSteps: [
       {
         id: "ns-5-1",
-        label: "Email NovaTech counsel re: conditional close",
-        type: "send-email",
-        detail: "Propose the conditional close with environmental holdback escrow to NovaTech's outside counsel.",
+        label: "Schedule call with DataBridge project manager",
+        type: "schedule-call",
+        detail:
+          "Book a 30-minute escalation call with DataBridge Solutions' project manager and account lead to discuss SLA compliance and revised delivery commitments.",
       },
       {
         id: "ns-5-2",
-        label: "Schedule internal risk review",
-        type: "schedule-call",
-        detail: "Set up a 30-minute internal call with the deal team and environmental counsel to review holdback terms.",
+        label: "Send escalation email to internal stakeholders",
+        type: "send-email",
+        detail:
+          "Draft escalation email to the Oracle migration steering committee summarizing the vendor delay pattern, timeline impact, and recommended next steps.",
       },
       {
         id: "ns-5-3",
-        label: "Create task to get secondary vendor quote",
+        label: "Create task for backup vendor evaluation",
         type: "create-task",
-        detail: "Get a backup quote from GreenField Labs for parallel Phase II assessment as a contingency.",
+        detail:
+          "Evaluate alternative data migration vendors as a contingency in case DataBridge misses the next milestone.",
       },
     ],
   },
@@ -199,13 +252,15 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-6-1",
         label: "Email Meridian re: Vertex AR aging",
         type: "send-email",
-        detail: "Request clarification from Meridian's Controller on the $1.2M aged receivable from Vertex Solutions.",
+        detail:
+          "Request clarification from Meridian's Controller on the $1.2M aged receivable from Vertex Solutions.",
       },
       {
         id: "ns-6-2",
         label: "Share updated model with deal team",
         type: "share-report",
-        detail: "Push the refreshed 3-statement model to the deal team's SharePoint folder and notify via email.",
+        detail:
+          "Push the refreshed 3-statement model to the deal team's SharePoint folder and notify via email.",
       },
     ],
   },
@@ -225,13 +280,15 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-7-1",
         label: "Schedule model review with VP Finance",
         type: "schedule-call",
-        detail: "Book a 20-minute model walkthrough with the VP Finance to review the 3 flagged items.",
+        detail:
+          "Book a 20-minute model walkthrough with the VP Finance to review the 3 flagged items.",
       },
       {
         id: "ns-7-2",
         label: "Create task for depreciation reconciliation",
         type: "create-task",
-        detail: "Track the $400K depreciation variance as a diligence follow-up item for the next management call.",
+        detail:
+          "Track the $400K depreciation variance as a diligence follow-up item for the next management call.",
       },
     ],
   },
@@ -251,13 +308,15 @@ export const MOCK_ARTIFACTS: Artifact[] = [
         id: "ns-8-1",
         label: "Escalate ServiceNow ticket to IT Director",
         type: "send-email",
-        detail: "Send direct escalation to the IT Director with the ticket number and business impact statement.",
+        detail:
+          "Send direct escalation to the IT Director with the ticket number and business impact statement.",
       },
       {
         id: "ns-8-2",
         label: "Call Apex IR team for missing documents",
         type: "schedule-call",
-        detail: "Schedule a call with Apex's IR team to get delivery commitments on the 3 outstanding data room documents.",
+        detail:
+          "Schedule a call with Apex's IR team to get delivery commitments on the 3 outstanding data room documents.",
       },
     ],
   },

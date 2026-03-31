@@ -95,140 +95,149 @@ const MeetingNotesPage = () => {
 
   return (
     <div className="flex overflow-hidden h-full">
-    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <div className="relative">
-      {/* Top-right toolbar */}
-      <div
-        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
-      >
-        <Button
-          variant="ghost"
-          size="icon-xs"
-          onClick={() => setImportOpen(true)}
-          title="Import"
-        >
-          <Upload size={15} />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon-xs"
-          onClick={() => navigate("/meeting-settings")}
-          title="Settings"
-        >
-          <Settings size={15} />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon-xs"
-          onClick={() => setChatOpen(true)}
-          title="Chat"
-        >
-          <MessageSquare size={15} />
-        </Button>
-      </div>
+      <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+        <div className="relative">
+          {/* Top-right toolbar */}
+          <div className="absolute top-[12px] right-5 z-10 flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => setImportOpen(true)}
+              title="Import"
+            >
+              <Upload size={15} />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => navigate("/meeting-settings")}
+              title="Settings"
+            >
+              <Settings size={15} />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => setChatOpen(true)}
+              title="Chat"
+            >
+              <MessageSquare size={15} />
+            </Button>
+          </div>
 
-    <PageShell>
+          <PageShell>
+            <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-5">
+              Coming up
+            </h1>
 
-      <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight mb-5">
-        Coming up
-      </h1>
-
-      {/* Search */}
-      <div className="mb-5">
-        <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
-          <InputGroupAddon align="inline-start">
-            <Search size={16} />
-          </InputGroupAddon>
-          <InputGroupInput
-            placeholder="Search meetings..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </InputGroup>
-      </div>
-
-      {/* Tag Filter Bar */}
-      <TagFilterBar />
-
-      {/* Upcoming Card */}
-      {upcomingMeetings.length > 0 && (
-        <Card className="mb-6 py-0">
-          <CardContent className="flex gap-5 py-5">
-            <div className="text-center shrink-0 w-[60px]">
-              <p className="text-3xl font-light text-foreground leading-none">
-                {day}
-              </p>
-              <p className="text-xs font-medium text-muted-foreground mt-0.5">
-                {month}
-              </p>
+            {/* Search */}
+            <div className="mb-5">
+              <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
+                <InputGroupAddon align="inline-start">
+                  <Search size={16} />
+                </InputGroupAddon>
+                <InputGroupInput
+                  placeholder="Search meetings..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </InputGroup>
             </div>
-            <div className="flex-1 space-y-0.5">
-              {upcomingMeetings.map((m) => (
-                <div
-                  key={m.id}
-                  className="group/upcoming flex items-center gap-3 px-2 py-2 -mx-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
-                  onClick={() => {
-                    setSelectedMeeting(m.id);
-                    navigate("/meeting-detail");
-                  }}
-                >
-                  <div className="w-[3px] self-stretch bg-[#5eb5ef] rounded-full shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-foreground leading-snug">
-                      {m.title}
+
+            {/* Tag Filter Bar */}
+            <TagFilterBar />
+
+            {/* Upcoming Card */}
+            {upcomingMeetings.length > 0 && (
+              <Card className="mb-6 py-0">
+                <CardContent className="flex gap-5 py-5">
+                  <div className="text-center shrink-0 w-[60px]">
+                    <p className="text-3xl font-light text-foreground leading-none">
+                      {day}
                     </p>
-                    <p className="text-xs text-muted-foreground">
-                      {formatTimeRange(m.time, m.endTime)}
+                    <p className="text-xs font-medium text-muted-foreground mt-0.5">
+                      {month}
                     </p>
                   </div>
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    rounded="full"
-                    className="opacity-0 group-hover/upcoming:opacity-100 transition-all shrink-0"
-                  >
-                    Join
-                  </Button>
+                  <div className="flex-1 space-y-0.5">
+                    {upcomingMeetings.map((m) => (
+                      <div
+                        key={m.id}
+                        className="group/upcoming flex items-center gap-3 px-2 py-2 -mx-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
+                        onClick={() => {
+                          setSelectedMeeting(m.id);
+                          navigate("/meeting-detail");
+                        }}
+                      >
+                        <div className="w-[3px] self-stretch bg-[#5eb5ef] rounded-full shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-foreground leading-snug">
+                            {m.title}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {formatTimeRange(m.time, m.endTime)}
+                          </p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="xs"
+                          rounded="full"
+                          className="opacity-0 group-hover/upcoming:opacity-100 transition-all shrink-0"
+                        >
+                          Join
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Meeting Groups */}
+            {filteredGroups.map((group) => (
+              <div key={group.date} className="mb-6">
+                <p className="text-sm text-[var(--muted-foreground)] mb-3">
+                  {group.label}
+                </p>
+                <div className="space-y-1">
+                  {group.meetings.map((m) => (
+                    <MeetingRow
+                      key={m.id}
+                      id={m.id}
+                      title={m.title}
+                      participants={m.participants}
+                      time={m.time}
+                      privacy={meetingVisibility[m.id] ?? m.privacy}
+                      onShare={() => setShareMeetingId(m.id)}
+                    />
+                  ))}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Meeting Groups */}
-      {filteredGroups.map((group) => (
-        <div key={group.date} className="mb-6">
-          <p className="text-sm text-[var(--muted-foreground)] mb-3">{group.label}</p>
-          <div className="space-y-1">
-            {group.meetings.map((m) => (
-              <MeetingRow
-                key={m.id}
-                id={m.id}
-                title={m.title}
-                participants={m.participants}
-                time={m.time}
-                privacy={meetingVisibility[m.id] ?? m.privacy}
-                onShare={() => setShareMeetingId(m.id)}
-              />
+              </div>
             ))}
-          </div>
-        </div>
-      ))}
 
-      {/* Modals & Panels */}
-      <ImportModal isOpen={importOpen} onClose={() => setImportOpen(false)} />
-      <ShareModal
-        isOpen={shareMeetingId !== null}
-        onClose={() => setShareMeetingId(null)}
-        meetingId={shareMeetingId}
-      />
-    </PageShell>
-    </div>
-    </div>
-    <RightSidebarProvider open={chatOpen} onOpenChange={setChatOpen} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
-      <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
-    </RightSidebarProvider>
+            {/* Modals & Panels */}
+            <ImportModal
+              isOpen={importOpen}
+              onClose={() => setImportOpen(false)}
+            />
+            <ShareModal
+              isOpen={shareMeetingId !== null}
+              onClose={() => setShareMeetingId(null)}
+              meetingId={shareMeetingId}
+            />
+          </PageShell>
+        </div>
+      </div>
+      <RightSidebarProvider
+        open={chatOpen}
+        onOpenChange={setChatOpen}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
+        <ChatSidebar isOpen={chatOpen} onClose={() => setChatOpen(false)} />
+      </RightSidebarProvider>
     </div>
   );
 };

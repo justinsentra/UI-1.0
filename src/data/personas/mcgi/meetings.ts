@@ -196,12 +196,7 @@ export const meetings: Meeting[] = [
     time: "2:00 PM",
     endTime: "3:00 PM",
     duration: "1h",
-    participants: [
-      "Claire Lawson",
-      "Tom Brennan",
-      "Raj Sundaram",
-      "Leo Hartwell",
-    ],
+    participants: ["Claire Lawson", "Tom Brennan", "Raj Sundaram", "Tracy Kim"],
     tags: ["due-diligence", "enterprise-ai"],
     platform: "Google Meet",
     privacy: "public",
@@ -218,7 +213,7 @@ export const meetings: Meeting[] = [
         title: "Strong design partner engagement",
         description:
           "Active design partners include teams at BlueBridge, RenderLab, and Campfire. ICP is Series A/B startups (30-1000 employees) plus enterprise teams as design partners.",
-        participants: ["Leo Hartwell", "Tom Brennan"],
+        participants: ["Tracy Kim", "Tom Brennan"],
       },
       {
         title: "Clear AG synergy opportunities",
@@ -270,7 +265,7 @@ export const meetings: Meeting[] = [
         text: "Prism takes an aggregation-first approach — they index documents and files. We take an interaction-first approach. We capture the decision history, the context, the why behind decisions. That's what gets lost as companies scale.",
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "On the GTM side, we're focused on Series A through B companies right now — 30 to 1000 employees — plus enterprise teams as design partners. We have active pilots with teams at BlueBridge, RenderLab, and Campfire.",
       },
       {
@@ -296,7 +291,7 @@ export const meetings: Meeting[] = [
         text: "The multi-language timeline is important for us. European is obviously a priority. How are you thinking about localization beyond just translation — the cultural nuances of communication in European business contexts?",
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "We've thought about this a lot. It's not just translation — it's understanding the implicit communication patterns in different cultures. In European business settings, what's left unsaid is often as important as what's said. Our interaction model actually captures those patterns better than document-based approaches.",
       },
       {
@@ -313,7 +308,7 @@ export const meetings: Meeting[] = [
         text: "And for our own operations — AG has offices in 90 countries. The cross-cultural knowledge transfer problem is real. Claire, let's map out which business units would be the best fit for a pilot.",
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "We'd love that. We're particularly interested in how the product performs in multilingual, cross-timezone environments. That's exactly the kind of design partner feedback we need.",
       },
       {

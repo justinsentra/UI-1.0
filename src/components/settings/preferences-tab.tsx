@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Bot,
-  Power,
-  Move,
-  Paintbrush,
-  ChevronDown,
-} from "lucide-react";
+import { Bot, Power, Move, Paintbrush, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,

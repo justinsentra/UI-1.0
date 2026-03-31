@@ -22,21 +22,111 @@ interface UsageRow {
 }
 
 const mockUsage: UsageRow[] = [
-  { id: "1", date: "Mar 23, 7:00 PM", category: "Evening Briefing", mode: "Default", credits: 959 },
-  { id: "2", date: "Mar 23, 6:37 PM", category: "Action Items", mode: "Default", credits: 243 },
-  { id: "3", date: "Mar 23, 6:36 PM", category: "Meeting Prep", mode: "Default", credits: 480 },
-  { id: "4", date: "Mar 23, 4:10 PM", category: "Meeting Prep", mode: "Default", credits: 3328 },
-  { id: "5", date: "Mar 23, 4:10 PM", category: "Meeting Prep", mode: "Default", credits: 2450 },
-  { id: "6", date: "Mar 23, 4:08 PM", category: "Action Items", mode: "Default", credits: 587 },
-  { id: "7", date: "Mar 23, 4:08 PM", category: "Meeting Prep", mode: "Default", credits: 418 },
-  { id: "8", date: "Mar 23, 4:06 PM", category: "Action Items", mode: "Default", credits: 250 },
-  { id: "9", date: "Mar 23, 4:05 PM", category: "Meeting Prep", mode: "Default", credits: 550 },
-  { id: "10", date: "Mar 22, 9:00 PM", category: "Evening Briefing", mode: "Default", credits: 1020 },
-  { id: "11", date: "Mar 22, 3:15 PM", category: "Meeting Prep", mode: "Default", credits: 1850 },
-  { id: "12", date: "Mar 22, 3:14 PM", category: "Action Items", mode: "Default", credits: 312 },
-  { id: "13", date: "Mar 21, 7:00 PM", category: "Evening Briefing", mode: "Default", credits: 945 },
-  { id: "14", date: "Mar 21, 2:30 PM", category: "Meeting Prep", mode: "Default", credits: 2100 },
-  { id: "15", date: "Mar 20, 7:00 PM", category: "Evening Briefing", mode: "Default", credits: 890 },
+  {
+    id: "1",
+    date: "Mar 23, 7:00 PM",
+    category: "Evening Briefing",
+    mode: "Default",
+    credits: 959,
+  },
+  {
+    id: "2",
+    date: "Mar 23, 6:37 PM",
+    category: "Action Items",
+    mode: "Default",
+    credits: 243,
+  },
+  {
+    id: "3",
+    date: "Mar 23, 6:36 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 480,
+  },
+  {
+    id: "4",
+    date: "Mar 23, 4:10 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 3328,
+  },
+  {
+    id: "5",
+    date: "Mar 23, 4:10 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 2450,
+  },
+  {
+    id: "6",
+    date: "Mar 23, 4:08 PM",
+    category: "Action Items",
+    mode: "Default",
+    credits: 587,
+  },
+  {
+    id: "7",
+    date: "Mar 23, 4:08 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 418,
+  },
+  {
+    id: "8",
+    date: "Mar 23, 4:06 PM",
+    category: "Action Items",
+    mode: "Default",
+    credits: 250,
+  },
+  {
+    id: "9",
+    date: "Mar 23, 4:05 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 550,
+  },
+  {
+    id: "10",
+    date: "Mar 22, 9:00 PM",
+    category: "Evening Briefing",
+    mode: "Default",
+    credits: 1020,
+  },
+  {
+    id: "11",
+    date: "Mar 22, 3:15 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 1850,
+  },
+  {
+    id: "12",
+    date: "Mar 22, 3:14 PM",
+    category: "Action Items",
+    mode: "Default",
+    credits: 312,
+  },
+  {
+    id: "13",
+    date: "Mar 21, 7:00 PM",
+    category: "Evening Briefing",
+    mode: "Default",
+    credits: 945,
+  },
+  {
+    id: "14",
+    date: "Mar 21, 2:30 PM",
+    category: "Meeting Prep",
+    mode: "Default",
+    credits: 2100,
+  },
+  {
+    id: "15",
+    date: "Mar 20, 7:00 PM",
+    category: "Evening Briefing",
+    mode: "Default",
+    credits: 890,
+  },
 ];
 
 const categoryBreakdown = [
@@ -54,7 +144,10 @@ const ROWS_PER_PAGE = 10;
 export function BillingTab() {
   const [page, setPage] = useState(0);
   const totalPages = Math.ceil(mockUsage.length / ROWS_PER_PAGE);
-  const paginatedRows = mockUsage.slice(page * ROWS_PER_PAGE, (page + 1) * ROWS_PER_PAGE);
+  const paginatedRows = mockUsage.slice(
+    page * ROWS_PER_PAGE,
+    (page + 1) * ROWS_PER_PAGE,
+  );
   const startRow = page * ROWS_PER_PAGE + 1;
   const endRow = Math.min((page + 1) * ROWS_PER_PAGE, mockUsage.length);
   const percentage = Math.round((AVAILABLE_CREDITS / TOTAL_CREDITS) * 100);
@@ -62,7 +155,7 @@ export function BillingTab() {
   return (
     <div>
       {/* Plan + Credits Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] rounded-2xl border border-border overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] rounded-xl border border-border overflow-hidden">
         {/* Left: Plan Info */}
         <div className="flex flex-col justify-between gap-8 p-6 bg-card">
           <div className="flex flex-col gap-1">
@@ -79,10 +172,14 @@ export function BillingTab() {
             <div className="flex w-full flex-row justify-between gap-2">
               <p className="text-sm text-foreground flex items-center gap-1">
                 Available Credits
-                <Info size={14} className="text-muted-foreground cursor-pointer" />
+                <Info
+                  size={14}
+                  className="text-muted-foreground cursor-pointer"
+                />
               </p>
               <p className="text-sm flex items-center gap-1 font-mono text-muted-foreground">
-                {AVAILABLE_CREDITS.toLocaleString()} / {TOTAL_CREDITS.toLocaleString()}
+                {AVAILABLE_CREDITS.toLocaleString()} /{" "}
+                {TOTAL_CREDITS.toLocaleString()}
               </p>
             </div>
 
@@ -106,7 +203,7 @@ export function BillingTab() {
           <div className="mt-10 flex flex-row justify-between gap-4">
             <button
               type="button"
-              className="h-9 px-4 rounded-full border border-border text-sm font-medium text-foreground hover:bg-accent transition-colors cursor-pointer"
+              className="h-9 px-4 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-accent transition-colors cursor-pointer"
             >
               Adjust Plan
             </button>
@@ -129,7 +226,7 @@ export function BillingTab() {
           </p>
           <button
             type="button"
-            className="h-8 px-3 rounded-full border border-border text-xs text-foreground hover:bg-accent transition-colors cursor-pointer flex items-center gap-2"
+            className="h-8 px-3 rounded-lg border border-border text-xs text-foreground hover:bg-accent transition-colors cursor-pointer flex items-center gap-2"
           >
             Mar 1, 2026 - Mar 23, 2026
           </button>
@@ -148,12 +245,16 @@ export function BillingTab() {
             <p className="text-xl mt-1 font-mono text-foreground">
               {USED_CREDITS.toLocaleString()}
             </p>
-            <p className="text-xs mt-0.5 text-muted-foreground/60">this period</p>
+            <p className="text-xs mt-0.5 text-muted-foreground/60">
+              this period
+            </p>
           </div>
           <div className="rounded-xl border border-border bg-card p-4">
             <p className="text-xs text-muted-foreground">Est. Days Left</p>
             <p className="text-xl mt-1 font-mono text-foreground">~63</p>
-            <p className="text-xs mt-0.5 text-muted-foreground/60">at current rate</p>
+            <p className="text-xs mt-0.5 text-muted-foreground/60">
+              at current rate
+            </p>
           </div>
         </div>
 
@@ -176,7 +277,9 @@ export function BillingTab() {
                   <th className="px-4 py-2.5 font-normal">Date & Time</th>
                   <th className="px-4 py-2.5 font-normal">Category</th>
                   <th className="px-4 py-2.5 font-normal">Mode</th>
-                  <th className="px-4 py-2.5 text-right font-normal">Credits</th>
+                  <th className="px-4 py-2.5 text-right font-normal">
+                    Credits
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -188,7 +291,9 @@ export function BillingTab() {
                     <td className="whitespace-nowrap px-4 py-2.5 text-muted-foreground">
                       {row.date}
                     </td>
-                    <td className="px-4 py-2.5 text-foreground">{row.category}</td>
+                    <td className="px-4 py-2.5 text-foreground">
+                      {row.category}
+                    </td>
                     <td className="px-4 py-2.5 text-foreground">{row.mode}</td>
                     <td className="px-4 py-2.5 text-right font-mono text-foreground">
                       {row.credits.toLocaleString()}
@@ -244,14 +349,18 @@ export function BillingTab() {
               className="rounded-xl border border-border bg-card p-4 text-left transition-colors hover:bg-accent cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <cat.icon size={14} className="shrink-0 text-muted-foreground" />
+                <cat.icon
+                  size={14}
+                  className="shrink-0 text-muted-foreground"
+                />
                 <p className="text-xs text-foreground">{cat.label}</p>
               </div>
               <p className="text-base mt-2 font-mono text-foreground">
                 {cat.credits.toLocaleString()} credits
               </p>
               <p className="text-xs mt-1 text-muted-foreground">
-                {cat.runs} runs · {Math.round(cat.credits / cat.runs).toLocaleString()} avg/run
+                {cat.runs} runs ·{" "}
+                {Math.round(cat.credits / cat.runs).toLocaleString()} avg/run
               </p>
             </button>
           ))}

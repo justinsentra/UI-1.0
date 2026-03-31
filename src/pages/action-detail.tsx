@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ComponentType } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Ellipsis, GitBranch, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Ellipsis, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
@@ -30,7 +30,7 @@ import {
   EmptyDescription,
 } from "@/components/ui/empty";
 import { MOCK_ACTIONS } from "@/data/mock-actions";
-import type { Action, ActionArtifact } from "@/data/mock-actions";
+import type { Action } from "@/data/mock-actions";
 import { useReportsStore } from "@/stores/reports-store";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +41,7 @@ import sharePointLogo from "@/assets/logos/sharepoint.png";
 import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
+import powerpointLogo from "@/assets/logos/powerpoint.png";
 import { ZoomIcon } from "@/icons/source-icons";
 
 interface ActionIntegrationVisual {
@@ -63,6 +64,7 @@ const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
   salesforce: { logo: salesforceLogo },
   servicenow: { logo: serviceNowLogo },
   "monday-com": { logo: mondayComLogo },
+  powerpoint: { logo: powerpointLogo },
 };
 
 const integrationNames: Record<string, string> = {
@@ -74,6 +76,7 @@ const integrationNames: Record<string, string> = {
   salesforce: "Salesforce",
   servicenow: "ServiceNow",
   "monday-com": "Monday.com",
+  powerpoint: "PowerPoint",
 };
 
 const triggerOptions = [
@@ -191,11 +194,17 @@ const triggerScopeOptionsBySource: Record<string, ActionFieldOption[]> = {
 };
 
 const getTriggerEventOptions = (triggerSourceValue: string) => {
-  return triggerEventOptionsBySource[triggerSourceValue] ?? triggerEventOptionsBySource.outlook;
+  return (
+    triggerEventOptionsBySource[triggerSourceValue] ??
+    triggerEventOptionsBySource.outlook
+  );
 };
 
 const getTriggerScopeOptions = (triggerSourceValue: string) => {
-  return triggerScopeOptionsBySource[triggerSourceValue] ?? triggerScopeOptionsBySource.outlook;
+  return (
+    triggerScopeOptionsBySource[triggerSourceValue] ??
+    triggerScopeOptionsBySource.outlook
+  );
 };
 
 const ActionIntegrationGlyph = ({
@@ -248,7 +257,10 @@ const ActionSettingCombobox = ({
   showIntegrationIcon?: boolean;
 }) => {
   const selectedOption = useMemo(() => {
-    return options.find((actionFieldOption) => actionFieldOption.value === value) ?? null;
+    return (
+      options.find((actionFieldOption) => actionFieldOption.value === value) ??
+      null
+    );
   }, [options, value]);
   const [searchValue, setSearchValue] = useState("");
 
@@ -282,7 +294,9 @@ const ActionSettingCombobox = ({
       >
         <span className="flex min-w-0 items-center gap-2">
           {showIntegrationIcon && selectedOption?.integrationId ? (
-            <ActionIntegrationGlyph integrationId={selectedOption.integrationId} />
+            <ActionIntegrationGlyph
+              integrationId={selectedOption.integrationId}
+            />
           ) : null}
           <span
             className={cn(
@@ -294,7 +308,7 @@ const ActionSettingCombobox = ({
           </span>
         </span>
       </ComboboxTrigger>
-      <ComboboxContent className="min-w-60 rounded-2xl md:min-w-64">
+      <ComboboxContent className="min-w-60 rounded-xl md:min-w-64">
         <ComboboxInput
           placeholder={`Search ${placeholder.toLowerCase()}`}
           showClear={false}
@@ -310,7 +324,9 @@ const ActionSettingCombobox = ({
               className="min-h-9 rounded-xl px-3 text-sm"
             >
               {actionFieldOption.integrationId ? (
-                <ActionIntegrationGlyph integrationId={actionFieldOption.integrationId} />
+                <ActionIntegrationGlyph
+                  integrationId={actionFieldOption.integrationId}
+                />
               ) : null}
               <span>{actionFieldOption.label}</span>
             </ComboboxItem>
@@ -325,7 +341,7 @@ interface ActionDetailLocationState {
   initialTab?: string;
 }
 
-const ACTION_DETAIL_TABS = ["plan", "history", "approved"];
+const ACTION_DETAIL_TABS = ["plan", "history"];
 
 const ActionDetailPage = () => {
   const { actionId } = useParams<{ actionId: string }>();
@@ -336,7 +352,7 @@ const ActionDetailPage = () => {
   const requestedInitialTab = ACTION_DETAIL_TABS.includes(
     locationState?.initialTab ?? "",
   )
-    ? locationState?.initialTab ?? "plan"
+    ? (locationState?.initialTab ?? "plan")
     : "plan";
 
   const existingAction = useMemo(
@@ -413,7 +429,7 @@ const ActionDetailPage = () => {
   if (!isNew && !existingAction) {
     return (
       <div className="px-8 pt-14 pb-16 min-h-screen max-w-5xl mx-auto">
-        <Empty className="mt-20 border border-dashed border-border rounded-2xl bg-card/50 px-8 py-20">
+        <Empty className="mt-20 border border-dashed border-border rounded-xl bg-card/50 px-8 py-20">
           <EmptyHeader>
             <EmptyTitle>Action not found</EmptyTitle>
             <EmptyDescription>
@@ -426,18 +442,6 @@ const ActionDetailPage = () => {
       </div>
     );
   }
-
-  const handleApprovedArtifactClick = (actionArtifact: ActionArtifact) => {
-    if (actionArtifact.artifactType === "report" && actionArtifact.reportId) {
-      setSelectedReport(actionArtifact.reportId);
-      navigate("/report-detail");
-      return;
-    }
-
-    navigate("/deep-research", {
-      state: { prefill: actionArtifact.prompt ?? actionArtifact.title },
-    });
-  };
 
   return (
     <div className="px-8 pt-14 pb-16 min-h-screen max-w-5xl mx-auto">
@@ -468,12 +472,12 @@ const ActionDetailPage = () => {
               <Ellipsis size={16} />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate("/actions")}>Delete</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/actions")}>
+                Delete
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button className="rounded-full">
-            Activate
-          </Button>
+          <Button className="rounded-lg">Activate</Button>
         </div>
       </div>
 
@@ -482,7 +486,6 @@ const ActionDetailPage = () => {
         <TabsList variant="underline">
           <TabsTrigger value="plan">Plan</TabsTrigger>
           <TabsTrigger value="history">History</TabsTrigger>
-          <TabsTrigger value="approved">Approved</TabsTrigger>
         </TabsList>
 
         <TabsContent value="plan">
@@ -518,7 +521,9 @@ const ActionDetailPage = () => {
                       options={scheduleFrequencyOptions}
                       placeholder="Frequency"
                       onValueChange={(value) =>
-                        setFrequencyType(value as "DAILY" | "WEEKLY" | "MONTHLY")
+                        setFrequencyType(
+                          value as "DAILY" | "WEEKLY" | "MONTHLY",
+                        )
                       }
                       className="min-w-22"
                     />
@@ -593,9 +598,7 @@ const ActionDetailPage = () => {
                     key={id}
                     integrationId={id}
                     onRemove={() =>
-                      setIntegrations((prev) =>
-                        prev.filter((i) => i !== id),
-                      )
+                      setIntegrations((prev) => prev.filter((i) => i !== id))
                     }
                   />
                 ))
@@ -609,64 +612,62 @@ const ActionDetailPage = () => {
 
           {/* Submit */}
           <div className="mt-6 flex justify-end">
-            <Button
-              className="rounded-full"
-              onClick={() => navigate("/actions")}
-            >
+            <Button className="rounded-lg" onClick={() => navigate("/actions")}>
               {isNew ? "Create Action" : "Save Changes"}
             </Button>
           </div>
         </TabsContent>
 
         <TabsContent value="history">
-          <Empty className="mt-8 border border-dashed border-border rounded-2xl bg-muted/50 px-8 py-20">
-            <EmptyHeader>
-              <EmptyMedia>
-                <GitBranch size={36} className="text-muted-foreground" />
-              </EmptyMedia>
-              <EmptyTitle>No action runs yet</EmptyTitle>
-              <EmptyDescription>
-                Once this action is run, you can see the history here.
-              </EmptyDescription>
-            </EmptyHeader>
-          </Empty>
-        </TabsContent>
-
-        <TabsContent value="approved">
-          {initial.approvedArtifacts.length > 0 ? (
-            <div className="mt-8 space-y-3">
-              {initial.approvedArtifacts.map((actionArtifact) => (
+          {initial.historyRuns && initial.historyRuns.length > 0 ? (
+            <div className="mt-6 space-y-3">
+              {initial.historyRuns.map((run) => (
                 <button
-                  key={actionArtifact.id}
+                  key={run.id}
                   type="button"
-                  onClick={() => handleApprovedArtifactClick(actionArtifact)}
-                  className="flex w-full items-start justify-between gap-4 rounded-2xl border border-border bg-card px-5 py-4 text-left transition-colors hover:bg-accent"
+                  onClick={() => {
+                    if (run.reportId) {
+                      setSelectedReport(run.reportId);
+                      navigate("/report-detail");
+                    }
+                  }}
+                  className="flex w-full items-start justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4 text-left transition-colors hover:bg-accent"
                 >
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground">
-                      {actionArtifact.title}
+                      {run.title}
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {actionArtifact.description}
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {run.description}
                     </p>
                   </div>
-                  <span className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground">
-                    {actionArtifact.artifactType === "report"
-                      ? "Report"
-                      : "Artifact"}
-                  </span>
+                  <div className="flex flex-col items-end gap-1.5 shrink-0">
+                    <span className="text-xs text-muted-foreground">
+                      {run.date}
+                    </span>
+                    <span
+                      className={cn(
+                        "rounded-full px-2 py-0.5 text-2xs font-medium",
+                        run.status === "completed"
+                          ? "bg-emerald-500/10 text-emerald-600"
+                          : "bg-rose-500/10 text-rose-600",
+                      )}
+                    >
+                      {run.status === "completed" ? "Completed" : "Failed"}
+                    </span>
+                  </div>
                 </button>
               ))}
             </div>
           ) : (
-            <Empty className="mt-8 border border-dashed border-border rounded-2xl bg-muted/50 px-8 py-20">
+            <Empty className="mt-8 border border-dashed border-border rounded-xl bg-muted/50 px-8 py-20">
               <EmptyHeader>
                 <EmptyMedia>
-                  <ShieldCheck size={36} className="text-muted-foreground" />
+                  <GitBranch size={36} className="text-muted-foreground" />
                 </EmptyMedia>
-                <EmptyTitle>No approved artifacts yet</EmptyTitle>
+                <EmptyTitle>No action runs yet</EmptyTitle>
                 <EmptyDescription>
-                  Generated artifacts from this action will appear here.
+                  Once this action is run, you can see the history here.
                 </EmptyDescription>
               </EmptyHeader>
             </Empty>

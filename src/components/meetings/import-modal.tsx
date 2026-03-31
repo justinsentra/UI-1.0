@@ -107,24 +107,26 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full mt-1 left-0 right-0 z-50 bg-[var(--background)] rounded-xl shadow-lg border border-[var(--border)] overflow-hidden"
                   >
-                    {["Echobird", "Rev", "Descript", "Plain Text"].map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => {
-                          setFormat(opt);
-                          setFormatDropdownOpen(false);
-                        }}
-                        className={cn(
-                          "w-full px-3 py-2 text-left text-sm transition-colors",
-                          format === opt
-                            ? "text-[var(--foreground)] bg-[var(--muted)]"
-                            : "text-[var(--muted-foreground)] hover:bg-[var(--muted)]",
-                        )}
-                      >
-                        {opt}
-                      </button>
-                    ))}
+                    {["Echobird", "Rev", "Descript", "Plain Text"].map(
+                      (opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => {
+                            setFormat(opt);
+                            setFormatDropdownOpen(false);
+                          }}
+                          className={cn(
+                            "w-full px-3 py-2 text-left text-sm transition-colors",
+                            format === opt
+                              ? "text-[var(--foreground)] bg-[var(--muted)]"
+                              : "text-[var(--muted-foreground)] hover:bg-[var(--muted)]",
+                          )}
+                        >
+                          {opt}
+                        </button>
+                      ),
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

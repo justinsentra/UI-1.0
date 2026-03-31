@@ -48,7 +48,9 @@ export function ContactSearch({
               className="w-full px-3 py-2 text-left hover:bg-[var(--muted)] transition-colors bg-transparent border-none cursor-pointer"
             >
               <div className="text-xs text-[var(--foreground)]">{c.name}</div>
-              <div className="text-2xs text-[var(--muted-foreground)]">{c.email}</div>
+              <div className="text-2xs text-[var(--muted-foreground)]">
+                {c.email}
+              </div>
             </button>
           ))}
           {contacts.length === 0 && (

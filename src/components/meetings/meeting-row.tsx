@@ -8,10 +8,7 @@ import {
   Share2,
   ChevronDown,
 } from "lucide-react";
-import {
-  cn,
-  formatParticipants,
-} from "@lib/utils";
+import { cn, formatParticipants } from "@lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { useMeetingsStore } from "@/stores/meetings-store";
 import { useUIStore } from "@/stores/ui-store";

@@ -126,7 +126,8 @@ const LANDSCAPE_SCAN_STEPS: PrdScanStep[] = [
   { label: "Pulling sector deal records from Affinity...", duration: 5000 },
   { label: "Reading market intelligence pages from Dokra...", duration: 4500 },
   {
-    label: "Scanning Catalyst Alliance consortium channel on Microsoft Teams...",
+    label:
+      "Scanning Catalyst Alliance consortium channel on Microsoft Teams...",
     duration: 5000,
   },
   { label: "Retrieving sector reports from SharePoint...", duration: 4000 },
@@ -683,9 +684,21 @@ const vendorEvalResponse: MockResponse = {
           { company: "NovaMaterials", synergy: 6, teamScore: 6.5, deRisk: 4 },
         ],
         dataKeys: [
-          { key: "synergy", label: "AG Synergy (0-10)", color: "hsl(215, 80%, 55%)" },
-          { key: "teamScore", label: "Team Quality", color: "hsl(170, 65%, 45%)" },
-          { key: "deRisk", label: "De-Risk Level", color: "hsl(260, 55%, 60%)" },
+          {
+            key: "synergy",
+            label: "AG Synergy (0-10)",
+            color: "hsl(215, 80%, 55%)",
+          },
+          {
+            key: "teamScore",
+            label: "Team Quality",
+            color: "hsl(170, 65%, 45%)",
+          },
+          {
+            key: "deRisk",
+            label: "De-Risk Level",
+            color: "hsl(260, 55%, 60%)",
+          },
         ],
         xAxisKey: "company",
       },
@@ -736,11 +749,22 @@ export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
     { label: "Compare pipeline companies", route: { type: "vendor-eval" } },
     { label: "Pipeline overview for Q1", route: { type: "generic", index: 0 } },
-    { label: "Draft an investment memo for Sentra", route: { type: "document-flow", flowId: "mcgi-flow-memo" } },
-    { label: "Build a 3-statement model for GreenCore", route: { type: "document-flow", flowId: "mcgi-flow-model" } },
+    {
+      label: "Draft an investment memo for Sentra",
+      route: { type: "document-flow", flowId: "mcgi-flow-memo" },
+    },
+    {
+      label: "Build a 3-statement model for GreenCore",
+      route: { type: "document-flow", flowId: "mcgi-flow-model" },
+    },
   ],
   sessionHistory: [
-    { id: "mcgi-s1", title: "Sentra investment memo draft", date: "Today", query: "Draft an investment memo for Sentra" },
+    {
+      id: "mcgi-s1",
+      title: "Sentra investment memo draft",
+      date: "Today",
+      query: "Draft an investment memo for Sentra",
+    },
     {
       id: "mcgi-s2",
       title: "AI agent framework landscape",
@@ -817,7 +841,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Investment memo pushed to Google Docs",
         description:
           "Your investment memo has been created and is ready for IC review.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building memo",
     },
@@ -841,7 +868,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Landscape deck pushed to Google Slides",
         description:
           "Your market landscape analysis is ready for consortium review.",
-        link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
+        link: {
+          label: "Open in Google Slides",
+          url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit",
+        },
       },
       buildingLabel: "Building deck",
     },
@@ -870,7 +900,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Financial model ready in Google Sheets",
         description:
           "Your 3-statement model for GreenCore has been generated with full income statement, balance sheet, and cash flow projections.",
-        link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+        link: {
+          label: "Open in Google Sheets",
+          url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U",
+        },
       },
       buildingLabel: "Building financial model",
     },
@@ -902,7 +935,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Consolidated brief exported to Google Docs",
         description:
           "All SyntheticDB diligence data from Dokra, Teams, Affinity, and SharePoint has been consolidated into a single document.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Consolidating deal data",
     },

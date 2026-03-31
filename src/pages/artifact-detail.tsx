@@ -12,10 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUIStore } from "@/stores/ui-store";
-import {
-  MOCK_ARTIFACTS,
-  ARTIFACT_TYPE_LABELS,
-} from "@/data/mock-artifacts";
+import { MOCK_ARTIFACTS, ARTIFACT_TYPE_LABELS } from "@/data/mock-artifacts";
 import type { ArtifactNextStep } from "@/data/mock-artifacts";
 
 const STEP_ICONS: Record<ArtifactNextStep["type"], typeof Calendar> = {
@@ -53,9 +50,7 @@ function NextStepCard({
           <Icon size={15} />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground">
-            {step.label}
-          </p>
+          <p className="text-sm font-medium text-foreground">{step.label}</p>
           <p className="text-xs text-muted-foreground/60 mt-1 leading-relaxed">
             {step.detail}
           </p>

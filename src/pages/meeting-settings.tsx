@@ -96,7 +96,9 @@ function DeliveryDropdown({
                 onChange={(e) => onSlackChange(e.target.checked)}
                 className="w-4 h-4 rounded border-[var(--border)] accent-[var(--foreground)]"
               />
-              <span className="text-sm text-[var(--foreground)]">ChatWorks</span>
+              <span className="text-sm text-[var(--foreground)]">
+                ChatWorks
+              </span>
             </label>
             <label className="flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--muted)] cursor-pointer transition-colors">
               <input
@@ -251,7 +253,9 @@ function SettingField({
       <p className="text-sm font-medium text-[var(--foreground)] mb-0.5">
         {label}
       </p>
-      <p className="text-xs text-[var(--muted-foreground)] mb-2">{description}</p>
+      <p className="text-xs text-[var(--muted-foreground)] mb-2">
+        {description}
+      </p>
       <div className="max-w-[280px]">{children}</div>
     </div>
   );

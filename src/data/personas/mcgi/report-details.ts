@@ -207,7 +207,10 @@ export const reportDetails: Record<string, ReportDetail> = {
           "SolarCore Energy hit a major milestone with their first utility-scale deployment contract ($4.2M) with a California utility. This validates their grid-scale battery storage technology and positions them well for a Series B in H1 2026.",
         ],
         sources: [
-          { type: "meeting", label: "Portfolio Company Check-in — SyntheticDB" },
+          {
+            type: "meeting",
+            label: "Portfolio Company Check-in — SyntheticDB",
+          },
           { type: "meeting", label: "GridScale — Milestone Review" },
           { type: "slack", label: "#mcgi-portfolio-updates" },
           { type: "email", label: "SyntheticDB — Feb Board Deck" },
@@ -446,7 +449,10 @@ export const reportDetails: Record<string, ReportDetail> = {
           { type: "teams", label: "#mc-synergy-tracking" },
           { type: "meeting", label: "AG BU Quarterly Synergy Review" },
           { type: "google-docs", label: "AG BU Engagement Tracker" },
-          { type: "notion", label: "Catalyst Alliance Cross-Portfolio Introductions" },
+          {
+            type: "notion",
+            label: "Catalyst Alliance Cross-Portfolio Introductions",
+          },
         ],
       },
       {
@@ -501,7 +507,10 @@ export const reportDetails: Record<string, ReportDetail> = {
           { type: "email", label: "PitchBook Climate Tech Q1 Report" },
           { type: "google-docs", label: "Climate Tech Sector Tracking Sheet" },
           { type: "slack", label: "#mcgi-market-intel" },
-          { type: "meeting", label: "Catalyst Alliance Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
       {
@@ -527,9 +536,15 @@ export const reportDetails: Record<string, ReportDetail> = {
         ],
         sources: [
           { type: "google-docs", label: "AGV Climate Tech Thesis — 2026" },
-          { type: "meeting", label: "AG Industrial Materials — Synergy Review" },
+          {
+            type: "meeting",
+            label: "AG Industrial Materials — Synergy Review",
+          },
           { type: "teams", label: "#mc-synergy-tracking" },
-          { type: "meeting", label: "Catalyst Alliance Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
       {
@@ -543,7 +558,10 @@ export const reportDetails: Record<string, ReportDetail> = {
           { type: "email", label: "PitchBook CVC deal alerts" },
           { type: "slack", label: "#mcgi-market-intel" },
           { type: "teams", label: "#mcgi-competitive-intel" },
-          { type: "meeting", label: "Catalyst Alliance Climate Tech Working Group" },
+          {
+            type: "meeting",
+            label: "Catalyst Alliance Climate Tech Working Group",
+          },
         ],
       },
     ],
@@ -567,7 +585,10 @@ export const reportDetails: Record<string, ReportDetail> = {
       { type: "email", label: "PitchBook Climate Tech Q1 Report" },
       { type: "google-docs", label: "AGV Climate Tech Thesis — 2026" },
       { type: "slack", label: "#mcgi-market-intel" },
-      { type: "meeting", label: "Catalyst Alliance Climate Tech Working Group" },
+      {
+        type: "meeting",
+        label: "Catalyst Alliance Climate Tech Working Group",
+      },
       { type: "meeting", label: "AG Industrial Materials — Synergy Review" },
     ],
     suggestedActions: [
@@ -577,7 +598,8 @@ export const reportDetails: Record<string, ReportDetail> = {
       },
       {
         icon: "calendar",
-        label: "Schedule agricultural carbon thesis exploration with Catalyst Alliance",
+        label:
+          "Schedule agricultural carbon thesis exploration with Catalyst Alliance",
       },
       {
         icon: "clock",

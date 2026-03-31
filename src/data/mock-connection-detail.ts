@@ -50,10 +50,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["AGV", "AI Strategy", "Design Partner"],
     relationshipStatus:
       "Claire met me at the Apex AI Conference — we had a good conversation and we recently had a call with her and Ryan to walk through Sentra and talk about potential use cases as well as a brief demo. She and Ryan are waiting to receive the product feature deck.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Prep me for the next call with Claire",
-    ],
+    suggestions: ["Last conversation recap", "Prep me for next call"],
     personalNotes: [
       "- met at Apex AI Conference, instantly got the vision",
       "- works closely with Ryan on tech evaluations",
@@ -74,7 +71,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Claire Lawson",
               "Ryan Peters",
-              "Leo Hartwell",
+              "Tracy Kim",
               "Raj Sundaram",
             ],
             privacy: "private",
@@ -90,7 +87,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Mar 6",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Claire Lawson", "Leo Hartwell"],
+            participants: ["Claire Lawson", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -104,7 +101,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Sat, Mar 1",
             time: "3:30 PM",
             duration: "15 min",
-            participants: ["Claire Lawson", "Leo Hartwell"],
+            participants: ["Claire Lawson", "Tracy Kim"],
             privacy: "public",
           },
         ],
@@ -118,7 +115,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Thanks Leo — Ryan and I are looking forward to reviewing the deck. Can you also include the data governance section we discussed?",
         from: "Claire Lawson",
-        to: ["Leo Hartwell"],
+        to: ["Tracy Kim"],
       },
       {
         id: "em-sunna-2",
@@ -127,7 +124,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "Great meeting you at the conference! I'd love to set up a proper discovery call to explore how Sentra could fit into AGV's workflow.",
         from: "Claire Lawson",
-        to: ["Leo Hartwell"],
+        to: ["Tracy Kim"],
       },
       {
         id: "em-sunna-3",
@@ -136,7 +133,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         snippet:
           "We're currently evaluating 4 vendors in the organizational intelligence space. Would be great to understand Sentra's differentiation.",
         from: "Claire Lawson",
-        to: ["Leo Hartwell", "Ryan Peters"],
+        to: ["Tracy Kim", "Ryan Peters"],
       },
     ],
     news: [
@@ -175,10 +172,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Sentra", "Co-founder"],
     relationshipStatus:
       "Your co-founder and former university professor. You two meet 3-4x weekly covering product strategy, investor narrative, and launch prep. Raj trusts your judgment on GTM and leans on you for customer-facing decisions. The dynamic is direct and high-trust \u2014 you skip pleasantries and get to the point.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Does Raj need anything from me?",
-    ],
+    suggestions: ["Last conversation recap", "Open items for Raj"],
     personalNotes: [
       "- prefers async updates, dont schedule unnecesary meetings w him",
       "- super technical, always wants to see the data first before commiting to anything",
@@ -197,11 +191,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "10:00 AM",
             duration: "45 min",
-            participants: [
-              "Raj Sundaram",
-              "Pavel Volkov",
-              "Leo Hartwell",
-            ],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -213,7 +203,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Raj Sundaram",
               "Pavel Volkov",
-              "Leo Hartwell",
+              "Tracy Kim",
               "Ingrid Solberg",
             ],
             privacy: "public",
@@ -224,7 +214,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 24",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Raj Sundaram", "Leo Hartwell"],
+            participants: ["Raj Sundaram", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -238,7 +228,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Leo Hartwell"],
+            participants: ["Raj Sundaram", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -247,11 +237,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "1:00 PM",
             duration: "60 min",
-            participants: [
-              "Raj Sundaram",
-              "Leo Hartwell",
-              "Meera Kapoor",
-            ],
+            participants: ["Raj Sundaram", "Tracy Kim", "Meera Kapoor"],
             privacy: "public",
           },
         ],
@@ -265,7 +251,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "11:00 AM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Leo Hartwell"],
+            participants: ["Raj Sundaram", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -274,11 +260,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "3:00 PM",
             duration: "30 min",
-            participants: [
-              "Raj Sundaram",
-              "Leo Hartwell",
-              "Ingrid Solberg",
-            ],
+            participants: ["Raj Sundaram", "Tracy Kim", "Ingrid Solberg"],
             privacy: "public",
           },
         ],
@@ -288,11 +270,11 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         items: [
           {
             id: "cd-mtg-a3",
-            title: "Raj / Leo 1:1",
+            title: "Raj / Tracy 1:1",
             date: "Thu, Feb 6",
             time: "10:00 AM",
             duration: "30 min",
-            participants: ["Raj Sundaram", "Leo Hartwell"],
+            participants: ["Raj Sundaram", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -301,11 +283,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 4",
             time: "2:00 PM",
             duration: "60 min",
-            participants: [
-              "Raj Sundaram",
-              "Pavel Volkov",
-              "Leo Hartwell",
-            ],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
             privacy: "public",
           },
           {
@@ -314,11 +292,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 3",
             time: "10:00 AM",
             duration: "45 min",
-            participants: [
-              "Raj Sundaram",
-              "Pavel Volkov",
-              "Leo Hartwell",
-            ],
+            participants: ["Raj Sundaram", "Pavel Volkov", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -337,10 +311,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Sentra", "Co-founder"],
     relationshipStatus:
       "Sentra\u2019s CTO and your closest technical counterpart. You collaborate on product-engineering tradeoffs and sprint priorities. Pavel has strong architectural opinions \u2014 he respects when you push back with data. You two bonded over a shared obsession with clean APIs and late-night debugging sessions during the early days.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Does Pavel need anything from me?",
-    ],
+    suggestions: ["Last conversation recap", "Open items for Pavel"],
     personalNotes: [
       "- leads product AND eng, very hands on with the code himself",
       "- keep technical convos short and to the point with him",
@@ -358,11 +329,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "4:30 PM",
             duration: "60 min",
-            participants: [
-              "Pavel Volkov",
-              "Raj Sundaram",
-              "Leo Hartwell",
-            ],
+            participants: ["Pavel Volkov", "Raj Sundaram", "Tracy Kim"],
             privacy: "public",
           },
           {
@@ -371,7 +338,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 24",
             time: "1:30 PM",
             duration: "45 min",
-            participants: ["Pavel Volkov", "Leo Hartwell"],
+            participants: ["Pavel Volkov", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -385,11 +352,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "10:00 AM",
             duration: "45 min",
-            participants: [
-              "Pavel Volkov",
-              "Leo Hartwell",
-              "Ingrid Solberg",
-            ],
+            participants: ["Pavel Volkov", "Tracy Kim", "Ingrid Solberg"],
             privacy: "public",
           },
           {
@@ -398,7 +361,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "3:00 PM",
             duration: "60 min",
-            participants: ["Pavel Volkov", "Leo Hartwell"],
+            participants: ["Pavel Volkov", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -412,7 +375,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 14",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Pavel Volkov", "Leo Hartwell"],
+            participants: ["Pavel Volkov", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -421,7 +384,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "4:00 PM",
             duration: "45 min",
-            participants: ["Pavel Volkov", "Leo Hartwell", "Derek Huang"],
+            participants: ["Pavel Volkov", "Tracy Kim", "Derek Huang"],
             privacy: "public",
           },
           {
@@ -430,7 +393,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "9:30 AM",
             duration: "30 min",
-            participants: ["Pavel Volkov", "Leo Hartwell"],
+            participants: ["Pavel Volkov", "Tracy Kim"],
             privacy: "public",
           },
         ],
@@ -444,11 +407,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 6",
             time: "2:00 PM",
             duration: "60 min",
-            participants: [
-              "Pavel Volkov",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Pavel Volkov", "Tracy Kim", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -467,10 +426,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Sentra", "Operations"],
     relationshipStatus:
       "Your right hand for operations and scheduling. Ingrid keeps things moving when you\u2019re heads-down. She\u2019s proactive about flagging calendar conflicts and anticipates what you\u2019ll need before you ask. You two have a shorthand \u2014 a Teams emoji reaction is often enough to greenlight something.",
-    suggestions: [
-      "What's Ingrid working on?",
-      "Recent action items for Ingrid?",
-    ],
+    suggestions: ["Current workload", "Recent action items"],
     personalNotes: [
       "- handles scheduling for me and Raj, absolutley clutch",
       "- working on press kit rn, might need a freelance writer to help",
@@ -488,11 +444,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "2:00 PM",
             duration: "45 min",
-            participants: [
-              "Ingrid Solberg",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Ingrid Solberg", "Tracy Kim", "Raj Sundaram"],
             privacy: "public",
           },
           {
@@ -501,7 +453,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 25",
             time: "10:00 AM",
             duration: "60 min",
-            participants: ["Ingrid Solberg", "Leo Hartwell"],
+            participants: ["Ingrid Solberg", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -515,7 +467,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "1:00 PM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Leo Hartwell"],
+            participants: ["Ingrid Solberg", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -524,11 +476,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 18",
             time: "11:00 AM",
             duration: "45 min",
-            participants: [
-              "Ingrid Solberg",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Ingrid Solberg", "Tracy Kim", "Raj Sundaram"],
             privacy: "public",
           },
         ],
@@ -542,7 +490,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "9:00 AM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Leo Hartwell"],
+            participants: ["Ingrid Solberg", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -551,7 +499,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "4:00 PM",
             duration: "30 min",
-            participants: ["Ingrid Solberg", "Leo Hartwell"],
+            participants: ["Ingrid Solberg", "Tracy Kim"],
             privacy: "public",
           },
         ],
@@ -570,10 +518,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Design Partner"],
     relationshipStatus:
       "Key contact at Campfire, one of your earliest design partners. Fiona was the first external person to see the demo and immediately got it. She\u2019s been generous with product feedback and introduced you to two other ops leads in her network. You occasionally grab coffee when you\u2019re both in the Mission.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Does Fiona need anything from me?",
-    ],
+    suggestions: ["Last conversation recap", "Open items for Fiona"],
     personalNotes: [
       "- main contact at campfire, basically our first real design parnter",
       "- really into the meeting intelligence stuff, showed her the demo and she was sold",
@@ -591,7 +536,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Leo Hartwell", "Pavel Volkov"],
+            participants: ["Fiona Webb", "Tracy Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -605,7 +550,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 21",
             time: "11:00 AM",
             duration: "60 min",
-            participants: ["Fiona Webb", "Leo Hartwell"],
+            participants: ["Fiona Webb", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -619,7 +564,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "2:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Leo Hartwell", "Pavel Volkov"],
+            participants: ["Fiona Webb", "Tracy Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -633,7 +578,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 4",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Fiona Webb", "Leo Hartwell"],
+            participants: ["Fiona Webb", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -642,7 +587,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 3",
             time: "1:00 PM",
             duration: "30 min",
-            participants: ["Fiona Webb", "Leo Hartwell"],
+            participants: ["Fiona Webb", "Tracy Kim"],
             privacy: "public",
           },
         ],
@@ -661,10 +606,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Prospect"],
     relationshipStatus:
       "Technical evaluator at Relay who\u2019s been kicking the tires on Sentra\u2019s API. Derek is methodical \u2014 he won\u2019t commit until he\u2019s stress-tested every edge case. You two nerd out on systems design. He mentioned wanting to grab ramen at Nori House next time you\u2019re both free.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Does Derek need anything from me?",
-    ],
+    suggestions: ["Last conversation recap", "Open items for Derek"],
     personalNotes: [
       "- tech lead at relay, been evaluating sentra for their team",
       "- really into API deep dives, kind of a nerd about it honestly",
@@ -682,7 +624,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 25",
             time: "4:00 PM",
             duration: "60 min",
-            participants: ["Derek Huang", "Leo Hartwell", "Pavel Volkov"],
+            participants: ["Derek Huang", "Tracy Kim", "Pavel Volkov"],
             privacy: "public",
           },
         ],
@@ -696,7 +638,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Feb 20",
             time: "3:30 PM",
             duration: "45 min",
-            participants: ["Derek Huang", "Leo Hartwell"],
+            participants: ["Derek Huang", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -710,7 +652,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 12",
             time: "4:00 PM",
             duration: "60 min",
-            participants: ["Derek Huang", "Leo Hartwell", "Pavel Volkov"],
+            participants: ["Derek Huang", "Tracy Kim", "Pavel Volkov"],
             privacy: "public",
           },
           {
@@ -719,7 +661,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Feb 10",
             time: "2:00 PM",
             duration: "30 min",
-            participants: ["Derek Huang", "Leo Hartwell"],
+            participants: ["Derek Huang", "Tracy Kim"],
             privacy: "public",
           },
         ],
@@ -738,10 +680,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Investor", "Horizon Fund"],
     relationshipStatus:
       "Sentra\u2019s lead investor from Horizon Fund. Meera led the $5M round and has been an active, high-conviction backer. She\u2019s introduced you to enterprise prospects and gives sharp strategic advice. Outside work, you two bond over skiing \u2014 she\u2019s trying to convince you to do a Aspen trip before the season ends.",
-    suggestions: [
-      "What did we talk about last time?",
-      "Does Meera need anything from me?",
-    ],
+    suggestions: ["Last conversation recap", "Open items for Meera"],
     personalNotes: [
       "- lead investor, Horizon Fund. led our 5M round",
       "- wants monthly updates, keep them SHORT (5 bullets max or she zones out)",
@@ -760,11 +699,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 19",
             time: "1:00 PM",
             duration: "30 min",
-            participants: [
-              "Meera Kapoor",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -778,11 +713,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Fri, Feb 14",
             time: "10:00 AM",
             duration: "30 min",
-            participants: [
-              "Meera Kapoor",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
             privacy: "private",
           },
           {
@@ -791,7 +722,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Feb 11",
             time: "2:00 PM",
             duration: "30 min",
-            participants: ["Meera Kapoor", "Leo Hartwell"],
+            participants: ["Meera Kapoor", "Tracy Kim"],
             privacy: "private",
           },
         ],
@@ -805,11 +736,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Jan 30",
             time: "11:00 AM",
             duration: "45 min",
-            participants: [
-              "Meera Kapoor",
-              "Leo Hartwell",
-              "Raj Sundaram",
-            ],
+            participants: ["Meera Kapoor", "Tracy Kim", "Raj Sundaram"],
             privacy: "private",
           },
           {
@@ -818,7 +745,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Jan 20",
             time: "3:00 PM",
             duration: "60 min",
-            participants: ["Meera Kapoor", "Leo Hartwell"],
+            participants: ["Meera Kapoor", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -829,7 +756,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             duration: "30 min",
             participants: [
               "Meera Kapoor",
-              "Leo Hartwell",
+              "Tracy Kim",
               "Raj Sundaram",
               "Pavel Volkov",
             ],
@@ -851,10 +778,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["AGV", "Deal Origination", "Catalyst Alliance"],
     relationshipStatus:
       "Ryan is my closest collaborator on the investment team. We co-lead deal origination and he manages most of our Catalyst Alliance consortium relationships. He's methodical and detail-oriented — I trust his judgment on technical diligence more than anyone else at AGV.",
-    suggestions: [
-      "What did Ryan and I discuss last?",
-      "Prep me for my next meeting with Ryan",
-    ],
+    suggestions: ["Last conversation recap", "Prep me for next call"],
     personalNotes: [
       "- my main partner on deal sourcing, we work really well together",
       "- super detail oriented, always has the numbers ready before anyone asks",
@@ -902,7 +826,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             participants: [
               "Ryan Peters",
               "Claire Lawson",
-              "Leo Hartwell",
+              "Tracy Kim",
               "Raj Sundaram",
             ],
             privacy: "private",
@@ -993,10 +917,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["AGV", "Leadership", "CVC"],
     relationshipStatus:
       "Richard is our CEO and the ultimate decision-maker on all major investments. He's strategic and deliberate — doesn't rush into anything but once he's bought in, he moves fast. I present portfolio updates to him monthly and he trusts my and Ryan's sourcing judgment.",
-    suggestions: [
-      "What did I last brief Richard on?",
-      "What does Richard need from me this week?",
-    ],
+    suggestions: ["Last briefing recap", "Open items this week"],
     personalNotes: [
       "- CEO of AGV, very senior and busy — keep updates concise",
       "- cares most about strategic alignment w AG's broader portfolio",
@@ -1033,11 +954,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Tue, Mar 3",
             time: "10:00 AM",
             duration: "45 min",
-            participants: [
-              "Richard Caldwell",
-              "Claire Lawson",
-              "Ryan Peters",
-            ],
+            participants: ["Richard Caldwell", "Claire Lawson", "Ryan Peters"],
             privacy: "private",
           },
         ],
@@ -1066,11 +983,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 19",
             time: "11:00 AM",
             duration: "60 min",
-            participants: [
-              "Richard Caldwell",
-              "Claire Lawson",
-              "Ryan Peters",
-            ],
+            participants: ["Richard Caldwell", "Claire Lawson", "Ryan Peters"],
             privacy: "private",
           },
         ],
@@ -1099,8 +1012,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     news: [
       {
         id: "n-kengo-1",
-        headline:
-          "Apex Global CVC arm surpasses $500M in deployed capital",
+        headline: "Apex Global CVC arm surpasses $500M in deployed capital",
         date: "Mar 1, 2026",
       },
       {
@@ -1121,10 +1033,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["AGV", "Deal Screening", "Market Research"],
     relationshipStatus:
       "Lauren is our newest team member and handles deal screening and market research. She's sharp and eager to learn — I've been mentoring her on the diligence process. She produces great market maps and competitive landscapes that help us move faster on sourcing decisions.",
-    suggestions: [
-      "What's Lauren working on right now?",
-      "Any research requests I have pending with Lauren?",
-    ],
+    suggestions: ["Current workload", "Pending research requests"],
     personalNotes: [
       "- junior associate, handles screening and market reasearch",
       "- really fast learner, already producing solid competitive landscapes",
@@ -1179,11 +1088,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Mar 2",
             time: "11:00 AM",
             duration: "45 min",
-            participants: [
-              "Lauren Cho",
-              "Claire Lawson",
-              "Ryan Peters",
-            ],
+            participants: ["Lauren Cho", "Claire Lawson", "Ryan Peters"],
             privacy: "private",
           },
           {
@@ -1236,8 +1141,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
       },
       {
         id: "n-reina-2",
-        headline:
-          "Climate tech investment surges 60% in Q1 2026",
+        headline: "Climate tech investment surges 60% in Q1 2026",
         date: "Feb 28, 2026",
       },
     ],
@@ -1252,10 +1156,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["AGV", "Finance", "Fund Allocation"],
     relationshipStatus:
       "Sean oversees all fund allocation and financial reporting for AGV. We work together on capital calls and investment sizing. He's conservative by nature which is a good counterbalance to the team's enthusiasm — makes sure we stay disciplined on check sizes and reserves.",
-    suggestions: [
-      "What's the latest on fund allocation?",
-      "Any financial reviews pending with Sean?",
-    ],
+    suggestions: ["Fund allocation update", "Pending financial reviews"],
     personalNotes: [
       "- VP finance, manages fund allocation and reporting",
       "- very by-the-numbers, always wants to see the full finacial model",
@@ -1301,11 +1202,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Mar 5",
             time: "10:00 AM",
             duration: "30 min",
-            participants: [
-              "Sean Mercer",
-              "Claire Lawson",
-              "Ryan Peters",
-            ],
+            participants: ["Sean Mercer", "Claire Lawson", "Ryan Peters"],
             privacy: "private",
           },
         ],
@@ -1382,10 +1279,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Portfolio Company", "AI Infrastructure", "Series A"],
     relationshipStatus:
       "Alex is one of our strongest portfolio founders. AGV led SyntheticDB's Series A and I sit on their board as an observer. He's incredibly focused and execution-oriented — ships fast and asks for forgiveness later. We catch up biweekly and I help him think through enterprise GTM and Europe market entry.",
-    suggestions: [
-      "How is SyntheticDB performing?",
-      "What did Alex and I last discuss?",
-    ],
+    suggestions: ["SyntheticDB performance", "Last conversation recap"],
     personalNotes: [
       "- CEO of SyntheticDB, one of our best portfolio cos",
       "- ships incredibly fast, sometimes too fast — needs to slow down on enterprise sales",
@@ -1495,8 +1389,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
       },
       {
         id: "n-alex-3",
-        headline:
-          "Vector database market projected to reach $8B by 2028",
+        headline: "Vector database market projected to reach $8B by 2028",
         date: "Feb 15, 2026",
       },
       {
@@ -1517,10 +1410,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Active DD", "Climate Tech", "Carbon Capture"],
     relationshipStatus:
       "Nora is the CTO and technical brain behind GreenCore, a carbon capture startup we're currently running DD on. She's deeply technical and passionate about the science — our conversations are always substantive. I'm impressed by their approach but need to validate the scalability claims before we move forward.",
-    suggestions: [
-      "Where are we in the GreenCore DD process?",
-      "What technical questions do I still have for Nora?",
-    ],
+    suggestions: ["GreenCore DD status", "Open technical questions"],
     personalNotes: [
       "- CTO of GreenCore, PhD in chemical engineering from Ashmore",
       "- incredibly smart, speaks fast and assumes you know the science — ask clarifying Qs",
@@ -1556,7 +1446,11 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Mon, Mar 10",
             time: "1:00 PM",
             duration: "90 min",
-            participants: ["Dr. Nora Blackwell", "Claire Lawson", "Ryan Peters"],
+            participants: [
+              "Dr. Nora Blackwell",
+              "Claire Lawson",
+              "Ryan Peters",
+            ],
             privacy: "private",
           },
         ],
@@ -1656,10 +1550,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     tags: ["Portfolio Company", "AI", "Organizational Intelligence"],
     relationshipStatus:
       "Raj is the CEO and co-founder of Sentra, one of our portfolio companies building organizational memory tools. He's a former university professor — very rigorous and thoughtful. We invested in their seed round and I've been helping them think through enterprise positioning and potential AG use cases.",
-    suggestions: [
-      "How is Sentra progressing?",
-      "What did Raj and I last discuss?",
-    ],
+    suggestions: ["Sentra progress update", "Last conversation recap"],
     personalNotes: [
       "- CEO of Sentra, former university prof, super technical",
       "- building organizational memory / meeting intelligence product",
@@ -1681,7 +1572,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
               "Raj Sundaram",
               "Claire Lawson",
               "Ryan Peters",
-              "Leo Hartwell",
+              "Tracy Kim",
             ],
             privacy: "private",
           },
@@ -1710,7 +1601,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Raj Sundaram", "Claire Lawson", "Leo Hartwell"],
+            participants: ["Raj Sundaram", "Claire Lawson", "Tracy Kim"],
             privacy: "private",
           },
           {
@@ -1757,8 +1648,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     news: [
       {
         id: "n-ashwin-mc-1",
-        headline:
-          "Sentra launches AI-powered organizational memory platform",
+        headline: "Sentra launches AI-powered organizational memory platform",
         date: "Mar 8, 2026",
       },
       {
@@ -1774,75 +1664,82 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Feb 5, 2026",
       },
     ],
-    otherInteractors: ["Leo Hartwell", "Ryan Peters"],
+    otherInteractors: ["Tracy Kim", "Ryan Peters"],
   },
   "david-chen": {
     name: "David Chen",
-    email: "david.chen@novabridge.com",
-    domain: "novabridge.com",
-    role: "VP of Operations",
-    company: "NovaBridge",
-    tags: ["Client", "Active Deal", "External"],
+    email: "david.chen@novabridgecap.com",
+    domain: "novabridgecap.com",
+    role: "CEO",
+    company: "NovaBridge Capital",
+    tags: ["Client", "Active Deal", "Leadership"],
     relationshipStatus:
-      "David is leading a digital transformation initiative at NovaBridge and is evaluating enterprise tooling across the org. We connected through a mutual contact at a fintech conference. He's methodical and values ROI-driven conversations — always wants to see case studies and benchmarks before moving forward.",
+      "David has been a client for two years. We're advising NovaBridge Capital on a potential secondary offering. Six weeks ago on a Zoom call, he raised concerns about board composition and asked for a governance advisor introduction — that intro hasn't happened yet. His CFO Margaret has been in touch with our analyst Kevin about updated financials. A competitor of David's (Apex-Cobalt) just announced a major acquisition, which may accelerate the secondary offering timeline.",
     suggestions: [
-      "What did we talk about last time?",
-      "Prep me for the next call with David",
+      "Last conversation recap",
+      "Prep for the 2pm call",
+      "Secondary offering update",
     ],
     personalNotes: [
-      "- VP of Operations at NovaBridge, driving digital transformation",
-      "- met through mutual contact at FinTech Forward conference",
-      "- wants to see ROI case studies before committing to anything",
-      "- responsive on email, prefers morning meetings (EST)",
-      "- deal is progressing — need to send updated proposal by end of week",
+      "- CEO of NovaBridge Capital, mid-market advisory firm",
+      "- exploring a secondary offering to bring in growth capital",
+      "- raised board composition concerns — wants governance advisor intro (still pending)",
+      "- methodical decision-maker, values data-backed positioning",
+      "- prefers morning calls, responsive on email",
+      "- competitor Apex just merged with Cobalt — changes competitive landscape",
     ],
     meetings: [
       {
-        week: "This week",
+        week: "Today",
         items: [
           {
             id: "cd-dc-1",
-            title: "NovaBridge — Proposal Review",
-            date: "Mon, Mar 10",
-            time: "10:00 AM",
+            title: "David Chen — Secondary Offering Discussion",
+            date: "Mon, Mar 30",
+            time: "2:00 PM",
             duration: "45 min",
-            participants: ["David Chen", "Tracy Kim", "Leo Hartwell"],
+            participants: [
+              "David Chen",
+              "Margaret Liu",
+              "Tracy Kim",
+              "Nathan Lim",
+            ],
             privacy: "private",
           },
         ],
       },
       {
-        week: "Last week",
+        week: "6 weeks ago",
         items: [
           {
             id: "cd-dc-2",
-            title: "NovaBridge — Use Case Deep Dive",
-            date: "Wed, Mar 5",
-            time: "2:00 PM",
-            duration: "60 min",
+            title: "NovaBridge Capital — Advisory Check-in",
+            date: "Mon, Feb 17",
+            time: "10:00 AM",
+            duration: "45 min",
             participants: ["David Chen", "Tracy Kim"],
             privacy: "private",
-          },
-          {
-            id: "cd-dc-3",
-            title: "NovaBridge — Initial Discovery",
-            date: "Mon, Mar 3",
-            time: "11:00 AM",
-            duration: "30 min",
-            participants: ["David Chen", "Tracy Kim", "Raj Sundaram"],
-            privacy: "public",
           },
         ],
       },
       {
-        week: "2 weeks ago",
+        week: "3 months ago",
         items: [
           {
+            id: "cd-dc-3",
+            title: "NovaBridge Capital — Annual Review",
+            date: "Mon, Jan 6",
+            time: "11:00 AM",
+            duration: "60 min",
+            participants: ["David Chen", "Tracy Kim", "Diana Calloway"],
+            privacy: "private",
+          },
+          {
             id: "cd-dc-4",
-            title: "FinTech Forward — Intro Meeting",
-            date: "Thu, Feb 27",
-            time: "4:00 PM",
-            duration: "20 min",
+            title: "NovaBridge Capital — Q4 Recap",
+            date: "Thu, Dec 19",
+            time: "3:00 PM",
+            duration: "30 min",
             participants: ["David Chen", "Tracy Kim"],
             privacy: "public",
           },
@@ -1852,61 +1749,95 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
     emails: [
       {
         id: "em-dc-1",
-        subject: "Re: NovaBridge — Updated Proposal",
-        date: "Mar 10, 2026",
+        subject: "Re: Q3 Actuals and Updated Forecast",
+        date: "Mar 24, 2026",
         snippet:
-          "Thanks Tracy — reviewed the proposal with our procurement team. A few questions on the implementation timeline. Can we schedule a follow-up this week?",
-        from: "David Chen",
-        to: ["Tracy Kim"],
+          "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
+        from: "Margaret Liu",
+        to: ["Kevin Park", "Tracy Kim"],
       },
       {
         id: "em-dc-2",
-        subject: "NovaBridge — Use Case Requirements",
-        date: "Mar 4, 2026",
+        subject: "Re: Secondary Offering — Preliminary Timeline",
+        date: "Mar 10, 2026",
         snippet:
-          "Hi Tracy, attaching our internal requirements doc for the operations platform evaluation. The key criteria are on page 3.",
+          "Tracy — thanks for the framework. We're aligned on the indicative timeline. I'd like to discuss board composition before we formalize anything. Can we get time on your calendar?",
         from: "David Chen",
         to: ["Tracy Kim"],
       },
       {
         id: "em-dc-3",
-        subject: "Re: Great meeting at FinTech Forward",
-        date: "Feb 28, 2026",
+        subject: "Follow-up: Governance Advisor Introduction",
+        date: "Feb 20, 2026",
         snippet:
-          "Great connecting with you at the conference! I'd love to explore how this could fit into our digital transformation roadmap. Let's set up a call next week.",
+          "Hi Tracy — just following up on the governance advisor intro you mentioned on our last call. We'd like to have that conversation before the next board meeting in April.",
         from: "David Chen",
         to: ["Tracy Kim"],
+      },
+      {
+        id: "em-dc-4",
+        subject: "Re: NovaBridge Capital — Advisory Engagement",
+        date: "Jan 15, 2026",
+        snippet:
+          "Tracy — Happy New Year. Looking forward to reconnecting in Q1. The board has approved exploring the secondary offering and we're ready to kick off the process.",
+        from: "David Chen",
+        to: ["Tracy Kim"],
+      },
+      {
+        id: "em-dc-5",
+        subject: "NovaBridge — Q4 Board Materials",
+        date: "Dec 20, 2025",
+        snippet:
+          "Hi Tracy, attaching the Q4 board package for your reference ahead of our January discussion. Revenue came in above plan for Q4.",
+        from: "Margaret Liu",
+        to: ["Tracy Kim", "Kevin Park"],
+      },
+      {
+        id: "em-dc-6",
+        subject: "Re: Annual Review Follow-up",
+        date: "Jan 8, 2026",
+        snippet:
+          "Great discussion today. I'm aligned on the advisory scope you outlined. Let's formalize the engagement terms in the next couple of weeks.",
+        from: "David Chen",
+        to: ["Tracy Kim", "Diana Calloway"],
       },
     ],
     news: [
       {
         id: "n-dc-1",
         headline:
-          "NovaBridge announces $150M digital transformation initiative",
-        date: "Mar 8, 2026",
+          "Apex Capital announces acquisition of Cobalt Advisory in $280M deal",
+        date: "Mar 25, 2026",
       },
       {
         id: "n-dc-2",
         headline:
-          "NovaBridge partners with major cloud provider for enterprise modernization",
-        date: "Feb 20, 2026",
+          "NovaBridge Capital wins two new enterprise advisory mandates in Q1",
+        date: "Mar 12, 2026",
+      },
+      {
+        id: "n-dc-3",
+        headline: "Mid-market advisory firms see record deal flow in Q1 2026",
+        date: "Mar 18, 2026",
+      },
+      {
+        id: "n-dc-4",
+        headline: "David Chen named to Forbes' 40 Under 40 in Finance",
+        date: "Feb 28, 2026",
       },
     ],
-    otherInteractors: ["Raj Sundaram", "Leo Hartwell"],
+    otherInteractors: ["Nathan Lim", "Kevin Park", "Diana Calloway"],
   },
   "mc-p8": {
-    name: "Leo Hartwell",
-    email: "leo@sentra.app",
-    domain: "sentra.app",
-    role: "Co-founder",
-    company: "Sentra",
+    name: "Tracy Kim",
+    email: "tracy.kim@jpmorgan.com",
+    domain: "jpmorgan.com",
+    role: "Managing Director",
+    company: "J.P. Morgan",
     tags: ["Portfolio Company", "AI", "Product"],
     relationshipStatus:
       "Leo is Sentra's technical co-founder and the product visionary. He's the one who usually runs demos and handles the product side of our conversations. Very sharp on UX and product thinking — I'm impressed by how fast they iterate. He and Raj complement each other really well.",
-    suggestions: [
-      "What did Leo demo for us last?",
-      "Any follow-ups pending with Leo?",
-    ],
+    suggestions: ["Last demo recap", "Pending follow-ups"],
     personalNotes: [
       "- co-founder of Sentra, focuses on product and technical side",
       "- runs most of the demos, very good at product storytelling",
@@ -1925,7 +1856,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             time: "2:00 PM",
             duration: "45 min",
             participants: [
-              "Leo Hartwell",
+              "Tracy Kim",
               "Claire Lawson",
               "Ryan Peters",
               "Raj Sundaram",
@@ -1943,7 +1874,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Thu, Mar 6",
             time: "11:00 AM",
             duration: "30 min",
-            participants: ["Leo Hartwell", "Claire Lawson"],
+            participants: ["Tracy Kim", "Claire Lawson"],
             privacy: "private",
           },
         ],
@@ -1957,7 +1888,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
             date: "Wed, Feb 26",
             time: "3:00 PM",
             duration: "45 min",
-            participants: ["Leo Hartwell", "Claire Lawson", "Raj Sundaram"],
+            participants: ["Tracy Kim", "Claire Lawson", "Raj Sundaram"],
             privacy: "private",
           },
         ],
@@ -1970,7 +1901,7 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Mar 11, 2026",
         snippet:
           "Hi Claire — great chatting today! Here's the deck with the data governance deep dive you asked about. Let me know if you want a follow-up walkthrough.",
-        from: "Leo Hartwell",
+        from: "Tracy Kim",
         to: ["Claire Lawson", "Ryan Peters"],
       },
       {
@@ -1979,15 +1910,14 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
         date: "Mar 3, 2026",
         snippet:
           "Great meeting you at the conference Claire! Would love to set up a proper call to explore how Sentra could help AGV's workflow. Free next week?",
-        from: "Leo Hartwell",
+        from: "Tracy Kim",
         to: ["Claire Lawson"],
       },
     ],
     news: [
       {
         id: "n-justin-mc-1",
-        headline:
-          "Sentra launches AI-powered organizational memory platform",
+        headline: "Sentra launches AI-powered organizational memory platform",
         date: "Mar 8, 2026",
       },
       {
@@ -1998,5 +1928,248 @@ export const connectionData: Record<string, ConnectionDetailEntry> = {
       },
     ],
     otherInteractors: ["Raj Sundaram", "Ryan Peters"],
+  },
+  "sarah-park": {
+    name: "Sarah Park",
+    email: "sarah.park@jpmorgan.com",
+    domain: "jpmorgan.com",
+    role: "Analyst, IB Coverage",
+    company: "J.P. Morgan",
+    tags: ["IB Coverage", "Analyst", "Internal"],
+    relationshipStatus:
+      "Sarah is an analyst on Tracy's coverage team. Sharp, reliable, and fast on execution. She was not in last Thursday's IC meeting and has been working on the Meridian pitch deck without knowing it was deprioritized — Tracy needs to redirect her to the two higher-conviction mandates.",
+    suggestions: ["Sarah's current work", "Last conversation recap"],
+    personalNotes: [
+      "- strong analyst, fast on comps and financial models",
+      "- working on Meridian pitch deck (needs to be redirected — IC deprioritized Meridian)",
+      "- also supporting Synthetic DB deal numbers",
+      "- tends to work independently — make sure she's looped into IC decisions",
+    ],
+    meetings: [
+      {
+        week: "This week",
+        items: [
+          {
+            id: "cd-sp-1",
+            title: "Q1 Pipeline Review",
+            date: "Mon, Mar 30",
+            time: "11:00 AM",
+            duration: "45 min",
+            participants: [
+              "Sarah Park",
+              "Tracy Kim",
+              "Nathan Lim",
+              "Kevin Park",
+            ],
+            privacy: "public",
+          },
+        ],
+      },
+      {
+        week: "Last week",
+        items: [
+          {
+            id: "cd-sp-2",
+            title: "Meridian Corp — Comp Analysis Working Session",
+            date: "Fri, Mar 28",
+            time: "2:00 PM",
+            duration: "60 min",
+            participants: ["Sarah Park", "Kevin Park"],
+            privacy: "private",
+          },
+          {
+            id: "cd-sp-3",
+            title: "Deal Team Standup",
+            date: "Wed, Mar 26",
+            time: "9:00 AM",
+            duration: "15 min",
+            participants: ["Sarah Park", "Tracy Kim", "Nathan Lim"],
+            privacy: "public",
+          },
+        ],
+      },
+    ],
+    emails: [
+      {
+        id: "em-sp-1",
+        subject: "Re: Meridian comp data request",
+        date: "Mar 28, 2026",
+        snippet:
+          "Kevin — can you pull the latest comp set for Meridian? I need it for the pitch deck update by Monday.",
+        from: "Sarah Park",
+        to: ["Kevin Park"],
+      },
+      {
+        id: "em-sp-2",
+        subject: "Meridian Capital — Updated Financials Request",
+        date: "Mar 30, 2026",
+        snippet:
+          "Hi — following up on our earlier discussion. Could you send over the latest quarterly financials when you have a chance?",
+        from: "Sarah Park",
+        to: ["Meridian CFO"],
+      },
+    ],
+    news: [],
+    otherInteractors: [
+      "Tracy Kim",
+      "Kevin Park",
+      "Nathan Lim",
+      "Diana Calloway",
+    ],
+  },
+  "margaret-liu": {
+    name: "Margaret Liu",
+    email: "margaret.liu@novabridgecap.com",
+    domain: "novabridgecap.com",
+    role: "CFO",
+    company: "NovaBridge Capital",
+    tags: ["Client", "Active Deal", "External"],
+    relationshipStatus:
+      "Margaret is NovaBridge Capital's CFO and David Chen's right hand on financial matters. She's been the primary point of contact for financials, sending Q3 actuals and the updated FY26 forecast to Tracy's analyst Kevin Park. Professional and detail-oriented.",
+    suggestions: ["Recent documents", "NovaBridge financials"],
+    personalNotes: [
+      "- CFO at NovaBridge Capital, reports to David Chen",
+      "- sent Q3 actuals and FY26 forecast to Kevin on Mar 24",
+      "- very responsive on email, detail-oriented",
+      "- prefers working through the analyst rather than directly with senior bankers",
+    ],
+    meetings: [
+      {
+        week: "Today",
+        items: [
+          {
+            id: "cd-ml-1",
+            title: "David Chen — Secondary Offering Discussion",
+            date: "Mon, Mar 30",
+            time: "2:00 PM",
+            duration: "45 min",
+            participants: [
+              "David Chen",
+              "Margaret Liu",
+              "Tracy Kim",
+              "Nathan Lim",
+            ],
+            privacy: "private",
+          },
+        ],
+      },
+      {
+        week: "6 weeks ago",
+        items: [
+          {
+            id: "cd-ml-2",
+            title: "NovaBridge Capital — Financial Review",
+            date: "Tue, Feb 18",
+            time: "3:00 PM",
+            duration: "30 min",
+            participants: ["Margaret Liu", "Kevin Park"],
+            privacy: "private",
+          },
+        ],
+      },
+    ],
+    emails: [
+      {
+        id: "em-ml-1",
+        subject: "Re: Q3 Actuals and Updated Forecast",
+        date: "Mar 24, 2026",
+        snippet:
+          "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
+        from: "Margaret Liu",
+        to: ["Kevin Park", "Tracy Kim"],
+      },
+      {
+        id: "em-ml-2",
+        subject: "NovaBridge — Monthly Financial Package",
+        date: "Mar 3, 2026",
+        snippet:
+          "Hi Kevin, please find attached the February monthly financial package. Revenue came in 3% above plan — details in the memo on page 2.",
+        from: "Margaret Liu",
+        to: ["Kevin Park"],
+      },
+    ],
+    news: [
+      {
+        id: "n-ml-1",
+        headline:
+          "NovaBridge Capital wins two new enterprise advisory mandates in Q1",
+        date: "Mar 12, 2026",
+      },
+    ],
+    otherInteractors: ["David Chen", "Kevin Park", "Tracy Kim"],
+  },
+  "kevin-park": {
+    name: "Kevin Park",
+    email: "kevin.park@jpmorgan.com",
+    domain: "jpmorgan.com",
+    role: "Analyst, IB Coverage",
+    company: "J.P. Morgan",
+    tags: ["IB Coverage", "Analyst", "Internal"],
+    relationshipStatus:
+      "Kevin is an analyst on Tracy's team, primarily supporting the NovaBridge Capital deal. He's the main point of contact with Margaret Liu (NovaBridge CFO) and has been managing the financial model updates.",
+    suggestions: ["Current workload", "NovaBridge email thread"],
+    personalNotes: [
+      "- analyst supporting NovaBridge Capital deal",
+      "- main contact with Margaret Liu for financials",
+      "- maintaining the NovaBridge financial model on SharePoint",
+      "- flagged revenue tracking 8% above forecast",
+    ],
+    meetings: [
+      {
+        week: "This week",
+        items: [
+          {
+            id: "cd-kp-1",
+            title: "Q1 Pipeline Review",
+            date: "Mon, Mar 30",
+            time: "11:00 AM",
+            duration: "45 min",
+            participants: [
+              "Kevin Park",
+              "Tracy Kim",
+              "Nathan Lim",
+              "Sarah Park",
+            ],
+            privacy: "public",
+          },
+        ],
+      },
+      {
+        week: "Last week",
+        items: [
+          {
+            id: "cd-kp-2",
+            title: "NovaBridge — Model Update Review",
+            date: "Tue, Mar 25",
+            time: "10:00 AM",
+            duration: "30 min",
+            participants: ["Kevin Park", "Nathan Lim"],
+            privacy: "private",
+          },
+        ],
+      },
+    ],
+    emails: [
+      {
+        id: "em-kp-1",
+        subject: "Re: Q3 Actuals and Updated Forecast",
+        date: "Mar 24, 2026",
+        snippet:
+          "Thanks Margaret — I've updated the model with the new actuals. Revenue is tracking 8% above prior forecast. Flagging for Tracy.",
+        from: "Kevin Park",
+        to: ["Margaret Liu", "Tracy Kim"],
+      },
+      {
+        id: "em-kp-2",
+        subject: "NovaBridge Model — Updated Assumptions",
+        date: "Mar 25, 2026",
+        snippet:
+          "Nathan — pushed the updated model to SharePoint. Key change: FY26 revenue now at $52.5M vs $48.6M prior. EBITDA margin expanded to 29%.",
+        from: "Kevin Park",
+        to: ["Nathan Lim"],
+      },
+    ],
+    news: [],
+    otherInteractors: ["Tracy Kim", "Margaret Liu", "Nathan Lim"],
   },
 };

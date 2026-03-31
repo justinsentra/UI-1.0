@@ -47,7 +47,7 @@ export function InlineCommentPopup({
     const comment: ReportComment = {
       id: `comment-${Date.now()}`,
       text: text.trim(),
-      author: "Leo Hartwell",
+      author: "Tracy Kim",
       timestamp: new Date().toISOString(),
       highlightedText,
       sectionIndex,

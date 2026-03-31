@@ -40,6 +40,30 @@ export const people = [
     tags: ["IB Coverage", "Associate", "Internal"],
   },
   {
+    id: "sarah-park",
+    name: "Sarah Park",
+    email: "sarah.park@jpmorgan.com",
+    lastInteraction: "2026-03-30",
+    interactions: 22,
+    tags: ["IB Coverage", "Analyst", "Internal"],
+  },
+  {
+    id: "kevin-park",
+    name: "Kevin Park",
+    email: "kevin.park@jpmorgan.com",
+    lastInteraction: "2026-03-24",
+    interactions: 15,
+    tags: ["IB Coverage", "Analyst", "Internal"],
+  },
+  {
+    id: "margaret-liu",
+    name: "Margaret Liu",
+    email: "margaret.liu@novabridgecap.com",
+    lastInteraction: "2026-03-24",
+    interactions: 6,
+    tags: ["Client", "Active Deal", "External"],
+  },
+  {
     id: "raj-sundaram",
     name: "Raj Sundaram",
     email: "raj@sentra.app",
@@ -90,10 +114,10 @@ export const people = [
   {
     id: "david-chen",
     name: "David Chen",
-    email: "david.chen@novabridge.com",
-    lastInteraction: "2026-03-10",
-    interactions: 9,
-    tags: ["Client", "Active Deal", "External"],
+    email: "david.chen@novabridgecap.com",
+    lastInteraction: "2026-03-30",
+    interactions: 12,
+    tags: ["Client", "Active Deal", "Leadership"],
   },
   {
     id: "nathan-cho",
@@ -274,6 +298,13 @@ export const people = [
 ];
 
 export const companies = [
+  {
+    id: "novabridge",
+    name: "NovaBridge Capital",
+    domain: "novabridgecap.com",
+    contacts: 2,
+    lastInteraction: "2026-03-30",
+  },
   {
     id: "mcgi",
     name: "AGV (Greystone)",

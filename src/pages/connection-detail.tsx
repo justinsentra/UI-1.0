@@ -22,11 +22,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 
 const nameToIdMap: Record<string, string> = Object.fromEntries(
-  Object.entries(connectionData).map(([connectionId, entry]) => [entry.name, connectionId]),
+  Object.entries(connectionData).map(([connectionId, entry]) => [
+    entry.name,
+    connectionId,
+  ]),
 );
 
 const ConnectionDetailPage = () => {
@@ -78,11 +85,7 @@ const ConnectionDetailPage = () => {
         </div>
         <Popover open={reminderOpen} onOpenChange={setReminderOpen}>
           <PopoverTrigger
-            render={
-              <Button
-                variant={reminderDate ? "secondary" : "outline"}
-              />
-            }
+            render={<Button variant={reminderDate ? "secondary" : "outline"} />}
           >
             <Bell size={13} />
             {formattedReminderDate ?? "Set Reminder"}
@@ -180,9 +183,7 @@ const ConnectionDetailPage = () => {
 
       {/* Relationship Status */}
       <div className="mb-8">
-        <h3 className="text-sm text-foreground mb-3">
-          Relationship Status
-        </h3>
+        <h3 className="text-sm text-foreground mb-3">Relationship Status</h3>
         <p className="text-sm text-muted-foreground leading-relaxed">
           {person.relationshipStatus}
         </p>
@@ -207,10 +208,7 @@ const ConnectionDetailPage = () => {
             onClick={() => setNewsOpen((prev) => !prev)}
             className="flex items-center gap-2 w-full text-left bg-transparent border-none cursor-pointer p-0 group"
           >
-            <Newspaper
-              size={14}
-              className="text-muted-foreground shrink-0"
-            />
+            <Newspaper size={14} className="text-muted-foreground shrink-0" />
             <h3 className="text-sm text-foreground flex-1">
               Recent News on {companyShort}
             </h3>

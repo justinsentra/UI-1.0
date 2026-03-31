@@ -169,7 +169,7 @@ export const meetings: Meeting[] = [
       "Emmett Winslow",
       "Blake Carrington",
       "Raj Sundaram",
-      "Leo Hartwell",
+      "Tracy Kim",
     ],
     tags: ["partnership", "product-demo"],
     platform: "Google Meet",
@@ -188,7 +188,7 @@ export const meetings: Meeting[] = [
           "Integration opportunity: meeting context into relationship graph",
         description:
           "If Sentra captures meeting notes and commitments, that context could flow into Circle CRM's relationship intelligence layer — automatically updating when you last spoke to someone and what was discussed.",
-        participants: ["Leo Hartwell", "Blake Carrington"],
+        participants: ["Tracy Kim", "Blake Carrington"],
       },
       {
         title: "Sentra's approach to interaction-first architecture",
@@ -200,13 +200,13 @@ export const meetings: Meeting[] = [
         title: "Shared ICP overlap creates distribution opportunity",
         description:
           "Both products serve founders, operators, and VCs. Sentra's organizational tool and Circle CRM's personal tool are complementary rather than competitive, opening a potential co-marketing or bundled distribution play.",
-        participants: ["Leo Hartwell", "Emmett Winslow"],
+        participants: ["Tracy Kim", "Emmett Winslow"],
       },
       {
         title: "API-first design enables bidirectional data flow",
         description:
           "Blake and Leo identified that both products are being built API-first, which makes a lightweight integration feasible without deep coupling. A webhook-based approach could ship in weeks, not months.",
-        participants: ["Blake Carrington", "Leo Hartwell"],
+        participants: ["Blake Carrington", "Tracy Kim"],
       },
     ],
     actionItems: [
@@ -243,7 +243,7 @@ export const meetings: Meeting[] = [
         isMe: true,
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "That's really interesting. The parallels with Sentra are strong. We capture organizational memory — the decisions, context, and commitments that happen in meetings. You're essentially doing the same thing but for an individual's personal network.",
       },
       {
@@ -255,7 +255,7 @@ export const meetings: Meeting[] = [
         text: "Exactly. And that's where I think there's an integration play. If Sentra is already capturing meeting context — who said what, what was committed — that data would be incredibly valuable in our relationship graph. Right now our users have to manually log interactions, which is the biggest point of friction.",
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "We've heard that from other folks in the ecosystem too. The manual logging problem is real — people don't do it, and then their CRM goes stale. If we can automate that through the meeting layer, it's a win for both products.",
       },
       {
@@ -272,7 +272,7 @@ export const meetings: Meeting[] = [
         text: "For us, the minimum viable payload would be: participants, key commitments tied to specific people, and a summary of what was discussed. If we get that after every meeting, we can update the relationship graph in real time.",
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "That maps well to what we already capture. I think the fastest path is a webhook integration — Sentra fires an event after meeting processing, and Circle CRM consumes it. We should get our CTOs connected to explore the technical feasibility.",
       },
       {
@@ -281,7 +281,7 @@ export const meetings: Meeting[] = [
         isMe: true,
       },
       {
-        speaker: "Leo Hartwell",
+        speaker: "Tracy Kim",
         text: "Agreed. There could be a co-marketing play there eventually. For now, let's nail the integration and see how users respond. If the data flow works, the distribution story writes itself.",
       },
       {

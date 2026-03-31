@@ -3,11 +3,7 @@ import type { ComponentType } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Clock, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { MOCK_ACTIONS } from "@/data/mock-actions";
 import type { Action } from "@/data/mock-actions";
 
@@ -18,6 +14,7 @@ import sharePointLogo from "@/assets/logos/sharepoint.png";
 import salesforceLogo from "@/assets/logos/salesforce.svg";
 import serviceNowLogo from "@/assets/logos/service-now.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
+import powerpointLogo from "@/assets/logos/powerpoint.png";
 import { ZoomIcon } from "@/icons/source-icons";
 
 interface ActionIntegrationVisual {
@@ -34,6 +31,7 @@ const integrationVisualMap: Record<string, ActionIntegrationVisual> = {
   salesforce: { logo: salesforceLogo },
   servicenow: { logo: serviceNowLogo },
   "monday-com": { logo: mondayComLogo },
+  powerpoint: { logo: powerpointLogo },
 };
 
 const ActionCard = ({
@@ -112,11 +110,11 @@ const ActionsPage = () => {
           <div className="flex flex-wrap items-center justify-end gap-4">
             <Button
               onClick={() => navigate("/actions/new")}
-              className="rounded-full"
+              className="rounded-lg"
             >
               <Plus size={16} />
               Create Action
-            </Button>
+            </Button>{" "}
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">

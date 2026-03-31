@@ -14,9 +14,9 @@ const attendees: Attendee[] = [
   { name: "Cole", domain: "campfire.ai", email: "cole@campfire.ai" },
   { name: "Josh", domain: "campfire.ai", email: "josh@campfire.ai" },
   {
-    name: "Leo",
-    domain: "sentra.app",
-    email: "leo@sentra.app",
+    name: "Tracy",
+    domain: "jpmorgan.com",
+    email: "tracy.kim@jpmorgan.com",
     isMe: true,
   },
   { name: "Pavel", domain: "sentra.app", email: "pavel@sentra.app" },
@@ -83,7 +83,9 @@ export function AttendeeDropdown({ onClose }: AttendeeDropdownProps) {
                 <span className="text-sm text-[var(--border)]">
                   {attendee.name}
                   {attendee.isMe && (
-                    <span className="text-[var(--muted-foreground)] ml-1">(me)</span>
+                    <span className="text-[var(--muted-foreground)] ml-1">
+                      (me)
+                    </span>
                   )}
                 </span>
               </div>

@@ -37,68 +37,68 @@ export interface PreMeetingBrief {
 }
 
 export const PRE_MEETING_BRIEF: PreMeetingBrief = {
-  meetingTitle: "TMT Group Weekly",
+  meetingTitle: "David Chen — Secondary Offering Discussion",
   meetingTime: "2:00 PM",
-  meetingEndTime: "3:00 PM",
+  meetingEndTime: "2:45 PM",
   attendees: [
     {
-      name: "Diana Calloway",
-      role: "MD, TMT Coverage",
+      name: "David Chen",
+      role: "CEO, NovaBridge Capital",
       initials: "DC",
-      lastSpoke: "Today",
+      lastSpoke: "6 weeks ago",
+    },
+    {
+      name: "Margaret Liu",
+      role: "CFO, NovaBridge Capital",
+      initials: "ML",
+      lastSpoke: "2 weeks ago",
     },
     {
       name: "Nathan Lim",
-      role: "VP, Tech Partnerships",
+      role: "VP, Coverage",
       initials: "NL",
       lastSpoke: "Yesterday",
-    },
-    {
-      name: "Victor Kane",
-      role: "ED, Infrastructure",
-      initials: "VS",
-      lastSpoke: "2 days ago",
     },
   ],
   insights: [
     {
       heading:
-        "The DataVault LBO analysis shows a base case IRR of 18-22%, but the sponsor consortium is pushing for management rollover which could affect deal economics.",
+        "Last conversation with David was six weeks ago on Zoom. You discussed a potential secondary offering, David raised concerns about board composition, and you committed to connecting him with a governance advisor.",
       source: {
         quote:
-          "Leverage ratio is at 4.5x with the current structure. The sponsor consortium is interested but they're pushing hard on management rollover.",
-        meetingTitle: "TMT Group Weekly",
-        meetingDate: "Mar 7",
+          "We're open to a secondary but I want to make sure the board composition question is addressed first. Can you connect us with someone on the governance side before we go further?",
+        meetingTitle: "NovaBridge Capital — Advisory Check-in",
+        meetingDate: "Feb 17",
         sourceType: "zoom",
       },
       summary:
-        "Nathan's updated sensitivity analysis should be ready for discussion. This is the key decision point for the deal committee presentation.",
+        "You committed to an intro with a governance advisor and haven't followed up yet. David may raise this. Have a name ready or acknowledge the gap directly.",
     },
     {
       heading:
-        "NeuralPath's board is accelerating the sell-side timeline, targeting a preliminary term sheet by end of month. Three potential acquirers already identified.",
+        "Since your last call, Tracy's analyst exchanged emails with David's CFO about updated financials. Margaret sent Q3 actuals and a revised forecast last week.",
       source: {
         quote:
-          "NeuralPath's board wants to move fast on the sell-side process. Three potential acquirers already identified. Target: preliminary term sheet by March 28.",
-        meetingTitle: "IB Coverage Team Standup",
-        meetingDate: "Mar 9",
-        sourceType: "zoom",
+          "Attached are the Q3 actuals and our updated FY26 forecast incorporating the new enterprise contracts signed in February. Let me know if you need the underlying model.",
+        meetingTitle: "Email: Margaret Liu → Kevin Park (Analyst)",
+        meetingDate: "Mar 24",
+        sourceType: "email",
       },
       summary:
-        "This mandate is moving faster than expected. The acquirer shortlist and engagement strategy will likely come up in today's pipeline discussion.",
+        "The financials are current as of last week. Kevin flagged that revenue is tracking 8% above the prior forecast, which strengthens the secondary offering positioning.",
     },
     {
       heading:
-        "AI sector public comps have re-rated 15-20% higher in Q1, with private market multiples lagging by 2-3 turns. Convergence expected by Q3.",
+        "A colleague on a separate team mentioned David's company in last week's pipeline review, and a competitor of David's just announced a major acquisition.",
       source: {
         quote:
-          "Public comps have re-rated significantly in Q1. We're seeing 15-20% valuation increases across the board. Private markets are lagging by 2-3 turns though.",
-        meetingTitle: "TMT Group Weekly",
-        meetingDate: "Mar 7",
-        sourceType: "zoom",
+          "NovaBridge came up in the context of the Apex-Cobalt merger — their positioning in the mid-market advisory space is increasingly differentiated. Worth flagging for Tracy's coverage.",
+        meetingTitle: "IB Pipeline Review",
+        meetingDate: "Mar 26",
+        sourceType: "teams",
       },
       summary:
-        "This valuation gap is relevant for several active mandates including CloudSync and Meridian Corp. Worth discussing updated comp tables.",
+        "The Apex-Cobalt acquisition changes the competitive landscape for NovaBridge. This creates urgency around the secondary offering timeline — David may want to move faster now.",
     },
   ],
 };

@@ -1,3 +1,12 @@
+export interface ActionRun {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  status: "completed" | "failed";
+  reportId?: string;
+}
+
 export interface Action {
   id: string;
   name: string;
@@ -16,6 +25,7 @@ export interface Action {
     dayOfWeek?: string;
   };
   approvedArtifacts: ActionArtifact[];
+  historyRuns?: ActionRun[];
 }
 
 export interface ActionArtifact {
@@ -67,6 +77,26 @@ export const MOCK_ACTIONS: Action[] = [
           "Internal investor reporting snapshot generated from the latest pipeline changes.",
         artifactType: "report",
         reportId: "rpt-co-1",
+      },
+    ],
+    historyRuns: [
+      {
+        id: "run-wdp-1",
+        title: "Weekly Pipeline Health — Mar 28",
+        description:
+          "4 deals reviewed, 1 flagged at-risk (Atlas Group stalled 14 days).",
+        date: "Mar 28, 2026",
+        status: "completed",
+        reportId: "rpt-eng-1",
+      },
+      {
+        id: "run-wdp-2",
+        title: "Weekly Pipeline Health — Mar 21",
+        description:
+          "5 deals reviewed, pipeline value up 8%. No escalations needed.",
+        date: "Mar 21, 2026",
+        status: "completed",
+        reportId: "rpt-eng-1",
       },
     ],
   },
@@ -156,7 +186,8 @@ export const MOCK_ACTIONS: Action[] = [
     prompt:
       "When a client or internal team shares updated financials:\n\nStep 1: Pull the latest financials from the Outlook attachment or SharePoint upload.\n\nStep 2: Build or update the 3-statement model (Income Statement, Balance Sheet, Cash Flow) in Excel.\n\nStep 3: Flag key variance drivers vs. prior period and annotate assumption changes.\n\nStep 4: Push the updated model to SharePoint and notify the deal team via Outlook with a summary of changes and recommended review items.",
     triggerType: "triggered",
-    triggerDetail: "Email archetype trigger: runs when new financials are received.",
+    triggerDetail:
+      "Email archetype trigger: runs when new financials are received.",
     triggerConfig: {
       source: "outlook",
       event: "client-sends-financials",
@@ -171,7 +202,14 @@ export const MOCK_ACTIONS: Action[] = [
       "After key deal meetings, compile a structured deal memo from meeting transcripts, CRM data, and existing research.",
     active: true,
     schedule: "After key deal meetings",
-    integrations: ["zoom", "teams", "salesforce", "sharepoint", "outlook"],
+    integrations: [
+      "zoom",
+      "teams",
+      "salesforce",
+      "sharepoint",
+      "powerpoint",
+      "outlook",
+    ],
     prompt:
       "After a key deal meeting concludes:\n\nStep 1: Pull the Zoom or Teams transcript and extract investment thesis points, risks, and open questions.\n\nStep 2: Cross-reference Salesforce opportunity data for deal stage, valuation, and key contacts.\n\nStep 3: Pull prior research and diligence notes from SharePoint.\n\nStep 4: Compile a structured deal memo with sections for Company Overview, Investment Thesis, Key Risks, Valuation Summary, and Recommended Next Steps.\n\nStep 5: Draft and send via Outlook for team review.",
     triggerType: "triggered",
@@ -209,7 +247,13 @@ export const MOCK_ACTIONS: Action[] = [
       "At month-end, aggregate portfolio performance data and generate investor-ready reporting packages.",
     active: true,
     schedule: "Last business day of month at 8:00 AM",
-    integrations: ["salesforce", "excel", "sharepoint", "outlook"],
+    integrations: [
+      "salesforce",
+      "excel",
+      "sharepoint",
+      "powerpoint",
+      "outlook",
+    ],
     prompt:
       "On the last business day of each month:\n\nStep 1: Pull portfolio company KPIs, deal stage updates, and valuation marks from Salesforce.\n\nStep 2: Aggregate financial performance data from Excel models in SharePoint.\n\nStep 3: Generate an investor-ready reporting package with sections for Portfolio Overview, Performance Summary, Key Highlights, and Risk Flags.\n\nStep 4: Format for distribution and stage in Outlook for LP communications.",
     triggerType: "scheduled",
@@ -225,14 +269,15 @@ export const MOCK_ACTIONS: Action[] = [
     id: "vendor-delay-tracker",
     name: "Vendor Delay Tracker",
     description:
-      "When a vendor deadline passes on Monday.com, flag the delay, assess downstream impact, and notify the deal team with a risk summary.",
+      "Whenever a vendor delivery deadline passes without a confirmed completion in email or Teams, flag it immediately. Generate a report detailing the missed delivery, impacted workstreams, responsible parties, and recommended escalation steps.",
     active: true,
     schedule: "When a vendor deadline passes",
-    integrations: ["monday-com", "salesforce", "outlook", "sharepoint"],
+    integrations: ["monday-com", "teams", "outlook", "sharepoint"],
     prompt:
-      "When a vendor deadline passes on Monday.com:\n\nStep 1: Identify the missed deadline, vendor name, and associated deal from Monday.com.\n\nStep 2: Assess downstream impact — check Salesforce for deal stage and timeline dependencies.\n\nStep 3: Pull related vendor agreements and SLAs from SharePoint.\n\nStep 4: Generate a Vendor Delay Risk Report with sections for Delay Summary, Downstream Impact, SLA Status, and Recommended Escalation Path.\n\nStep 5: Send the report via Outlook to the deal lead and flag the item in Monday.com as at-risk.",
+      "Whenever a vendor delivery deadline passes without a confirmed completion in email or Teams, flag it immediately.\n\nStep 1: Identify the missed deadline, vendor name, and associated project from Monday.com.\n\nStep 2: Assess downstream impact — check for blocked workstreams, engineering idle time, and timeline dependencies.\n\nStep 3: Pull related vendor agreements and SLAs from SharePoint.\n\nStep 4: Generate a Vendor Delay Risk Report with sections for Missed Delivery Summary, Impacted Workstreams, Responsible Parties, and Recommended Escalation Steps.\n\nStep 5: Deliver the report to Tracy's Outlook and notify the project lead.",
     triggerType: "triggered",
-    triggerDetail: "Event trigger: runs when a vendor deadline passes on Monday.com.",
+    triggerDetail:
+      "Event trigger: runs when a vendor deadline passes on Monday.com.",
     triggerConfig: {
       source: "monday-com",
       event: "vendor-deadline-passes",
@@ -241,10 +286,30 @@ export const MOCK_ACTIONS: Action[] = [
     approvedArtifacts: [
       {
         id: "vendor-delay-tracker-artifact-1",
-        title: "NovaTech Vendor Delay Risk Assessment",
+        title: "Oracle Migration — Vendor Delay Report (Week 5)",
         description:
-          "Risk assessment for NovaTech vendor delay and downstream deal impact.",
+          "Risk report on DataBridge Solutions' missed delivery and downstream impact on the Oracle migration timeline.",
         artifactType: "report",
+        reportId: "rpt-eng-1",
+      },
+    ],
+    historyRuns: [
+      {
+        id: "run-vdt-1",
+        title: "DataBridge — Missed delivery (Week 5)",
+        description:
+          "Vendor missed transformed data set delivery. Engineering team blocked. Escalation delayed 16 days.",
+        date: "Mar 5, 2026",
+        status: "completed",
+        reportId: "rpt-eng-1",
+      },
+      {
+        id: "run-vdt-2",
+        title: "DataBridge — Missed delivery (Week 3)",
+        description:
+          "Vendor missed initial data extraction delivery. Cited schema complexity. 3-week impact to timeline.",
+        date: "Feb 10, 2026",
+        status: "completed",
         reportId: "rpt-eng-1",
       },
     ],

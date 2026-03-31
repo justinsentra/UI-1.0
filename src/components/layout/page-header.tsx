@@ -15,7 +15,9 @@ export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-1 text-sm text-[var(--muted-foreground)]">{subtitle}</p>
+            <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+              {subtitle}
+            </p>
           )}
         </div>
         {actions && (

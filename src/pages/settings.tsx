@@ -4,12 +4,7 @@ import { PreferencesTab } from "@components/settings/preferences-tab";
 import { ProfileTab } from "@components/settings/profile-tab";
 import { TeamTab } from "@components/settings/team-tab";
 import { BillingTab } from "@components/settings/billing-tab";
-import {
-  User,
-  CreditCard,
-  SlidersHorizontal,
-  Users,
-} from "lucide-react";
+import { User, CreditCard, SlidersHorizontal, Users } from "lucide-react";
 import type { ReactElement } from "react";
 
 interface SettingsTab {
@@ -20,10 +15,30 @@ interface SettingsTab {
 }
 
 const tabs: SettingsTab[] = [
-  { id: "preferences", label: "Preferences", icon: <SlidersHorizontal size={15} />, description: "Configure your app settings and preferences." },
-  { id: "profile", label: "Profile", icon: <User size={15} />, description: "Manage your profile information and account details." },
-  { id: "billing", label: "Billing", icon: <CreditCard size={15} />, description: "Adjust your billing settings and view your history." },
-  { id: "team", label: "Team", icon: <Users size={15} />, description: "View your team members and manage workspace access." },
+  {
+    id: "preferences",
+    label: "Preferences",
+    icon: <SlidersHorizontal size={15} />,
+    description: "Configure your app settings and preferences.",
+  },
+  {
+    id: "profile",
+    label: "Profile",
+    icon: <User size={15} />,
+    description: "Manage your profile information and account details.",
+  },
+  {
+    id: "billing",
+    label: "Billing",
+    icon: <CreditCard size={15} />,
+    description: "Adjust your billing settings and view your history.",
+  },
+  {
+    id: "team",
+    label: "Team",
+    icon: <Users size={15} />,
+    description: "View your team members and manage workspace access.",
+  },
 ];
 
 const SettingsPage = () => {
@@ -52,7 +67,7 @@ const SettingsPage = () => {
                   "relative py-1.5 inline-flex items-center gap-2 text-sm font-medium transition-colors cursor-pointer",
                   activeTab === tab.id
                     ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {activeTab === tab.id && (

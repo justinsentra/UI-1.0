@@ -80,10 +80,7 @@ const CommitmentsPage = () => {
   const commitmentList = (
     <div className="space-y-[3px]">
       {filtered.map((c) => (
-        <div
-          key={c.id}
-          className="flex items-center gap-4 py-2"
-        >
+        <div key={c.id} className="flex items-center gap-4 py-2">
           <button
             onClick={() => toggleItem(c.id)}
             className={cn(
@@ -131,11 +128,7 @@ const CommitmentsPage = () => {
                 )}
               >
                 {c.meeting} · {c.meetingDate}
-                <ArrowUpRight
-                  size={11}
-                  className="shrink-0"
-                  strokeWidth={2}
-                />
+                <ArrowUpRight size={11} className="shrink-0" strokeWidth={2} />
               </button>
             )}
           </div>
@@ -158,120 +151,124 @@ const CommitmentsPage = () => {
 
   return (
     <div className="flex overflow-hidden h-full">
-    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <div className="relative">
-      {/* Fixed top-right action bar */}
-      <div
-        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
-      >
-        <button
-          type="button"
-          onClick={() => setShowModal(true)}
-          className="flex items-center gap-1.5 px-2.5 h-8 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors bg-transparent border-none cursor-pointer"
-        >
-          <Plus className="size-3.5" />
-          Add
-        </button>
-
-        <Tabs
-          value={filter}
-          onValueChange={(value) => setFilter(value as Filter)}
-        >
-          <TabsList>
-            {filters.map((f) => (
-              <TabsTrigger key={f} value={f}>
-                {f}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        <button
-          type="button"
-          onClick={() => setShowChat((prev) => !prev)}
-          className={cn(
-            "flex items-center justify-center size-8 rounded-md transition-colors border-none cursor-pointer",
-            showChat
-              ? "bg-accent text-muted-foreground"
-              : "bg-transparent text-muted-foreground/50 hover:text-muted-foreground hover:bg-accent",
-          )}
-        >
-          <MessageSquare className="size-3.5" />
-        </button>
-      </div>
-
-      <PageShell>
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-normal tracking-tight text-foreground">
-            Commitments
-          </h1>
-        </div>
-
-        {/* Commitment List */}
-        {commitmentList}
-
-      {/* Add Commitment Modal */}
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-            onClick={() => setShowModal(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="bg-background rounded-xl w-[420px] p-6 shadow-xl border border-border"
-              onClick={(e) => e.stopPropagation()}
+      <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+        <div className="relative">
+          {/* Fixed top-right action bar */}
+          <div className="absolute top-[12px] right-5 z-10 flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
+              className="flex items-center gap-1.5 px-2.5 h-8 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors bg-transparent border-none cursor-pointer"
             >
-              <h2 className="text-md font-semibold text-foreground mb-4">
-                Add new commitment
-              </h2>
-              <textarea
-                ref={textareaRef}
-                value={newCommitmentText}
-                onChange={(e) => setNewCommitmentText(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleCreate();
-                  }
-                }}
-                placeholder="What do you need to do?"
-                className="w-full h-24 px-3 py-2.5 text-sm text-foreground placeholder-muted-foreground bg-muted border border-border rounded-lg resize-none transition-colors"
-              />
-              <div className="flex justify-end mt-4">
-                <button
-                  type="button"
-                  onClick={handleCreate}
-                  disabled={!newCommitmentText.trim()}
-                  className={cn(
-                    "px-4 py-2 rounded-lg text-sm font-medium border-none transition-colors cursor-pointer",
-                    newCommitmentText.trim()
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : "bg-muted text-muted-foreground cursor-not-allowed",
-                  )}
-                >
-                  Create
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <Plus className="size-3.5" />
+              Add
+            </button>
 
-    </PageShell>
-    </div>
-    </div>
-    <RightSidebarProvider open={showChat} onOpenChange={setShowChat} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
-      <ChatSidebar isOpen={showChat} onClose={() => setShowChat(false)} />
-    </RightSidebarProvider>
+            <Tabs
+              value={filter}
+              onValueChange={(value) => setFilter(value as Filter)}
+            >
+              <TabsList>
+                {filters.map((f) => (
+                  <TabsTrigger key={f} value={f}>
+                    {f}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+
+            <button
+              type="button"
+              onClick={() => setShowChat((prev) => !prev)}
+              className={cn(
+                "flex items-center justify-center size-8 rounded-md transition-colors border-none cursor-pointer",
+                showChat
+                  ? "bg-accent text-muted-foreground"
+                  : "bg-transparent text-muted-foreground/50 hover:text-muted-foreground hover:bg-accent",
+              )}
+            >
+              <MessageSquare className="size-3.5" />
+            </button>
+          </div>
+
+          <PageShell>
+            {/* Header */}
+            <div className="mb-6">
+              <h1 className="text-3xl font-normal tracking-tight text-foreground">
+                Commitments
+              </h1>
+            </div>
+
+            {/* Commitment List */}
+            {commitmentList}
+
+            {/* Add Commitment Modal */}
+            <AnimatePresence>
+              {showModal && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+                  onClick={() => setShowModal(false)}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="bg-background rounded-xl w-[420px] p-6 shadow-xl border border-border"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <h2 className="text-md font-semibold text-foreground mb-4">
+                      Add new commitment
+                    </h2>
+                    <textarea
+                      ref={textareaRef}
+                      value={newCommitmentText}
+                      onChange={(e) => setNewCommitmentText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          handleCreate();
+                        }
+                      }}
+                      placeholder="What do you need to do?"
+                      className="w-full h-24 px-3 py-2.5 text-sm text-foreground placeholder-muted-foreground bg-muted border border-border rounded-lg resize-none transition-colors"
+                    />
+                    <div className="flex justify-end mt-4">
+                      <button
+                        type="button"
+                        onClick={handleCreate}
+                        disabled={!newCommitmentText.trim()}
+                        className={cn(
+                          "px-4 py-2 rounded-lg text-sm font-medium border-none transition-colors cursor-pointer",
+                          newCommitmentText.trim()
+                            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                            : "bg-muted text-muted-foreground cursor-not-allowed",
+                        )}
+                      >
+                        Create
+                      </button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </PageShell>
+        </div>
+      </div>
+      <RightSidebarProvider
+        open={showChat}
+        onOpenChange={setShowChat}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
+        <ChatSidebar isOpen={showChat} onClose={() => setShowChat(false)} />
+      </RightSidebarProvider>
     </div>
   );
 };

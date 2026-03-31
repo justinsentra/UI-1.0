@@ -99,7 +99,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "Excel",
     description: "Search and analyze spreadsheets from Excel.",
     logo: excelLogo,
-    connected: false,
+    connected: true,
     category: "Productivity",
     overview:
       "Connect Excel to search workbook data, surface spreadsheet context, and pull key metrics into Sentra workflows without hunting through files manually.",
@@ -119,7 +119,7 @@ export const ALL_INTEGRATIONS: Integration[] = [
     name: "PowerPoint",
     description: "Find and reference PowerPoint decks.",
     logo: powerpointLogo,
-    connected: false,
+    connected: true,
     category: "Productivity",
     overview:
       "Connect PowerPoint to search decks, summarize presentation content, and reuse important slides and talking points across workflows.",
@@ -366,7 +366,11 @@ const IntegrationsPage = () => {
   const renderCard = (integration: Integration) => (
     <div
       key={integration.id}
-      onClick={integration.comingSoon ? undefined : () => navigate(`/integrations/${integration.id}`)}
+      onClick={
+        integration.comingSoon
+          ? undefined
+          : () => navigate(`/integrations/${integration.id}`)
+      }
       className={`flex items-center gap-4 rounded-xl p-3 transition-colors group ${
         integration.comingSoon
           ? "opacity-50 cursor-default"
@@ -402,7 +406,7 @@ const IntegrationsPage = () => {
         <Button
           variant={integration.connected ? "ghost" : "default"}
           size="lg"
-          className="shrink-0 rounded-full"
+          className="shrink-0 rounded-lg"
           onClick={(e) => toggleIntegration(e, integration.id)}
         >
           {integration.connected ? "Manage" : "Connect"}

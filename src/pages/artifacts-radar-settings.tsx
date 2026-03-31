@@ -133,7 +133,10 @@ export default function ArtifactsRadarSettings() {
                 <span className="text-sm text-[var(--foreground)]">
                   {radar.name}
                 </span>
-                <ChevronRight size={14} className="text-[var(--muted-foreground)]" />
+                <ChevronRight
+                  size={14}
+                  className="text-[var(--muted-foreground)]"
+                />
               </button>
             ))}
           </div>

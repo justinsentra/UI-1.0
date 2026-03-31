@@ -18,10 +18,7 @@ import {
   Home,
 } from "lucide-react";
 import AppSidebar from "./app-sidebar";
-import {
-  SidebarProvider,
-  SidebarInset,
-} from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { LayoutProvider } from "@/contexts/layout-context";
 import { useReportsStore } from "@/stores/reports-store";
 import { useUIStore } from "@/stores/ui-store";
@@ -120,18 +117,19 @@ const AppLayout = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      const backNav = BACK_NAV[location.pathname];
-      if (!backNav) return;
+      // If a dialog/modal is open, let the dialog handle it
+      if (document.querySelector("[data-slot='dialog-overlay']")) return;
       const tag = document.activeElement?.tagName?.toLowerCase();
       if (tag === "input" || tag === "textarea") {
         (document.activeElement as HTMLElement).blur();
         return;
       }
-      navigate(backNav.path);
+      // Navigate back to the previous page in browser history
+      navigate(-1);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [location.pathname, navigate]);
+  }, [navigate]);
 
   return (
     <BreadcrumbContext.Provider

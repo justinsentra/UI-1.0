@@ -192,7 +192,10 @@ function SpreadsheetDone() {
       >
         <FileSpreadsheet size={14} className="text-green-600 shrink-0" />
         <span>2025 Spend Data</span>
-        <ExternalLink size={12} className="text-[var(--muted-foreground)] shrink-0" />
+        <ExternalLink
+          size={12}
+          className="text-[var(--muted-foreground)] shrink-0"
+        />
       </button>
     </motion.div>
   );
@@ -217,13 +220,14 @@ function getMeetingSuggestions(meeting: Meeting): string[] {
 
 /* ── Attendee Dropdown Content ── */
 
-const attendeesByDomain = attendees.reduce<
-  Record<string, typeof attendees>
->((acc, a) => {
-  if (!acc[a.domain]) acc[a.domain] = [];
-  acc[a.domain].push(a);
-  return acc;
-}, {});
+const attendeesByDomain = attendees.reduce<Record<string, typeof attendees>>(
+  (acc, a) => {
+    if (!acc[a.domain]) acc[a.domain] = [];
+    acc[a.domain].push(a);
+    return acc;
+  },
+  {},
+);
 
 function AttendeeDropdownContent() {
   return (
@@ -290,11 +294,15 @@ function TagDropdownContent({ onNewTag }: { onNewTag: () => void }) {
         <DropdownMenuItem key={tag.name}>
           {tag.icon === "users" ? <Users size={14} /> : <Folder size={14} />}
           <span className="flex-1">{tag.name}</span>
-          {tag.isActive && <Check size={14} className="text-muted-foreground" />}
+          {tag.isActive && (
+            <Check size={14} className="text-muted-foreground" />
+          )}
         </DropdownMenuItem>
       ))}
       {filtered.length === 0 && (
-        <p className="px-2 py-1.5 text-xs text-muted-foreground">No tags found</p>
+        <p className="px-2 py-1.5 text-xs text-muted-foreground">
+          No tags found
+        </p>
       )}
       <DropdownMenuSeparator />
       <DropdownMenuItem onClick={onNewTag}>
@@ -321,7 +329,6 @@ const MeetingDetailPage = () => {
     open: showChatSidebar,
     width: chatWidth,
   });
-
 
   const meetingVisibility = useMeetingsStore((s) => s.meetingVisibility);
   const selectedMeetingId = useMeetingsStore((s) => s.selectedMeetingId);
@@ -359,387 +366,406 @@ const MeetingDetailPage = () => {
 
   return (
     <div className="flex overflow-hidden h-full">
-    <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
-    <div className="relative">
-      {/* Top-right action buttons */}
-      <div
-        className="absolute top-[12px] right-5 z-10 flex items-center gap-1"
-      >
-        <Button
-          variant="ghost"
-          size="icon-xs"
-          onClick={handleCopyLink}
-          title="Copy link"
-        >
-          <LinkIcon size={15} />
-        </Button>
-        <DropdownMenu>
-          <DropdownMenuTrigger render={<Button variant="ghost" size="icon-xs" />}>
-            <MoreHorizontal size={15} />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              onClick={() => addToast("success", "Notes copied to clipboard")}
+      <div className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto">
+        <div className="relative">
+          {/* Top-right action buttons */}
+          <div className="absolute top-[12px] right-5 z-10 flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={handleCopyLink}
+              title="Copy link"
             >
-              Copy notes
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => addToast("success", "Transcript copied to clipboard")}
-            >
-              Copy transcript
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => addToast("success", "Transcript downloaded")}
-            >
-              Download transcript
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <Button
-          variant="ghost"
-          size="icon-xs"
-          onClick={() => setShowChatSidebar((p) => !p)}
-          className={cn(
-            showChatSidebar && "bg-accent text-muted-foreground",
-          )}
-          title="Deep Research"
-        >
-          <MessageSquare size={15} />
-        </Button>
-      </div>
-
-    <PageShell className="pb-[40vh]">
-      {/* Title */}
-      <div className="mb-4">
-        <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
-          {meeting.title}
-        </h1>
-      </div>
-
-      {/* Meta Badges */}
-      <div className="flex items-center gap-2 mb-5">
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
-          >
-            {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
-            {isPrivate ? "Private" : "Public"}
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem onClick={() => setShowShareModal(true)}>
-              <Globe size={14} />
-              Share settings
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
-          >
-            <Users size={14} />
-            {meeting.participants.length + 1} attendees
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-[260px] p-0">
-            <AttendeeDropdownContent />
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors"
-          >
-            <Tag size={14} />
-            {meeting.tags[0] ?? "Untagged"}
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-[260px] p-0">
-            <TagDropdownContent onNewTag={() => setShowCreateTagModal(true)} />
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-
-      {/* Tabs */}
-      <Tabs defaultValue="overview">
-        <TabsList variant="underline" className="mb-6">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="transcript">Transcript</TabsTrigger>
-          <TabsTrigger value="video">Video</TabsTrigger>
-        </TabsList>
-
-        {/* Overview Tab */}
-        <TabsContent value="overview">
-          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-            {meeting.summary}
-          </p>
-
-          {meeting.keyPoints.length > 0 && (
-            <div className="mb-8">
-              <h3 className="text-2xs font-medium text-muted-foreground mb-4">
-                Key points & decisions
-              </h3>
-              <ul className="space-y-4">
-                {meeting.keyPoints.map((kp) => (
-                  <li key={kp.title} className="flex gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 shrink-0" />
-                    <div>
-                      <span className="text-sm text-foreground">
-                        {kp.title}
-                      </span>
-                      <p className="text-sm text-muted-foreground leading-relaxed mt-0.5">
-                        {kp.description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {meeting.actionItems.length > 0 && (
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xs font-medium text-muted-foreground">
-                  Next steps & action items
-                </h3>
-                <Link
-                  to="/commitments"
-                  className="text-sm font-medium text-muted-foreground hover:underline"
+              <LinkIcon size={15} />
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={<Button variant="ghost" size="icon-xs" />}
+              >
+                <MoreHorizontal size={15} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem
+                  onClick={() =>
+                    addToast("success", "Notes copied to clipboard")
+                  }
                 >
-                  View your to-do's
-                </Link>
-              </div>
-              <div className="space-y-[3px]">
-                {meeting.actionItems.map((item) => {
-                  const isMeridianModelItem = item.id === MERIDIAN_MODEL_ID;
-                  const isMcgiMemoItem = item.id === MCGI_MEMO_ID;
-                  const isDeepResearchItem =
-                    isMeridianModelItem || isMcgiMemoItem;
-                  const isSpreadsheetItem = item.id === SPREADSHEET_ID;
-                  const isSpreadsheetActive =
-                    isSpreadsheetItem && spreadsheetPhase !== "idle";
-                  const isChecked =
-                    checkedItems.has(item.id) ||
-                    (isSpreadsheetItem && spreadsheetPhase === "done");
-
-                  return (
-                    <div key={item.id}>
-                      <div
-                        className={cn(
-                          "flex items-center gap-4 py-2",
-                          (isDeepResearchItem ||
-                            (isSpreadsheetItem &&
-                              spreadsheetPhase === "idle")) &&
-                            "cursor-pointer",
-                          isSpreadsheetActive &&
-                            "bg-muted rounded-t-lg px-3",
-                        )}
-                        onClick={
-                          isDeepResearchItem
-                            ? () =>
-                                navigate("/deep-research", {
-                                  state: {
-                                    prefill: isMcgiMemoItem
-                                      ? "Draft an investment memo for Sentra"
-                                      : "Build a 3-statement financial model for Meridian Corp",
-                                  },
-                                })
-                            : isSpreadsheetItem && spreadsheetPhase === "idle"
-                              ? () => setSpreadsheetPhase("loading")
-                              : undefined
-                        }
-                      >
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (isDeepResearchItem) {
-                              navigate("/deep-research", {
-                                state: {
-                                  prefill: isMcgiMemoItem
-                                    ? "Draft an investment memo for Sentra"
-                                    : "Build a 3-statement financial model for Meridian Corp",
-                                },
-                              });
-                            } else if (
-                              isSpreadsheetItem &&
-                              spreadsheetPhase === "idle"
-                            ) {
-                              setSpreadsheetPhase("loading");
-                            } else {
-                              toggleCheck(item.id);
-                            }
-                          }}
-                          className={cn(
-                            "w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
-                            isChecked
-                              ? "bg-muted-foreground border-muted-foreground"
-                              : "border-border hover:border-muted-foreground",
-                          )}
-                        >
-                          {isChecked && (
-                            <svg
-                              width="10"
-                              height="8"
-                              viewBox="0 0 10 8"
-                              fill="none"
-                            >
-                              <path
-                                d="M1 4L3.5 6.5L9 1"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          )}
-                        </button>
-                        <div className="flex-1 min-w-0">
-                          <p
-                            className={cn(
-                              "text-sm",
-                              isChecked
-                                ? "line-through text-muted-foreground"
-                                : "text-foreground",
-                            )}
-                          >
-                            {item.title}
-                          </p>
-                          <p className="text-sm mt-0.5 text-muted-foreground">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-
-                      {isSpreadsheetItem && spreadsheetPhase === "loading" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
-                        >
-                          <SpreadsheetLoader
-                            steps={SPREADSHEET_SCAN_STEPS}
-                            onComplete={() => setSpreadsheetPhase("done")}
-                          />
-                        </motion.div>
-                      )}
-
-                      {isSpreadsheetItem && spreadsheetPhase === "done" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
-                        >
-                          <SpreadsheetDone />
-                        </motion.div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </TabsContent>
-
-        {/* Transcript Tab */}
-        <TabsContent value="transcript">
-          <div className="mb-6">
-            <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
-              <InputGroupAddon align="inline-start">
-                <Search size={16} />
-              </InputGroupAddon>
-              <InputGroupInput placeholder="Search transcript..." />
-            </InputGroup>
+                  Copy notes
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    addToast("success", "Transcript copied to clipboard")
+                  }
+                >
+                  Copy transcript
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => addToast("success", "Transcript downloaded")}
+                >
+                  Download transcript
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={() => setShowChatSidebar((p) => !p)}
+              className={cn(
+                showChatSidebar && "bg-accent text-muted-foreground",
+              )}
+              title="Deep Research"
+            >
+              <MessageSquare size={15} />
+            </Button>
           </div>
-          <div className="space-y-6">
-            {meeting.transcript.map((entry, i) => (
-              <div key={i} className="flex gap-3">
-                <UserAvatar name={entry.speaker} size="md" />
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm text-foreground">
-                      {entry.speaker}
-                    </span>
-                    {entry.isMe && (
-                      <span className="text-xs text-muted-foreground">
-                        (Me)
-                      </span>
-                    )}
+
+          <PageShell className="pb-[40vh]">
+            {/* Title */}
+            <div className="mb-4">
+              <h1 className="text-3xl font-normal text-[var(--foreground)] tracking-tight">
+                {meeting.title}
+              </h1>
+            </div>
+
+            {/* Meta Badges */}
+            <div className="flex items-center gap-2 mb-5">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors">
+                  {isPrivate ? <Lock size={13} /> : <Globe size={13} />}
+                  {isPrivate ? "Private" : "Public"}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  <DropdownMenuItem onClick={() => setShowShareModal(true)}>
+                    <Globe size={14} />
+                    Share settings
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors">
+                  <Users size={14} />
+                  {meeting.participants.length + 1} attendees
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-[260px] p-0">
+                  <AttendeeDropdownContent />
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="h-7 px-3 inline-flex items-center gap-1 rounded-full border border-border bg-input/20 text-xs font-normal text-muted-foreground cursor-pointer hover:bg-muted transition-colors">
+                  <Tag size={14} />
+                  {meeting.tags[0] ?? "Untagged"}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-[260px] p-0">
+                  <TagDropdownContent
+                    onNewTag={() => setShowCreateTagModal(true)}
+                  />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Tabs */}
+            <Tabs defaultValue="overview">
+              <TabsList variant="underline" className="mb-6">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="transcript">Transcript</TabsTrigger>
+                <TabsTrigger value="video">Video</TabsTrigger>
+              </TabsList>
+
+              {/* Overview Tab */}
+              <TabsContent value="overview">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                  {meeting.summary}
+                </p>
+
+                {meeting.keyPoints.length > 0 && (
+                  <div className="mb-8">
+                    <h3 className="text-2xs font-medium text-muted-foreground mb-4">
+                      Key points & decisions
+                    </h3>
+                    <ul className="space-y-4">
+                      {meeting.keyPoints.map((kp) => (
+                        <li key={kp.title} className="flex gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-foreground mt-2 shrink-0" />
+                          <div>
+                            <span className="text-sm text-foreground">
+                              {kp.title}
+                            </span>
+                            <p className="text-sm text-muted-foreground leading-relaxed mt-0.5">
+                              {kp.description}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {entry.text}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </TabsContent>
+                )}
 
-        {/* Video Tab */}
-        <TabsContent value="video">
-          <div className="bg-black rounded-xl overflow-hidden aspect-video relative">
-            {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(true)}
-                  className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors border-none cursor-pointer"
-                >
-                  <Play size={28} className="text-white ml-1" />
-                </button>
-              </div>
+                {meeting.actionItems.length > 0 && (
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-2xs font-medium text-muted-foreground">
+                        Next steps & action items
+                      </h3>
+                      <Link
+                        to="/commitments"
+                        className="text-sm font-medium text-muted-foreground hover:underline"
+                      >
+                        View your to-do's
+                      </Link>
+                    </div>
+                    <div className="space-y-[3px]">
+                      {meeting.actionItems.map((item) => {
+                        const isMeridianModelItem =
+                          item.id === MERIDIAN_MODEL_ID;
+                        const isMcgiMemoItem = item.id === MCGI_MEMO_ID;
+                        const isDeepResearchItem =
+                          isMeridianModelItem || isMcgiMemoItem;
+                        const isSpreadsheetItem = item.id === SPREADSHEET_ID;
+                        const isSpreadsheetActive =
+                          isSpreadsheetItem && spreadsheetPhase !== "idle";
+                        const isChecked =
+                          checkedItems.has(item.id) ||
+                          (isSpreadsheetItem && spreadsheetPhase === "done");
+
+                        return (
+                          <div key={item.id}>
+                            <div
+                              className={cn(
+                                "flex items-center gap-4 py-2",
+                                (isDeepResearchItem ||
+                                  (isSpreadsheetItem &&
+                                    spreadsheetPhase === "idle")) &&
+                                  "cursor-pointer",
+                                isSpreadsheetActive &&
+                                  "bg-muted rounded-t-lg px-3",
+                              )}
+                              onClick={
+                                isDeepResearchItem
+                                  ? () =>
+                                      navigate("/deep-research", {
+                                        state: {
+                                          prefill: isMcgiMemoItem
+                                            ? "Draft an investment memo for Sentra"
+                                            : "Build a 3-statement financial model for Meridian Corp",
+                                        },
+                                      })
+                                  : isSpreadsheetItem &&
+                                      spreadsheetPhase === "idle"
+                                    ? () => setSpreadsheetPhase("loading")
+                                    : undefined
+                              }
+                            >
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (isDeepResearchItem) {
+                                    navigate("/deep-research", {
+                                      state: {
+                                        prefill: isMcgiMemoItem
+                                          ? "Draft an investment memo for Sentra"
+                                          : "Build a 3-statement financial model for Meridian Corp",
+                                      },
+                                    });
+                                  } else if (
+                                    isSpreadsheetItem &&
+                                    spreadsheetPhase === "idle"
+                                  ) {
+                                    setSpreadsheetPhase("loading");
+                                  } else {
+                                    toggleCheck(item.id);
+                                  }
+                                }}
+                                className={cn(
+                                  "w-5 h-5 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors bg-transparent cursor-pointer",
+                                  isChecked
+                                    ? "bg-muted-foreground border-muted-foreground"
+                                    : "border-border hover:border-muted-foreground",
+                                )}
+                              >
+                                {isChecked && (
+                                  <svg
+                                    width="10"
+                                    height="8"
+                                    viewBox="0 0 10 8"
+                                    fill="none"
+                                  >
+                                    <path
+                                      d="M1 4L3.5 6.5L9 1"
+                                      stroke="white"
+                                      strokeWidth="1.5"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
+                                )}
+                              </button>
+                              <div className="flex-1 min-w-0">
+                                <p
+                                  className={cn(
+                                    "text-sm",
+                                    isChecked
+                                      ? "line-through text-muted-foreground"
+                                      : "text-foreground",
+                                  )}
+                                >
+                                  {item.title}
+                                </p>
+                                <p className="text-sm mt-0.5 text-muted-foreground">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </div>
+
+                            {isSpreadsheetItem &&
+                              spreadsheetPhase === "loading" && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  transition={{
+                                    duration: 0.4,
+                                    ease: "easeOut",
+                                  }}
+                                  className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
+                                >
+                                  <SpreadsheetLoader
+                                    steps={SPREADSHEET_SCAN_STEPS}
+                                    onComplete={() =>
+                                      setSpreadsheetPhase("done")
+                                    }
+                                  />
+                                </motion.div>
+                              )}
+
+                            {isSpreadsheetItem &&
+                              spreadsheetPhase === "done" && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  transition={{
+                                    duration: 0.4,
+                                    ease: "easeOut",
+                                  }}
+                                  className="bg-muted rounded-b-lg px-3 pb-3 overflow-hidden"
+                                >
+                                  <SpreadsheetDone />
+                                </motion.div>
+                              )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </TabsContent>
+
+              {/* Transcript Tab */}
+              <TabsContent value="transcript">
+                <div className="mb-6">
+                  <InputGroup className="h-9 rounded-lg bg-accent border-transparent focus-within:border-border">
+                    <InputGroupAddon align="inline-start">
+                      <Search size={16} />
+                    </InputGroupAddon>
+                    <InputGroupInput placeholder="Search transcript..." />
+                  </InputGroup>
+                </div>
+                <div className="space-y-6">
+                  {meeting.transcript.map((entry, i) => (
+                    <div key={i} className="flex gap-3">
+                      <UserAvatar name={entry.speaker} size="md" />
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-sm text-foreground">
+                            {entry.speaker}
+                          </span>
+                          {entry.isMe && (
+                            <span className="text-xs text-muted-foreground">
+                              (Me)
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {entry.text}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+
+              {/* Video Tab */}
+              <TabsContent value="video">
+                <div className="bg-black rounded-xl overflow-hidden aspect-video relative">
+                  {!isPlaying && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <button
+                        type="button"
+                        onClick={() => setIsPlaying(true)}
+                        className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors border-none cursor-pointer"
+                      >
+                        <Play size={28} className="text-white ml-1" />
+                      </button>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 z-10">
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setIsPlaying((p) => !p)}
+                        className="text-white border-none bg-transparent cursor-pointer"
+                      >
+                        {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                      </button>
+                      <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                        <div className="h-full w-0 bg-background rounded-full" />
+                      </div>
+                      <span className="text-sm text-white/80">
+                        0:00 / {meeting.duration.replace(" min", ":00")}
+                      </span>
+                      <button
+                        type="button"
+                        className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"
+                      >
+                        <Volume2 size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"
+                      >
+                        <Maximize2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            {showCreateTagModal && (
+              <CreateTagModal onClose={() => setShowCreateTagModal(false)} />
             )}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 z-10">
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying((p) => !p)}
-                  className="text-white border-none bg-transparent cursor-pointer"
-                >
-                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-                </button>
-                <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                  <div className="h-full w-0 bg-background rounded-full" />
-                </div>
-                <span className="text-sm text-white/80">
-                  0:00 / {meeting.duration.replace(" min", ":00")}
-                </span>
-                <button
-                  type="button"
-                  className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"
-                >
-                  <Volume2 size={16} />
-                </button>
-                <button
-                  type="button"
-                  className="text-white/80 hover:text-white border-none bg-transparent cursor-pointer"
-                >
-                  <Maximize2 size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </TabsContent>
-      </Tabs>
 
-      {showCreateTagModal && (
-        <CreateTagModal onClose={() => setShowCreateTagModal(false)} />
-      )}
-
-      <ShareModal
-        isOpen={showShareModal}
-        onClose={() => setShowShareModal(false)}
-        meetingId={meetingId}
-      />
-    </PageShell>
-    </div>
-    </div>
-    <RightSidebarProvider open={showChatSidebar} onOpenChange={setShowChatSidebar} defaultWidth={380} minWidth={320} maxWidth={520} onWidthChange={setChatWidth}>
-      <ChatSidebar
-        isOpen={showChatSidebar}
-        onClose={() => setShowChatSidebar(false)}
-        suggestedQuestions={meetingSuggestions}
-      />
-    </RightSidebarProvider>
+            <ShareModal
+              isOpen={showShareModal}
+              onClose={() => setShowShareModal(false)}
+              meetingId={meetingId}
+            />
+          </PageShell>
+        </div>
+      </div>
+      <RightSidebarProvider
+        open={showChatSidebar}
+        onOpenChange={setShowChatSidebar}
+        defaultWidth={380}
+        minWidth={320}
+        maxWidth={520}
+        onWidthChange={setChatWidth}
+      >
+        <ChatSidebar
+          isOpen={showChatSidebar}
+          onClose={() => setShowChatSidebar(false)}
+          suggestedQuestions={meetingSuggestions}
+        />
+      </RightSidebarProvider>
     </div>
   );
 };

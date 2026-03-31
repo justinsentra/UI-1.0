@@ -64,10 +64,7 @@ export function TeamTab() {
                   type="button"
                   className="p-1.5 rounded-md hover:bg-accent transition-colors cursor-pointer"
                 >
-                  <MoreHorizontal
-                    size={16}
-                    className="text-muted-foreground"
-                  />
+                  <MoreHorizontal size={16} className="text-muted-foreground" />
                 </button>
               }
               items={[

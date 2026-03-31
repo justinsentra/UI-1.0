@@ -828,10 +828,22 @@ const vendorEvalResponse: MockResponse = {
 
 export const deepResearchData: PersonaDeepResearchData = {
   suggestions: [
-    { label: "Update the pitch deck with our latest metrics", route: { type: "document-flow", flowId: "pn-crm-flow-pitch" } },
-    { label: "Draft the LP Summer 26 application", route: { type: "document-flow", flowId: "pn-crm-flow-yc" } },
-    { label: "Build a competitive analysis", route: { type: "document-flow", flowId: "pn-crm-flow-competitive" } },
-    { label: "What happened in this week's meetings?", route: { type: "generic", index: 0 } },
+    {
+      label: "Update the pitch deck with our latest metrics",
+      route: { type: "document-flow", flowId: "pn-crm-flow-pitch" },
+    },
+    {
+      label: "Draft the LP Summer 26 application",
+      route: { type: "document-flow", flowId: "pn-crm-flow-yc" },
+    },
+    {
+      label: "Build a competitive analysis",
+      route: { type: "document-flow", flowId: "pn-crm-flow-competitive" },
+    },
+    {
+      label: "What happened in this week's meetings?",
+      route: { type: "generic", index: 0 },
+    },
   ],
   sessionHistory: [
     {
@@ -918,7 +930,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Pitch deck pushed to Google Slides",
         description:
           "Your pre-seed pitch deck has been updated with the latest metrics, competitive positioning, and use of funds.",
-        link: { label: "Open in Google Slides", url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit" },
+        link: {
+          label: "Open in Google Slides",
+          url: "https://docs.google.com/presentation/d/1V3jHzNokqZUftWaLtY4bIjgxIrEnm8K48_mB_3MRnrw/edit",
+        },
       },
       buildingLabel: "Building pitch deck",
     },
@@ -944,7 +959,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "LP application draft pushed to Google Docs",
         description:
           "Your LP Summer 2026 application draft is ready for review.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Drafting LP application",
     },
@@ -972,7 +990,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Competitive analysis pushed to Google Docs",
         description:
           "Your competitive landscape analysis is ready with feature matrices and positioning recommendations.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building competitive analysis",
     },
@@ -998,7 +1019,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "DD template pushed to Google Docs",
         description:
           "Your standardized 2-week due diligence template is ready for the IronHawk Ventures team.",
-        link: { label: "Open in Google Docs", url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039" },
+        link: {
+          label: "Open in Google Docs",
+          url: "https://docs.google.com/document/d/1odXL_yJ2zopDNLL2RcnHhE_X7EzeTJtdCmJoj5x3awc/edit?usp=drive_web&ouid=113010372682429477039",
+        },
       },
       buildingLabel: "Building DD template",
     },
@@ -1025,7 +1049,10 @@ export const deepResearchData: PersonaDeepResearchData = {
         title: "Investor target list pushed to Google Sheets",
         description:
           "Your scored and tiered angel investor target list is ready with intro paths and outreach strategy.",
-        link: { label: "Open in Google Sheets", url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U" },
+        link: {
+          label: "Open in Google Sheets",
+          url: "https://docs.google.com/spreadsheets/d/1ld5wxkZ9fX8A96QxdJW1rVjFR158POqgFQsb9yLxP6U",
+        },
       },
       buildingLabel: "Compiling investor list",
     },

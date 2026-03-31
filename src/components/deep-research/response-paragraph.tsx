@@ -12,7 +12,10 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import type { ResponseParagraph as ResponseParagraphType, ParagraphChart } from "@/data/mock-deep-research";
+import type {
+  ResponseParagraph as ResponseParagraphType,
+  ParagraphChart,
+} from "@/data/mock-deep-research";
 import SourcePill from "./source-pill";
 import { Steps, StepsTrigger, StepsContent } from "@/components/ui/steps";
 import {
@@ -39,7 +42,13 @@ function buildChartConfig(chart: ParagraphChart): ChartConfig {
   return config;
 }
 
-function ParagraphChartView({ chart, delay }: { chart: ParagraphChart; delay: number }) {
+function ParagraphChartView({
+  chart,
+  delay,
+}: {
+  chart: ParagraphChart;
+  delay: number;
+}) {
   const config = buildChartConfig(chart);
 
   return (
@@ -50,7 +59,9 @@ function ParagraphChartView({ chart, delay }: { chart: ParagraphChart; delay: nu
       className="mt-4 mb-2 rounded-xl border border-border bg-card p-4"
     >
       {chart.title ? (
-        <p className="mb-3 text-xs font-medium text-foreground">{chart.title}</p>
+        <p className="mb-3 text-xs font-medium text-foreground">
+          {chart.title}
+        </p>
       ) : null}
       <ChartContainer config={config} className="aspect-[2/1] w-full">
         {chart.type === "bar" ? (
@@ -176,7 +187,9 @@ const ResponseParagraph = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            delay: (lineOffset + chunks.length + (paragraph.chart ? 1 : 0)) * LINE_DELAY,
+            delay:
+              (lineOffset + chunks.length + (paragraph.chart ? 1 : 0)) *
+              LINE_DELAY,
             duration: 0.3,
           }}
         >

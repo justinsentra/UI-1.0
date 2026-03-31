@@ -50,7 +50,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "From the GTM side, meeting intelligence is what our design partners keep asking for. That's the unlock for the TechConnect launch. If we can show a compelling demo of Sentra pulling context across meetings and ChatWorks, it'll resonate.",
     isMe: true,
   },
@@ -65,7 +65,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "One more thing -- the TechConnect demo script needs to be finalized by Thursday. I'll own the narrative side, but Raj, can you review the technical walkthrough section?",
     isMe: true,
   },
@@ -85,7 +85,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "That makes sense. Can we also make sure the demo data is realistic? Last time the placeholder names were obviously fake and it undercut the credibility of the product.",
     isMe: true,
   },
@@ -105,7 +105,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Great. How many press meetings do we have lined up so far? And are any of the tier-one publications confirmed?",
     isMe: true,
   },
@@ -120,7 +120,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Already on it. I'm planning a three-email sequence: day-of follow-up with personalized notes from our conversation, day-three with the product overview deck, and day-seven with a direct ask for a demo call. I'll have the templates ready by end of next week.",
     isMe: true,
   },
@@ -140,7 +140,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Sounds good. Let's lock in the fine-tuned model for the demo and revisit optimization in April. Anything else before we wrap?",
     isMe: true,
   },
@@ -155,7 +155,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Perfect. Alright, I think we're aligned. Let's reconvene Thursday for a quick check-in on all the TechConnect deliverables. Good session everyone.",
     isMe: true,
   },
@@ -170,7 +170,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Love that. Can we make sure the demo company has a few obvious organizational silos? That way we can show how Sentra surfaces misalignment between teams. That's the story that resonates most with ops leaders.",
     isMe: true,
   },
@@ -195,7 +195,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Speaking of competitors -- do we know if Buzzbot or Echobird are going to have a presence at TechConnect? We should be ready to differentiate clearly.",
     isMe: true,
   },
@@ -205,7 +205,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Got it. The key differentiator is that we're not just a meeting tool. We connect meetings, ChatWorks, docs -- the full communication surface. Nobody else is doing the cross-platform relationship graph.",
     isMe: true,
   },
@@ -220,7 +220,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Agree with that approach. A polished demo of two sources beats a buggy demo of four every time. Let's scope it to meetings plus ChatWorks for TechConnect and tease the broader vision verbally.",
     isMe: true,
   },
@@ -230,7 +230,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Did we also set up the lead capture system? I don't want to be collecting business cards and manually entering them into HubSpot again.",
     isMe: true,
   },
@@ -245,7 +245,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Who are you thinking?",
     isMe: true,
   },
@@ -255,7 +255,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "The Payvine connection is interesting. Enterprise ops teams are exactly our ICP. I can reach out to Marcus on LinkedIn before the event to set up a coffee meeting. Ingrid, can you see if we can get an intro to Helen through our existing investor network?",
     isMe: true,
   },
@@ -275,7 +275,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Definitely do the offline mode. And yes to the hotspot. Let's not leave anything to chance. We only get one shot at first impressions with these press contacts.",
     isMe: true,
   },
@@ -285,7 +285,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Works for me. I'll have the demo script fully memorized by then. Two versions -- a 90-second elevator pitch and a five-minute deep dive.",
     isMe: true,
   },
@@ -305,7 +305,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Actually, the happy hour idea is good. We could host a small invite-only event -- maybe 15 to 20 people -- ops leaders and a few investors. More intimate than the booth. Ingrid, is that feasible to pull together in two weeks?",
     isMe: true,
   },
@@ -320,12 +320,12 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Will do. I'll frame it as an exclusive preview of what we're building, not a sales pitch. Something like 'The Future of Organizational Intelligence -- an intimate conversation hosted by Sentra.' Keep it classy.",
     isMe: true,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Pavel, can you also prepare a shorter, more visual demo for the happy hour? Something laptop-friendly, maybe three minutes. Less formal, more show-and-tell.",
     isMe: true,
   },
@@ -335,7 +335,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "I like 'organizational memory layer.' It's more tangible than 'organizational intelligence.' My only concern is that 'memory' might make people think we're just a recording tool. We need to emphasize the 'connected and actionable' part.",
     isMe: true,
   },
@@ -355,7 +355,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Alright. So to recap -- Pavel is on the dedicated demo environment, seed data with the fictional fintech company, offline fallback mode, and scoping ChatWorks integration into the demo. Ingrid is handling booth logistics, press outreach, messaging one-pager, happy hour venue, and the target attendee intros. I've got the demo script, nurture sequence, invite copy for the happy hour, and the GTM slides for the board deck. Raj reviews the technical walkthrough and handles board deck product sections.",
     isMe: true,
   },
@@ -365,7 +365,7 @@ export const transcriptEntries = [
     isMe: false,
   },
   {
-    speaker: "Leo Hartwell",
+    speaker: "Tracy Kim",
     text: "Thanks everyone. Let's crush it.",
     isMe: true,
   },

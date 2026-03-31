@@ -78,7 +78,7 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
   intro:
     "Welcome back, Tracy. You were on-site with a client all last week, missed internal meetings, and now have seven meetings stacked today. Sentra has triaged what needs attention first so you can get current fast.",
   badgeLabel: "Pre-meeting brief ready",
-  briefBadgeMeetingId: "portfolio-ops-sync",
+  briefBadgeMeetingId: "david-chen-secondary",
   connectedTools: [
     {
       id: "tool-m365",
@@ -214,24 +214,34 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
       trailItems: [
         {
           id: "meridian-misalignment-trail-1",
-          source: "IC meeting",
-          title: "Committee voted Thursday to deprioritize Meridian",
-          description:
-            "Two higher-conviction mandates were approved for immediate focus and Meridian was explicitly moved out of active pursuit.",
+          source: "Zoom",
+          title: "IC meeting — Meridian deprioritized (Thu)",
+          description: "",
         },
         {
           id: "meridian-misalignment-trail-2",
-          source: "Email follow-up",
-          title: "Senior team confirmed the shift after the meeting",
-          description:
-            "Diana and Nathan aligned by email that work should move to the two newly prioritized mandates.",
+          source: "Gmail",
+          title: "Diana confirmed shift to Nathan via email (Thu)",
+          description: "",
         },
         {
           id: "meridian-misalignment-trail-3",
-          source: "Teams and Outlook",
-          title: "Sarah continued execution work anyway",
-          description:
-            "She requested comp data in Teams on Friday and emailed Meridian's CFO this morning asking for updated financials.",
+          source: "Gmail",
+          title: "Nathan replied — agreed, reallocating team (Fri AM)",
+          description: "",
+        },
+        {
+          id: "meridian-misalignment-trail-4",
+          source: "Teams",
+          title: "Sarah asked colleague for Meridian comp data (Fri PM)",
+          description: "",
+        },
+        {
+          id: "meridian-misalignment-trail-5",
+          source: "Gmail",
+          title:
+            "Sarah emailed Meridian CFO for updated financials (Today, 7:12 AM)",
+          description: "",
         },
       ],
     },
@@ -266,7 +276,8 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
     {
       id: "servicenow-escalation",
       category: "Operations",
-      title: "ServiceNow escalation is blocking diligence requests from going out",
+      title:
+        "ServiceNow escalation is blocking diligence requests from going out",
       description:
         "Procurement access failed over the weekend, so diligence checklists are not syncing to the client workspace.",
       detail:
@@ -317,29 +328,29 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
       ],
     },
     {
-      id: "email-market-analysis",
+      id: "email-secondary-offering",
       tag: "Action Needed",
-      title: "Portfolio CFO needs a comparative market analysis for tomorrow's board meeting",
-      subject: "Need a market comp view before tomorrow's board prep",
-      from: "Evan Brooks, CFO",
+      title: "David Chen wants to accelerate the secondary offering timeline",
+      subject: "Re: Secondary offering — updated timeline and financials",
+      from: "David Chen, CEO",
       receivedAt: "7:05 AM",
       summaryPoints: [
-        "They want a current comp set, recent transactions, and valuation framing for the board deck.",
-        "The ask reaches across prior board materials, latest market moves, and comparable companies.",
-        "This is a strong handoff candidate for Sentra's Deep Research flow.",
+        "David wants to move faster on the secondary offering after Apex-Cobalt's acquisition news.",
+        "Margaret sent updated Q3 actuals and FY26 forecast — they're in your inbox.",
+        "This is a strong handoff candidate for Sentra to draft the preliminary memo.",
       ],
       body: [
-        "Hi Tracy — before tomorrow's board prep, can you help us pull together a quick comparative market analysis?",
-        "What would be most useful is a current comp set, any notable transaction comps worth referencing, and a short view on how the market is pricing businesses with our profile right now. If you can ground it in the same framing we used last quarter, even better.",
-        "Thanks as always.",
+        "Hi Tracy — given the Apex-Cobalt announcement this morning, I think we need to accelerate our secondary offering timeline. The window is opening faster than we expected.",
+        "Margaret sent Kevin the updated Q3 actuals and FY26 forecast yesterday. Can you pull together a preliminary secondary offering memo before our 2pm call? Would be great to have the financials, comps, and a valuation range to discuss.",
+        "Thanks — looking forward to the call.",
       ],
       draftedReply: [
-        "Hi Evan — absolutely. I am pulling together a market view now and will frame it against the same benchmark set we used last quarter so your board deck stays consistent.",
-        "I will include updated public comps, notable transaction references, and a short read on how current valuation bands are moving for businesses with your profile.",
-        "I will send a clean draft as soon as it is ready.",
+        "Hi David — completely agree, the Apex-Cobalt news changes the calculus. I'll have a preliminary memo ready before our 2pm.",
+        "I'll pull from Margaret's updated financials, the SharePoint model, and comparable transactions from the last 12 months to frame the valuation range.",
+        "See you at 2.",
       ],
       sentraPrompt:
-        "Build a comparative market analysis for tomorrow's board meeting using the company's last board deck, current public comparables, recent relevant transactions, and a concise valuation readout with key drivers.",
+        "Draft a preliminary secondary offering memo for David Chen's company using the latest financials from the CFO email thread, the Q3 earnings data in the SharePoint model, and comparable transactions from the last 12 months.",
     },
     {
       id: "email-ic-recap",
@@ -363,7 +374,7 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
     },
   ],
   meetingsOverview:
-    "Today you have 7 meetings. You're speaking with operating partners about Synthetic DB, reconnecting with internal leadership after last week's travel, and preparing two client-facing conversations that need current context before you join.",
+    "Today you have 7 meetings. You're speaking with David Chen about the secondary offering timeline, your team about Q1 pipeline, and Apex Corp about revised engagement terms.",
   meetings: [
     {
       id: "portfolio-ops-sync",
@@ -375,17 +386,17 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
       briefReady: true,
     },
     {
-      id: "leadership-reconnect",
-      title: "Internal leadership catch-up",
+      id: "team-pipeline-sync",
+      title: "Q1 pipeline review",
       time: "11:00 AM - 11:45 AM",
-      attendees: "Tracy, Diana, Victor",
+      attendees: "Tracy, Nathan, Victor, Sarah, Kevin",
       focus:
-        "Use this to close decision gaps from last week, including the Meridian reprioritization and ownership changes across the active mandates.",
+        "Walk through active deals, flag the Meridian reprioritization, and align the team on coverage assignments for the week.",
       briefReady: true,
     },
     {
       id: "client-terms-review",
-      title: "Client engagement terms follow-up",
+      title: "Apex Corp — engagement terms follow-up",
       time: "1:00 PM - 1:30 PM",
       attendees: "Tracy, Julia Mercer, legal",
       focus:
@@ -393,9 +404,36 @@ export const MORNING_BRIEF_DATA: MorningBriefData = {
       briefReady: false,
     },
     {
+      id: "david-chen-secondary",
+      title: "David Chen — secondary offering",
+      time: "2:00 PM - 2:45 PM",
+      attendees: "Tracy, David Chen, Margaret Liu, Nathan",
+      focus:
+        "Discuss the secondary offering timeline, address board composition concerns David raised six weeks ago, and present the updated financials from the CFO.",
+      briefReady: true,
+    },
+    {
+      id: "oracle-migration-review",
+      title: "Oracle migration project review",
+      time: "3:00 PM - 3:45 PM",
+      attendees: "Tracy, project lead, engineering, vendor team",
+      focus:
+        "You're the executive sponsor and heard it's behind schedule. Walk in knowing what happened and why.",
+      briefReady: false,
+    },
+    {
+      id: "leadership-reconnect",
+      title: "Internal leadership catch-up",
+      time: "4:00 PM - 4:30 PM",
+      attendees: "Tracy, Diana, Victor",
+      focus:
+        "Close decision gaps from last week, including the Meridian reprioritization and ownership changes across the active mandates.",
+      briefReady: false,
+    },
+    {
       id: "board-prep-call",
       title: "Portfolio company board prep",
-      time: "4:00 PM - 4:45 PM",
+      time: "4:45 PM - 5:15 PM",
       attendees: "Tracy, Evan Brooks, finance team",
       focus:
         "The board prep hinges on a current market analysis and a crisp explanation of valuation movement since last quarter.",

@@ -1,12 +1,19 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUp, ArrowRight, Plus, Mic, FileUp, AtSign, ChevronRight, Bell, Mail, Video, CheckCircle2, XCircle, HelpCircle, FileText } from "lucide-react";
+import {
+  ArrowUp,
+  ArrowRight,
+  Plus,
+  Mic,
+  FileUp,
+  AtSign,
+  Bell,
+  Mail,
+  Video,
+} from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 import { cn } from "@lib/utils";
-import { getAvatarColor, getInitials } from "@lib/utils";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -26,13 +33,69 @@ import serviceNowLogo from "@/assets/logos/service-now.png";
 import oracleLogo from "@/assets/logos/oracle-financials.png";
 import mondayComLogo from "@/assets/logos/monday-com.webp";
 
+const MORNING_BRIEF_SIDEBAR_MEETINGS = [
+  {
+    id: "m1",
+    title: "Secondary offering with David Chen",
+    time: "2:00 PM",
+    attendeesShort: "Tracy, David & 2 others",
+    briefReady: true,
+  },
+  {
+    id: "m2",
+    title: "Q1 pipeline review",
+    time: "3:00 PM",
+    attendeesShort: "Tracy, Diana & 4 others",
+    briefReady: true,
+  },
+  {
+    id: "m3",
+    title: "Apex Corp engagement terms",
+    time: "4:00 PM",
+    attendeesShort: "Tracy, Julia & 1 other",
+    briefReady: false,
+  },
+  {
+    id: "m4",
+    title: "Portfolio board prep",
+    time: "5:00 PM",
+    attendeesShort: "Tracy, Evan & 3 others",
+    briefReady: false,
+  },
+];
+
+const MORNING_BRIEF_SIDEBAR_EMAILS = [
+  {
+    from: "Julia Mercer",
+    subject: "Re: Updated engagement terms",
+    time: "6:42 AM",
+    isAction: true,
+  },
+  {
+    from: "Evan Brooks",
+    subject: "Market comp view for board prep",
+    time: "7:05 AM",
+    isAction: true,
+  },
+  {
+    from: "Diana Calloway",
+    subject: "IC follow-up: updated focus list",
+    time: "8:11 AM",
+    isAction: false,
+  },
+];
+
 const HOME_ACTION_IDS = {
   weeklyDealPipelineHealthCheck: "weekly-deal-pipeline-health-check",
   postMeetingFollowUp: "post-meeting-follow-up",
   autoExcelUpdate: "auto-excel-update",
 };
 
-const ACTIVE_CONNECTION_LOGOS: { id: string; src?: string; Icon?: ComponentType<{ size?: number; className?: string }> }[] = [
+const ACTIVE_CONNECTION_LOGOS: {
+  id: string;
+  src?: string;
+  Icon?: ComponentType<{ size?: number; className?: string }>;
+}[] = [
   { id: "outlook", src: outlookLogo },
   { id: "teams", src: teamsLogo },
   { id: "zoom", Icon: ZoomIcon },
@@ -69,120 +132,51 @@ interface AttentionItem {
   title: string;
 }
 
-interface AttentionControl {
-  id: string;
-  label: string;
-}
-
-const ATTENTION_CONTROLS: AttentionControl[] = [
-  { id: "snooze-short", label: "15m" },
-  { id: "snooze-tomorrow", label: "Tomorrow" },
-  { id: "deprioritize", label: "Lower" },
-];
-
 const INITIAL_ATTENTION_ITEMS: AttentionItem[] = [
   {
-    id: "follow-up-approval",
+    id: "synthetic-db-review",
+    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
+    actionTab: "plan",
+    category: "Deal review",
+    title: "Synthetic DB needs clean numbers before Thursday",
+    description:
+      "Your analyst started the consolidation, but updated figures still need review and a Salesforce push before the IC meeting.",
+  },
+  {
+    id: "engagement-terms",
     actionId: HOME_ACTION_IDS.postMeetingFollowUp,
     actionTab: "approved",
-    category: "Approval",
-    title: "Follow-up email draft is pending approval",
+    category: "Client commitment",
+    title: "Revised engagement terms still pending",
     description:
-      "A sales follow-up for the TMT Group Weekly sync is ready to review before it sends.",
+      "You committed to sending a redline two weeks ago. The client followed up this morning before legal reviews today.",
+  },
+  {
+    id: "meridian-misalignment",
+    actionId: HOME_ACTION_IDS.postMeetingFollowUp,
+    actionTab: "plan",
+    category: "Misalignment detected",
+    title: "Sarah is still advancing Meridian after IC deprioritized it",
+    description:
+      "Sarah missed the IC decision, kept building the pitch deck, and emailed the CFO for updated financials this morning.",
   },
   {
     id: "pipeline-report",
     actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
     actionTab: "approved",
     category: "Report",
-    title: "Q1 pipeline report needs attention",
+    title: "Friday pipeline health check is ready",
     description:
-      "The latest brief flags two stalled accounts and missing next-step owners before tomorrow morning.",
+      "The latest brief flags Meridian stalled at diligence and an Oracle migration vendor delay pushing timelines.",
   },
   {
-    id: "weekly-summary",
-    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
-    actionTab: "plan",
-    category: "Action",
-    title: "Generate the weekly summary",
-    description:
-      "A recap can be prepared from Salesforce updates, meeting notes, and email highlights for leadership.",
-  },
-  {
-    id: "radar-timeline",
+    id: "follow-up-david",
     actionId: HOME_ACTION_IDS.postMeetingFollowUp,
-    actionTab: "plan",
-    category: "Radar",
-    title: "Radar alert: Meridian timeline shifted",
-    description:
-      "A partnership timeline changed after today’s meeting and should be reviewed before the next check-in.",
-  },
-  {
-    id: "investor-draft",
-    actionId: HOME_ACTION_IDS.weeklyDealPipelineHealthCheck,
     actionTab: "approved",
     category: "Approval",
-    title: "Investor update draft is ready to review",
+    title: "Follow-up email to David Chen is drafted",
     description:
-      "A follow-up note has been drafted and is waiting for approval before it goes out to the investor list.",
-  },
-];
-
-/* ── Meeting Types ── */
-interface MeetingParticipant {
-  name: string;
-  status: "accepted" | "declined" | "pending";
-}
-
-interface HomeMeeting {
-  id: string;
-  title: string;
-  time: string;
-  endTime: string;
-  participants: MeetingParticipant[];
-  summary: string;
-  platform: "Google Meet" | "Zoom";
-}
-
-const HOME_MEETINGS: HomeMeeting[] = [
-  {
-    id: "hm-1",
-    title: "TMT Group Weekly",
-    time: "2:00 PM",
-    endTime: "3:00 PM",
-    participants: [
-      { name: "Diana Calloway", status: "accepted" },
-      { name: "Nathan Lim", status: "accepted" },
-      { name: "Victor Kane", status: "pending" },
-    ],
-    summary: "Weekly sync on TMT group portfolio updates, pipeline status, and upcoming deal timelines.",
-    platform: "Google Meet",
-  },
-  {
-    id: "hm-2",
-    title: "Investment Committee — Q1 Pipeline",
-    time: "4:00 PM",
-    endTime: "5:00 PM",
-    participants: [
-      { name: "Tom Brennan", status: "accepted" },
-      { name: "Claire Lawson", status: "accepted" },
-      { name: "Jake Brennan", status: "declined" },
-      { name: "Richard Caldwell", status: "pending" },
-      { name: "Sean Mercer", status: "accepted" },
-    ],
-    summary: "Review Q1 pipeline performance metrics, discuss high-priority deal statuses, and align on investment committee priorities.",
-    platform: "Google Meet",
-  },
-  {
-    id: "hm-3",
-    title: "1:1 with Diana — Partnership Update",
-    time: "5:30 PM",
-    endTime: "6:00 PM",
-    participants: [
-      { name: "Diana Calloway", status: "accepted" },
-    ],
-    summary: "Catch up on partnership timeline progress and next steps for the Meridian engagement.",
-    platform: "Zoom",
+      "A follow-up covering the secondary offering timeline and governance advisor intro is ready to review and send.",
   },
 ];
 
@@ -193,9 +187,8 @@ const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
   const { showMorningBrief, dismissMorningBrief } = useMorningBrief();
 
-  const [attentionItems, setAttentionItems] = useState<AttentionItem[]>(INITIAL_ATTENTION_ITEMS);
+  const [attentionItems] = useState<AttentionItem[]>(INITIAL_ATTENTION_ITEMS);
   const [sidebarTab, setSidebarTab] = useState("attention");
-  const [expandedMeeting, setExpandedMeeting] = useState<string | null>(null);
 
   const handleSearchSubmit = useCallback(() => {
     const trimmed = searchValue.trim();
@@ -212,25 +205,6 @@ const HomePage = () => {
     [navigate],
   );
 
-  const deprioritizeAttentionItem = useCallback((attentionItemId: string) => {
-    setAttentionItems((previousAttentionItems) => {
-      const selectedAttentionItem = previousAttentionItems.find(
-        (attentionItem) => attentionItem.id === attentionItemId,
-      );
-
-      if (!selectedAttentionItem) {
-        return previousAttentionItems;
-      }
-
-      return [
-        ...previousAttentionItems.filter(
-          (attentionItem) => attentionItem.id !== attentionItemId,
-        ),
-        selectedAttentionItem,
-      ];
-    });
-  }, []);
-
   const visibleAttentionItems = attentionItems.slice(0, 3);
 
   return (
@@ -245,13 +219,13 @@ const HomePage = () => {
                 {getFormattedDate()}
               </p>
               <h1 className="mt-2 text-3xl font-normal tracking-tight text-foreground pb-2">
-                {getGreeting()}, Jaden
+                {getGreeting()}, Tracy
               </h1>
             </div>
 
             {/* Chat Input */}
             <div className="mb-16">
-              <div className="rounded-3xl border border-border bg-background shadow-sm overflow-hidden dark:bg-sidebar">
+              <div className="rounded-xl border border-border bg-background shadow-sm overflow-hidden dark:bg-sidebar">
                 {/* Textarea */}
                 <div className="p-3 pb-0">
                   <textarea
@@ -274,12 +248,15 @@ const HomePage = () => {
                   {/* Left actions */}
                   <div className="flex items-center gap-2">
                     <DropdownMenu>
-                      <DropdownMenuTrigger
-                        className="inline-flex items-center justify-center size-8 rounded-full hover:bg-accent text-muted-foreground transition-colors cursor-pointer border-none bg-transparent"
-                      >
+                      <DropdownMenuTrigger className="inline-flex items-center justify-center size-8 rounded-full hover:bg-accent text-muted-foreground transition-colors cursor-pointer border-none bg-transparent">
                         <Plus size={14} strokeWidth={2} />
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent side="top" align="start" sideOffset={8} className="min-w-36">
+                      <DropdownMenuContent
+                        side="top"
+                        align="start"
+                        sideOffset={8}
+                        className="min-w-36"
+                      >
                         <DropdownMenuItem>
                           <FileUp />
                           Upload file
@@ -321,7 +298,7 @@ const HomePage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/integrations")}
-                className="group mx-auto flex items-center rounded-b-2xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/50 dark:bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
+                className="group mx-auto flex items-center rounded-b-xl px-4 pb-3 pt-4 w-[calc(100%-32px)] bg-muted/50 dark:bg-[#101010] border border-border -mt-px border-t-transparent hover:bg-muted/40 transition-colors cursor-pointer"
               >
                 <p className="text-sm text-muted-foreground shrink-0">
                   Active Connections
@@ -354,10 +331,8 @@ const HomePage = () => {
                 </div>
               </button>
             </div>
-
           </div>
         </div>
-
       </div>
 
       {/* ── Right: Quick Access Panel ── */}
@@ -384,7 +359,11 @@ const HomePage = () => {
                       : "Email"}
                 </p>
               </div>
-              <Tabs value={sidebarTab} onValueChange={setSidebarTab} className="shrink-0">
+              <Tabs
+                value={sidebarTab}
+                onValueChange={setSidebarTab}
+                className="shrink-0"
+              >
                 <TabsList className="h-11 p-1 gap-1 self-start">
                   <TabsTrigger value="attention" className="px-3.5 py-2">
                     <Bell size={18} />
@@ -405,7 +384,7 @@ const HomePage = () => {
         {/* Content */}
         <div className="flex-1 overflow-y-auto px-5 py-3">
           {sidebarTab === "attention" && (
-            <div className="flex flex-col gap-3 pt-1">
+            <div className="flex flex-col gap-2.5 pt-1">
               <AnimatePresence initial={false} mode="popLayout">
                 {visibleAttentionItems.map((attentionItem) => (
                   <motion.div
@@ -415,50 +394,22 @@ const HomePage = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                    className="group/attention relative overflow-hidden rounded-xl border border-border bg-card"
                   >
                     <button
                       type="button"
                       onClick={() => handleAttentionItemClick(attentionItem)}
-                      className="flex w-full cursor-pointer flex-col gap-3 p-4 text-left transition-colors hover:bg-accent/30"
+                      className="flex w-full cursor-pointer flex-col gap-2 rounded-xl border border-border bg-card p-4 text-left transition-colors hover:bg-accent/30"
                     >
-                      <div className="flex items-center justify-between gap-3 pr-24">
-                        <span
-                          className={cn(
-                            "rounded-full px-2 py-1 text-[10px] font-medium leading-none",
-                            attentionItem.category === "Approval"
-                              ? "bg-primary/10 text-primary"
-                              : "bg-muted text-muted-foreground",
-                          )}
-                        >
-                          {attentionItem.category}
-                        </span>
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <p className="text-sm font-medium text-foreground m-0">
-                          {attentionItem.title}
-                        </p>
-                        <p className="text-xs leading-relaxed text-muted-foreground m-0">
-                          {attentionItem.description}
-                        </p>
-                      </div>
-                      <div className="flex items-center text-xs font-medium text-muted-foreground">
-                        <span>Open action</span>
-                        <ChevronRight size={12} className="ml-1 shrink-0" />
-                      </div>
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground w-fit">
+                        {attentionItem.category}
+                      </span>
+                      <p className="text-sm font-medium text-foreground m-0 leading-snug">
+                        {attentionItem.title}
+                      </p>
+                      <p className="text-xs leading-relaxed text-muted-foreground m-0 line-clamp-2">
+                        {attentionItem.description}
+                      </p>
                     </button>
-                    <div className="pointer-events-none absolute right-3 top-3 flex items-center gap-1 opacity-0 transition-opacity duration-200 group-hover/attention:opacity-100">
-                      {ATTENTION_CONTROLS.map((attentionControl) => (
-                        <button
-                          key={attentionControl.id}
-                          type="button"
-                          onClick={() => deprioritizeAttentionItem(attentionItem.id)}
-                          className="pointer-events-auto cursor-pointer rounded-full border border-border bg-background px-2 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                        >
-                          {attentionControl.label}
-                        </button>
-                      ))}
-                    </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -467,182 +418,69 @@ const HomePage = () => {
 
           {sidebarTab === "meetings" && (
             <div className="flex flex-col gap-2 pt-1">
-              {HOME_MEETINGS.map((meeting) => {
-                const isExpanded = expandedMeeting === meeting.id;
-                const maxVisibleAvatars = 2;
-                const visibleParticipants = meeting.participants.slice(0, maxVisibleAvatars);
-                const overflowCount = meeting.participants.length - maxVisibleAvatars;
-
-                return (
-                  <div
-                    key={meeting.id}
-                    className={cn(
-                      "flex flex-col rounded-lg transition-colors",
-                      isExpanded && "bg-accent/70",
-                    )}
-                  >
-                    {/* Meeting row — ghost button style */}
-                    <button
-                      type="button"
-                      onClick={() => setExpandedMeeting(isExpanded ? null : meeting.id)}
-                      className={cn(
-                        "group/mtg relative flex items-center gap-3 w-full px-3 py-2.5 bg-transparent border-none cursor-pointer text-left transition-colors",
-                        isExpanded ? "rounded-t-lg" : "rounded-lg hover:bg-accent/50",
-                      )}
-                    >
-                      {/* Video icon */}
-                      <div className="shrink-0 flex items-center justify-center">
-                        <Video size={18} className="text-primary/70" />
-                      </div>
-
-                      {/* Title + time stacked */}
-                      <div className="flex-1 min-w-0 flex flex-col gap-0.5 pr-24">
-                        <span className="text-sm font-medium text-foreground truncate">
-                          {meeting.title}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {meeting.time} – {meeting.endTime}
-                        </span>
-                      </div>
-
-                      {/* Avatars (default) / Join button (hover) */}
-                      <div className="pointer-events-none absolute inset-y-0 right-3 flex w-24 items-center justify-end">
-                        {/* Avatars — hide on hover */}
-                        <div className="flex items-center gap-0 transition-opacity group-hover/mtg:opacity-0">
-                          {visibleParticipants.map((p, i) => (
-                            <div
-                              key={p.name}
-                              className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[9px] font-medium border-2 border-background"
-                              style={{
-                                backgroundColor: getAvatarColor(p.name),
-                                marginLeft: i > 0 ? "-6px" : "0",
-                              }}
-                              title={p.name}
-                            >
-                              {getInitials(p.name)}
-                            </div>
-                          ))}
-                          {overflowCount > 0 && (
-                            <div
-                              className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-medium bg-muted text-muted-foreground border-2 border-background"
-                              style={{ marginLeft: "-6px" }}
-                            >
-                              +{overflowCount}
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Join button — show on hover */}
-                        <div
-                          className="absolute inset-y-0 right-0 flex w-full items-center justify-end opacity-0 transition-opacity group-hover/mtg:opacity-100"
-                        >
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            rounded="full"
-                            className="pointer-events-auto"
-                            onClick={(event) => event.stopPropagation()}
-                          >
-                            <Video size={14} />
-                            Join
-                          </Button>
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* Accordion content */}
-                    <div
-                      className={cn(
-                        "overflow-hidden transition-all duration-200 ease-in-out",
-                        isExpanded ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0",
-                      )}
-                    >
-                      <div className="px-3 pb-3 pt-2.5 flex flex-col gap-3">
-                        {/* Summary */}
-                        <div className="flex flex-col gap-1">
-                          <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Summary</span>
-                          <p className="text-xs text-foreground/80 leading-relaxed m-0">
-                            {meeting.summary}
-                          </p>
-                        </div>
-
-                        {/* Meeting Prep */}
-                        <button
-                          type="button"
-                          onClick={() => navigate("/pre-meeting-brief")}
-                          className="flex items-center gap-2 w-full px-3 py-2 rounded-md bg-transparent border-none cursor-pointer text-left hover:bg-accent/50 transition-colors"
-                        >
-                          <FileText size={14} className="text-primary/70 shrink-0" />
-                          <span className="text-xs font-medium text-foreground">Meeting Prep (Brief)</span>
-                          <ChevronRight size={12} className="text-muted-foreground ml-auto" />
-                        </button>
-
-                        {/* Participants */}
-                        <div className="flex flex-col gap-1.5">
-                          <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-                            Participants ({meeting.participants.length})
-                          </span>
-                          <div className="flex flex-col gap-1 max-h-[120px] overflow-y-auto">
-                            {meeting.participants.map((p) => (
-                              <div key={p.name} className="flex items-center gap-2 py-1 px-1">
-                                <div
-                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[8px] font-medium shrink-0"
-                                  style={{ backgroundColor: getAvatarColor(p.name) }}
-                                >
-                                  {getInitials(p.name)}
-                                </div>
-                                <span className="text-xs text-foreground flex-1 truncate">{p.name}</span>
-                                <Tooltip>
-                                  <TooltipTrigger className="shrink-0 bg-transparent border-none p-0 flex items-center">
-                                    {p.status === "accepted" && (
-                                      <CheckCircle2 size={13} className="text-foreground/50" />
-                                    )}
-                                    {p.status === "declined" && (
-                                      <XCircle size={13} className="text-red-400" />
-                                    )}
-                                    {p.status === "pending" && (
-                                      <HelpCircle size={13} className="text-muted-foreground/40" />
-                                    )}
-                                  </TooltipTrigger>
-                                  <TooltipContent side="left" className="text-xs">
-                                    {p.status === "accepted" && "Accepted"}
-                                    {p.status === "declined" && "Declined"}
-                                    {p.status === "pending" && "Awaiting RSVP"}
-                                  </TooltipContent>
-                                </Tooltip>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+              {MORNING_BRIEF_SIDEBAR_MEETINGS.map((meeting) => (
+                <button
+                  key={meeting.id}
+                  type="button"
+                  onClick={() => navigate("/pre-meeting-brief")}
+                  className="flex flex-col gap-1.5 rounded-lg px-3 py-2.5 text-left hover:bg-accent/50 transition-colors cursor-pointer"
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-sm font-medium text-foreground truncate">
+                      {meeting.title}
+                    </span>
+                    {meeting.briefReady ? (
+                      <span className="size-2 shrink-0 rounded-full bg-emerald-500" />
+                    ) : null}
                   </div>
-                );
-              })}
+                  <span className="text-xs text-muted-foreground">
+                    {meeting.time} · {meeting.attendeesShort}
+                  </span>
+                </button>
+              ))}
             </div>
           )}
 
           {sidebarTab === "email" && (
             <div className="flex flex-col gap-2 pt-1">
-              {[
-                { from: "Diana Reeves", subject: "Partnership timeline update", time: "10:32 AM", preview: "Hi Jaden, wanted to follow up on the revised timeline we discussed last week..." },
-                { from: "Marcus Chen", subject: "Re: Q1 Pipeline Review", time: "9:15 AM", preview: "The updated metrics look solid. I've flagged two accounts that need attention before..." },
-                { from: "Sarah Kim", subject: "Investor deck — final comments", time: "Yesterday", preview: "Looks great overall. A few minor suggestions on slides 8-12 regarding the market..." },
-              ].map((email) => (
-                <div
+              {MORNING_BRIEF_SIDEBAR_EMAILS.map((email) => (
+                <button
                   key={email.subject}
-                  className="flex flex-col gap-1 p-3 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => navigate("/morning-brief")}
+                  className="flex flex-col gap-1 p-3 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer text-left"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-foreground">{email.from}</span>
-                    <span className="text-[11px] text-muted-foreground">{email.time}</span>
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center gap-2">
+                      {email.isAction ? (
+                        <span className="size-1.5 shrink-0 rounded-full bg-destructive" />
+                      ) : null}
+                      <span className="text-sm font-medium text-foreground">
+                        {email.from}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">
+                      {email.time}
+                    </span>
                   </div>
-                  <p className="text-xs font-medium text-foreground/80 m-0">{email.subject}</p>
-                  <p className="text-xs text-muted-foreground m-0 line-clamp-2">{email.preview}</p>
-                </div>
+                  <p className="text-xs font-medium text-foreground/80 m-0">
+                    {email.subject}
+                  </p>
+                </button>
               ))}
             </div>
           )}
+        </div>
+        {/* Bottom CTA */}
+        <div className="border-t border-border px-5 py-4">
+          <button
+            type="button"
+            onClick={() => navigate("/morning-brief")}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-muted/50 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            Morning Briefing
+            <ArrowRight size={14} className="text-muted-foreground" />
+          </button>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
-import { getAvatarColor, getInitials, cn } from "@/lib/utils"
+import { getAvatarColor, getInitials, cn } from "@/lib/utils";
 
-type UserAvatarSize = "sm" | "default" | "md" | "lg" | "xl"
+type UserAvatarSize = "sm" | "default" | "md" | "lg" | "xl";
 
 const sizeClasses: Record<UserAvatarSize, string> = {
   sm: "size-7 text-[10px]",
@@ -8,16 +8,16 @@ const sizeClasses: Record<UserAvatarSize, string> = {
   md: "size-9 text-xs",
   lg: "size-10 text-xs",
   xl: "size-12 text-sm",
-}
+};
 
 export function UserAvatar({
   name,
   size = "default",
   className,
 }: {
-  name: string
-  size?: UserAvatarSize
-  className?: string
+  name: string;
+  size?: UserAvatarSize;
+  className?: string;
 }) {
   return (
     <div
@@ -30,5 +30,5 @@ export function UserAvatar({
     >
       {getInitials(name)}
     </div>
-  )
+  );
 }

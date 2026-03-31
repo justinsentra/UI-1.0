@@ -1,12 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ChevronRight,
-  ListFilter,
-  Search,
-  Layers,
-  Clock,
-} from "lucide-react";
+import { ChevronRight, ListFilter, Search, Layers, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -15,10 +9,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
-import {
-  MOCK_ARTIFACTS,
-  ARTIFACT_TYPE_LABELS,
-} from "@/data/mock-artifacts";
+import { MOCK_ARTIFACTS, ARTIFACT_TYPE_LABELS } from "@/data/mock-artifacts";
 import type { Artifact, ArtifactType } from "@/data/mock-artifacts";
 
 type FilterValue = "all" | ArtifactType;
@@ -245,7 +236,10 @@ const ArtifactsPage = () => {
             {filtered.length > 0 ? (
               sort === "action" ? (
                 <div className="mt-6">
-                  <GroupedByAction artifacts={filtered} onSelect={handleSelect} />
+                  <GroupedByAction
+                    artifacts={filtered}
+                    onSelect={handleSelect}
+                  />
                 </div>
               ) : (
                 <div className="mt-6 divide-y divide-border">
@@ -259,7 +253,7 @@ const ArtifactsPage = () => {
                 </div>
               )
             ) : (
-              <div className="mt-6 flex flex-col items-center justify-center rounded-3xl border border-dashed border-border px-8 py-24 text-center">
+              <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-border px-8 py-24 text-center">
                 <Layers
                   className="size-10 text-muted-foreground/60"
                   strokeWidth={1}

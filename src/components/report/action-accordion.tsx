@@ -57,7 +57,10 @@ export function ActionAccordion({ actions }: ActionAccordionProps) {
                   isCompleted ? "cursor-default opacity-50" : "cursor-pointer",
                 )}
               >
-                <Icon size={14} className="shrink-0 text-[var(--muted-foreground)]" />
+                <Icon
+                  size={14}
+                  className="shrink-0 text-[var(--muted-foreground)]"
+                />
                 <span
                   className={cn(
                     "flex-1 text-sm font-medium transition-colors",
